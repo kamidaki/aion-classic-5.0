@@ -1,0 +1,22 @@
+package com.aionemu.gameserver.network.aion.serverpackets;
+
+import com.aionemu.gameserver.model.account.SielEnergyType;
+import com.aionemu.gameserver.network.aion.AionConnection;
+import com.aionemu.gameserver.network.aion.AionServerPacket;
+
+public class S_GAMEPASS_OTHER_UPDATED extends AionServerPacket {
+
+	private final int playerId;
+	private final SielEnergyType sielEnergyType;
+
+	public S_GAMEPASS_OTHER_UPDATED(int playerId, SielEnergyType sielEnergyType) {
+		this.playerId = playerId;
+		this.sielEnergyType = sielEnergyType != null ? sielEnergyType : SielEnergyType.NONE;
+	}
+
+	@Override
+	protected void writeImpl(AionConnection con) {
+		writeD(playerId);
+		writeD(sielEnergyType.getId());
+	}
+}

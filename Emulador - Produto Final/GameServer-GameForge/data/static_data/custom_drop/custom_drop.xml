@@ -1,0 +1,3085 @@
+<?xml version='1.0' encoding='utf-8'?>
+<custom_drop xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="custom_drop.xsd">
+	<npc_drop npc_id="210582">
+		<drop_group max_items="2">
+			<drop item_id="123000508" chance="50" />
+			<drop item_id="123000619" chance="50" />
+		</drop_group>
+		<drop_group max_items="4">
+			<drop item_id="100000264" chance="40" />
+			<drop item_id="100100178" chance="40" />
+			<drop item_id="100200285" chance="40" />
+			<drop item_id="100600207" chance="40" />
+			<drop item_id="115000479" chance="40" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="211823">
+		<drop_group max_items="2">
+			<drop item_id="122000600" chance="50" />
+			<drop item_id="122000601" chance="50" />
+		</drop_group>
+		<drop_group max_items="4">
+			<drop item_id="100000219" chance="40" />
+			<drop item_id="100200235" chance="40" />
+			<drop item_id="100500143" chance="40" />
+			<drop item_id="101700155" chance="40" />
+			<drop item_id="100900140" chance="40" />
+			<drop item_id="101300136" chance="40" />
+			<drop item_id="100100133" chance="40" />
+			<drop item_id="101500144" chance="40" />
+			<drop item_id="100600158" chance="40" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="212928">
+		<drop_group>
+			<drop item_id="182400001" min_amount="10" max_amount="25" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="169000005" min_amount="100" chance="60" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="212945">
+		<drop_group>
+			<drop item_id="125001101" chance="40" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="111100404" chance="50" />
+			<drop item_id="111500443" chance="50" />
+			<drop item_id="111300406" chance="50" />
+			<drop item_id="111600431" chance="50" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="182400001" min_amount="25" max_amount="35" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="162000004" min_amount="20" chance="50" />
+			<drop item_id="162000009" min_amount="20" chance="50" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="169000007" min_amount="200" chance="60" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="211857">
+		<drop_group>
+			<drop item_id="125000942" chance="12" />
+			<drop item_id="125000943" chance="12" />
+			<drop item_id="125000944" chance="12" />
+			<drop item_id="125000945" chance="12" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="211860">
+		<drop_group>
+			<drop item_id="125000951" chance="12" />
+			<drop item_id="125000952" chance="12" />
+			<drop item_id="125000953" chance="12" />
+			<drop item_id="125000954" chance="12" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="212333">
+		<drop_group>
+			<drop item_id="120000733" chance="10" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="123000782" chance="10" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="214025">
+		<drop_group>
+			<drop item_id="122000780" chance="25" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="218783">
+		<drop_group>
+			<drop item_id="164000166" />
+			<drop item_id="164000167" />
+			<drop item_id="164000164" />
+			<drop item_id="164000165" />
+			<drop item_id="164000168" />
+			<drop item_id="164000169" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="218784">
+		<drop_group>
+			<drop item_id="164000166" />
+			<drop item_id="164000167" />
+			<drop item_id="164000164" />
+			<drop item_id="164000165" />
+			<drop item_id="164000168" />
+			<drop item_id="164000169" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="218785">
+		<drop_group>
+			<drop item_id="164000166" />
+			<drop item_id="164000167" />
+			<drop item_id="164000164" />
+			<drop item_id="164000165" />
+			<drop item_id="164000168" />
+			<drop item_id="164000169" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="218786">
+		<drop_group>
+			<drop item_id="164000166" />
+			<drop item_id="164000167" />
+			<drop item_id="164000164" />
+			<drop item_id="164000165" />
+			<drop item_id="164000168" />
+			<drop item_id="164000169" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="218787">
+		<drop_group>
+			<drop item_id="164000166" />
+			<drop item_id="164000167" />
+			<drop item_id="164000164" />
+			<drop item_id="164000165" />
+			<drop item_id="164000168" />
+			<drop item_id="164000169" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="218788">
+		<drop_group>
+			<drop item_id="164000166" />
+			<drop item_id="164000167" />
+			<drop item_id="164000164" />
+			<drop item_id="164000165" />
+			<drop item_id="164000168" />
+			<drop item_id="164000169" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="218789">
+		<drop_group>
+			<drop item_id="164000166" />
+			<drop item_id="164000167" />
+			<drop item_id="164000164" />
+			<drop item_id="164000165" />
+			<drop item_id="164000168" />
+			<drop item_id="164000169" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="218790">
+		<drop_group>
+			<drop item_id="164000166" />
+			<drop item_id="164000167" />
+			<drop item_id="164000164" />
+			<drop item_id="164000165" />
+			<drop item_id="164000168" />
+			<drop item_id="164000169" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="218791">
+		<drop_group>
+			<drop item_id="164000166" />
+			<drop item_id="164000167" />
+			<drop item_id="164000164" />
+			<drop item_id="164000165" />
+			<drop item_id="164000168" />
+			<drop item_id="164000169" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="218793">
+		<drop_group>
+			<drop item_id="164000166" />
+			<drop item_id="164000167" />
+			<drop item_id="164000164" />
+			<drop item_id="164000165" />
+			<drop item_id="164000168" />
+			<drop item_id="164000169" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="218809">
+		<drop_group>
+			<drop item_id="164000166" />
+			<drop item_id="164000167" />
+			<drop item_id="164000164" />
+			<drop item_id="164000165" />
+			<drop item_id="164000168" />
+			<drop item_id="164000169" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="218810">
+		<drop_group>
+			<drop item_id="164000166" />
+			<drop item_id="164000167" />
+			<drop item_id="164000164" />
+			<drop item_id="164000165" />
+			<drop item_id="164000168" />
+			<drop item_id="164000169" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="218812">
+		<drop_group>
+			<drop item_id="164000166" />
+			<drop item_id="164000167" />
+			<drop item_id="164000164" />
+			<drop item_id="164000165" />
+			<drop item_id="164000168" />
+			<drop item_id="164000169" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="213919">
+		<drop_group>
+			<drop item_id="111100664" chance="30" />
+			<drop item_id="111300666" chance="30" />
+			<drop item_id="111500653" chance="30" />
+			<drop item_id="111600645" chance="30" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="213921">
+		<drop_group>
+			<drop item_id="112100623" chance="30" />
+			<drop item_id="112300623" chance="30" />
+			<drop item_id="112500611" chance="30" />
+			<drop item_id="112600619" chance="30" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="214627">
+		<drop_group>
+			<drop item_id="115000825" chance="30" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="217099">
+		<drop_group>
+			<drop item_id="186000109" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="162000050" chance="65" min_amount="10" max_amount="15" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="169000010" chance="65" min_amount="15" max_amount="25" />
+		</drop_group>
+		<drop_group race="ELYOS">
+			<drop item_id="169405035" chance="50" min_amount="5" max_amount="20" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="217075">
+		<drop_group>
+			<drop item_id="186000109" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="162000050" chance="65" min_amount="10" max_amount="15" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="169000010" chance="65" min_amount="15" max_amount="25" />
+		</drop_group>
+		<drop_group race="ASMODIANS">
+			<drop item_id="169405038" chance="50" min_amount="5" max_amount="20" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="700859">
+		<drop_group>
+			<drop item_id="182400001" min_amount="41602" max_amount="124806" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000051" chance="0.5" />
+			<drop item_id="186000052" chance="0.75" />
+			<drop item_id="186000053" chance="1.25" />
+			<drop item_id="186000054" chance="2.5" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000055" chance="2" />
+			<drop item_id="186000056" chance="6" />
+			<drop item_id="186000057" chance="10" />
+			<drop item_id="186000058" chance="20" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000059" chance="4.5" />
+			<drop item_id="186000060" chance="6.75" />
+			<drop item_id="186000061" chance="11.25" />
+			<drop item_id="186000062" chance="22.5" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000059" chance="6" />
+			<drop item_id="186000060" chance="9" />
+			<drop item_id="186000061" chance="15" />
+			<drop item_id="186000062" chance="30" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="700860">
+		<drop_group>
+			<drop item_id="182400001" min_amount="208008" max_amount="624024" />
+		</drop_group>
+		<drop_group max_items="2">
+			<drop item_id="186000030" chance="15" />
+			<drop item_id="186000096" chance="30" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="112101058" chance="44" />
+			<drop item_id="112301044" chance="44" />
+			<drop item_id="112501033" chance="44" />
+			<drop item_id="112601047" chance="44" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000051" chance="0.7" />
+			<drop item_id="186000052" chance="1.05" />
+			<drop item_id="186000053" chance="1.75" />
+			<drop item_id="186000054" chance="3.5" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000055" chance="2" />
+			<drop item_id="186000056" chance="6" />
+			<drop item_id="186000057" chance="10" />
+			<drop item_id="186000058" chance="20" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000059" chance="4.5" />
+			<drop item_id="186000060" chance="6.75" />
+			<drop item_id="186000061" chance="11.25" />
+			<drop item_id="186000062" chance="22.5" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000059" chance="6" />
+			<drop item_id="186000060" chance="9" />
+			<drop item_id="186000061" chance="15" />
+			<drop item_id="186000062" chance="30" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="188053083" chance="5" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="700861">
+		<drop_group>
+			<drop item_id="182209822" each_member="true" />
+			<drop item_id="182209802" each_member="true" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="700934">
+		<drop_group>
+			<drop item_id="182400001" min_amount="41602" max_amount="124806" />
+		</drop_group>
+		<drop_group max_items="2">
+			<drop item_id="186000030" chance="5" />
+			<drop item_id="186000096" chance="15" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000051" chance="0.5" />
+			<drop item_id="186000052" chance="0.75" />
+			<drop item_id="186000053" chance="1.25" />
+			<drop item_id="186000054" chance="2.5" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000055" chance="2" />
+			<drop item_id="186000056" chance="6" />
+			<drop item_id="186000057" chance="10" />
+			<drop item_id="186000058" chance="20" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000059" chance="4.5" />
+			<drop item_id="186000060" chance="6.75" />
+			<drop item_id="186000061" chance="11.25" />
+			<drop item_id="186000062" chance="22.5" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000059" chance="6" />
+			<drop item_id="186000060" chance="9" />
+			<drop item_id="186000061" chance="15" />
+			<drop item_id="186000062" chance="30" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="700935">
+		<drop_group>
+			<drop item_id="182400001" min_amount="208008" max_amount="624024" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="185000104" />
+		</drop_group>
+		<drop_group max_items="2">
+			<drop item_id="186000030" chance="15" />
+			<drop item_id="186000096" chance="30" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="111101098" chance="44" />
+			<drop item_id="111301097" chance="44" />
+			<drop item_id="111501082" chance="44" />
+			<drop item_id="111601072" chance="44" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000051" chance="0.7" />
+			<drop item_id="186000052" chance="1.05" />
+			<drop item_id="186000053" chance="1.75" />
+			<drop item_id="186000054" chance="3.5" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000055" chance="2" />
+			<drop item_id="186000056" chance="6" />
+			<drop item_id="186000057" chance="10" />
+			<drop item_id="186000058" chance="20" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000059" chance="4.5" />
+			<drop item_id="186000060" chance="6.75" />
+			<drop item_id="186000061" chance="11.25" />
+			<drop item_id="186000062" chance="22.5" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000059" chance="6" />
+			<drop item_id="186000060" chance="9" />
+			<drop item_id="186000061" chance="15" />
+			<drop item_id="186000062" chance="30" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="188053083" chance="5" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="700936">
+		<drop_group>
+			<drop item_id="182400001" min_amount="208008" max_amount="624024" />
+		</drop_group>
+		<drop_group max_items="2">
+			<drop item_id="186000030" chance="15" />
+			<drop item_id="186000096" chance="30" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="114101139" chance="44" />
+			<drop item_id="114301149" chance="44" />
+			<drop item_id="114501098" chance="44" />
+			<drop item_id="114601052" chance="44" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="113101112" chance="30" />
+			<drop item_id="113301115" chance="30" />
+			<drop item_id="113501091" chance="30" />
+			<drop item_id="113601056" chance="30" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000051" chance="0.7" />
+			<drop item_id="186000052" chance="1.05" />
+			<drop item_id="186000053" chance="1.75" />
+			<drop item_id="186000054" chance="3.5" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000055" chance="2" />
+			<drop item_id="186000056" chance="6" />
+			<drop item_id="186000057" chance="10" />
+			<drop item_id="186000058" chance="20" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000059" chance="4.5" />
+			<drop item_id="186000060" chance="6.75" />
+			<drop item_id="186000061" chance="11.25" />
+			<drop item_id="186000062" chance="22.5" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000059" chance="6" />
+			<drop item_id="186000060" chance="9" />
+			<drop item_id="186000061" chance="15" />
+			<drop item_id="186000062" chance="30" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="188053083" chance="5" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="700937">
+		<drop_group>
+			<drop item_id="182400001" min_amount="457618" max_amount="1372854" />
+		</drop_group>
+		<drop_group max_items="2">
+			<drop item_id="186000030" chance="30" />
+			<drop item_id="186000096" chance="70" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="100001060" chance="21" />
+			<drop item_id="100100805" chance="21" />
+			<drop item_id="100200940" chance="21" />
+			<drop item_id="100500826" chance="21" />
+			<drop item_id="100600881" chance="21" />
+			<drop item_id="100900803" chance="21" />
+			<drop item_id="101300775" chance="21" />
+			<drop item_id="101500831" chance="21" />
+			<drop item_id="101700848" chance="21" />
+			<drop item_id="115001094" chance="24" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="110101208" chance="22" />
+			<drop item_id="110301143" chance="22" />
+			<drop item_id="110501113" chance="22" />
+			<drop item_id="110601095" chance="22" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="125002425" chance="22" />
+			<drop item_id="125002426" chance="22" />
+			<drop item_id="125002427" chance="22" />
+			<drop item_id="125002428" chance="22" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000051" chance="3" />
+			<drop item_id="186000052" chance="4.5" />
+			<drop item_id="186000053" chance="7.5" />
+			<drop item_id="186000054" chance="15" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000055" chance="4" />
+			<drop item_id="186000056" chance="6" />
+			<drop item_id="186000057" chance="10" />
+			<drop item_id="186000058" chance="20" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000059" chance="6" />
+			<drop item_id="186000060" chance="9" />
+			<drop item_id="186000061" chance="15" />
+			<drop item_id="186000062" chance="30" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000059" chance="8" />
+			<drop item_id="186000060" chance="12" />
+			<drop item_id="186000061" chance="20" />
+			<drop item_id="186000062" chance="40" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="188053295" chance="5" each_member="true" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="188053083" chance="10" each_member="true" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="700938">
+		<drop_group>
+			<drop item_id="182400001" min_amount="457618" max_amount="1372854" />
+		</drop_group>
+		<drop_group max_items="2">
+			<drop item_id="186000030" chance="30" />
+			<drop item_id="186000096" chance="70" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="100200941" chance="15" />
+			<drop item_id="100900804" chance="15" />
+			<drop item_id="100500827" chance="15" />
+			<drop item_id="101700849" chance="15" />
+			<drop item_id="101300776" chance="15" />
+			<drop item_id="101500832" chance="15" />
+			<drop item_id="100001061" chance="15" />
+			<drop item_id="100600882" chance="15" />
+			<drop item_id="100100806" chance="15" />
+			<drop item_id="115001095" chance="20" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="100001060" chance="42" />
+			<drop item_id="100100805" chance="42" />
+			<drop item_id="100200940" chance="42" />
+			<drop item_id="100500826" chance="42" />
+			<drop item_id="100600881" chance="42" />
+			<drop item_id="100900803" chance="42" />
+			<drop item_id="101300775" chance="42" />
+			<drop item_id="101500831" chance="42" />
+			<drop item_id="101700848" chance="42" />
+			<drop item_id="115001094" chance="48" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="110101208" chance="44" />
+			<drop item_id="110301143" chance="44" />
+			<drop item_id="110501113" chance="44" />
+			<drop item_id="110601095" chance="44" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="125002425" chance="44" />
+			<drop item_id="125002426" chance="44" />
+			<drop item_id="125002427" chance="44" />
+			<drop item_id="125002428" chance="44" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000051" chance="3" />
+			<drop item_id="186000052" chance="4.5" />
+			<drop item_id="186000053" chance="7.5" />
+			<drop item_id="186000054" chance="15" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000055" chance="4" />
+			<drop item_id="186000056" chance="6" />
+			<drop item_id="186000057" chance="10" />
+			<drop item_id="186000058" chance="20" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000059" chance="6" />
+			<drop item_id="186000060" chance="9" />
+			<drop item_id="186000061" chance="15" />
+			<drop item_id="186000062" chance="30" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000059" chance="8" />
+			<drop item_id="186000060" chance="12" />
+			<drop item_id="186000061" chance="20" />
+			<drop item_id="186000062" chance="40" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="188053083" chance="10" each_member="true" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="188053295" chance="5" each_member="true" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="212335">
+		<drop_group>
+			<drop item_id="125001568" chance="70" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="700475">
+		<drop_group>
+			<drop item_id="186000030" chance="10" />
+			<drop item_id="186000031" chance="40" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="182202182" chance="20" />
+			<drop item_id="182205678" chance="20" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="186000071" chance="5" />
+			<drop item_id="186000072" chance="5" />
+			<drop item_id="186000073" chance="5" />
+			<drop item_id="186000074" chance="5" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="101700617" chance="20" />
+			<drop item_id="100200698" chance="20" />
+			<drop item_id="100900588" chance="20" />
+			<drop item_id="100100578" chance="20" />
+			<drop item_id="100500599" chance="20" />
+			<drop item_id="101300561" chance="20" />
+			<drop item_id="100600633" chance="20" />
+			<drop item_id="101500602" chance="20" />
+			<drop item_id="100000763" chance="20" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="115000856" chance="5" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="114100898" chance="20" />
+			<drop item_id="114300923" chance="20" />
+			<drop item_id="114500866" chance="20" />
+			<drop item_id="114600825" chance="20" />
+			<drop item_id="110100969" chance="20" />
+			<drop item_id="110300914" chance="20" />
+			<drop item_id="110500882" chance="20" />
+			<drop item_id="110600866" chance="20" />
+			<drop item_id="113100873" chance="20" />
+			<drop item_id="113300890" chance="20" />
+			<drop item_id="113500856" chance="20" />
+			<drop item_id="113600831" chance="20" />
+			<drop item_id="111100863" chance="20" />
+			<drop item_id="111300864" chance="20" />
+			<drop item_id="111500854" chance="20" />
+			<drop item_id="111600842" chance="20" />
+			<drop item_id="112100820" chance="20" />
+			<drop item_id="112300814" chance="20" />
+			<drop item_id="112500805" chance="20" />
+			<drop item_id="112600816" chance="20" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000066" max_amount="6" chance="60" />
+			<drop item_id="186000065" max_amount="5" chance="40" />
+			<drop item_id="186000064" max_amount="4" chance="20" />
+			<drop item_id="186000063" max_amount="3" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000062" max_amount="4" chance="50" />
+			<drop item_id="186000061" max_amount="3" chance="30" />
+			<drop item_id="186000060" max_amount="2" chance="20" />
+			<drop item_id="186000059" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000058" max_amount="3" chance="40" />
+			<drop item_id="186000057" max_amount="2" chance="20" />
+			<drop item_id="186000056" chance="10" />
+			<drop item_id="186000055" chance="5" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000054" max_amount="2" chance="20" />
+			<drop item_id="186000053" chance="10" />
+			<drop item_id="186000052" chance="5" />
+			<drop item_id="186000051" chance="2" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="700476">
+		<drop_group>
+			<drop item_id="186000030" chance="10" />
+			<drop item_id="186000031" chance="40" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="182202182" chance="20" />
+			<drop item_id="182205678" chance="20" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="186000071" chance="5" />
+			<drop item_id="186000072" chance="5" />
+			<drop item_id="186000073" chance="5" />
+			<drop item_id="186000074" chance="5" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="101700617" chance="20" />
+			<drop item_id="100200698" chance="20" />
+			<drop item_id="100900588" chance="20" />
+			<drop item_id="100100578" chance="20" />
+			<drop item_id="100500599" chance="20" />
+			<drop item_id="101300561" chance="20" />
+			<drop item_id="100600633" chance="20" />
+			<drop item_id="101500602" chance="20" />
+			<drop item_id="100000763" chance="20" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="115000856" chance="5" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="114100898" chance="20" />
+			<drop item_id="114300923" chance="20" />
+			<drop item_id="114500866" chance="20" />
+			<drop item_id="114600825" chance="20" />
+			<drop item_id="110100969" chance="20" />
+			<drop item_id="110300914" chance="20" />
+			<drop item_id="110500882" chance="20" />
+			<drop item_id="110600866" chance="20" />
+			<drop item_id="113100873" chance="20" />
+			<drop item_id="113300890" chance="20" />
+			<drop item_id="113500856" chance="20" />
+			<drop item_id="113600831" chance="20" />
+			<drop item_id="111100863" chance="20" />
+			<drop item_id="111300864" chance="20" />
+			<drop item_id="111500854" chance="20" />
+			<drop item_id="111600842" chance="20" />
+			<drop item_id="112100820" chance="20" />
+			<drop item_id="112300814" chance="20" />
+			<drop item_id="112500805" chance="20" />
+			<drop item_id="112600816" chance="20" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000066" max_amount="6" chance="60" />
+			<drop item_id="186000065" max_amount="5" chance="40" />
+			<drop item_id="186000064" max_amount="4" chance="20" />
+			<drop item_id="186000063" max_amount="3" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000062" max_amount="4" chance="50" />
+			<drop item_id="186000061" max_amount="3" chance="30" />
+			<drop item_id="186000060" max_amount="2" chance="20" />
+			<drop item_id="186000059" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000058" max_amount="3" chance="40" />
+			<drop item_id="186000057" max_amount="2" chance="20" />
+			<drop item_id="186000056" chance="10" />
+			<drop item_id="186000055" chance="5" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000054" max_amount="2" chance="20" />
+			<drop item_id="186000053" chance="10" />
+			<drop item_id="186000052" chance="5" />
+			<drop item_id="186000051" chance="2" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="700477">
+		<drop_group>
+			<drop item_id="186000030" chance="20" />
+			<drop item_id="186000031" chance="60" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="182202182" chance="20" />
+			<drop item_id="182205678" chance="20" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="186000071" chance="5" />
+			<drop item_id="186000072" chance="5" />
+			<drop item_id="186000073" chance="5" />
+			<drop item_id="186000074" chance="5" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="101700617" chance="20" />
+			<drop item_id="100200698" chance="20" />
+			<drop item_id="100900588" chance="20" />
+			<drop item_id="100100578" chance="20" />
+			<drop item_id="100500599" chance="20" />
+			<drop item_id="101300561" chance="20" />
+			<drop item_id="100600633" chance="20" />
+			<drop item_id="101500602" chance="20" />
+			<drop item_id="100000763" chance="20" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="115000856" chance="5" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="114100898" chance="20" />
+			<drop item_id="114300923" chance="20" />
+			<drop item_id="114500866" chance="20" />
+			<drop item_id="114600825" chance="20" />
+			<drop item_id="110100969" chance="20" />
+			<drop item_id="110300914" chance="20" />
+			<drop item_id="110500882" chance="20" />
+			<drop item_id="110600866" chance="20" />
+			<drop item_id="113100873" chance="20" />
+			<drop item_id="113300890" chance="20" />
+			<drop item_id="113500856" chance="20" />
+			<drop item_id="113600831" chance="20" />
+			<drop item_id="111100863" chance="20" />
+			<drop item_id="111300864" chance="20" />
+			<drop item_id="111500854" chance="20" />
+			<drop item_id="111600842" chance="20" />
+			<drop item_id="112100820" chance="20" />
+			<drop item_id="112300814" chance="20" />
+			<drop item_id="112500805" chance="20" />
+			<drop item_id="112600816" chance="20" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000066" max_amount="6" chance="60" />
+			<drop item_id="186000065" max_amount="5" chance="50" />
+			<drop item_id="186000064" max_amount="4" chance="30" />
+			<drop item_id="186000063" max_amount="3" chance="20" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000062" max_amount="5" chance="50" />
+			<drop item_id="186000061" max_amount="4" chance="35" />
+			<drop item_id="186000060" max_amount="3" chance="25" />
+			<drop item_id="186000059" max_amount="2" chance="15" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000058" max_amount="4" chance="40" />
+			<drop item_id="186000057" max_amount="3" chance="30" />
+			<drop item_id="186000056" max_amount="2" chance="20" />
+			<drop item_id="186000055" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000054" max_amount="3" chance="30" />
+			<drop item_id="186000053" max_amount="2" chance="20" />
+			<drop item_id="186000052" chance="10" />
+			<drop item_id="186000051" chance="5" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="701483">
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="120000862" chance="10" />
+			<drop item_id="121000788" chance="10" />
+			<drop item_id="122000908" chance="10" />
+			<drop item_id="120000863" chance="10" />
+			<drop item_id="121000789" chance="10" />
+			<drop item_id="122000909" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="115000812" chance="3" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="123000897" chance="10" />
+			<drop item_id="123000898" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="125001895" chance="10" />
+			<drop item_id="125001896" chance="10" />
+			<drop item_id="125001897" chance="10" />
+			<drop item_id="125001898" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="114100852" chance="10" />
+			<drop item_id="114300878" chance="10" />
+			<drop item_id="114500824" chance="10" />
+			<drop item_id="114600781" chance="10" />
+			<drop item_id="110100912" chance="10" />
+			<drop item_id="110300867" chance="10" />
+			<drop item_id="110500837" chance="10" />
+			<drop item_id="110600822" chance="10" />
+			<drop item_id="113100824" chance="10" />
+			<drop item_id="113300842" chance="10" />
+			<drop item_id="113500813" chance="10" />
+			<drop item_id="113600786" chance="10" />
+			<drop item_id="111100816" chance="10" />
+			<drop item_id="111300820" chance="10" />
+			<drop item_id="111500803" chance="10" />
+			<drop item_id="111600795" chance="10" />
+			<drop item_id="112100774" chance="10" />
+			<drop item_id="112300771" chance="10" />
+			<drop item_id="112500759" chance="10" />
+			<drop item_id="112600770" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000066" max_amount="5" chance="40" />
+			<drop item_id="186000065" max_amount="4" chance="30" />
+			<drop item_id="186000064" max_amount="2" chance="20" />
+			<drop item_id="186000063" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000062" max_amount="3" chance="40" />
+			<drop item_id="186000061" max_amount="2" chance="30" />
+			<drop item_id="186000060" chance="20" />
+			<drop item_id="186000059" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000058" chance="10" />
+			<drop item_id="186000057" chance="5" />
+			<drop item_id="186000056" chance="4" />
+			<drop item_id="186000055" chance="3" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="700472">
+		<drop_group>
+			<drop item_id="186000030" chance="10" />
+			<drop item_id="186000031" chance="40" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="182202182" chance="20" />
+			<drop item_id="182205678" chance="20" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="186000071" chance="10" />
+			<drop item_id="186000072" chance="10" />
+			<drop item_id="186000073" chance="10" />
+			<drop item_id="186000074" chance="10" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="101700617" chance="20" />
+			<drop item_id="100200698" chance="20" />
+			<drop item_id="100900588" chance="20" />
+			<drop item_id="100100578" chance="20" />
+			<drop item_id="100500599" chance="20" />
+			<drop item_id="101300561" chance="20" />
+			<drop item_id="100600633" chance="20" />
+			<drop item_id="101500602" chance="20" />
+			<drop item_id="100000763" chance="20" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="115000856" chance="20" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="114100898" chance="20" />
+			<drop item_id="114300923" chance="20" />
+			<drop item_id="114500866" chance="20" />
+			<drop item_id="114600825" chance="20" />
+			<drop item_id="110100969" chance="20" />
+			<drop item_id="110300914" chance="20" />
+			<drop item_id="110500882" chance="20" />
+			<drop item_id="110600866" chance="20" />
+			<drop item_id="113100873" chance="20" />
+			<drop item_id="113300890" chance="20" />
+			<drop item_id="113500856" chance="20" />
+			<drop item_id="113600831" chance="20" />
+			<drop item_id="111100863" chance="20" />
+			<drop item_id="111300864" chance="20" />
+			<drop item_id="111500854" chance="20" />
+			<drop item_id="111600842" chance="20" />
+			<drop item_id="112100820" chance="20" />
+			<drop item_id="112300814" chance="20" />
+			<drop item_id="112500805" chance="20" />
+			<drop item_id="112600816" chance="20" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000066" max_amount="5" chance="50" />
+			<drop item_id="186000065" max_amount="4" chance="40" />
+			<drop item_id="186000064" max_amount="3" chance="30" />
+			<drop item_id="186000063" max_amount="2" chance="20" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000062" max_amount="5" chance="45" />
+			<drop item_id="186000061" max_amount="4" chance="30" />
+			<drop item_id="186000060" max_amount="3" chance="20" />
+			<drop item_id="186000059" max_amount="2" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000058" max_amount="3" chance="50" />
+			<drop item_id="186000057" max_amount="2" chance="30" />
+			<drop item_id="186000056" max_amount="2" chance="20" />
+			<drop item_id="186000055" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000054" max_amount="2" chance="20" />
+			<drop item_id="186000053" chance="15" />
+			<drop item_id="186000052" chance="10" />
+			<drop item_id="186000051" chance="5" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="700473">
+		<drop_group>
+			<drop item_id="186000030" chance="10" />
+			<drop item_id="186000031" chance="40" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="182202182" chance="20" />
+			<drop item_id="182205678" chance="20" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="186000071" chance="10" />
+			<drop item_id="186000072" chance="10" />
+			<drop item_id="186000073" chance="10" />
+			<drop item_id="186000074" chance="10" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="101700617" chance="20" />
+			<drop item_id="100200698" chance="20" />
+			<drop item_id="100900588" chance="20" />
+			<drop item_id="100100578" chance="20" />
+			<drop item_id="100500599" chance="20" />
+			<drop item_id="101300561" chance="20" />
+			<drop item_id="100600633" chance="20" />
+			<drop item_id="101500602" chance="20" />
+			<drop item_id="100000763" chance="20" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="115000856" chance="20" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="114100898" chance="20" />
+			<drop item_id="114300923" chance="20" />
+			<drop item_id="114500866" chance="20" />
+			<drop item_id="114600825" chance="20" />
+			<drop item_id="110100969" chance="20" />
+			<drop item_id="110300914" chance="20" />
+			<drop item_id="110500882" chance="20" />
+			<drop item_id="110600866" chance="20" />
+			<drop item_id="113100873" chance="20" />
+			<drop item_id="113300890" chance="20" />
+			<drop item_id="113500856" chance="20" />
+			<drop item_id="113600831" chance="20" />
+			<drop item_id="111100863" chance="20" />
+			<drop item_id="111300864" chance="20" />
+			<drop item_id="111500854" chance="20" />
+			<drop item_id="111600842" chance="20" />
+			<drop item_id="112100820" chance="20" />
+			<drop item_id="112300814" chance="20" />
+			<drop item_id="112500805" chance="20" />
+			<drop item_id="112600816" chance="20" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000066" max_amount="5" chance="50" />
+			<drop item_id="186000065" max_amount="4" chance="40" />
+			<drop item_id="186000064" max_amount="3" chance="30" />
+			<drop item_id="186000063" max_amount="2" chance="20" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000062" max_amount="5" chance="45" />
+			<drop item_id="186000061" max_amount="4" chance="30" />
+			<drop item_id="186000060" max_amount="3" chance="20" />
+			<drop item_id="186000059" max_amount="2" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000058" max_amount="3" chance="50" />
+			<drop item_id="186000057" max_amount="2" chance="30" />
+			<drop item_id="186000056" max_amount="2" chance="20" />
+			<drop item_id="186000055" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000054" max_amount="2" chance="20" />
+			<drop item_id="186000053" chance="15" />
+			<drop item_id="186000052" chance="10" />
+			<drop item_id="186000051" chance="5" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="700474">
+		<drop_group>
+			<drop item_id="186000030" chance="20" />
+			<drop item_id="186000031" chance="60" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="182202182" chance="20" />
+			<drop item_id="182205678" chance="20" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="186000071" chance="10" />
+			<drop item_id="186000072" chance="10" />
+			<drop item_id="186000073" chance="10" />
+			<drop item_id="186000074" chance="10" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="101700617" chance="20" />
+			<drop item_id="100200698" chance="20" />
+			<drop item_id="100900588" chance="20" />
+			<drop item_id="100100578" chance="20" />
+			<drop item_id="100500599" chance="20" />
+			<drop item_id="101300561" chance="20" />
+			<drop item_id="100600633" chance="20" />
+			<drop item_id="101500602" chance="20" />
+			<drop item_id="100000763" chance="20" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="115000856" chance="20" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="114100898" chance="20" />
+			<drop item_id="114300923" chance="20" />
+			<drop item_id="114500866" chance="20" />
+			<drop item_id="114600825" chance="20" />
+			<drop item_id="110100969" chance="20" />
+			<drop item_id="110300914" chance="20" />
+			<drop item_id="110500882" chance="20" />
+			<drop item_id="110600866" chance="20" />
+			<drop item_id="113100873" chance="20" />
+			<drop item_id="113300890" chance="20" />
+			<drop item_id="113500856" chance="20" />
+			<drop item_id="113600831" chance="20" />
+			<drop item_id="111100863" chance="20" />
+			<drop item_id="111300864" chance="20" />
+			<drop item_id="111500854" chance="20" />
+			<drop item_id="111600842" chance="20" />
+			<drop item_id="112100820" chance="20" />
+			<drop item_id="112300814" chance="20" />
+			<drop item_id="112500805" chance="20" />
+			<drop item_id="112600816" chance="20" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000066" max_amount="6" chance="60" />
+			<drop item_id="186000065" max_amount="5" chance="50" />
+			<drop item_id="186000064" max_amount="4" chance="40" />
+			<drop item_id="186000063" max_amount="4" chance="30" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000062" max_amount="6" chance="55" />
+			<drop item_id="186000061" max_amount="5" chance="40" />
+			<drop item_id="186000060" max_amount="4" chance="30" />
+			<drop item_id="186000059" max_amount="3" chance="25" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000058" max_amount="5" chance="50" />
+			<drop item_id="186000057" max_amount="4" chance="40" />
+			<drop item_id="186000056" max_amount="3" chance="30" />
+			<drop item_id="186000055" max_amount="2" chance="20" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000054" max_amount="3" chance="30" />
+			<drop item_id="186000053" max_amount="2" chance="25" />
+			<drop item_id="186000052" max_amount="2" chance="20" />
+			<drop item_id="186000051" chance="15" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="701484">
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="120000862" chance="10" />
+			<drop item_id="121000788" chance="10" />
+			<drop item_id="122000908" chance="10" />
+			<drop item_id="120000863" chance="10" />
+			<drop item_id="121000789" chance="10" />
+			<drop item_id="122000909" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="115000812" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="123000897" chance="10" />
+			<drop item_id="123000898" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="125001895" chance="10" />
+			<drop item_id="125001896" chance="10" />
+			<drop item_id="125001897" chance="10" />
+			<drop item_id="125001898" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="114100852" chance="10" />
+			<drop item_id="114300878" chance="10" />
+			<drop item_id="114500824" chance="10" />
+			<drop item_id="114600781" chance="10" />
+			<drop item_id="110100912" chance="10" />
+			<drop item_id="110300867" chance="10" />
+			<drop item_id="110500837" chance="10" />
+			<drop item_id="110600822" chance="10" />
+			<drop item_id="113100824" chance="10" />
+			<drop item_id="113300842" chance="10" />
+			<drop item_id="113500813" chance="10" />
+			<drop item_id="113600786" chance="10" />
+			<drop item_id="111100816" chance="10" />
+			<drop item_id="111300820" chance="10" />
+			<drop item_id="111500803" chance="10" />
+			<drop item_id="111600795" chance="10" />
+			<drop item_id="112100774" chance="10" />
+			<drop item_id="112300771" chance="10" />
+			<drop item_id="112500759" chance="10" />
+			<drop item_id="112600770" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000066" max_amount="2" chance="30" />
+			<drop item_id="186000065" max_amount="2" chance="15" />
+			<drop item_id="186000064" chance="10" />
+			<drop item_id="186000063" chance="7.5" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000062" max_amount="2" chance="15" />
+			<drop item_id="186000061" max_amount="2" chance="10" />
+			<drop item_id="186000060" chance="7.5" />
+			<drop item_id="186000059" chance="5" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000058" chance="5" />
+			<drop item_id="186000057" chance="3" />
+			<drop item_id="186000056" chance="2" />
+			<drop item_id="186000055" chance="1" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="701489">
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="120000866" chance="10" />
+			<drop item_id="121000792" chance="10" />
+			<drop item_id="122000912" chance="10" />
+			<drop item_id="120000867" chance="10" />
+			<drop item_id="121000793" chance="10" />
+			<drop item_id="122000913" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="115000814" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="123000901" chance="10" />
+			<drop item_id="123000902" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="125001903" chance="10" />
+			<drop item_id="125001904" chance="10" />
+			<drop item_id="125001905" chance="10" />
+			<drop item_id="125001906" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="114100854" chance="10" />
+			<drop item_id="114300880" chance="10" />
+			<drop item_id="114500826" chance="10" />
+			<drop item_id="114600783" chance="10" />
+			<drop item_id="110100914" chance="10" />
+			<drop item_id="110300869" chance="10" />
+			<drop item_id="110500839" chance="10" />
+			<drop item_id="110600824" chance="10" />
+			<drop item_id="113100826" chance="10" />
+			<drop item_id="113300844" chance="10" />
+			<drop item_id="113500815" chance="10" />
+			<drop item_id="113600788" chance="10" />
+			<drop item_id="111100818" chance="10" />
+			<drop item_id="111300822" chance="10" />
+			<drop item_id="111500805" chance="10" />
+			<drop item_id="111600797" chance="10" />
+			<drop item_id="112100776" chance="10" />
+			<drop item_id="112300773" chance="10" />
+			<drop item_id="112500761" chance="10" />
+			<drop item_id="112600772" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000066" max_amount="2" chance="30" />
+			<drop item_id="186000065" max_amount="2" chance="15" />
+			<drop item_id="186000064" chance="10" />
+			<drop item_id="186000063" chance="7.5" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000062" max_amount="2" chance="15" />
+			<drop item_id="186000061" max_amount="2" chance="10" />
+			<drop item_id="186000060" chance="7.5" />
+			<drop item_id="186000059" chance="5" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000058" chance="5" />
+			<drop item_id="186000057" chance="3" />
+			<drop item_id="186000056" chance="2" />
+			<drop item_id="186000055" chance="1" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="701542">
+		<drop_group>
+			<drop item_id="188052084" each_member="true" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="188053083" chance="10" each_member="true" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="188053295" chance="5" each_member="true" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="701022">
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000066" max_amount="2" chance="50" />
+			<drop item_id="186000065" max_amount="2" chance="25" />
+			<drop item_id="186000064" chance="25" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000062" max_amount="2" chance="60" />
+			<drop item_id="186000061" chance="30" />
+			<drop item_id="186000060" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000058" chance="80" />
+			<drop item_id="186000057" chance="15" />
+			<drop item_id="186000056" chance="5" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="701023">
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000066" max_amount="2" chance="50" />
+			<drop item_id="186000065" max_amount="2" chance="25" />
+			<drop item_id="186000064" chance="25" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000062" max_amount="2" chance="60" />
+			<drop item_id="186000061" chance="30" />
+			<drop item_id="186000060" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000058" chance="80" />
+			<drop item_id="186000057" chance="15" />
+			<drop item_id="186000056" chance="5" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000054" max_amount="2" chance="80" />
+			<drop item_id="186000053" max_amount="2" chance="15" />
+			<drop item_id="186000052" max_amount="2" chance="5" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="701025">
+		<drop_group>
+			<drop item_id="190000050" chance="20" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="186000096" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000066" min_amount="2" chance="50" />
+			<drop item_id="186000065" min_amount="2" chance="30" />
+			<drop item_id="186000064" min_amount="2" chance="15" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000062" max_amount="2" chance="30" />
+			<drop item_id="186000061" max_amount="2" chance="20" />
+			<drop item_id="186000060" max_amount="2" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000058" max_amount="2" chance="10" />
+			<drop item_id="186000057" max_amount="2" chance="8" />
+			<drop item_id="186000056" max_amount="2" chance="5" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000054" max_amount="2" chance="5" />
+			<drop item_id="186000053" max_amount="2" chance="4" />
+			<drop item_id="186000052" max_amount="2" chance="2" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="701027">
+		<drop_group>
+			<drop item_id="186000096" max_amount="2" chance="80" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000066" min_amount="2" chance="50" />
+			<drop item_id="186000065" min_amount="2" chance="25" />
+			<drop item_id="186000064" min_amount="2" chance="25" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000062" max_amount="3" chance="50" />
+			<drop item_id="186000061" max_amount="3" chance="35" />
+			<drop item_id="186000060" max_amount="3" chance="15" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000058" min_amount="2" chance="40" />
+			<drop item_id="186000057" min_amount="2" chance="40" />
+			<drop item_id="186000056" min_amount="2" chance="20" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000054" min_amount="2" chance="80" />
+			<drop item_id="186000053" min_amount="2" chance="15" />
+			<drop item_id="186000052" min_amount="2" chance="5" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="801268">
+		<drop_group>
+			<drop item_id="185000136" min_amount="24" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="700829">
+		<drop_group>
+			<drop item_id="152000901" min_amount="5" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="169300003" min_amount="3" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="111601071" chance="66" />
+			<drop item_id="114601051" chance="66" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="120001115" chance="33" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="700830">
+		<drop_group>
+			<drop item_id="152000901" min_amount="5" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="169300003" min_amount="3" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="114301148" chance="66" />
+			<drop item_id="111301096" chance="66" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="120001115" chance="33" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="700831">
+		<drop_group>
+			<drop item_id="152000901" min_amount="5" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="169300003" min_amount="3" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="114101138" chance="66" />
+			<drop item_id="111101097" chance="66" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="120001116" chance="33" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="700832">
+		<drop_group>
+			<drop item_id="152000901" min_amount="5" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="169300003" min_amount="3" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="114501097" chance="66" />
+			<drop item_id="111501081" chance="66" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="120001116" chance="33" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="700853">
+		<drop_group>
+			<drop item_id="101500837" chance="25" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="700539">
+		<drop_group level_based_chance_reduction="true" race="ELYOS">
+			<drop item_id="120000862" chance="10" />
+			<drop item_id="121000788" chance="10" />
+			<drop item_id="122000908" chance="10" />
+			<drop item_id="120000863" chance="10" />
+			<drop item_id="121000789" chance="10" />
+			<drop item_id="122000909" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true" race="ASMODIANS">
+			<drop item_id="120000866" chance="10" />
+			<drop item_id="121000792" chance="10" />
+			<drop item_id="122000912" chance="10" />
+			<drop item_id="120000867" chance="10" />
+			<drop item_id="121000793" chance="10" />
+			<drop item_id="122000913" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true" race="ELYOS">
+			<drop item_id="115000812" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true" race="ASMODIANS">
+			<drop item_id="115000814" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true" race="ELYOS">
+			<drop item_id="123000897" chance="10" />
+			<drop item_id="123000898" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true" race="ASMODIANS">
+			<drop item_id="123000901" chance="10" />
+			<drop item_id="123000902" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true" race="ELYOS">
+			<drop item_id="125001895" chance="10" />
+			<drop item_id="125001896" chance="10" />
+			<drop item_id="125001897" chance="10" />
+			<drop item_id="125001898" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true" race="ASMODIANS">
+			<drop item_id="125001903" chance="10" />
+			<drop item_id="125001904" chance="10" />
+			<drop item_id="125001905" chance="10" />
+			<drop item_id="125001906" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true" race="ELYOS">
+			<drop item_id="114100852" chance="10" />
+			<drop item_id="114300878" chance="10" />
+			<drop item_id="114500824" chance="10" />
+			<drop item_id="114600781" chance="10" />
+			<drop item_id="110100912" chance="10" />
+			<drop item_id="110300867" chance="10" />
+			<drop item_id="110500837" chance="10" />
+			<drop item_id="110600822" chance="10" />
+			<drop item_id="113100824" chance="10" />
+			<drop item_id="113300842" chance="10" />
+			<drop item_id="113500813" chance="10" />
+			<drop item_id="113600786" chance="10" />
+			<drop item_id="111100816" chance="10" />
+			<drop item_id="111300820" chance="10" />
+			<drop item_id="111500803" chance="10" />
+			<drop item_id="111600795" chance="10" />
+			<drop item_id="112100774" chance="10" />
+			<drop item_id="112300771" chance="10" />
+			<drop item_id="112500759" chance="10" />
+			<drop item_id="112600770" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true" race="ASMODIANS">
+			<drop item_id="114100854" chance="10" />
+			<drop item_id="114300880" chance="10" />
+			<drop item_id="114500826" chance="10" />
+			<drop item_id="114600783" chance="10" />
+			<drop item_id="110100914" chance="10" />
+			<drop item_id="110300869" chance="10" />
+			<drop item_id="110500839" chance="10" />
+			<drop item_id="110600824" chance="10" />
+			<drop item_id="113100826" chance="10" />
+			<drop item_id="113300844" chance="10" />
+			<drop item_id="113500815" chance="10" />
+			<drop item_id="113600788" chance="10" />
+			<drop item_id="111100818" chance="10" />
+			<drop item_id="111300822" chance="10" />
+			<drop item_id="111500805" chance="10" />
+			<drop item_id="111600797" chance="10" />
+			<drop item_id="112100776" chance="10" />
+			<drop item_id="112300773" chance="10" />
+			<drop item_id="112500761" chance="10" />
+			<drop item_id="112600772" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000066" max_amount="6" chance="50" />
+			<drop item_id="186000065" max_amount="5" chance="45" />
+			<drop item_id="186000064" max_amount="4" chance="30" />
+			<drop item_id="186000063" max_amount="3" chance="20" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000062" max_amount="5" chance="45" />
+			<drop item_id="186000061" max_amount="4" chance="40" />
+			<drop item_id="186000060" max_amount="3" chance="25" />
+			<drop item_id="186000059" max_amount="2" chance="15" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000058" max_amount="4" chance="35" />
+			<drop item_id="186000057" max_amount="3" chance="30" />
+			<drop item_id="186000056" max_amount="2" chance="20" />
+			<drop item_id="186000055" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000054" max_amount="3" chance="25" />
+			<drop item_id="186000053" max_amount="2" chance="20" />
+			<drop item_id="186000052" chance="10" />
+			<drop item_id="186000051" chance="5" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="700541">
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000066" chance="30" />
+			<drop item_id="186000065" chance="15" />
+			<drop item_id="186000064" chance="10" />
+			<drop item_id="186000063" chance="7.5" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000062" chance="15" />
+			<drop item_id="186000061" chance="10" />
+			<drop item_id="186000060" chance="7.5" />
+			<drop item_id="186000059" chance="5" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000058" chance="10" />
+			<drop item_id="186000057" chance="7.5" />
+			<drop item_id="186000056" chance="5" />
+			<drop item_id="186000055" chance="2.5" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000054" chance="5" />
+			<drop item_id="186000053" chance="3" />
+			<drop item_id="186000052" chance="2" />
+			<drop item_id="186000051" chance="1" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="700542">
+		<drop_group>
+			<drop item_id="186000030" chance="30" />
+			<drop item_id="186000031" chance="50" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="121000834" chance="10" />
+			<drop item_id="121000835" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true" race="ELYOS">
+			<drop item_id="115000886" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true" race="ASMODIANS">
+			<drop item_id="115000889" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true" race="ELYOS">
+			<drop item_id="188052430" chance="10" each_member="true" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true" race="ASMODIANS">
+			<drop item_id="188052431" chance="10" each_member="true" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true" race="ELYOS">
+			<drop item_id="110100986" chance="10" />
+			<drop item_id="110300935" chance="10" />
+			<drop item_id="110500903" chance="10" />
+			<drop item_id="110600883" chance="10" />
+			<drop item_id="111100881" chance="10" />
+			<drop item_id="111300886" chance="10" />
+			<drop item_id="111500872" chance="10" />
+			<drop item_id="111600864" chance="10" />
+			<drop item_id="112100838" chance="10" />
+			<drop item_id="112300836" chance="10" />
+			<drop item_id="112500823" chance="10" />
+			<drop item_id="112600838" chance="10" />
+			<drop item_id="113100894" chance="10" />
+			<drop item_id="113300907" chance="10" />
+			<drop item_id="113500877" chance="10" />
+			<drop item_id="113600848" chance="10" />
+			<drop item_id="114100920" chance="10" />
+			<drop item_id="114300941" chance="10" />
+			<drop item_id="114500884" chance="10" />
+			<drop item_id="114600843" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true" race="ASMODIANS">
+			<drop item_id="110100989" chance="10" />
+			<drop item_id="110300938" chance="10" />
+			<drop item_id="110500906" chance="10" />
+			<drop item_id="110600886" chance="10" />
+			<drop item_id="111100884" chance="10" />
+			<drop item_id="111300889" chance="10" />
+			<drop item_id="111500875" chance="10" />
+			<drop item_id="111600867" chance="10" />
+			<drop item_id="112100841" chance="10" />
+			<drop item_id="112300839" chance="10" />
+			<drop item_id="112500826" chance="10" />
+			<drop item_id="112600841" chance="10" />
+			<drop item_id="113100897" chance="10" />
+			<drop item_id="113300910" chance="10" />
+			<drop item_id="113500880" chance="10" />
+			<drop item_id="113600851" chance="10" />
+			<drop item_id="114100923" chance="10" />
+			<drop item_id="114300944" chance="10" />
+			<drop item_id="114500887" chance="10" />
+			<drop item_id="114600846" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000066" max_amount="6" chance="50" />
+			<drop item_id="186000065" max_amount="5" chance="45" />
+			<drop item_id="186000064" max_amount="4" chance="30" />
+			<drop item_id="186000063" max_amount="3" chance="20" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000062" max_amount="5" chance="45" />
+			<drop item_id="186000061" max_amount="4" chance="40" />
+			<drop item_id="186000060" max_amount="3" chance="25" />
+			<drop item_id="186000059" max_amount="2" chance="15" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000058" max_amount="4" chance="35" />
+			<drop item_id="186000057" max_amount="3" chance="30" />
+			<drop item_id="186000056" max_amount="2" chance="20" />
+			<drop item_id="186000055" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000054" max_amount="3" chance="25" />
+			<drop item_id="186000053" max_amount="2" chance="20" />
+			<drop item_id="186000052" chance="10" />
+			<drop item_id="186000051" chance="5" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="700466">
+		<drop_group>
+			<drop item_id="186000031" chance="10" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="101700616" chance="20" />
+			<drop item_id="100200697" chance="20" />
+			<drop item_id="100900587" chance="20" />
+			<drop item_id="100100577" chance="20" />
+			<drop item_id="100500598" chance="20" />
+			<drop item_id="101300560" chance="20" />
+			<drop item_id="101500601" chance="20" />
+			<drop item_id="100600632" chance="20" />
+			<drop item_id="100000762" chance="20" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="115000855" chance="20" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="110100968" chance="20" />
+			<drop item_id="110300913" chance="20" />
+			<drop item_id="110500881" chance="20" />
+			<drop item_id="110600865" chance="20" />
+			<drop item_id="113100872" chance="20" />
+			<drop item_id="113300889" chance="20" />
+			<drop item_id="113500855" chance="20" />
+			<drop item_id="113600830" chance="20" />
+			<drop item_id="112100819" chance="20" />
+			<drop item_id="112300813" chance="20" />
+			<drop item_id="112500804" chance="20" />
+			<drop item_id="112600815" chance="20" />
+			<drop item_id="111100862" chance="20" />
+			<drop item_id="111300863" chance="20" />
+			<drop item_id="111500853" chance="20" />
+			<drop item_id="111600841" chance="20" />
+			<drop item_id="114100897" chance="20" />
+			<drop item_id="114300922" chance="20" />
+			<drop item_id="114500865" chance="20" />
+			<drop item_id="114600824" chance="20" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000066" max_amount="3" chance="60" />
+			<drop item_id="186000065" max_amount="3" chance="40" />
+			<drop item_id="186000064" max_amount="2" chance="20" />
+			<drop item_id="186000063" chance="7.5" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000062" chance="40" />
+			<drop item_id="186000061" max_amount="2" chance="30" />
+			<drop item_id="186000060" chance="20" />
+			<drop item_id="186000059" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000058" chance="10" />
+			<drop item_id="186000057" chance="5" />
+			<drop item_id="186000056" chance="2" />
+			<drop item_id="186000055" chance="1" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="701481">
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="120000861" chance="10" />
+			<drop item_id="121000787" chance="10" />
+			<drop item_id="122000907" chance="10" />
+			<drop item_id="120000860" chance="10" />
+			<drop item_id="121000786" chance="10" />
+			<drop item_id="122000906" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="115000811" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="123000895" chance="10" />
+			<drop item_id="123000896" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="125001891" chance="10" />
+			<drop item_id="125001892" chance="10" />
+			<drop item_id="125001893" chance="10" />
+			<drop item_id="125001894" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="110100911" chance="10" />
+			<drop item_id="110300866" chance="10" />
+			<drop item_id="110500836" chance="10" />
+			<drop item_id="110600821" chance="10" />
+			<drop item_id="113100823" chance="10" />
+			<drop item_id="113300841" chance="10" />
+			<drop item_id="113500812" chance="10" />
+			<drop item_id="113600785" chance="10" />
+			<drop item_id="112100773" chance="10" />
+			<drop item_id="112300770" chance="10" />
+			<drop item_id="112500758" chance="10" />
+			<drop item_id="112600769" chance="10" />
+			<drop item_id="111100815" chance="10" />
+			<drop item_id="111300819" chance="10" />
+			<drop item_id="111500802" chance="10" />
+			<drop item_id="111600794" chance="10" />
+			<drop item_id="114100851" chance="10" />
+			<drop item_id="114300877" chance="10" />
+			<drop item_id="114500823" chance="10" />
+			<drop item_id="114600780" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000066" max_amount="2" chance="60" />
+			<drop item_id="186000065" max_amount="2" chance="40" />
+			<drop item_id="186000064" chance="20" />
+			<drop item_id="186000063" max_amount="3" chance="7.5" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000062" max_amount="4" chance="30" />
+			<drop item_id="186000061" max_amount="3" chance="20" />
+			<drop item_id="186000060" max_amount="3" chance="10" />
+			<drop item_id="186000059" max_amount="2" chance="5" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000058" max_amount="2" chance="30" />
+			<drop item_id="186000057" chance="20" />
+			<drop item_id="186000056" chance="10" />
+			<drop item_id="186000055" chance="5" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="701486">
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="120000865" chance="10" />
+			<drop item_id="121000791" chance="10" />
+			<drop item_id="122000911" chance="10" />
+			<drop item_id="120000864" chance="10" />
+			<drop item_id="121000790" chance="10" />
+			<drop item_id="122000910" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="115000813" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="123000899" chance="10" />
+			<drop item_id="123000900" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="125001899" chance="10" />
+			<drop item_id="125001900" chance="10" />
+			<drop item_id="125001901" chance="10" />
+			<drop item_id="125001902" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="110100913" chance="10" />
+			<drop item_id="110300868" chance="10" />
+			<drop item_id="110500838" chance="10" />
+			<drop item_id="110600823" chance="10" />
+			<drop item_id="113100825" chance="10" />
+			<drop item_id="113300843" chance="10" />
+			<drop item_id="113500814" chance="10" />
+			<drop item_id="113600787" chance="10" />
+			<drop item_id="112100775" chance="10" />
+			<drop item_id="112300772" chance="10" />
+			<drop item_id="112500760" chance="10" />
+			<drop item_id="112600771" chance="10" />
+			<drop item_id="111100817" chance="10" />
+			<drop item_id="111300821" chance="10" />
+			<drop item_id="111500804" chance="10" />
+			<drop item_id="111600796" chance="10" />
+			<drop item_id="114100853" chance="10" />
+			<drop item_id="114300879" chance="10" />
+			<drop item_id="114500825" chance="10" />
+			<drop item_id="114600782" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000066" max_amount="2" chance="60" />
+			<drop item_id="186000065" max_amount="2" chance="40" />
+			<drop item_id="186000064" chance="20" />
+			<drop item_id="186000063" chance="7.5" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000062" max_amount="2" chance="5" />
+			<drop item_id="186000061" max_amount="2" chance="3" />
+			<drop item_id="186000060" chance="2" />
+			<drop item_id="186000059" chance="1" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000058" chance="5" />
+			<drop item_id="186000057" chance="3" />
+			<drop item_id="186000056" chance="2" />
+			<drop item_id="186000055" chance="1" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="216150">
+		<drop_group>
+			<drop item_id="125002258" chance="10" />
+			<drop item_id="125002259" chance="10" />
+			<drop item_id="125002260" chance="10" />
+			<drop item_id="125002261" chance="10" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="125002263" chance="5" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="123001030" chance="3" />
+			<drop item_id="123001031" chance="3" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="700543">
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000066" max_amount="6" chance="50" />
+			<drop item_id="186000065" max_amount="5" chance="45" />
+			<drop item_id="186000064" max_amount="4" chance="30" />
+			<drop item_id="186000063" max_amount="3" chance="20" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000062" max_amount="5" chance="45" />
+			<drop item_id="186000061" max_amount="4" chance="40" />
+			<drop item_id="186000060" max_amount="3" chance="25" />
+			<drop item_id="186000059" max_amount="2" chance="15" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000058" max_amount="4" chance="35" />
+			<drop item_id="186000057" max_amount="3" chance="30" />
+			<drop item_id="186000056" max_amount="2" chance="20" />
+			<drop item_id="186000055" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000054" max_amount="3" chance="25" />
+			<drop item_id="186000053" max_amount="2" chance="20" />
+			<drop item_id="186000052" chance="10" />
+			<drop item_id="186000051" chance="5" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="700544">
+		<drop_group>
+			<drop item_id="186000030" chance="30" />
+			<drop item_id="186000031" chance="50" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="122001051" chance="10" />
+			<drop item_id="122001052" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true" race="ELYOS">
+			<drop item_id="115000886" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true" race="ASMODIANS">
+			<drop item_id="115000889" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true" race="ELYOS">
+			<drop item_id="188052430" chance="10" each_member="true" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true" race="ASMODIANS">
+			<drop item_id="188052431" chance="10" each_member="true" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true" race="ELYOS">
+			<drop item_id="110100986" chance="10" />
+			<drop item_id="110300935" chance="10" />
+			<drop item_id="110500903" chance="10" />
+			<drop item_id="110600883" chance="10" />
+			<drop item_id="111100881" chance="10" />
+			<drop item_id="111300886" chance="10" />
+			<drop item_id="111500872" chance="10" />
+			<drop item_id="111600864" chance="10" />
+			<drop item_id="112100838" chance="10" />
+			<drop item_id="112300836" chance="10" />
+			<drop item_id="112500823" chance="10" />
+			<drop item_id="112600838" chance="10" />
+			<drop item_id="113100894" chance="10" />
+			<drop item_id="113300907" chance="10" />
+			<drop item_id="113500877" chance="10" />
+			<drop item_id="113600848" chance="10" />
+			<drop item_id="114100920" chance="10" />
+			<drop item_id="114300941" chance="10" />
+			<drop item_id="114500884" chance="10" />
+			<drop item_id="114600843" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true" race="ASMODIANS">
+			<drop item_id="110100989" chance="10" />
+			<drop item_id="110300938" chance="10" />
+			<drop item_id="110500906" chance="10" />
+			<drop item_id="110600886" chance="10" />
+			<drop item_id="111100884" chance="10" />
+			<drop item_id="111300889" chance="10" />
+			<drop item_id="111500875" chance="10" />
+			<drop item_id="111600867" chance="10" />
+			<drop item_id="112100841" chance="10" />
+			<drop item_id="112300839" chance="10" />
+			<drop item_id="112500826" chance="10" />
+			<drop item_id="112600841" chance="10" />
+			<drop item_id="113100897" chance="10" />
+			<drop item_id="113300910" chance="10" />
+			<drop item_id="113500880" chance="10" />
+			<drop item_id="113600851" chance="10" />
+			<drop item_id="114100923" chance="10" />
+			<drop item_id="114300944" chance="10" />
+			<drop item_id="114500887" chance="10" />
+			<drop item_id="114600846" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000066" max_amount="6" chance="50" />
+			<drop item_id="186000065" max_amount="5" chance="45" />
+			<drop item_id="186000064" max_amount="4" chance="30" />
+			<drop item_id="186000063" max_amount="3" chance="20" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000062" max_amount="5" chance="45" />
+			<drop item_id="186000061" max_amount="4" chance="40" />
+			<drop item_id="186000060" max_amount="3" chance="25" />
+			<drop item_id="186000059" max_amount="2" chance="15" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000058" max_amount="4" chance="35" />
+			<drop item_id="186000057" max_amount="3" chance="30" />
+			<drop item_id="186000056" max_amount="2" chance="20" />
+			<drop item_id="186000055" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000054" max_amount="3" chance="25" />
+			<drop item_id="186000053" max_amount="2" chance="20" />
+			<drop item_id="186000052" chance="10" />
+			<drop item_id="186000051" chance="5" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="211822">
+		<drop_group>
+			<drop item_id="111500472" chance="15" />
+			<drop item_id="111100433" chance="15" />
+			<drop item_id="111300435" chance="15" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="701369">
+		<drop_group>
+			<drop item_id="188100028" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="701370">
+		<drop_group>
+			<drop item_id="188100029" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="701371">
+		<drop_group>
+			<drop item_id="188100030" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="701372">
+		<drop_group>
+			<drop item_id="125002604" chance="10" />
+			<drop item_id="125002605" chance="10" />
+			<drop item_id="125002606" chance="10" />
+			<drop item_id="125002607" chance="10" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="700471">
+		<drop_group>
+			<drop item_id="186000031" chance="10" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="101700616" chance="20" />
+			<drop item_id="100200697" chance="20" />
+			<drop item_id="100900587" chance="20" />
+			<drop item_id="100100577" chance="20" />
+			<drop item_id="100500598" chance="20" />
+			<drop item_id="101300560" chance="20" />
+			<drop item_id="101500601" chance="20" />
+			<drop item_id="100600632" chance="20" />
+			<drop item_id="100000762" chance="20" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="115000855" chance="20" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="110100968" chance="20" />
+			<drop item_id="110300913" chance="20" />
+			<drop item_id="110500881" chance="20" />
+			<drop item_id="110600865" chance="20" />
+			<drop item_id="113100872" chance="20" />
+			<drop item_id="113300889" chance="20" />
+			<drop item_id="113500855" chance="20" />
+			<drop item_id="113600830" chance="20" />
+			<drop item_id="112100819" chance="20" />
+			<drop item_id="112300813" chance="20" />
+			<drop item_id="112500804" chance="20" />
+			<drop item_id="112600815" chance="20" />
+			<drop item_id="111100862" chance="20" />
+			<drop item_id="111300863" chance="20" />
+			<drop item_id="111500853" chance="20" />
+			<drop item_id="111600841" chance="20" />
+			<drop item_id="114100897" chance="20" />
+			<drop item_id="114300922" chance="20" />
+			<drop item_id="114500865" chance="20" />
+			<drop item_id="114600824" chance="20" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000066" max_amount="2" chance="60" />
+			<drop item_id="186000065" max_amount="2" chance="40" />
+			<drop item_id="186000064" chance="20" />
+			<drop item_id="186000063" chance="7.5" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000062" max_amount="2" chance="5" />
+			<drop item_id="186000061" max_amount="2" chance="3" />
+			<drop item_id="186000060" chance="2" />
+			<drop item_id="186000059" chance="1" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000058" chance="5" />
+			<drop item_id="186000057" chance="3" />
+			<drop item_id="186000056" chance="2" />
+			<drop item_id="186000055" chance="1" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="701482">
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="120000861" chance="10" />
+			<drop item_id="121000787" chance="10" />
+			<drop item_id="122000907" chance="10" />
+			<drop item_id="120000860" chance="10" />
+			<drop item_id="121000786" chance="10" />
+			<drop item_id="122000906" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="115000811" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="123000895" chance="10" />
+			<drop item_id="123000896" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="125001891" chance="10" />
+			<drop item_id="125001892" chance="10" />
+			<drop item_id="125001893" chance="10" />
+			<drop item_id="125001894" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="110100911" chance="10" />
+			<drop item_id="110300866" chance="10" />
+			<drop item_id="110500836" chance="10" />
+			<drop item_id="110600821" chance="10" />
+			<drop item_id="113100823" chance="10" />
+			<drop item_id="113300841" chance="10" />
+			<drop item_id="113500812" chance="10" />
+			<drop item_id="113600785" chance="10" />
+			<drop item_id="112100773" chance="10" />
+			<drop item_id="112300770" chance="10" />
+			<drop item_id="112500758" chance="10" />
+			<drop item_id="112600769" chance="10" />
+			<drop item_id="111100815" chance="10" />
+			<drop item_id="111300819" chance="10" />
+			<drop item_id="111500802" chance="10" />
+			<drop item_id="111600794" chance="10" />
+			<drop item_id="114100851" chance="10" />
+			<drop item_id="114300877" chance="10" />
+			<drop item_id="114500823" chance="10" />
+			<drop item_id="114600780" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000066" max_amount="2" chance="60" />
+			<drop item_id="186000065" max_amount="2" chance="40" />
+			<drop item_id="186000064" chance="20" />
+			<drop item_id="186000063" chance="7.5" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000062" max_amount="2" chance="5" />
+			<drop item_id="186000061" max_amount="2" chance="3" />
+			<drop item_id="186000060" chance="2" />
+			<drop item_id="186000059" chance="1" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000058" chance="5" />
+			<drop item_id="186000057" chance="3" />
+			<drop item_id="186000056" chance="2" />
+			<drop item_id="186000055" chance="1" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="701487">
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="120000865" chance="10" />
+			<drop item_id="121000791" chance="10" />
+			<drop item_id="122000911" chance="10" />
+			<drop item_id="120000864" chance="10" />
+			<drop item_id="121000790" chance="10" />
+			<drop item_id="122000910" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="115000813" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="123000899" chance="10" />
+			<drop item_id="123000900" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="125001899" chance="10" />
+			<drop item_id="125001900" chance="10" />
+			<drop item_id="125001901" chance="10" />
+			<drop item_id="125001902" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="110100913" chance="10" />
+			<drop item_id="110300868" chance="10" />
+			<drop item_id="110500838" chance="10" />
+			<drop item_id="110600823" chance="10" />
+			<drop item_id="113100825" chance="10" />
+			<drop item_id="113300843" chance="10" />
+			<drop item_id="113500814" chance="10" />
+			<drop item_id="113600787" chance="10" />
+			<drop item_id="112100775" chance="10" />
+			<drop item_id="112300772" chance="10" />
+			<drop item_id="112500760" chance="10" />
+			<drop item_id="112600771" chance="10" />
+			<drop item_id="111100817" chance="10" />
+			<drop item_id="111300821" chance="10" />
+			<drop item_id="111500804" chance="10" />
+			<drop item_id="111600796" chance="10" />
+			<drop item_id="114100853" chance="10" />
+			<drop item_id="114300879" chance="10" />
+			<drop item_id="114500825" chance="10" />
+			<drop item_id="114600782" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000066" max_amount="2" chance="60" />
+			<drop item_id="186000065" max_amount="2" chance="40" />
+			<drop item_id="186000064" chance="20" />
+			<drop item_id="186000063" chance="7.5" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000062" max_amount="2" chance="5" />
+			<drop item_id="186000061" max_amount="2" chance="3" />
+			<drop item_id="186000060" chance="2" />
+			<drop item_id="186000059" chance="1" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000058" chance="5" />
+			<drop item_id="186000057" chance="3" />
+			<drop item_id="186000056" chance="2" />
+			<drop item_id="186000055" chance="1" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="700553">
+		<drop_group>
+			<drop item_id="185000076" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="700554">
+		<drop_group>
+			<drop item_id="188051413" chance="10" />
+			<drop item_id="188051415" chance="10" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="214804">
+		<drop_group>
+			<drop item_id="186000031" chance="40" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="101700616" chance="25" />
+			<drop item_id="100200697" chance="25" />
+			<drop item_id="100900587" chance="25" />
+			<drop item_id="100100577" chance="25" />
+			<drop item_id="100500598" chance="25" />
+			<drop item_id="101300560" chance="25" />
+			<drop item_id="101500601" chance="25" />
+			<drop item_id="100600632" chance="25" />
+			<drop item_id="100000762" chance="25" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="115000855" chance="25" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="110100968" chance="25" />
+			<drop item_id="110300913" chance="25" />
+			<drop item_id="110500881" chance="25" />
+			<drop item_id="110600865" chance="25" />
+			<drop item_id="113100872" chance="25" />
+			<drop item_id="113300889" chance="25" />
+			<drop item_id="113500855" chance="25" />
+			<drop item_id="113600830" chance="25" />
+			<drop item_id="112100819" chance="25" />
+			<drop item_id="112300813" chance="25" />
+			<drop item_id="112500804" chance="25" />
+			<drop item_id="112600815" chance="25" />
+			<drop item_id="111100862" chance="25" />
+			<drop item_id="111300863" chance="25" />
+			<drop item_id="111500853" chance="25" />
+			<drop item_id="111600841" chance="25" />
+			<drop item_id="114100897" chance="25" />
+			<drop item_id="114300922" chance="25" />
+			<drop item_id="114500865" chance="25" />
+			<drop item_id="114600824" chance="25" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000066" max_amount="2" chance="50" />
+			<drop item_id="186000065" max_amount="2" chance="40" />
+			<drop item_id="186000064" max_amount="2" chance="30" />
+			<drop item_id="186000063" max_amount="2" chance="20" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000062" max_amount="2" chance="50" />
+			<drop item_id="186000061" max_amount="2" chance="40" />
+			<drop item_id="186000060" max_amount="2" chance="30" />
+			<drop item_id="186000059" max_amount="2" chance="20" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000058" max_amount="2" chance="30" />
+			<drop item_id="186000057" chance="20" />
+			<drop item_id="186000056" chance="10" />
+			<drop item_id="186000055" chance="5" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000054" min_amount="2" chance="10" />
+			<drop item_id="186000053" min_amount="2" chance="5" />
+			<drop item_id="186000052" min_amount="2" chance="2" />
+			<drop item_id="186000051" min_amount="2" chance="1" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="700462">
+		<drop_group>
+			<drop item_id="186000031" chance="40" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="101700616" chance="25" />
+			<drop item_id="100200697" chance="25" />
+			<drop item_id="100900587" chance="25" />
+			<drop item_id="100100577" chance="25" />
+			<drop item_id="100500598" chance="25" />
+			<drop item_id="101300560" chance="25" />
+			<drop item_id="101500601" chance="25" />
+			<drop item_id="100600632" chance="25" />
+			<drop item_id="100000762" chance="25" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="115000855" chance="25" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="110100968" chance="25" />
+			<drop item_id="110300913" chance="25" />
+			<drop item_id="110500881" chance="25" />
+			<drop item_id="110600865" chance="25" />
+			<drop item_id="113100872" chance="25" />
+			<drop item_id="113300889" chance="25" />
+			<drop item_id="113500855" chance="25" />
+			<drop item_id="113600830" chance="25" />
+			<drop item_id="112100819" chance="25" />
+			<drop item_id="112300813" chance="25" />
+			<drop item_id="112500804" chance="25" />
+			<drop item_id="112600815" chance="25" />
+			<drop item_id="111100862" chance="25" />
+			<drop item_id="111300863" chance="25" />
+			<drop item_id="111500853" chance="25" />
+			<drop item_id="111600841" chance="25" />
+			<drop item_id="114100897" chance="25" />
+			<drop item_id="114300922" chance="25" />
+			<drop item_id="114500865" chance="25" />
+			<drop item_id="114600824" chance="25" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000066" max_amount="2" chance="40" />
+			<drop item_id="186000065" max_amount="2" chance="15" />
+			<drop item_id="186000064" chance="15" />
+			<drop item_id="186000063" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000062" max_amount="2" chance="25" />
+			<drop item_id="186000061" max_amount="2" chance="15" />
+			<drop item_id="186000060" chance="15" />
+			<drop item_id="186000059" chance="5" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000058" chance="20" />
+			<drop item_id="186000057" chance="10" />
+			<drop item_id="186000056" chance="10" />
+			<drop item_id="186000055" chance="5" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="700463">
+		<drop_group>
+			<drop item_id="186000031" chance="40" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="101700616" chance="25" />
+			<drop item_id="100200697" chance="25" />
+			<drop item_id="100900587" chance="25" />
+			<drop item_id="100100577" chance="25" />
+			<drop item_id="100500598" chance="25" />
+			<drop item_id="101300560" chance="25" />
+			<drop item_id="101500601" chance="25" />
+			<drop item_id="100600632" chance="25" />
+			<drop item_id="100000762" chance="25" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="115000855" chance="25" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="110100968" chance="25" />
+			<drop item_id="110300913" chance="25" />
+			<drop item_id="110500881" chance="25" />
+			<drop item_id="110600865" chance="25" />
+			<drop item_id="113100872" chance="25" />
+			<drop item_id="113300889" chance="25" />
+			<drop item_id="113500855" chance="25" />
+			<drop item_id="113600830" chance="25" />
+			<drop item_id="112100819" chance="25" />
+			<drop item_id="112300813" chance="25" />
+			<drop item_id="112500804" chance="25" />
+			<drop item_id="112600815" chance="25" />
+			<drop item_id="111100862" chance="25" />
+			<drop item_id="111300863" chance="25" />
+			<drop item_id="111500853" chance="25" />
+			<drop item_id="111600841" chance="25" />
+			<drop item_id="114100897" chance="25" />
+			<drop item_id="114300922" chance="25" />
+			<drop item_id="114500865" chance="25" />
+			<drop item_id="114600824" chance="25" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000066" max_amount="2" chance="40" />
+			<drop item_id="186000065" max_amount="2" chance="15" />
+			<drop item_id="186000064" chance="15" />
+			<drop item_id="186000063" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000062" max_amount="2" chance="25" />
+			<drop item_id="186000061" max_amount="2" chance="15" />
+			<drop item_id="186000060" chance="15" />
+			<drop item_id="186000059" chance="5" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000058" chance="20" />
+			<drop item_id="186000057" chance="10" />
+			<drop item_id="186000056" chance="10" />
+			<drop item_id="186000055" chance="5" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="700464">
+		<drop_group>
+			<drop item_id="186000031" chance="40" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="101700616" chance="25" />
+			<drop item_id="100200697" chance="25" />
+			<drop item_id="100900587" chance="25" />
+			<drop item_id="100100577" chance="25" />
+			<drop item_id="100500598" chance="25" />
+			<drop item_id="101300560" chance="25" />
+			<drop item_id="101500601" chance="25" />
+			<drop item_id="100600632" chance="25" />
+			<drop item_id="100000762" chance="25" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="115000855" chance="25" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="110100968" chance="25" />
+			<drop item_id="110300913" chance="25" />
+			<drop item_id="110500881" chance="25" />
+			<drop item_id="110600865" chance="25" />
+			<drop item_id="113100872" chance="25" />
+			<drop item_id="113300889" chance="25" />
+			<drop item_id="113500855" chance="25" />
+			<drop item_id="113600830" chance="25" />
+			<drop item_id="112100819" chance="25" />
+			<drop item_id="112300813" chance="25" />
+			<drop item_id="112500804" chance="25" />
+			<drop item_id="112600815" chance="25" />
+			<drop item_id="111100862" chance="25" />
+			<drop item_id="111300863" chance="25" />
+			<drop item_id="111500853" chance="25" />
+			<drop item_id="111600841" chance="25" />
+			<drop item_id="114100897" chance="25" />
+			<drop item_id="114300922" chance="25" />
+			<drop item_id="114500865" chance="25" />
+			<drop item_id="114600824" chance="25" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000066" max_amount="2" chance="40" />
+			<drop item_id="186000065" max_amount="2" chance="15" />
+			<drop item_id="186000064" chance="15" />
+			<drop item_id="186000063" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000062" max_amount="2" chance="25" />
+			<drop item_id="186000061" max_amount="2" chance="15" />
+			<drop item_id="186000060" chance="15" />
+			<drop item_id="186000059" chance="5" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000058" chance="20" />
+			<drop item_id="186000057" chance="10" />
+			<drop item_id="186000056" chance="10" />
+			<drop item_id="186000055" chance="5" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="701480">
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="120000861" chance="10" />
+			<drop item_id="121000787" chance="10" />
+			<drop item_id="122000907" chance="10" />
+			<drop item_id="120000860" chance="10" />
+			<drop item_id="121000786" chance="10" />
+			<drop item_id="122000906" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="115000811" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="123000895" chance="10" />
+			<drop item_id="123000896" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="125001891" chance="10" />
+			<drop item_id="125001892" chance="10" />
+			<drop item_id="125001893" chance="10" />
+			<drop item_id="125001894" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="110100911" chance="10" />
+			<drop item_id="110300866" chance="10" />
+			<drop item_id="110500836" chance="10" />
+			<drop item_id="110600821" chance="10" />
+			<drop item_id="113100823" chance="10" />
+			<drop item_id="113300841" chance="10" />
+			<drop item_id="113500812" chance="10" />
+			<drop item_id="113600785" chance="10" />
+			<drop item_id="112100773" chance="10" />
+			<drop item_id="112300770" chance="10" />
+			<drop item_id="112500758" chance="10" />
+			<drop item_id="112600769" chance="10" />
+			<drop item_id="111100815" chance="10" />
+			<drop item_id="111300819" chance="10" />
+			<drop item_id="111500802" chance="10" />
+			<drop item_id="111600794" chance="10" />
+			<drop item_id="114100851" chance="10" />
+			<drop item_id="114300877" chance="10" />
+			<drop item_id="114500823" chance="10" />
+			<drop item_id="114600780" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000066" max_amount="4" chance="40" />
+			<drop item_id="186000065" max_amount="3" chance="30" />
+			<drop item_id="186000064" chance="20" />
+			<drop item_id="186000063" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000062" max_amount="3" chance="40" />
+			<drop item_id="186000061" max_amount="2" chance="30" />
+			<drop item_id="186000060" chance="20" />
+			<drop item_id="186000059" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000058" max_amount="2" chance="30" />
+			<drop item_id="186000057" chance="20" />
+			<drop item_id="186000056" chance="10" />
+			<drop item_id="186000055" chance="5" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="701485">
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="120000861" chance="10" />
+			<drop item_id="121000787" chance="10" />
+			<drop item_id="122000907" chance="10" />
+			<drop item_id="120000860" chance="10" />
+			<drop item_id="121000786" chance="10" />
+			<drop item_id="122000906" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="115000811" chance="10" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="123000895" chance="10" />
+			<drop item_id="123000896" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="125001891" chance="10" />
+			<drop item_id="125001892" chance="10" />
+			<drop item_id="125001893" chance="10" />
+			<drop item_id="125001894" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="110100911" chance="10" />
+			<drop item_id="110300866" chance="10" />
+			<drop item_id="110500836" chance="10" />
+			<drop item_id="110600821" chance="10" />
+			<drop item_id="113100823" chance="10" />
+			<drop item_id="113300841" chance="10" />
+			<drop item_id="113500812" chance="10" />
+			<drop item_id="113600785" chance="10" />
+			<drop item_id="112100773" chance="10" />
+			<drop item_id="112300770" chance="10" />
+			<drop item_id="112500758" chance="10" />
+			<drop item_id="112600769" chance="10" />
+			<drop item_id="111100815" chance="10" />
+			<drop item_id="111300819" chance="10" />
+			<drop item_id="111500802" chance="10" />
+			<drop item_id="111600794" chance="10" />
+			<drop item_id="114100851" chance="10" />
+			<drop item_id="114300877" chance="10" />
+			<drop item_id="114500823" chance="10" />
+			<drop item_id="114600780" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000066" max_amount="2" chance="40" />
+			<drop item_id="186000065" max_amount="2" chance="15" />
+			<drop item_id="186000064" chance="15" />
+			<drop item_id="186000063" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000062" max_amount="2" chance="25" />
+			<drop item_id="186000061" max_amount="2" chance="15" />
+			<drop item_id="186000060" chance="15" />
+			<drop item_id="186000059" chance="5" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000058" chance="20" />
+			<drop item_id="186000057" chance="10" />
+			<drop item_id="186000056" chance="10" />
+			<drop item_id="186000055" chance="5" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="700742">
+		<drop_group>
+			<drop item_id="182005918" max_amount="5" chance="43" />
+			<drop item_id="182005919" max_amount="5" chance="23" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="700826">
+		<drop_group>
+			<drop item_id="110900040" chance="10" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="125002031" chance="30" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="701388">
+		<drop_group>
+			<drop item_id="186000059" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="186000051" chance="30" />
+			<drop item_id="186000052" chance="30" />
+			<drop item_id="186000053" max_amount="2" chance="30" />
+			<drop item_id="186000054" max_amount="4" chance="30" />
+			<drop item_id="186000055" chance="30" />
+			<drop item_id="186000056" max_amount="2" chance="30" />
+			<drop item_id="186000057" max_amount="3" chance="30" />
+			<drop item_id="186000058" max_amount="4" chance="30" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="186000060" max_amount="2" chance="15" />
+			<drop item_id="186000061" max_amount="5" chance="15" />
+			<drop item_id="186000062" max_amount="5" chance="15" />
+			<drop item_id="186000063" max_amount="2" chance="15" />
+			<drop item_id="186000064" max_amount="3" chance="15" />
+			<drop item_id="186000065" max_amount="5" chance="15" />
+			<drop item_id="186000066" max_amount="5" chance="15" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="701389">
+		<drop_group>
+			<drop item_id="186000055" min_amount="3" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="186000051" chance="30" />
+			<drop item_id="186000052" chance="30" />
+			<drop item_id="186000053" max_amount="2" chance="40" />
+			<drop item_id="186000054" max_amount="4" chance="30" />
+			<drop item_id="186000056" max_amount="3" chance="30" />
+			<drop item_id="186000057" max_amount="3" chance="30" />
+			<drop item_id="186000058" max_amount="2" chance="30" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="186000059" max_amount="2" chance="15" />
+			<drop item_id="186000060" max_amount="3" chance="15" />
+			<drop item_id="186000061" max_amount="3" chance="15" />
+			<drop item_id="186000062" max_amount="4" chance="15" />
+			<drop item_id="186000063" max_amount="3" chance="15" />
+			<drop item_id="186000064" max_amount="4" chance="15" />
+			<drop item_id="186000065" max_amount="5" chance="15" />
+			<drop item_id="186000066" max_amount="5" chance="15" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="701390">
+		<drop_group>
+			<drop item_id="186000051" min_amount="3" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="186000052" max_amount="3" chance="40" />
+			<drop item_id="186000053" max_amount="4" chance="40" />
+			<drop item_id="186000054" max_amount="5" chance="40" />
+			<drop item_id="186000055" max_amount="5" chance="40" />
+			<drop item_id="186000056" max_amount="4" chance="40" />
+			<drop item_id="186000057" max_amount="3" chance="40" />
+			<drop item_id="186000058" max_amount="2" chance="40" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="186000059" max_amount="5" chance="15" />
+			<drop item_id="186000060" max_amount="5" chance="15" />
+			<drop item_id="186000061" max_amount="5" chance="15" />
+			<drop item_id="186000062" max_amount="5" chance="15" />
+			<drop item_id="186000063" max_amount="5" chance="15" />
+			<drop item_id="186000064" max_amount="5" chance="15" />
+			<drop item_id="186000065" max_amount="5" chance="15" />
+			<drop item_id="186000066" max_amount="5" chance="15" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="701501">
+		<drop_group>
+			<drop item_id="186000096" chance="50" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="186000066" max_amount="2" chance="50" />
+			<drop item_id="186000065" max_amount="2" chance="25" />
+			<drop item_id="186000064" chance="25" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="186000062" max_amount="2" chance="60" />
+			<drop item_id="186000061" max_amount="2" chance="30" />
+			<drop item_id="186000060" chance="10" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="186000058" max_amount="2" chance="80" />
+			<drop item_id="186000057" max_amount="2" chance="15" />
+			<drop item_id="186000056" chance="5" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="701527">
+		<drop_group>
+			<drop item_id="186000096" max_amount="2" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="701541">
+		<drop_group>
+			<drop item_id="100101075" chance="60" />
+			<drop item_id="100501086" chance="60" />
+			<drop item_id="101501111" chance="60" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="101501070" chance="45" />
+			<drop item_id="100901081" chance="45" />
+			<drop item_id="101701111" chance="45" />
+			<drop item_id="100201207" chance="45" />
+			<drop item_id="101301018" chance="45" />
+			<drop item_id="100001360" chance="45" />
+			<drop item_id="100601106" chance="45" />
+			<drop item_id="100101038" chance="45" />
+			<drop item_id="100501050" chance="45" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="110101482" chance="62" />
+			<drop item_id="110301390" chance="62" />
+			<drop item_id="110551002" chance="62" />
+			<drop item_id="110601338" chance="62" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="188053083" chance="10" each_member="true" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="188053295" chance="5" each_member="true" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="701574">
+		<drop_group>
+			<drop item_id="182400001" min_amount="49222" max_amount="149766" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="188052087" chance="30" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000051" chance="0.5" />
+			<drop item_id="186000052" chance="0.75" />
+			<drop item_id="186000053" chance="1.25" />
+			<drop item_id="186000054" chance="2.5" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000055" chance="2" />
+			<drop item_id="186000056" chance="3" />
+			<drop item_id="186000057" chance="5" />
+			<drop item_id="186000058" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000059" chance="5" />
+			<drop item_id="186000060" chance="7.5" />
+			<drop item_id="186000061" chance="12.5" />
+			<drop item_id="186000062" chance="25" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000059" chance="4.5" />
+			<drop item_id="186000060" chance="6.75" />
+			<drop item_id="186000061" chance="11.25" />
+			<drop item_id="186000062" chance="22.5" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="701575">
+		<drop_group>
+			<drop item_id="182400001" min_amount="249610" max_amount="748830" />
+		</drop_group>
+		<drop_group max_items="2">
+			<drop item_id="188052087" chance="50" />
+			<drop item_id="188052087" chance="50" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="112101297" chance="40" />
+			<drop item_id="112301278" chance="40" />
+			<drop item_id="112501267" chance="40" />
+			<drop item_id="112601286" chance="40" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000051" chance="5" />
+			<drop item_id="186000052" chance="7.5" />
+			<drop item_id="186000053" chance="12.5" />
+			<drop item_id="186000054" chance="25" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000055" chance="5" />
+			<drop item_id="186000056" chance="7.5" />
+			<drop item_id="186000057" chance="12.5" />
+			<drop item_id="186000058" chance="25" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000059" chance="5" />
+			<drop item_id="186000060" chance="7.5" />
+			<drop item_id="186000061" chance="12.5" />
+			<drop item_id="186000062" chance="25" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000059" chance="3" />
+			<drop item_id="186000060" chance="4.5" />
+			<drop item_id="186000061" chance="7.5" />
+			<drop item_id="186000062" chance="15" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="701576">
+		<drop_group>
+			<drop item_id="182400001" min_amount="49222" max_amount="149766" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="188052087" chance="30" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000051" chance="0.5" />
+			<drop item_id="186000052" chance="0.75" />
+			<drop item_id="186000053" chance="1.25" />
+			<drop item_id="186000054" chance="2.5" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000055" chance="2" />
+			<drop item_id="186000056" chance="3" />
+			<drop item_id="186000057" chance="5" />
+			<drop item_id="186000058" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000059" chance="5" />
+			<drop item_id="186000060" chance="7.5" />
+			<drop item_id="186000061" chance="12.5" />
+			<drop item_id="186000062" chance="25" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000059" chance="4.5" />
+			<drop item_id="186000060" chance="6.75" />
+			<drop item_id="186000061" chance="11.25" />
+			<drop item_id="186000062" chance="22.5" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="701577">
+		<drop_group>
+			<drop item_id="182400001" min_amount="249610" max_amount="748830" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="185000104" />
+		</drop_group>
+		<drop_group max_items="2">
+			<drop item_id="188052087" chance="50" />
+			<drop item_id="188052087" chance="50" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="111601306" chance="40" />
+			<drop item_id="111101340" chance="40" />
+			<drop item_id="111501327" chance="40" />
+			<drop item_id="111301335" chance="40" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000051" chance="5" />
+			<drop item_id="186000052" chance="7.5" />
+			<drop item_id="186000053" chance="12.5" />
+			<drop item_id="186000054" chance="25" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000055" chance="5" />
+			<drop item_id="186000056" chance="7.5" />
+			<drop item_id="186000057" chance="12.5" />
+			<drop item_id="186000058" chance="25" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000059" chance="5" />
+			<drop item_id="186000060" chance="7.5" />
+			<drop item_id="186000061" chance="12.5" />
+			<drop item_id="186000062" chance="25" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000059" chance="3" />
+			<drop item_id="186000060" chance="4.5" />
+			<drop item_id="186000061" chance="7.5" />
+			<drop item_id="186000062" chance="15" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="188053083" chance="5" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="701578">
+		<drop_group>
+			<drop item_id="182400001" min_amount="249610" max_amount="748830" />
+		</drop_group>
+		<drop_group max_items="2">
+			<drop item_id="188052087" chance="50" />
+			<drop item_id="188052087" chance="50" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="114301394" chance="40" />
+			<drop item_id="114501350" chance="40" />
+			<drop item_id="114601292" chance="40" />
+			<drop item_id="114101388" chance="40" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="113301359" chance="26" />
+			<drop item_id="113501342" chance="26" />
+			<drop item_id="113601295" chance="26" />
+			<drop item_id="113101357" chance="26" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000051" chance="5" />
+			<drop item_id="186000052" chance="7.5" />
+			<drop item_id="186000053" chance="12.5" />
+			<drop item_id="186000054" chance="25" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000055" chance="5" />
+			<drop item_id="186000056" chance="7.5" />
+			<drop item_id="186000057" chance="12.5" />
+			<drop item_id="186000058" chance="25" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000059" chance="5" />
+			<drop item_id="186000060" chance="7.5" />
+			<drop item_id="186000061" chance="12.5" />
+			<drop item_id="186000062" chance="25" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000059" chance="3" />
+			<drop item_id="186000060" chance="4.5" />
+			<drop item_id="186000061" chance="7.5" />
+			<drop item_id="186000062" chance="15" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="188053083" chance="5" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="701579">
+		<drop_group>
+			<drop item_id="182400001" min_amount="549142" max_amount="1647426" />
+		</drop_group>
+		<drop_group max_items="3">
+			<drop item_id="188052087" chance="50" />
+			<drop item_id="188052087" chance="50" />
+			<drop item_id="188052087" chance="50" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="115001463" chance="20" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="110601343" chance="20" />
+			<drop item_id="110301394" chance="20" />
+			<drop item_id="110101486" chance="20" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="125003227" chance="20" />
+			<drop item_id="125003229" chance="20" />
+			<drop item_id="125003228" chance="20" />
+			<drop item_id="125003230" chance="20" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="115001463" chance="10" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000051" chance="8" />
+			<drop item_id="186000052" chance="12" />
+			<drop item_id="186000053" chance="20" />
+			<drop item_id="186000054" chance="40" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000055" chance="8" />
+			<drop item_id="186000056" chance="12" />
+			<drop item_id="186000057" chance="20" />
+			<drop item_id="186000058" chance="40" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000059" chance="7" />
+			<drop item_id="186000060" chance="10.5" />
+			<drop item_id="186000061" chance="17.5" />
+			<drop item_id="186000062" chance="35" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000059" chance="6" />
+			<drop item_id="186000060" chance="9" />
+			<drop item_id="186000061" chance="15" />
+			<drop item_id="186000062" chance="30" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="188053083" chance="10" each_member="true" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="188053295" chance="5" each_member="true" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="701580">
+		<drop_group>
+			<drop item_id="182400001" min_amount="549142" max_amount="1647426" />
+		</drop_group>
+		<drop_group max_items="3">
+			<drop item_id="188052087" chance="50" />
+			<drop item_id="188052087" chance="50" />
+			<drop item_id="188052087" chance="50" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="100001448" chance="15" />
+			<drop item_id="100101105" chance="15" />
+			<drop item_id="100201266" chance="15" />
+			<drop item_id="100501112" chance="15" />
+			<drop item_id="100601193" chance="15" />
+			<drop item_id="100901121" chance="15" />
+			<drop item_id="101301057" chance="15" />
+			<drop item_id="101501138" chance="15" />
+			<drop item_id="101701156" chance="15" />
+			<drop item_id="115001476" chance="20" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="115001463" chance="27" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="110601343" chance="27" />
+			<drop item_id="110301394" chance="27" />
+			<drop item_id="110101486" chance="27" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="125003227" chance="27" />
+			<drop item_id="125003229" chance="27" />
+			<drop item_id="125003228" chance="27" />
+			<drop item_id="125003230" chance="27" />
+		</drop_group>
+		<drop_group>
+			<drop item_id="100001413" chance="20" />
+			<drop item_id="100501098" chance="20" />
+			<drop item_id="100601154" chance="20" />
+			<drop item_id="100901106" chance="20" />
+			<drop item_id="100101090" chance="20" />
+			<drop item_id="100201252" chance="20" />
+			<drop item_id="101301043" chance="20" />
+			<drop item_id="101501124" chance="20" />
+			<drop item_id="101701135" chance="20" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000051" chance="8" />
+			<drop item_id="186000052" chance="12" />
+			<drop item_id="186000053" chance="20" />
+			<drop item_id="186000054" chance="40" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000055" chance="8" />
+			<drop item_id="186000056" chance="12" />
+			<drop item_id="186000057" chance="20" />
+			<drop item_id="186000058" chance="40" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000059" chance="7" />
+			<drop item_id="186000060" chance="10.5" />
+			<drop item_id="186000061" chance="17.5" />
+			<drop item_id="186000062" chance="35" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="186000059" chance="6" />
+			<drop item_id="186000060" chance="9" />
+			<drop item_id="186000061" chance="15" />
+			<drop item_id="186000062" chance="30" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="188053083" chance="10" each_member="true" />
+		</drop_group>
+		<drop_group level_based_chance_reduction="true">
+			<drop item_id="188053295" chance="5" each_member="true" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="701585">
+		<drop_group>
+			<drop item_id="164000252" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="701586">
+		<drop_group>
+			<drop item_id="164000252" />
+		</drop_group>
+	</npc_drop>
+	<npc_drop npc_id="701457">
+		<drop_group>
+			<drop item_id="169230001" />
+			<drop item_id="169230002" />
+			<drop item_id="169230003" />
+			<drop item_id="169230008" />
+		</drop_group>
+	</npc_drop>
+	<!-- Tiamaranta Mesa: 1 item por abertura (S 0xCD, captura 16/09 05:22) -->
+	<npc_drop npc_id="802182">
+		<drop_group max_items="1">
+			<drop item_id="188055450" />
+		</drop_group>
+	</npc_drop>
+	<!-- Tiamaranta Mesa: 1 item por abertura (S 0xCD, captura 16/09 05:22) -->
+	<npc_drop npc_id="802183">
+		<drop_group max_items="1">
+			<drop item_id="188055451" />
+		</drop_group>
+	</npc_drop>
+	<!-- Tiamaranta Mesa: 1 item por abertura (cliente + usuario, sem captura) -->
+	<npc_drop npc_id="802184">
+		<drop_group max_items="1">
+			<drop item_id="188055452" />
+		</drop_group>
+	</npc_drop>
+	<!-- Tiamaranta Mesa: 1 item por abertura (cliente + usuario, sem captura) -->
+	<npc_drop npc_id="802536">
+		<drop_group max_items="1">
+			<drop item_id="188055452" />
+		</drop_group>
+	</npc_drop>
+</custom_drop>

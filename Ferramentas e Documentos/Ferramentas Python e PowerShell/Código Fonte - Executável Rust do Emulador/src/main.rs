@@ -5,10 +5,13 @@ mod db_manager;
 mod job_object;
 mod logs;
 mod single_instance;
+mod properties_manager;
 mod supervisor;
 mod tray;
 mod ui;
 mod webview;
+
+use properties_manager::PropertiesManager;
 
 use config::{ensure_database_properties, load_config};
 use db_manager::DbManagerMulti;
@@ -478,7 +481,79 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 }
             });
 
+        // --- Properties Manager Endpoints ---
+        let cfg_prop_filter = {
+            let c = cfg_clone.clone();
+            warp::any().map(move || c.clone())
+        };
+
+        // GET /api/properties/list
+        let prop_list_route = warp::path!("api" / "properties" / "list")
+            .and(warp::get())
+            .and(cfg_prop_filter.clone())
+            .map(|cfg: crate::config::RootConfig| {
+                let files = PropertiesManager::list_files(&cfg.servers);
+                warp::reply::json(&serde_json::json!({ "status": "ok", "files": files }))
+            });
+
+        // GET /api/properties/file?path=...&server=...
+        let prop_file_route = warp::path!("api" / "properties" / "file")
+            .and(warp::get())
+            .and(warp::query::<std::collections::HashMap<String, String>>())
+            .map(|params: std::collections::HashMap<String, String>| {
+                let path = params.get("path").map(|s| s.as_str()).unwrap_or("");
+                let server_id = params.get("server").map(|s| s.as_str());
+                match PropertiesManager::read_file(path, server_id) {
+                    Ok(content) => warp::reply::json(&serde_json::json!({ "status": "ok", "file": content })),
+                    Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
+                }
+            });
+
+        // POST /api/properties/save
+        #[derive(serde::Deserialize)]
+        struct SavePropertyPayload {
+            path: String,
+            updates: std::collections::HashMap<String, String>,
+        }
+        let prop_save_route = warp::path!("api" / "properties" / "save")
+            .and(warp::post())
+            .and(warp::body::json::<SavePropertyPayload>())
+            .map(|payload: SavePropertyPayload| {
+                match PropertiesManager::save_file(&payload.path, &payload.updates) {
+                    Ok(res) => warp::reply::json(&serde_json::json!({
+                        "status": "ok",
+                        "backup_path": res.backup_path,
+                        "saved_count": res.saved_keys_count,
+                        "message": res.message
+                    })),
+                    Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
+                }
+            });
+
+        // POST /api/db/orchestrate
+        let sup_db_orch = sup_clone.clone();
+        let cfg_db_orch = cfg_clone.clone();
+        let log_db_orch = log_center_clone.clone();
+        let db_orchestrate_route = warp::path!("api" / "db" / "orchestrate")
+            .and(warp::post())
+            .map(move || {
+                let sup = sup_db_orch.clone();
+                let cfg = cfg_db_orch.clone();
+                let log = log_db_orch.clone();
+                match sup.db_manager().prepare_databases_orchestration(&cfg, &log) {
+                    Ok(_) => warp::reply::json(&serde_json::json!({
+                        "status": "ok",
+                        "message": "Preparação e migração automática de todos os bancos concluída com sucesso!"
+                    })),
+                    Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
+                }
+            });
+
         let routes = index_route
+            .or(prop_list_route)
+            .or(prop_file_route)
+            .or(prop_save_route)
+            .or(db_orchestrate_route)
             .or(metrics_route)
             .or(players_route)
             .or(logs_route)

@@ -62,6 +62,12 @@ CREATE TABLE `gameservers` (
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+INSERT INTO `gameservers` (`id`, `mask`, `password`) VALUES
+  (1, '*', '@d@mn0gu31r@'),
+  (2, '*', '@d@mn0gu31r@'),
+  (3, '*', '@d@mn0gu31r@')
+ON DUPLICATE KEY UPDATE `password` = VALUES(`password`);
+
 -- ----------------------------
 -- Table structure for `banned_mac`
 -- ----------------------------

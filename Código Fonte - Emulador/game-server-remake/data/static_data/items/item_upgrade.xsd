@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<!-- Ascend (Classic 5.0): receitas do client_item_upgrade.xml. O cliente manda a receita, o objeto e o índice da opção; a opção tem o
+		custo (kinah, AP, materiais) e as faixas FAIL/UP/TOP, com rate em 1/10000 somando 10000. enchant é o nível com que o item novo nasce.
+		Gerado por parse_item_upgrade_50.py. -->
+	<xs:simpleType name="ItemUpgradeGrade">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="FAIL"/>
+			<xs:enumeration value="UP"/>
+			<xs:enumeration value="TOP"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="ItemUpgradeMaterial">
+		<xs:attribute name="item_id" type="xs:positiveInteger" use="required"/>
+		<xs:attribute name="count" type="xs:positiveInteger" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="ItemUpgradeResult">
+		<xs:attribute name="grade" type="ItemUpgradeGrade" use="required"/>
+		<xs:attribute name="rate" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="1"/>
+					<xs:maxInclusive value="10000"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+		<xs:attribute name="item_id" type="xs:positiveInteger" use="required"/>
+		<xs:attribute name="count" type="xs:positiveInteger" use="required"/>
+		<xs:attribute name="enchant" type="xs:nonNegativeInteger" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="ItemUpgradeOption">
+		<xs:sequence>
+			<xs:element name="material" type="ItemUpgradeMaterial" minOccurs="0" maxOccurs="3"/>
+			<xs:element name="result" type="ItemUpgradeResult" minOccurs="1" maxOccurs="3"/>
+		</xs:sequence>
+		<xs:attribute name="kinah" type="xs:nonNegativeInteger" use="required"/>
+		<xs:attribute name="ap" type="xs:nonNegativeInteger" use="required"/>
+	</xs:complexType>
+	<xs:element name="item_upgrades">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="upgrade" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="option" type="ItemUpgradeOption" minOccurs="1" maxOccurs="unbounded"/>
+						</xs:sequence>
+						<xs:attribute name="id" type="xs:positiveInteger" use="required"/>
+						<xs:attribute name="name" type="xs:string" use="required"/>
+						<xs:attribute name="item_id" type="xs:positiveInteger" use="required"/>
+						<xs:attribute name="enchant_min" type="xs:nonNegativeInteger" use="required"/>
+						<xs:attribute name="enchant_max" type="xs:nonNegativeInteger" use="required"/>
+						<xs:attribute name="skill_transfer" type="xs:boolean" use="required"/>
+						<xs:attribute name="option_transfer" type="xs:boolean" use="required"/>
+						<xs:attribute name="proc_transfer" type="xs:boolean" use="required"/>
+						<xs:attribute name="gemstone_transfer" type="xs:boolean" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

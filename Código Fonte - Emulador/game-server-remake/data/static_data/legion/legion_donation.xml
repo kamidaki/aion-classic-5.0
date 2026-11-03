@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<legion_donation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="legion_donation.xsd" reset_time="08:00">
+	<group id="7" name="donation_dr_material" race="ALL">
+		<entry index="1" item_id="152014010" count="1" points="1" coins="440" />
+		<entry index="2" item_id="152014015" count="1" points="1" coins="440" />
+		<entry index="3" item_id="152014020" count="1" points="1" coins="440" />
+		<entry index="4" item_id="152014006" count="1" points="1" coins="440" />
+		<entry index="5" item_id="152014007" count="1" points="1" coins="440" />
+		<entry index="6" item_id="152014008" count="1" points="1" coins="440" />
+		<entry index="7" item_id="152014011" count="1" points="1" coins="440" />
+		<entry index="8" item_id="152014012" count="1" points="1" coins="440" />
+		<entry index="9" item_id="152014013" count="1" points="1" coins="440" />
+		<entry index="10" item_id="152014014" count="1" points="1" coins="440" />
+		<entry index="11" item_id="152014019" count="1" points="1" coins="440" />
+		<entry index="12" item_id="152014016" count="1" points="1" coins="4400" />
+		<entry index="13" item_id="152014017" count="1" points="1" coins="4400" />
+		<entry index="14" item_id="152014018" count="1" points="1" coins="4400" />
+		<entry index="15" item_id="152014009" count="1" points="1" coins="440" />
+	</group>
+	<group id="8" name="donation_matter_option" race="ALL">
+		<entry index="1" item_id="167000557" count="1" points="1" coins="1100" />
+		<entry index="2" item_id="167000556" count="1" points="1" coins="1100" />
+		<entry index="3" item_id="167000554" count="1" points="1" coins="1100" />
+		<entry index="4" item_id="167000551" count="1" points="1" coins="1100" />
+		<entry index="5" item_id="167000553" count="1" points="1" coins="1100" />
+		<entry index="6" item_id="167000552" count="1" points="1" coins="1100" />
+		<entry index="7" item_id="167000555" count="1" points="1" coins="1100" />
+		<entry index="8" item_id="167000560" count="1" points="1" coins="6600" />
+		<entry index="9" item_id="167000561" count="1" points="1" coins="6600" />
+		<entry index="10" item_id="167000558" count="1" points="1" coins="6600" />
+		<entry index="11" item_id="167000518" count="1" points="1" coins="6600" />
+		<entry index="12" item_id="167000358" count="1" points="1" coins="200" />
+		<entry index="13" item_id="167000547" count="1" points="1" coins="200" />
+		<entry index="14" item_id="167000545" count="1" points="1" coins="200" />
+		<entry index="15" item_id="167000548" count="1" points="1" coins="200" />
+		<entry index="16" item_id="167000550" count="1" points="1" coins="200" />
+		<entry index="17" item_id="167000549" count="1" points="1" coins="200" />
+		<entry index="18" item_id="167000543" count="1" points="1" coins="200" />
+		<entry index="19" item_id="167000544" count="1" points="1" coins="200" />
+		<entry index="20" item_id="167000546" count="1" points="1" coins="200" />
+	</group>
+	<group id="9" name="donation_ramen" race="ALL">
+		<entry index="1" item_id="166000041" count="1" points="1" coins="440" />
+		<entry index="2" item_id="166000042" count="1" points="1" coins="440" />
+		<entry index="3" item_id="166000043" count="1" points="1" coins="440" />
+		<entry index="4" item_id="166000044" count="1" points="1" coins="440" />
+		<entry index="5" item_id="166000045" count="1" points="1" coins="440" />
+		<entry index="6" item_id="166000046" count="1" points="1" coins="440" />
+		<entry index="7" item_id="166000047" count="1" points="1" coins="440" />
+		<entry index="8" item_id="166000048" count="1" points="1" coins="440" />
+		<entry index="9" item_id="166000049" count="1" points="1" coins="440" />
+		<entry index="10" item_id="166000050" count="1" points="1" coins="440" />
+		<entry index="11" item_id="166000051" count="1" points="1" coins="660" />
+		<entry index="12" item_id="166000052" count="1" points="1" coins="660" />
+		<entry index="13" item_id="166000053" count="1" points="1" coins="660" />
+		<entry index="14" item_id="166000054" count="1" points="1" coins="660" />
+		<entry index="15" item_id="166000055" count="1" points="1" coins="660" />
+		<entry index="16" item_id="166000056" count="1" points="1" coins="660" />
+		<entry index="17" item_id="166000057" count="1" points="1" coins="660" />
+		<entry index="18" item_id="166000058" count="1" points="1" coins="660" />
+		<entry index="19" item_id="166000059" count="1" points="1" coins="660" />
+		<entry index="20" item_id="166000060" count="1" points="1" coins="660" />
+		<entry index="21" item_id="166000061" count="1" points="1" coins="1100" />
+		<entry index="22" item_id="166000062" count="1" points="1" coins="1100" />
+		<entry index="23" item_id="166000063" count="1" points="1" coins="1100" />
+		<entry index="24" item_id="166000064" count="1" points="1" coins="1100" />
+		<entry index="25" item_id="166000065" count="1" points="1" coins="1100" />
+		<entry index="26" item_id="166000066" count="1" points="1" coins="1100" />
+		<entry index="27" item_id="166000067" count="1" points="1" coins="1100" />
+		<entry index="28" item_id="166000068" count="1" points="1" coins="1100" />
+		<entry index="29" item_id="166000069" count="1" points="1" coins="1100" />
+		<entry index="30" item_id="166000070" count="1" points="1" coins="1100" />
+	</group>
+	<group id="10" name="donation_AP" race="ALL">
+		<entry index="1" item_id="162000069" count="1" points="1" coins="440" />
+	</group>
+	<group id="11" name="donation_make_material" race="ALL">
+		<entry index="1" item_id="152011065" count="1" points="1" coins="220" />
+		<entry index="2" item_id="152011070" count="1" points="1" coins="220" />
+		<entry index="3" item_id="152011075" count="1" points="1" coins="220" />
+		<entry index="4" item_id="152011066" count="1" points="1" coins="440" />
+		<entry index="5" item_id="152011071" count="1" points="1" coins="440" />
+		<entry index="6" item_id="152011076" count="1" points="1" coins="440" />
+		<entry index="7" item_id="152011067" count="1" points="1" coins="1100" />
+		<entry index="8" item_id="152011072" count="1" points="1" coins="1100" />
+		<entry index="9" item_id="152011077" count="1" points="1" coins="1100" />
+		<entry index="10" item_id="152011008" count="1" points="1" coins="210" />
+		<entry index="11" item_id="152011028" count="1" points="1" coins="210" />
+		<entry index="12" item_id="152011048" count="1" points="1" coins="210" />
+		<entry index="13" item_id="152011014" count="1" points="1" coins="430" />
+		<entry index="14" item_id="152011034" count="1" points="1" coins="430" />
+		<entry index="15" item_id="152011054" count="1" points="1" coins="430" />
+		<entry index="16" item_id="152011018" count="1" points="1" coins="1000" />
+		<entry index="17" item_id="152011038" count="1" points="1" coins="1000" />
+		<entry index="18" item_id="152011058" count="1" points="1" coins="1000" />
+		<entry index="19" item_id="152011007" count="1" points="1" coins="200" />
+		<entry index="20" item_id="152011027" count="1" points="1" coins="200" />
+		<entry index="21" item_id="152011047" count="1" points="1" coins="200" />
+		<entry index="22" item_id="152011013" count="1" points="1" coins="420" />
+		<entry index="23" item_id="152011033" count="1" points="1" coins="420" />
+		<entry index="24" item_id="152011053" count="1" points="1" coins="420" />
+		<entry index="25" item_id="152011017" count="1" points="1" coins="990" />
+		<entry index="26" item_id="152011037" count="1" points="1" coins="990" />
+		<entry index="27" item_id="152011057" count="1" points="1" coins="990" />
+	</group>
+	<group id="12" name="donation_candy_light" race="ELYOS">
+		<entry index="1" item_id="160010535" count="1" points="1" coins="1100" />
+	</group>
+	<group id="13" name="donation_candy_dark" race="ASMODIANS">
+		<entry index="1" item_id="160010535" count="1" points="1" coins="1100" />
+	</group>
+	<group id="14" name="donation_legion_coin" race="ALL">
+		<entry index="1" item_id="186000181" count="1" points="1" coins="440" />
+		<entry index="2" item_id="186000182" count="1" points="1" coins="2200" />
+		<entry index="3" item_id="186000183" count="1" points="1" coins="11000" />
+	</group>
+	<group id="15" name="donation_medal" race="ALL">
+		<entry index="1" item_id="186000096" count="1" points="1" coins="250" />
+		<entry index="2" item_id="186000163" count="1" points="1" coins="200" />
+		<entry index="3" item_id="186000030" count="1" points="1" coins="150" />
+		<entry index="4" item_id="186000031" count="1" points="1" coins="100" />
+	</group>
+</legion_donation>

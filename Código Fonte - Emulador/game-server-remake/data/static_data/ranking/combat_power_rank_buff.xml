@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<combat_power_rank_buffs xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="combat_power_rank_buff.xsd">
+	<buff id="1" rank_id="1000" class_id="0" rank="1" price="11500" skill_id="3900" basic_kina="350000" /><!-- Ranking_Buff_G1 -->
+	<buff id="2" rank_id="1001" class_id="1" rank="1" price="7300" skill_id="3903" basic_kina="220000" /><!-- Ranking_Buff_G4_01 -->
+	<buff id="3" rank_id="1001" class_id="2" rank="1" price="7300" skill_id="3904" basic_kina="220000" /><!-- Ranking_Buff_G4_02 -->
+	<buff id="4" rank_id="1001" class_id="4" rank="1" price="7300" skill_id="3905" basic_kina="220000" /><!-- Ranking_Buff_G4_03 -->
+	<buff id="5" rank_id="1001" class_id="5" rank="1" price="7300" skill_id="3906" basic_kina="220000" /><!-- Ranking_Buff_G4_04 -->
+	<buff id="6" rank_id="1001" class_id="7" rank="1" price="7300" skill_id="3907" basic_kina="220000" /><!-- Ranking_Buff_G4_05 -->
+	<buff id="7" rank_id="1001" class_id="8" rank="1" price="7300" skill_id="3908" basic_kina="220000" /><!-- Ranking_Buff_G4_06 -->
+	<buff id="8" rank_id="1001" class_id="11" rank="1" price="7300" skill_id="3909" basic_kina="220000" /><!-- Ranking_Buff_G4_07 -->
+	<buff id="9" rank_id="1001" class_id="10" rank="1" price="7300" skill_id="3910" basic_kina="220000" /><!-- Ranking_Buff_G4_08 -->
+	<buff id="10" rank_id="1001" class_id="16" rank="1" price="7300" skill_id="3911" basic_kina="220000" /><!-- Ranking_Buff_G4_09 -->
+	<buff id="11" rank_id="1001" class_id="13" rank="1" price="7300" skill_id="3912" basic_kina="220000" /><!-- Ranking_Buff_G4_10 -->
+	<buff id="12" rank_id="1001" class_id="19" rank="1" price="7300" skill_id="3913" basic_kina="220000" /><!-- Ranking_Buff_G4_11 -->
+	<buff id="13" rank_id="1002" class_id="0" rank="1" price="11500" skill_id="3914" basic_kina="230000" /><!-- Ranking_Buff_L_G1 -->
+	<buff id="14" rank_id="1003" class_id="1" rank="1" price="7300" skill_id="3915" basic_kina="150000" /><!-- Ranking_Buff_L_G4_01 -->
+	<buff id="15" rank_id="1003" class_id="2" rank="1" price="7300" skill_id="3916" basic_kina="150000" /><!-- Ranking_Buff_L_G4_02 -->
+	<buff id="16" rank_id="1003" class_id="4" rank="1" price="7300" skill_id="3917" basic_kina="150000" /><!-- Ranking_Buff_L_G4_03 -->
+	<buff id="17" rank_id="1003" class_id="5" rank="1" price="7300" skill_id="3918" basic_kina="150000" /><!-- Ranking_Buff_L_G4_04 -->
+	<buff id="18" rank_id="1003" class_id="7" rank="1" price="7300" skill_id="3919" basic_kina="150000" /><!-- Ranking_Buff_L_G4_05 -->
+	<buff id="19" rank_id="1003" class_id="8" rank="1" price="7300" skill_id="3920" basic_kina="150000" /><!-- Ranking_Buff_L_G4_06 -->
+	<buff id="20" rank_id="1003" class_id="11" rank="1" price="7300" skill_id="3921" basic_kina="150000" /><!-- Ranking_Buff_L_G4_07 -->
+	<buff id="21" rank_id="1003" class_id="10" rank="1" price="7300" skill_id="3922" basic_kina="150000" /><!-- Ranking_Buff_L_G4_08 -->
+	<buff id="22" rank_id="1003" class_id="16" rank="1" price="7300" skill_id="3923" basic_kina="150000" /><!-- Ranking_Buff_L_G4_09 -->
+	<buff id="23" rank_id="1003" class_id="13" rank="1" price="7300" skill_id="3924" basic_kina="150000" /><!-- Ranking_Buff_L_G4_10 -->
+	<buff id="24" rank_id="1003" class_id="19" rank="1" price="7300" skill_id="3925" basic_kina="150000" /><!-- Ranking_Buff_L_G4_11 -->
+	<buff id="25" rank_id="1001" class_id="22" rank="1" price="7300" skill_id="4225" basic_kina="220000" /><!-- Ranking_Buff_G4_12 -->
+	<buff id="26" rank_id="1003" class_id="22" rank="1" price="7300" skill_id="4226" basic_kina="150000" /><!-- Ranking_Buff_L_G4_12 -->
+	<buff id="27" rank_id="1001" class_id="25" rank="1" price="7300" skill_id="4496" basic_kina="220000" /><!-- Ranking_Buff_G4_13 -->
+	<buff id="28" rank_id="1003" class_id="25" rank="1" price="7300" skill_id="4497" basic_kina="150000" /><!-- Ranking_Buff_L_G4_13 -->
+</combat_power_rank_buffs>

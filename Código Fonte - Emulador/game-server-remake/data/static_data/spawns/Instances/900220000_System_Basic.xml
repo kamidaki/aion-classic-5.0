@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<spawn_map map_id="900220000">
+		<!-- Teleporte Supervisor Mole -->
+		<spawn npc_id="203220" respawn_time="295">
+			<spot x="138.0" y="408.0" z="230" h="30"/>
+		</spawn>
+		<!-- Rebecca3 Protetor privado -->
+		<spawn npc_id="203221" respawn_time="295">
+			<spot x="156.0" y="147.0" z="253.0" h="30"/>
+		</spawn>
+		<!-- Armazém da conta Rebecca4 -->
+		<spawn npc_id="203222" respawn_time="295">
+			<spot x="242.0" y="256.0" z="230" h="30"/>
+		</spawn>
+		<!-- Rebecca5 Vendor Estigma Pet -->
+		<spawn npc_id="203223" respawn_time="295">
+			<spot x="347.0" y="133.0" z="230" h="30"/>
+		</spawn>
+		<!-- Rebecca -->
+		<spawn npc_id="203231" respawn_time="295">
+			<spot x="323.0" y="420.0" z="230" h="30"/>
+		</spawn>
+		<!-- Mutant Snowy Rynoce -->
+		<spawn npc_id="219592" respawn_time="295">
+			<spot x="344.0" y="112.0" z="230" h="30"/>
+			<spot x="353.0" y="118.0" z="230.0" h="30"/>
+			<spot x="342.0" y="122.0" z="230" h="30"/>
+		</spawn>
+		<!-- Mago de alto escalão da 45ª equipe de ataque -->
+		<spawn npc_id="221092" respawn_time="295">
+			<spot x="85.255" y="158.99" z="253.4412" h="0"/>
+		</spawn>
+		<!-- Mago do meio de escalão do 45º esquadrão de infiltração -->
+		<spawn npc_id="283183" respawn_time="295">
+			<spot x="225.375" y="161.25" z="252.875" h="0"/>
+		</spawn>
+		<!-- Test_drakanfi_60_es1 -->
+		<spawn npc_id="286952" respawn_time="295">
+			<spot x="265.0" y="249.0" z="257.2842" h="30"/>
+		</spawn>
+		<!-- NC Dinos -->
+		<spawn npc_id="701456" respawn_time="295">
+			<spot x="240.0" y="260.0" z="230" h="30"/>
+			<spot x="236.0" y="261.0" z="230.0" h="30"/>
+			<spot x="238.0" y="264.0" z="230" h="30"/>
+		</spawn>
+		<!-- Sistema de Loteria | Categoria: Azul -->
+		<spawn npc_id="801653" respawn_time="295">
+			<spot x="231.5345" y="240.4693" z="230" h="30"/>
+		</spawn>
+		<!-- Bolo de Ratatouille -->
+		<spawn npc_id="801654" respawn_time="295">
+			<spot x="237.5575" y="240.6139" z="230" h="30"/>
+		</spawn>
+		<!-- O grande bolo de Ratatouille -->
+		<spawn npc_id="801655" respawn_time="295">
+			<spot x="243.5824" y="240.4681" z="230" h="30"/>
+		</spawn>
+		<!-- <Potencializadores Extra> -->
+		<spawn npc_id="801656" respawn_time="295">
+			<spot x="249.6156" y="240.468" z="230" h="30"/>
+		</spawn>
+		<!-- <Sacerdote do Senhor de Bênção> -->
+		<spawn npc_id="801657" respawn_time="295">
+			<spot x="277.5024" y="273.5165" z="230" h="30"/>
+			<spot x="256.5024" y="283.5165" z="230" h="30"/>
+			<spot x="277.5024" y="293.5165" z="230" h="30"/>
+			<spot x="267.5024" y="273.5165" z="230" h="30"/>
+			<spot x="267.5024" y="343.5165" z="230" h="30"/>
+			<spot x="267.5024" y="303.5165" z="230" h="30"/>
+			<spot x="256.5024" y="323.5165" z="230" h="30"/>
+			<spot x="267.5024" y="363.5165" z="230" h="30"/>
+			<spot x="245.5024" y="353.5165" z="230" h="30"/>
+			<spot x="277.5024" y="343.5165" z="230" h="30"/>
+			<spot x="256.5024" y="303.5165" z="230" h="30"/>
+			<spot x="256.5024" y="293.5165" z="230" h="30"/>
+			<spot x="245.5024" y="333.5165" z="230" h="30"/>
+			<spot x="277.5024" y="313.5165" z="230" h="30"/>
+			<spot x="277.5024" y="363.5165" z="230" h="30"/>
+			<spot x="256.5024" y="343.5165" z="230" h="30"/>
+			<spot x="277.5024" y="323.5165" z="230" h="30"/>
+			<spot x="267.5024" y="353.5165" z="230" h="30"/>
+			<spot x="256.5024" y="313.5165" z="230" h="30"/>
+			<spot x="245.5024" y="323.5165" z="230" h="30"/>
+			<spot x="267.5024" y="323.5165" z="230" h="30"/>
+			<spot x="277.5024" y="333.5165" z="230" h="30"/>
+			<spot x="256.5024" y="273.5165" z="230" h="30"/>
+			<spot x="255.5024" y="240.5165" z="230" h="30"/>
+			<spot x="256.5024" y="363.5165" z="230" h="30"/>
+			<spot x="267.5024" y="293.5165" z="230" h="30"/>
+			<spot x="277.5024" y="283.5165" z="230" h="30"/>
+			<spot x="245.5024" y="343.5165" z="230" h="30"/>
+			<spot x="267.5024" y="283.5165" z="230" h="30"/>
+			<spot x="277.5024" y="303.5165" z="230" h="30"/>
+			<spot x="277.5024" y="353.5165" z="230" h="30"/>
+			<spot x="267.5024" y="333.5165" z="230" h="30"/>
+			<spot x="267.5024" y="313.5165" z="230" h="30"/>
+			<spot x="256.5024" y="333.5165" z="230" h="30"/>
+			<spot x="256.5024" y="353.5165" z="230" h="30"/>
+			<spot x="245.5024" y="363.5165" z="230" h="30"/>
+		</spawn>
+		<!-- <Sacerdote das asas> -->
+		<spawn npc_id="801658" respawn_time="295">
+			<spot x="255.5792" y="234.5165" z="230" h="30"/>
+		</spawn>
+		<!-- <Agente do Senhor> -->
+		<spawn npc_id="801659" respawn_time="295">
+			<spot x="249.5797" y="234.513" z="230" h="30"/>
+		</spawn>
+		<!-- <Baker do Senhor> -->
+		<spawn npc_id="801660" respawn_time="295">
+			<spot x="243.5036" y="234.5652" z="230" h="30"/>
+		</spawn>
+		<!-- Bastões -->
+		<spawn npc_id="801661" respawn_time="295">
+			<spot x="237.5301" y="234.5652" z="230" h="30"/>
+		</spawn>
+		<!-- Blova -->
+		<spawn npc_id="801662" respawn_time="295">
+			<spot x="231.585" y="234.5165" z="230" h="30"/>
+		</spawn>
+		<!-- Construir -->
+		<spawn npc_id="802181" respawn_time="295">
+			<spot x="69.6962" y="158.8931" z="265.4829" h="45"/>
+			<spot x="91.9881" y="123.6202" z="283.4829" h="45"/>
+			<spot x="88.7774" y="195.1197" z="258.4829" h="105"/>
+		</spawn>
+		<!-- NPC_802364 -->
+		<spawn npc_id="802364" respawn_time="295">
+			<spot x="124.5649" y="224.665" z="237.55" h="0"/>
+		</spawn>
+	</spawn_map>
+</spawns>

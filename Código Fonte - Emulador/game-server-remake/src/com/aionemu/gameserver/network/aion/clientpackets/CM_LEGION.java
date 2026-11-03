@@ -1,0 +1,229 @@
+package com.aionemu.gameserver.network.aion.clientpackets;
+
+import java.util.Set;
+
+import org.slf4j.LoggerFactory;
+
+import com.aionemu.gameserver.model.gameobjects.player.Player;
+import com.aionemu.gameserver.model.team.legion.Legion;
+import com.aionemu.gameserver.network.aion.AionClientPacket;
+import com.aionemu.gameserver.network.aion.AionConnection.State;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_LEGION_INFO;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
+import com.aionemu.gameserver.services.LegionApplicantService;
+import com.aionemu.gameserver.services.LegionCraftService;
+import com.aionemu.gameserver.services.LegionDonationService;
+import com.aionemu.gameserver.services.LegionService;
+import com.aionemu.gameserver.utils.Util;
+
+/**
+ * C_GUILD (dec 0x05). Sub-ações conferidas na criação da Lost Academy (outros2 2026-09-22 10:23, lado cliente com a chave ressincronizada):
+ * 0x00 [D NPC][S nome] (2 de 2), 0x01 [D 0][S nome] (1), 0x06 [D cargo][S nome] (1), 0x08 [D 0][H 0] (15), 0x09 [D 0][S aviso] (1).
+ * 0x13 [D grupo][D índice] é a produção de moedas (LegionDonationService, 10 de 10) 0x14 [D receita][H n]{[D item][D qtd]} a doação para a produção e
+ * 0x15 [D receita] a produção (LegionCraftService, 1 de 1 cada). 0x16 [D receita][C marcado] é o favorito de produção (Nova Pasta 2026-09-29 16:14,
+ * 3 de 3) e 0x0D [H]x4 as permissões (5 de 5); 0x02 [D 0][H 0] sair (1 de 1); 0x11/0x12 [D candidato] aceitar/recusar candidato (16:49,
+ * 1 de 1 cada).
+ * As demais seguem o layout da 4.8 (PENDENTE_DE_COMPROVACAO).
+ *
+ * @author Lost Academy Team & Durak
+ */
+public class CM_LEGION extends AionClientPacket {
+
+	private int exOpcode;
+	private short deputyPermission;
+	private short centurionPermission;
+	private short legionarPermission;
+	private short volunteerPermission;
+	private int rank;
+	private String joinIntro;
+	private int joinType;
+	private int joinMinLevel;
+	private int campaignActivity;
+	private int legionActivity;
+	private String legionName;
+	private String charName;
+	private String newNickname;
+	private String announcement;
+	private String newSelfIntro;
+	private int donationGroup;
+	private int donationIndex;
+	private int craftRecipe;
+	private int produceRecipe;
+	private int bookmarkRecipe;
+	private int applicantId;
+	private boolean bookmarked;
+	private int[] craftItemIds;
+	private long[] craftCounts;
+
+	public CM_LEGION(int opcode, Set<State> validStates) {
+		super(opcode, validStates);
+	}
+
+	@Override
+	protected void readImpl() {
+		exOpcode = readUC();
+
+		switch (exOpcode) {
+			// Create a legion
+			case 0x00:
+				readD(); // objeto do NPC da criação (08 19 02 80 na captura)
+				legionName = readS();
+				break;
+			// Invite to legion
+			case 0x01:
+				readD(); // empty
+				charName = readS();
+				break;
+			// Leave legion
+			case 0x02:
+				readD(); // empty
+				readH(); // empty
+				break;
+			// Kick member from legion
+			case 0x04:
+				readD(); // empty
+				charName = readS();
+				break;
+			// Appoint a new Brigade General
+			case 0x05:
+				readD();
+				charName = readS();
+				break;
+			// Change rank
+			case 0x06:
+				rank = readD();
+				charName = readS();
+				break;
+			// Show current announcement (via /gnotice)
+			case 0x07:
+			// Refresh legion info
+			case 0x08:
+				readD(); // 0
+				readH(); // empty
+				break;
+			// Edit current announcement (from legion window or via /gnotice New text)
+			case 0x09:
+				readD(); // empty or char id?
+				announcement = readS();
+				break;
+			// Change self introduction
+			case 0x0A:
+				readD(); // empty char id?
+				newSelfIntro = readS();
+				break;
+			// Edit permissions
+			case 0x0D:
+				deputyPermission = readH();
+				centurionPermission = readH();
+				legionarPermission = readH();
+				volunteerPermission = readH();
+				break;
+			// Level legion up
+			case 0x0E:
+				readD(); // empty
+				readH(); // empty
+				break;
+			case 0x0F:
+				charName = readS();
+				newNickname = readS();
+				break;
+			case 0x10: // Legion Join Settings: [S apresentação][C forma de entrada][H nível mínimo] (a 4.8 lia [D domínio])
+				joinIntro = readS();
+				joinType = readUC();
+				joinMinLevel = readUH();
+				break;
+			// produção de moedas: [D grupo][D índice] da lista do dia (S 0x159)
+			case 0x13:
+				donationGroup = readD();
+				donationIndex = readD();
+				break;
+			// doação para a produção: [D receita][H n] n x ([D item][D quantidade]); kinah vai como o item 182400001
+			case 0x14:
+				craftRecipe = readD();
+				int count = readUH();
+				craftItemIds = new int[count];
+				craftCounts = new long[count];
+				for (int i = 0; i < count; i++) {
+					craftItemIds[i] = readD();
+					craftCounts[i] = readD() & 0xFFFFFFFFL;
+				}
+				break;
+			// produção: [D receita] (Lost Academy 22/09 19:22: receita 1, 10 fragmentos -> 1 essência)
+			case 0x15:
+				produceRecipe = readD();
+				break;
+			case 0x11: // aceitar candidato
+			case 0x12: // recusar candidato
+				applicantId = readD();
+				break;
+			case 0x16:
+				bookmarkRecipe = readD();
+				bookmarked = readC() != 0;
+				break;
+			case 0x17: // Legion Activity: [D atividade de campanha][D atividade da Legion]
+				campaignActivity = readD();
+				legionActivity = readD();
+				break;
+			default:
+				LoggerFactory.getLogger(CM_LEGION.class).warn("Unknown Legion exOpcode 0x" + Integer.toHexString(exOpcode).toUpperCase());
+				break;
+		}
+	}
+
+	@Override
+	protected void runImpl() {
+		final Player activePlayer = getConnection().getActivePlayer();
+		if (activePlayer.isLegionMember()) {
+			final Legion legion = activePlayer.getLegion();
+			if (charName != null)
+				charName = Util.convertName(charName);
+			switch (exOpcode) {
+				// invite to legion
+				case 0x01 -> LegionService.getInstance().invitePlayerToLegion(activePlayer, charName);
+				// leave legion
+				case 0x02 -> LegionService.getInstance().leaveLegion(activePlayer, false);
+				// kick member
+				case 0x04 -> LegionService.getInstance().kickMember(activePlayer, charName);
+				// appoint a new Brigade General
+				case 0x05 -> LegionService.getInstance().startBrigadeGeneralChangeProcess(activePlayer, charName);
+				// change rank
+				case 0x06 -> LegionService.getInstance().appointRank(activePlayer, charName, rank);
+				// show legion notice (from /gnotice chat command)
+				case 0x07 -> {
+					Legion.Announcement currentAnnouncement = legion.getAnnouncement();
+					if (currentAnnouncement == null)
+						sendPacket(SM_SYSTEM_MESSAGE.STR_MSG_NOSET_GUILD_NOTICE());
+					else
+						sendPacket(SM_SYSTEM_MESSAGE.STR_GUILD_NOTICE(currentAnnouncement.message(), currentAnnouncement.time().getTime() / 1000));
+				}
+				// refresh legion info
+				case 0x08 -> sendPacket(new SM_LEGION_INFO(legion));
+				// edit announcements
+				case 0x09 -> LegionService.getInstance().changeAnnouncement(activePlayer, announcement);
+				// change self introduction
+				case 0x0A ->LegionService.getInstance().changeSelfIntro(activePlayer, newSelfIntro);
+				// edit permissions
+				case 0x0D -> LegionService.getInstance().changePermissions(activePlayer, deputyPermission, centurionPermission, legionarPermission,
+						volunteerPermission);
+				// level up legion
+				case 0x0E -> LegionService.getInstance().requestChangeLevel(activePlayer);
+				// change nickname
+				case 0x0F -> LegionService.getInstance().changeNickname(activePlayer, charName, newNickname);
+				case 0x10 -> LegionService.getInstance().changeJoinSettings(activePlayer, joinIntro, joinType, joinMinLevel);
+				case 0x17 -> LegionService.getInstance().changeActivity(activePlayer, campaignActivity, legionActivity);
+				case 0x13 -> LegionDonationService.getInstance().produce(activePlayer, donationGroup, donationIndex);
+				case 0x14 -> LegionCraftService.getInstance().donate(activePlayer, craftRecipe, LegionCraftService.requested(craftItemIds, craftCounts));
+				case 0x15 -> LegionCraftService.getInstance().produce(activePlayer, produceRecipe);
+				case 0x11 -> LegionApplicantService.getInstance().accept(activePlayer, applicantId);
+				case 0x12 -> LegionApplicantService.getInstance().refuse(activePlayer, applicantId);
+				case 0x16 -> LegionCraftService.getInstance().bookmark(activePlayer, bookmarkRecipe, bookmarked);
+			}
+		} else {
+			switch (exOpcode) {
+				case 0x00: // create a legion
+					LegionService.getInstance().createLegion(activePlayer, legionName);
+					break;
+			}
+		}
+	}
+}

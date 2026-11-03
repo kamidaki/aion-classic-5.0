@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<!-- Buff do 1º lugar do ranking de Combat Talent (Classic 5.0, system/client_combat_power_rank_buff.xml): compra pelo ícone laranja
+		(C 0xFC). class_id 0 = todas as classes. Gerado por parse_combat_power_rank_buff_50.py. -->
+	<xs:element name="combat_power_rank_buffs">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="buff" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:attribute name="id" type="xs:positiveInteger" use="required"/>
+						<xs:attribute name="rank_id" type="xs:int" use="required"/>
+						<xs:attribute name="class_id" type="xs:int" use="required"/>
+						<xs:attribute name="rank" type="xs:positiveInteger" use="required"/>
+						<xs:attribute name="price" type="xs:long" use="required"/>
+						<xs:attribute name="skill_id" type="xs:positiveInteger" use="required"/>
+						<xs:attribute name="basic_kina" type="xs:long"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

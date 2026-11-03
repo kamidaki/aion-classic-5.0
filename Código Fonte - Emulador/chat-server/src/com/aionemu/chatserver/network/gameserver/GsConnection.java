@@ -27,6 +27,7 @@ public class GsConnection extends AConnection<GsServerPacket> {
 	private static final ExecutorService PACKET_EXECUTOR = Executors.newCachedThreadPool();
 	private final Deque<GsServerPacket> sendMsgQueue = new ArrayDeque<>();
 	private GameServerConnectionState state;
+	private byte gameServerId = -1;
 
 	static {
 		((ThreadPoolExecutor) PACKET_EXECUTOR).setCorePoolSize(1);
@@ -69,13 +70,23 @@ public class GsConnection extends AConnection<GsServerPacket> {
 
 	@Override
 	protected final void onDisconnect() {
-		GameServerService.getInstance().setOffline();
+		if (gameServerId != -1) {
+			GameServerService.getInstance().setOffline(gameServerId);
+		}
 	}
 
 	@Override
 	protected final void onServerClose() {
 		close();
 		PACKET_EXECUTOR.shutdown();
+	}
+
+	public byte getGameServerId() {
+		return gameServerId;
+	}
+
+	public void setGameServerId(byte gameServerId) {
+		this.gameServerId = gameServerId;
 	}
 
 	public GameServerConnectionState getState() {

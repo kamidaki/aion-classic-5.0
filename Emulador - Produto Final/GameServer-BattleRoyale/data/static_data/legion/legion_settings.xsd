@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<!-- Níveis da Legion (Classic 5.0), gerado do guild/client_guild_setting.xml por parse_legion_settings_50.py.
+		kinah, required_members e required_contribution são o que se exige para chegar ao nível (o nível 1 é a criação);
+		max_members e warehouse_slots valem enquanto a Legion está no nível. -->
+	<xs:element name="legion_settings">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="level" minOccurs="1" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:attribute name="level" type="xs:positiveInteger" use="required"/>
+						<xs:attribute name="kinah" type="xs:nonNegativeInteger" use="required"/>
+						<xs:attribute name="required_members" type="xs:nonNegativeInteger" use="required"/>
+						<xs:attribute name="required_contribution" type="xs:nonNegativeInteger" use="required"/>
+						<xs:attribute name="max_members" type="xs:positiveInteger" use="required"/>
+						<xs:attribute name="warehouse_slots" type="xs:positiveInteger" use="required"/>
+						<xs:attribute name="warehouse_deposit_kinah" type="xs:nonNegativeInteger" use="required"/>
+						<xs:attribute name="warehouse_withdraw_kinah" type="xs:nonNegativeInteger" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

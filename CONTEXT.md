@@ -65,9 +65,11 @@ Para manter o histórico do repositório organizado, rastreável e padronizado e
 ```text
 +-- Código Fonte - Emulador/              # Código-fonte Java multi-módulo em Java 25 (LTS)
 |   +-- commons/                          # Núcleo de rede (NIO), criptografia Blowfish/RSA, GeoIP e threads
-|   +-- chat-server/                      # Servidor de chat e canais em tempo real
-|   +-- game-server/                      # Motor do mundo, física, IA, combate, entidades, skills, itens
-|   +-- login-server/                     # Autenticação RSA, seleção de servidores e sessões
+|   +-- chat-server/                      # Servidor de chat e canais em tempo real (Concurrent Multi-GS)
+|   +-- game-server-gameforge/            # GameServer 1: GameForge (GSID 1, Porta 7777, Telemetria 2130)
+|   +-- game-server-remake/               # GameServer 2: Remake (GSID 2, Porta 7778, Telemetria 2131)
+|   +-- game-server-battleroyale/         # GameServer 3: BattleRoyale (GSID 3, Porta 7779, Telemetria 2132)
+|   +-- login-server/                     # Autenticação RSA, seleção de múltiplos servidores e sessões
 |   \-- pom.xml                           # POM Maven agregador (compilador Java 25)
 +-- Emulador - Produto Final/             # Distribuição de produção executável e pronta para uso
 |   +-- Aion Classic - EMULADOR.exe       # Executável compilado do Supervisor e Inicializador nativo (Rust)
@@ -76,7 +78,10 @@ Para manter o histórico do repositório organizado, rastreável e padronizado e
 |   |   +-- GeoIP/                        # Tabelas de prefixos IP por país do Firewall GeoIP
 |   |   \-- java-deployment/              # Runtime Java 25 LTS compilado/embutido para execução determinística
 |   +-- ChatServer/                       # Servidor de chat em produção (libs, logs, sql)
-|   +-- GameServer/                       # Servidor de jogo em produção (libs, static_data, logs, sql)
+|   +-- GameServer-GameForge/             # GameServer GameForge em produção (GSID 1, Porta 7777, DB aionclassic_gs)
+|   +-- GameServer-Remake/                # GameServer Remake em produção (GSID 2, Porta 7778, DB aionclassic_gs2)
+|   +-- GameServer-BattleRoyale/          # GameServer BattleRoyale em produção (GSID 3, Porta 7779, DB aionclassic_gs3)
+
 |   \-- LoginServer/                      # Servidor de autenticação em produção (libs, logs, sql)
 \-- Ferramentas e Documentos/             # Hub consolidado de ferramentas, DLLs, patch e documentação
     +-- Client e Coletas/                 # PCAPs oficiais, dados extraídos e referências canônicas
@@ -389,3 +394,24 @@ Quando ocorrer essa situação:
 2. Empacote estritamente esses objetos via `git pack-objects --stdout` (resultando em pacote compacto de ~4 MB).
 3. Transmita o pacote diretamente ao endpoint `/git-receive-pack` utilizando o script utilitário em Python com credenciais do Git Credential Manager (`git credential fill`).
 4. Atualize a referência local com `git update-ref refs/remotes/origin/main <HEAD>`.
+
+---
+
+## Arquitetura Multi-GameServer (Aion Classic 5.0)
+
+O ecossistema opera com **3 GameServers totalmente independentes** acoplados a um LoginServer e ChatServer compartilhados:
+
+1. **GameForge (GSID 1)**: Porta Jogo `7777`, Telemetria `2130`, Banco isolado `aionclassic_gs`. Representa a experiência oficial original.
+2. **Remake (GSID 2)**: Porta Jogo `7778`, Telemetria `2131`, Banco isolado `aionclassic_gs2`. Modalidade balanceada com progressão reformulada.
+3. **BattleRoyale (GSID 3)**: Porta Jogo `7779`, Telemetria `2132`, Banco isolado `aionclassic_gs3`. Modalidade competitiva de sobrevivência.
+
+### Orquestrador e Preparação Automatizada de Banco de Dados
+- **Verificação Prévia**: Antes de ligar qualquer processo, o Supervisor Rust testa conectividade com o MySQL (`192.168.3.29:3310`).
+- **Criação Autônoma**: Caso `aionclassic_gs2` ou `aionclassic_gs3` não existam, o banco é criado (`CREATE DATABASE IF NOT EXISTS`) e o schema inicial `aion_gs.sql` é executado.
+- **Migrations Idempotentes**: Atualizações incrementais (`update_*.sql`) são registradas na tabela `__migration_history`, prevenindo duplicidade de execução.
+- **Registro no LoginServer**: O Supervisor garante que os identificadores GSID ativos estejam cadastrados na tabela `aionclassic_ls.gameservers`.
+- **Sequência Estrita de Boot**: ChatServer $\to$ LoginServer $\to$ GameForge $\to$ Remake $\to$ BattleRoyale (servidores desativados no `config.json` são omitidos tanto na inicialização quanto na interface visual).
+
+### Suporte do Cliente via `version.dll`
+- A DLL nativa intercepta as chamadas de socket do cliente (`connect`, `inet_ntoa`, `lstrcpynA`).
+- A resolução de endereços IP para múltiplos GameServers preserva os IPs candidatos durante o processamento de pacotes `SM_SERVER_LIST`, permitindo a seleção transparente de qualquer um dos 3 servidores sem desconexões ou spoofing prematuro.

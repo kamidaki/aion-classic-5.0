@@ -12,7 +12,7 @@ use crate::config::DatabaseSettings;
 
 const EMBEDDED_SQL_CS: &str = include_str!("../../../../Emulador - Produto Final/ChatServer/sql/aion_cs.sql");
 const EMBEDDED_SQL_LS: &str = include_str!("../../../../Emulador - Produto Final/LoginServer/sql/aion_ls.sql");
-const EMBEDDED_SQL_GS: &str = include_str!("../../../../Emulador - Produto Final/GameServer/sql/aion_gs.sql");
+const EMBEDDED_SQL_GS: &str = include_str!("../../../../Emulador - Produto Final/GameServer-GameForge/sql/aion_gs.sql");
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct DbCheckResult {
@@ -1100,36 +1100,94 @@ pub struct DatabaseSummary {
     pub total_rows: i64,
 }
 
-/// Holds 3 independent DbManager instances (gs, ls, cs)
+/// Holds multi-database DbManager instances (cs, ls, gameforge, remake, battleroyale)
 #[derive(Clone)]
 pub struct DbManagerMulti {
     pub gs: DbManager,
     pub ls: DbManager,
     pub cs: DbManager,
+    pub managers: HashMap<String, DbManager>,
 }
 
 impl DbManagerMulti {
     pub fn new(databases: &std::collections::HashMap<String, DatabaseSettings>) -> Self {
         let default_db = DatabaseSettings::default();
-        let gs_cfg = databases.get("gs").unwrap_or(&default_db);
-        let ls_cfg = databases.get("ls").unwrap_or(&default_db);
-        let cs_cfg = databases.get("cs").unwrap_or(&default_db);
+        let mut managers = HashMap::new();
 
-        // For each named DB, if it has an explicit properties_file, override the path in resolve
+        for (k, v) in databases {
+            managers.insert(k.clone(), DbManager::new_with_properties_hint(v));
+        }
+
+        let gs = if let Some(m) = managers.get("gameforge") {
+            m.clone()
+        } else if let Some(m) = managers.get("gs") {
+            m.clone()
+        } else {
+            DbManager::new_with_properties_hint(databases.get("gs").unwrap_or(&default_db))
+        };
+
+        let ls = if let Some(m) = managers.get("ls") {
+            m.clone()
+        } else {
+            DbManager::new_with_properties_hint(databases.get("ls").unwrap_or(&default_db))
+        };
+
+        let cs = if let Some(m) = managers.get("cs") {
+            m.clone()
+        } else {
+            DbManager::new_with_properties_hint(databases.get("cs").unwrap_or(&default_db))
+        };
+
+        // Guarantee backward compat keys exist in managers
+        if !managers.contains_key("gs") {
+            managers.insert("gs".to_string(), gs.clone());
+        }
+        if !managers.contains_key("ls") {
+            managers.insert("ls".to_string(), ls.clone());
+        }
+        if !managers.contains_key("cs") {
+            managers.insert("cs".to_string(), cs.clone());
+        }
+
         DbManagerMulti {
-            gs: DbManager::new_with_properties_hint(gs_cfg),
-            ls: DbManager::new_with_properties_hint(ls_cfg),
-            cs: DbManager::new_with_properties_hint(cs_cfg),
+            gs,
+            ls,
+            cs,
+            managers,
         }
     }
 
-    /// Returns summaries for all 3 databases (for dashboard cards)
+    /// Returns summaries for all configured databases
     pub fn get_all_summaries(&self) -> Vec<DatabaseSummary> {
-        vec![
-            self.make_summary("gs", &self.gs, "Game Server (GS)", "#32CD32"),
-            self.make_summary("ls", &self.ls, "Login Server (LS)", "#FFD700"),
-            self.make_summary("cs", &self.cs, "Chat Server (CS)", "#00CED1"),
-        ]
+        let mut list = Vec::new();
+        let mut keys: Vec<String> = self.managers.keys().cloned().collect();
+        keys.sort();
+
+        for k in keys {
+            if k == "gs" && self.managers.contains_key("gameforge") {
+                continue; // Avoid duplicate display for alias
+            }
+            if let Some(mgr) = self.managers.get(&k) {
+                let label = match k.as_str() {
+                    "cs" => "Chat Server (CS)",
+                    "ls" => "Login Server (LS)",
+                    "gameforge" => "GameForge (GSID 1)",
+                    "remake" => "Remake (GSID 2)",
+                    "battleroyale" => "BattleRoyale (GSID 3)",
+                    _ => &mgr.db_name,
+                };
+                let color = match k.as_str() {
+                    "cs" => "#00CED1",
+                    "ls" => "#FFD700",
+                    "gameforge" | "gs" => "#38bdf8",
+                    "remake" => "#10b981",
+                    "battleroyale" => "#f97316",
+                    _ => "#3b82f6",
+                };
+                list.push(self.make_summary(&k, mgr, label, color));
+            }
+        }
+        list
     }
 
     fn make_summary(&self, id: &str, mgr: &DbManager, label: &str, color: &str) -> DatabaseSummary {
@@ -1151,57 +1209,58 @@ impl DbManagerMulti {
 
     /// Resolves which DbManager instance to target based on db_id
     pub fn resolve_mgr(&self, db_id: Option<&str>) -> &DbManager {
-        match db_id {
-            Some(id) if id == "ls" || id == "login" || id.contains("ls") || id.contains("login") => &self.ls,
-            Some(id) if id == "cs" || id == "chat" || id.contains("cs") || id.contains("chat") => &self.cs,
-            _ => &self.gs,
+        if let Some(id) = db_id {
+            if let Some(m) = self.managers.get(id) {
+                return m;
+            }
+            if id == "ls" || id == "login" || id.contains("ls") || id.contains("login") {
+                return &self.ls;
+            }
+            if id == "cs" || id == "chat" || id.contains("cs") || id.contains("chat") {
+                return &self.cs;
+            }
+            if id == "gameforge" || id == "gf" || id == "gs1" {
+                if let Some(m) = self.managers.get("gameforge") {
+                    return m;
+                }
+            }
+            if id == "remake" || id == "rm" || id == "gs2" {
+                if let Some(m) = self.managers.get("remake") {
+                    return m;
+                }
+            }
+            if id == "battleroyale" || id == "br" || id == "gs3" {
+                if let Some(m) = self.managers.get("battleroyale") {
+                    return m;
+                }
+            }
         }
+        &self.gs
     }
 
-    /// Returns combined schema for all 3 databases with clear tags
+    /// Returns combined schema for all databases
     pub fn get_all_databases_schema(&self) -> Result<Vec<DatabaseGroup>, String> {
         let mut all = Vec::new();
-        match self.gs.get_all_databases_schema() {
-            Ok(mut dbs) => {
-                for d in &mut dbs {
-                    d.id = "gs".to_string();
-                    d.name = format!("GameServer ({})", self.gs.db_name);
-                    d.filename = self.gs.db_name.clone();
-                    for t in &mut d.tables {
-                        t.db_id = "gs".to_string();
-                    }
-                }
-                all.append(&mut dbs);
+        let mut keys: Vec<String> = self.managers.keys().cloned().collect();
+        keys.sort();
+
+        for k in keys {
+            if k == "gs" && self.managers.contains_key("gameforge") {
+                continue;
             }
-            Err(e) => eprintln!("[DbManagerMulti] Erro esquema GS: {}", e),
-        }
-        match self.ls.get_all_databases_schema() {
-            Ok(mut dbs) => {
-                for d in &mut dbs {
-                    d.id = "ls".to_string();
-                    d.name = format!("LoginServer ({})", self.ls.db_name);
-                    d.filename = self.ls.db_name.clone();
-                    for t in &mut d.tables {
-                        t.db_id = "ls".to_string();
+            if let Some(mgr) = self.managers.get(&k) {
+                if let Ok(mut dbs) = mgr.get_all_databases_schema() {
+                    for d in &mut dbs {
+                        d.id = k.clone();
+                        d.name = format!("{} ({})", k.to_uppercase(), mgr.db_name);
+                        d.filename = mgr.db_name.clone();
+                        for t in &mut d.tables {
+                            t.db_id = k.clone();
+                        }
                     }
+                    all.append(&mut dbs);
                 }
-                all.append(&mut dbs);
             }
-            Err(e) => eprintln!("[DbManagerMulti] Erro esquema LS: {}", e),
-        }
-        match self.cs.get_all_databases_schema() {
-            Ok(mut dbs) => {
-                for d in &mut dbs {
-                    d.id = "cs".to_string();
-                    d.name = format!("ChatServer ({})", self.cs.db_name);
-                    d.filename = self.cs.db_name.clone();
-                    for t in &mut d.tables {
-                        t.db_id = "cs".to_string();
-                    }
-                }
-                all.append(&mut dbs);
-            }
-            Err(e) => eprintln!("[DbManagerMulti] Erro esquema CS: {}", e),
         }
         Ok(all)
     }
@@ -1236,30 +1295,356 @@ impl DbManagerMulti {
     }
 
     pub fn get_online_players(&self) -> Vec<OnlinePlayerInfo> {
-        self.gs.get_online_players()
+        self.resolve_mgr(Some("gameforge")).get_online_players()
     }
 
     pub fn check_database(&self, db_id: &str) -> DbCheckResult {
-        match db_id {
-            "cs" | "chat" => self.cs.check_status("cs", "Chat Server"),
-            "ls" | "login" => self.ls.check_status("ls", "Login Server"),
-            _ => self.gs.check_status("gs", "Game Server"),
-        }
+        let label = match db_id {
+            "cs" => "Chat Server",
+            "ls" => "Login Server",
+            "gameforge" => "GameForge (GSID 1)",
+            "remake" => "Remake (GSID 2)",
+            "battleroyale" => "BattleRoyale (GSID 3)",
+            _ => db_id,
+        };
+        self.resolve_mgr(Some(db_id)).check_status(db_id, label)
     }
 
     pub fn check_all_databases(&self) -> Vec<DbCheckResult> {
-        vec![
-            self.cs.check_status("cs", "Chat Server"),
-            self.ls.check_status("ls", "Login Server"),
-            self.gs.check_status("gs", "Game Server"),
-        ]
+        let mut list = Vec::new();
+        let mut keys: Vec<String> = self.managers.keys().cloned().collect();
+        keys.sort();
+
+        for k in keys {
+            if k == "gs" && self.managers.contains_key("gameforge") {
+                continue;
+            }
+            if let Some(mgr) = self.managers.get(&k) {
+                let label = match k.as_str() {
+                    "cs" => "Chat Server",
+                    "ls" => "Login Server",
+                    "gameforge" => "GameForge (GSID 1)",
+                    "remake" => "Remake (GSID 2)",
+                    "battleroyale" => "BattleRoyale (GSID 3)",
+                    _ => &k,
+                };
+                list.push(mgr.check_status(&k, label));
+            }
+        }
+        list
     }
 
     pub fn create_database(&self, db_id: &str) -> Result<usize, String> {
-        match db_id {
-            "cs" | "chat" => self.cs.create_database_and_tables("cs"),
-            "ls" | "login" => self.ls.create_database_and_tables("ls"),
-            _ => self.gs.create_database_and_tables("gs"),
+        self.resolve_mgr(Some(db_id)).create_database_and_tables(db_id)
+    }
+
+    /// Automated and intelligent database orchestration system.
+    /// Runs strictly before any server is started.
+    /// Idempotent, tracks migration history in `__migration_history`, and ensures LoginServer
+    /// has registrations for all enabled GameServers (GSID 1, 2, 3).
+    pub fn prepare_databases_orchestration(
+        &self,
+        config: &crate::config::RootConfig,
+        log_center: &crate::logs::LogCenter,
+    ) -> Result<(), String> {
+        let log_info = |msg: &str| {
+            println!("{}", msg);
+            log_center.push("launcher", msg);
+        };
+
+        log_info("[DATABASE] Verificando conexão...");
+
+        // 1. Establish connectivity with MySQL server
+        let primary_mgr = self.resolve_mgr(Some("gameforge"));
+        let base_opts = OptsBuilder::new()
+            .ip_or_hostname(Some(&primary_mgr.host))
+            .tcp_port(primary_mgr.port)
+            .user(Some(&primary_mgr.user))
+            .pass(Some(&primary_mgr.pass))
+            .prefer_socket(false);
+
+        let base_pool = Pool::new(base_opts).map_err(|e| {
+            let err = format!("[DATABASE] Falha ao conectar ao MySQL ({}:{}): {}", primary_mgr.host, primary_mgr.port, e);
+            log_info(&err);
+            err
+        })?;
+
+        let mut base_conn = base_pool.get_conn().map_err(|e| {
+            let err = format!("[DATABASE] Falha de autenticação no MySQL ({}:{}): {}", primary_mgr.host, primary_mgr.port, e);
+            log_info(&err);
+            err
+        })?;
+
+        log_info("[DATABASE] Conexão estabelecida.");
+
+        // 2. Prepare ChatServer database (aionclassic_cs)
+        self.prepare_single_db(&mut base_conn, &self.cs, "ChatServer", "cs", log_center)?;
+
+        // 3. Prepare LoginServer database (aionclassic_ls)
+        self.prepare_single_db(&mut base_conn, &self.ls, "LoginServer", "ls", log_center)?;
+
+        // 4. Register enabled GameServers in LoginServer's gameservers table
+        self.ensure_loginserver_gameserver_registrations(&self.ls, config, log_center)?;
+
+        // 5. Prepare enabled GameServers databases
+        let gs_targets = [
+            ("gameforge", "GameForge", "aionclassic_gs", 1u8),
+            ("remake", "Remake", "aionclassic_gs2", 2u8),
+            ("battleroyale", "BattleRoyale", "aionclassic_gs3", 3u8),
+        ];
+
+        for (srv_key, label, default_db, _gsid) in gs_targets {
+            let enabled = config.servers.get(srv_key).map(|s| s.enabled).unwrap_or(false);
+            if !enabled {
+                continue;
+            }
+
+            let mgr = self.resolve_mgr(Some(srv_key));
+            let db_name = if !mgr.db_name.is_empty() {
+                &mgr.db_name
+            } else {
+                default_db
+            };
+
+            log_info(&format!("[DATABASE] Verificando {}...", db_name));
+
+            // Check if DB exists
+            let check_db_sql = format!(
+                "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '{}'",
+                db_name
+            );
+            let exists: bool = base_conn
+                .query_first::<String, _>(&check_db_sql)
+                .map_err(|e| format!("Erro ao checar database '{}': {}", db_name, e))?
+                .is_some();
+
+            if !exists {
+                log_info(&format!("[DATABASE] Banco {} não encontrado. [DATABASE] Criando banco...", label));
+                let create_db_sql = format!(
+                    "CREATE DATABASE IF NOT EXISTS `{}` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;",
+                    db_name
+                );
+                base_conn.query_drop(&create_db_sql).map_err(|e| format!("Erro ao criar '{}': {}", db_name, e))?;
+                log_info("[DATABASE] Executando migrations...");
+                self.initialize_and_migrate_gs_db(mgr, srv_key, db_name, log_center)?;
+                log_info(&format!("[DATABASE] Banco {} criado. [DATABASE] Estrutura validada.", label));
+            } else {
+                log_info(&format!("[DATABASE] Banco {} validado.", label));
+                // Validate tables and execute any missing migrations
+                self.initialize_and_migrate_gs_db(mgr, srv_key, db_name, log_center)?;
+                log_info("[DATABASE] Estrutura validada.");
+            }
         }
+
+        log_info("[DATABASE] Todos os bancos necessários estão prontos.");
+        log_info("<STATUS> DATABASE INITIALIZATION COMPLETED");
+        Ok(())
+    }
+
+    fn prepare_single_db(
+        &self,
+        base_conn: &mut mysql::PooledConn,
+        mgr: &DbManager,
+        label: &str,
+        srv_id: &str,
+        log_center: &crate::logs::LogCenter,
+    ) -> Result<(), String> {
+        let db_name = &mgr.db_name;
+        let log_info = |msg: &str| {
+            println!("{}", msg);
+            log_center.push("launcher", msg);
+        };
+
+        log_info(&format!("[DATABASE] Verificando {}...", db_name));
+        let check_db_sql = format!(
+            "SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = '{}'",
+            db_name
+        );
+        let exists: bool = base_conn
+            .query_first::<String, _>(&check_db_sql)
+            .map_err(|e| format!("Erro ao checar database '{}': {}", db_name, e))?
+            .is_some();
+
+        if !exists {
+            log_info(&format!("[DATABASE] Banco {} não encontrado. [DATABASE] Criando banco...", label));
+            let create_db_sql = format!(
+                "CREATE DATABASE IF NOT EXISTS `{}` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;",
+                db_name
+            );
+            base_conn.query_drop(&create_db_sql).map_err(|e| format!("Erro ao criar '{}': {}", db_name, e))?;
+            mgr.create_database_and_tables(srv_id)?;
+            log_info(&format!("[DATABASE] Banco {} criado e validado.", label));
+        } else {
+            // Check if has tables
+            let count_sql = format!(
+                "SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '{}'",
+                db_name
+            );
+            let table_count: i64 = base_conn
+                .query_first::<i64, _>(&count_sql)
+                .map_err(|e| format!("Erro ao contar tabelas em '{}': {}", db_name, e))?
+                .unwrap_or(0);
+
+            if table_count == 0 {
+                log_info(&format!("[DATABASE] Banco {} está vazio. Inicializando tabelas base...", label));
+                mgr.create_database_and_tables(srv_id)?;
+            }
+            log_info(&format!("[DATABASE] Banco {} validado.", label));
+        }
+        Ok(())
+    }
+
+    fn ensure_loginserver_gameserver_registrations(
+        &self,
+        ls_mgr: &DbManager,
+        config: &crate::config::RootConfig,
+        log_center: &crate::logs::LogCenter,
+    ) -> Result<(), String> {
+        let pool = match ls_mgr.get_pool() {
+            Some(p) => p,
+            None => {
+                let p = DbManager::try_create_pool(&ls_mgr.host, ls_mgr.port, &ls_mgr.user, &ls_mgr.pass, &ls_mgr.db_name)
+                    .ok_or_else(|| "Falha ao conectar no LoginServer DB".to_string())?;
+                *ls_mgr.pool.write() = Some(p.clone());
+                p
+            }
+        };
+
+        let mut conn = pool.get_conn().map_err(|e| format!("Erro ao obter conexão em {}: {}", ls_mgr.db_name, e))?;
+
+        // Ensure gameservers table exists
+        let create_table_sql = "CREATE TABLE IF NOT EXISTS `gameservers` (
+            `id` int NOT NULL AUTO_INCREMENT,
+            `mask` varchar(45) NOT NULL,
+            `password` varchar(65) NOT NULL,
+            PRIMARY KEY (`id`)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";
+        conn.query_drop(create_table_sql).map_err(|e| format!("Erro ao criar tabela gameservers: {}", e))?;
+
+        for (srv_key, srv_cfg) in &config.servers {
+            if !srv_cfg.enabled {
+                continue;
+            }
+            if let Some(gsid) = srv_cfg.gsid {
+                let upsert_sql = format!(
+                    "INSERT INTO `gameservers` (`id`, `mask`, `password`) VALUES ({}, '*', '@d@mn0gu31r@')
+                     ON DUPLICATE KEY UPDATE `password` = VALUES(`password`);",
+                    gsid
+                );
+                conn.query_drop(&upsert_sql).map_err(|e| format!("Erro ao registrar GSID {} no LS: {}", gsid, e))?;
+                log_center.push("launcher", &format!("[DATABASE] GSID {} ({}) registrado no LoginServer.", gsid, srv_key));
+            }
+        }
+        Ok(())
+    }
+
+    fn initialize_and_migrate_gs_db(
+        &self,
+        mgr: &DbManager,
+        srv_key: &str,
+        db_name: &str,
+        log_center: &crate::logs::LogCenter,
+    ) -> Result<(), String> {
+        let pool = match mgr.get_pool() {
+            Some(p) => p,
+            None => {
+                let p = DbManager::try_create_pool(&mgr.host, mgr.port, &mgr.user, &mgr.pass, db_name)
+                    .ok_or_else(|| format!("Falha ao conectar no pool {}", db_name))?;
+                *mgr.pool.write() = Some(p.clone());
+                p
+            }
+        };
+
+        let mut conn = pool.get_conn().map_err(|e| format!("Erro ao obter conexão em {}: {}", db_name, e))?;
+
+        // 1. Create migration history table if not exists
+        let hist_table_sql = "CREATE TABLE IF NOT EXISTS `__migration_history` (
+            `id` INT AUTO_INCREMENT PRIMARY KEY,
+            `filename` VARCHAR(255) NOT NULL UNIQUE,
+            `applied_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;";
+        conn.query_drop(hist_table_sql).map_err(|e| format!("Erro ao criar __migration_history: {}", e))?;
+
+        // 2. Count existing tables (excluding __migration_history)
+        let count_sql = format!(
+            "SELECT COUNT(*) FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = '{}' AND TABLE_NAME != '__migration_history'",
+            db_name
+        );
+        let table_count: i64 = conn
+            .query_first::<i64, _>(&count_sql)
+            .map_err(|e| format!("Erro ao contar tabelas em '{}': {}", db_name, e))?
+            .unwrap_or(0);
+
+        // 3. If empty, apply base aion_gs.sql
+        if table_count == 0 {
+            let base_sql = DbManager::load_sql_content("gs")?;
+            let stmts = DbManager::split_sql_statements(&base_sql);
+            for stmt in stmts {
+                let s = stmt.trim();
+                if !s.is_empty() {
+                    let _ = conn.query_drop(s);
+                }
+            }
+            let _ = conn.query_drop("INSERT IGNORE INTO `__migration_history` (`filename`) VALUES ('aion_gs.sql');");
+            log_center.push("launcher", &format!("[DATABASE] Base schema aion_gs.sql aplicado em {}.", db_name));
+        }
+
+        // 4. Scan sql folder for update migrations
+        let mut candidates = Vec::new();
+        let srv_folder = match srv_key {
+            "gameforge" => "GameServer-GameForge",
+            "remake" => "GameServer-Remake",
+            "battleroyale" => "GameServer-BattleRoyale",
+            _ => "GameServer",
+        };
+        if let Ok(exe_path) = std::env::current_exe() {
+            if let Some(exe_dir) = exe_path.parent() {
+                candidates.push(exe_dir.join(srv_folder).join("sql"));
+                candidates.push(exe_dir.join("GameServer-GameForge").join("sql"));
+                candidates.push(exe_dir.join("sql"));
+            }
+        }
+        candidates.push(PathBuf::from(format!("{}/sql", srv_folder)));
+        candidates.push(PathBuf::from("GameServer-GameForge/sql"));
+        candidates.push(PathBuf::from("sql"));
+
+        for dir in candidates {
+            if let Ok(entries) = fs::read_dir(dir) {
+                let mut sql_files = Vec::new();
+                for e in entries.flatten() {
+                    let p = e.path();
+                    if p.is_file() {
+                        let name = p.file_name().unwrap_or_default().to_string_lossy().to_string();
+                        if name.starts_with("update_") && name.ends_with(".sql") {
+                            sql_files.push((name, p));
+                        }
+                    }
+                }
+                sql_files.sort_by(|a, b| a.0.cmp(&b.0));
+
+                for (name, path) in sql_files {
+                    let check_sql = format!("SELECT 1 FROM `__migration_history` WHERE `filename` = '{}'", name);
+                    let already_applied: bool = conn.query_first::<i32, _>(&check_sql).ok().flatten().is_some();
+
+                    if !already_applied {
+                        if let Ok(content) = fs::read_to_string(&path) {
+                            let stmts = DbManager::split_sql_statements(&content);
+                            for stmt in stmts {
+                                let s = stmt.trim();
+                                if !s.is_empty() {
+                                    let _ = conn.query_drop(s);
+                                }
+                            }
+                            let ins_sql = format!("INSERT INTO `__migration_history` (`filename`) VALUES ('{}');", name);
+                            let _ = conn.query_drop(&ins_sql);
+                            log_center.push("launcher", &format!("[DATABASE] Migration '{}' aplicada em {}.", name, db_name));
+                        }
+                    }
+                }
+                break;
+            }
+        }
+
+        Ok(())
     }
 }

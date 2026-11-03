@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<!-- Skill de equipamento (Classic 5.0, "Assign Skill on Loot" e Reassign): client_item_skill_enchant.xml + skill_set_name dos itens.
+		prob por mil; quna = custo do Reassign (client_item_skill_enchant_cost, tipo 0). Gerado por parse_item_skill_sets_50.py. -->
+	<xs:simpleType name="ItemSkillSetItemIds">
+		<xs:list itemType="xs:positiveInteger"/>
+	</xs:simpleType>
+	<xs:element name="item_skill_sets">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="skill_set" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="items" type="ItemSkillSetItemIds"/>
+							<xs:element name="skill" minOccurs="1" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:attribute name="id" type="xs:positiveInteger" use="required"/>
+									<xs:attribute name="prob" type="xs:positiveInteger" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="name" type="xs:string" use="required"/>
+						<xs:attribute name="quna" type="xs:positiveInteger" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

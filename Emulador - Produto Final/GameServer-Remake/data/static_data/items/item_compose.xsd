@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<!-- Altar of Transcendence (Classic 5.0): receitas do client_item_compose.xml. Material = qualquer item com compose_group_id igual ao
+		id da receita no client_items.xml. rate em 1/10000; as três faixas somam 10000. Gerado por parse_item_compose_50.py. -->
+	<xs:simpleType name="ItemComposeItemIds">
+		<xs:list itemType="xs:positiveInteger"/>
+	</xs:simpleType>
+	<xs:simpleType name="ItemComposeGrade">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="SAME"/>
+			<xs:enumeration value="UP"/>
+			<xs:enumeration value="TOP"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="item_composes">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="compose" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="materials" type="ItemComposeItemIds"/>
+							<xs:element name="result" minOccurs="1" maxOccurs="3">
+								<xs:complexType>
+									<xs:attribute name="grade" type="ItemComposeGrade" use="required"/>
+									<xs:attribute name="rate" use="required">
+										<xs:simpleType>
+											<xs:restriction base="xs:int">
+												<xs:minInclusive value="1"/>
+												<xs:maxInclusive value="10000"/>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:attribute>
+									<xs:attribute name="item_id" type="xs:positiveInteger" use="required"/>
+									<xs:attribute name="count" type="xs:positiveInteger" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="id" type="xs:positiveInteger" use="required"/>
+						<xs:attribute name="name" type="xs:string" use="required"/>
+						<xs:attribute name="material_count" use="required">
+							<xs:simpleType>
+								<xs:restriction base="xs:int">
+									<xs:enumeration value="2"/>
+									<xs:enumeration value="6"/>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:attribute>
+						<xs:attribute name="fee" type="xs:nonNegativeInteger" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

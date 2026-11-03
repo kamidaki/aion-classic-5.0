@@ -1,0 +1,252 @@
+<?xml version='1.0' encoding='utf-8'?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+	<spawn_map map_id="600090000">
+		<base_spawn id="6090">
+			<occupier_template occupier="ELYOS">
+				<!-- Stonereach Outpost(LDF5Fortress_v01_Flag_L) -->
+				<spawn npc_id="802365" handler="FLAG" respawn_time="295">
+					<spot x="243.81123" y="1167.27368" z="130.49934" />
+				</spawn>
+				<!-- Stonereach Garrison Commander(LDF5_Fortress_EChief_V01_Li_65_An) -->
+				<!-- Stonereach Garrison Thrasher(LDF5_Fortress_Killer_V01_Li_65_An) -->
+				<!-- Stonereach Garrison Defender(LDF5_Fortress_vGuard_V01_Li_Kn_65_An) -->
+				<!-- Stonereach Garrison Infantry(LDF5_Fortress_vGuard_V01_Li_Fi_65_An) -->
+				<!-- Stonereach Garrison Patrol(LDF5_Fortress_vGuard_V01_Li_Ra_65_An) -->
+				<!-- Stonereach Garrison Guard(LDF5_Fortress_EvGuard_V01_Li_Kn_65_Ae) -->
+				<!-- Stonereach Garrison Lieutenant(LDF5_Fortress_EvGuard_V01_Li_Fi_65_Ae) -->
+				<!-- Stonereach Garrison Watchguard(LDF5_Fortress_EvGuard_V01_Li_Ra_65_Ae) -->
+				<!-- Stonereach Garrison Sorcerer(LDF5_Fortress_EvGuard_V01_Li_Wi_65_Ae) -->
+				<!-- Stonereach Garrison Healer(LDF5_Fortress_EvGuard_V01_Li_Pr_65_Ae) -->
+				<!-- Stonereach Lightbringer(LDF5_Fortress_v01_Tank_Light)
+				<spawn npc_id="234533" handler="SENTINEL" respawn_time="295">
+					<spot x="608.01819" y="1336.20947" z="150.32417"/>
+					<spot x="648.74310" y="1335.78113" z="150.48610" h="60"/>
+				</spawn> -->
+				<!-- Broken Lightbringer(LDF5_Fortress_v01_Tank_Fake_Light) -->
+				<!-- Stonereach Outpost Chariot Depot(LDF5Fortress2_v01_Flag_L) -->
+				<spawn npc_id="802371" handler="MERCHANT" respawn_time="295">
+					<spot x="630.99011" y="1355.65759" z="150.41344" />
+				</spawn>
+				<!-- Nelater -->
+				<spawn npc_id="802385" handler="MERCHANT" respawn_time="295">
+					<spot x="267.02676" y="1143.21216" z="128.82576" h="30" />
+				</spawn>
+				<!-- A partir do momento -->
+				<spawn npc_id="802387" handler="MERCHANT" respawn_time="295">
+					<spot x="263.73010" y="1143.14624" z="128.89099" h="15" />
+				</spawn>
+				<!-- Plataforma -->
+				<spawn npc_id="802389" handler="MERCHANT" respawn_time="295">
+					<spot x="239.80052" y="1156.43018" z="129.34312" />
+				</spawn>
+				<!-- Sacerdote especial dos reforços do Pandaemonium -->
+				<spawn npc_id="802393" handler="MERCHANT" respawn_time="295">
+					<spot x="240.03220" y="1152.80469" z="128.91791" h="8" />
+				</spawn>
+				<!-- Saliones(LDF5_Fortress_v01_L_Seller_PvPCoin_matter) -->
+				<spawn npc_id="804472" handler="MERCHANT" respawn_time="295">
+					<spot x="242.03349" y="1149.84888" z="128.94292" h="15" />
+				</spawn>
+				<!-- Caetess(LDF5_Fortress_Village_Guard01_L) -->
+				<spawn npc_id="802427" handler="MERCHANT" respawn_time="295">
+					<spot x="250.82387" y="1156.44336" z="129.38463" />
+				</spawn>
+				<!-- Teleport Device -->
+			</occupier_template>
+			<occupier_template occupier="ASMODIANS">
+				<!-- Stonereach Outpost(LDF5Fortress_v01_Flag_D) -->
+				<spawn npc_id="802366" handler="FLAG" respawn_time="295">
+					<spot x="243.81123" y="1167.27368" z="130.49934" />
+				</spawn>
+				<!-- Stonereach Squad Commander(LDF5_Fortress_EChief_V01_Da_65_An) -->
+				<!-- Stonereach Survey Thrasher(LDF5_Fortress_Killer_V01_Da_65_An) -->
+				<!-- Stonereach Squad Defender(LDF5_Fortress_vGuard_V01_Da_Kn_65_An) -->
+				<!-- Stonereach Squad Watch(LDF5_Fortress_vGuard_V01_Da_Ra_65_An) -->
+				<!-- Stonereach Squad Defender(LDF5_Fortress_EvGuard_V01_Da_Kn_65_Ae) -->
+				<!-- Stonereach Squad Watchguard(LDF5_Fortress_EvGuard_V01_Da_Ra_65_Ae) -->
+				<!-- Stonereach Squad Sorcerer(LDF5_Fortress_EvGuard_V01_Da_Wi_65_Ae) -->
+				<!-- Stonereach Squad Attendant(LDF5_Fortress_EvGuard_V01_Da_Pr_65_Ae) -->
+				<!-- Stonereach Shadecaster(LDF5_Fortress_v01_Tank_Dark)
+				<spawn npc_id="234534" handler="SENTINEL" respawn_time="295">
+					<spot x="608.01819" y="1336.20947" z="150.32417"/>
+					<spot x="648.74310" y="1335.78113" z="150.48610" h="60"/>
+				</spawn> -->
+				<!-- Broken Shadecaster(LDF5_Fortress_v01_Tank_Fake_Dark) -->
+				<!-- Stonereach Outpost Chariot Depot(LDF5Fortress2_v01_Flag_D) -->
+				<spawn npc_id="802372" handler="MERCHANT" respawn_time="295">
+					<spot x="630.99011" y="1355.65759" z="150.41344" />
+				</spawn>
+				<!-- Shun -->
+				<spawn npc_id="802386" handler="MERCHANT" respawn_time="295">
+					<spot x="267.02676" y="1143.21216" z="128.82576" h="30" />
+				</spawn>
+				<!-- Bidemir -->
+				<spawn npc_id="802388" handler="MERCHANT" respawn_time="295">
+					<spot x="263.73010" y="1143.14624" z="128.89099" h="15" />
+				</spawn>
+				<!-- Imposto -->
+				<spawn npc_id="802390" handler="MERCHANT" respawn_time="295">
+					<spot x="239.80052" y="1156.43018" z="129.34312" />
+				</spawn>
+				<!-- Gladiador especial dos reforços da Guilda da Grada de Griffon -->
+				<spawn npc_id="802394" handler="MERCHANT" respawn_time="295">
+					<spot x="240.03220" y="1152.80469" z="128.91791" h="8" />
+				</spawn>
+				<!-- Rubbon(LDF5_Fortress_v01_D_Seller_PvPCoin_matter) -->
+				<spawn npc_id="804474" handler="MERCHANT" respawn_time="295">
+					<spot x="242.03349" y="1149.84888" z="128.94292" h="15" />
+				</spawn>
+				<!-- Vidarr(LDF5_Fortress_Village_Guard01_D) -->
+				<spawn npc_id="802429" handler="MERCHANT" respawn_time="295">
+					<spot x="250.82387" y="1156.44336" z="129.38463" />
+				</spawn>
+				<!-- Stonereach Squad Watchguard -->
+				<!-- Stonereach Squad Lieutenant -->
+				<!-- Teleport Device -->
+			</occupier_template>
+			<occupier_template occupier="BALAUR">
+				<!-- Stonereach Outpost(LDF5Fortress_v01_Flag_Dr) -->
+				<spawn npc_id="802367" handler="FLAG" respawn_time="295">
+					<spot x="243.81123" y="1167.27368" z="130.49934" />
+				</spawn>
+				<!-- Stonereach Force Commander(LDF5_Fortress_EChief_V01_Dr_65_An) -->
+				<!-- Stonereach Force Thrasher(LDF5_Fortress_Killer_V01_Dr_65_An) -->
+				<!-- Stonereach Force Defender(LDF5_Fortress_vGuard_V01_Dr_Kn_65_An) -->
+				<!-- Stonereach Force Soldier(LDF5_Fortress_vGuard_V01_Dr_Fi_65_An) -->
+				<!-- Stonereach Force Watch(LDF5_Fortress_vGuard_V01_Dr_Ra_65_An) -->
+				<!-- Stonereach Force Defender(LDF5_Fortress_EvGuard_V01_Dr_Kn_65_Ae) -->
+				<!-- Stonereach Force Lieutenant(LDF5_Fortress_EvGuard_V01_Dr_Fi_65_Ae) -->
+				<!-- Stonereach Force Watchguard(LDF5_Fortress_EvGuard_V01_Dr_Ra_65_Ae) -->
+				<!-- Stonereach Force Sorcerer(LDF5_Fortress_EvGuard_V01_Dr_Wi_65_Ae) -->
+				<!-- Stonereach Force Attendant(LDF5_Fortress_EvGuard_V01_Dr_Pr_65_Ae) -->
+				<!-- Stonereach Force Aegis(LDF5_Fortress_inspector_V01_Dr_Ae) -->
+				<!-- Stonereach Outpost Chariot Depot(LDF5Fortress2_v01_Flag_Dr) -->
+				<spawn npc_id="802373" handler="SENTINEL" respawn_time="295">
+					<spot x="630.99011" y="1355.65759" z="150.41344" />
+				</spawn>
+			</occupier_template>
+		</base_spawn>
+		<base_spawn id="6091">
+			<occupier_template occupier="ELYOS">
+				<!-- Flamecrest Outpost(LDF5Fortress_v02_Flag_L) -->
+				<spawn npc_id="802368" handler="FLAG" respawn_time="295">
+					<spot x="1361.70569" y="1123.09595" z="185.23705" />
+				</spawn>
+				<!-- Flamecrest Garrison Commander(LDF5_Fortress_EChief_V02_Li_65_An) -->
+				<!-- Flamecrest Scout Thrasher(LDF5_Fortress_Killer_V02_Li_65_An) -->
+				<!-- Flamecrest Garrison Guard(LDF5_Fortress_EvGuard_V02_Li_Kn_65_Ae) -->
+				<!-- Flamecrest Garrison Lieutenant(LDF5_Fortress_EvGuard_V02_Li_Fi_65_Ae) -->
+				<!-- Flamecrest Garrison Watchguard(LDF5_Fortress_EvGuard_V02_Li_Ra_65_Ae) -->
+				<!-- Flamecrest Garrison Sorcerer(LDF5_Fortress_EvGuard_V02_Li_Wi_65_Ae) -->
+				<!-- Flamecrest Garrison Healer(LDF5_Fortress_EvGuard_V02_Li_Pr_65_Ae) -->
+				<!-- Flamecrest Garrison Aegis(LDF5_Fortress_inspector_V02_Li_Ae) -->
+				<!-- Flamecrest Lightbringer(LDF5_Fortress_v02_Tank_Light)
+				<spawn npc_id="234537" handler="SENTINEL" respawn_time="295">
+					<spot x="936.31970" y="1204.13147" z="143.70866" h="46"/>
+					<spot x="905.93884" y="1230.74719" z="143.61853" h="106"/>
+				</spawn> -->
+				<!-- Broken Lightbringer(LDF5_Fortress_v02_Tank_Fake_Light) -->
+				<!-- Flamecrest Outpost Chariot Depot(LDF5Fortress2_v02_Flag_L) -->
+				<spawn npc_id="802377" handler="MERCHANT" respawn_time="295">
+					<spot x="932.84442" y="1228.99438" z="143.70779" />
+				</spawn>
+				<!-- Sacerdote especial dos reforços da Guilda da Grada de Griffon -->
+				<spawn npc_id="802395" handler="MERCHANT" respawn_time="295">
+					<spot x="1344.94971" y="1154.45715" z="184.69469" h="90" />
+				</spawn>
+				<!-- Surt -->
+				<spawn npc_id="802397" handler="MERCHANT" respawn_time="295">
+					<spot x="1348.00256" y="1152.94324" z="184.69550" h="75" />
+				</spawn>
+				<!-- <Potencializadores Extra> -->
+				<spawn npc_id="802399" handler="MERCHANT" respawn_time="295">
+					<spot x="1368.12085" y="1131.56982" z="184.40944" h="60" />
+				</spawn>
+				<!-- <Irmãos de Warrick> -->
+				<spawn npc_id="802403" handler="MERCHANT" respawn_time="295">
+					<spot x="1369.64380" y="1135.19617" z="184.68321" h="60" />
+				</spawn>
+				<!-- Dinotia(LDF5_Fortress_v02_L_Seller_PvPCoin_matter) -->
+				<spawn npc_id="804473" handler="MERCHANT" respawn_time="295">
+					<spot x="1368.32495" y="1139.94507" z="184.75803" h="66" />
+				</spawn>
+				<!-- Milda(LDF5_Fortress_Village_Guard02_L) -->
+				<spawn npc_id="802428" handler="MERCHANT" respawn_time="295">
+					<spot x="1359.08240" y="1132.95520" z="184.68234" h="66" />
+				</spawn>
+				<!-- Teleport Device -->
+			</occupier_template>
+			<occupier_template occupier="ASMODIANS">
+				<!-- Flamecrest Outpost(LDF5Fortress_v02_Flag_D) -->
+				<spawn npc_id="802369" handler="FLAG" respawn_time="295">
+					<spot x="1361.70569" y="1123.09595" z="185.23705" />
+				</spawn>
+				<!-- Flamecrest Squad Commander(LDF5_Fortress_EChief_V02_Da_65_An) -->
+				<!-- Flamecrest Squad Thrasher(LDF5_Fortress_Killer_V02_Da_65_An) -->
+				<!-- Flamecrest Squad Leutenant -->
+				<!-- Flamecrest Garrison Sorcerer(LDF5_Fortress_EvGuard_V02_Da_Wi_65_Ae) -->
+				<!-- Flamecrest Squad Defender(LDF5_Fortress_EvGuard_V02_Da_Kn_65_Ae) -->
+				<!-- Flamecrest Squad Lieutenant(LDF5_Fortress_EvGuard_V02_Da_Fi_65_Ae) -->
+				<!-- Flamecrest Squad Watchguard(LDF5_Fortress_EvGuard_V02_Da_Ra_65_Ae) -->
+				<!-- Flamecrest Squad Attendant(LDF5_Fortress_EvGuard_V02_Da_Pr_65_Ae) -->
+				<!-- Flamecrest Squad Aegis(LDF5_Fortress_inspector_V02_Da_Ae) -->
+				<!-- Flamecrest Shadecaster(LDF5_Fortress_v02_Tank_Dark)
+				<spawn npc_id="234538" handler="SENTINEL" respawn_time="295">
+					<spot x="936.31970" y="1204.13147" z="143.70866" h="46"/>
+					<spot x="905.93884" y="1230.74719" z="143.61853" h="106"/>
+				</spawn> -->
+				<!-- Broken Shadecaster(LDF5_Fortress_v02_Tank_Fake_Dark) -->
+				<!-- Flamecrest Outpost Chariot Depot(LDF5Fortress2_v02_Flag_D) -->
+				<spawn npc_id="802375" handler="MERCHANT" respawn_time="295">
+					<spot x="932.84442" y="1228.99438" z="143.70779" />
+				</spawn>
+				<!-- Brusthonin Clérigo Special -->
+				<spawn npc_id="802396" handler="MERCHANT" respawn_time="295">
+					<spot x="1344.94971" y="1154.45715" z="184.69469" h="90" />
+				</spawn>
+				<!-- Giel -->
+				<spawn npc_id="802398" handler="MERCHANT" respawn_time="295">
+					<spot x="1348.00256" y="1152.94324" z="184.69550" h="75" />
+				</spawn>
+				<!-- Windton, o Womanizer -->
+				<spawn npc_id="802400" handler="MERCHANT" respawn_time="295">
+					<spot x="1368.12085" y="1131.56982" z="184.40944" h="60" />
+				</spawn>
+				<!-- <Alquimista das chamas> -->
+				<spawn npc_id="802404" handler="MERCHANT" respawn_time="295">
+					<spot x="1369.64380" y="1135.19617" z="184.68321" h="60" />
+				</spawn>
+				<!-- Helvatun(LDF5_Fortress_v02_D_Seller_PvPCoin_matter) -->
+				<spawn npc_id="804475" handler="MERCHANT" respawn_time="295">
+					<spot x="1368.32495" y="1139.94507" z="184.75803" h="66" />
+				</spawn>
+				<!-- Bebê -->
+				<spawn npc_id="802430" handler="MERCHANT" respawn_time="295">
+					<spot x="1359.08240" y="1132.95520" z="184.68234" h="66" />
+				</spawn>
+				<!-- Teleport Device -->
+			</occupier_template>
+			<occupier_template occupier="BALAUR">
+				<!-- Flamecrest Outpost(LDF5Fortress_v02_Flag_Dr) -->
+				<spawn npc_id="802370" handler="FLAG" respawn_time="295">
+					<spot x="1361.70569" y="1123.09595" z="185.23705" />
+				</spawn>
+				<!-- Flamecrest Force Commander(LDF5_Fortress_EChief_V02_Dr_65_An) -->
+				<!-- Flamecrest Force Thrasher(LDF5_Fortress_Killer_V02_Dr_65_An) -->
+				<!-- Flamecrest Force Defender(LDF5_Fortress_vGuard_V02_Dr_Kn_65_An) -->
+				<!-- Flamecrest Force Soldier(LDF5_Fortress_vGuard_V02_Dr_Fi_65_An) -->
+				<!-- Flamecrest Force Sorcerer(LDF5_Fortress_vGuard_V02_Dr_Wi_65_An) -->
+				<!-- Flamecrest Force Defender(LDF5_Fortress_EvGuard_V02_Dr_Kn_65_Ae) -->
+				<!-- Flamecrest Force Lieutenant(LDF5_Fortress_EvGuard_V02_Dr_Fi_65_Ae) -->
+				<!-- Flamecrest Force Watchguard(LDF5_Fortress_EvGuard_V02_Dr_Ra_65_Ae) -->
+				<!-- Flamecrest Force Sorcerer(LDF5_Fortress_EvGuard_V02_Dr_Wi_65_Ae) -->
+				<!-- Flamecrest Force Attendant(LDF5_Fortress_EvGuard_V02_Dr_Pr_65_Ae) -->
+				<!-- Flamecrest Force Aegis(LDF5_Fortress_inspector_V02_Dr_Ae) -->
+				<!-- Flamecrest Outpost Chariot Depot(LDF5Fortress2_v02_Flag_Dr) -->
+				<spawn npc_id="802376" handler="SENTINEL" respawn_time="295">
+					<spot x="932.84442" y="1228.99438" z="143.70779" />
+				</spawn>
+			</occupier_template>
+		</base_spawn>
+	</spawn_map>
+</spawns>

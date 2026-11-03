@@ -74,30 +74,36 @@ A solução adota arquitetura distribuída com microsserviços especializados co
 ```text
 [ Cliente Aion Classic 5.0 (Gameforge) ]
          |
-         +---> (version.dll: Hook IAT + Redirecionamento 127.0.0.1)
+         +---> (version.dll: Hook IAT + Suporte Multi-GameServer + Redirecionamento Dinâmico)
          |
          +---> Login Server (Porta 2106 TCP)
          |        +-- Handshake Criptografico (RSA 1024-bit + Blowfish)
          |        +-- Autenticacao de contas, GameGuard e Daeva Pass
-         |        +-- Selecao de servidores e concessao de tokens de sessao
-         |        \-- Banco dedicado: aion_ls (8 tabelas)
-         |
-         +---> Game Server (Porta 7777 TCP)
-         |        +-- Particionamento Espacial e Instancias 5.0 (Land of Shadows, etc.)
-         |        +-- Movimento 3D e Pathfinding CryEngine (0.5m por celula)
-         |        +-- Combate fluido, skills, status anormais e talentos de combate
-         |        +-- Inventario, Wardrobe, Siel's Anvil/Hammer, Quna e Global Trade
-         |        \-- Banco dedicado: aion_gs (71+ tabelas)
+         |        +-- Registro dinâmico de múltiplos GameServers (GSID 1, 2, 3)
+         |        \-- Banco compartilhado: aionclassic_ls (8 tabelas)
          |
          +---> Chat Server (Porta 10241 TCP)
+         |        +-- Gestão multi-GameServer concorrente (ConcurrentHashMap por GSID)
          |        +-- Canais de chat global, regiao, sussurros, grupo e legiao
-         |        +-- Comandos administrativos de Game Master
-         |        \-- Banco dedicado: aion_cs (chatlog e auditoria)
+         |        \-- Banco compartilhado: aionclassic_cs (1 tabela)
          |
-         \---> Web Engine / Cloud Port (Porta 8080 HTTP/WS)
-                  +-- Renderizador WebGL2 / WebAssembly do Aion Classic
-                  +-- Gateway de conexao authoritative com LoginServer e GameServer
-                  \-- Multi-Version Instance Manager e Dashboard Web
+         +---> GameServer 1: GameForge (GSID 1 | Porta 7777 TCP | Telemetria 2130)
+         |        +-- Experiência original GameForge 5.0 oficial
+         |        \-- Banco isolado: aionclassic_gs (86 tabelas)
+         |
+         +---> GameServer 2: Remake (GSID 2 | Porta 7778 TCP | Telemetria 2131)
+         |        +-- Modalidade Remake com progressão balanceada
+         |        \-- Banco isolado: aionclassic_gs2 (86 tabelas)
+         |
+         +---> GameServer 3: BattleRoyale (GSID 3 | Porta 7779 TCP | Telemetria 2132)
+         |        +-- Modo de sobrevivência e arenas PvP dinâmicas
+         |        \-- Banco isolado: aionclassic_gs3 (86 tabelas)
+         |
+         \---> Web Engine / Supervisor Dashboard (Porta 18080 HTTP/WS)
+                  +-- Painel Administrativo SaaS moderno com métricas em tempo real
+                  +-- Orquestrador automatizado e sequencial de inicialização
+                  +-- Preparação inteligente e migrations SQL idempotentes (__migration_history)
+                  \-- Editor integrado de propriedades com backups automáticos (.bak)
 ```
 
 > [!WARNING]
@@ -123,19 +129,23 @@ aion-classic-5.0/
 |
 +-- Código Fonte - Emulador\                  # Backend Java 25 multimodular
 |   +-- commons\                              # Núcleo de rede NIO, Blowfish/RSA, GeoIP e threads
-|   +-- chat-server\                          # Servidor de chat, canais e moderação
-|   +-- game-server\                          # Servidor de mundo, combate, IA, instâncias e itens
+|   +-- chat-server\                          # Servidor de chat, canais e moderação (Concurrent Multi-GS)
+|   +-- game-server-gameforge\                # GameServer 1: GameForge (GSID 1, Porta 7777 - Standby)
+|   +-- game-server-remake\                   # GameServer 2: Remake (GSID 2, Porta 7778 - Padrão Ativo)
+|   +-- game-server-battleroyale\             # GameServer 3: BattleRoyale (GSID 3, Porta 7779 - Standby)
 |   +-- login-server\                         # Servidor de autenticação e seleção de reinos
 |   \-- pom.xml                               # POM Maven agregador (release 25)
 |
 +-- Emulador - Produto Final\                 # Distribuição de produção executável
 |   +-- Aion Classic - EMULADOR.exe           # Supervisor e Launcher gráfico nativo (Rust)
 |   +-- Config\                               # Diretório unificado de configurações, GeoIP e runtime
-|   |   +-- config.json                       # Parâmetros unificados de boot e JVM
+|   |   +-- config.json                       # Parâmetros de boot (Xms1G / Xmx4G, Remake Ativo)
 |   |   +-- GeoIP\                            # Bases de prefixos IP para o Firewall GeoIP
 |   |   \-- java-deployment\                  # Runtime Java 25 LTS compilado/embutido
 |   +-- ChatServer\                           # Binários, libs, logs e sql do ChatServer
-|   +-- GameServer\                           # Binários, libs, static_data e sql do GameServer
+|   +-- GameServer-GameForge\                 # Instância GameForge oficial (Desligada por padrão)
+|   +-- GameServer-Remake\                    # Instância Remake oficial (Ligada por padrão)
+|   +-- GameServer-BattleRoyale\              # Instância BattleRoyale oficial (Desligada por padrão)
 |   \-- LoginServer\                          # Binários, libs, logs e sql do LoginServer
 |
 \-- Ferramentas e Documentos\                 # Hub consolidado de ferramentas e referências
@@ -240,13 +250,14 @@ A persistência do Aion Classic 5.0 opera com segregação relacional estrita em
 
 ## 8. Mapeamento de Portas e Serviços
 
-| Serviço | Porta TCP | Protocolo | Descrição e Finalidade |
-| :--- | :---: | :---: | :--- |
-| **Login Server** | `2106` | Aion TCP | Porta padrão de autenticação, GameGuard e seleção de reinos. |
-| **Game Server** | `7777` | Aion TCP | Porta principal do mundo, física, combate e instâncias. |
-| **Chat Server** | `10241` | Aion TCP | Serviço de mensagens em tempo real, canais e comandos GM. |
-| **Cloud Web Engine** | `8080` | HTTP / WS | Gateway Aion Cloud Port, runtime WebGL2 e WebSockets. |
-| **Web Dashboard (Supervisor)**| `18080` | HTTP / WS | Painel web administrativo do inicializador Rust. |
+| Serviço / Instância | GSID | Porta Jogo | Porta Telemetria | Banco de Dados | Descrição e Finalidade |
+| :--- | :---: | :---: | :---: | :---: | :--- |
+| **Chat Server** | — | `10241` | — | `aionclassic_cs` | Mensagens em tempo real com suporte multi-servidor concorrente. |
+| **Login Server** | — | `2106` | — | `aionclassic_ls` | Autenticação RSA/Blowfish e roteamento para GameServers. |
+| **GameServer - GameForge** | `1` | `7777` | `2130` | `aionclassic_gs` | Modalidade Oficial GameForge 5.0 (Desligado por padrão, -Xms1G / -Xmx4G). |
+| **GameServer - Remake** | `2` | `7778` | `2131` | `aionclassic_gs2` | Modalidade Remake (Ligado por padrão, -Xms1G / -Xmx4G). |
+| **GameServer - BattleRoyale** | `3` | `7779` | `2132` | `aionclassic_gs3` | Modalidade BattleRoyale (Desligado por padrão, -Xms1G / -Xmx4G). |
+| **Web Dashboard (Supervisor)**| — | `18080`+ | — | — | Painel administrativo SaaS nativo em Rust. |
 
 ---
 

@@ -1,0 +1,197 @@
+package com.aionemu.gameserver.services.player;
+
+import java.sql.Timestamp;
+import java.util.concurrent.Future;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.lostacademy.nav.NavData;
+import com.aionemu.gameserver.configs.main.AutoGroupConfig;
+import com.aionemu.gameserver.dao.*;
+import com.aionemu.gameserver.dataholders.DataManager;
+import com.aionemu.gameserver.dataholders.PlayerInitialData.LocationData;
+import com.aionemu.gameserver.model.TaskId;
+import com.aionemu.gameserver.model.gameobjects.Summon;
+import com.aionemu.gameserver.model.gameobjects.player.BindPointPosition;
+import com.aionemu.gameserver.model.gameobjects.player.FriendList;
+import com.aionemu.gameserver.model.gameobjects.player.Player;
+import com.aionemu.gameserver.model.summons.UnsummonType;
+import com.aionemu.gameserver.model.team.alliance.PlayerAllianceService;
+import com.aionemu.gameserver.model.team.group.PlayerGroupService;
+import com.aionemu.gameserver.network.aion.AionConnection;
+import com.aionemu.gameserver.network.aion.clientpackets.CM_QUIT;
+import com.aionemu.gameserver.network.chatserver.ChatServer;
+import com.aionemu.gameserver.questEngine.QuestEngine;
+import com.aionemu.gameserver.questEngine.model.QuestEnv;
+import com.aionemu.gameserver.services.item.EnchantSynergyService;
+import com.aionemu.gameserver.services.item.ItemSkillService;
+import com.aionemu.gameserver.services.*;
+import com.aionemu.gameserver.services.RecallService.CancelReason;
+import com.aionemu.gameserver.services.findgroup.FindGroupService;
+import com.aionemu.gameserver.services.instance.InstanceService;
+import com.aionemu.gameserver.services.summons.SummonsService;
+import com.aionemu.gameserver.model.templates.item.actions.DecomposeAction;
+import com.aionemu.gameserver.taskmanager.tasks.ExpireTimerTask;
+import com.aionemu.gameserver.taskmanager.tasks.PlayerMoveTaskManager;
+import com.aionemu.gameserver.utils.ThreadPoolManager;
+import com.aionemu.gameserver.utils.audit.GMService;
+import com.aionemu.gameserver.world.World;
+import com.aionemu.gameserver.world.WorldPosition;
+
+/**
+ * @author Lost Academy Team & Durak
+ */
+public class PlayerLeaveWorldService {
+
+	private static final Logger log = LoggerFactory.getLogger(PlayerLeaveWorldService.class);
+
+	/**
+	 * This method is called when a player loses client connection, e.g. when killing the process, or due to bad network connectivity.<br>
+	 * <br>
+	 * <b><font color='red'>NOTICE:</font> This method must only be called from {@link AionConnection#onDisconnect()} and not from anywhere else</b>
+	 * 
+	 * @see #leaveWorld(Player)
+	 */
+	public static void leaveWorldDelayed(Player player, long delayInMillis) {
+		Future<?> leaveWorldTask = ThreadPoolManager.getInstance().schedule(() -> leaveWorld(player), delayInMillis);
+		player.getController().addTask(TaskId.DESPAWN, leaveWorldTask);
+	}
+
+	/**
+	 * This method saves a player and removes him from the world. It is called when a player leaves the game, which includes just two cases: either
+	 * he goes back to char selection screen or is leaving the game (closing client).<br>
+	 * <br>
+	 * <b><font color='red'>NOTICE:</font> This method is called only from {@link CM_QUIT} and must not be called from anywhere else</b>
+	 */
+	public static void leaveWorld(Player player) {
+		if (player == null)
+			return;
+
+		com.lostacademy.Dps_Meter.DpsService.sendPlayerState(player, false, false);
+		com.lostacademy.lostsocket.combat.ComboService.getInstance().onPlayerLogout(player);
+
+		AionConnection con = player.getClientConnection();
+		player.setClientConnection(null); // this sets the player semi-offline, PacketSendUtility will not send packets anymore
+
+		Timestamp lastOnline = new Timestamp(System.currentTimeMillis());
+
+		try {
+			WorldPosition pos = player.getPosition();
+			if (pos == null || pos.getMapRegion() == null) { // ensure safe logout
+				log.warn(player + " had invalid position: " + pos + " so he was reset to bind point");
+				BindPointPosition bp = player.getBindPoint();
+				if (bp != null)
+					pos = World.getInstance().createPosition(bp.getMapId(), bp.getX(), bp.getY(), bp.getZ(), bp.getHeading(), 1);
+				else {
+					LocationData ld = DataManager.PLAYER_INITIAL_DATA.getSpawnLocation(player.getRace());
+					pos = World.getInstance().createPosition(ld.getMapId(), ld.getX(), ld.getY(), ld.getZ(), ld.getHeading(), 1);
+				}
+				player.setPosition(pos);
+			}
+
+			FindGroupService.getInstance().onLogout(player);
+			RecallService.getInstance().cancel(player, CancelReason.CANCELLED);
+			player.getResponseRequester().denyAll();
+			player.getFriendList().setStatus(FriendList.Status.OFFLINE, player.getCommonData());
+			BrokerService.getInstance().removePlayerCache(player);
+			ExchangeService.getInstance().cancelExchange(player);
+			RepurchaseService.getInstance().removeRepurchaseItems(player);
+			if (AutoGroupConfig.AUTO_GROUP_ENABLE)
+				AutoGroupService.getInstance().onLogout(player);
+			MultiClientingService.onLeaveWorld(player);
+			NavData.getInstance().onPlayerLeaveMap(player.getWorldId());
+			InstanceService.onLogout(player);
+			GMService.getInstance().onPlayerLogout(player);
+			KiskService.getInstance().onLogout(player);
+			ItemSkillService.onLogout(player);
+			EnchantSynergyService.onLogout(player);
+			SielEnergyService.getInstance().onLogout(player);
+			MorosService.onLogout(player);
+			DecomposeAction.selectionClosed(player);
+			PlayerMoveTaskManager.getInstance().removePlayer(player);
+			com.aionemu.gameserver.network.aion.clientpackets.CM_QUEST_TELEPORT.onPlayerLogout(player.getObjectId());
+			SiegeService.getInstance().getRvrEventPlayers().remove(player);
+
+			if (player.isDead()) {
+				if (player.isInInstance() || player.getWorldId() == 400030000)
+					PlayerReviveService.instanceRevive(player);
+				else
+					PlayerReviveService.bindRevive(player);
+			}
+			if (DuelService.getInstance().isDueling(player)) {
+				DuelService.getInstance().loseDuel(player);
+			}
+			if (player.getBlendingState() != null) {
+				player.getBlendingState().clear();
+			}
+			player.getEffectController().removeNonStorableEffectsForLogout();
+			PlayerEffectsDAO.storePlayerEffects(player);
+			ItemCooldownsDAO.storeItemCooldowns(player);
+			PlayerLifeStatsDAO.updatePlayerLifeStat(player);
+
+			PlayerGroupService.onPlayerLogout(player);
+			PlayerAllianceService.onPlayerLogout(player);
+			// fix legion warehouse exploits
+			LegionService.getInstance().LegionWhUpdate(player);
+			player.getEffectController().removeAllEffects(true);
+			player.getLifeStats().cancelAllTasks();
+
+			Summon summon = player.getSummon();
+			if (summon != null)
+				SummonsService.release(summon, UnsummonType.LOGOUT); // puts the summoning skill on cooldown, so store cooldowns afterwards
+			PlayerCooldownsDAO.storePlayerCooldowns(player);
+			try {
+				int cp = com.aionemu.gameserver.services.CombatTalentService.calculateCombatPower(player);
+				com.aionemu.gameserver.dao.CombatPowerDAO.storeCombatPower(player.getObjectId(), cp);
+			} catch (Exception ignored) {
+			}
+			if (player.getPet() != null)
+				player.getPet().getController().delete();
+			if (player.getPostman() != null)
+				player.getPostman().getController().delete();
+
+			ExpireTimerTask.getInstance().unregisterExpirables(player);
+			if (player.getInteractionTask() != null)
+				player.getInteractionTask().abort();
+
+			QuestEngine.getInstance().onLogOut(new QuestEnv(null, player, 0));
+			player.getController().delete();
+			player.getCommonData().setOnline(false);
+			player.getCommonData().setLastOnline(lastOnline);
+			if (player.isLegionMember()) // must be called after setOnline and setLastOnline
+				LegionService.getInstance().onLogout(player);
+			player.getCommonData().setX(player.getX());
+			player.getCommonData().setY(player.getY());
+			player.getCommonData().setZ(player.getZ());
+			player.getCommonData().setHeading(player.getHeading());
+
+			ChatServer.getInstance().sendPlayerLogout(player);
+
+			PlayerService.storePlayer(player);
+
+			player.getInventory().setOwner(null);
+			player.getWarehouse().setOwner(null);
+			if (player.getAccount() != null && player.getAccount().getAccountWarehouse() != null) {
+				player.getAccount().getAccountWarehouse().setOwner(null);
+			}
+
+			PlayerDAO.storeOldCharacterLevel(player.getObjectId(), player.getLevel());
+			PlayerDAO.storeLastOnlineTime(player.getObjectId(), lastOnline);
+		} catch (Exception e) {
+			log.error("Exception occurred while saving player on leaveWorld for " + player.getName(), e);
+		} finally {
+			try {
+				PlayerDAO.onlinePlayer(player, false); // marks that player was fully saved and may enter world again
+			} catch (Exception e) {
+				log.error("Failed to mark player offline in DB: " + player.getName(), e);
+			}
+			if (player.getAccount() != null) {
+				com.aionemu.gameserver.services.AccountService.invalidateCache(player.getAccount().getId());
+			}
+			if (con != null) {
+				con.setActivePlayer(null);
+			}
+		}
+	}
+}

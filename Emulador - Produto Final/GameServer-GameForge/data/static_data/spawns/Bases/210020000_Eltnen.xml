@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='utf-8'?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+	<spawn_map map_id="210020000">
+		<base_spawn id="2120">
+			<!-- Kaidan Watchpost -->
+			<occupier_template occupier="ELYOS">
+				<!-- Elyos Territory -->
+				<!-- Territory Boss -->
+				<!-- Elyos Eltnen Inspector (possible for Quest?) -->
+				<!-- Eltnen Defender -->
+				<!-- Landing Site Teleport Statue -->
+				<spawn npc_id="801164" handler="MERCHANT" respawn_time="295">
+					<spot x="1821.25" y="1102.75" z="435.25" h="67" />
+				</spawn>
+				<!-- Landing Site Teleport Statue -->
+				<spawn npc_id="801163" handler="MERCHANT" respawn_time="295">
+					<spot x="1801.875" y="1098.125" z="435.2578" h="15" />
+				</spawn>
+				<!-- Eos Portal -->
+				<spawn npc_id="801162" handler="MERCHANT" respawn_time="295">
+					<spot x="1801.5" y="1104.25" z="435.1875" />
+				</spawn>
+			</occupier_template>
+			<occupier_template occupier="ASMODIANS">
+				<!-- Asmodian Territory -->
+				<!-- Territory Boss -->
+				<!-- Asmodian Eltnen Inspector (possible for Quest?) -->
+				<!-- Eltnen Infiltrator -->
+				<!-- Minox Portal -->
+				<spawn npc_id="801167" handler="MERCHANT" respawn_time="295">
+					<spot x="1821.25" y="1102.75" z="435.25" h="67" />
+				</spawn>
+				<!-- Abismo Fenda -->
+				<spawn npc_id="801166" handler="MERCHANT" respawn_time="295">
+					<spot x="1801.875" y="1098.125" z="435.2578" h="15" />
+				</spawn>
+				<!-- Minox Portal -->
+				<spawn npc_id="801165" handler="MERCHANT" respawn_time="295">
+					<spot x="1801.5" y="1104.25" z="435.1875" />
+				</spawn>
+			</occupier_template>
+			<occupier_template occupier="BALAUR">
+				<!-- Krall Territory -->
+				<!-- Territory Boss -->
+				<!-- Kaidan Assassin -->
+				<!-- Kaidan Vanguard (Shieldcaptain) -->
+				<!-- Kaidan Protector -->
+			</occupier_template>
+		</base_spawn>
+		<base_spawn id="2121">
+			<!-- Eracus Outpost -->
+			<occupier_template occupier="ELYOS">
+				<!-- Elyos Territory -->
+				<!-- Territory Boss -->
+				<!-- Elyos Eltnen Inspector (possible for Quest?) -->
+				<!-- Eltnen Sentinel -->
+				<!-- Tikirunerk -->
+				<spawn npc_id="801156" handler="MERCHANT" respawn_time="295">
+					<spot x="1019" y="665.5" z="309.5625" h="30" />
+				</spawn>
+				<!-- <Oriel teatro de viagem> -->
+				<spawn npc_id="801157" handler="MERCHANT" respawn_time="295">
+					<spot x="1005.5" y="661" z="308.7812" h="15" />
+				</spawn>
+				<!-- <Pernon Traveling Theatre> -->
+				<spawn npc_id="801158" handler="MERCHANT" respawn_time="295">
+					<spot x="1010.125" y="660.5" z="309.4531" h="30" />
+				</spawn>
+			</occupier_template>
+			<occupier_template occupier="ASMODIANS">
+				<!-- Asmodian Territory -->
+				<!-- Territory Boss -->
+				<!-- Asmodian Eltnen Inspector (possible for Quest?) -->
+				<!-- Eltnen Infiltrator -->
+				<!-- Jesro -->
+				<spawn npc_id="801159" handler="MERCHANT" respawn_time="295">
+					<spot x="1019" y="665.5" z="309.5625" h="30" />
+				</spawn>
+				<!-- Eos Portal -->
+				<spawn npc_id="801160" handler="MERCHANT" respawn_time="295">
+					<spot x="1005.5" y="661" z="308.7812" h="15" />
+				</spawn>
+				<!-- Abismo Fenda -->
+				<spawn npc_id="801161" handler="MERCHANT" respawn_time="295">
+					<spot x="1010.125" y="660.5" z="309.4531" h="30" />
+				</spawn>
+			</occupier_template>
+			<occupier_template occupier="BALAUR">
+				<!-- Lepharist Territory -->
+				<!-- Territory Boss -->
+				<!-- Lepharist Assassin -->
+				<!-- Lepharist Vanguard (Shieldcaptain) -->
+				<!-- Lepharist Protector -->
+			</occupier_template>
+		</base_spawn>
+	</spawn_map>
+</spawns>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<spawn_map map_id="300480000">
+		<!-- NPC_206214 -->
+		<spawn npc_id="206214" respawn_time="295">
+			<spot x="759.9973" y="431.5216" z="322" h="0"/>
+		</spawn>
+		<!-- Indratu Crusader -->
+		<spawn npc_id="219015" respawn_time="295">
+			<spot x="777.0" y="463.0" z="322.0" h="90"/>
+		</spawn>
+		<!-- Soldado Covert Indratu -->
+		<spawn npc_id="219016" respawn_time="295">
+			<spot x="777.0757" y="431.1508" z="323.8942" h="15"/>
+		</spawn>
+		<!-- Líder de Sentry Indratu -->
+		<spawn npc_id="219020" respawn_time="295">
+			<spot x="760.0" y="485.0" z="320.0" h="90"/>
+		</spawn>
+		<!-- Oficial Médico Indratu -->
+		<spawn npc_id="219021" respawn_time="295">
+			<spot x="757.0" y="484.0" z="320.0" h="90"/>
+		</spawn>
+		<!-- Indratu Avançou o guarda -->
+		<spawn npc_id="219022" respawn_time="295">
+			<spot x="759.0" y="487.0" z="320.0" h="90"/>
+		</spawn>
+		<!-- Indratu Avançou o guarda -->
+		<spawn npc_id="219023" respawn_time="295">
+			<spot x="756.0" y="486.0" z="320.0" h="90"/>
+		</spawn>
+		<!-- Líder de Sentry Indratu -->
+		<spawn npc_id="219024" respawn_time="295">
+			<spot x="726.0" y="452.0" z="320.0" h="0"/>
+		</spawn>
+		<!-- Oficial Médico Indratu -->
+		<spawn npc_id="219025" respawn_time="295">
+			<spot x="725.0" y="448.0" z="320.0" h="0"/>
+		</spawn>
+		<!-- Indratu Avançou o guarda -->
+		<spawn npc_id="219026" respawn_time="295">
+			<spot x="724.0" y="454.0" z="320.0" h="0"/>
+		</spawn>
+		<!-- Indratu Avançou o guarda -->
+		<spawn npc_id="219027" respawn_time="295">
+			<spot x="723.0" y="450.0" z="320.0" h="0"/>
+		</spawn>
+		<!-- Líder de Sentry Indratu -->
+		<spawn npc_id="219028" respawn_time="295">
+			<spot x="746.0" y="382.0" z="320.0" h="20"/>
+		</spawn>
+		<!-- Oficial Médico Indratu -->
+		<spawn npc_id="219029" respawn_time="295">
+			<spot x="749.0" y="379.0" z="320.0" h="20"/>
+		</spawn>
+		<!-- Indratu Avançou o guarda -->
+		<spawn npc_id="219030" respawn_time="295">
+			<spot x="744.0" y="380.0" z="320.0" h="20"/>
+		</spawn>
+		<!-- Indratu Avançou o guarda -->
+		<spawn npc_id="219031" respawn_time="295">
+			<spot x="747.0" y="377.0" z="320.0" h="20"/>
+		</spawn>
+		<!-- Líder de Sentry Indratu -->
+		<spawn npc_id="219032" respawn_time="295">
+			<spot x="801.0" y="385.0" z="320.0" h="30"/>
+		</spawn>
+		<!-- Oficial Médico Indratu -->
+		<spawn npc_id="219033" respawn_time="295">
+			<spot x="804.0" y="386.0" z="320.0" h="30"/>
+		</spawn>
+		<!-- Indratu Avançou o guarda -->
+		<spawn npc_id="219034" respawn_time="295">
+			<spot x="803.0" y="383.0" z="320.0" h="30"/>
+		</spawn>
+		<!-- Indratu Avançou o guarda -->
+		<spawn npc_id="219035" respawn_time="295">
+			<spot x="806.0" y="384.0" z="320.0" h="30"/>
+		</spawn>
+		<!-- Manipulated MuMu Looklook -->
+		<spawn npc_id="219958" respawn_time="295">
+			<spot x="189.567" y="172.076" z="239.71" h="0" random_walk="3"/>
+			<spot x="188.43" y="246.276" z="240.15" h="0" random_walk="3"/>
+			<spot x="168.688" y="244.724" z="189.566" h="0" random_walk="3"/>
+			<spot x="226.724" y="161.904" z="213.9" h="0" random_walk="2"/>
+			<spot x="249.706" y="208.9" z="188.7" h="60"/>
+		</spawn>
+		<!-- Manipulated Tayga -->
+		<spawn npc_id="219959" respawn_time="295">
+			<spot x="130.368" y="209.38" z="188.7" h="115"/>
+			<spot x="151.08" y="247.071" z="213.98" h="105"/>
+			<spot x="227.16" y="247.42" z="214.4" h="75"/>
+			<spot x="152.61" y="160.495" z="213.82" h="0" random_walk="2"/>
+			<spot x="193.173" y="207.774" z="239.04" h="120"/>
+		</spawn>
+	</spawn_map>
+</spawns>

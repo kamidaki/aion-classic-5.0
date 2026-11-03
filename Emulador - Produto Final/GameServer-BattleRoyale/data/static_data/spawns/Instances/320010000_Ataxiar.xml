@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+	<spawn_map map_id="320010000">
+		<!-- Arconte Legionário -->
+		<spawn npc_id="205036">
+			<spot x="448" y="412.75" z="229.83" h="45" state="1"/>
+			<spot x="254" y="298.25" z="207.29" h="0"/>
+			<spot x="229.5" y="272.75" z="205.56" h="0"/>
+		</spawn>
+		<!-- Arconte Legionário -->
+		<spawn npc_id="205035">
+			<spot x="442.5" y="413.25" z="230.09" state="1"/>
+			<spot x="451.5" y="415.75" z="229.96" h="45" state="1"/>
+			<spot x="256.75" y="220" z="205.76" h="0" random_walk="8"/>
+			<spot x="238" y="282.75" z="208.18" h="0"/>
+		</spawn>
+		<!-- Arconte Legionário -->
+		<spawn npc_id="205024">
+			<spot x="445" y="409.25" z="230.59" h="45" state="1"/>
+			<spot x="448.75" y="420.25" z="230.26" state="1"/>
+		</spawn>
+		<!-- Arconte Legionário -->
+		<spawn npc_id="205021">
+			<spot x="341" y="289" z="243" h="90" state="35" aerial_spawn="true"/>
+			<spot x="347" y="246" z="238" h="90" state="35" aerial_spawn="true"/>
+			<spot x="365" y="299" z="215" h="90" state="35" aerial_spawn="true"/>
+			<spot x="368" y="380" z="246" h="90" state="35" aerial_spawn="true"/>
+			<spot x="389" y="258" z="234" h="90" state="35" aerial_spawn="true"/>
+			<spot x="400" y="359" z="213" h="90" state="35" aerial_spawn="true"/>
+			<spot x="400" y="394" z="227" h="90" state="35" aerial_spawn="true"/>
+			<spot x="405" y="381" z="246" h="90" state="35" aerial_spawn="true"/>
+			<spot x="410" y="355" z="264" h="90" state="35" aerial_spawn="true"/>
+		</spawn>
+		<!-- Arconte Legionário -->
+		<spawn npc_id="205023">
+			<spot x="445" y="416.75" z="229.82" state="1"/>
+		</spawn>
+		<!-- Arconte Legionário -->
+		<spawn npc_id="205022">
+			<spot x="324" y="342" z="212" h="90" state="35" aerial_spawn="true"/>
+			<spot x="338" y="379" z="233" h="90" state="35" aerial_spawn="true"/>
+			<spot x="339" y="335" z="244" h="90" state="35" aerial_spawn="true"/>
+			<spot x="346" y="288" z="214" h="90" state="35" aerial_spawn="true"/>
+			<spot x="358" y="242" z="210" h="90" state="35" aerial_spawn="true"/>
+			<spot x="362" y="344" z="219" h="90" state="35" aerial_spawn="true"/>
+			<spot x="368" y="290" z="216" h="90" state="35" aerial_spawn="true"/>
+			<spot x="378" y="324" z="249" h="90" state="35" aerial_spawn="true"/>
+			<spot x="405" y="345" z="229" h="90" state="35" aerial_spawn="true"/>
+			<spot x="409" y="293" z="253" h="90" state="35" aerial_spawn="true"/>
+			<spot x="439" y="374" z="239" h="90" state="35" aerial_spawn="true"/>
+		</spawn>
+		<!-- Centurião -->
+		<spawn npc_id="205005">
+			<spot x="339" y="298" z="243" h="90" state="35" aerial_spawn="true"/>
+			<spot x="346" y="255" z="238" h="90" state="35" aerial_spawn="true"/>
+			<spot x="380" y="255" z="234" h="90" state="35" aerial_spawn="true"/>
+		</spawn>
+		<!-- Centurião -->
+		<spawn npc_id="205003">
+			<spot x="364" y="294" z="215" h="90" state="35" aerial_spawn="true"/>
+			<spot x="375" y="383" z="246" h="90" state="35" aerial_spawn="true"/>
+			<spot x="397" y="352" z="213" h="90" state="35" aerial_spawn="true"/>
+			<spot x="398" y="380" z="246" h="90" state="35" aerial_spawn="true"/>
+			<spot x="406" y="395" z="227" h="90" state="35" aerial_spawn="true"/>
+			<spot x="409" y="362" z="264" h="90" state="35" aerial_spawn="true"/>
+		</spawn>
+		<!-- Hagen -->
+		<spawn npc_id="205020">
+			<spot x="434.75" y="399.5" z="233.49" h="25"/>
+		</spawn>
+		<!-- Legionário -->
+		<spawn npc_id="205004">
+			<spot x="332" y="343" z="212" h="90" state="35" aerial_spawn="true"/>
+			<spot x="332" y="373" z="233" h="90" state="35" aerial_spawn="true"/>
+			<spot x="340" y="345" z="244" h="90" state="35" aerial_spawn="true"/>
+			<spot x="350" y="295" z="214" h="90" state="35" aerial_spawn="true"/>
+			<spot x="362" y="247" z="210" h="90" state="35" aerial_spawn="true"/>
+			<spot x="369" y="344" z="219" h="90" state="35" aerial_spawn="true"/>
+			<spot x="372" y="294" z="216" h="90" state="35" aerial_spawn="true"/>
+			<spot x="382" y="324" z="249" h="90" state="35" aerial_spawn="true"/>
+			<spot x="406" y="285" z="253" h="90" state="35" aerial_spawn="true"/>
+			<spot x="413" y="351" z="229" h="90" state="35" aerial_spawn="true"/>
+			<spot x="432" y="376" z="239" h="90" state="35" aerial_spawn="true"/>
+		</spawn>
+		<!-- Arconte Legionário -->
+		<spawn npc_id="205025">
+			<spot x="329.75" y="318" z="203.75" h="0"/>
+			<spot x="381.5" y="352" z="234.5" h="0" random_walk="8"/>
+			<spot x="413" y="385.5" z="224" h="0"/>
+		</spawn>
+		<!-- Arconte Legionário -->
+		<spawn npc_id="205026">
+			<spot x="355.25" y="366.25" z="216.25" h="0"/>
+			<spot x="369" y="351" z="217.5" h="0"/>
+		</spawn>
+		<!-- Arconte Legionário -->
+		<spawn npc_id="205027">
+			<spot x="337" y="354.25" z="209.75" h="0"/>
+			<spot x="340" y="314.25" z="201.75" h="0"/>
+			<spot x="408.25" y="374" z="231.75" h="0"/>
+		</spawn>
+		<!-- Arconte Legionário -->
+		<spawn npc_id="205028">
+			<spot x="369.25" y="327.25" z="221" h="0"/>
+			<spot x="376.25" y="368.25" z="229.75" h="0"/>
+		</spawn>
+		<!-- Arconte Legionário -->
+		<spawn npc_id="205029">
+			<spot x="323.5" y="323.5" z="203.5" h="0" random_walk="8"/>
+			<spot x="398.5" y="403" z="228" h="0" random_walk="8"/>
+			<spot x="417.5" y="373.75" z="227.25" h="0" random_walk="8"/>
+		</spawn>
+		<!-- Arconte Legionário -->
+		<spawn npc_id="205030">
+			<spot x="334.5" y="292.5" z="209.5" h="0" random_walk="8"/>
+			<spot x="415.5" y="369.75" z="227.25" h="0" random_walk="8"/>
+		</spawn>
+		<!-- Arconte Legionário -->
+		<spawn npc_id="205031">
+			<spot x="325.5" y="319.5" z="203.5" h="0" random_walk="8"/>
+			<spot x="334.5" y="284.5" z="209.5" h="0" random_walk="8"/>
+			<spot x="400.5" y="407" z="228" h="0" random_walk="8"/>
+			<spot x="417.5" y="365.75" z="227.25" h="0" random_walk="8"/>
+		</spawn>
+		<!-- Arconte Legionário -->
+		<spawn npc_id="205032">
+			<spot x="325.5" y="327.5" z="203.5" h="0" random_walk="8"/>
+			<spot x="332.5" y="288.5" z="209.5" h="0" random_walk="8"/>
+			<spot x="400.5" y="399" z="228" h="0" random_walk="8"/>
+		</spawn>
+		<!-- Arconte Legionário -->
+		<spawn npc_id="205033">
+			<spot x="313.5" y="257" z="225" h="0" random_walk="8"/>
+		</spawn>
+		<!-- Arconte Legionário -->
+		<spawn npc_id="205034">
+			<spot x="195.5" y="256.25" z="225" h="0" random_walk="8"/>
+		</spawn>
+	</spawn_map>
+</spawns>

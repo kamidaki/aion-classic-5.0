@@ -1,0 +1,212 @@
+package com.aionemu.gameserver.controllers.effect;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.EnumMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
+import com.aionemu.gameserver.configs.main.CustomConfig;
+import com.aionemu.gameserver.dataholders.DataManager;
+import com.aionemu.gameserver.model.PlayerClass;
+import com.aionemu.gameserver.model.gameobjects.Creature;
+import com.aionemu.gameserver.model.gameobjects.player.Player;
+import com.aionemu.gameserver.model.team.alliance.PlayerAllianceService;
+import com.aionemu.gameserver.model.team.common.legacy.GroupEvent;
+import com.aionemu.gameserver.model.team.common.legacy.PlayerAllianceEvent;
+import com.aionemu.gameserver.model.team.group.PlayerGroupService;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_ABNORMAL_STATE;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_CLASS_SKILL_STACK_INFO;
+import com.aionemu.gameserver.services.event.EventService;
+import com.aionemu.gameserver.skillengine.effect.BlendingEffect;
+import com.aionemu.gameserver.skillengine.effect.EffectTemplate;
+import com.aionemu.gameserver.skillengine.model.Effect;
+import com.aionemu.gameserver.skillengine.model.Effect.ForceType;
+import com.aionemu.gameserver.skillengine.model.SkillTargetSlot;
+import com.aionemu.gameserver.skillengine.model.SkillTemplate;
+import com.aionemu.gameserver.utils.PacketSendUtility;
+
+/**
+ * @author Lost Academy Team & Durak
+ */
+public class PlayerEffectController extends EffectController {
+
+	private static volatile Set<Integer> stackBlendedSkillIds;
+
+	private final Map<CumulativeResistType, CumulativeResist> cumulativeResistInfo = new EnumMap<>(CumulativeResistType.class);
+	private boolean keepBuffsOnDie;
+
+	public PlayerEffectController(Creature owner) {
+		super(owner);
+	}
+
+	public void setKeepBuffsOnDie(boolean keepBuffsOnDie) {
+		this.keepBuffsOnDie = keepBuffsOnDie;
+	}
+
+	@Override
+	public void addEffect(Effect effect) {
+		if (checkDuelCondition(effect) && !effect.isForcedEffect())
+			return;
+		super.addEffect(effect);
+		updatePlayerIconsAndGroup(effect);
+	}
+
+	@Override
+	public void clearEffect(Effect effect, boolean broadcast) {
+		super.clearEffect(effect, broadcast);
+		if (broadcast)
+			updatePlayerIconsAndGroup(effect);
+	}
+
+	@Override
+	public Player getOwner() {
+		return (Player) super.getOwner();
+	}
+
+	@Override
+	public void removeAllEffects(boolean logout) {
+		super.removeAllEffects(logout);
+		if (!logout)
+			updatePlayerIconsAndGroup(null);
+	}
+
+	/**
+	 * Removes non-storable effects and their conditional effects
+	 */
+	public void removeNonStorableEffectsForLogout() {
+		getAllEffects().stream().filter(e -> !e.canSaveOnLogout()).forEach(e -> e.endEffect(false));
+	}
+
+	private void updatePlayerIconsAndGroup(Effect effect) {
+		if (effect == null || !effect.isPassive()) {
+			updatePlayerEffectIcons(effect);
+			int slot = effect == null ? SkillTargetSlot.FULLSLOTS : effect.getTargetSlot().getId();
+			if (getOwner().isInGroup()) {
+				PlayerGroupService.updateGroup(getOwner(), GroupEvent.MOVEMENT);
+				PlayerGroupService.updateGroupEffects(getOwner(), slot);
+			} else if (getOwner().isInAlliance()) {
+				PlayerAllianceService.updateAlliance(getOwner(), PlayerAllianceEvent.MOVEMENT);
+				PlayerAllianceService.updateAllianceEffects(getOwner(), slot);
+			}
+		}
+	}
+
+	public void updatePlayerEffectIcons(Effect effect) {
+		int slot = effect != null ? effect.getTargetSlot().getId() : SkillTargetSlot.FULLSLOTS;
+		Collection<Effect> effects = getAbnormalEffectsToShow();
+		// 5.0 oficial: o último byte de cada efeito vale 1 só no que acabou de entrar (0 em todos depois de uma remoção)
+		PacketSendUtility.sendPacket(getOwner(), new SM_ABNORMAL_STATE(effects, getAbnormals(), slot, effect));
+		sendClassSkillStackInfo();
+	}
+
+	/**
+	 * 5.0 oficial: todo S_ABNORMAL_STATUS do próprio Gunner vem seguido do S_CLASS_SKILL_STACK_INFO, que acende os 5
+	 * marcadores da pistola com as cargas do Overcharge Energy ou o tempo do Fire Frenzy.
+	 */
+	public void sendClassSkillStackInfo() {
+		// pelo id do cliente (22): o personagem pode estar gravado como GUNNER, apelido do PHOENIX com o mesmo id
+		if (getOwner().getPlayerClass().getClassId() != PlayerClass.PHOENIX.getClassId())
+			return;
+		int blendedRemainingMillis = 0;
+		int stack = 0;
+		for (Effect effect : getAbnormalEffects()) {
+			if (stackBlendedSkillIds().contains(effect.getSkillId()))
+				blendedRemainingMillis = Math.max(blendedRemainingMillis, (int) Math.max(0, effect.getRemainingTimeMillis()));
+			else if (isStackBlendingSource(effect.getSkillTemplate()))
+				stack = Math.max(stack, effect.getCarvedSignet());
+		}
+		PacketSendUtility.sendPacket(getOwner(), new SM_CLASS_SKILL_STACK_INFO(blendedRemainingMillis, blendedRemainingMillis > 0 ? 0 : stack));
+	}
+
+	private static boolean isStackBlendingSource(SkillTemplate template) {
+		if (template.getEffects() == null)
+			return false;
+		for (EffectTemplate et : template.getEffects().getEffects())
+			if (et instanceof BlendingEffect blending && blending.isStackBlending())
+				return true;
+		return false;
+	}
+
+	private static Set<Integer> stackBlendedSkillIds() {
+		Set<Integer> ids = stackBlendedSkillIds;
+		if (ids == null) {
+			ids = new HashSet<>();
+			for (SkillTemplate template : DataManager.SKILL_DATA.getSkillTemplates())
+				if (template.getEffects() != null)
+					for (EffectTemplate et : template.getEffects().getEffects())
+						if (et instanceof BlendingEffect blending && blending.isStackBlending())
+							ids.add(blending.getBlendedSkillId());
+			stackBlendedSkillIds = ids;
+		}
+		return ids;
+	}
+
+	/**
+	 * Effect of DEBUFF should not be added if duel ended (friendly unit)
+	 */
+	private boolean checkDuelCondition(Effect effect) {
+		return effect.getTargetSlot() == SkillTargetSlot.DEBUFF && effect.getEffector() instanceof Player player && !getOwner().equals(player) && !getOwner().isEnemy(player);
+	}
+
+	public void addSavedEffect(int skillId, int skillLvl, int remainingTime, long endTime, ForceType forceType) {
+		if (EventService.getInstance().isInactiveEventForceType(forceType))
+			return;
+		SkillTemplate template = DataManager.SKILL_DATA.getSkillTemplate(skillId);
+
+		if (remainingTime <= 0)
+			return;
+		if (CustomConfig.ABYSSXFORM_LOGOUT && template.isDeityAvatar()) {
+
+			if (System.currentTimeMillis() >= endTime)
+				return;
+			else
+				remainingTime = (int) (endTime - System.currentTimeMillis());
+		}
+
+		Effect effect = new Effect(getOwner(), getOwner(), template, skillLvl, remainingTime, forceType);
+		put(effect);
+		effect.addAllEffectToSucess();
+		effect.startEffect();
+
+		if (effect.getSkillTemplate().getTargetSlot() != SkillTargetSlot.NOSHOW) {
+			PacketSendUtility.sendPacket(getOwner(), new SM_ABNORMAL_STATE(Collections.singletonList(effect), getAbnormals(), SkillTargetSlot.FULLSLOTS));
+			sendClassSkillStackInfo();
+		}
+	}
+
+	@Override
+	public void removeAllEffects() {
+		super.removeAllEffects();
+		synchronized (cumulativeResistInfo) {
+			cumulativeResistInfo.clear();
+		}
+	}
+
+	@Override
+	protected boolean canRemoveOnDie(Effect effect) {
+		if (!super.canRemoveOnDie(effect))
+			return false;
+		if (keepBuffsOnDie)
+			return effect.getTargetSlot() == SkillTargetSlot.DEBUFF;
+		return true;
+	}
+
+	public long calculateAndApplyCumulativeResistDuration(CumulativeResistType type, long duration) {
+		synchronized (cumulativeResistInfo) {
+			CumulativeResist cumulativeResist = cumulativeResistInfo.computeIfAbsent(type, _ -> new CumulativeResist());
+			long cooldownAfterProc = duration + cumulativeResist.getCooldownTimeOffset(type);
+			long finalDuration = (long) (duration * cumulativeResist.getDurationMultiplier());
+			cumulativeResist.tryIncrementLevel(cooldownAfterProc);
+			return finalDuration;
+		}
+	}
+
+	public int getCumulativeResistance(CumulativeResistType type) {
+		synchronized (cumulativeResistInfo) {
+			CumulativeResist cumulativeResist = cumulativeResistInfo.get(type);
+			return cumulativeResist == null ? 0 : cumulativeResist.getResistance();
+		}
+	}
+}

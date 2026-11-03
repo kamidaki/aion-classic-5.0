@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<npc_skill_templates xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../npc_skills.xsd">
+	<!-- fix_50_balic_skills: inicio -->
+	<!-- Balic Treasury: abertura + sequência medidas no S_USE_SKILL de "Balic Treasury.pcapng" (29/10), geradas por
+	     fix_50_balic_skills.py. chain_id 0 = abertura; os passos seguintes em chain_id 1..n, com o intervalo oficial. -->
+	<!-- 221257: 3 luta(s), sequência 18752 -> 20483 -> 20485 -> 20486 -->
+	<npc_skills npc_ids="221257">
+		<npc_skill id="18752" lv="59" prob="100" next_chain_id="1" next_skill_time="4500" max_chain_time="12800" /><!-- Capture -->
+		<npc_skill id="20483" lv="59" prob="100" chain_id="1" next_chain_id="2" next_skill_time="5300" max_chain_time="12300" /><!-- Smash -->
+		<npc_skill id="20485" lv="59" prob="100" chain_id="2" next_chain_id="3" next_skill_time="4000" max_chain_time="7000" /><!-- Vortex -->
+		<npc_skill id="20486" lv="59" prob="100" chain_id="3" /><!-- Vortex -->
+	</npc_skills>
+	<!-- 221287: 1 luta(s), sequência 20484 -> 20483 -> 20484 -> 20485 -> 20486 -> 20486 -->
+	<npc_skills npc_ids="221287">
+		<npc_skill id="20484" lv="60" prob="100" next_chain_id="1" next_skill_time="4200" max_chain_time="14500" /><!-- Capture -->
+		<npc_skill id="20483" lv="60" prob="100" chain_id="1" next_chain_id="2" next_skill_time="7300" max_chain_time="14200" /><!-- Smash -->
+		<npc_skill id="20484" lv="60" prob="100" chain_id="2" next_chain_id="3" next_skill_time="3900" max_chain_time="11000" /><!-- Capture -->
+		<npc_skill id="20485" lv="60" prob="100" chain_id="3" next_chain_id="4" next_skill_time="4100" max_chain_time="9200" /><!-- Vortex -->
+		<npc_skill id="20486" lv="60" prob="100" chain_id="4" next_chain_id="5" next_skill_time="2100" max_chain_time="5100" /><!-- Vortex -->
+		<npc_skill id="20486" lv="60" prob="100" chain_id="5" /><!-- Vortex -->
+	</npc_skills>
+	<!-- 221258: 2 luta(s), sequência 21450 -> 21452 -> 21453 -> 21454 -->
+	<npc_skills npc_ids="221258">
+		<npc_skill id="21450" lv="59" prob="100" next_chain_id="1" next_skill_time="5400" max_chain_time="12700" target="ME" /><!-- Apply Poison I -->
+		<npc_skill id="21452" lv="59" prob="100" chain_id="1" next_chain_id="2" next_skill_time="4300" max_chain_time="9600" /><!-- Beast Swipe -->
+		<npc_skill id="21453" lv="59" prob="100" chain_id="2" next_chain_id="3" next_skill_time="2300" max_chain_time="5300" /><!-- Beastly Scar -->
+		<npc_skill id="21454" lv="59" prob="100" chain_id="3" /><!-- Beast Fang -->
+	</npc_skills>
+	<!-- 221288: 1 luta(s), sequência 21450 -->
+	<npc_skills npc_ids="221288">
+		<npc_skill id="21450" lv="60" prob="100" target="ME" /><!-- Apply Poison I -->
+	</npc_skills>
+	<!-- 221259: 1 luta(s), sequência 20490 -> 20489 -> 20490 -> 20491 -->
+	<npc_skills npc_ids="221259">
+		<npc_skill id="20490" lv="59" prob="100" next_chain_id="1" next_skill_time="5400" max_chain_time="10800" /><!-- Death Dread -->
+		<npc_skill id="20489" lv="59" prob="100" chain_id="1" next_chain_id="2" next_skill_time="2400" max_chain_time="10600" /><!-- Shock Wave -->
+		<npc_skill id="20490" lv="59" prob="100" chain_id="2" next_chain_id="3" next_skill_time="5200" max_chain_time="8200" /><!-- Death Dread -->
+		<npc_skill id="20491" lv="59" prob="100" chain_id="3" /><!-- Flame Loop -->
+	</npc_skills>
+	<!-- 221261: 3 luta(s), sequência 18166 -> 16785 -> 19135 -->
+	<npc_skills npc_ids="221261">
+		<npc_skill id="18166" lv="59" prob="100" next_chain_id="1" next_skill_time="10800" max_chain_time="19400" /><!-- Powerful Ankle Snare -->
+		<npc_skill id="16785" lv="59" prob="100" chain_id="1" next_chain_id="2" next_skill_time="5600" max_chain_time="8600" /><!-- Knockback -->
+		<npc_skill id="19135" lv="59" prob="100" chain_id="2" target="ME" /><!-- Dragon's Blessing -->
+	</npc_skills>
+	<!-- 221262: 4 luta(s), sequência 18173 -> 16812 -> 19135 -->
+	<npc_skills npc_ids="221262">
+		<npc_skill id="18173" lv="59" prob="100" next_chain_id="1" next_skill_time="4800" max_chain_time="12400" /><!-- Long-range Incapacitation -->
+		<npc_skill id="16812" lv="59" prob="100" chain_id="1" next_chain_id="2" next_skill_time="4600" max_chain_time="7600" /><!-- Arrow Strike -->
+		<npc_skill id="19135" lv="59" prob="100" chain_id="2" target="ME" /><!-- Dragon's Blessing -->
+	</npc_skills>
+	<!-- 221264: 1 luta(s), sequência 17008 -->
+	<npc_skills npc_ids="221264">
+		<npc_skill id="17008" lv="59" prob="100" /><!-- Blinding Energy -->
+	</npc_skills>
+	<!-- 221283: 4 luta(s), sequência 18166 -> 18164 -> 18165 -->
+	<npc_skills npc_ids="221283">
+		<npc_skill id="18166" lv="59" prob="100" next_chain_id="1" next_skill_time="4800" max_chain_time="15800" /><!-- Powerful Ankle Snare -->
+		<npc_skill id="18164" lv="59" prob="100" chain_id="1" next_chain_id="2" next_skill_time="8000" max_chain_time="11000" /><!-- Boisterous Pummeling -->
+		<npc_skill id="18165" lv="59" prob="100" chain_id="2" /><!-- Create Protective Shield -->
+	</npc_skills>
+	<!-- 221284: 1 luta(s), sequência 18173 -> 16812 -->
+	<npc_skills npc_ids="221284">
+		<npc_skill id="18173" lv="59" prob="100" next_chain_id="1" next_skill_time="4700" max_chain_time="7700" /><!-- Long-range Incapacitation -->
+		<npc_skill id="16812" lv="59" prob="100" chain_id="1" /><!-- Arrow Strike -->
+	</npc_skills>
+	<!-- 221265: 1 luta(s), sequência 21291 -> 19695 -->
+	<npc_skills npc_ids="221265">
+		<npc_skill id="21291" lv="59" prob="100" next_chain_id="1" next_skill_time="8600" max_chain_time="11600" /><!-- Power Attack -->
+		<npc_skill id="19695" lv="59" prob="100" chain_id="1" /><!-- Dragon Breath -->
+	</npc_skills>
+	<!-- 221278: 1 luta(s), sequência 19697 -->
+	<npc_skills npc_ids="221278">
+		<npc_skill id="19697" lv="59" prob="100" /><!-- Magic Drana Cannon Shot -->
+	</npc_skills>
+	<!-- 221298: 8 luta(s), sequência 19710 -> 19712 -> 19713 (laço) -->
+	<npc_skills npc_ids="221298">
+		<npc_skill id="19710" lv="59" prob="100" next_chain_id="1" next_skill_time="5000" max_chain_time="18200" /><!-- Mace of Retribution -->
+		<npc_skill id="19712" lv="59" prob="100" chain_id="1" next_chain_id="2" next_skill_time="10200" max_chain_time="18700" /><!-- Mace of Retribution -->
+		<npc_skill id="19713" lv="59" prob="100" chain_id="2" next_chain_id="3" next_skill_time="5500" max_chain_time="13500" /><!-- Shock Wave -->
+		<npc_skill id="19710" lv="59" prob="100" chain_id="3" next_chain_id="1" next_skill_time="5000" max_chain_time="18200" /><!-- Mace of Retribution (volta do laço) -->
+	</npc_skills>
+	<!-- 221330: 2 luta(s), sequência 16516 -> 16533 -->
+	<npc_skills npc_ids="221330">
+		<npc_skill id="16516" lv="59" prob="100" next_chain_id="1" next_skill_time="2400" max_chain_time="5400" /><!-- Strike -->
+		<npc_skill id="16533" lv="59" prob="100" chain_id="1" /><!-- Wide Ranged Knockdown -->
+	</npc_skills>
+	<!-- 221331: 5 luta(s), sequência 18166 -> 16785 -->
+	<npc_skills npc_ids="221331">
+		<npc_skill id="18166" lv="59" prob="100" next_chain_id="1" next_skill_time="9000" max_chain_time="12000" /><!-- Powerful Ankle Snare -->
+		<npc_skill id="16785" lv="59" prob="100" chain_id="1" /><!-- Knockback -->
+	</npc_skills>
+	<!-- 220859: 6 luta(s), sequência 19701 -> 19702 -->
+	<npc_skills npc_ids="220859">
+		<npc_skill id="19701" lv="60" prob="100" next_chain_id="1" next_skill_time="2000" max_chain_time="5000" /><!-- Mist -->
+		<npc_skill id="19702" lv="60" prob="100" chain_id="1" target="ME" /><!-- Mist -->
+	</npc_skills>
+	<!-- 220860: 2 luta(s), sequência 19701 -->
+	<npc_skills npc_ids="220860">
+		<npc_skill id="19701" lv="60" prob="100" /><!-- Mist -->
+	</npc_skills>
+	<!-- 220857: 1 luta(s), sequência 19700 -->
+	<npc_skills npc_ids="220857">
+		<npc_skill id="19700" lv="60" prob="100" target="ME" /><!-- Great Magical Barrier -->
+	</npc_skills>
+	<!-- 220858: 3 luta(s), sequência 19699 -->
+	<npc_skills npc_ids="220858">
+		<npc_skill id="19699" lv="60" prob="100" target="ME" /><!-- Great Magical Barrier -->
+	</npc_skills>
+	<!-- 220810: 1 luta(s), sequência 19698 -->
+	<npc_skills npc_ids="220810">
+		<npc_skill id="19698" lv="60" prob="100" target="ME" /><!-- Explosive Damage -->
+	</npc_skills>
+	<!-- fix_50_balic_skills: fim -->
+</npc_skill_templates>

@@ -1,0 +1,1152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<storybooks xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="storybook.xsd">
+	<storybook id="1" name="storybook_puzzle_01" type="PUZZLE">
+		<piece item_id="189700000" count="1" />
+		<piece item_id="189700001" count="1" />
+		<piece item_id="189700002" count="1" />
+		<piece item_id="189700003" count="1" />
+		<piece item_id="189700004" count="1" />
+		<piece item_id="189700005" count="1" />
+		<piece item_id="189700006" count="1" />
+		<piece item_id="189700007" count="1" />
+		<piece item_id="189700008" count="1" />
+		<piece item_id="189700009" count="1" />
+		<piece item_id="189700010" count="1" />
+		<piece item_id="189700011" count="1" />
+		<piece item_id="189700012" count="1" />
+		<piece item_id="189700013" count="1" />
+		<piece item_id="189700014" count="1" />
+		<piece item_id="189700015" count="1" />
+		<piece item_id="189700016" count="1" />
+		<piece item_id="189700017" count="1" />
+		<piece item_id="189700018" count="1" />
+		<piece item_id="189700019" count="1" />
+		<piece item_id="189700020" count="1" />
+		<piece item_id="189700021" count="1" />
+		<piece item_id="189700022" count="1" />
+		<piece item_id="189700023" count="1" />
+		<piece item_id="189700024" count="1" />
+		<piece item_id="189700025" count="1" />
+		<piece item_id="189700026" count="1" />
+		<piece item_id="189700027" count="1" />
+		<piece item_id="189700028" count="1" />
+		<piece item_id="189700029" count="1" />
+		<piece item_id="189700030" count="1" />
+		<piece item_id="189700031" count="1" />
+		<piece item_id="189700032" count="1" />
+		<piece item_id="189700033" count="1" />
+		<piece item_id="189700034" count="1" />
+		<piece item_id="189700035" count="1" />
+		<piece item_id="189700036" count="1" />
+		<piece item_id="189700037" count="1" />
+		<piece item_id="189700038" count="1" />
+		<piece item_id="189700039" count="1" />
+		<piece item_id="189700040" count="1" />
+		<piece item_id="189700041" count="1" />
+		<piece item_id="189700042" count="1" />
+		<piece item_id="189700043" count="1" />
+		<piece item_id="189700044" count="1" />
+		<piece item_id="189700045" count="1" />
+		<piece item_id="189700046" count="1" />
+		<piece item_id="189700047" count="1" />
+		<modifiers>
+			<add name="MAXHP" value="20" bonus="true" />
+			<add name="MAXMP" value="20" bonus="true" />
+		</modifiers>
+	</storybook>
+	<storybook id="2" name="storybook_puzzle_02" type="PUZZLE">
+		<piece item_id="189700051" count="1" />
+		<piece item_id="189700052" count="1" />
+		<piece item_id="189700053" count="1" />
+		<piece item_id="189700054" count="1" />
+		<piece item_id="189700055" count="1" />
+		<piece item_id="189700056" count="1" />
+		<piece item_id="189700057" count="1" />
+		<piece item_id="189700058" count="1" />
+		<piece item_id="189700059" count="1" />
+		<piece item_id="189700060" count="1" />
+		<piece item_id="189700061" count="1" />
+		<piece item_id="189700062" count="1" />
+		<piece item_id="189700063" count="1" />
+		<piece item_id="189700064" count="1" />
+		<piece item_id="189700065" count="1" />
+		<piece item_id="189700066" count="1" />
+		<piece item_id="189700067" count="1" />
+		<piece item_id="189700068" count="1" />
+		<piece item_id="189700069" count="1" />
+		<piece item_id="189700070" count="1" />
+		<piece item_id="189700071" count="1" />
+		<piece item_id="189700072" count="1" />
+		<piece item_id="189700073" count="1" />
+		<piece item_id="189700074" count="1" />
+		<piece item_id="189700075" count="1" />
+		<piece item_id="189700076" count="1" />
+		<piece item_id="189700077" count="1" />
+		<piece item_id="189700078" count="1" />
+		<piece item_id="189700079" count="1" />
+		<piece item_id="189700080" count="1" />
+		<piece item_id="189700081" count="1" />
+		<piece item_id="189700082" count="1" />
+		<piece item_id="189700083" count="1" />
+		<piece item_id="189700084" count="1" />
+		<piece item_id="189700085" count="1" />
+		<piece item_id="189700086" count="1" />
+		<piece item_id="189700087" count="1" />
+		<piece item_id="189700088" count="1" />
+		<piece item_id="189700089" count="1" />
+		<piece item_id="189700090" count="1" />
+		<piece item_id="189700091" count="1" />
+		<piece item_id="189700092" count="1" />
+		<piece item_id="189700093" count="1" />
+		<piece item_id="189700094" count="1" />
+		<piece item_id="189700095" count="1" />
+		<piece item_id="189700096" count="1" />
+		<piece item_id="189700097" count="1" />
+		<piece item_id="189700098" count="1" />
+		<modifiers>
+			<add name="PHYSICAL_ATTACK" value="1" bonus="true" />
+			<add name="BOOST_MAGICAL_SKILL" value="5" bonus="true" />
+		</modifiers>
+	</storybook>
+	<storybook id="3" name="storybook_puzzle_03" type="PUZZLE">
+		<piece item_id="189700099" count="1" />
+		<piece item_id="189700100" count="1" />
+		<piece item_id="189700101" count="1" />
+		<piece item_id="189700102" count="1" />
+		<piece item_id="189700103" count="1" />
+		<piece item_id="189700104" count="1" />
+		<piece item_id="189700105" count="1" />
+		<piece item_id="189700106" count="1" />
+		<piece item_id="189700107" count="1" />
+		<piece item_id="189700108" count="1" />
+		<piece item_id="189700109" count="1" />
+		<piece item_id="189700110" count="1" />
+		<piece item_id="189700111" count="1" />
+		<piece item_id="189700112" count="1" />
+		<piece item_id="189700113" count="1" />
+		<piece item_id="189700114" count="1" />
+		<piece item_id="189700115" count="1" />
+		<piece item_id="189700116" count="1" />
+		<piece item_id="189700117" count="1" />
+		<piece item_id="189700118" count="1" />
+		<piece item_id="189700119" count="1" />
+		<piece item_id="189700120" count="1" />
+		<piece item_id="189700121" count="1" />
+		<piece item_id="189700122" count="1" />
+		<piece item_id="189700123" count="1" />
+		<piece item_id="189700124" count="1" />
+		<piece item_id="189700125" count="1" />
+		<piece item_id="189700126" count="1" />
+		<piece item_id="189700127" count="1" />
+		<piece item_id="189700128" count="1" />
+		<piece item_id="189700129" count="1" />
+		<piece item_id="189700130" count="1" />
+		<piece item_id="189700131" count="1" />
+		<piece item_id="189700132" count="1" />
+		<piece item_id="189700133" count="1" />
+		<piece item_id="189700134" count="1" />
+		<piece item_id="189700135" count="1" />
+		<piece item_id="189700136" count="1" />
+		<piece item_id="189700137" count="1" />
+		<piece item_id="189700138" count="1" />
+		<piece item_id="189700139" count="1" />
+		<piece item_id="189700140" count="1" />
+		<piece item_id="189700141" count="1" />
+		<piece item_id="189700142" count="1" />
+		<piece item_id="189700143" count="1" />
+		<piece item_id="189700144" count="1" />
+		<piece item_id="189700145" count="1" />
+		<piece item_id="189700146" count="1" />
+		<modifiers>
+			<add name="MAGICAL_ACCURACY" value="1" bonus="true" />
+			<add name="MAGICAL_RESIST" value="1" bonus="true" />
+			<add name="EVASION" value="1" bonus="true" />
+			<add name="PHYSICAL_ACCURACY" value="1" bonus="true" />
+		</modifiers>
+	</storybook>
+	<storybook id="4" name="storybook_puzzle_04" type="PUZZLE">
+		<piece item_id="189720003" count="1" />
+		<piece item_id="189720004" count="1" />
+		<piece item_id="189720005" count="1" />
+		<piece item_id="189720006" count="1" />
+		<piece item_id="189720007" count="1" />
+		<piece item_id="189720008" count="1" />
+		<piece item_id="189720009" count="1" />
+		<piece item_id="189720010" count="1" />
+		<piece item_id="189720011" count="1" />
+		<piece item_id="189720012" count="1" />
+		<piece item_id="189720013" count="1" />
+		<piece item_id="189720014" count="1" />
+		<piece item_id="189720015" count="1" />
+		<piece item_id="189720016" count="1" />
+		<piece item_id="189720017" count="1" />
+		<piece item_id="189720018" count="1" />
+		<piece item_id="189720019" count="1" />
+		<piece item_id="189720020" count="1" />
+		<piece item_id="189720021" count="1" />
+		<piece item_id="189720022" count="1" />
+		<piece item_id="189720023" count="1" />
+		<piece item_id="189720024" count="1" />
+		<piece item_id="189720025" count="1" />
+		<piece item_id="189720026" count="1" />
+		<piece item_id="189720027" count="1" />
+		<piece item_id="189720028" count="1" />
+		<piece item_id="189720029" count="1" />
+		<piece item_id="189720030" count="1" />
+		<piece item_id="189720031" count="1" />
+		<piece item_id="189720032" count="1" />
+		<piece item_id="189720033" count="1" />
+		<piece item_id="189720034" count="1" />
+		<piece item_id="189720035" count="1" />
+		<piece item_id="189720036" count="1" />
+		<piece item_id="189720037" count="1" />
+		<piece item_id="189720038" count="1" />
+		<piece item_id="189720039" count="1" />
+		<piece item_id="189720040" count="1" />
+		<piece item_id="189720041" count="1" />
+		<piece item_id="189720042" count="1" />
+		<piece item_id="189720043" count="1" />
+		<piece item_id="189720044" count="1" />
+		<piece item_id="189720045" count="1" />
+		<piece item_id="189720046" count="1" />
+		<piece item_id="189720047" count="1" />
+		<piece item_id="189720048" count="1" />
+		<piece item_id="189720049" count="1" />
+		<piece item_id="189720050" count="1" />
+		<modifiers>
+			<add name="PHYSICAL_DEFENSE" value="1" bonus="true" />
+		</modifiers>
+	</storybook>
+	<storybook id="5" name="storybook_puzzle_05" type="PUZZLE">
+		<piece item_id="189720056" count="1" />
+		<piece item_id="189720057" count="1" />
+		<piece item_id="189720058" count="1" />
+		<piece item_id="189720059" count="1" />
+		<piece item_id="189720060" count="1" />
+		<piece item_id="189720061" count="1" />
+		<piece item_id="189720062" count="1" />
+		<piece item_id="189720063" count="1" />
+		<piece item_id="189720064" count="1" />
+		<piece item_id="189720065" count="1" />
+		<piece item_id="189720066" count="1" />
+		<piece item_id="189720067" count="1" />
+		<piece item_id="189720068" count="1" />
+		<piece item_id="189720069" count="1" />
+		<piece item_id="189720070" count="1" />
+		<piece item_id="189720071" count="1" />
+		<piece item_id="189720072" count="1" />
+		<piece item_id="189720073" count="1" />
+		<piece item_id="189720074" count="1" />
+		<piece item_id="189720075" count="1" />
+		<piece item_id="189720076" count="1" />
+		<piece item_id="189720077" count="1" />
+		<piece item_id="189720078" count="1" />
+		<piece item_id="189720079" count="1" />
+		<piece item_id="189720080" count="1" />
+		<piece item_id="189720081" count="1" />
+		<piece item_id="189720082" count="1" />
+		<piece item_id="189720083" count="1" />
+		<piece item_id="189720084" count="1" />
+		<piece item_id="189720085" count="1" />
+		<piece item_id="189720086" count="1" />
+		<piece item_id="189720087" count="1" />
+		<piece item_id="189720088" count="1" />
+		<piece item_id="189720089" count="1" />
+		<piece item_id="189720090" count="1" />
+		<piece item_id="189720091" count="1" />
+		<piece item_id="189720092" count="1" />
+		<piece item_id="189720093" count="1" />
+		<piece item_id="189720094" count="1" />
+		<piece item_id="189720095" count="1" />
+		<piece item_id="189720096" count="1" />
+		<piece item_id="189720097" count="1" />
+		<piece item_id="189720098" count="1" />
+		<piece item_id="189720099" count="1" />
+		<piece item_id="189720100" count="1" />
+		<piece item_id="189720101" count="1" />
+		<piece item_id="189720102" count="1" />
+		<piece item_id="189720103" count="1" />
+		<modifiers>
+			<add name="FIRE_RESISTANCE" value="1" bonus="true" />
+			<add name="WIND_RESISTANCE" value="1" bonus="true" />
+			<add name="EARTH_RESISTANCE" value="1" bonus="true" />
+			<add name="WATER_RESISTANCE" value="1" bonus="true" />
+		</modifiers>
+	</storybook>
+	<storybook id="6" name="storybook_puzzle_06" type="PUZZLE">
+		<piece item_id="189720109" count="1" />
+		<piece item_id="189720110" count="1" />
+		<piece item_id="189720111" count="1" />
+		<piece item_id="189720112" count="1" />
+		<piece item_id="189720113" count="1" />
+		<piece item_id="189720114" count="1" />
+		<piece item_id="189720115" count="1" />
+		<piece item_id="189720116" count="1" />
+		<piece item_id="189720117" count="1" />
+		<piece item_id="189720118" count="1" />
+		<piece item_id="189720119" count="1" />
+		<piece item_id="189720120" count="1" />
+		<piece item_id="189720121" count="1" />
+		<piece item_id="189720122" count="1" />
+		<piece item_id="189720123" count="1" />
+		<piece item_id="189720124" count="1" />
+		<piece item_id="189720125" count="1" />
+		<piece item_id="189720126" count="1" />
+		<piece item_id="189720127" count="1" />
+		<piece item_id="189720128" count="1" />
+		<piece item_id="189720129" count="1" />
+		<piece item_id="189720130" count="1" />
+		<piece item_id="189720131" count="1" />
+		<piece item_id="189720132" count="1" />
+		<piece item_id="189720133" count="1" />
+		<piece item_id="189720134" count="1" />
+		<piece item_id="189720135" count="1" />
+		<piece item_id="189720136" count="1" />
+		<piece item_id="189720137" count="1" />
+		<piece item_id="189720138" count="1" />
+		<piece item_id="189720139" count="1" />
+		<piece item_id="189720140" count="1" />
+		<piece item_id="189720141" count="1" />
+		<piece item_id="189720142" count="1" />
+		<piece item_id="189720143" count="1" />
+		<piece item_id="189720144" count="1" />
+		<piece item_id="189720145" count="1" />
+		<piece item_id="189720146" count="1" />
+		<piece item_id="189720147" count="1" />
+		<piece item_id="189720148" count="1" />
+		<piece item_id="189720149" count="1" />
+		<piece item_id="189720150" count="1" />
+		<piece item_id="189720151" count="1" />
+		<piece item_id="189720152" count="1" />
+		<piece item_id="189720153" count="1" />
+		<piece item_id="189720154" count="1" />
+		<piece item_id="189720155" count="1" />
+		<piece item_id="189720156" count="1" />
+		<modifiers>
+			<add name="PHYSICAL_CRITICAL" value="5" bonus="true" />
+			<add name="MAGICAL_CRITICAL" value="1" bonus="true" />
+		</modifiers>
+	</storybook>
+	<storybook id="7" name="storybook_puzzle_07" type="PUZZLE">
+		<piece item_id="189720162" count="1" />
+		<piece item_id="189720163" count="1" />
+		<piece item_id="189720164" count="1" />
+		<piece item_id="189720165" count="1" />
+		<piece item_id="189720166" count="1" />
+		<piece item_id="189720167" count="1" />
+		<piece item_id="189720168" count="1" />
+		<piece item_id="189720169" count="1" />
+		<piece item_id="189720170" count="1" />
+		<piece item_id="189720171" count="1" />
+		<piece item_id="189720172" count="1" />
+		<piece item_id="189720173" count="1" />
+		<piece item_id="189720174" count="1" />
+		<piece item_id="189720175" count="1" />
+		<piece item_id="189720176" count="1" />
+		<piece item_id="189720177" count="1" />
+		<piece item_id="189720178" count="1" />
+		<piece item_id="189720179" count="1" />
+		<piece item_id="189720180" count="1" />
+		<piece item_id="189720181" count="1" />
+		<piece item_id="189720182" count="1" />
+		<piece item_id="189720183" count="1" />
+		<piece item_id="189720184" count="1" />
+		<piece item_id="189720185" count="1" />
+		<piece item_id="189720186" count="1" />
+		<piece item_id="189720187" count="1" />
+		<piece item_id="189720188" count="1" />
+		<piece item_id="189720189" count="1" />
+		<piece item_id="189720190" count="1" />
+		<piece item_id="189720191" count="1" />
+		<piece item_id="189720192" count="1" />
+		<piece item_id="189720193" count="1" />
+		<piece item_id="189720194" count="1" />
+		<piece item_id="189720195" count="1" />
+		<piece item_id="189720196" count="1" />
+		<piece item_id="189720197" count="1" />
+		<piece item_id="189720198" count="1" />
+		<piece item_id="189720199" count="1" />
+		<piece item_id="189720200" count="1" />
+		<piece item_id="189720201" count="1" />
+		<piece item_id="189720202" count="1" />
+		<piece item_id="189720203" count="1" />
+		<piece item_id="189720204" count="1" />
+		<piece item_id="189720205" count="1" />
+		<piece item_id="189720206" count="1" />
+		<piece item_id="189720207" count="1" />
+		<piece item_id="189720208" count="1" />
+		<piece item_id="189720209" count="1" />
+		<modifiers>
+			<add name="MAGIC_SKILL_BOOST_RESIST" value="10" bonus="true" />
+		</modifiers>
+	</storybook>
+	<storybook id="8" name="storybook_puzzle_08" type="PUZZLE">
+		<piece item_id="189720215" count="1" />
+		<piece item_id="189720216" count="1" />
+		<piece item_id="189720217" count="1" />
+		<piece item_id="189720218" count="1" />
+		<piece item_id="189720219" count="1" />
+		<piece item_id="189720220" count="1" />
+		<piece item_id="189720221" count="1" />
+		<piece item_id="189720222" count="1" />
+		<piece item_id="189720223" count="1" />
+		<piece item_id="189720224" count="1" />
+		<piece item_id="189720225" count="1" />
+		<piece item_id="189720226" count="1" />
+		<piece item_id="189720227" count="1" />
+		<piece item_id="189720228" count="1" />
+		<piece item_id="189720229" count="1" />
+		<piece item_id="189720230" count="1" />
+		<piece item_id="189720231" count="1" />
+		<piece item_id="189720232" count="1" />
+		<piece item_id="189720233" count="1" />
+		<piece item_id="189720234" count="1" />
+		<piece item_id="189720235" count="1" />
+		<piece item_id="189720236" count="1" />
+		<piece item_id="189720237" count="1" />
+		<piece item_id="189720238" count="1" />
+		<piece item_id="189720239" count="1" />
+		<piece item_id="189720240" count="1" />
+		<piece item_id="189720241" count="1" />
+		<piece item_id="189720242" count="1" />
+		<piece item_id="189720243" count="1" />
+		<piece item_id="189720244" count="1" />
+		<piece item_id="189720245" count="1" />
+		<piece item_id="189720246" count="1" />
+		<piece item_id="189720247" count="1" />
+		<piece item_id="189720248" count="1" />
+		<piece item_id="189720249" count="1" />
+		<piece item_id="189720250" count="1" />
+		<piece item_id="189720251" count="1" />
+		<piece item_id="189720252" count="1" />
+		<piece item_id="189720253" count="1" />
+		<piece item_id="189720254" count="1" />
+		<piece item_id="189720255" count="1" />
+		<piece item_id="189720256" count="1" />
+		<piece item_id="189720257" count="1" />
+		<piece item_id="189720258" count="1" />
+		<piece item_id="189720259" count="1" />
+		<piece item_id="189720260" count="1" />
+		<piece item_id="189720261" count="1" />
+		<piece item_id="189720262" count="1" />
+		<modifiers>
+			<add name="PHYSICAL_ATTACK" value="1" bonus="true" />
+			<add name="BOOST_MAGICAL_SKILL" value="5" bonus="true" />
+		</modifiers>
+	</storybook>
+	<storybook id="9" name="storybook_puzzle_09" type="PUZZLE">
+		<piece item_id="189720268" count="1" />
+		<piece item_id="189720269" count="1" />
+		<piece item_id="189720270" count="1" />
+		<piece item_id="189720271" count="1" />
+		<piece item_id="189720272" count="1" />
+		<piece item_id="189720273" count="1" />
+		<piece item_id="189720274" count="1" />
+		<piece item_id="189720275" count="1" />
+		<piece item_id="189720276" count="1" />
+		<piece item_id="189720277" count="1" />
+		<piece item_id="189720278" count="1" />
+		<piece item_id="189720279" count="1" />
+		<piece item_id="189720280" count="1" />
+		<piece item_id="189720281" count="1" />
+		<piece item_id="189720282" count="1" />
+		<piece item_id="189720283" count="1" />
+		<piece item_id="189720284" count="1" />
+		<piece item_id="189720285" count="1" />
+		<piece item_id="189720286" count="1" />
+		<piece item_id="189720287" count="1" />
+		<piece item_id="189720288" count="1" />
+		<piece item_id="189720289" count="1" />
+		<piece item_id="189720290" count="1" />
+		<piece item_id="189720291" count="1" />
+		<piece item_id="189720292" count="1" />
+		<piece item_id="189720293" count="1" />
+		<piece item_id="189720294" count="1" />
+		<piece item_id="189720295" count="1" />
+		<piece item_id="189720296" count="1" />
+		<piece item_id="189720297" count="1" />
+		<piece item_id="189720298" count="1" />
+		<piece item_id="189720299" count="1" />
+		<piece item_id="189720300" count="1" />
+		<piece item_id="189720301" count="1" />
+		<piece item_id="189720302" count="1" />
+		<piece item_id="189720303" count="1" />
+		<piece item_id="189720304" count="1" />
+		<piece item_id="189720305" count="1" />
+		<piece item_id="189720306" count="1" />
+		<piece item_id="189720307" count="1" />
+		<piece item_id="189720308" count="1" />
+		<piece item_id="189720309" count="1" />
+		<piece item_id="189720310" count="1" />
+		<piece item_id="189720311" count="1" />
+		<piece item_id="189720312" count="1" />
+		<piece item_id="189720313" count="1" />
+		<piece item_id="189720314" count="1" />
+		<piece item_id="189720315" count="1" />
+		<modifiers>
+			<add name="MAGICAL_ACCURACY" value="3" bonus="true" />
+			<add name="PHYSICAL_ACCURACY" value="8" bonus="true" />
+		</modifiers>
+	</storybook>
+	<storybook id="10" name="storybook_puzzle_10" type="PUZZLE">
+		<piece item_id="189720321" count="1" />
+		<piece item_id="189720322" count="1" />
+		<piece item_id="189720323" count="1" />
+		<piece item_id="189720324" count="1" />
+		<piece item_id="189720325" count="1" />
+		<piece item_id="189720326" count="1" />
+		<piece item_id="189720327" count="1" />
+		<piece item_id="189720328" count="1" />
+		<piece item_id="189720329" count="1" />
+		<piece item_id="189720330" count="1" />
+		<piece item_id="189720331" count="1" />
+		<piece item_id="189720332" count="1" />
+		<piece item_id="189720333" count="1" />
+		<piece item_id="189720334" count="1" />
+		<piece item_id="189720335" count="1" />
+		<piece item_id="189720336" count="1" />
+		<piece item_id="189720337" count="1" />
+		<piece item_id="189720338" count="1" />
+		<piece item_id="189720339" count="1" />
+		<piece item_id="189720340" count="1" />
+		<piece item_id="189720341" count="1" />
+		<piece item_id="189720342" count="1" />
+		<piece item_id="189720343" count="1" />
+		<piece item_id="189720344" count="1" />
+		<piece item_id="189720345" count="1" />
+		<piece item_id="189720346" count="1" />
+		<piece item_id="189720347" count="1" />
+		<piece item_id="189720348" count="1" />
+		<piece item_id="189720349" count="1" />
+		<piece item_id="189720350" count="1" />
+		<piece item_id="189720351" count="1" />
+		<piece item_id="189720352" count="1" />
+		<piece item_id="189720353" count="1" />
+		<piece item_id="189720354" count="1" />
+		<piece item_id="189720355" count="1" />
+		<piece item_id="189720356" count="1" />
+		<piece item_id="189720357" count="1" />
+		<piece item_id="189720358" count="1" />
+		<piece item_id="189720359" count="1" />
+		<piece item_id="189720360" count="1" />
+		<piece item_id="189720361" count="1" />
+		<piece item_id="189720362" count="1" />
+		<piece item_id="189720363" count="1" />
+		<piece item_id="189720364" count="1" />
+		<piece item_id="189720365" count="1" />
+		<piece item_id="189720366" count="1" />
+		<piece item_id="189720367" count="1" />
+		<piece item_id="189720368" count="1" />
+		<modifiers>
+			<add name="PVE_ATTACK_RATIO" value="10" bonus="true" />
+		</modifiers>
+	</storybook>
+	<storybook id="1001" name="storybook_nature_01" type="NATURE">
+		<piece item_id="189710000" count="30" />
+		<reward_skill skill_id="2523" level="1" />
+	</storybook>
+	<storybook id="1002" name="storybook_nature_02" type="NATURE">
+		<piece item_id="189710001" count="30" />
+		<reward_skill skill_id="2522" level="1" />
+	</storybook>
+	<storybook id="2001" name="storybook_adventure_01" type="ADVENTURE">
+		<piece item_id="189720000" count="11" />
+		<reward_item item_id="188053010" count="1" />
+		<reward_item item_id="188053050" count="5" />
+		<reward_item item_id="169611065" count="1" />
+	</storybook>
+	<storybook id="2002" name="storybook_adventure_02" type="ADVENTURE">
+		<piece item_id="189720001" count="15" />
+		<reward_item item_id="166300500" count="8" />
+		<reward_item item_id="169200006" count="1" />
+		<reward_item item_id="169200007" count="1" />
+	</storybook>
+	<storybook id="2004" name="storybook_adventure_04" type="ADVENTURE">
+		<piece item_id="189720374" count="9" />
+		<reward_item item_id="188055485" count="1" />
+	</storybook>
+	<storybook id="2005" name="storybook_adventure_05" type="ADVENTURE">
+		<piece item_id="189720375" count="9" />
+		<reward_item item_id="169630007" count="2" />
+	</storybook>
+	<appraise item_id="189700048">
+		<result item_id="189700000" count="1" rate="2000" />
+		<result item_id="189700001" count="1" rate="2000" />
+		<result item_id="189700002" count="1" rate="2000" />
+		<result item_id="189700003" count="1" rate="2000" />
+		<result item_id="189700004" count="1" rate="900" />
+		<result item_id="189700005" count="1" rate="500" />
+		<result item_id="189700006" count="1" rate="500" />
+		<result item_id="189700007" count="1" rate="100" />
+	</appraise>
+	<appraise item_id="189700147">
+		<result item_id="189700008" count="1" rate="2000" />
+		<result item_id="189700009" count="1" rate="2000" />
+		<result item_id="189700010" count="1" rate="1000" />
+		<result item_id="189700011" count="1" rate="1000" />
+		<result item_id="189700012" count="1" rate="1000" />
+		<result item_id="189700013" count="1" rate="850" />
+		<result item_id="189700014" count="1" rate="800" />
+		<result item_id="189700015" count="1" rate="800" />
+		<result item_id="189700016" count="1" rate="500" />
+		<result item_id="189700017" count="1" rate="50" />
+	</appraise>
+	<appraise item_id="189700148">
+		<result item_id="189700018" count="1" rate="2000" />
+		<result item_id="189700019" count="1" rate="1830" />
+		<result item_id="189700020" count="1" rate="800" />
+		<result item_id="189700021" count="1" rate="800" />
+		<result item_id="189700022" count="1" rate="800" />
+		<result item_id="189700023" count="1" rate="800" />
+		<result item_id="189700024" count="1" rate="800" />
+		<result item_id="189700025" count="1" rate="800" />
+		<result item_id="189700026" count="1" rate="800" />
+		<result item_id="189700027" count="1" rate="300" />
+		<result item_id="189700028" count="1" rate="200" />
+		<result item_id="189700029" count="1" rate="70" />
+	</appraise>
+	<appraise item_id="189700149">
+		<result item_id="189700030" count="1" rate="2200" />
+		<result item_id="189700031" count="1" rate="2200" />
+		<result item_id="189700032" count="1" rate="2200" />
+		<result item_id="189700033" count="1" rate="1550" />
+		<result item_id="189700034" count="1" rate="1300" />
+		<result item_id="189700035" count="1" rate="300" />
+		<result item_id="189700036" count="1" rate="200" />
+		<result item_id="189700037" count="1" rate="50" />
+	</appraise>
+	<appraise item_id="189700150">
+		<result item_id="189700038" count="1" rate="1200" />
+		<result item_id="189700039" count="1" rate="1200" />
+		<result item_id="189700040" count="1" rate="1200" />
+		<result item_id="189700041" count="1" rate="1200" />
+		<result item_id="189700042" count="1" rate="1200" />
+		<result item_id="189700043" count="1" rate="1200" />
+		<result item_id="189700044" count="1" rate="1200" />
+		<result item_id="189700045" count="1" rate="1100" />
+		<result item_id="189700046" count="1" rate="250" />
+		<result item_id="189700047" count="1" rate="250" />
+	</appraise>
+	<appraise item_id="189700049">
+		<result item_id="189700051" count="1" rate="1600" />
+		<result item_id="189700052" count="1" rate="1600" />
+		<result item_id="189700053" count="1" rate="1600" />
+		<result item_id="189700054" count="1" rate="1500" />
+		<result item_id="189700055" count="1" rate="1500" />
+		<result item_id="189700056" count="1" rate="1500" />
+		<result item_id="189700057" count="1" rate="300" />
+		<result item_id="189700058" count="1" rate="200" />
+		<result item_id="189700059" count="1" rate="200" />
+	</appraise>
+	<appraise item_id="189700151">
+		<result item_id="189700060" count="1" rate="2500" />
+		<result item_id="189700061" count="1" rate="2500" />
+		<result item_id="189700062" count="1" rate="2450" />
+		<result item_id="189700063" count="1" rate="2400" />
+		<result item_id="189700064" count="1" rate="150" />
+	</appraise>
+	<appraise item_id="189700152">
+		<result item_id="189700065" count="1" rate="2500" />
+		<result item_id="189700066" count="1" rate="2500" />
+		<result item_id="189700067" count="1" rate="2450" />
+		<result item_id="189700068" count="1" rate="2400" />
+		<result item_id="189700069" count="1" rate="100" />
+		<result item_id="189700070" count="1" rate="50" />
+	</appraise>
+	<appraise item_id="189700153">
+		<result item_id="189700071" count="1" rate="700" />
+		<result item_id="189700072" count="1" rate="700" />
+		<result item_id="189700073" count="1" rate="700" />
+		<result item_id="189700074" count="1" rate="700" />
+		<result item_id="189700075" count="1" rate="600" />
+		<result item_id="189700076" count="1" rate="600" />
+		<result item_id="189700077" count="1" rate="600" />
+		<result item_id="189700078" count="1" rate="600" />
+		<result item_id="189700079" count="1" rate="600" />
+		<result item_id="189700080" count="1" rate="600" />
+		<result item_id="189700081" count="1" rate="600" />
+		<result item_id="189700082" count="1" rate="600" />
+		<result item_id="189700083" count="1" rate="600" />
+		<result item_id="189700084" count="1" rate="600" />
+		<result item_id="189700085" count="1" rate="600" />
+		<result item_id="189700086" count="1" rate="300" />
+		<result item_id="189700087" count="1" rate="200" />
+		<result item_id="189700088" count="1" rate="100" />
+	</appraise>
+	<appraise item_id="189700154">
+		<result item_id="189700089" count="1" rate="1200" />
+		<result item_id="189700090" count="1" rate="1200" />
+		<result item_id="189700091" count="1" rate="1200" />
+		<result item_id="189700092" count="1" rate="1200" />
+		<result item_id="189700093" count="1" rate="1200" />
+		<result item_id="189700094" count="1" rate="1200" />
+		<result item_id="189700095" count="1" rate="1200" />
+		<result item_id="189700096" count="1" rate="1100" />
+		<result item_id="189700097" count="1" rate="250" />
+		<result item_id="189700098" count="1" rate="250" />
+	</appraise>
+	<appraise item_id="189700050">
+		<result item_id="189700099" count="1" rate="1600" />
+		<result item_id="189700100" count="1" rate="1600" />
+		<result item_id="189700101" count="1" rate="1600" />
+		<result item_id="189700102" count="1" rate="1600" />
+		<result item_id="189700103" count="1" rate="1600" />
+		<result item_id="189700104" count="1" rate="1500" />
+		<result item_id="189700105" count="1" rate="300" />
+		<result item_id="189700106" count="1" rate="200" />
+	</appraise>
+	<appraise item_id="189700155">
+		<result item_id="189700107" count="1" rate="900" />
+		<result item_id="189700108" count="1" rate="900" />
+		<result item_id="189700109" count="1" rate="900" />
+		<result item_id="189700110" count="1" rate="900" />
+		<result item_id="189700111" count="1" rate="900" />
+		<result item_id="189700112" count="1" rate="900" />
+		<result item_id="189700113" count="1" rate="800" />
+		<result item_id="189700114" count="1" rate="800" />
+		<result item_id="189700115" count="1" rate="800" />
+		<result item_id="189700116" count="1" rate="800" />
+		<result item_id="189700117" count="1" rate="800" />
+		<result item_id="189700118" count="1" rate="300" />
+		<result item_id="189700119" count="1" rate="220" />
+		<result item_id="189700120" count="1" rate="80" />
+	</appraise>
+	<appraise item_id="189700156">
+		<result item_id="189700121" count="1" rate="1650" />
+		<result item_id="189700122" count="1" rate="1600" />
+		<result item_id="189700123" count="1" rate="1600" />
+		<result item_id="189700124" count="1" rate="1600" />
+		<result item_id="189700125" count="1" rate="1600" />
+		<result item_id="189700126" count="1" rate="1600" />
+		<result item_id="189700127" count="1" rate="200" />
+		<result item_id="189700128" count="1" rate="150" />
+	</appraise>
+	<appraise item_id="189700157">
+		<result item_id="189700129" count="1" rate="1700" />
+		<result item_id="189700130" count="1" rate="1700" />
+		<result item_id="189700131" count="1" rate="1600" />
+		<result item_id="189700132" count="1" rate="1600" />
+		<result item_id="189700133" count="1" rate="1600" />
+		<result item_id="189700134" count="1" rate="1600" />
+		<result item_id="189700135" count="1" rate="190" />
+		<result item_id="189700136" count="1" rate="10" />
+	</appraise>
+	<appraise item_id="189700158">
+		<result item_id="189700137" count="1" rate="1200" />
+		<result item_id="189700138" count="1" rate="1200" />
+		<result item_id="189700139" count="1" rate="1200" />
+		<result item_id="189700140" count="1" rate="1200" />
+		<result item_id="189700141" count="1" rate="1200" />
+		<result item_id="189700142" count="1" rate="1100" />
+		<result item_id="189700143" count="1" rate="1100" />
+		<result item_id="189700144" count="1" rate="1100" />
+		<result item_id="189700145" count="1" rate="400" />
+		<result item_id="189700146" count="1" rate="300" />
+	</appraise>
+	<appraise item_id="189720051">
+		<result item_id="189720003" count="1" rate="799" />
+		<result item_id="189720004" count="1" rate="791" />
+		<result item_id="189720005" count="1" rate="791" />
+		<result item_id="189720006" count="1" rate="791" />
+		<result item_id="189720007" count="1" rate="791" />
+		<result item_id="189720008" count="1" rate="791" />
+		<result item_id="189720009" count="1" rate="791" />
+		<result item_id="189720010" count="1" rate="791" />
+		<result item_id="189720011" count="1" rate="791" />
+		<result item_id="189720012" count="1" rate="791" />
+		<result item_id="189720013" count="1" rate="791" />
+		<result item_id="189720014" count="1" rate="791" />
+		<result item_id="189720015" count="1" rate="500" />
+	</appraise>
+	<appraise item_id="189720052">
+		<result item_id="189720016" count="1" rate="870" />
+		<result item_id="189720017" count="1" rate="863" />
+		<result item_id="189720018" count="1" rate="863" />
+		<result item_id="189720019" count="1" rate="863" />
+		<result item_id="189720020" count="1" rate="863" />
+		<result item_id="189720021" count="1" rate="863" />
+		<result item_id="189720022" count="1" rate="863" />
+		<result item_id="189720023" count="1" rate="863" />
+		<result item_id="189720024" count="1" rate="863" />
+		<result item_id="189720025" count="1" rate="863" />
+		<result item_id="189720026" count="1" rate="863" />
+		<result item_id="189720027" count="1" rate="500" />
+	</appraise>
+	<appraise item_id="189720053">
+		<result item_id="189720028" count="1" rate="1055" />
+		<result item_id="189720029" count="1" rate="1055" />
+		<result item_id="189720030" count="1" rate="1055" />
+		<result item_id="189720031" count="1" rate="1055" />
+		<result item_id="189720032" count="1" rate="1055" />
+		<result item_id="189720033" count="1" rate="1055" />
+		<result item_id="189720034" count="1" rate="1055" />
+		<result item_id="189720035" count="1" rate="1055" />
+		<result item_id="189720036" count="1" rate="1055" />
+		<result item_id="189720037" count="1" rate="505" />
+	</appraise>
+	<appraise item_id="189720054">
+		<result item_id="189720038" count="1" rate="1358" />
+		<result item_id="189720039" count="1" rate="1357" />
+		<result item_id="189720040" count="1" rate="1357" />
+		<result item_id="189720041" count="1" rate="1357" />
+		<result item_id="189720042" count="1" rate="1357" />
+		<result item_id="189720043" count="1" rate="1357" />
+		<result item_id="189720044" count="1" rate="1357" />
+		<result item_id="189720045" count="1" rate="500" />
+	</appraise>
+	<appraise item_id="189720055">
+		<result item_id="189720046" count="1" rate="3000" />
+		<result item_id="189720047" count="1" rate="2500" />
+		<result item_id="189720048" count="1" rate="2500" />
+		<result item_id="189720049" count="1" rate="1000" />
+		<result item_id="189720050" count="1" rate="1000" />
+	</appraise>
+	<appraise item_id="189720104">
+		<result item_id="189720056" count="1" rate="1100" />
+		<result item_id="189720057" count="1" rate="1100" />
+		<result item_id="189720058" count="1" rate="1100" />
+		<result item_id="189720059" count="1" rate="1100" />
+		<result item_id="189720060" count="1" rate="1100" />
+		<result item_id="189720061" count="1" rate="1100" />
+		<result item_id="189720062" count="1" rate="1100" />
+		<result item_id="189720063" count="1" rate="1100" />
+		<result item_id="189720064" count="1" rate="700" />
+		<result item_id="189720065" count="1" rate="500" />
+	</appraise>
+	<appraise item_id="189720105">
+		<result item_id="189720066" count="1" rate="850" />
+		<result item_id="189720067" count="1" rate="750" />
+		<result item_id="189720068" count="1" rate="750" />
+		<result item_id="189720069" count="1" rate="750" />
+		<result item_id="189720070" count="1" rate="750" />
+		<result item_id="189720071" count="1" rate="750" />
+		<result item_id="189720072" count="1" rate="750" />
+		<result item_id="189720073" count="1" rate="750" />
+		<result item_id="189720074" count="1" rate="750" />
+		<result item_id="189720075" count="1" rate="750" />
+		<result item_id="189720076" count="1" rate="750" />
+		<result item_id="189720077" count="1" rate="750" />
+		<result item_id="189720078" count="1" rate="500" />
+		<result item_id="189720079" count="1" rate="400" />
+	</appraise>
+	<appraise item_id="189720106">
+		<result item_id="189720080" count="1" rate="1380" />
+		<result item_id="189720081" count="1" rate="1320" />
+		<result item_id="189720082" count="1" rate="1320" />
+		<result item_id="189720083" count="1" rate="1320" />
+		<result item_id="189720084" count="1" rate="1320" />
+		<result item_id="189720085" count="1" rate="1320" />
+		<result item_id="189720086" count="1" rate="1320" />
+		<result item_id="189720087" count="1" rate="400" />
+		<result item_id="189720088" count="1" rate="300" />
+	</appraise>
+	<appraise item_id="189720107">
+		<result item_id="189720089" count="1" rate="1370" />
+		<result item_id="189720090" count="1" rate="1330" />
+		<result item_id="189720091" count="1" rate="1330" />
+		<result item_id="189720092" count="1" rate="1330" />
+		<result item_id="189720093" count="1" rate="1330" />
+		<result item_id="189720094" count="1" rate="1330" />
+		<result item_id="189720095" count="1" rate="1330" />
+		<result item_id="189720096" count="1" rate="350" />
+		<result item_id="189720097" count="1" rate="300" />
+	</appraise>
+	<appraise item_id="189720108">
+		<result item_id="189720098" count="1" rate="2200" />
+		<result item_id="189720099" count="1" rate="2200" />
+		<result item_id="189720100" count="1" rate="2200" />
+		<result item_id="189720101" count="1" rate="2200" />
+		<result item_id="189720102" count="1" rate="700" />
+		<result item_id="189720103" count="1" rate="500" />
+	</appraise>
+	<appraise item_id="189720157">
+		<result item_id="189720109" count="1" rate="1300" />
+		<result item_id="189720110" count="1" rate="1300" />
+		<result item_id="189720111" count="1" rate="1300" />
+		<result item_id="189720112" count="1" rate="1300" />
+		<result item_id="189720113" count="1" rate="1000" />
+		<result item_id="189720114" count="1" rate="1000" />
+		<result item_id="189720115" count="1" rate="1000" />
+		<result item_id="189720116" count="1" rate="1000" />
+		<result item_id="189720117" count="1" rate="600" />
+		<result item_id="189720118" count="1" rate="200" />
+	</appraise>
+	<appraise item_id="189720158">
+		<result item_id="189720119" count="1" rate="1000" />
+		<result item_id="189720120" count="1" rate="1000" />
+		<result item_id="189720121" count="1" rate="1000" />
+		<result item_id="189720122" count="1" rate="1000" />
+		<result item_id="189720123" count="1" rate="1000" />
+		<result item_id="189720124" count="1" rate="600" />
+		<result item_id="189720125" count="1" rate="600" />
+		<result item_id="189720126" count="1" rate="600" />
+		<result item_id="189720127" count="1" rate="600" />
+		<result item_id="189720128" count="1" rate="600" />
+		<result item_id="189720129" count="1" rate="600" />
+		<result item_id="189720130" count="1" rate="600" />
+		<result item_id="189720131" count="1" rate="600" />
+		<result item_id="189720132" count="1" rate="200" />
+	</appraise>
+	<appraise item_id="189720159">
+		<result item_id="189720133" count="1" rate="1800" />
+		<result item_id="189720134" count="1" rate="1800" />
+		<result item_id="189720135" count="1" rate="1800" />
+		<result item_id="189720136" count="1" rate="1000" />
+		<result item_id="189720137" count="1" rate="1000" />
+		<result item_id="189720138" count="1" rate="1000" />
+		<result item_id="189720139" count="1" rate="1000" />
+		<result item_id="189720140" count="1" rate="350" />
+		<result item_id="189720141" count="1" rate="250" />
+	</appraise>
+	<appraise item_id="189720160">
+		<result item_id="189720142" count="1" rate="1600" />
+		<result item_id="189720143" count="1" rate="1600" />
+		<result item_id="189720144" count="1" rate="1600" />
+		<result item_id="189720145" count="1" rate="1600" />
+		<result item_id="189720146" count="1" rate="1000" />
+		<result item_id="189720147" count="1" rate="1000" />
+		<result item_id="189720148" count="1" rate="1000" />
+		<result item_id="189720149" count="1" rate="400" />
+		<result item_id="189720150" count="1" rate="200" />
+	</appraise>
+	<appraise item_id="189720161">
+		<result item_id="189720151" count="1" rate="2200" />
+		<result item_id="189720152" count="1" rate="2200" />
+		<result item_id="189720153" count="1" rate="2200" />
+		<result item_id="189720154" count="1" rate="2200" />
+		<result item_id="189720155" count="1" rate="800" />
+		<result item_id="189720156" count="1" rate="400" />
+	</appraise>
+	<appraise item_id="189720210">
+		<result item_id="189720162" count="1" rate="1200" />
+		<result item_id="189720163" count="1" rate="1200" />
+		<result item_id="189720164" count="1" rate="1200" />
+		<result item_id="189720165" count="1" rate="1200" />
+		<result item_id="189720166" count="1" rate="1200" />
+		<result item_id="189720167" count="1" rate="1200" />
+		<result item_id="189720168" count="1" rate="1000" />
+		<result item_id="189720169" count="1" rate="1000" />
+		<result item_id="189720170" count="1" rate="450" />
+		<result item_id="189720171" count="1" rate="350" />
+	</appraise>
+	<appraise item_id="189720211">
+		<result item_id="189720172" count="1" rate="1000" />
+		<result item_id="189720173" count="1" rate="1000" />
+		<result item_id="189720174" count="1" rate="1000" />
+		<result item_id="189720175" count="1" rate="1000" />
+		<result item_id="189720176" count="1" rate="1000" />
+		<result item_id="189720177" count="1" rate="1000" />
+		<result item_id="189720178" count="1" rate="600" />
+		<result item_id="189720179" count="1" rate="600" />
+		<result item_id="189720180" count="1" rate="600" />
+		<result item_id="189720181" count="1" rate="600" />
+		<result item_id="189720182" count="1" rate="600" />
+		<result item_id="189720183" count="1" rate="600" />
+		<result item_id="189720184" count="1" rate="220" />
+		<result item_id="189720185" count="1" rate="180" />
+	</appraise>
+	<appraise item_id="189720212">
+		<result item_id="189720186" count="1" rate="1400" />
+		<result item_id="189720187" count="1" rate="1400" />
+		<result item_id="189720188" count="1" rate="1400" />
+		<result item_id="189720189" count="1" rate="1300" />
+		<result item_id="189720190" count="1" rate="1300" />
+		<result item_id="189720191" count="1" rate="1300" />
+		<result item_id="189720192" count="1" rate="1300" />
+		<result item_id="189720193" count="1" rate="500" />
+		<result item_id="189720194" count="1" rate="100" />
+	</appraise>
+	<appraise item_id="189720213">
+		<result item_id="189720195" count="1" rate="1400" />
+		<result item_id="189720196" count="1" rate="1400" />
+		<result item_id="189720197" count="1" rate="1400" />
+		<result item_id="189720198" count="1" rate="1400" />
+		<result item_id="189720199" count="1" rate="1400" />
+		<result item_id="189720200" count="1" rate="1200" />
+		<result item_id="189720201" count="1" rate="850" />
+		<result item_id="189720202" count="1" rate="800" />
+		<result item_id="189720203" count="1" rate="150" />
+	</appraise>
+	<appraise item_id="189720214">
+		<result item_id="189720204" count="1" rate="1700" />
+		<result item_id="189720205" count="1" rate="1700" />
+		<result item_id="189720206" count="1" rate="1700" />
+		<result item_id="189720207" count="1" rate="1700" />
+		<result item_id="189720208" count="1" rate="1600" />
+		<result item_id="189720209" count="1" rate="1600" />
+	</appraise>
+	<appraise item_id="189720263">
+		<result item_id="189720215" count="1" rate="1600" />
+		<result item_id="189720216" count="1" rate="1500" />
+		<result item_id="189720217" count="1" rate="1400" />
+		<result item_id="189720218" count="1" rate="1300" />
+		<result item_id="189720219" count="1" rate="1200" />
+		<result item_id="189720220" count="1" rate="1000" />
+		<result item_id="189720221" count="1" rate="700" />
+		<result item_id="189720222" count="1" rate="600" />
+		<result item_id="189720223" count="1" rate="500" />
+		<result item_id="189720224" count="1" rate="200" />
+	</appraise>
+	<appraise item_id="189720264">
+		<result item_id="189720225" count="1" rate="1000" />
+		<result item_id="189720226" count="1" rate="1000" />
+		<result item_id="189720227" count="1" rate="1000" />
+		<result item_id="189720228" count="1" rate="1000" />
+		<result item_id="189720229" count="1" rate="1000" />
+		<result item_id="189720230" count="1" rate="710" />
+		<result item_id="189720231" count="1" rate="710" />
+		<result item_id="189720232" count="1" rate="710" />
+		<result item_id="189720233" count="1" rate="710" />
+		<result item_id="189720234" count="1" rate="600" />
+		<result item_id="189720235" count="1" rate="600" />
+		<result item_id="189720236" count="1" rate="600" />
+		<result item_id="189720237" count="1" rate="300" />
+		<result item_id="189720238" count="1" rate="60" />
+	</appraise>
+	<appraise item_id="189720265">
+		<result item_id="189720239" count="1" rate="1800" />
+		<result item_id="189720240" count="1" rate="1800" />
+		<result item_id="189720241" count="1" rate="1800" />
+		<result item_id="189720242" count="1" rate="1400" />
+		<result item_id="189720243" count="1" rate="1100" />
+		<result item_id="189720244" count="1" rate="950" />
+		<result item_id="189720245" count="1" rate="800" />
+		<result item_id="189720246" count="1" rate="300" />
+		<result item_id="189720247" count="1" rate="50" />
+	</appraise>
+	<appraise item_id="189720266">
+		<result item_id="189720248" count="1" rate="1700" />
+		<result item_id="189720249" count="1" rate="1700" />
+		<result item_id="189720250" count="1" rate="1400" />
+		<result item_id="189720251" count="1" rate="1400" />
+		<result item_id="189720252" count="1" rate="1100" />
+		<result item_id="189720253" count="1" rate="1000" />
+		<result item_id="189720254" count="1" rate="1000" />
+		<result item_id="189720255" count="1" rate="650" />
+		<result item_id="189720256" count="1" rate="50" />
+	</appraise>
+	<appraise item_id="189720267">
+		<result item_id="189720257" count="1" rate="3500" />
+		<result item_id="189720258" count="1" rate="3500" />
+		<result item_id="189720259" count="1" rate="1500" />
+		<result item_id="189720260" count="1" rate="800" />
+		<result item_id="189720261" count="1" rate="400" />
+		<result item_id="189720262" count="1" rate="300" />
+	</appraise>
+	<appraise item_id="189720316">
+		<result item_id="189720268" count="1" rate="2000" />
+		<result item_id="189720269" count="1" rate="2000" />
+		<result item_id="189720270" count="1" rate="1500" />
+		<result item_id="189720271" count="1" rate="1500" />
+		<result item_id="189720272" count="1" rate="1000" />
+		<result item_id="189720273" count="1" rate="750" />
+		<result item_id="189720274" count="1" rate="500" />
+		<result item_id="189720275" count="1" rate="500" />
+		<result item_id="189720276" count="1" rate="220" />
+		<result item_id="189720277" count="1" rate="30" />
+	</appraise>
+	<appraise item_id="189720317">
+		<result item_id="189720278" count="1" rate="1500" />
+		<result item_id="189720279" count="1" rate="1500" />
+		<result item_id="189720280" count="1" rate="1000" />
+		<result item_id="189720281" count="1" rate="1000" />
+		<result item_id="189720282" count="1" rate="700" />
+		<result item_id="189720283" count="1" rate="700" />
+		<result item_id="189720284" count="1" rate="700" />
+		<result item_id="189720285" count="1" rate="700" />
+		<result item_id="189720286" count="1" rate="500" />
+		<result item_id="189720287" count="1" rate="500" />
+		<result item_id="189720288" count="1" rate="500" />
+		<result item_id="189720289" count="1" rate="300" />
+		<result item_id="189720290" count="1" rate="300" />
+		<result item_id="189720291" count="1" rate="100" />
+	</appraise>
+	<appraise item_id="189720318">
+		<result item_id="189720292" count="1" rate="2000" />
+		<result item_id="189720293" count="1" rate="2000" />
+		<result item_id="189720294" count="1" rate="1500" />
+		<result item_id="189720295" count="1" rate="1500" />
+		<result item_id="189720296" count="1" rate="1000" />
+		<result item_id="189720297" count="1" rate="1000" />
+		<result item_id="189720298" count="1" rate="500" />
+		<result item_id="189720299" count="1" rate="470" />
+		<result item_id="189720300" count="1" rate="30" />
+	</appraise>
+	<appraise item_id="189720319">
+		<result item_id="189720301" count="1" rate="2000" />
+		<result item_id="189720302" count="1" rate="2000" />
+		<result item_id="189720303" count="1" rate="1500" />
+		<result item_id="189720304" count="1" rate="1500" />
+		<result item_id="189720305" count="1" rate="1200" />
+		<result item_id="189720306" count="1" rate="1000" />
+		<result item_id="189720307" count="1" rate="500" />
+		<result item_id="189720308" count="1" rate="230" />
+		<result item_id="189720309" count="1" rate="70" />
+	</appraise>
+	<appraise item_id="189720320">
+		<result item_id="189720310" count="1" rate="3000" />
+		<result item_id="189720311" count="1" rate="3000" />
+		<result item_id="189720312" count="1" rate="1800" />
+		<result item_id="189720313" count="1" rate="1500" />
+		<result item_id="189720314" count="1" rate="430" />
+		<result item_id="189720315" count="1" rate="270" />
+	</appraise>
+	<appraise item_id="189720369">
+		<result item_id="189720321" count="1" rate="1400" />
+		<result item_id="189720322" count="1" rate="1400" />
+		<result item_id="189720323" count="1" rate="1400" />
+		<result item_id="189720324" count="1" rate="1400" />
+		<result item_id="189720325" count="1" rate="1300" />
+		<result item_id="189720326" count="1" rate="1300" />
+		<result item_id="189720327" count="1" rate="1300" />
+		<result item_id="189720328" count="1" rate="200" />
+		<result item_id="189720329" count="1" rate="200" />
+		<result item_id="189720330" count="1" rate="100" />
+	</appraise>
+	<appraise item_id="189720370">
+		<result item_id="189720331" count="1" rate="900" />
+		<result item_id="189720332" count="1" rate="900" />
+		<result item_id="189720333" count="1" rate="900" />
+		<result item_id="189720334" count="1" rate="900" />
+		<result item_id="189720335" count="1" rate="900" />
+		<result item_id="189720336" count="1" rate="900" />
+		<result item_id="189720337" count="1" rate="900" />
+		<result item_id="189720338" count="1" rate="900" />
+		<result item_id="189720339" count="1" rate="900" />
+		<result item_id="189720340" count="1" rate="900" />
+		<result item_id="189720341" count="1" rate="400" />
+		<result item_id="189720342" count="1" rate="400" />
+		<result item_id="189720343" count="1" rate="150" />
+		<result item_id="189720344" count="1" rate="50" />
+	</appraise>
+	<appraise item_id="189720371">
+		<result item_id="189720345" count="1" rate="1300" />
+		<result item_id="189720346" count="1" rate="1300" />
+		<result item_id="189720347" count="1" rate="1200" />
+		<result item_id="189720348" count="1" rate="1200" />
+		<result item_id="189720349" count="1" rate="1200" />
+		<result item_id="189720350" count="1" rate="1200" />
+		<result item_id="189720351" count="1" rate="1200" />
+		<result item_id="189720352" count="1" rate="1200" />
+		<result item_id="189720353" count="1" rate="200" />
+	</appraise>
+	<appraise item_id="189720372">
+		<result item_id="189720354" count="1" rate="1500" />
+		<result item_id="189720355" count="1" rate="1500" />
+		<result item_id="189720356" count="1" rate="1500" />
+		<result item_id="189720357" count="1" rate="1500" />
+		<result item_id="189720358" count="1" rate="1500" />
+		<result item_id="189720359" count="1" rate="1500" />
+		<result item_id="189720360" count="1" rate="700" />
+		<result item_id="189720361" count="1" rate="200" />
+		<result item_id="189720362" count="1" rate="100" />
+	</appraise>
+	<appraise item_id="189720373">
+		<result item_id="189720363" count="1" rate="1900" />
+		<result item_id="189720364" count="1" rate="1900" />
+		<result item_id="189720365" count="1" rate="1900" />
+		<result item_id="189720366" count="1" rate="1900" />
+		<result item_id="189720367" count="1" rate="1900" />
+		<result item_id="189720368" count="1" rate="500" />
+	</appraise>
+</storybooks>

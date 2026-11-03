@@ -87,6 +87,23 @@ static bool isOfficialIp(const char* ip) {
     return false;
 }
 
+/// Checks if an IP is a candidate server, loopback, or private network game server address.
+/// Fully compatible with multi-gameserver architectures (PR #15 style: 127.0.0.1, 127.0.0.2, etc.).
+static bool IsCandidateOrLocalServerIp(const char* ip) {
+    if (!ip || !ip[0]) return false;
+    // Loopback block (127.0.0.1, 127.0.0.2, 127.0.0.3, etc.) - covers all sub servers
+    if (strncmp(ip, "127.", 4) == 0) return true;
+    if (_stricmp(ip, "localhost") == 0) return true;
+    // Private IPv4 ranges often used for multi-server clusters
+    if (strncmp(ip, "192.168.", 8) == 0 || strncmp(ip, "10.", 3) == 0) return true;
+    if (strncmp(ip, "172.", 4) == 0) {
+        int secondOctet = atoi(ip + 4);
+        if (secondOctet >= 16 && secondOctet <= 31) return true;
+    }
+    // Any candidate IP collected from inet_ntoa
+    return HasCandidateIp(ip);
+}
+
 static decltype(inet_ntoa)* real_inet_ntoa = inet_ntoa;
 /// Gathers candidate game server IPs from the server list
 static char* WINAPI zzinet_ntoa(_In_ struct in_addr in) {
@@ -98,11 +115,14 @@ static char* WINAPI zzinet_ntoa(_In_ struct in_addr in) {
 }
 
 static decltype(lstrcpynA)* real_lstrcpynA = lstrcpynA;
-/// Spoofs the IP copy when the client validates the server list entry against official network bounds
+/// Spoofs the IP copy when the client validates the server list entry against official network bounds.
+/// Supports multiple game servers without prematurely clearing the candidate pool.
 static LPSTR WINAPI zzlstrcpynA(_Out_writes_(iMaxLength) LPSTR lpString1, _In_ LPCSTR lpString2, _In_ int iMaxLength) {
     if (iMaxLength == 256 && lpString2) {
-        if (HasCandidateIp(lpString2)) {
-            ClearCandidateIps();
+        if (IsCandidateOrLocalServerIp(lpString2)) {
+            // Note: DO NOT call ClearCandidateIps() here!
+            // Multiple game servers are read sequentially in the server list packet loop.
+            // Clearing here would prevent sub-servers (GS2, GS3) from being patched.
             return real_lstrcpynA(lpString1, kPrimaryOfficialIp, iMaxLength);
         }
     }

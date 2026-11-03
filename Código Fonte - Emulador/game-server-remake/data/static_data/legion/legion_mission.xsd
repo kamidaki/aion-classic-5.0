@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<!-- Missões da Legion (Classic 5.0), gerado do europe/PC/client_achievement_guild.xml e do PC/client_achievement_guild_action.xml por
+		parse_legion_mission_50.py. mission = período, raça, atividade, ações (por id) e estágios; action_template = tipo, código do S 0x15C,
+		progresso máximo e o que conta (ids já resolvidos das tags do cliente). -->
+	<xs:simpleType name="LegionMissionIds">
+		<xs:list itemType="xs:positiveInteger"/>
+	</xs:simpleType>
+	<xs:element name="legion_mission">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="mission" minOccurs="1" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="action" minOccurs="1" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:attribute name="id" type="xs:positiveInteger" use="required"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="stage" minOccurs="1" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:attribute name="count" type="xs:positiveInteger" use="required"/>
+									<xs:attribute name="exp" type="xs:nonNegativeInteger" use="required"/>
+									<xs:attribute name="essence" type="xs:nonNegativeInteger" use="required"/>
+									<xs:attribute name="essence_piece" type="xs:nonNegativeInteger" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="id" type="xs:positiveInteger" use="required"/>
+						<xs:attribute name="name" type="xs:string" use="required"/>
+						<xs:attribute name="period" type="LegionMissionPeriod" use="required"/>
+						<xs:attribute name="race" type="LegionDonationRace" use="required"/>
+						<xs:attribute name="activity" type="LegionMissionActivity" use="required"/>
+						<xs:attribute name="min_level" type="xs:positiveInteger" use="required"/>
+						<xs:attribute name="max_level" type="xs:positiveInteger" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="action_template" minOccurs="1" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:choice minOccurs="0">
+							<xs:element name="items" type="LegionMissionIds"/>
+							<xs:element name="npcs" type="LegionMissionIds"/>
+							<xs:element name="quests" type="LegionMissionIds"/>
+							<xs:element name="worlds" type="LegionMissionIds"/>
+						</xs:choice>
+						<xs:attribute name="id" type="xs:positiveInteger" use="required"/>
+						<xs:attribute name="name" type="xs:string" use="required"/>
+						<xs:attribute name="type" type="LegionMissionActionType" use="required"/>
+						<xs:attribute name="code" type="xs:positiveInteger"/>
+						<xs:attribute name="max_progress" type="xs:positiveInteger" use="required"/>
+						<xs:attribute name="target_type" type="xs:string"/>
+						<xs:attribute name="level_gap" type="xs:positiveInteger"/>
+						<xs:attribute name="world_condition" type="xs:string"/>
+						<xs:attribute name="condition" type="xs:string"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="LegionMissionPeriod">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="DAILY"/>
+			<xs:enumeration value="WEEKLY"/>
+			<xs:enumeration value="RETURN"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LegionMissionActivity">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NONE"/>
+			<xs:enumeration value="PVP"/>
+			<xs:enumeration value="PVE"/>
+			<xs:enumeration value="GATHER"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="LegionMissionActionType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="QUESTCLEAR"/>
+			<xs:enumeration value="HUNT"/>
+			<xs:enumeration value="ENTERWORLD"/>
+			<xs:enumeration value="COLLECTITEM"/>
+			<xs:enumeration value="ITEMPLAY"/>
+			<xs:enumeration value="PVP"/>
+			<xs:enumeration value="GATHERING"/>
+			<xs:enumeration value="POINTCHANGE"/>
+			<xs:enumeration value="USECRUSH"/>
+			<xs:enumeration value="BUYNPC"/>
+			<xs:enumeration value="VENDOR"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

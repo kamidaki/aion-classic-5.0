@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="option_clears">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" ref="option_clear"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="option_clear">
+		<xs:complexType>
+			<xs:attribute name="item_id" use="required" type="xs:int"/>
+			<xs:attribute name="type" use="required" type="OptionClearType"/>
+			<xs:attribute name="kinah" use="required" type="xs:long"/>
+			<xs:attribute name="return_item_id" type="xs:int"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="OptionClearType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="RETURN"/>
+			<xs:enumeration value="DELETE"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

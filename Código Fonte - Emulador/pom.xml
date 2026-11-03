@@ -11,7 +11,9 @@
 	<modules>
 		<module>chat-server</module>
 		<module>commons</module>
-		<module>game-server</module>
+		<module>game-server-gameforge</module>
+		<module>game-server-remake</module>
+		<module>game-server-battleroyale</module>
 		<module>login-server</module>
 	</modules>
 

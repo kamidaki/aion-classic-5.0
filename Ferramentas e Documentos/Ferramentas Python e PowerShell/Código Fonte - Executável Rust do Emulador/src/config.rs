@@ -85,6 +85,8 @@ pub struct ServerConfig {
     pub working_dir: String,
     pub label: String,
     pub tag: String,
+    #[serde(default)]
+    pub gsid: Option<u32>,
     #[serde(default = "default_true")]
     pub enabled: bool,
     pub color: String,
@@ -120,10 +122,10 @@ fn default_base_dir() -> String { ".".to_string() }
 fn default_java_dir() -> String { "Config/java-deployment".to_string() }
 fn default_chat_dir() -> String { "ChatServer".to_string() }
 fn default_login_dir() -> String { "LoginServer".to_string() }
-fn default_game_dir() -> String { "GameServer".to_string() }
+fn default_game_dir() -> String { "GameServer-Remake".to_string() }
 fn default_chat_log() -> String { "ChatServer/log".to_string() }
 fn default_login_log() -> String { "LoginServer/log".to_string() }
-fn default_game_log() -> String { "GameServer/log".to_string() }
+fn default_game_log() -> String { "GameServer-Remake/log".to_string() }
 fn default_theme() -> String { "dark".to_string() }
 fn default_width() -> u32 { 1440 }
 fn default_height() -> u32 { 900 }
@@ -192,38 +194,72 @@ impl Default for DatabaseSettings {
 
 fn default_databases() -> HashMap<String, DatabaseSettings> {
     let mut m = HashMap::new();
-    m.insert("gs".to_string(), DatabaseSettings {
+    m.insert("cs".to_string(), DatabaseSettings {
         auto_read_properties: true,
-        host: "".to_string(),
-        port: 3306,
-        user: "".to_string(),
-        password: "".to_string(),
-        database: "aionclassic_gs".to_string(),
-        properties_file: "GameServer/config/network/database.properties".to_string(),
-        label: "Game Server".to_string(),
-        color: "#32CD32".to_string(),
+        host: "192.168.3.29".to_string(),
+        port: 3310,
+        user: "aionliveclassic".to_string(),
+        password: "@d@mn0gu31r4".to_string(),
+        database: "aionclassic_cs".to_string(),
+        properties_file: "ChatServer/config/network/database.properties".to_string(),
+        label: "Chat Server".to_string(),
+        color: "#00CED1".to_string(),
     });
     m.insert("ls".to_string(), DatabaseSettings {
         auto_read_properties: true,
-        host: "".to_string(),
-        port: 3306,
-        user: "".to_string(),
-        password: "".to_string(),
+        host: "192.168.3.29".to_string(),
+        port: 3310,
+        user: "aionliveclassic".to_string(),
+        password: "@d@mn0gu31r4".to_string(),
         database: "aionclassic_ls".to_string(),
         properties_file: "LoginServer/config/network/database.properties".to_string(),
         label: "Login Server".to_string(),
         color: "#FFD700".to_string(),
     });
-    m.insert("cs".to_string(), DatabaseSettings {
+    m.insert("gameforge".to_string(), DatabaseSettings {
         auto_read_properties: true,
-        host: "".to_string(),
-        port: 3306,
-        user: "".to_string(),
-        password: "".to_string(),
-        database: "aionclassic_cs".to_string(),
-        properties_file: "ChatServer/config/network/database.properties".to_string(),
-        label: "Chat Server".to_string(),
-        color: "#00CED1".to_string(),
+        host: "192.168.3.29".to_string(),
+        port: 3310,
+        user: "aionliveclassic".to_string(),
+        password: "@d@mn0gu31r4".to_string(),
+        database: "aionclassic_gs".to_string(),
+        properties_file: "GameServer-GameForge/config/network/database.properties".to_string(),
+        label: "GameForge DB (GSID 1)".to_string(),
+        color: "#38bdf8".to_string(),
+    });
+    m.insert("remake".to_string(), DatabaseSettings {
+        auto_read_properties: true,
+        host: "192.168.3.29".to_string(),
+        port: 3310,
+        user: "aionliveclassic".to_string(),
+        password: "@d@mn0gu31r4".to_string(),
+        database: "aionclassic_gs2".to_string(),
+        properties_file: "GameServer-Remake/config/network/database.properties".to_string(),
+        label: "Remake DB (GSID 2)".to_string(),
+        color: "#10b981".to_string(),
+    });
+    m.insert("battleroyale".to_string(), DatabaseSettings {
+        auto_read_properties: true,
+        host: "192.168.3.29".to_string(),
+        port: 3310,
+        user: "aionliveclassic".to_string(),
+        password: "@d@mn0gu31r4".to_string(),
+        database: "aionclassic_gs3".to_string(),
+        properties_file: "GameServer-BattleRoyale/config/network/database.properties".to_string(),
+        label: "BattleRoyale DB (GSID 3)".to_string(),
+        color: "#f97316".to_string(),
+    });
+    // Backward compatibility aliases
+    m.insert("gs".to_string(), DatabaseSettings {
+        auto_read_properties: true,
+        host: "192.168.3.29".to_string(),
+        port: 3310,
+        user: "aionliveclassic".to_string(),
+        password: "@d@mn0gu31r4".to_string(),
+        database: "aionclassic_gs".to_string(),
+        properties_file: "GameServer-GameForge/config/network/database.properties".to_string(),
+        label: "GameForge DB".to_string(),
+        color: "#38bdf8".to_string(),
     });
     m
 }
@@ -247,6 +283,7 @@ impl Default for RootConfig {
                 working_dir: "ChatServer".to_string(),
                 label: "Chat Server".to_string(),
                 tag: "CS".to_string(),
+                gsid: None,
                 enabled: true,
                 color: "#00CED1".to_string(),
                 management_port: None,
@@ -270,6 +307,7 @@ impl Default for RootConfig {
                 working_dir: "LoginServer".to_string(),
                 label: "Login Server".to_string(),
                 tag: "LS".to_string(),
+                gsid: None,
                 enabled: true,
                 color: "#FFD700".to_string(),
                 management_port: None,
@@ -278,25 +316,74 @@ impl Default for RootConfig {
         );
 
         servers.insert(
-            "game".to_string(),
+            "gameforge".to_string(),
             ServerConfig {
                 java_exe: "Config/java-deployment/bin/java.exe".to_string(),
                 jvm_args: vec![
-                    "-Xms1280m".to_string(),
-                    "-Xmx3192m".to_string(),
-                    "-XX:MaxHeapSize=3192m".to_string(),
-                    "-ea".to_string(),
+                    "-Xms1G".to_string(),
+                    "-Xmx4G".to_string(),
+                    "-XX:+UseNUMA".to_string(),
+                    "-XX:+UseCompactObjectHeaders".to_string(),
                     "-Dfile.encoding=UTF-8".to_string(),
                     "-DconsoleEncoding=UTF-8".to_string(),
                 ],
                 main_class: "com.aionemu.gameserver.GameServer".to_string(),
-                classpath: "./libs/*;./libs/GameServer-ClassicEmu-Brasil.jar".to_string(),
-                working_dir: "GameServer".to_string(),
-                label: "Game Server".to_string(),
-                tag: "GS".to_string(),
+                classpath: "./libs/*".to_string(),
+                working_dir: "GameServer-GameForge".to_string(),
+                label: "GameForge".to_string(),
+                tag: "GF".to_string(),
+                gsid: Some(1),
+                enabled: false,
+                color: "#38bdf8".to_string(),
+                management_port: Some(7777),
+                shutdown_delay_seconds: 5,
+            },
+        );
+        servers.insert(
+            "remake".to_string(),
+            ServerConfig {
+                java_exe: "Config/java-deployment/bin/java.exe".to_string(),
+                jvm_args: vec![
+                    "-Xms1G".to_string(),
+                    "-Xmx4G".to_string(),
+                    "-XX:+UseNUMA".to_string(),
+                    "-XX:+UseCompactObjectHeaders".to_string(),
+                    "-Dfile.encoding=UTF-8".to_string(),
+                    "-DconsoleEncoding=UTF-8".to_string(),
+                ],
+                main_class: "com.aionemu.gameserver.GameServer".to_string(),
+                classpath: "./libs/*".to_string(),
+                working_dir: "GameServer-Remake".to_string(),
+                label: "Remake".to_string(),
+                tag: "RM".to_string(),
+                gsid: Some(2),
                 enabled: true,
-                color: "#32CD32".to_string(),
-                management_port: None,
+                color: "#10b981".to_string(),
+                management_port: Some(7778),
+                shutdown_delay_seconds: 5,
+            },
+        );
+        servers.insert(
+            "battleroyale".to_string(),
+            ServerConfig {
+                java_exe: "Config/java-deployment/bin/java.exe".to_string(),
+                jvm_args: vec![
+                    "-Xms1G".to_string(),
+                    "-Xmx4G".to_string(),
+                    "-XX:+UseNUMA".to_string(),
+                    "-XX:+UseCompactObjectHeaders".to_string(),
+                    "-Dfile.encoding=UTF-8".to_string(),
+                    "-DconsoleEncoding=UTF-8".to_string(),
+                ],
+                main_class: "com.aionemu.gameserver.GameServer".to_string(),
+                classpath: "./libs/*".to_string(),
+                working_dir: "GameServer-BattleRoyale".to_string(),
+                label: "BattleRoyale".to_string(),
+                tag: "BR".to_string(),
+                gsid: Some(3),
+                enabled: false,
+                color: "#f97316".to_string(),
+                management_port: Some(7779),
                 shutdown_delay_seconds: 5,
             },
         );

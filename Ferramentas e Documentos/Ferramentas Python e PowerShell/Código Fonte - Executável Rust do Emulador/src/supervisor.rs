@@ -30,6 +30,9 @@ pub struct ServerMetrics {
     pub name: String,
     pub label: String,
     pub tag: String,
+    pub gsid: Option<u32>,
+    pub db_name: String,
+    pub port: Option<u16>,
     pub color: String,
     pub status: ServerStatus,
     pub pid: Option<u32>,
@@ -111,15 +114,15 @@ pub struct ManagedServer {
     pub name: String,
     pub label: String,
     pub tag: String,
+    pub gsid: Option<u32>,
+    pub db_name: String,
     pub color: String,
     pub working_dir: PathBuf,
     pub java_exe: String,
     pub jvm_args: Vec<String>,
     pub classpath: String,
     pub main_class: String,
-    #[allow(dead_code)]
     pub management_port: Option<u16>,
-    #[allow(dead_code)]
     pub shutdown_delay_seconds: u64,
     pub child: Option<Child>,
     pub pid: Option<u32>,
@@ -295,12 +298,23 @@ impl Supervisor {
 
         for (id, sc) in &config.servers {
             let working_dir = PathBuf::from(&sc.working_dir);
+            let db_name = match id.as_str() {
+                "chat" => "aionclassic_cs".to_string(),
+                "login" => "aionclassic_ls".to_string(),
+                "gameforge" => "aionclassic_gs".to_string(),
+                "remake" => "aionclassic_gs2".to_string(),
+                "battleroyale" => "aionclassic_gs3".to_string(),
+                _ => "aionclassic_gs".to_string(),
+            };
+
             servers.insert(
                 id.clone(),
                 ManagedServer {
                     name: id.clone(),
                     label: sc.label.clone(),
                     tag: sc.tag.clone(),
+                    gsid: sc.gsid,
+                    db_name,
                     color: sc.color.clone(),
                     working_dir,
                     java_exe: resolve_java_binary(&sc.java_exe, &config.paths.java_dir),
@@ -348,12 +362,14 @@ impl Supervisor {
             }
 
             // Port de-duplication check
-            let expected_port = match name {
+            let expected_port = srv.management_port.or_else(|| match name {
                 "login" => Some(2106),
-                "game" => Some(7777),
+                "gameforge" | "game" => Some(7777),
+                "remake" => Some(7778),
+                "battleroyale" => Some(7779),
                 "chat" => Some(10241),
                 _ => None,
-            };
+            });
 
             if let Some(port) = expected_port {
                 if is_port_in_use(port) {
@@ -367,8 +383,10 @@ impl Supervisor {
             let db_id = match name {
                 "chat" => "cs",
                 "login" => "ls",
-                "game" => "gs",
-                _ => "",
+                "gameforge" => "gameforge",
+                "remake" => "remake",
+                "battleroyale" => "battleroyale",
+                _ => "gs",
             };
             if !db_id.is_empty() {
                 let chk = self.db_manager.check_database(db_id);
@@ -583,34 +601,82 @@ impl Supervisor {
         self.log_center.push("launcher", "[Launcher] Todos os servidores foram encerrados com sucesso.");
     }
 
+    /// Polls a server's listener port until bound, confirming true readiness
+    pub async fn wait_for_readiness(&self, name: &str, port: u16, timeout_secs: u64) -> Result<(), String> {
+        let deadline = Instant::now() + Duration::from_secs(timeout_secs);
+        let check_addr = std::net::SocketAddr::from(([127, 0, 0, 1], port));
+
+        while Instant::now() < deadline {
+            if std::net::TcpStream::connect_timeout(&check_addr, Duration::from_millis(200)).is_ok() {
+                return Ok(());
+            }
+            tokio::time::sleep(Duration::from_millis(500)).await;
+        }
+        Err(format!("Timeout de readiness: {} não respondeu na porta {} após {}s", name, port, timeout_secs))
+    }
+
+    /// Strict Multi-GameServer Sequential Orchestrator:
+    /// CS -> LS -> GS1 (GameForge) -> GS2 (Remake) -> GS3 (BattleRoyale)
+    /// Runs automated database preparation BEFORE starting any service.
+    /// Waits for actual TCP readiness before advancing to the next service.
     pub async fn start_all_servers_sequentially(&self) {
-        self.log_center.push("launcher", "[Launcher] Iniciando sequencia: ChatServer -> (5s) -> LoginServer -> (5s) -> GameServer.");
-        
-        self.log_center.push("launcher", "[Launcher] [1/3] Iniciando ChatServer...");
-        if let Err(e) = self.start_server("chat").await {
-            self.log_center.push("launcher", &format!("[Launcher] Interrompendo sequência: ChatServer não pôde ser iniciado: {}", e));
+        self.log_center.push("launcher", "================================================================================");
+        self.log_center.push("launcher", "[ORQUESTRADOR] Iniciando orquestração inteligente de inicialização...");
+        self.log_center.push("launcher", "[ORQUESTRADOR] Etapa 1: Preparação e migração automática do banco de dados...");
+
+        // 1. Automated Database Migration & Preparation
+        if let Err(e) = self.db_manager.prepare_databases_orchestration(&self._config, &self.log_center) {
+            self.log_center.push("launcher", &format!("[ORQUESTRADOR] ABORTANDO: Falha na preparação do banco de dados: {}", e));
             return;
         }
 
-        self.log_center.push("launcher", "[Launcher] Aguardando 5 segundos antes de inicializar o LoginServer...");
-        tokio::time::sleep(Duration::from_secs(5)).await;
+        // 2. Build execution order based on config.servers enabled state
+        // Order: CS -> LS -> GS1 -> GS2 -> GS3
+        let sequence_candidates = [
+            ("chat", "ChatServer", 10241u16),
+            ("login", "LoginServer", 2106u16),
+            ("gameforge", "GameForge (GSID 1)", 7777u16),
+            ("remake", "Remake (GSID 2)", 7778u16),
+            ("battleroyale", "BattleRoyale (GSID 3)", 7779u16),
+        ];
 
-        self.log_center.push("launcher", "[Launcher] [2/3] Iniciando LoginServer...");
-        if let Err(e) = self.start_server("login").await {
-            self.log_center.push("launcher", &format!("[Launcher] Interrompendo sequência: LoginServer não pôde ser iniciado: {}", e));
-            return;
+        let mut active_steps = Vec::new();
+        for (id, label, default_port) in sequence_candidates {
+            if let Some(sc) = self._config.servers.get(id) {
+                if sc.enabled {
+                    let port = sc.management_port.unwrap_or(default_port);
+                    active_steps.push((id, label, port));
+                }
+            }
         }
 
-        self.log_center.push("launcher", "[Launcher] Aguardando 5 segundos antes de inicializar o GameServer...");
-        tokio::time::sleep(Duration::from_secs(5)).await;
+        let total_steps = active_steps.len();
+        self.log_center.push("launcher", &format!("[ORQUESTRADOR] Etapa 2: Inicialização sequencial ({} serviços habilitados)...", total_steps));
 
-        self.log_center.push("launcher", "[Launcher] [3/3] Iniciando GameServer...");
-        if let Err(e) = self.start_server("game").await {
-            self.log_center.push("launcher", &format!("[Launcher] GameServer não pôde ser iniciado: {}", e));
-            return;
+        for (idx, (srv_id, label, port)) in active_steps.iter().enumerate() {
+            let step_num = idx + 1;
+            self.log_center.push("launcher", &format!("[ORQUESTRADOR] [{}/{}] Iniciando {}...", step_num, total_steps, label));
+
+            if let Err(e) = self.start_server(srv_id).await {
+                self.log_center.push("launcher", &format!("[ORQUESTRADOR] ERRO FATAL: {} não pôde ser iniciado: {}", label, e));
+                self.log_center.push("launcher", "[ORQUESTRADOR] Interrompendo inicialização dos serviços subsequentes.");
+                return;
+            }
+
+            self.log_center.push("launcher", &format!("[ORQUESTRADOR] Aguardando confirmação de readiness de {} na porta {}...", label, port));
+            match self.wait_for_readiness(srv_id, *port, 60).await {
+                Ok(_) => {
+                    self.log_center.push("launcher", &format!("[ORQUESTRADOR] [OK] {} confirmado online e operacional na porta {}!", label, port));
+                }
+                Err(e) => {
+                    self.log_center.push("launcher", &format!("[ORQUESTRADOR] AVISO: {} - prosseguindo com delay de segurança...", e));
+                    tokio::time::sleep(Duration::from_secs(self._config.launcher.start_sequence_delay_seconds)).await;
+                }
+            }
         }
 
-        self.log_center.push("launcher", "[Launcher] Sequencia de servidores inicializada com sucesso.");
+        self.log_center.push("launcher", "[ORQUESTRADOR] Todos os servidores habilitados inicializados com sucesso!");
+        self.log_center.push("launcher", "================================================================================");
     }
 
     pub fn spawn_crash_monitor(&self) {
@@ -754,56 +820,73 @@ impl Supervisor {
         let mut total_cpu = 0.0f32;
         let mut total_mem = 0.0f32;
 
-        for (_id, srv) in srvs.iter() {
-            let (cpu, mem) = if let Some(pid_u32) = srv.pid {
-                let pid = Pid::from_u32(pid_u32);
-                if let Some(proc) = sys.process(pid) {
-                    let c = (proc.cpu_usage() / num_cpus).clamp(0.0, 100.0);
-                    (c, proc.memory() as f32 / (1024.0 * 1024.0))
+        // Sort servers in canonical order: CS, LS, GF, RM, BR
+        let display_order = ["chat", "login", "gameforge", "remake", "battleroyale"];
+
+        for id in display_order {
+            if let Some(sc) = self._config.servers.get(id) {
+                // Strict rule: Disabled servers do NOT appear in the dashboard
+                if !sc.enabled {
+                    continue;
+                }
+            } else {
+                continue;
+            }
+
+            if let Some(srv) = srvs.get(id) {
+                let (cpu, mem) = if let Some(pid_u32) = srv.pid {
+                    let pid = Pid::from_u32(pid_u32);
+                    if let Some(proc) = sys.process(pid) {
+                        let c = (proc.cpu_usage() / num_cpus).clamp(0.0, 100.0);
+                        (c, proc.memory() as f32 / (1024.0 * 1024.0))
+                    } else {
+                        (0.0, 0.0)
+                    }
                 } else {
                     (0.0, 0.0)
-                }
-            } else {
-                (0.0, 0.0)
-            };
+                };
 
-            total_cpu += cpu;
-            total_mem += mem;
+                total_cpu += cpu;
+                total_mem += mem;
 
-            let uptime = srv.start_time.map(|t| t.elapsed().as_secs()).unwrap_or(0);
-            let avg_cpu = if srv.cpu_history.is_empty() {
-                0.0
-            } else {
-                srv.cpu_history.iter().sum::<f32>() / srv.cpu_history.len() as f32
-            };
-
-            let min_cpu = srv.cpu_history.iter().copied().fold(f32::INFINITY, f32::min);
-            let max_cpu = srv.cpu_history.iter().copied().fold(f32::NEG_INFINITY, f32::max);
-
-            let countdown = srv.stopping_deadline.map(|dl| {
-                if dl > Instant::now() {
-                    (dl - Instant::now()).as_secs()
+                let uptime = srv.start_time.map(|t| t.elapsed().as_secs()).unwrap_or(0);
+                let avg_cpu = if srv.cpu_history.is_empty() {
+                    0.0
                 } else {
-                    0
-                }
-            });
+                    srv.cpu_history.iter().sum::<f32>() / srv.cpu_history.len() as f32
+                };
 
-            server_metrics.push(ServerMetrics {
-                name: srv.name.clone(),
-                label: srv.label.clone(),
-                tag: srv.tag.clone(),
-                color: srv.color.clone(),
-                status: srv.status.clone(),
-                pid: srv.pid,
-                uptime_secs: uptime,
-                cpu_percent: cpu,
-                memory_mb: mem,
-                min_cpu: if min_cpu.is_finite() { min_cpu } else { 0.0 },
-                max_cpu: if max_cpu.is_finite() { max_cpu } else { 0.0 },
-                avg_cpu,
-                trend: if cpu > avg_cpu { "up".to_string() } else { "down".to_string() },
-                countdown_secs: countdown,
-            });
+                let min_cpu = srv.cpu_history.iter().copied().fold(f32::INFINITY, f32::min);
+                let max_cpu = srv.cpu_history.iter().copied().fold(f32::NEG_INFINITY, f32::max);
+
+                let countdown = srv.stopping_deadline.map(|dl| {
+                    if dl > Instant::now() {
+                        (dl - Instant::now()).as_secs()
+                    } else {
+                        0
+                    }
+                });
+
+                server_metrics.push(ServerMetrics {
+                    name: srv.name.clone(),
+                    label: srv.label.clone(),
+                    tag: srv.tag.clone(),
+                    gsid: srv.gsid,
+                    db_name: srv.db_name.clone(),
+                    port: srv.management_port,
+                    color: srv.color.clone(),
+                    status: srv.status.clone(),
+                    pid: srv.pid,
+                    uptime_secs: uptime,
+                    cpu_percent: cpu,
+                    memory_mb: mem,
+                    min_cpu: if min_cpu.is_finite() { min_cpu } else { 0.0 },
+                    max_cpu: if max_cpu.is_finite() { max_cpu } else { 0.0 },
+                    avg_cpu,
+                    trend: if cpu > avg_cpu { "up".to_string() } else { "down".to_string() },
+                    countdown_secs: countdown,
+                });
+            }
         }
 
         let launcher_pid = Pid::from_u32(self.launcher_pid);
@@ -865,6 +948,10 @@ impl Supervisor {
         }
     }
 
+    pub fn db_manager(&self) -> &DbManagerMulti {
+        &self.db_manager
+    }
+
     pub fn get_online_players(&self) -> Vec<OnlinePlayerInfo> {
         self.db_manager.get_online_players()
     }
@@ -879,14 +966,180 @@ impl Supervisor {
 #[cfg(test)]
 mod tests {
     use super::*;
+    use crate::config::RootConfig;
 
     #[test]
     fn test_resolve_java_binary() {
         let bin = resolve_java_binary("java", "java-deployment");
         println!("Resolved Java binary: {}", bin);
         assert!(!bin.contains("1.8"), "Must NOT resolve to obsolete JDK 8: {}", bin);
-        // Modern JDK verification
         assert!(!bin.is_empty(), "Java binary must not be empty");
     }
-}
 
+    #[test]
+    fn test_default_preset_remake_only() {
+        let cfg = RootConfig::default();
+        assert_eq!(cfg.servers.get("gameforge").unwrap().enabled, false);
+        assert_eq!(cfg.servers.get("remake").unwrap().enabled, true);
+        assert_eq!(cfg.servers.get("battleroyale").unwrap().enabled, false);
+        assert_eq!(cfg.servers.get("gameforge").unwrap().jvm_args[0], "-Xms1G");
+        assert_eq!(cfg.servers.get("gameforge").unwrap().jvm_args[1], "-Xmx4G");
+        assert_eq!(cfg.servers.get("remake").unwrap().jvm_args[0], "-Xms1G");
+        assert_eq!(cfg.servers.get("remake").unwrap().jvm_args[1], "-Xmx4G");
+        assert_eq!(cfg.servers.get("battleroyale").unwrap().jvm_args[0], "-Xms1G");
+        assert_eq!(cfg.servers.get("battleroyale").unwrap().jvm_args[1], "-Xmx4G");
+    }
+
+    #[test]
+    fn test_scenario_a_all_servers_enabled() {
+        let mut cfg = RootConfig::default();
+        if let Some(srv) = cfg.servers.get_mut("gameforge") {
+            srv.enabled = true;
+        }
+        if let Some(srv) = cfg.servers.get_mut("remake") {
+            srv.enabled = true;
+        }
+        if let Some(srv) = cfg.servers.get_mut("battleroyale") {
+            srv.enabled = true;
+        }
+        let mut startup_order: Vec<String> = Vec::new();
+        if cfg.servers.contains_key("chat") && cfg.servers.get("chat").map(|s| s.enabled).unwrap_or(true) {
+            startup_order.push("chat".to_string());
+        }
+        if cfg.servers.contains_key("login") && cfg.servers.get("login").map(|s| s.enabled).unwrap_or(true) {
+            startup_order.push("login".to_string());
+        }
+        for gs_id in ["gameforge", "remake", "battleroyale"] {
+            if let Some(srv) = cfg.servers.get(gs_id) {
+                if srv.enabled {
+                    startup_order.push(gs_id.to_string());
+                }
+            }
+        }
+        assert_eq!(startup_order, vec!["chat", "login", "gameforge", "remake", "battleroyale"]);
+        assert_eq!(cfg.servers.get("gameforge").unwrap().gsid, Some(1));
+        assert_eq!(cfg.servers.get("remake").unwrap().gsid, Some(2));
+        assert_eq!(cfg.servers.get("battleroyale").unwrap().gsid, Some(3));
+        assert_eq!(cfg.servers.get("gameforge").unwrap().management_port, Some(7777));
+        assert_eq!(cfg.servers.get("remake").unwrap().management_port, Some(7778));
+        assert_eq!(cfg.servers.get("battleroyale").unwrap().management_port, Some(7779));
+    }
+
+    #[test]
+    fn test_scenario_b_gameforge_and_remake_only() {
+        let mut cfg = RootConfig::default();
+        if let Some(srv) = cfg.servers.get_mut("gameforge") {
+            srv.enabled = true;
+        }
+        if let Some(srv) = cfg.servers.get_mut("remake") {
+            srv.enabled = true;
+        }
+        if let Some(srv) = cfg.servers.get_mut("battleroyale") {
+            srv.enabled = false;
+        }
+        let mut startup_order: Vec<String> = Vec::new();
+        if cfg.servers.contains_key("chat") && cfg.servers.get("chat").map(|s| s.enabled).unwrap_or(true) {
+            startup_order.push("chat".to_string());
+        }
+        if cfg.servers.contains_key("login") && cfg.servers.get("login").map(|s| s.enabled).unwrap_or(true) {
+            startup_order.push("login".to_string());
+        }
+        for gs_id in ["gameforge", "remake", "battleroyale"] {
+            if let Some(srv) = cfg.servers.get(gs_id) {
+                if srv.enabled {
+                    startup_order.push(gs_id.to_string());
+                }
+            }
+        }
+        assert_eq!(startup_order, vec!["chat", "login", "gameforge", "remake"]);
+        assert!(!startup_order.contains(&"battleroyale".to_string()));
+    }
+
+    #[test]
+    fn test_scenario_c_gameforge_and_battleroyale_only() {
+        let mut cfg = RootConfig::default();
+        if let Some(srv) = cfg.servers.get_mut("gameforge") {
+            srv.enabled = true;
+        }
+        if let Some(srv) = cfg.servers.get_mut("remake") {
+            srv.enabled = false;
+        }
+        if let Some(srv) = cfg.servers.get_mut("battleroyale") {
+            srv.enabled = true;
+        }
+        let mut startup_order: Vec<String> = Vec::new();
+        if cfg.servers.contains_key("chat") && cfg.servers.get("chat").map(|s| s.enabled).unwrap_or(true) {
+            startup_order.push("chat".to_string());
+        }
+        if cfg.servers.contains_key("login") && cfg.servers.get("login").map(|s| s.enabled).unwrap_or(true) {
+            startup_order.push("login".to_string());
+        }
+        for gs_id in ["gameforge", "remake", "battleroyale"] {
+            if let Some(srv) = cfg.servers.get(gs_id) {
+                if srv.enabled {
+                    startup_order.push(gs_id.to_string());
+                }
+            }
+        }
+        assert_eq!(startup_order, vec!["chat", "login", "gameforge", "battleroyale"]);
+        assert!(!startup_order.contains(&"remake".to_string()));
+    }
+
+    #[test]
+    fn test_scenario_d_remake_and_battleroyale_only() {
+        let mut cfg = RootConfig::default();
+        if let Some(srv) = cfg.servers.get_mut("gameforge") {
+            srv.enabled = false;
+        }
+        if let Some(srv) = cfg.servers.get_mut("remake") {
+            srv.enabled = true;
+        }
+        if let Some(srv) = cfg.servers.get_mut("battleroyale") {
+            srv.enabled = true;
+        }
+        let mut startup_order: Vec<String> = Vec::new();
+        if cfg.servers.contains_key("chat") && cfg.servers.get("chat").map(|s| s.enabled).unwrap_or(true) {
+            startup_order.push("chat".to_string());
+        }
+        if cfg.servers.contains_key("login") && cfg.servers.get("login").map(|s| s.enabled).unwrap_or(true) {
+            startup_order.push("login".to_string());
+        }
+        for gs_id in ["gameforge", "remake", "battleroyale"] {
+            if let Some(srv) = cfg.servers.get(gs_id) {
+                if srv.enabled {
+                    startup_order.push(gs_id.to_string());
+                }
+            }
+        }
+        assert_eq!(startup_order, vec!["chat", "login", "remake", "battleroyale"]);
+        assert!(!startup_order.contains(&"gameforge".to_string()));
+    }
+
+    #[test]
+    fn test_properties_manager_backup_creation() {
+        use crate::properties_manager::PropertiesManager;
+        use std::collections::HashMap;
+        let temp_dir = std::env::temp_dir().join(format!("aion_test_pm_{}", std::time::SystemTime::now().duration_since(std::time::UNIX_EPOCH).unwrap().as_nanos()));
+        std::fs::create_dir_all(&temp_dir).unwrap();
+        let target_file = temp_dir.join("test.properties");
+        std::fs::write(&target_file, "# Comment line\r\nserver.id = 1\r\nserver.name = Original\r\n").unwrap();
+
+        let mut updates = HashMap::new();
+        updates.insert("server.id".to_string(), "2".to_string());
+        updates.insert("server.name".to_string(), "Updated".to_string());
+
+        let res = PropertiesManager::save_file(&target_file.to_string_lossy(), &updates);
+        assert!(res.is_ok(), "Failed to save properties file: {:?}", res.err());
+
+        let save_result = res.unwrap();
+        assert!(std::path::Path::new(&save_result.backup_path).exists(), "Backup .bak file was not created!");
+        let bak_content = std::fs::read_to_string(&save_result.backup_path).unwrap();
+        assert!(bak_content.contains("server.id = 1"));
+
+        let read_back = PropertiesManager::read_file(&target_file.to_string_lossy(), Some("test")).unwrap();
+        assert_eq!(read_back.items.iter().find(|i| i.key == "server.id").unwrap().value, "2");
+        assert_eq!(read_back.items.iter().find(|i| i.key == "server.name").unwrap().value, "Updated");
+
+        let _ = std::fs::remove_dir_all(&temp_dir);
+    }
+}

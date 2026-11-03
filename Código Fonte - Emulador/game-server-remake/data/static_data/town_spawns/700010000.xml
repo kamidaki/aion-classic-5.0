@@ -1,0 +1,1780 @@
+<?xml version='1.0' encoding='utf-8'?>
+<town_spawns_data>
+	<spawn_map map_id="700010000">
+		<town_spawn town_id="1001">
+			<town_level level="1">
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="2">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="3">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="4">
+				<!-- Patuan -->
+				<spawn npc_id="701519" respawn_time="1800">
+					<spot x="618.2563" y="2260.4648" z="163.79773" h="14" static_id="5029" />
+					<spot x="710.32855" y="2112.371" z="162.80807" h="14" static_id="5031" />
+					<spot x="779.21783" y="2294.7065" z="158.67747" h="14" static_id="5033" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="5">
+				<!-- Ancient Crown Administrator -->
+				<!-- Deployed Ancient Goblet Administrator -->
+				<!-- Patuan -->
+				<spawn npc_id="701519" respawn_time="1800">
+					<spot x="618.2563" y="2260.4648" z="163.79773" h="14" static_id="5029" />
+					<spot x="710.32855" y="2112.371" z="162.80807" h="14" static_id="5031" />
+					<spot x="779.21783" y="2294.7065" z="158.67747" h="14" static_id="5033" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Building Renovation Manager -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Special Guestbloom Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+		</town_spawn>
+		<town_spawn town_id="1002">
+			<town_level level="1">
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="2">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="3">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="4">
+				<!-- Patuan -->
+				<spawn npc_id="701519" respawn_time="1800">
+					<spot x="169.81021" y="2114.9495" z="125.61671" h="14" static_id="5498" />
+					<spot x="290.54037" y="2156.1538" z="128.61852" h="14" static_id="5496" />
+					<spot x="401.72803" y="1974.7544" z="125.77959" h="14" static_id="5494" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="5">
+				<!-- Ancient Crown Administrator -->
+				<!-- Deployed Ancient Goblet Administrator -->
+				<!-- Patuan -->
+				<spawn npc_id="701519" respawn_time="1800">
+					<spot x="169.81021" y="2114.9495" z="125.61671" h="14" static_id="5498" />
+					<spot x="290.54037" y="2156.1538" z="128.61852" h="14" static_id="5496" />
+					<spot x="401.72803" y="1974.7544" z="125.77959" h="14" static_id="5494" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Building Renovation Manager -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Special Guestbloom Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+		</town_spawn>
+		<town_spawn town_id="1003">
+			<town_level level="1">
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="2">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="3">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="4">
+				<!-- Patuan -->
+				<spawn npc_id="701519" respawn_time="1800">
+					<spot x="225.1162" y="2649.6946" z="266.35355" h="14" static_id="5099" />
+					<spot x="242.25499" y="2513.4758" z="268.38785" h="14" static_id="5078" />
+					<spot x="394.36383" y="2668.695" z="270.41284" h="14" static_id="5110" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="5">
+				<!-- Ancient Crown Administrator -->
+				<!-- Deployed Ancient Goblet Administrator -->
+				<!-- Patuan -->
+				<spawn npc_id="701519" respawn_time="1800">
+					<spot x="225.1162" y="2649.6946" z="266.35355" h="14" static_id="5099" />
+					<spot x="242.25499" y="2513.4758" z="268.38785" h="14" static_id="5078" />
+					<spot x="394.36383" y="2668.695" z="270.41284" h="14" static_id="5110" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Building Renovation Manager -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Special Guestbloom Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+		</town_spawn>
+		<town_spawn town_id="1004">
+			<town_level level="1">
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="2">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="3">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="4">
+				<!-- Patuan -->
+				<spawn npc_id="701519" respawn_time="1800">
+					<spot x="912.6702" y="2722.4697" z="100.47089" h="14" static_id="5036" />
+					<spot x="959.0986" y="2435.958" z="112.97173" h="14" static_id="5034" />
+					<spot x="1049.5364" y="2666.2656" z="93.43538" h="14" static_id="5476" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="5">
+				<!-- Ancient Crown Administrator -->
+				<!-- Deployed Ancient Goblet Administrator -->
+				<!-- Patuan -->
+				<spawn npc_id="701519" respawn_time="1800">
+					<spot x="912.6702" y="2722.4697" z="100.47089" h="14" static_id="5036" />
+					<spot x="959.0986" y="2435.958" z="112.97173" h="14" static_id="5034" />
+					<spot x="1049.5364" y="2666.2656" z="93.43538" h="14" static_id="5476" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Building Renovation Manager -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Special Guestbloom Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+		</town_spawn>
+		<town_spawn town_id="1005">
+			<town_level level="1">
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="2">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="3">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="4">
+				<!-- Kirke -->
+				<spawn npc_id="701520" respawn_time="1800">
+					<spot x="642.6651" y="997.8584" z="93.84589" h="14" static_id="5566" />
+					<spot x="747.3767" y="1195.5885" z="99.49001" h="14" static_id="5562" />
+					<spot x="824.2884" y="1005.1948" z="101.98208" h="14" static_id="5568" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="5">
+				<!-- Ancient Crown Administrator -->
+				<!-- Deployed Ancient Goblet Administrator -->
+				<!-- Kirke -->
+				<spawn npc_id="701520" respawn_time="1800">
+					<spot x="642.6651" y="997.8584" z="93.84589" h="14" static_id="5566" />
+					<spot x="747.3767" y="1195.5885" z="99.49001" h="14" static_id="5562" />
+					<spot x="824.2884" y="1005.1948" z="101.98208" h="14" static_id="5568" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Building Renovation Manager -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Special Guestbloom Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+		</town_spawn>
+		<town_spawn town_id="1006">
+			<town_level level="1">
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="2">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="3">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="4">
+				<!-- Kirke -->
+				<spawn npc_id="701520" respawn_time="1800">
+					<spot x="660.2926" y="1462.891" z="104.2573" h="14" static_id="5504" />
+					<spot x="728.20245" y="1624.0222" z="102.7466" h="14" static_id="5506" />
+					<spot x="756.64056" y="1455.4948" z="100.1085" h="14" static_id="5508" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="5">
+				<!-- Ancient Crown Administrator -->
+				<!-- Deployed Ancient Goblet Administrator -->
+				<!-- Kirke -->
+				<spawn npc_id="701520" respawn_time="1800">
+					<spot x="660.2926" y="1462.891" z="104.2573" h="14" static_id="5504" />
+					<spot x="728.20245" y="1624.0222" z="102.7466" h="14" static_id="5506" />
+					<spot x="756.64056" y="1455.4948" z="100.1085" h="14" static_id="5508" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Building Renovation Manager -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Special Guestbloom Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+		</town_spawn>
+		<town_spawn town_id="1007">
+			<town_level level="1">
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="2">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="3">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="4">
+				<!-- Kirke -->
+				<spawn npc_id="701520" respawn_time="1800">
+					<spot x="245.54495" y="1500.9119" z="92.5945" h="14" static_id="5500" />
+					<spot x="334.70837" y="1524.708" z="92.08386" h="14" static_id="5502" />
+					<spot x="359.7672" y="1354.1122" z="86.98099" h="14" static_id="5499" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="5">
+				<!-- Ancient Crown Administrator -->
+				<!-- Deployed Ancient Goblet Administrator -->
+				<!-- Kirke -->
+				<spawn npc_id="701520" respawn_time="1800">
+					<spot x="245.54495" y="1500.9119" z="92.5945" h="14" static_id="5500" />
+					<spot x="334.70837" y="1524.708" z="92.08386" h="14" static_id="5502" />
+					<spot x="359.7672" y="1354.1122" z="86.98099" h="14" static_id="5499" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Building Renovation Manager -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Special Guestbloom Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+		</town_spawn>
+		<town_spawn town_id="1008">
+			<town_level level="1">
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="2">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="3">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="4">
+				<!-- Kirke -->
+				<spawn npc_id="701520" respawn_time="1800">
+					<spot x="187.9053" y="307.02676" z="134.3633" h="14" static_id="5578" />
+					<spot x="226.42308" y="469.32343" z="128.9636" h="14" static_id="5580" />
+					<spot x="349.697" y="398.614" z="130.33931" h="14" static_id="5576" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="5">
+				<!-- Ancient Crown Administrator -->
+				<!-- Deployed Ancient Goblet Administrator -->
+				<!-- Kirke -->
+				<spawn npc_id="701520" respawn_time="1800">
+					<spot x="187.9053" y="307.02676" z="134.3633" h="14" static_id="5578" />
+					<spot x="226.42308" y="469.32343" z="128.9636" h="14" static_id="5580" />
+					<spot x="349.697" y="398.614" z="130.33931" h="14" static_id="5576" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Building Renovation Manager -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Special Guestbloom Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+		</town_spawn>
+		<town_spawn town_id="1009">
+			<town_level level="1">
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="2">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="3">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="4">
+				<!-- Kirke -->
+				<spawn npc_id="701520" respawn_time="1800">
+					<spot x="401.89246" y="764.2675" z="86.32527" h="14" static_id="5570" />
+					<spot x="452.36133" y="628.3803" z="86.8287" h="14" static_id="5574" />
+					<spot x="558.088" y="714.04663" z="86.40097" h="14" static_id="5572" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="5">
+				<!-- Ancient Crown Administrator -->
+				<!-- Deployed Ancient Goblet Administrator -->
+				<!-- Kirke -->
+				<spawn npc_id="701520" respawn_time="1800">
+					<spot x="401.89246" y="764.2675" z="86.32527" h="14" static_id="5570" />
+					<spot x="452.36133" y="628.3803" z="86.8287" h="14" static_id="5574" />
+					<spot x="558.088" y="714.04663" z="86.40097" h="14" static_id="5572" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Building Renovation Manager -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Special Guestbloom Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+		</town_spawn>
+		<town_spawn town_id="1010">
+			<town_level level="1">
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="2">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="3">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="4">
+				<!-- Kirke -->
+				<spawn npc_id="701520" respawn_time="1800">
+					<spot x="624.13776" y="276.6281" z="120.57031" h="14" static_id="5582" />
+					<spot x="652.6091" y="184.95886" z="129.48633" h="14" static_id="5584" />
+					<spot x="825.00995" y="272.4117" z="120.44479" h="14" static_id="5586" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="5">
+				<!-- Ancient Crown Administrator -->
+				<!-- Deployed Ancient Goblet Administrator -->
+				<!-- Kirke -->
+				<spawn npc_id="701520" respawn_time="1800">
+					<spot x="624.13776" y="276.6281" z="120.57031" h="14" static_id="5582" />
+					<spot x="652.6091" y="184.95886" z="129.48633" h="14" static_id="5584" />
+					<spot x="825.00995" y="272.4117" z="120.44479" h="14" static_id="5586" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Building Renovation Manager -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Special Guestbloom Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+		</town_spawn>
+		<town_spawn town_id="1011">
+			<town_level level="1">
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="2">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="3">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="4">
+				<!-- Kirke -->
+				<spawn npc_id="701520" respawn_time="1800">
+					<spot x="1189.8635" y="1140.0736" z="103.27678" h="14" static_id="5645" />
+					<spot x="1291.0813" y="1123.2524" z="103.07919" h="14" static_id="5643" />
+					<spot x="1355.2405" y="1168.0177" z="109.97887" h="14" static_id="5647" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="5">
+				<!-- Ancient Crown Administrator -->
+				<!-- Deployed Ancient Goblet Administrator -->
+				<!-- Kirke -->
+				<spawn npc_id="701520" respawn_time="1800">
+					<spot x="1189.8635" y="1140.0736" z="103.27678" h="14" static_id="5645" />
+					<spot x="1291.0813" y="1123.2524" z="103.07919" h="14" static_id="5643" />
+					<spot x="1355.2405" y="1168.0177" z="109.97887" h="14" static_id="5647" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Building Renovation Manager -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Special Guestbloom Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+		</town_spawn>
+		<town_spawn town_id="1012">
+			<town_level level="1">
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="2">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="3">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="4">
+				<!-- Kirke -->
+				<spawn npc_id="701520" respawn_time="1800">
+					<spot x="967.8214" y="909.11456" z="80.815895" h="14" static_id="5641" />
+					<spot x="1008.6869" y="726.9521" z="80.52702" h="14" static_id="5639" />
+					<spot x="1102.162" y="900.18945" z="80.77588" h="14" static_id="5637" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="5">
+				<!-- Ancient Crown Administrator -->
+				<!-- Deployed Ancient Goblet Administrator -->
+				<!-- Kirke -->
+				<spawn npc_id="701520" respawn_time="1800">
+					<spot x="967.8214" y="909.11456" z="80.815895" h="14" static_id="5641" />
+					<spot x="1008.6869" y="726.9521" z="80.52702" h="14" static_id="5639" />
+					<spot x="1102.162" y="900.18945" z="80.77588" h="14" static_id="5637" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Building Renovation Manager -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Special Guestbloom Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+		</town_spawn>
+		<town_spawn town_id="1013">
+			<town_level level="1">
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="2">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="3">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="4">
+				<!-- Kirke -->
+				<spawn npc_id="701520" respawn_time="1800">
+					<spot x="1133.9877" y="507.38623" z="97.74826" h="14" static_id="5607" />
+					<spot x="1159.9171" y="590.37146" z="111.46603" h="14" static_id="5614" />
+					<spot x="1184.8778" y="369.4794" z="83.32236" h="14" static_id="5588" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="5">
+				<!-- Ancient Crown Administrator -->
+				<!-- Deployed Ancient Goblet Administrator -->
+				<!-- Kirke -->
+				<spawn npc_id="701520" respawn_time="1800">
+					<spot x="1133.9877" y="507.38623" z="97.74826" h="14" static_id="5607" />
+					<spot x="1159.9171" y="590.37146" z="111.46603" h="14" static_id="5614" />
+					<spot x="1184.8778" y="369.4794" z="83.32236" h="14" static_id="5588" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Building Renovation Manager -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Special Guestbloom Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+		</town_spawn>
+		<town_spawn town_id="1014">
+			<town_level level="1">
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="2">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="3">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="4">
+				<!-- Kilix -->
+				<spawn npc_id="701521" respawn_time="1800">
+					<spot x="2518.327" y="1416.8248" z="179.15247" h="14" static_id="5677" />
+					<spot x="2587.7446" y="1586.1421" z="185.75693" h="14" static_id="5675" />
+					<spot x="2620.0237" y="1475.0034" z="185.87228" h="14" static_id="5673" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="5">
+				<!-- Ancient Crown Administrator -->
+				<!-- Deployed Ancient Goblet Administrator -->
+				<!-- Kilix -->
+				<spawn npc_id="701521" respawn_time="1800">
+					<spot x="2518.327" y="1416.8248" z="179.15247" h="14" static_id="5677" />
+					<spot x="2587.7446" y="1586.1421" z="185.75693" h="14" static_id="5675" />
+					<spot x="2620.0237" y="1475.0034" z="185.87228" h="14" static_id="5673" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Building Renovation Manager -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Special Guestbloom Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+		</town_spawn>
+		<town_spawn town_id="1015">
+			<town_level level="1">
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="2">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="3">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="4">
+				<!-- Kilix -->
+				<spawn npc_id="701521" respawn_time="1800">
+					<spot x="2056.2659" y="1435.8978" z="80.66426" h="14" static_id="5671" />
+					<spot x="2129.3665" y="1279.9613" z="86.5755" h="14" static_id="3710" />
+					<spot x="2137.6907" y="1416.2089" z="86.08165" h="14" static_id="5669" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="5">
+				<!-- Ancient Crown Administrator -->
+				<!-- Deployed Ancient Goblet Administrator -->
+				<!-- Kilix -->
+				<spawn npc_id="701521" respawn_time="1800">
+					<spot x="2056.2659" y="1435.8978" z="80.66426" h="14" static_id="5671" />
+					<spot x="2129.3665" y="1279.9613" z="86.5755" h="14" static_id="3710" />
+					<spot x="2137.6907" y="1416.2089" z="86.08165" h="14" static_id="5669" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Building Renovation Manager -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Special Guestbloom Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+		</town_spawn>
+		<town_spawn town_id="1016">
+			<town_level level="1">
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="2">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="3">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="4">
+				<!-- Kilix -->
+				<spawn npc_id="701521" respawn_time="1800">
+					<spot x="1865.689" y="2080.5828" z="81.05721" h="14" static_id="5713" />
+					<spot x="1920.038" y="1993.0713" z="81.26391" h="14" static_id="5711" />
+					<spot x="1989.1577" y="1916.6051" z="82.54618" h="14" static_id="5709" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="5">
+				<!-- Ancient Crown Administrator -->
+				<!-- Deployed Ancient Goblet Administrator -->
+				<!-- Kilix -->
+				<spawn npc_id="701521" respawn_time="1800">
+					<spot x="1865.689" y="2080.5828" z="81.05721" h="14" static_id="5713" />
+					<spot x="1920.038" y="1993.0713" z="81.26391" h="14" static_id="5711" />
+					<spot x="1989.1577" y="1916.6051" z="82.54618" h="14" static_id="5709" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Building Renovation Manager -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Special Guestbloom Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+		</town_spawn>
+		<town_spawn town_id="1017">
+			<town_level level="1">
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="2">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="3">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="4">
+				<!-- Kilix -->
+				<spawn npc_id="701521" respawn_time="1800">
+					<spot x="2023.6711" y="808.6053" z="86.14799" h="14" static_id="5663" />
+					<spot x="2095.6345" y="831.43115" z="90.75728" h="14" static_id="5661" />
+					<spot x="2146.182" y="917.64703" z="95.71282" h="14" static_id="5665" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="5">
+				<!-- Ancient Crown Administrator -->
+				<!-- Deployed Ancient Goblet Administrator -->
+				<!-- Kilix -->
+				<spawn npc_id="701521" respawn_time="1800">
+					<spot x="2023.6711" y="808.6053" z="86.14799" h="14" static_id="5663" />
+					<spot x="2095.6345" y="831.43115" z="90.75728" h="14" static_id="5661" />
+					<spot x="2146.182" y="917.64703" z="95.71282" h="14" static_id="5665" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Building Renovation Manager -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Special Guestbloom Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+		</town_spawn>
+		<town_spawn town_id="1018">
+			<town_level level="1">
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="2">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="3">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="4">
+				<!-- Kilix -->
+				<spawn npc_id="701521" respawn_time="1800">
+					<spot x="2577.849" y="1040.6278" z="162.14891" h="14" static_id="5077" />
+					<spot x="2714.9485" y="1019.6284" z="189.4263" h="14" static_id="4980" />
+					<spot x="2814.5896" y="1020.7404" z="207.00912" h="14" static_id="5070" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="5">
+				<!-- Ancient Crown Administrator -->
+				<!-- Deployed Ancient Goblet Administrator -->
+				<!-- Kilix -->
+				<spawn npc_id="701521" respawn_time="1800">
+					<spot x="2577.849" y="1040.6278" z="162.14891" h="14" static_id="5077" />
+					<spot x="2714.9485" y="1019.6284" z="189.4263" h="14" static_id="4980" />
+					<spot x="2814.5896" y="1020.7404" z="207.00912" h="14" static_id="5070" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Building Renovation Manager -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Special Guestbloom Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+		</town_spawn>
+		<town_spawn town_id="1019">
+			<town_level level="1">
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="2">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="3">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="4">
+				<!-- Kilix -->
+				<spawn npc_id="701521" respawn_time="1800">
+					<spot x="2268.3718" y="2260.8145" z="137.8171" h="14" static_id="5683" />
+					<spot x="2336.7576" y="2143.911" z="137.78943" h="14" static_id="5679" />
+					<spot x="2394.9163" y="2280.9954" z="143.44685" h="14" static_id="5681" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="5">
+				<!-- Ancient Crown Administrator -->
+				<!-- Deployed Ancient Goblet Administrator -->
+				<!-- Kilix -->
+				<spawn npc_id="701521" respawn_time="1800">
+					<spot x="2268.3718" y="2260.8145" z="137.8171" h="14" static_id="5683" />
+					<spot x="2336.7576" y="2143.911" z="137.78943" h="14" static_id="5679" />
+					<spot x="2394.9163" y="2280.9954" z="143.44685" h="14" static_id="5681" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Building Renovation Manager -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Special Guestbloom Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+		</town_spawn>
+		<town_spawn town_id="1020">
+			<town_level level="1">
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="2">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="3">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="4">
+				<!-- Kilix -->
+				<spawn npc_id="701521" respawn_time="1800">
+					<spot x="1448.4489" y="2666.1008" z="88.21169" h="14" static_id="5707" />
+					<spot x="1519.6385" y="2762.7808" z="88.01009" h="14" static_id="5705" />
+					<spot x="1545.3251" y="2621.0234" z="87.97458" h="14" static_id="5703" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="5">
+				<!-- Ancient Crown Administrator -->
+				<!-- Deployed Ancient Goblet Administrator -->
+				<!-- Kilix -->
+				<spawn npc_id="701521" respawn_time="1800">
+					<spot x="1448.4489" y="2666.1008" z="88.21169" h="14" static_id="5707" />
+					<spot x="1519.6385" y="2762.7808" z="88.01009" h="14" static_id="5705" />
+					<spot x="1545.3251" y="2621.0234" z="87.97458" h="14" static_id="5703" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Building Renovation Manager -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Special Guestbloom Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+		</town_spawn>
+		<town_spawn town_id="1021">
+			<town_level level="1">
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="2">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="3">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="4">
+				<!-- Kilix -->
+				<spawn npc_id="701521" respawn_time="1800">
+					<spot x="1538.4207" y="2289.0647" z="86.12105" h="14" static_id="5701" />
+					<spot x="1601.4841" y="2356.4353" z="86.00159" h="14" static_id="5699" />
+					<spot x="1701.5093" y="2310.9058" z="85.95817" h="14" static_id="5697" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="5">
+				<!-- Ancient Crown Administrator -->
+				<!-- Deployed Ancient Goblet Administrator -->
+				<!-- Kilix -->
+				<spawn npc_id="701521" respawn_time="1800">
+					<spot x="1538.4207" y="2289.0647" z="86.12105" h="14" static_id="5701" />
+					<spot x="1601.4841" y="2356.4353" z="86.00159" h="14" static_id="5699" />
+					<spot x="1701.5093" y="2310.9058" z="85.95817" h="14" static_id="5697" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Building Renovation Manager -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Special Guestbloom Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+		</town_spawn>
+		<town_spawn town_id="1022">
+			<town_level level="1">
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="2">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="3">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="4">
+				<!-- Kilix -->
+				<spawn npc_id="701521" respawn_time="1800">
+					<spot x="2127.0496" y="511.78125" z="86.55259" h="14" static_id="5651" />
+					<spot x="2165.8694" y="392.97983" z="87.035645" h="14" static_id="5649" />
+					<spot x="2248.568" y="459.0051" z="91.308655" h="14" static_id="5653" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="5">
+				<!-- Ancient Crown Administrator -->
+				<!-- Deployed Ancient Goblet Administrator -->
+				<!-- Kilix -->
+				<spawn npc_id="701521" respawn_time="1800">
+					<spot x="2127.0496" y="511.78125" z="86.55259" h="14" static_id="5651" />
+					<spot x="2165.8694" y="392.97983" z="87.035645" h="14" static_id="5649" />
+					<spot x="2248.568" y="459.0051" z="91.308655" h="14" static_id="5653" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Building Renovation Manager -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Special Guestbloom Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+		</town_spawn>
+		<town_spawn town_id="1023">
+			<town_level level="1">
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="2">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="3">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="4">
+				<!-- Kilix -->
+				<spawn npc_id="701521" respawn_time="1800">
+					<spot x="1915.0" y="2628.0" z="150.0" h="14" static_id="5693" />
+					<spot x="2039.0" y="2566.0" z="157.0" h="14" static_id="5695" />
+					<spot x="2069.0" y="2679.0" z="157.0" h="14" static_id="5691" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="5">
+				<!-- Ancient Crown Administrator -->
+				<!-- Deployed Ancient Goblet Administrator -->
+				<!-- Kilix -->
+				<spawn npc_id="701521" respawn_time="1800">
+					<spot x="1915.0" y="2628.0" z="150.0" h="14" static_id="5693" />
+					<spot x="2039.0" y="2566.0" z="157.0" h="14" static_id="5695" />
+					<spot x="2069.0" y="2679.0" z="157.0" h="14" static_id="5691" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Building Renovation Manager -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Special Guestbloom Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+		</town_spawn>
+		<town_spawn town_id="1024">
+			<town_level level="1">
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="2">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="3">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="4">
+				<!-- Kilix -->
+				<spawn npc_id="701521" respawn_time="1800">
+					<spot x="2490.1428" y="539.1684" z="135.56664" h="14" static_id="5655" />
+					<spot x="2532.178" y="755.0614" z="141.45241" h="14" static_id="5657" />
+					<spot x="2686.3857" y="710.98346" z="159.03133" h="14" static_id="5659" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="5">
+				<!-- Ancient Crown Administrator -->
+				<!-- Deployed Ancient Goblet Administrator -->
+				<!-- Kilix -->
+				<spawn npc_id="701521" respawn_time="1800">
+					<spot x="2490.1428" y="539.1684" z="135.56664" h="14" static_id="5655" />
+					<spot x="2532.178" y="755.0614" z="141.45241" h="14" static_id="5657" />
+					<spot x="2686.3857" y="710.98346" z="159.03133" h="14" static_id="5659" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Building Renovation Manager -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Special Guestbloom Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+		</town_spawn>
+		<town_spawn town_id="1025">
+			<town_level level="1">
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="2">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+			</town_level>
+			<town_level level="3">
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="4">
+				<!-- Kilix -->
+				<spawn npc_id="701521" respawn_time="1800">
+					<spot x="2387.916" y="2729.95" z="187.53645" h="14" static_id="5689" />
+					<spot x="2492.892" y="2526.8564" z="184.02992" h="14" static_id="5685" />
+					<spot x="2565.175" y="2562.3643" z="188.75153" h="14" static_id="5687" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Construction Boss -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Construction Worker -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+			<town_level level="5">
+				<!-- Ancient Crown Administrator -->
+				<!-- Deployed Ancient Goblet Administrator -->
+				<!-- Kilix -->
+				<spawn npc_id="701521" respawn_time="1800">
+					<spot x="2387.916" y="2729.95" z="187.53645" h="14" static_id="5689" />
+					<spot x="2492.892" y="2526.8564" z="184.02992" h="14" static_id="5685" />
+					<spot x="2565.175" y="2562.3643" z="188.75153" h="14" static_id="5687" />
+				</spawn>
+				<!-- Fireworks Reseller -->
+				<!-- Village Building Renovation Manager -->
+				<!-- Village Flowerbed Manager -->
+				<!-- Village Furniture Merchant -->
+				<!-- Village Guestbloom Merchant -->
+				<!-- Village Hearthbloom Merchant -->
+				<!-- Village Interior Facility Merchant -->
+				<!-- Village Special Guestbloom Merchant -->
+				<!-- Village Trade Broker -->
+				<!-- Village Warehouse Manager -->
+			</town_level>
+		</town_spawn>
+	</spawn_map>
+</town_spawns_data>

@@ -1,0 +1,141 @@
+package com.aionemu.gameserver.network.aion.serverpackets;
+
+import java.util.List;
+
+import com.aionemu.gameserver.model.gameobjects.player.Player;
+import com.aionemu.gameserver.model.gameobjects.player.PlayerCommonData;
+import com.aionemu.gameserver.model.stats.container.PlayerLifeStats;
+import com.aionemu.gameserver.model.team.common.legacy.GroupEvent;
+import com.aionemu.gameserver.model.team.group.PlayerGroup;
+import com.aionemu.gameserver.network.aion.AionConnection;
+import com.aionemu.gameserver.network.aion.AionServerPacket;
+import com.aionemu.gameserver.skillengine.model.Effect;
+import com.aionemu.gameserver.skillengine.model.SkillTargetSlot;
+import com.aionemu.gameserver.world.WorldPosition;
+
+/**
+ * @author Lost Academy Team & Durak
+ */
+public class SM_GROUP_MEMBER_INFO extends AionServerPacket {
+
+	private int groupId;
+	private Player player;
+	private GroupEvent event;
+	private int slot;
+	private List<Effect> abnormalEffects;
+
+	public SM_GROUP_MEMBER_INFO(PlayerGroup group, Player player, GroupEvent event, int slot) {
+		this.groupId = group.getTeamId();
+		this.player = player;
+		this.event = event;
+		this.slot = slot;
+		switch (event) {
+			case ENTER:
+			case UPDATE:
+				abnormalEffects = player.getEffectController().getAbnormalEffectsToShow();
+				break;
+			case UPDATE_EFFECTS:
+				abnormalEffects = player.getEffectController().getAbnormalEffectsToTargetSlot(slot);
+				break;
+		}
+	}
+
+	public SM_GROUP_MEMBER_INFO(PlayerGroup group, Player player, GroupEvent event) {
+		this(group, player, event, 0);
+	}
+
+	@Override
+	protected void writeImpl(AionConnection con) {
+		PlayerLifeStats pls = player.getLifeStats();
+		PlayerCommonData pcd = player.getCommonData();
+		WorldPosition wp = player.getPosition();
+
+		if (event == GroupEvent.ENTER && !player.isOnline()) {
+			event = GroupEvent.ENTER_OFFLINE;
+		}
+
+		writeD(event == GroupEvent.LEAVE ? 0 : groupId); // 5.0: saída vai com grupo 0
+		writeD(player.getObjectId());
+		if (player.isOnline()) {
+			writeD(pls.getMaxHp());
+			writeD(pls.getCurrentHp());
+			writeD(pls.getMaxMp());
+			writeD(pls.getCurrentMp());
+			writeD(pls.getMaxFp()); // maxflighttime
+			writeD(pls.getCurrentFp()); // currentflighttime
+		} else {
+			writeD(0);
+			writeD(0);
+			writeD(0);
+			writeD(0);
+			writeD(0);
+			writeD(0);
+		}
+
+		writeD(0);// unk 3.5
+		writeD(wp.getMapId());
+		writeD(wp.getMapId() + wp.getInstanceId() - 1);
+		writeF(wp.getX());
+		writeF(wp.getY());
+		writeF(wp.getZ());
+		writeC(pcd.getPlayerClass().getClassId()); // class id
+		writeC(pcd.getGender().getGenderId()); // gender id
+		writeC(pcd.getLevel()); // level
+
+		writeC(event.getId()); // something events
+		writeC(1); // unk, always 0x01 since removal of Sarpan & Tiamarana
+		writeC(player.getFlyState()); // isFly
+		writeC(player.isMentor() ? 0x01 : 0x00);
+		// 5.0 (captura 06_Sistemas_Novos 2026-10-19 22:54): 9 bytes antes do nome em todo evento, inclusive saída e movimento.
+		// O C vale 100 para um personagem nível 63 e 0 para um nível 3; o significado não está provado.
+		writeC(0x00);
+		writeD(0x00);
+		writeD(0x00);
+
+		switch (event) {
+			case MOVEMENT:
+			case DISCONNECTED:
+			case LEAVE:
+				break;
+			case ENTER_OFFLINE:
+			case JOIN:
+				writeS(pcd.getName()); // name
+				break;
+			case UPDATE_EFFECTS:
+				writeD(0x00); // unk
+				writeD(0x00); // unk
+				writeEffects(slot);
+				break;
+			case ENTER:
+			case UPDATE:
+				writeS(pcd.getName()); // name
+				writeD(0x00); // unk
+				writeD(0x00); // unk
+				writeEffects(SkillTargetSlot.FULLSLOTS);
+				break;
+		}
+	}
+
+	/**
+	 * Efeitos no formato do S_ABNORMAL_STATUS do 5.0 (23 b cada), seguidos de um D por slot (8). Na captura os 8 valores são iguais e crescem
+	 * com o tempo (ms); sem prova do que medem, vão 0.
+	 */
+	private void writeEffects(int slots) {
+		writeC(slots);
+		writeH(abnormalEffects.size());
+		for (Effect effect : abnormalEffects) {
+			writeD(effect.getEffectorId());
+			writeD(SM_ABNORMAL_EFFECT.effectorTemplateId(effect.getEffector()));
+			writeH(effect.getSkillId());
+			writeC(effect.getSkillLevel());
+			writeC(effect.getTargetSlot().ordinal());
+			writeD(effect.getRemainingTimeToDisplay());
+			writeD(effect.getCarvedSignet());
+			writeH(0);
+			writeC(0);
+		}
+		for (int i = 0; i < SkillTargetSlot.values().length; i++)
+			writeD(0x00);
+	}
+
+}

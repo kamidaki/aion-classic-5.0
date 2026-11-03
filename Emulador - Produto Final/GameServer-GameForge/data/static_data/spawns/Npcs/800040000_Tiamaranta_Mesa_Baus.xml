@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<!-- Baus 802183 de Tiamaranta Mesa sorteados por grupo do editor (SP_LDF4b_TreasureBox_B_L/M/R).
+	     Um <spawn_map> por grupo porque o spawns.xsd aceita um <spawn> por npc em cada <spawn_map>;
+	     os pontos fixos do mesmo npc estao em 800040000_Tiamaranta_Mesa.xml. -->
+	<spawn_map map_id="800040000">
+		<!-- 802183 SP_LDF4b_TreasureBox_B_L: sorteia 1 de 14 (capturas 16-17/09, fix_50_tiamaranta_baus.py) -->
+		<spawn npc_id="802183" respawn_time="295" pool="1">
+			<spot x="1663.5" y="1113.8" z="227.7549" h="113"/>
+			<spot x="1664.4" y="1004" z="228.07" h="75"/>
+			<spot x="1208.7" y="1137.7" z="245.53" h="90"/>
+			<spot x="1206.1" y="1084" z="245.53" h="113"/>
+			<spot x="1700.9" y="1008.1" z="228.07" h="75"/>
+			<spot x="1368.1" y="1117.2" z="227.83" h="30"/>
+			<spot x="1625.9" y="1113.6" z="227.75" h="90"/>
+			<spot x="1347" y="1310.6" z="239.54" h="90"/>
+			<spot x="1621.2" y="1260.1" z="240.5" h="90"/>
+			<spot x="1321.9" y="1337.8" z="239.54" h="90"/>
+			<spot x="1580.5" y="1260.9" z="240.59" h="90"/>
+			<spot x="1462.7" y="1259.5" z="240.5" h="30"/>
+			<spot x="1403.1" y="1115.8" z="227.83" h="90"/>
+			<spot x="1419.8" y="1260.8" z="240.59" h="90"/>
+		</spawn>
+	</spawn_map>
+	<spawn_map map_id="800040000">
+		<!-- 802183 SP_LDF4b_TreasureBox_B_M: sorteia 1 de 16 (capturas 16-17/09, fix_50_tiamaranta_baus.py) -->
+		<spawn npc_id="802183" respawn_time="295" pool="1">
+			<spot x="1988.3" y="1828.9" z="248.1813" h="30"/>
+			<spot x="1763.4" y="1418.8" z="235.82" h="105"/>
+			<spot x="1967.2" y="1174.6" z="245.875" h="45"/>
+			<spot x="2024.7" y="1653.1" z="212.625" h="45"/>
+			<spot x="1776.5" y="1655.3" z="235.46" h="6"/>
+			<spot x="1971.2" y="1864.1" z="248.25" h="105"/>
+			<spot x="1979.6" y="1617.2" z="212.62" h="30"/>
+			<spot x="1923.3" y="1513.5" z="176.7" h="0"/>
+			<spot x="1793.2" y="1615.7" z="235.56" h="6"/>
+			<spot x="1862" y="1294.7" z="229.62" h="15"/>
+			<spot x="2040.4" y="1380.6" z="212.5" h="60"/>
+			<spot x="1788.3" y="1453.7" z="235.73" h="105"/>
+			<spot x="1925.3" y="1142.6" z="245.875" h="45"/>
+			<spot x="1987" y="1373" z="212.5" h="34"/>
+			<spot x="1922.7" y="1562.9" z="176.7" h="0"/>
+			<spot x="1882.2" y="1262.9" z="229.62" h="15"/>
+		</spawn>
+	</spawn_map>
+	<spawn_map map_id="800040000">
+		<!-- 802183 SP_LDF4b_TreasureBox_B_R: sorteia 1 de 14 (capturas 16-17/09, fix_50_tiamaranta_baus.py) -->
+		<spawn npc_id="802183" respawn_time="295" pool="1">
+			<spot x="1421.6" y="1918.5" z="231.65" h="30"/>
+			<spot x="1594.4" y="1780" z="244.52" h="30"/>
+			<spot x="1342.6" y="1908.7" z="237.66" h="75"/>
+			<spot x="1738.3" y="2012.1" z="231.6" h="75"/>
+			<spot x="1773.2" y="1997" z="231.6" h="75"/>
+			<spot x="1432.3" y="2076.6001" z="231.37" h="105"/>
+			<spot x="1387.3" y="1918.5" z="231.65" h="30"/>
+			<spot x="1646.9" y="1915.8" z="231.65" h="30"/>
+			<spot x="1637.1" y="1778.7" z="244.61" h="30"/>
+			<spot x="1418.3" y="1779.5" z="244.5258" h="39"/>
+			<spot x="1680.9" y="1915.5" z="231.6556" h="30"/>
+			<spot x="1326.1" y="1781.5" z="237.2994" h="15"/>
+			<spot x="1342.9" y="1862.4" z="237.66" h="105"/>
+			<spot x="1460.9" y="1778.5" z="244.61" h="30"/>
+		</spawn>
+	</spawn_map>
+</spawns>
