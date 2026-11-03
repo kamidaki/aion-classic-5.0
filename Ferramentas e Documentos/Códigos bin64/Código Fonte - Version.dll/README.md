@@ -4,9 +4,10 @@ DLL nativa (`version.dll`) desenvolvida como proxy DLL de sistema para o cliente
 
 > [!IMPORTANT]
 > ### PAPEL ARQUITETURAL FUNDAMENTAL:
-> 1. **Responsável pela Conexão Client-Emulador**: A `version.dll` é a responsável exclusiva por conectar o cliente oficial ao emulador. Ela faz o **bypass dos sistemas oficiais de validação e autenticação** (NCSoft / Gameforge) e direciona todas as conexões de rede do cliente para o emulador local/privado (`127.0.0.1:2106`, `127.0.0.1:7777`).
+> 1. **Responsável pela Conexão Client-Emulador e Multi-GameServer**: A `version.dll` é a responsável exclusiva por conectar o cliente oficial ao emulador. Ela faz o **bypass dos sistemas oficiais de validação e autenticação** (NCSoft / Gameforge) e direciona todas as conexões de rede do cliente para o emulador local/privado (`127.0.0.1:2106`, `127.0.0.1:7777`, `7778`, `7779`).
 > 2. **Hub Homologado de Customizações ("Customs")**: A `version.dll` é o componente arquitetural correto, modular e seguro para implementação de funcionalidades personalizadas e ajustes no cliente sem alterar os binários originais da CryEngine.
 > 3. **Independência Completa**: Opera de maneira 100% autônoma e independente, sem qualquer dependência de bibliotecas externas de serviço (a `BrService.dll` é experimental, foi completamente desativada, não é usada e nunca deve ser considerada) e sem necessidade de infraestrutura WebSocket.
+> 4. **Isolamento e Compatibilidade Multi-GameServer**: Toda alteração na `version.dll` deve ser arquitetada pensando sempre no funcionamento em conjunto com cada GameServer isoladamente (`game-server-gameforge`, `game-server-remake`, `game-server-battleroyale`), garantindo que uma alteração não cause mau funcionamento em outros servidores.
 
 ---
 
@@ -15,9 +16,11 @@ DLL nativa (`version.dll`) desenvolvida como proxy DLL de sistema para o cliente
 ### 1. Conexão No-IP Oficial & Bypass de Validação de Servidor
 * Permite que o cliente oficial conecte-se a servidores locais (`127.0.0.1`) ou privados sem erros de autorização (`No game server is available to the authorization server (6)`).
 * **Hooks de Rede (WinSock)**:
-  * `zzinet_ntoa`: Registra os endereços IP candidatos recebidos na lista de servidores (`SM_SERVER_LIST`).
+  * `zzinet_ntoa`: Registra os endereços IP candidatos recebidos na lista de servidores (`SM_SERVER_LIST`) no pool dinâmico thread-safe `s_candidateIps`.
   * `zzlstrcpynA`: Substitui dinamicamente o IP para `"70.5.0.18"` durante a validação interna do cliente no `game.dll`, mantendo a integridade do fluxo sem alterar arquivos `hosts`.
-  * `zzconnect`: Conecta diretamente ao IP e porta requisitados, interceptando portas 80/443 para redirecionamento ao webshop local (`127.0.0.1:8080`).
+  * **Preservação de Múltiplos GameServers**: O pool de candidatos `s_candidateIps` não é esvaziado prematuramente dentro de `zzlstrcpynA`, permitindo que os 3 GameServers (GameForge, Remake e BattleRoyale) sejam validados simultaneamente.
+  * **Proteção de Boot do LoginServer**: A verificação `IsCandidateGameServerIp` é condicionada à presença de candidatos já deserializados de `SM_SERVER_LIST` (`s_candidateIpCount > 0`), impedindo que o argumento de inicialização do cliente (`-ip:127.0.0.1`) seja sequestrado no boot, prevenindo o erro *"Não tem servidor de autenticação disponível"*.
+  * `zzconnect`: Conecta diretamente ao IP e porta requisitados, interceptando portas 80/443 para redirecionamento ao webshop local (`127.0.0.1:8080`) e redefinindo o pool de candidatos ao conectar no mundo.
   * `zzgethostbyname`: Redireciona domínios oficiais (`plaync`, `ncsoft`, `gameforge`) para `127.0.0.1`.
 
 ### 2. Desbloqueio Gráfico em Alta Resolução (4096×4096)
@@ -39,11 +42,14 @@ DLL nativa (`version.dll`) desenvolvida como proxy DLL de sistema para o cliente
 
 ---
 
-## Arquitetura e Independência Modular
+## Validação Obrigatória com Evidências Oficiais (Ghidra & Wireshark)
 
-* **100% Standalone**: Não carrega nem depende da `BrService.dll` (que é uma DLL experimental desativada que nunca deve ser considerada) nem de qualquer outro módulo externo complementar.
-* **Zero WebSocket**: Não contém sockets WebSocket nem código de telemetria externa; utiliza apenas chamadas nativas WinSock para hooks de conexão de jogo.
-* **Sem Exigência de Token**: Inicializa imediatamente sem travas artificiais de token de linha de comando.
+> [!CAUTION]
+> Toda alteração nesta DLL deve ser estritamente validada e comprovada:
+> 1. **Ghidra**: Análise estática das rotinas do `Aion.bin` e `Game.dll` (PE32+ x64).
+> 2. **Wireshark**: Análise das capturas de rede oficiais do Aion Classic Gameforge (`.pcap`).
+> 3. **Imagens Comprobatórias**: Capturas de tela demonstrando o teste em execução real.
+> 4. **Isolamento de Servidores**: Alterações que afetem GameServers são permitidas apenas para conectividade e comunicação de rede, nunca gameplay.
 
 ---
 
@@ -66,4 +72,4 @@ Os binários compilados são gerados em:
 E sincronizados automaticamente para:
 * `Ferramentas e Documentos\Patch final - Client 5.0\bin64\`
 * `Ferramentas e Documentos\Patch final - Client 5.0\bin32\`
-* Pasta de desenvolvimento do cliente (`bin64` e `bin32`).
+* Pasta de desenvolvimento do cliente (`D:\GameForge\aionclassic\bin64` e `bin32`).

@@ -10,7 +10,7 @@ A pasta é composta por três categorias distintas de projetos:
 
 | Módulo / Diretório | Tecnologia / Origem | Finalidade / Papel Arquitetural | Status de Prontidão e Uso |
 | :--- | :--- | :--- | :--- |
-| **`Código Fonte - Version.dll`** | C++17 (MSVC v143) / Nativo | **Ponte de conexão Client-Emulador**. Bypass de validações oficiais, hooks WinSock, No-IP e injeção de customs. | **HOMOLOGADA & ATIVA EM PRODUÇÃO** |
+| **`Código Fonte - Version.dll`** | C++17 (MSVC v143) / Nativo | **Ponte de conexão Client-Emulador**. Bypass de validações oficiais, hooks WinSock, No-IP, suporte dinâmico a múltiplos GameServers e injeção de customs. | **HOMOLOGADA & ATIVA EM PRODUÇÃO** |
 | **`Código Fonte - Game.dll`** | C++17 (MSVC v143) / REA + Ghidra | Lógica central do cliente de jogo (1.977 classes RTTI, ~31.8 MB no original). | **INCOMPLETA — NUNCA USAR NO JOGO** |
 | **`Código Fonte - Crysystem.dll`** | C++ / REA + Ghidra | Sistema central da CryEngine (memória, console, logs, inicializador). | **Pesquisa / Paridade estrita exigida** |
 | **`Código Fonte - Cry3DEngine.dll`** | C++ / REA + Ghidra | Motor gráfico 3D, rendering de cenários, terreno e iluminação. | **Pesquisa / Paridade estrita exigida** |
@@ -60,16 +60,18 @@ Os códigos-fonte dos módulos CryEngine e do `Game.dll` foram montados e catalo
 
 A **`version.dll`** é a única biblioteca nativa de desenvolvimento próprio que atua ativamente no cliente oficial:
 
-1. **Responsável pela Conexão com o Emulador**:
-   - Atua como uma proxy DLL de sistema (`version.dll`), sendo carregada nativamente pelo processo `Aion.bin` sem a necessidade de launchers invasivos ou loaders ilegais.
-   - Faz o **bypass completo dos sistemas oficiais**: neutraliza checagens de autenticação oficial da Gameforge/NCSoft, suprime o erro *"No game server is available to the authorization server (6)"* e redireciona a camada WinSock (`connect`, `inet_ntoa`, `lstrcpynA`, `gethostbyname`) para o emulador local/privado (`127.0.0.1:2106`, `127.0.0.1:7777`).
-
-2. **Hub Oficial para Customizações ("Customs")**:
-   - Por ser modular e manter os binários oficiais originais intactos na memória, a `version.dll` é o **local correto e seguro para implementação de melhorias e customizações**, incluindo:
-     - **Suporte Gráfico Ultra-HD**: Remoção da limitação de resolução da CryEngine legada, liberando resoluções até 4096×4096 e monitores Ultrawide / 4K.
-     - **Correções de Compatibilidade**: Estabilização do ambiente Windows 11 24H2+ (hooks de VEH e mitigação de stack de 64 bits sob Themida) e afinidade de CPU para processadores modernos com mais de 32 threads.
-     - **Injeção Dinâmica de Idioma**: Injeção em memória do idioma Português (`BRA`) e bypass de bloqueios regionais de país.
-     - **Correções de Gameplay 5.0**: Interceptação e ajuste de ponteiros de memória para o saldo de moedas Quna (`quna_fix.h`) e eliminação do congelamento de diálogo no desmonte com Martelo de Siel (`siel_hammer_fix.h`).
+1. **Responsável pela Conexão com o Emulador e Múltiplos GameServers**:
+   - Atua como uma proxy DLL de sistema (`version.dll`), sendo carregada nativamente pelo processo `Aion.bin` sem a necessidade de launchers invasivos.
+   - Faz o **bypass completo dos sistemas oficiais**: neutraliza checagens de autenticação oficial da Gameforge/NCSoft, suprime o erro *"No game server is available to the authorization server (6)"* e redireciona a camada WinSock (`connect`, `inet_ntoa`, `lstrcpynA`, `gethostbyname`).
+   - **Resolução Dinâmica Multi-GameServer**: Coleta via `zzinet_ntoa` os IPs dos GameServers entregues no pacote `SM_SERVER_LIST` e aplica o spoofing em `zzlstrcpynA` preservando o conjunto de servidores para suportar simultaneamente o GameForge (GSID 1), Remake (GSID 2) e BattleRoyale (GSID 3), sem sequestrar o handshake inicial de LoginServer no boot (`127.0.0.1:2106`).
+2. **Regra Arquitetural de Alteração da `version.dll`**:
+   - Toda alteração na `version.dll` deve ser arquitetada pensando sempre no funcionamento conjunto com cada GameServer isoladamente, garantindo que uma alteração não cause mau funcionamento em outros GameServers.
+   - Se uma alteração na `version.dll` demandar ajustes nos GameServers, este é o único momento autorizado para alterá-los em lote, desde que a modificação afete estritamente **conectividade e comunicação de rede, NUNCA mecânicas ou gameplay**.
+3. **Hub Oficial para Customizações ("Customs")**:
+   - Suporte Gráfico Ultra-HD até 4096×4096 no `crysystem`.
+   - Compatibilidade e mitigação de stack x64 para Windows 11 24H2+.
+   - Injeção de idioma Português (`BRA`) e bypass regional de país.
+   - Gameplay Fixes 5.0 (saldo Quna e diálogo de desmonte do Martelo de Siel).
 
 ---
 

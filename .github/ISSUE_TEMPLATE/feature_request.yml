@@ -1,28 +1,39 @@
-name: ✨ Sugestão de Funcionalidade
-description: Sugira uma nova mecânica, melhoria de ferramenta ou otimização.
+name: Sugestao de Melhoria Tecnica
+description: Proponha uma melhoria de protocolo, compatibilidade ou otimizacao para o Aion Classic 5.0.
 title: "[FEAT]: "
 labels: ["enhancement"]
 body:
   - type: markdown
     attributes:
       value: |
-        Sugestões são bem-vindas! Certifique-se de que a mecânica sugerida seja compatível com as regras e dados canônicos do Aion Classic 5.0.
-  - type: textarea
-    id: problem
+        Propostas de novas funcionalidades devem manter a fidelidade 1:1 com o Aion Classic 5.0 oficial da Gameforge ou respeitar o isolamento da modalidade alvo.
+  - type: dropdown
+    id: component
     attributes:
-      label: Motivação / Problema
-      description: Qual problema ou lacuna essa funcionalidade busca resolver?
+      label: Componente ou GameServer Alvo
+      description: Para qual componente isolado esta melhoria se destina?
+      options:
+        - "GameServer GameForge (GSID 1)"
+        - "GameServer Remake (GSID 2)"
+        - "GameServer BattleRoyale (GSID 3)"
+        - "LoginServer (Java 25)"
+        - "ChatServer (Java 25)"
+        - "Supervisor Launcher (Rust)"
+        - "Client Hook (version.dll)"
+        - "Academy NoLag (.NET 9)"
     validations:
       required: true
   - type: textarea
-    id: proposal
+    id: description
     attributes:
-      label: Proposta de Solução
-      description: Descreva detalhadamente como a funcionalidade deve operar.
+      label: Descricao da Melhoria
+      description: Uma explicacao clara e objetiva do que deve ser implementado.
     validations:
       required: true
   - type: textarea
-    id: alternatives
+    id: official_evidence
     attributes:
-      label: Alternativas Consideradas
-      description: Descreva quaisquer alternativas que você considerou.
+      label: Evidencia Oficial ou Justificativa de Arquitetura
+      description: Dados do cliente oficial (Ghidra/Wireshark/tabelas de extração) que respaldam a proposta.
+    validations:
+      required: true

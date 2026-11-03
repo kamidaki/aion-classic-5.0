@@ -1,55 +1,72 @@
-name: 🐛 Relato de Bug
-description: Crie um relatório de falha para ajudar a melhorar o emulador.
+name: Relato de Bug Tecnico
+description: Relate uma falha tecnica com evidencias comparativas do servidor oficial Aion Classic Gameforge.
 title: "[BUG]: "
 labels: ["bug", "triage"]
 body:
   - type: markdown
     attributes:
       value: |
-        Obrigado por ajudar a identificar um problema no **Aion Classic 5.0**. Preencha o formulário abaixo com o máximo de detalhes possível.
+        Obrigado por contribuir com a identificacao de falhas no **Aion Classic 5.0**.
+        Todo relato deve obrigatoriamente referenciar o componente especifico e fornecer evidencias concretas extraidas do servidor oficial, Ghidra ou Wireshark.
   - type: dropdown
     id: component
     attributes:
-      label: Componente Afetado
-      description: Em qual parte do sistema o erro ocorre?
+      label: Componente ou GameServer Afetado
+      description: Em qual componente isolado o erro ocorre?
       options:
-        - "GameServer (Java 25)"
-        - "LoginServer (Java 25)"
-        - "ChatServer (Java 25)"
-        - "Supervisor Launcher (Rust)"
+        - "GameServer GameForge (GSID 1 | Porta 7777)"
+        - "GameServer Remake (GSID 2 | Porta 7778)"
+        - "GameServer BattleRoyale (GSID 3 | Porta 7779)"
+        - "LoginServer (Java 25 | Porta 2106)"
+        - "ChatServer (Java 25 | Porta 10241)"
+        - "Supervisor Launcher e DB Studio (Rust)"
+        - "Client Hook (version.dll C/C++)"
         - "Academy NoLag (.NET 9)"
-        - "Client Hook (version.dll)"
-        - "Outro / Ferramentas"
+        - "Parsers e Ferramentas (Python/PowerShell)"
     validations:
       required: true
   - type: textarea
     id: description
     attributes:
-      label: Descrição do Bug
-      description: Uma explicação concisa do comportamento anômalo.
+      label: Descricao do Bug
+      description: Explicacao concisa e tecnica do comportamento anomalo observado.
+    validations:
+      required: true
+  - type: textarea
+    id: official_comparison
+    attributes:
+      label: Comparacao com o Servidor Oficial Aion Classic Gameforge
+      description: Qual e o comportamento real no servidor oficial Gameforge? Inclua detalhes de pacotes, formulas ou dados oficiais observados.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence_ghidra_wireshark
+    attributes:
+      label: Evidencias Tecnicas (Ghidra / Wireshark / Imagens)
+      description: Anexe trechos de descompilacao do Ghidra (bin64), dados de pacotes do Wireshark (PCAP oficial) ou links para capturas de tela comprovando a divergencia.
     validations:
       required: true
   - type: textarea
     id: reproduction
     attributes:
       label: Passos para Reproduzir
-      description: Etapas exatas para reproduzir o erro.
+      description: Etapas exatas para reproduzir o erro no ambiente do emulador.
       placeholder: |
-        1. Iniciar o GameServer com...
-        2. Conectar com o cliente 5.0...
-        3. Realizar a ação X...
+        1. Iniciar os servidores no Supervisor Rust...
+        2. Conectar com o cliente Aion Classic 5.0 no servidor selecionado...
+        3. Executar a acao X...
     validations:
       required: true
   - type: textarea
     id: expected
     attributes:
       label: Comportamento Esperado
-      description: O que deveria ter acontecido segundo o comportamento oficial do Aion Classic 5.0.
+      description: O que deveria acontecer segundo o funcionamento do cliente e servidor oficial.
     validations:
       required: true
   - type: textarea
     id: logs
     attributes:
       label: Logs / Stacktrace
-      description: Cole aqui logs relevantes de `logs/console.log` ou `logs/errors.log`.
+      description: Cole aqui logs relevantes de console ou erros do servidor correspondente.
       render: shell

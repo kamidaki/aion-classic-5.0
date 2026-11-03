@@ -1,4 +1,4 @@
-name: 📝 Conventional Commits Lint
+name: Conventional Commits Lint
 
 on:
   pull_request:
@@ -12,10 +12,10 @@ permissions:
 
 jobs:
   pr-title-lint:
-    name: Validar Título do PR / Commit
+    name: Validar Titulo do PR / Commit
     runs-on: ubuntu-latest
     steps:
-      - name: 🔍 Validar Título Semântico
+      - name: Validar Titulo Semantico
         if: github.event_name == 'pull_request'
         uses: amannn/action-semantic-pull-request@v5
         env:
@@ -34,4 +34,17 @@ jobs:
             chore
             revert
             security
+          scopes: |
+            gameforge
+            remake
+            battleroyale
+            login-server
+            chat-server
+            commons
+            version.dll
+            rust
+            launcher
+            nolag
+            docs
+            ci
           requireScope: false

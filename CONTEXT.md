@@ -9,54 +9,75 @@ O **melhor e único emulador Aion Classic 5.0 do mundo**, totalmente construído
 > **ESTAS REGRAS SÃO ESTRITAMENTE OBRIGATÓRIAS PARA TODOS OS DESENVOLVEDORES E AGENTES DE IA NESTE PROJETO.**
 > **QUALQUER VIOLAÇÃO OU WORKAROUND QUEBRA A ARQUITETURA E NÃO SERÁ TOLERADA.**
 
-### 1. Portabilidade Absoluta e Proibição de Caminhos Hardcoded
-* **Este repositório é compartilhado e executado em múltiplos ambientes, computadores, discos e sistemas operacionais.**
-* **É TERMINANTEMENTE PROIBIDO fixar letras de unidade de disco (ex: `C:\`, `D:\`, `E:\`) ou caminhos absolutos locais em qualquer arquivo do projeto** (seja código Java, C++, Rust, scripts Python, arquivos `.bat`, `.ps1`, `.json`, `.xml` ou documentos `.md`).
-* Todas as referências devem ser **estritamente relativas** ou dinamicamente resolvidas via raiz do projeto (ex: `Código Fonte - Emulador`, `Emulador - Produto Final`, `Ferramentas e Documentos`).
-* **NUNCA FAZER WORKAROUND (GAMBIARRAS OU ATALHOS TEMPORÁRIOS).**
-* O estado atual do projeto em **Java 25 LTS** é definitivo e consolidado. **NUNCA recupere arquivos, dados ou referências a versões legadas obsoletas**.
-* Use exclusivamente as capturas de rede de `Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/` e dados extraídos em `Ferramentas e Documentos/Client e Coletas/Client 5.0 - Dados Extraidos/`.
+### 1. Isolamento Absoluto entre GameServers (Regra Inegociável de Servidores)
+* **Validação Prévia Obrigatória:** Antes de qualquer alteração ou leitura relacionada a um GameServer, é OBRIGATÓRIO validar em qual GameServer específico será efetuada a ação (<code>game-server-gameforge</code>, <code>game-server-remake</code> ou <code>game-server-battleroyale</code>). **É inaceitável ler ou alterar todos os GameServers genericamente.**
+* **Servidores Totalmente Isolados e Independentes:** Cada GameServer é um servidor totalmente isolado e independente. Eles possuem e possuirão sistemas, regras de negócio e mecânicas diferentes um do outro.
+* **Proibição Absoluta de Consulta Cruzada:** NUNCA corrigir um problema de um GameServer consultando outro GameServer, exceto quando isso for estritamente solicitado pelo usuário.
+* **Pergunta Obrigatória ao Usuário:** Sempre pergunte ao usuário em qual servidor será feita a alteração caso não tenha sido explicitamente fornecido, **mesmo sob permissão máxima de autonomia e alterações**.
+* **Auditoria de Integridade ao Fim de Cada Tarefa:** No encerramento de cada tarefa, confirme formalmente se não alterou ou excluiu arquivos de outros GameServers sem autorização.
+* **Arquitetura de Serviços Compartilhados (ChatServer, LoginServer e Version.dll):** Toda e qualquer alteração no <code>chat-server</code>, <code>login-server</code> e <code>version.dll</code> deve ser arquitetada pensando sempre no funcionamento em conjunto com cada GameServer isoladamente, garantindo que uma alteração não cause o mau funcionamento de outros GameServers. Se uma alteração for afetar outros GameServers, este é o **único momento autorizado** em que se pode alterar os outros GameServers para compatibilizá-los também, **desde que a alteração afete apenas conectividade e comunicação, NUNCA gameplay**.
+* **Proibição de Commits Globais de GameServers:** NUNCA subir alterações em todos os GameServers simultaneamente. Cada alteração deve ser isolada, atômica e direcionada ao servidor correto.
 
 ---
 
-### 2. A Regra Principal de Arquitetura
+### 2. Evidência Concreta com Servidor Oficial, Ghidra e Wireshark
+* **Proibição de Pull Requests sem Testes e Imagens:** Não são aceitos Pull Requests sem testes práticos e imagens/capturas comprovando o funcionamento real (seguindo o padrão de excelência de documentação de engenharia reversa).
+* **Validação Obrigatória no Servidor Oficial Aion Classic Gameforge:** Toda mecânica, pacote, fórmula de dano, cálculo ou comportamento deve ser testado e validado contra o **servidor oficial Gameforge** (em vez de emuladores secundários ou ROMs).
+* **Evidências Concretas Obrigatórias:** É inaceitável qualquer correção ou ajuste sem evidências concretas de que o valor e a lógica estão idênticos ao oficial.
+* **Ferramentas Mandatórias de Engenharia Reversa:** É obrigatório utilizar **Ghidra** (análise e descompilação de módulos PE32+ de 64 bits em <code>bin64</code>) e **Wireshark** (capturas oficiais de pacotes em <code>Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/</code>) para confirmação de opcodes, estruturas e dados.
+* **Pull Requests Pequenos, Mínimos e Atômicos:** Cada Pull Request deve ser pequeno e mínimo, com escopo único. **Não misture diversas alterações em sistemas e mecânicas diferentes num único Pull Request.**
+
+---
+
+### 3. Portabilidade Absoluta e Proibição de Caminhos Hardcoded
+* **Este repositório é compartilhado e executado em múltiplos ambientes, computadores, discos e sistemas operacionais.**
+* **É TERMINANTEMENTE PROIBIDO fixar letras de unidade de disco (ex: C:\, D:\, E:\) ou caminhos absolutos locais em qualquer arquivo do projeto** (seja código Java, C++, Rust, scripts Python, arquivos .bat, .ps1, .json, .xml ou documentos .md).
+* Todas as referências devem ser **estritamente relativas** ou dinamicamente resolvidas via raiz do projeto (ex: <code>Código Fonte - Emulador</code>, <code>Emulador - Produto Final</code>, <code>Ferramentas e Documentos</code>).
+* **NUNCA FAZER WORKAROUND (GAMBIARRAS OU ATALHOS TEMPORÁRIOS).**
+* O estado atual do projeto em **Java 25 LTS** é definitivo e consolidado. **NUNCA recupere arquivos, dados ou referências a versões legadas obsoletas**.
+* Use exclusivamente as capturas de rede de <code>Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/</code> e dados extraídos em <code>Ferramentas e Documentos/Client e Coletas/Client 5.0 - Dados Extraidos/</code>.
+
+---
+
+### 4. A Regra Principal de Arquitetura
 
 O desenvolvimento e a evolução do emulador seguem rigorosamente a cadeia causal de eventos:
 
-$$\mathbf{Captura\ (PCAP)} \longrightarrow \mathbf{Protocolo\ (Wire)} \longrightarrow \mathbf{Evento} \longrightarrow \mathbf{Estado\ (World/Entity)} \longrightarrow \mathbf{Sistema\ (Gameplay\ Service)} \longrightarrow \mathbf{Resposta\ (Broadcast)}$$
+\\mathbf{Captura\\ (PCAP)} \\longrightarrow \\mathbf{Protocolo\\ (Wire)} \\longrightarrow \\mathbf{Evento} \\longrightarrow \\mathbf{Estado\\ (World/Entity)} \\longrightarrow \\mathbf{Sistema\\ (Gameplay\\ Service)} \\longrightarrow \\mathbf{Resposta\\ (Broadcast)}
 
 > [!IMPORTANT]
 > ### Princípios Inegociáveis de Engenharia:
 > 1. **Não implementar pacotes isoladamente**: Cada pacote recebido do cliente deve alimentar um evento de domínio, atualizar o estado persistente/em memória e acionar o sistema correspondente, que por sua vez gera as respostas e broadcasts necessários.
-> 2. **Evidência Real Baseada em PCAPs e Memória**: Não fazer suposições quando a informação puder ser extraída diretamente das capturas oficiais (`Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/`) ou dos dados extraídos do cliente oficial (`Ferramentas e Documentos/Client e Coletas/Client 5.0 - Dados Extraidos/`).
-> 3. **Purga Completa do Javolution e Adoção Nativa Java 25**: Toda a stack do emulador utiliza coleções nativas do Java 25 (`java.util`, `java.util.concurrent`), eliminando por completo classes legadas (`javolution.*`) para máxima eficiência de memória e concorrência nativa.
-> 4. **Sincronização Código-Fonte $\leftrightarrow$ Produto Final**: Sempre que uma alteração for realizada em `Código Fonte - Emulador`, deve-se compilar e sincronizar os respectivos arquivos em `Emulador - Produto Final`.
+> 2. **Evidência Real Baseada em PCAPs e Memória**: Não fazer suposições quando a informação puder ser extraída diretamente das capturas oficiais (<code>Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/</code>) ou dos dados extraídos do cliente oficial (<code>Ferramentas e Documentos/Client e Coletas/Client 5.0 - Dados Extraidos/</code>).
+> 3. **Purga Completa do Javolution e Adoção Nativa Java 25**: Toda a stack do emulador utiliza coleções nativas do Java 25 (<code>java.util</code>, <code>java.util.concurrent</code>), eliminando por completo classes legadas (<code>javolution.*</code>) para máxima eficiência de memória e concorrência nativa.
+> 4. **Sincronização Código-Fonte $\\leftrightarrow$ Produto Final**: Sempre que uma alteração for realizada no GameServer específico em <code>Código Fonte - Emulador</code>, deve-se compilar e sincronizar os respectivos arquivos em <code>Emulador - Produto Final</code> para aquela instância.
 
 ---
 
-### 3. Regra Rígida de Dados XML — NUNCA Fazer Bypass de Código por Dados Faltantes
+### 5. Regra Rígida de Dados XML — NUNCA Fazer Bypass de Código por Dados Faltantes
 > [!WARNING]
 > **É TERMINANTEMENTE PROIBIDO CRIAR BYPASS NO JAVA PARA SUPRIR FALTA DE DADOS ESTÁTICOS!**
 > Quando não houver definição de item, NPC, monstros, magias, skills ou atributos nos XMLs:
 > - **NÃO crie fallbacks hardcoded, valores mágicos fictícios ou pontes que ignoram os templates.**
 > - **A ÚNICA abordagem correta e obrigatória é CORRIGIR OS XMLs.**
 > - Todas as correções de XML devem ser feitas utilizando os scripts e utilitários em:
->   `Ferramentas e Documentos/Ferramentas Python e PowerShell/parsersXML` e `Ferramentas e Documentos/Ferramentas Python e PowerShell/Ferramentas Python/aion_bxml.py`
+>   <code>Ferramentas e Documentos/Ferramentas Python e PowerShell/parsersXML</code> e <code>Ferramentas e Documentos/Ferramentas Python e PowerShell/Ferramentas Python/aion_bxml.py</code>
 > - A fonte canônica de dados oficiais do cliente 5.0 está em:
->   `Ferramentas e Documentos/Client e Coletas/Client 5.0 - Dados Extraidos/data`
-> - Os templates do Java devem permanecer sincronizados em:
->   `Código Fonte - Emulador/game-server/data/static_data`
+>   <code>Ferramentas e Documentos/Client e Coletas/Client 5.0 - Dados Extraidos/data</code>
+> - Os templates do Java devem permanecer sincronizados na pasta do GameServer específico:
+>   <code>Código Fonte - Emulador/game-server-<instancia>/data/static_data</code>
 >   e
->   `Emulador - Produto Final/GameServer/data/static_data`
+>   <code>Emulador - Produto Final/GameServer-<Instancia>/data/static_data</code>
 
 ---
 
-### 4. Padrão Obrigatório de Commits
+### 6. Padrão Obrigatório de Commits
 
 Para manter o histórico do repositório organizado, rastreável e padronizado entre os desenvolvedores:
 
 - **Idioma Estritamente em Português**: Mensagens de commit nunca devem ser escritas em inglês.
-- **Formato de Uma Linha por Alteração**: Cada modificação relevante deve ser descrita em uma linha individual, de forma concisa, técnica e objetiva.
+- **Formato de Uma Linha por Alteração**: Cada modificação relevante deve ser descrita em uma linha individual, de forma concisa, técnica e objetiva, sem emojis.
+- **Escopo Explícito**: Commits de GameServers devem especificar o servidor afetado (ex: <code>fix(gameforge): ...</code>, <code>feat(remake): ...</code>, <code>fix(battleroyale): ...</code>). NUNCA agrupar alterações de múltiplos GameServers no mesmo commit.
 
 ---
 
@@ -415,3 +436,12 @@ O ecossistema opera com **3 GameServers totalmente independentes** acoplados a u
 ### Suporte do Cliente via `version.dll`
 - A DLL nativa intercepta as chamadas de socket do cliente (`connect`, `inet_ntoa`, `lstrcpynA`).
 - A resolução de endereços IP para múltiplos GameServers preserva os IPs candidatos durante o processamento de pacotes `SM_SERVER_LIST`, permitindo a seleção transparente de qualquer um dos 3 servidores sem desconexões ou spoofing prematuro.
+
+
+### Diretrizes Operacionais de Modificação e Isolamento de GameServers
+1. **Identificação Prévia Obrigatória**: Antes de iniciar qualquer leitura, inspeção de código ou modificação relacionada a um GameServer, o desenvolvedor ou agente deve obrigatoriamente validar em qual GameServer (game-server-gameforge, game-server-remake ou game-server-battleroyale) a alteração será aplicada. É expressamente inaceitável ler ou alterar todos os GameServers genericamente.
+2. **Independência Total e Mecânicas Próprias**: Cada GameServer é um servidor 100% isolado, possuindo mecânicas, regras de negócio e sistemas que divergem intencionalmente entre si.
+3. **Proibição de Consulta Cruzada**: Nunca corrigir um problema de um GameServer consultando outro GameServer, exceto quando isso for estritamente solicitado pelo usuário.
+4. **Consulta Obrigatória ao Usuário**: Caso o usuário não especifique em qual GameServer atuar, o agente deve SEMPRE perguntar antes de prosseguir, mesmo operando em modo de autonomia máxima.
+5. **Auditoria de Conclusão**: Ao finalizar qualquer tarefa, deve-se auditar e confirmar formalmente que arquivos de outros GameServers não foram modificados ou excluídos sem autorização.
+6. **Componentes Compartilhados**: Qualquer alteração em chat-server, login-server ou ersion.dll deve ser arquitetada para compatibilidade isolada com cada GameServer. Se for indispensável atualizar os GameServers para compatibilização de rede, essa alteração fica restrita à conectividade e comunicação, jamais afetando gameplay.

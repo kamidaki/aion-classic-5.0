@@ -1,87 +1,129 @@
-# Guia de Contribuição e Regras Explícitas de Pull Request — AION CLASSIC 5.0 EMULADOR
+# Guia de Contribuição e Diretrizes de Engenharia — AION CLASSIC 5.0 EMULADOR
 
 <p align="center">
   <a href="./CONTRIBUTING.md"><img src="https://img.shields.io/badge/Idioma-Portugu%C3%AAs_Brasil_(Padr%C3%A3o)-10b981?style=for-the-badge&logo=markdown&logoColor=white" alt="PT-BR Padrão" /></a>
   <a href="./CONTEXT.md"><img src="https://img.shields.io/badge/Arquitetura-CONTEXT.md-3b82f6?style=for-the-badge&logo=markdown&logoColor=white" alt="CONTEXT.md" /></a>
+  <a href="./SECURITY.md"><img src="https://img.shields.io/badge/Seguran%C3%A7a-SECURITY.md-ef4444?style=for-the-badge&logo=shield&logoColor=white" alt="SECURITY.md" /></a>
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Pull_Requests-10_Regras_Obrigat%C3%B3rias-0ea5e9?style=flat-square&logo=github&logoColor=white" alt="10 Regras" />
-  <img src="https://img.shields.io/badge/Backend-Java_25_LTS_(Zero_Javolution)-10b981?style=flat-square&logo=openjdk&logoColor=white" alt="Java 25 LTS" />
-  <img src="https://img.shields.io/badge/Supervisor-Rust_MSVC_x64-6366f1?style=flat-square&logo=rust&logoColor=white" alt="Rust x64" />
-  <img src="https://img.shields.io/badge/Portabilidade-Zero_Caminhos_Fixos-ef4444?style=flat-square" alt="Zero Hardcoded Paths" />
+  <img src="https://img.shields.io/badge/Pull_Requests-Regras_Inegoci%C3%A1veis-0ea5e9?style=flat-square&logo=github&logoColor=white" alt="Regras Inegociáveis" />
+  <img src="https://img.shields.io/badge/Fidelidade-Oficial_Gameforge_1%3A1-10b981?style=flat-square" alt="Fidelidade 1:1" />
+  <img src="https://img.shields.io/badge/Evid%C3%AAncias-Ghidra_%2B_Wireshark-6366f1?style=flat-square" alt="Ghidra + Wireshark" />
+  <img src="https://img.shields.io/badge/Isolamento-Multi--GameServer_Estrito-f59e0b?style=flat-square" alt="Isolamento Multi-GS" />
 </p>
 
 > [!CAUTION]
-> **LEITURA OBRIGATÓRIA ANTES DE SUBMETER QUALQUER CÓDIGO OU PULL REQUEST:**  
-> 1. **NENHUM SUPORTE OU AJUDA SERÁ CONCEDIDA:** O projeto é disponibilizado como é (*AS-IS*), exclusivamente para testes, preservação histórica e estudos de engenharia (consulte [`SUPPORT.md`](./SUPPORT.md)).  
-> 2. **REJEIÇÃO IMEDIATA DE PRs INCOMPLETOS:** Qualquer Pull Request enviado sem compilação limpa (`mvn clean package` + `cargo build --release`), sem sincronizar os artefatos em `Emulador - Produto Final`, contendo caminhos de disco fixos (`C:\`, `D:\`), utilizando *workarounds* em Java para suprir falta de dados nos XMLs, ou fora do padrão de commits em Português Brasil será **fechado e rejeitado imediatamente sem análise**.
+> # LEITURA OBRIGATÓRIA ANTES DE SUBMETER QUALQUER CÓDIGO OU PULL REQUEST
+> 1. **NÃO SÃO ACEITOS PULL REQUESTS SEM TESTES E IMAGENS COMPROBATÓRIAS:** Todo Pull Request deve obrigatoriamente anexar capturas de tela e registros de execução comprovando o funcionamento prático real da alteração.
+> 2. **VALIDAÇÃO OBRIGATÓRIA CONTRA O SERVIDOR OFICIAL:** Toda mecânica, comportamento, cálculo ou pacote deve ser estritamente validado e comparado contra o **servidor oficial Aion Classic Gameforge**. É inaceitável qualquer submissão sem evidência concreta de que o valor está idêntico ao oficial.
+> 3. **CONFIRMAÇÃO OBRIGATÓRIA VIA GHIDRA E WIRESHARK:** Toda alteração de rede, offsets, fórmulas de combate ou lógica interna do cliente deve trazer evidências extraídas de descompilação no **Ghidra** (módulos PE32+ de 64 bits em `bin64`) e capturas reais no **Wireshark** (`Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/`).
+> 4. **REJEIÇÃO SUMÁRIA DE PRS NÃO CONFORMES:** Submissões que misturem sistemas diferentes, alterem múltiplos GameServers juntos, contenham caminhos fixos (`C:\`, `D:\`), usem bypass em Java para dados faltantes em XMLs, ou não forneçam imagens serão fechadas imediatamente sem análise.
 
 ---
 
-## 1. Fluxo de Trabalho e Desbloqueio do Bate-Papo no Discord
+## 1. Regras Inegociáveis de Isolamento de GameServers
+
+Cada GameServer deste ecossistema (`game-server-gameforge`, `game-server-remake`, `game-server-battleroyale`) é uma entidade **totalmente isolada, autônoma e independente**:
+
+1. **Validação Prévia Obrigatória:**
+   - Antes de iniciar qualquer alteração ou leitura de código relacionada a GameServer, é mandatório validar em qual GameServer a correção ou melhoria será efetuada.
+   - **É terminantemente inaceitável ler ou alterar todos os GameServers genericamente.**
+2. **Independência Total de Sistemas e Mecânicas:**
+   - Cada servidor possui e possuirá mecânicas, regras de progressão e sistemas intencionalmente diferentes entre si.
+   - O `game-server-gameforge` (GSID 1) preserva a experiência oficial 5.0 da Gameforge.
+   - O `game-server-remake` (GSID 2) implementa balanceamento reformulado e customizações próprias.
+   - O `game-server-battleroyale` (GSID 3) implementa modos competitivos de arena e sobrevivência.
+3. **Proibição Absoluta de Consulta Cruzada:**
+   - NUNCA corrija um problema em um GameServer consultando outro GameServer, exceto quando isso for expressamente solicitado pelo usuário.
+4. **Consulta Obrigatória ao Usuário:**
+   - Caso o usuário ou chamado não especifique claramente em qual servidor a intervenção deve ocorrer, pergunte SEMPRE ao usuário antes de prosseguir, mesmo sob nível máximo de autonomia.
+5. **Auditoria de Conclusão de Tarefa:**
+   - Ao concluir qualquer tarefa ou PR, certifique-se e declare explicitamente que nenhum arquivo de outros GameServers foi alterado ou excluído sem autorização prévia.
+6. **Componentes Compartilhados (`chat-server`, `login-server`, `version.dll`):**
+   - Devem ser desenhados e implementados pensando sempre no funcionamento conjunto com cada GameServer isoladamente.
+   - Uma alteração em um componente compartilhado jamais pode causar mau funcionamento em outros GameServers.
+   - Caso uma alteração estrutural no `chat-server`, `login-server` ou `version.dll` demande compatibilização nos GameServers, este é o **único momento autorizado** para ajustar múltiplos GameServers, e a alteração deve restringir-se **exclusivamente à camada de conectividade e comunicação de rede, NUNCA afetando gameplay ou mecânicas internas**.
+7. **Proibição de Subidas Simultâneas em Múltiplos GameServers:**
+   - NUNCA suba alterações para todos os GameServers no mesmo Pull Request. Cada PR deve focar em um único GameServer ou na camada de infraestrutura compartilhada.
+
+---
+
+## 2. Padrão de Pull Requests: Pequenos, Mínimos e Atômicos
+
+Seguindo as melhores práticas de engenharia reversa e preservação:
+
+- **Escopo Único e Mínimo:** Cada Pull Request deve resolver um único problema ou implementar uma única melhoria bem delimitada.
+- **Proibição de Mistura de Sistemas:** NUNCA misture alterações de sistemas diferentes (ex: inventário + chat, ou skills + auction) em um único Pull Request.
+- **Evidências Visuais e Técnicas Obrigatórias:**
+  - Anexe prints/vídeos do funcionamento in-game na interface do cliente Aion Classic 5.0.
+  - Anexe trechos descompilados no **Ghidra** ou disasm correspondente comprovando a estrutura oficial.
+  - Anexe o frame hexadecimal ou dissecção de pacotes no **Wireshark** comprovando paridade byte a byte com o tráfego oficial.
+- **Compilação Limpa Obrigatória:**
+  - `mvn clean package` (Java 25 LTS) com 100% de sucesso.
+  - Supervisor Rust compilado via `cargo check` ou `cargo build --release` sem warnings de erro.
+  - `version.dll` compilada via MSVC v143 (x64/x86) se houver alteração em C/C++.
+- **Sincronização Código-Fonte $\leftrightarrow$ Produto Final:** Toda alteração no código deve vir acompanhada da sincronização em `Emulador - Produto Final` e `Patch final - Client 5.0`.
+
+---
+
+## 3. Matriz de Requisitos de Pull Request
+
+| Requisito | Exigência Técnica | Motivo da Inegociabilidade |
+| :--- | :--- | :--- |
+| **Identificação do GameServer** | Informar expressamente se o PR afeta `GameForge`, `Remake` ou `BattleRoyale`. | Evita contaminação e divergência acidental entre modalidades. |
+| **Evidência Oficial** | Comparação direta com o servidor oficial Aion Classic Gameforge. | Elimina suposições e mantém a fidelidade histórica 1:1. |
+| **Captura Ghidra / Wireshark** | Logs de rede reais (`.pcap`) e offsets de classes C++ em `bin64`. | Garante que opcodes, structs e constantes estão corretos. |
+| **Imagens Comprobatórias** | Prints de tela nítidos demonstrando o comportamento correto em execução. | Comprova que o código foi testado antes de ser submetido. |
+| **Escopo Atômico** | PR mínimo focado em um único bug ou funcionalidade. | Facilita a revisão, auditoria de segurança e rollback caso necessário. |
+| **Zero Caminhos Hardcoded** | Caminhos 100% relativos sem referências a unidades locais (`C:\`, `D:\`). | Garante a portabilidade em qualquer estação de trabalho ou CI/CD. |
+| **Zero Bypass XML** | Correção de dados estáticos direto nos XMLs canônicos via `parsersXML`. | Impede a degradação da base Java com código fictício. |
+| **Commits em Português** | Mensagens de uma linha técnica em Português Brasil sem emojis. | Mantém o padrão histórico de rastreabilidade do repositório. |
+
+---
+
+## 4. Fluxo de Trabalho de Contribuição
 
 ```mermaid
 %%{init: {'theme': 'dark', 'themeVariables': { 'primaryColor': '#0f172a', 'primaryTextColor': '#f8fafc', 'primaryBorderColor': '#38bdf8', 'lineColor': '#38bdf8'}}}%%
 sequenceDiagram
     autonumber
     actor Dev as Colaborador
-    participant Local as Ambiente Local (Java 25 + Rust)
+    participant GS as GameServer Específico (Isolado)
+    participant Tool as Ferramentas (Ghidra + Wireshark)
+    participant Local as Compilação Local (Java 25 + Rust)
     participant GH as GitHub (Pull Request)
-    participant Maintainer as Mantenedor (@kamidaki)
-    participant Discord as Servidor Discord Oficial
+    participant Maintainer as Mantenedor Oficial (@kamidaki)
 
-    Dev->>Local: Implementa melhoria seguindo a cadeia PCAP -> Wire -> Evento -> Estado -> Service -> Broadcast
-    Dev->>Local: Compila Maven (Java 25 LTS) e Supervisor Rust + sincroniza Emulador - Produto Final
-    Local-->>Dev: Resultado: Build 100% limpo e validado em execução real
-    Dev->>Local: Atualiza README.md e CONTEXT.md (se aplicável)
-    Dev->>GH: Envia Commit em Português (uma linha por alteração) + PR detalhado com Discord-User
-    GH->>Maintainer: Aciona revisão técnica obrigatória
-    alt PR Cumpre todas as 10 Regras Explícitas
-        Maintainer->>GH: Aprova e realiza Merge na branch main
-        Maintainer->>Discord: Libera permissão de escrita no chat para o Discord-User informado
-    else PR Viola qualquer regra ou contém gambiarras/caminhos fixos
-        Maintainer->>GH: Fecha e rejeita imediatamente o Pull Request
+    Dev->>GS: Define o GameServer alvo (GameForge, Remake ou BattleRoyale)
+    Dev->>Tool: Audita Ghidra (bin64) e Wireshark (PCAP oficial) para evidência 1:1
+    Dev->>GS: Implementa correção mínima, atômica e exclusiva do GameServer
+    Dev->>Local: Compila Maven (Java 25) + sincroniza Emulador - Produto Final
+    Dev->>Local: Executa testes in-game e captura imagens comprobatórias
+    Dev->>GH: Submete PR pequeno com checklist, evidências e prints anexados
+    GH->>Maintainer: Notificação de revisão técnica
+    alt Atende a todos os critérios e isolamento estrito
+        Maintainer->>GH: Merge aprovado na branch main
+    else Sem imagens, sem evidência oficial ou misturando servidores
+        Maintainer->>GH: Fechamento imediato com justificativa técnica
     end
 ```
 
 ---
 
-## 2. As 10 Regras Explícitas de Pull Request
+## 5. Padrão Obrigatório de Mensagem de Commit
 
-| # | Regra Obrigatória | Exigência Técnica de Auditoria |
-| :---: | :--- | :--- |
-| **01** | **Fidelidade à Cadeia Causal de Eventos** | Nenhum pacote (`CM_*` / `SM_*`) deve ser implementado isoladamente. Respeite o fluxo: `Captura (PCAP) -> Protocolo (Wire) -> Evento -> Estado (World/Entity) -> Sistema (Service) -> Resposta (Broadcast)`. |
-| **02** | **Evidência Real Baseada em PCAPs e Cliente 5.0** | Toda implementação de protocolo ou mecânica deve basear-se nas capturas reais (`Ferramentas e Documentos/Client e Coletas/Wireshark - Oficial Classic 5.0/`) e nos dados extraídos (`Client 5.0 - Dados Extraidos/`). |
-| **03** | **Proibição Absoluta de Bypass por Dados XML Faltantes** | É terminantemente proibido criar *fallbacks* ou valores mágicos no Java para suprir falta de templates. Corrija os XMLs via `parsersXML` e sincronize `Código Fonte - Emulador` e `Emulador - Produto Final`. |
-| **04** | **Portabilidade Absoluta e Zero Caminhos Hardcoded** | É proibido fixar letras de unidade de disco (`C:\`, `D:\`, `E:\`) em qualquer arquivo (`.java`, `.rs`, `.cpp`, `.cs`, `.py`, `.bat`, `.json`, `.xml`, `.md`). Use sempre caminhos relativos e o runtime `java-deployment` integrado. |
-| **05** | **Stack Java 25 LTS Pura (Zero Javolution)** | Utilize exclusivamente coleções e recursos nativos do Java 25 (`java.util`, `java.util.concurrent`, Virtual Threads). Nunca introduza dependências legadas como `javolution.*`. |
-| **06** | **Sincronização Obrigatória com `Emulador - Produto Final`** | Toda modificação em `Código Fonte - Emulador`, no supervisor Rust ou em `version.dll` deve ser compilada e publicada em `Emulador - Produto Final` e `Patch final - Client 5.0`. |
-| **07** | **Autoridade Exclusiva CryEngine Native-Path** | A navegação 3D utiliza exclusivamente `com.lostacademy.nativepath` (`*-path.dat` 0.5m com A* Zero-GC). Não reintroduza motores legados em tempo de execução. |
-| **08** | **Padrão Estrito de Commits em Português** | Mensagens de commit devem ser escritas **estritamente em Português Brasil**, com **uma linha por alteração**, de forma concisa, técnica e sem emojis. |
-| **09** | **Identificação do Usuário do Discord** | Inclua `Discord-User: @seu_usuario` na descrição do Pull Request para liberação de escrita no servidor oficial do Discord após o *merge*. |
-| **10** | **Zero Segredos ou Arquivos Temporários de Execução** | Jamais versione `database.properties` com senhas pessoais de produção, diretórios `target/`, `logs/` ou caches `.WebView2/`. |
-
----
-
-## 3. Padrão Obrigatório de Mensagem de Commit
-
-> [!IMPORTANT]
-> Conforme definido em [`CONTEXT.md`](./CONTEXT.md) e [`README.md`](./README.md), os commits devem estar estritamente em Português Brasil e descrever cada alteração relevante em uma linha individual e objetiva:
+As mensagens de commit devem ser redigidas **estritamente em Português do Brasil**, sem emojis, com uma linha técnica por alteração e escopo bem definido:
 
 ```gitcommit
-Configura java-deployment com Java 25 LTS embarcado e referencia relativa no supervisor Rust
-Move cache do WebView2 para AppData com limpeza e recriacao automatica a cada inicializacao
-Adiciona documentacao padrao de governanca e seguranca na raiz do repositorio
+fix(gameforge): corrigir calculo de resistencia magica baseado em captura do oficial
+feat(remake): adicionar tabela de recompensas de instancia isolada no schema aionclassic_gs2
+fix(version.dll): corrigir resolucao dinamica de ips sem sequestrar loginserver no boot
+fix(chat-server): sincronizar canais de comunicacao para compatibilidade com os tres gameservers
 ```
 
 ---
 
-## 4. Comparativo Rápido: O Que é Aceito vs. O Que é Rejeitado
+## 6. Template Obrigatório de Pull Request
 
-| Submissão Aceitável (Aprovável) | Submissão Inaceitável (Fechamento Imediato) |
-| :--- | :--- |
-| Código Java 25 / Rust / C++ compilado e sincronizado com `Emulador - Produto Final`. | Alterar apenas o código-fonte sem atualizar os binários correspondentes ou enviar código que não compila. |
-| Correção de dados estáticos diretamente nos XMLs via `parsersXML` a partir das extrações oficiais 5.0. | Criar `if (template == null)` com valores fictícios hardcoded no código Java. |
-| Caminhos 100% relativos (`Config/java-deployment/bin/java.exe`, `./libs/*`) e uso de `AppData` para cache temporário. | Inserir caminhos fixos como `C:\Program Files\Java\...` ou `D:\AION CLASSIC...` no código ou em arquivos `.json`. |
-| Commits em Português Brasil no formato de uma linha técnica por alteração. | Commits em inglês, mensagens genéricas (`fix`, `update`) ou uso de emojis. |
+Ao abrir um Pull Request, preencha integralmente o formulário de [PULL_REQUEST_TEMPLATE.md](.github/PULL_REQUEST_TEMPLATE.md) disponível no repositório. Submissões com seções em branco ou sem imagens serão sumariamente recusadas.

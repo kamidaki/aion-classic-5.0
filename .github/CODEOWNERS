@@ -7,6 +7,16 @@
 
 # Core Backend Java
 Código\ Fonte\ -\ Emulador/ @kamidaki
+Código\ Fonte\ -\ Emulador/game-server-gameforge/ @kamidaki
+Código\ Fonte\ -\ Emulador/game-server-remake/ @kamidaki
+Código\ Fonte\ -\ Emulador/game-server-battleroyale/ @kamidaki
+Código\ Fonte\ -\ Emulador/chat-server/ @kamidaki
+Código\ Fonte\ -\ Emulador/login-server/ @kamidaki
+Código\ Fonte\ -\ Emulador/commons/ @kamidaki
+
+# Native Client Modules (C/C++)
+Ferramentas\ e\ Documentos/Códigos\ bin64/ @kamidaki
+Ferramentas\ e\ Documentos/Códigos\ bin64/Código\ Fonte\ -\ Version.dll/ @kamidaki
 
 # Native Supervisor (Rust)
 Ferramentas\ e\ Documentos/Ferramentas\ Python\ e\ PowerShell/Código\ Fonte\ -\ Executável\ Rust\ do\ Emulador/ @kamidaki

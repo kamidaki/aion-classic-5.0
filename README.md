@@ -384,33 +384,63 @@ O script realiza a compilação limpa (x64 e x86) e instala os binários diretam
 ## 15. Guia de Operação e Inicialização
 
 ### Inicialização do Servidor (Recomendado)
-1. Navegue até a pasta `Emulador - Produto Final\`.
-2. Execute o aplicativo `Aion Classic - EMULADOR.exe`.
-3. O supervisor inicializa os serviços na sequência correta:
+1. Navegue até a pasta Emulador - Produto Final\.
+2. Execute o aplicativo Aion Classic - EMULADOR.exe.
+3. O supervisor orquestra a sequência segura de inicialização dos serviços:
    - **Passo 1:** ChatServer (Porta 10241)
    - **Passo 2:** LoginServer (Porta 2106)
-   - **Passo 3:** GameServer (Porta 7777)
-4. Acesse o painel gráfico em tela para acompanhar métricas de memória, CPU, jogadores conectados ou abrir o Database Studio.
+   - **Passo 3:** GameServers Habilitados:
+     - GameForge (GSID 1 | Porta 7777 | DB aionclassic_gs)
+     - Remake (GSID 2 | Porta 7778 | DB aionclassic_gs2)
+     - BattleRoyale (GSID 3 | Porta 7779 | DB aionclassic_gs3)
+4. Acompanhe métricas em tempo real de CPU, memória formatada, console de eventos ao vivo e o Database Studio integrado.
 
 ### Inicialização do Cliente de Jogo
-1. Certifique-se de que o cliente em `D:\GameForge\aionclassic` possui as DLLs atualizadas.
+1. Certifique-se de que o cliente em D:\GameForgeionclassic possui os módulos e scripts atualizados.
 2. Execute o inicializador do idioma desejado:
-   - `Start x64 - PORTUGUÊS BRASIL.bat` (Cliente em Português)
-   - `Start x64 - INGLÊS.bat` (Cliente em Inglês)
-3. O cliente será iniciado com os módulos do emulador injetados, conectando-se diretamente ao servidor local.
+   - Start x64 - PORTUGUÊS BRASIL.bat (Cliente em Português)
+   - Start x64 - INGLÊS.bat (Cliente em Inglês)
+3. O cliente iniciará com a ersion.dll conectora, realizando a conexão ao LoginServer e disponibilizando a seleção de qualquer GameServer ativo.
 
 ---
 
-## 16. Padrão Obrigatório de Commits
+## 16. Diretrizes Mandatórias de Isolamento entre GameServers
+
+> [!CAUTION]
+> **REGRAS INEGOCIÁVEIS DE ISOLAMENTO DE GAMESERVERS:**
+> 1. **Identificação Prévia Obrigatória:** Antes de qualquer alteração ou leitura relacionada a um GameServer, é OBRIGATÓRIO validar em qual GameServer será efetuada a ação (game-server-gameforge, game-server-remake ou game-server-battleroyale). **É inaceitável ler ou alterar todos os GameServers genericamente.**
+> 2. **Servidores Totalmente Isolados e Independentes:** Cada GameServer é um servidor 100% isolado e independente, possuindo sistemas, regras de negócio e mecânicas distintas.
+> 3. **Proibição de Consulta Cruzada:** NUNCA corrigir um problema de um GameServer consultando outro GameServer, exceto quando isso for estritamente solicitado pelo usuário.
+> 4. **Consulta Obrigatória ao Usuário:** Sempre pergunte ao usuário em qual servidor será feita a alteração caso não tenha sido explicitamente fornecido, mesmo sob permissão máxima de autonomia.
+> 5. **Auditoria de Conclusão de Tarefa:** No encerramento de qualquer tarefa, confirme formalmente se não alterou ou excluiu arquivos de outros GameServers sem autorização.
+> 6. **Serviços Compartilhados (chat-server, login-server, ersion.dll):** Devem ser arquitetados pensando sempre no funcionamento conjunto com cada GameServer isoladamente. Alterações nos GameServers para fins de compatibilização são permitidas única e exclusivamente para conectividade e comunicação, jamais para gameplay.
+> 7. **Proibição de Commits Globais:** NUNCA subir alterações em todos os GameServers simultaneamente.
+
+---
+
+## 17. Contribuição e Validação com Evidências Oficiais (Ghidra & Wireshark)
+
+> [!IMPORTANT]
+> **PADRÃO DE EVIDÊNCIAS DE ENGENHARIA REVERSA:**
+> - **Proibição de PRs sem Testes e Imagens:** Não são aceitos Pull Requests sem testes práticos e imagens/capturas comprovando o funcionamento real em execução.
+> - **Validação no Servidor Oficial Gameforge:** Diferente de testes genéricos ou em ROMs, todo comportamento deve ser validado e comparado diretamente contra o **servidor oficial Aion Classic Gameforge**.
+> - **Evidências Concretas Obrigatórias:** Inaceitável qualquer correção sem comprovação empírica de que os valores, tabelas e fluxos correspondem ao oficial.
+> - **Ferramentas Mandatórias:** É obrigatório utilizar **Ghidra** (análise e descompilação de binários PE32+ de 64 bits em in64) e **Wireshark** (capturas reais de tráfego de rede) para confirmação de opcodes, offsets de memória e estruturas.
+> - **Pull Requests Mínimos e Atômicos:** Cada Pull Request deve ser pequeno e conciso, com foco exclusivo em uma correção ou funcionalidade específica. Não misture múltiplos sistemas em um único PR.
+
+---
+
+## 18. Padrão Obrigatório de Commits
 
 Para preservar a rastreabilidade e a consistência do repositório:
 
 - **Idioma Estritamente em Português**: Mensagens de commit nunca devem ser escritas em inglês.
-- **Formato de Uma Linha por Alteração**: Cada modificação relevante deve ser descrita em uma linha individual, concisa, técnica e sem quebras desnecessárias.
+- **Formato de Uma Linha por Alteração**: Cada modificação relevante deve ser descrita em uma linha individual, concisa, técnica e sem emojis.
+- **Escopo no Prefixo**: Commits devem identificar explicitamente o componente ou servidor afetado (ex: ix(gameforge): ..., eat(remake): ..., ix(login-server): ...).
 
 ---
 
-## 17. Licença e Créditos
+## 19. Licença e Créditos
 
 Este projeto foi desenvolvido com propósitos estritamente educacionais, de pesquisa acadêmica em sistemas distribuídos e de preservação histórica do jogo Aion Classic.
 

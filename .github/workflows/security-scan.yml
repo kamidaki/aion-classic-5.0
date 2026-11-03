@@ -1,4 +1,4 @@
-name: 🛡️ Análise de Segurança & Detecção de Segredos
+name: Analise de Seguranca e Deteccao de Segredos
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
   pull_request:
     branches: [ "main" ]
   schedule:
-    - cron: '0 3 * * 1' # Executa semanalmente às segundas-feiras
+    - cron: '0 3 * * 1'
   workflow_dispatch:
 
 permissions:
@@ -15,15 +15,15 @@ permissions:
 
 jobs:
   gitleaks:
-    name: Verificação de Segredos (Gitleaks)
+    name: Verificacao de Segredos (Gitleaks)
     runs-on: ubuntu-latest
     steps:
-      - name: 📥 Checkout com Histórico Completo
+      - name: Checkout com Historico Completo
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: 🔑 Varredura Gitleaks
+      - name: Varredura Gitleaks
         uses: gitleaks/gitleaks-action@v2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -37,25 +37,22 @@ jobs:
       actions: read
       contents: read
     steps:
-      - name: 📥 Checkout do Repositório
+      - name: Checkout do Repositorio
         uses: actions/checkout@v4
 
-      - name: ☕ Configurar Java 25 para CodeQL
+      - name: Configurar Java 25 para CodeQL
         uses: actions/setup-java@v4
         with:
           distribution: 'oracle'
           java-version: '25'
 
-      - name: 🛡️ Inicializar CodeQL
+      - name: Inicializar CodeQL
         uses: github/codeql-action/init@v3
         with:
           languages: java-kotlin
 
-      - name: 🔨 Compilar para CodeQL
-        run: |
-          mvn clean compile --file "Código Fonte - Emulador/pom.xml" -DskipTests=true
+      - name: Compilar com Maven
+        run: mvn clean compile --file "Código Fonte - Emulador/pom.xml" -DskipTests=true
 
-      - name: 📊 Executar Análise CodeQL
+      - name: Finalizar Analise CodeQL
         uses: github/codeql-action/analyze@v3
-        with:
-          category: "/language:java-kotlin"

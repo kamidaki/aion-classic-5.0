@@ -1,4 +1,4 @@
-name: 🚀 Backend Java 25 CI
+name: Backend Java 25 CI
 
 on:
   push:
@@ -18,33 +18,35 @@ permissions:
 
 jobs:
   build:
-    name: Build & Package (Java 25 LTS)
+    name: Build e Pacote (Java 25 LTS)
     runs-on: ubuntu-latest
 
     steps:
-      - name: 📥 Checkout do Repositório
+      - name: Checkout do Repositorio
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: ☕ Configurar Java 25 Early-Access / GA
+      - name: Configurar Java 25
         uses: actions/setup-java@v4
         with:
           distribution: 'oracle'
           java-version: '25'
           cache: 'maven'
 
-      - name: 📦 Compilar Módulos do Emulador (Maven)
+      - name: Compilar Modulos do Emulador (Maven)
         run: |
           mvn clean package --file "Código Fonte - Emulador/pom.xml" -DskipTests=false -Dmaven.javadoc.skip=true
 
-      - name: 💾 Armazenar Artefatos JAR Compilados
+      - name: Armazenar Artefatos JAR Compilados
         uses: actions/upload-artifact@v4
         with:
           name: aion-emulator-jars
           path: |
             Código Fonte - Emulador/commons/target/*.jar
             Código Fonte - Emulador/login-server/target/*.jar
-            Código Fonte - Emulador/game-server/target/*.jar
             Código Fonte - Emulador/chat-server/target/*.jar
+            Código Fonte - Emulador/game-server-gameforge/target/*.jar
+            Código Fonte - Emulador/game-server-remake/target/*.jar
+            Código Fonte - Emulador/game-server-battleroyale/target/*.jar
           retention-days: 7
