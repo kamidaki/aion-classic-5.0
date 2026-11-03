@@ -27,3 +27,4 @@ Este diretório contém o código-fonte Java 25 LTS do **GameServer GameForge**,
 > 4. **Consulta ao Usuário:** Se houver dúvida ou se o usuário não tiver especificado o servidor alvo, pergunte SEMPRE antes de ler ou alterar qualquer arquivo.
 > 5. **Auditoria de Conclusão:** Ao finalizar uma tarefa, confirme se não alterou ou excluiu arquivos de outros GameServers sem autorização.
 > 6. **Fidelidade 1:1 ao Oficial:** Toda correção ou implementação nesta instância deve ser validada contra o **servidor oficial Gameforge**, trazendo comprovação via **Ghidra** (binários x64 em `bin64`), **Wireshark** (capturas oficiais `.pcap`) e capturas de tela in-game.
+

@@ -27,3 +27,4 @@ Este diretório contém o código-fonte Java 25 LTS do **GameServer BattleRoyale
 > 4. **Consulta ao Usuário:** Se houver dúvida ou se o usuário não tiver especificado o servidor alvo, pergunte SEMPRE antes de ler ou alterar qualquer arquivo.
 > 5. **Auditoria de Conclusão:** Ao finalizar uma tarefa, confirme se não alterou ou excluiu arquivos de outros GameServers sem autorização.
 > 6. **Fidelidade de Protocolo e Evidências:** Toda mecânica deste servidor deve ser testada em execução real com imagens comprobatórias, respeitando os padrões de rede oficiais (Ghidra e Wireshark) na camada de comunicação.
+

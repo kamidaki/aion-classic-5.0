@@ -39,3 +39,4 @@ Antes de submeter um relatório de falha (*issue*), execute o seguinte roteiro d
 ## 4. Comunidade no Discord e Desbloqueio
 
 O servidor oficial no Discord (**[https://discord.gg/Sjdrsg3gcb](https://discord.gg/Sjdrsg3gcb)**) não é um canal de suporte técnico. O acesso de escrita aos canais é liberado exclusivamente após a aprovação (*merge*) de um Pull Request técnico real neste repositório contendo `Discord-User: @seu_usuario` e acompanhado de evidências oficiais com testes e imagens.
+

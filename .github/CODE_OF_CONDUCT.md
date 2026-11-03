@@ -58,3 +58,4 @@ Casos de comportamento abusivo, assédio ou qualquer conduta inaceitável podem 
 ## 6. Atribuição
 
 Este Código de Conduta é adaptado do [Contributor Covenant](https://www.contributor-covenant.org/pt-br/version/2/1/code_of_conduct/), versão 2.1, complementado com os requisitos técnicos específicos de engenharia reversa e isolamento arquitetural do projeto Aion Classic 5.0.
+
