@@ -2291,9 +2291,15 @@ pub const HTML_DASHBOARD: &str = r##"<!DOCTYPE html>
             try {
                 const res = await fetch(`/api/properties/file?path=${encodeURIComponent(fullPath)}&server=${activePropServer}`);
                 const data = await res.json();
-                currentPropFile = data;
-                document.getElementById('prop-current-filename').textContent = data.rel_path.split('\\').pop().split('/').pop();
-                renderPropertiesEditor(data.items);
+                if (data.status !== 'ok' || !data.file) {
+                    alert('Erro ao carregar arquivo: ' + (data.message || 'Arquivo não encontrado'));
+                    return;
+                }
+                const fileObj = data.file;
+                currentPropFile = fileObj;
+                const filename = (fileObj.rel_path || fileObj.full_path || '').split('\\').pop().split('/').pop();
+                document.getElementById('prop-current-filename').textContent = filename;
+                renderPropertiesEditor(fileObj.items || []);
                 renderPropFilesList();
             } catch (e) {
                 alert('Erro ao carregar arquivo: ' + e.message);

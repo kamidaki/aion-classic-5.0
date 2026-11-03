@@ -27,42 +27,12 @@
     "port": 3310,
     "user": "aionliveclassic",
     "password": "@d@mn0gu31r4",
-    "database": "aionclassic_gs"
+    "database": "aionclassic_gs",
+    "properties_file": "",
+    "label": "",
+    "color": ""
   },
   "databases": {
-    "cs": {
-      "auto_read_properties": true,
-      "host": "192.168.3.29",
-      "port": 3310,
-      "user": "aionliveclassic",
-      "password": "@d@mn0gu31r4",
-      "database": "aionclassic_cs",
-      "properties_file": "ChatServer/config/network/database.properties",
-      "label": "Chat Server",
-      "color": "#00CED1"
-    },
-    "ls": {
-      "auto_read_properties": true,
-      "host": "192.168.3.29",
-      "port": 3310,
-      "user": "aionliveclassic",
-      "password": "@d@mn0gu31r4",
-      "database": "aionclassic_ls",
-      "properties_file": "LoginServer/config/network/database.properties",
-      "label": "Login Server",
-      "color": "#FFD700"
-    },
-    "gameforge": {
-      "auto_read_properties": true,
-      "host": "192.168.3.29",
-      "port": 3310,
-      "user": "aionliveclassic",
-      "password": "@d@mn0gu31r4",
-      "database": "aionclassic_gs",
-      "properties_file": "GameServer-GameForge/config/network/database.properties",
-      "label": "GameForge DB (GSID 1)",
-      "color": "#38bdf8"
-    },
     "remake": {
       "auto_read_properties": true,
       "host": "192.168.3.29",
@@ -84,49 +54,42 @@
       "properties_file": "GameServer-BattleRoyale/config/network/database.properties",
       "label": "BattleRoyale DB (GSID 3)",
       "color": "#f97316"
+    },
+    "gameforge": {
+      "auto_read_properties": true,
+      "host": "192.168.3.29",
+      "port": 3310,
+      "user": "aionliveclassic",
+      "password": "@d@mn0gu31r4",
+      "database": "aionclassic_gs",
+      "properties_file": "GameServer-GameForge/config/network/database.properties",
+      "label": "GameForge DB (GSID 1)",
+      "color": "#38bdf8"
+    },
+    "ls": {
+      "auto_read_properties": true,
+      "host": "192.168.3.29",
+      "port": 3310,
+      "user": "aionliveclassic",
+      "password": "@d@mn0gu31r4",
+      "database": "aionclassic_ls",
+      "properties_file": "LoginServer/config/network/database.properties",
+      "label": "Login Server",
+      "color": "#FFD700"
+    },
+    "cs": {
+      "auto_read_properties": true,
+      "host": "192.168.3.29",
+      "port": 3310,
+      "user": "aionliveclassic",
+      "password": "@d@mn0gu31r4",
+      "database": "aionclassic_cs",
+      "properties_file": "ChatServer/config/network/database.properties",
+      "label": "Chat Server",
+      "color": "#00CED1"
     }
   },
   "servers": {
-    "chat": {
-      "java_exe": "Config/java-deployment/bin/java.exe",
-      "jvm_args": [
-        "-Xms72m",
-        "-Xmx72m",
-        "-XX:+UseNUMA",
-        "-XX:+UseCompactObjectHeaders",
-        "-Dfile.encoding=UTF-8",
-        "-DconsoleEncoding=UTF-8"
-      ],
-      "main_class": "com.aionemu.chatserver.ChatServer",
-      "classpath": "./libs/*",
-      "working_dir": "ChatServer",
-      "label": "Chat Server",
-      "tag": "CS",
-      "enabled": true,
-      "color": "#00CED1",
-      "management_port": 10241,
-      "shutdown_delay_seconds": 10
-    },
-    "login": {
-      "java_exe": "Config/java-deployment/bin/java.exe",
-      "jvm_args": [
-        "-Xms48m",
-        "-Xmx48m",
-        "-XX:+UseNUMA",
-        "-XX:+UseCompactObjectHeaders",
-        "-Dfile.encoding=UTF-8",
-        "-DconsoleEncoding=UTF-8"
-      ],
-      "main_class": "com.aionemu.loginserver.LoginServer",
-      "classpath": "./libs/*",
-      "working_dir": "LoginServer",
-      "label": "Login Server",
-      "tag": "LS",
-      "enabled": true,
-      "color": "#FFD700",
-      "management_port": 2106,
-      "shutdown_delay_seconds": 10
-    },
     "gameforge": {
       "java_exe": "Config/java-deployment/bin/java.exe",
       "jvm_args": [
@@ -146,6 +109,48 @@
       "enabled": false,
       "color": "#38bdf8",
       "management_port": 7777,
+      "shutdown_delay_seconds": 10
+    },
+    "chat": {
+      "java_exe": "Config/java-deployment/bin/java.exe",
+      "jvm_args": [
+        "-Xms72m",
+        "-Xmx72m",
+        "-XX:+UseNUMA",
+        "-XX:+UseCompactObjectHeaders",
+        "-Dfile.encoding=UTF-8",
+        "-DconsoleEncoding=UTF-8"
+      ],
+      "main_class": "com.aionemu.chatserver.ChatServer",
+      "classpath": "./libs/*",
+      "working_dir": "ChatServer",
+      "label": "Chat Server",
+      "tag": "CS",
+      "gsid": null,
+      "enabled": true,
+      "color": "#00CED1",
+      "management_port": 10241,
+      "shutdown_delay_seconds": 10
+    },
+    "battleroyale": {
+      "java_exe": "Config/java-deployment/bin/java.exe",
+      "jvm_args": [
+        "-Xms1G",
+        "-Xmx4G",
+        "-XX:+UseNUMA",
+        "-XX:+UseCompactObjectHeaders",
+        "-Dfile.encoding=UTF-8",
+        "-DconsoleEncoding=UTF-8"
+      ],
+      "main_class": "com.aionemu.gameserver.GameServer",
+      "classpath": "./libs/*",
+      "working_dir": "GameServer-BattleRoyale",
+      "label": "BattleRoyale",
+      "tag": "BR",
+      "gsid": 3,
+      "enabled": false,
+      "color": "#f97316",
+      "management_port": 7779,
       "shutdown_delay_seconds": 10
     },
     "remake": {
@@ -169,25 +174,25 @@
       "management_port": 7778,
       "shutdown_delay_seconds": 10
     },
-    "battleroyale": {
+    "login": {
       "java_exe": "Config/java-deployment/bin/java.exe",
       "jvm_args": [
-        "-Xms1G",
-        "-Xmx4G",
+        "-Xms48m",
+        "-Xmx48m",
         "-XX:+UseNUMA",
         "-XX:+UseCompactObjectHeaders",
         "-Dfile.encoding=UTF-8",
         "-DconsoleEncoding=UTF-8"
       ],
-      "main_class": "com.aionemu.gameserver.GameServer",
+      "main_class": "com.aionemu.loginserver.LoginServer",
       "classpath": "./libs/*",
-      "working_dir": "GameServer-BattleRoyale",
-      "label": "BattleRoyale",
-      "tag": "BR",
-      "gsid": 3,
-      "enabled": false,
-      "color": "#f97316",
-      "management_port": 7779,
+      "working_dir": "LoginServer",
+      "label": "Login Server",
+      "tag": "LS",
+      "gsid": null,
+      "enabled": true,
+      "color": "#FFD700",
+      "management_port": 2106,
       "shutdown_delay_seconds": 10
     }
   }
