@@ -168,8 +168,16 @@ public class PlayerDAO {
 					cd.setWorldOwnerId(resultSet.getInt("world_owner"));
 					cd.setMentorFlagTime(resultSet.getInt("mentor_flag_time"));
 					cd.setLastTransferTime(resultSet.getLong("last_transfer_time"));
-					cd.setWardrobeSlot(Math.max(1, resultSet.getInt("wardrobe_size")));
-					cd.setHairstyleSlot(Math.max(1, resultSet.getInt("hairstyle_size")));
+					try {
+						cd.setWardrobeSlot(Math.max(1, resultSet.getInt("wardrobe_size")));
+					} catch (Exception ignored) {
+						cd.setWardrobeSlot(1);
+					}
+					try {
+						cd.setHairstyleSlot(Math.max(1, resultSet.getInt("hairstyle_size")));
+					} catch (Exception ignored) {
+						cd.setHairstyleSlot(1);
+					}
 					cd.setCreationDate(resultSet.getTimestamp("creation_date"));
 					cd.setDeletionDate(resultSet.getTimestamp("deletion_date"));
 					return cd;

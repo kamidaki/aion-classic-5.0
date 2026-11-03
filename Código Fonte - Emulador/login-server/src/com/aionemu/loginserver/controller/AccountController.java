@@ -32,6 +32,8 @@ import com.aionemu.loginserver.utils.ExternalAuth;
  */
 public class AccountController {
 
+	private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(AccountController.class);
+
 	/**
 	 * Map with accounts that are active on LoginServer or joined GameServer and are not authenticated yet.
 	 */
@@ -64,6 +66,14 @@ public class AccountController {
 		LoginConnection con = accountsOnLS.get(key.accountId);
 
 		if (con != null && con.getSessionKey().checkSessionKey(key)) {
+			byte selectedGsId = con.getSelectedGameServerId();
+			byte currentGsId = gsConnection.getGameServerInfo().getId();
+			if (selectedGsId != 0 && selectedGsId != currentGsId) {
+				log.warn("Account {} requested GS #{} but tried to auth on GS #{}! Rejecting cross-server routing.",
+					key.accountId, selectedGsId, currentGsId);
+				gsConnection.sendPacket(new SM_ACCOUNT_AUTH_RESPONSE(key.accountId, false, null, 0, (byte) 0, (byte) 0, null));
+				return;
+			}
 			// account is successful logged in on gs remove it from here
 			accountsOnLS.remove(key.accountId);
 

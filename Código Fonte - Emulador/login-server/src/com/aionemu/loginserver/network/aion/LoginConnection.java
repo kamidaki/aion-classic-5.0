@@ -62,6 +62,7 @@ public class LoginConnection extends AConnection<AionServerPacket> {
 	 * True if this user is connecting to GS.
 	 */
 	private boolean joinedGs;
+	private byte selectedGameServerId;
 
 	/**
 	 * Scrambled key pair for RSA
@@ -298,6 +299,14 @@ public class LoginConnection extends AConnection<AionServerPacket> {
 	 */
 	public final void setJoinedGs() {
 		joinedGs = true;
+	}
+
+	public byte getSelectedGameServerId() {
+		return selectedGameServerId;
+	}
+
+	public void setSelectedGameServerId(byte selectedGameServerId) {
+		this.selectedGameServerId = selectedGameServerId;
 	}
 
 	/**

@@ -32,12 +32,6 @@ public class SM_SERVER_LIST extends AionServerPacket {
 		GameServerInfo lastGsi = GameServerTable.getGameServerInfo((byte) lastServer);
 		if (lastGsi == null || !lastGsi.isOnline()) {
 			lastServer = 0;
-			for (GameServerInfo gsi : servers) {
-				if (gsi.isOnline()) {
-					lastServer = gsi.getId();
-					break;
-				}
-			}
 		}
 
 		writeC(servers.size()); // servers count
@@ -82,9 +76,9 @@ public class SM_SERVER_LIST extends AionServerPacket {
 			writeC(0x00);
 		}
 		writeH(maxId + 1);
-		writeC(0x01); // enable "last server" button & auto-connection
-		for (byte gsId = 1; gsId <= maxId; gsId++) {
-			writeC(charCountOnServer != null ? charCountOnServer.getOrDefault(gsId, 0) : 0);
+		writeC(0x00); // 0x00 presents full server selection grid with all available shards
+		for (byte gsId = 0; gsId <= maxId; gsId++) {
+			writeC(gsId == 0 ? 0 : (charCountOnServer != null ? charCountOnServer.getOrDefault(gsId, 0) : 0));
 		}
 		writeB(new byte[15]); // classic na 15 bytes
 	}

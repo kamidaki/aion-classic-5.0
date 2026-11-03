@@ -39,7 +39,7 @@ public class ClientChannelHandler extends AbstractChannelHandler {
 
 	@Override
 	public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
-		ByteBuf buf = (ByteBuf) msg;
+		ByteBuf buf = ((ByteBuf) msg).order(ByteOrder.LITTLE_ENDIAN);
 		try {
 			AbstractClientPacket clientPacket = clientPacketHandler.handle(buf, this);
 			if (clientPacket != null && clientPacket.read())

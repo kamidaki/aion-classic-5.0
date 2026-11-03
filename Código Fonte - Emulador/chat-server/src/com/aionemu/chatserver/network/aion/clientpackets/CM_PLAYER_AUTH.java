@@ -47,10 +47,14 @@ public class CM_PLAYER_AUTH extends AbstractClientPacket {
 
 	@Override
 	protected void runImpl() {
+		if (identifier == null || identifier.length == 0) {
+			return;
+		}
 		String nameIdentifier = new String(identifier, StandardCharsets.UTF_16LE); // Name@identifier
-		String charName = nameIdentifier.substring(0, nameIdentifier.lastIndexOf(identifierSeparator));
+		int sepIndex = identifierSeparator != null ? nameIdentifier.lastIndexOf(identifierSeparator) : -1;
+		String charName = sepIndex >= 0 ? nameIdentifier.substring(0, sepIndex) : nameIdentifier;
 		// Classic 5.0 client sends account name with "_sd_" prefix; strip it before comparison
-		String cleanAccountName = accountName.startsWith("_sd_") ? accountName.substring(4) : accountName;
+		String cleanAccountName = (accountName != null && accountName.startsWith("_sd_")) ? accountName.substring(4) : (accountName != null ? accountName : "");
 		ChatService.getInstance().registerPlayerConnection(playerId, token, identifier, charName, cleanAccountName, clientChannelHandler);
 	}
 }

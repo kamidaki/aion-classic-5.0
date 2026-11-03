@@ -2,6 +2,7 @@ package com.aionemu.gameserver.services;
 
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -223,15 +224,10 @@ public class DatabaseSchemaService {
 	}
 
 	public static boolean hasTable(Connection con, String tableName) {
-		try {
-			DatabaseMetaData meta = con.getMetaData();
-			try (ResultSet rs = meta.getTables(con.getCatalog(), null, tableName, new String[] {"TABLE"})) {
-				if (rs.next()) {
-					return true;
-				}
-			}
-			// Fallback case-insensitive / sem catalog
-			try (ResultSet rs = meta.getTables(null, null, tableName, new String[] {"TABLE"})) {
+		try (PreparedStatement stmt = con.prepareStatement(
+			"SELECT 1 FROM information_schema.TABLES WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = ?")) {
+			stmt.setString(1, tableName);
+			try (ResultSet rs = stmt.executeQuery()) {
 				return rs.next();
 			}
 		} catch (SQLException e) {
@@ -255,15 +251,11 @@ public class DatabaseSchemaService {
 	}
 
 	public static boolean hasColumn(Connection con, String tableName, String columnName) {
-		try {
-			DatabaseMetaData meta = con.getMetaData();
-			try (ResultSet rs = meta.getColumns(con.getCatalog(), null, tableName, columnName)) {
-				if (rs.next()) {
-					return true;
-				}
-			}
-			// Fallback sem catalog
-			try (ResultSet rs = meta.getColumns(null, null, tableName, columnName)) {
+		try (PreparedStatement stmt = con.prepareStatement(
+			"SELECT 1 FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = ? AND COLUMN_NAME = ?")) {
+			stmt.setString(1, tableName);
+			stmt.setString(2, columnName);
+			try (ResultSet rs = stmt.executeQuery()) {
 				return rs.next();
 			}
 		} catch (SQLException e) {

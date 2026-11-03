@@ -58,6 +58,7 @@ public class CM_PLAY extends AionClientPacket {
 			else if (gsi.isFull())
 				con.sendPacket(new SM_PLAY_FAIL(AionAuthResponse.STR_L2AUTH_S_LIMIT_EXCEED));
 			else {
+				con.setSelectedGameServerId(servId);
 				con.setJoinedGs();
 				sendPacket(new SM_PLAY_OK(key, servId));
 			}

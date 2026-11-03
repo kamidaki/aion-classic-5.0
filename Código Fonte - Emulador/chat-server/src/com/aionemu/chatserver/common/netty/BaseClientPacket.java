@@ -14,7 +14,7 @@ public abstract class BaseClientPacket extends AbstractPacket {
 
 	public BaseClientPacket(ByteBuf channelBuffer, byte opCode) {
 		super(opCode);
-		this.buf = channelBuffer;
+		this.buf = channelBuffer.order(java.nio.ByteOrder.LITTLE_ENDIAN);
 	}
 
 	public int getRemainingBytes() {
@@ -62,7 +62,7 @@ public abstract class BaseClientPacket extends AbstractPacket {
 	 */
 	protected final int readD() {
 		try {
-			return buf.readInt();
+			return buf.readIntLE();
 		} catch (Exception e) {
 			log.error("Missing D for: {}", this);
 		}
@@ -86,7 +86,7 @@ public abstract class BaseClientPacket extends AbstractPacket {
 	 */
 	protected final int readH() {
 		try {
-			return buf.readShort() & 0xFFFF;
+			return buf.readShortLE() & 0xFFFF;
 		} catch (Exception e) {
 			log.error("Missing H for: {}", this);
 		}
@@ -98,7 +98,7 @@ public abstract class BaseClientPacket extends AbstractPacket {
 	 */
 	protected final double readDF() {
 		try {
-			return buf.readDouble();
+			return buf.readDoubleLE();
 		} catch (Exception e) {
 			log.error("Missing DF for: {}", this);
 		}
@@ -110,7 +110,7 @@ public abstract class BaseClientPacket extends AbstractPacket {
 	 */
 	protected final float readF() {
 		try {
-			return buf.readFloat();
+			return buf.readFloatLE();
 		} catch (Exception e) {
 			log.error("Missing F for: {}", this);
 		}
@@ -122,7 +122,7 @@ public abstract class BaseClientPacket extends AbstractPacket {
 	 */
 	protected final long readQ() {
 		try {
-			return buf.readLong();
+			return buf.readLongLE();
 		} catch (Exception e) {
 			log.error("Missing Q for: {}", this);
 		}
@@ -136,7 +136,7 @@ public abstract class BaseClientPacket extends AbstractPacket {
 		StringBuilder sb = new StringBuilder();
 		char ch;
 		try {
-			while ((ch = buf.readChar()) != 0)
+			while ((ch = (char) (buf.readShortLE() & 0xFFFF)) != 0)
 				sb.append(ch);
 		} catch (Exception e) {
 			log.error("Missing S for: {}", this);
