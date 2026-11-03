@@ -1,5 +1,5 @@
+#![recursion_limit = "512"]
 #![windows_subsystem = "windows"]
-
 mod config;
 mod db_manager;
 mod job_object;
@@ -10,9 +10,7 @@ mod supervisor;
 mod tray;
 mod ui;
 mod webview;
-
 use properties_manager::PropertiesManager;
-
 use config::{ensure_database_properties, load_config};
 use db_manager::DbManagerMulti;
 use job_object::JobObjectGuard;
@@ -26,7 +24,6 @@ use std::time::Duration;
 use tray::{TrayAction, TrayManager};
 use warp::Filter;
 use webview::{UserEvent, WebViewApp};
-
 fn is_port_available(port: u16) -> bool {
     // 1. If any service is accepting connections on 127.0.0.1:port, it is occupied
     if std::net::TcpStream::connect_timeout(
@@ -37,13 +34,11 @@ fn is_port_available(port: u16) -> bool {
     {
         return false;
     }
-
     // 2. Test binding to 127.0.0.1
     let l_local = match std::net::TcpListener::bind(("127.0.0.1", port)) {
         Ok(l) => l,
         Err(_) => return false,
     };
-
     // 3. Test binding to 0.0.0.0 to prevent any wildcard port conflicts
     let l_all = match std::net::TcpListener::bind(("0.0.0.0", port)) {
         Ok(l) => l,
@@ -52,12 +47,10 @@ fn is_port_available(port: u16) -> bool {
             return false;
         }
     };
-
     drop(l_local);
     drop(l_all);
     true
 }
-
 fn find_available_http_port(preferred: u16, max_attempts: u16) -> u16 {
     for offset in 0..max_attempts {
         let candidate = preferred.saturating_add(offset);
@@ -67,23 +60,19 @@ fn find_available_http_port(preferred: u16, max_attempts: u16) -> u16 {
     }
     preferred
 }
-
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     let _ = std::fs::create_dir_all("logs");
     std::panic::set_hook(Box::new(|info| {
         let msg = format!("[PANIC] {:?}\n", info);
         let _ = std::fs::write("logs/panic.log", &msg);
     }));
-
     if let Ok(exe_path) = std::env::current_exe() {
         if let Some(parent) = exe_path.parent() {
             let _ = std::env::set_current_dir(parent);
         }
     }
-
     // 1. Windows Job Object: guarantees all child Java processes die when launcher exits or crashes
     let _job_guard = JobObjectGuard::init();
-
     // 2. Strict Single Instance Protection via Global/Local Named Mutex & Process Scan
     let _instance_guard = match SingleInstanceGuard::acquire("Aion Classic - EMULADOR") {
         Some(g) => g,
@@ -91,7 +80,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             std::process::exit(0);
         }
     };
-
     let cfg_path = if std::path::Path::new("Config/config.json").exists() {
         "Config/config.json"
     } else {
@@ -101,7 +89,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     for path in ensure_database_properties(&cfg)? {
         println!("[OK] Configuração JDBC gerada: {}", path);
     }
-
     // Dynamic HTTP Port Allocation: If preferred port is in use (e.g. by another emulator like Florensia),
     // automatically find and bind the next free port.
     let preferred_http_port = cfg.gui.http_port;
@@ -115,32 +102,26 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         println!("[OK] Painel web alocado na porta: {}", actual_http_port);
     }
     cfg.gui.http_port = actual_http_port;
-
     let log_center = LogCenter::new(
         cfg.launcher.clean_archived_logs_days,
         &cfg.paths.login_server_log_dir,
         &cfg.paths.game_server_log_dir,
         &cfg.paths.chat_server_log_dir,
     );
-
     let db_manager = DbManagerMulti::new(&cfg.databases);
     let supervisor = Supervisor::new(cfg.clone(), log_center.clone(), db_manager.clone());
-
     // 2. Initialize Tokio Runtime for background services
     let rt = tokio::runtime::Builder::new_multi_thread()
         .enable_all()
         .build()?;
     let _rt_guard = rt.enter();
-
     // 3. Initialize WebView App on main thread
     let webview_app = WebViewApp::new();
     let proxy = webview_app.get_proxy();
-
     let is_shutting_down = Arc::new(AtomicBool::new(false));
-
     // 4. Initialize Windows System Tray
     let proxy_for_tray = proxy.clone();
-
+    let sup_for_tray = supervisor.clone();
     let tray_manager_arc = Arc::new(parking_lot::Mutex::new(
         TrayManager::init(Arc::new(move |action| match action {
             TrayAction::OpenDashboard => {
@@ -150,12 +131,17 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 let _ = proxy_for_tray.send_event(UserEvent::ToggleCompactMode);
             }
             TrayAction::RequestShutdown => {
-                let _ = proxy_for_tray.send_event(UserEvent::RequestShutdownConfirmation);
+                let s = sup_for_tray.clone();
+                let prx = proxy_for_tray.clone();
+                tokio::spawn(async move {
+                    s.graceful_shutdown().await;
+                    tokio::time::sleep(Duration::from_millis(600)).await;
+                    let _ = prx.send_event(UserEvent::ExitProcess);
+                });
             }
         }))
         .expect("Failed to initialize Windows System Tray"),
     ));
-
     let sup_clone = supervisor.clone();
     let cfg_clone = cfg.clone();
     let log_center_clone = log_center.clone();
@@ -163,11 +149,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let is_shutting_down_bg = is_shutting_down.clone();
     let proxy_for_web = proxy.clone();
     let db_for_routes = db_manager.clone();
-
     rt.spawn(async move {
         sup_clone.spawn_crash_monitor();
         sup_clone.spawn_metrics_sampler();
-
         // Auto-start servers sequentially if enabled in config (Chat -> 5s -> Login -> 5s -> Game)
         if cfg_clone.launcher.auto_start_servers_on_launch {
             let s = sup_clone.clone();
@@ -176,7 +160,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 s.start_all_servers_sequentially().await;
             });
         }
-
         // Periodic tray tooltip updater (1s interval)
         let sup_for_tip = sup_clone.clone();
         let is_shutting_down_tip = is_shutting_down_bg.clone();
@@ -190,21 +173,17 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 tray_manager_for_tooltip.lock().update_tooltip(&tip_text);
             }
         });
-
         // Set up Warp web dashboard routes
         let sup_filter = {
             let s = sup_clone.clone();
             warp::any().map(move || s.clone())
         };
-
         let log_filter = {
             let lc = log_center_clone.clone();
             warp::any().map(move || lc.clone())
         };
-
         // Route: GET / -> Dashboard HTML
         let index_route = warp::path::end().map(|| warp::reply::html(ui::HTML_DASHBOARD));
-
         // Route: GET /api/metrics -> Full state JSON with metrics
         let metrics_route = warp::path!("api" / "metrics")
             .and(warp::get())
@@ -213,7 +192,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 let state = sup.get_dashboard_state();
                 warp::reply::json(&state)
             });
-
         // Route: GET /api/players -> Online players list from MySQL
         let players_route = warp::path!("api" / "players")
             .and(warp::get())
@@ -222,7 +200,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 let players = sup.get_online_players();
                 warp::reply::json(&players)
             });
-
         // Route: GET /api/logs?server=all -> Centralized JSON recent logs
         let logs_route = warp::path!("api" / "logs")
             .and(warp::get())
@@ -233,7 +210,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 let entries = lc.get_recent_entries(250, srv, None);
                 warp::reply::json(&entries)
             });
-
         // Route: POST /api/control/:server/:action -> Control server (start, stop, restart)
         let control_route = warp::path!("api" / "control" / String / String)
             .and(warp::post())
@@ -268,13 +244,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     (srv, "restart") => sup.restart_server(srv).await,
                     _ => Err("Invalid action".to_string()),
                 };
-
                 match res {
                     Ok(_) => Ok::<_, Infallible>(warp::reply::json(&serde_json::json!({ "status": "ok" }))),
                     Err(e) => Ok::<_, Infallible>(warp::reply::json(&serde_json::json!({ "status": "error", "message": e }))),
                 }
             });
-
         // Route: POST /api/shutdown -> Synchronous Graceful shutdown trigger
         let is_shutting_down_api = is_shutting_down_bg.clone();
         let sup_shutdown_api = sup_clone.clone();
@@ -299,7 +273,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     })))
                 }
             });
-
         // Route: POST /api/window/fullscreen -> Toggle Native Fullscreen
         let proxy_fs = proxy_for_web.clone();
         let fullscreen_route = warp::path!("api" / "window" / "fullscreen")
@@ -308,7 +281,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 let _ = proxy_fs.send_event(UserEvent::ToggleFullscreen);
                 warp::reply::json(&serde_json::json!({ "status": "ok" }))
             });
-
         // Route: POST /api/ui/compact -> Toggle Native Compact Mode
         let proxy_compact = proxy_for_web.clone();
         let compact_route = warp::path!("api" / "ui" / "compact")
@@ -317,13 +289,65 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 let _ = proxy_compact.send_event(UserEvent::ToggleCompactMode);
                 warp::reply::json(&serde_json::json!({ "status": "ok" }))
             });
-
+        // Route: POST /api/window/hide -> Hide window to tray
+        let proxy_hide = proxy_for_web.clone();
+        let hide_route = warp::path!("api" / "window" / "hide")
+            .and(warp::post())
+            .map(move || {
+                let _ = proxy_hide.send_event(UserEvent::HideDashboard);
+                warp::reply::json(&serde_json::json!({ "status": "ok" }))
+            });
+        // Route: POST /api/window/drag -> Drag window
+        let proxy_drag = proxy_for_web.clone();
+        let drag_route = warp::path!("api" / "window" / "drag")
+            .and(warp::post())
+            .map(move || {
+                let _ = proxy_drag.send_event(UserEvent::DragWindow);
+                warp::reply::json(&serde_json::json!({ "status": "ok" }))
+            });
+        // Route: GET /api/config -> Read config.json
+        let config_get_route = warp::path!("api" / "config")
+            .and(warp::get())
+            .map(|| {
+                let p = if std::path::Path::new("Config/config.json").exists() {
+                    "Config/config.json"
+                } else {
+                    "config.json"
+                };
+                let current_cfg = load_config(p);
+                warp::reply::json(&current_cfg)
+            });
+        // Route: POST /api/config -> Save config.json
+        let config_post_route = warp::path!("api" / "config")
+            .and(warp::post())
+            .and(warp::body::json::<crate::config::RootConfig>())
+            .map(|new_cfg: crate::config::RootConfig| {
+                let p = if std::path::Path::new("Config/config.json").exists() {
+                    "Config/config.json"
+                } else {
+                    "config.json"
+                };
+                match crate::config::save_config(p, &new_cfg) {
+                    Ok(_) => {
+                        let _ = crate::config::ensure_database_properties(&new_cfg);
+                        warp::reply::json(&serde_json::json!({
+                            "status": "ok",
+                            "message": "Configurações salvas no config.json com sucesso!"
+                        }))
+                    }
+                    Err(e) => {
+                        warp::reply::json(&serde_json::json!({
+                            "status": "error",
+                            "message": format!("Erro ao salvar config.json: {}", e)
+                        }))
+                    }
+                }
+            });
         // Database Studio Endpoints (MySQL)
         let db_filter = {
             let db = db_for_routes.clone();
             warp::any().map(move || db.clone())
         };
-
         // GET /api/db/schema
         let db_schema_route = warp::path!("api" / "db" / "schema")
             .and(warp::get())
@@ -341,7 +365,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
                 }
             });
-
         // GET /api/db/table/:table/rows
         let db_rows_route = warp::path!("api" / "db" / "table" / String / "rows")
             .and(warp::get())
@@ -354,13 +377,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 let search = params.get("search").map(|s| s.as_str());
                 let sort_col = params.get("sort").map(|s| s.as_str());
                 let sort_order = params.get("order").map(|s| s.as_str());
-
                 match db.get_table_data(db_id, &table, page, limit, search, sort_col, sort_order) {
                     Ok(data) => warp::reply::json(&serde_json::json!({ "status": "ok", "data": data })),
                     Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
                 }
             });
-
         // POST /api/db/table/:table/row (Insert)
         let db_insert_route = warp::path!("api" / "db" / "table" / String / "row")
             .and(warp::post())
@@ -374,7 +395,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
                 }
             });
-
         // PUT /api/db/table/:table/row (Update)
         #[derive(serde::Deserialize)]
         struct UpdateRowPayload {
@@ -392,7 +412,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
                 }
             });
-
         // DELETE /api/db/table/:table/row (Delete)
         #[derive(serde::Deserialize)]
         struct DeleteRowPayload {
@@ -409,7 +428,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
                 }
             });
-
         // POST /api/db/table/:table/truncate
         let db_truncate_table_route = warp::path!("api" / "db" / "table" / String / "truncate")
             .and(warp::post())
@@ -422,7 +440,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
                 }
             });
-
         // POST /api/db/clean_all
         let db_clean_all_route = warp::path!("api" / "db" / "clean_all")
             .and(warp::post())
@@ -435,7 +452,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
                 }
             });
-
         // POST /api/db/query
         #[derive(serde::Deserialize)]
         struct RawSqlPayload {
@@ -452,7 +468,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
                 }
             });
-
         // GET /api/db/check?db=cs
         let db_check_route = warp::path!("api" / "db" / "check")
             .and(warp::get())
@@ -463,7 +478,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 let res = db.check_database(db_id);
                 warp::reply::json(&serde_json::json!({ "status": "ok", "data": res }))
             });
-
         // GET /api/db/check_all
         let db_check_all_route = warp::path!("api" / "db" / "check_all")
             .and(warp::get())
@@ -472,7 +486,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 let list = db.check_all_databases();
                 warp::reply::json(&serde_json::json!({ "status": "ok", "databases": list }))
             });
-
         // POST /api/db/create
         #[derive(serde::Deserialize)]
         struct CreateDbPayload {
@@ -492,13 +505,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
                 }
             });
-
         // --- Properties Manager Endpoints ---
         let cfg_prop_filter = {
             let c = cfg_clone.clone();
             warp::any().map(move || c.clone())
         };
-
         // GET /api/properties/list
         let prop_list_route = warp::path!("api" / "properties" / "list")
             .and(warp::get())
@@ -507,7 +518,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                 let files = PropertiesManager::list_files(&cfg.servers);
                 warp::reply::json(&serde_json::json!({ "status": "ok", "files": files }))
             });
-
         // GET /api/properties/file?path=...&server=...
         let prop_file_route = warp::path!("api" / "properties" / "file")
             .and(warp::get())
@@ -520,7 +530,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
                 }
             });
-
         // POST /api/properties/save
         #[derive(serde::Deserialize)]
         struct SavePropertyPayload {
@@ -541,7 +550,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
                 }
             });
-
         // POST /api/db/orchestrate
         let sup_db_orch = sup_clone.clone();
         let cfg_db_orch = cfg_clone.clone();
@@ -560,20 +568,24 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
                     Err(e) => warp::reply::json(&serde_json::json!({ "status": "error", "message": e })),
                 }
             });
-
-        let routes = index_route
+                let core_routes = index_route
             .or(compact_route)
-            .or(prop_list_route)
-            .or(prop_file_route)
-            .or(prop_save_route)
-            .or(db_orchestrate_route)
+            .or(hide_route)
+            .or(drag_route)
+            .or(fullscreen_route)
             .or(metrics_route)
             .or(players_route)
             .or(logs_route)
             .or(control_route)
             .or(shutdown_route)
-            .or(fullscreen_route)
-            .or(db_schema_route)
+            .boxed();
+
+        let prop_routes = prop_list_route
+            .or(prop_file_route)
+            .or(prop_save_route)
+            .boxed();
+
+        let db_routes = db_schema_route
             .or(db_rows_route)
             .or(db_insert_route)
             .or(db_update_route)
@@ -583,14 +595,24 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             .or(db_query_route)
             .or(db_check_route)
             .or(db_check_all_route)
-            .or(db_create_route);
+            .or(db_create_route)
+            .or(db_orchestrate_route)
+            .boxed();
+
+        let cfg_routes = config_get_route
+            .or(config_post_route)
+            .boxed();
+
+        let routes = core_routes
+            .or(prop_routes)
+            .or(db_routes)
+            .or(cfg_routes);
 
         let port = cfg_clone.gui.http_port;
         let server_fut = warp::serve(routes).bind(([127, 0, 0, 1], port));
         println!("[OK] Servidor web Warp ativo em http://127.0.0.1:{}/", port);
         server_fut.await;
     });
-
     // 6. Wait until local web server is bound and accepting connections
     let dashboard_url = format!("http://127.0.0.1:{}/", cfg.gui.http_port);
     let target_addr = format!("127.0.0.1:{}", cfg.gui.http_port);
@@ -602,7 +624,6 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         }
         std::thread::sleep(Duration::from_millis(50));
     }
-
     let sup_for_cleanup = supervisor.clone();
     webview_app.run(dashboard_url, move || {
         let s = sup_for_cleanup.clone();
@@ -610,14 +631,11 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             s.graceful_shutdown().await;
         });
     });
-
     Ok(())
 }
-
 #[cfg(test)]
 mod tests {
     use super::*;
-
     #[test]
     fn test_dynamic_port_allocation() {
         let initial_port = find_available_http_port(18080, 50);

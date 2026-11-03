@@ -416,6 +416,18 @@ pub fn load_config(path_str: &str) -> RootConfig {
     default_cfg
 }
 
+pub fn save_config(path_str: &str, config: &RootConfig) -> io::Result<()> {
+    let p = Path::new(path_str);
+    if let Some(parent) = p.parent() {
+        if !parent.as_os_str().is_empty() {
+            fs::create_dir_all(parent)?;
+        }
+    }
+    let json = serde_json::to_string_pretty(config)
+        .map_err(|e| io::Error::new(io::ErrorKind::Other, e.to_string()))?;
+    fs::write(p, json)
+}
+
 /// Materializa as credenciais do `config.json` no formato consumido pelos
 /// servidores Java. Arquivos completos existentes são preservados, pois podem
 /// ter sido configurados manualmente e são a fonte principal quando

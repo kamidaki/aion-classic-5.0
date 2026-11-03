@@ -50,21 +50,24 @@ public class LocalWebServer {
 	}
 
 	public synchronized void start(int portToUse) {
-		int targetPort = (portToUse > 0) ? portToUse : controlPort;
-		if (targetPort == 8080) {
-			// Port 8080 is reserved strictly for Aion Cloud Port Gateway; defer to dedicated port 7778
-			targetPort = controlPort;
-		}
+		int basePort = 7777;
+		try {
+			if (com.aionemu.gameserver.configs.network.NetworkConfig.CLIENT_SOCKET_ADDRESS != null) {
+				basePort = com.aionemu.gameserver.configs.network.NetworkConfig.CLIENT_SOCKET_ADDRESS.getPort();
+			}
+		} catch (Throwable ignored) {}
+
+		int targetPort = (portToUse > 0 && portToUse != 8080) ? portToUse : (basePort + 10000);
 
 		if (controlServer == null) {
 			try {
-				controlServer = HttpServer.create(new InetSocketAddress("127.0.0.1", controlPort), 0);
+				controlServer = HttpServer.create(new InetSocketAddress("127.0.0.1", targetPort), 0);
 				controlServer.setExecutor(Executors.newFixedThreadPool(4));
 				registerContexts(controlServer);
 				controlServer.start();
-				log.info("GameServer Cloud Control API e LocalWebServer escutando em http://127.0.0.1:{}", controlPort);
+				log.info("GameServer Cloud Control API e LocalWebServer escutando em http://127.0.0.1:{}", targetPort);
 			} catch (IOException e) {
-				log.warn("Nao foi possivel iniciar GameServer Cloud Control API na porta {}: {}", controlPort, e.getMessage());
+				log.warn("Nao foi possivel iniciar GameServer Cloud Control API na porta {}: {}", targetPort, e.getMessage());
 			}
 		}
 	}
