@@ -185,7 +185,7 @@
       "label": "BattleRoyale",
       "tag": "BR",
       "gsid": 3,
-      "enabled": false,
+      "enabled": true,
       "color": "#f97316",
       "management_port": 7779,
       "shutdown_delay_seconds": 10

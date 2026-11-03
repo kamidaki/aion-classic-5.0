@@ -131,6 +131,8 @@ pub struct ManagedServer {
     pub user_stopped: bool,
     pub cpu_history: VecDeque<f32>,
     pub stopping_deadline: Option<Instant>,
+    pub cpu_percent: f32,
+    pub memory_mb: f32,
 }
 
 #[derive(Clone)]
@@ -330,15 +332,14 @@ impl Supervisor {
                     user_stopped: false,
                     cpu_history: VecDeque::with_capacity(MAX_HISTORY_POINTS),
                     stopping_deadline: None,
+                    cpu_percent: 0.0,
+                    memory_mb: 0.0,
                 },
             );
         }
 
-        let system = System::new_with_specifics(
-            RefreshKind::new()
-                .with_processes(ProcessRefreshKind::new().with_cpu().with_memory())
-                .with_memory(sysinfo::MemoryRefreshKind::everything()),
-        );
+        let mut system = System::new();
+        system.refresh_memory_specifics(sysinfo::MemoryRefreshKind::new().with_ram());
 
         Self {
             servers: Arc::new(Mutex::new(servers)),
@@ -353,8 +354,34 @@ impl Supervisor {
     }
 
     pub async fn start_server(&self, name: &str) -> Result<(), String> {
-        let (java_exe, jvm_args, classpath, main_class, working_dir) = {
+        let (java_exe, jvm_args, classpath, main_class, working_dir, expected_port) = {
             let mut srvs = self.servers.lock();
+
+            // Dependency checks: Safe startup sequencing before taking mutable borrow
+            if name == "login" {
+                let chat_online = srvs.get("chat").map(|s| s.status == ServerStatus::Online).unwrap_or(false);
+                if !chat_online {
+                    let err = "Inicialização Segura Bloqueada: O LoginServer requer que o ChatServer esteja 100% ONLINE.".to_string();
+                    self.log_center.push(name, &format!("[Launcher] BLOQUEIO DE SEGURANÇA: {}", err));
+                    return Err(err);
+                }
+            }
+
+            if name == "gameforge" || name == "remake" || name == "battleroyale" || name == "game" {
+                let login_online = srvs.get("login").map(|s| s.status == ServerStatus::Online).unwrap_or(false);
+                if !login_online {
+                    let err = "Inicialização Segura Bloqueada: Os GameServers requerem que o LoginServer esteja 100% ONLINE.".to_string();
+                    self.log_center.push(name, &format!("[Launcher] BLOQUEIO DE SEGURANÇA: {}", err));
+                    return Err(err);
+                }
+                let chat_online = srvs.get("chat").map(|s| s.status == ServerStatus::Online).unwrap_or(false);
+                if !chat_online {
+                    let err = "Inicialização Segura Bloqueada: Os GameServers requerem que o ChatServer esteja 100% ONLINE.".to_string();
+                    self.log_center.push(name, &format!("[Launcher] BLOQUEIO DE SEGURANÇA: {}", err));
+                    return Err(err);
+                }
+            }
+
             let srv = srvs.get_mut(name).ok_or_else(|| format!("Servidor desconhecido: {}", name))?;
 
             if srv.status == ServerStatus::Online || srv.status == ServerStatus::Starting {
@@ -418,6 +445,7 @@ impl Supervisor {
                 srv.classpath.clone(),
                 srv.main_class.clone(),
                 srv.working_dir.clone(),
+                expected_port,
             )
         };
 
@@ -445,8 +473,10 @@ impl Supervisor {
                     if let Some(srv) = srvs.get_mut(name) {
                         srv.child = Some(child);
                         srv.pid = Some(pid);
-                        srv.status = ServerStatus::Online;
+                        srv.status = ServerStatus::Starting;
                         srv.start_time = Some(Instant::now());
+                        srv.cpu_percent = 0.0;
+                        srv.memory_mb = 0.0;
                     }
                 }
 
@@ -494,6 +524,15 @@ impl Supervisor {
                             }
                         }
                     });
+                }
+
+                if let Some(port) = expected_port {
+                    self.wait_for_readiness(name, port, 60).await?;
+                } else {
+                    let mut srvs = self.servers.lock();
+                    if let Some(srv) = srvs.get_mut(name) {
+                        srv.status = ServerStatus::Online;
+                    }
                 }
 
                 Ok(())
@@ -607,12 +646,41 @@ impl Supervisor {
         let check_addr = std::net::SocketAddr::from(([127, 0, 0, 1], port));
 
         while Instant::now() < deadline {
-            if std::net::TcpStream::connect_timeout(&check_addr, Duration::from_millis(200)).is_ok() {
+            // Check early child exit/crash
+            {
+                let mut srvs = self.servers.lock();
+                if let Some(srv) = srvs.get_mut(name) {
+                    if let Some(child) = srv.child.as_mut() {
+                        if let Ok(Some(status)) = child.try_wait() {
+                            srv.child = None;
+                            srv.pid = None;
+                            srv.status = ServerStatus::Crashed;
+                            let msg = format!("O processo {} encerrou abruptamente com status {:?}", name, status);
+                            self.log_center.push(name, &format!("[Launcher] ERRO: {}", msg));
+                            return Err(msg);
+                        }
+                    }
+                }
+            }
+
+            if std::net::TcpStream::connect_timeout(&check_addr, Duration::from_millis(250)).is_ok() {
+                let mut srvs = self.servers.lock();
+                if let Some(srv) = srvs.get_mut(name) {
+                    srv.status = ServerStatus::Online;
+                }
+                self.log_center.push(name, &format!("[Launcher] {} confirmado 100% ONLINE e respondendo na porta {}.", name, port));
                 return Ok(());
             }
             tokio::time::sleep(Duration::from_millis(500)).await;
         }
-        Err(format!("Timeout de readiness: {} não respondeu na porta {} após {}s", name, port, timeout_secs))
+
+        let mut srvs = self.servers.lock();
+        if let Some(srv) = srvs.get_mut(name) {
+            srv.status = ServerStatus::Crashed;
+        }
+        let msg = format!("Timeout de prontidão: {} não respondeu na porta {} após {}s", name, port, timeout_secs);
+        self.log_center.push(name, &format!("[Launcher] ERRO: {}", msg));
+        Err(msg)
     }
 
     /// Strict Multi-GameServer Sequential Orchestrator:
@@ -655,24 +723,16 @@ impl Supervisor {
 
         for (idx, (srv_id, label, port)) in active_steps.iter().enumerate() {
             let step_num = idx + 1;
-            self.log_center.push("launcher", &format!("[ORQUESTRADOR] [{}/{}] Iniciando {}...", step_num, total_steps, label));
+            self.log_center.push("launcher", &format!("[ORQUESTRADOR] [{}/{}] Iniciando e validando {} (porta {})...", step_num, total_steps, label, port));
 
             if let Err(e) = self.start_server(srv_id).await {
                 self.log_center.push("launcher", &format!("[ORQUESTRADOR] ERRO FATAL: {} não pôde ser iniciado: {}", label, e));
-                self.log_center.push("launcher", "[ORQUESTRADOR] Interrompendo inicialização dos serviços subsequentes.");
+                self.log_center.push("launcher", "[ORQUESTRADOR] ABORTANDO ORQUESTRAÇÃO: Os serviços subsequentes NÃO serão iniciados por segurança.");
                 return;
             }
 
-            self.log_center.push("launcher", &format!("[ORQUESTRADOR] Aguardando confirmação de readiness de {} na porta {}...", label, port));
-            match self.wait_for_readiness(srv_id, *port, 60).await {
-                Ok(_) => {
-                    self.log_center.push("launcher", &format!("[ORQUESTRADOR] [OK] {} confirmado online e operacional na porta {}!", label, port));
-                }
-                Err(e) => {
-                    self.log_center.push("launcher", &format!("[ORQUESTRADOR] AVISO: {} - prosseguindo com delay de segurança...", e));
-                    tokio::time::sleep(Duration::from_secs(self._config.launcher.start_sequence_delay_seconds)).await;
-                }
-            }
+            self.log_center.push("launcher", &format!("[ORQUESTRADOR] [OK] {} 100% operacional na porta {}!", label, port));
+            tokio::time::sleep(Duration::from_millis(800)).await;
         }
 
         self.log_center.push("launcher", "[ORQUESTRADOR] Todos os servidores habilitados inicializados com sucesso!");
@@ -735,11 +795,25 @@ impl Supervisor {
     fn sample_metrics(&self) {
         let num_cpus = std::thread::available_parallelism().map(|n| n.get()).unwrap_or(1) as f32;
 
+        // Targeted PID collection: Only refresh our launcher and active server processes (0% idle CPU)
+        let pids_to_refresh: Vec<u32> = {
+            let srvs = self.servers.lock();
+            let mut list = Vec::new();
+            for srv in srvs.values() {
+                if let Some(pid) = srv.pid {
+                    list.push(pid);
+                }
+            }
+            list.push(self.launcher_pid);
+            list
+        };
+
         let mut sys = self.system.lock();
-        sys.refresh_processes_specifics(
-            ProcessRefreshKind::new().with_cpu().with_memory(),
-        );
-        sys.refresh_memory();
+        for &pid_u32 in &pids_to_refresh {
+            let pid = Pid::from_u32(pid_u32);
+            sys.refresh_process_specifics(pid, ProcessRefreshKind::new().with_cpu().with_memory());
+        }
+        sys.refresh_memory_specifics(sysinfo::MemoryRefreshKind::new().with_ram());
 
         let mut srvs = self.servers.lock();
         let mut total_cpu = 0.0f32;
@@ -753,11 +827,20 @@ impl Supervisor {
         let mut chat_mem = 0.0f32;
 
         for (name, srv) in srvs.iter_mut() {
+            if srv.status != ServerStatus::Online && srv.status != ServerStatus::Starting {
+                srv.cpu_percent = 0.0;
+                srv.memory_mb = 0.0;
+                continue;
+            }
+
             if let Some(pid_u32) = srv.pid {
                 let pid = Pid::from_u32(pid_u32);
                 if let Some(proc) = sys.process(pid) {
                     let cpu = (proc.cpu_usage() / num_cpus).clamp(0.0, 100.0);
                     let mem = proc.memory() as f32 / (1024.0 * 1024.0);
+
+                    srv.cpu_percent = cpu;
+                    srv.memory_mb = mem;
 
                     srv.cpu_history.push_back(cpu);
                     if srv.cpu_history.len() > MAX_HISTORY_POINTS {
@@ -769,11 +852,20 @@ impl Supervisor {
 
                     match name.as_str() {
                         "login" => { login_cpu = cpu; login_mem = mem; },
-                        "game" => { game_cpu = cpu; game_mem = mem; },
                         "chat" => { chat_cpu = cpu; chat_mem = mem; },
+                        "gameforge" | "remake" | "battleroyale" | "game" => {
+                            game_cpu += cpu;
+                            game_mem += mem;
+                        },
                         _ => {}
                     }
+                } else {
+                    srv.cpu_percent = 0.0;
+                    srv.memory_mb = 0.0;
                 }
+            } else {
+                srv.cpu_percent = 0.0;
+                srv.memory_mb = 0.0;
             }
         }
 
@@ -834,17 +926,8 @@ impl Supervisor {
             }
 
             if let Some(srv) = srvs.get(id) {
-                let (cpu, mem) = if let Some(pid_u32) = srv.pid {
-                    let pid = Pid::from_u32(pid_u32);
-                    if let Some(proc) = sys.process(pid) {
-                        let c = (proc.cpu_usage() / num_cpus).clamp(0.0, 100.0);
-                        (c, proc.memory() as f32 / (1024.0 * 1024.0))
-                    } else {
-                        (0.0, 0.0)
-                    }
-                } else {
-                    (0.0, 0.0)
-                };
+                let cpu = srv.cpu_percent;
+                let mem = srv.memory_mb;
 
                 total_cpu += cpu;
                 total_mem += mem;

@@ -11,6 +11,7 @@ pub enum UserEvent {
     RequestShutdownConfirmation,
     ExitProcess,
     ToggleFullscreen,
+    ToggleCompactMode,
 }
 
 pub struct WebViewApp {
@@ -76,11 +77,33 @@ impl WebViewApp {
 
         window.set_focus();
 
+        let mut is_compact = false;
+
         self.event_loop.run(move |event, _, control_flow| {
             let _keep_alive = (&webview, &web_context);
             *control_flow = ControlFlow::Wait;
 
             match event {
+                Event::UserEvent(UserEvent::ToggleCompactMode) => {
+                    is_compact = !is_compact;
+                    if is_compact {
+                        window.set_always_on_top(true);
+                        window.set_resizable(false);
+                        window.set_inner_size(LogicalSize::new(460.0, 310.0));
+                        if let Some(wv) = &webview {
+                            let _ = wv.evaluate_script("if(typeof setCompactMode === 'function') setCompactMode(true);");
+                        }
+                    } else {
+                        window.set_always_on_top(false);
+                        window.set_resizable(true);
+                        window.set_inner_size(LogicalSize::new(1440.0, 900.0));
+                        if let Some(wv) = &webview {
+                            let _ = wv.evaluate_script("if(typeof setCompactMode === 'function') setCompactMode(false);");
+                        }
+                    }
+                    window.set_visible(true);
+                    window.set_focus();
+                }
                 Event::UserEvent(UserEvent::ShowDashboard) => {
                     window.set_visible(true);
                     window.set_focus();

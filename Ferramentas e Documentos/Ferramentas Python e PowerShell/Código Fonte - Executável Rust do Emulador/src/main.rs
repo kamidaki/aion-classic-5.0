@@ -146,6 +146,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             TrayAction::OpenDashboard => {
                 let _ = proxy_for_tray.send_event(UserEvent::ShowDashboard);
             }
+            TrayAction::ToggleCompact => {
+                let _ = proxy_for_tray.send_event(UserEvent::ToggleCompactMode);
+            }
             TrayAction::RequestShutdown => {
                 let _ = proxy_for_tray.send_event(UserEvent::RequestShutdownConfirmation);
             }
@@ -303,6 +306,15 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             .and(warp::post())
             .map(move || {
                 let _ = proxy_fs.send_event(UserEvent::ToggleFullscreen);
+                warp::reply::json(&serde_json::json!({ "status": "ok" }))
+            });
+
+        // Route: POST /api/ui/compact -> Toggle Native Compact Mode
+        let proxy_compact = proxy_for_web.clone();
+        let compact_route = warp::path!("api" / "ui" / "compact")
+            .and(warp::post())
+            .map(move || {
+                let _ = proxy_compact.send_event(UserEvent::ToggleCompactMode);
                 warp::reply::json(&serde_json::json!({ "status": "ok" }))
             });
 
@@ -550,6 +562,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             });
 
         let routes = index_route
+            .or(compact_route)
             .or(prop_list_route)
             .or(prop_file_route)
             .or(prop_save_route)

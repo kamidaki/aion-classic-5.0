@@ -10,7 +10,8 @@ use windows_sys::Win32::UI::WindowsAndMessaging::*;
 
 const WM_TRAYICON: u32 = WM_USER + 100;
 const ID_TRAY_OPEN: usize = 1001;
-const ID_TRAY_EXIT: usize = 1002;
+const ID_TRAY_COMPACT: usize = 1002;
+const ID_TRAY_EXIT: usize = 1003;
 
 static IS_TRAY_REGISTERED: AtomicBool = AtomicBool::new(false);
 
@@ -27,6 +28,7 @@ pub type TrayCallback = Arc<dyn Fn(TrayAction) + Send + Sync + 'static>;
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum TrayAction {
     OpenDashboard,
+    ToggleCompact,
     RequestShutdown,
 }
 
@@ -53,10 +55,12 @@ unsafe extern "system" fn tray_wnd_proc(
             SetForegroundWindow(hwnd);
             let hmenu = CreatePopupMenu();
 
-            let item_open: Vec<u16> = "Abrir Painel\0".encode_utf16().collect();
+            let item_open: Vec<u16> = "Abrir Painel Completo\0".encode_utf16().collect();
+            let item_compact: Vec<u16> = "Alternar Modo Compacto (Mini Widget)\0".encode_utf16().collect();
             let item_exit: Vec<u16> = "Encerrar Emulador\0".encode_utf16().collect();
 
             AppendMenuW(hmenu, MF_STRING, ID_TRAY_OPEN, item_open.as_ptr());
+            AppendMenuW(hmenu, MF_STRING, ID_TRAY_COMPACT, item_compact.as_ptr());
             AppendMenuW(hmenu, MF_SEPARATOR, 0, std::ptr::null());
             AppendMenuW(hmenu, MF_STRING, ID_TRAY_EXIT, item_exit.as_ptr());
 
@@ -76,6 +80,11 @@ unsafe extern "system" fn tray_wnd_proc(
                 let cb_opt = GLOBAL_CALLBACK.lock().clone();
                 if let Some(cb) = cb_opt {
                     cb(TrayAction::OpenDashboard);
+                }
+            } else if selected == ID_TRAY_COMPACT as i32 {
+                let cb_opt = GLOBAL_CALLBACK.lock().clone();
+                if let Some(cb) = cb_opt {
+                    cb(TrayAction::ToggleCompact);
                 }
             } else if selected == ID_TRAY_EXIT as i32 {
                 let cb_opt = GLOBAL_CALLBACK.lock().clone();

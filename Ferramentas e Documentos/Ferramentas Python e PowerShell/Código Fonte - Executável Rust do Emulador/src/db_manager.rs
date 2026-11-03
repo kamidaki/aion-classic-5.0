@@ -1107,6 +1107,7 @@ pub struct DbManagerMulti {
     pub ls: DbManager,
     pub cs: DbManager,
     pub managers: HashMap<String, DbManager>,
+    summary_cache: Arc<parking_lot::Mutex<Option<(Instant, Vec<DatabaseSummary>)>>>,
 }
 
 impl DbManagerMulti {
@@ -1154,11 +1155,24 @@ impl DbManagerMulti {
             ls,
             cs,
             managers,
+            summary_cache: Arc::new(parking_lot::Mutex::new(None)),
         }
     }
 
-    /// Returns summaries for all configured databases
+    pub fn invalidate_summary_cache(&self) {
+        *self.summary_cache.lock() = None;
+    }
+
+    /// Returns summaries for all configured databases (cached for 15s to keep idle CPU at 0%)
     pub fn get_all_summaries(&self) -> Vec<DatabaseSummary> {
+        {
+            let cache = self.summary_cache.lock();
+            if let Some((instant, ref summaries)) = *cache {
+                if instant.elapsed() < std::time::Duration::from_secs(15) {
+                    return summaries.clone();
+                }
+            }
+        }
         let mut list = Vec::new();
         let mut keys: Vec<String> = self.managers.keys().cloned().collect();
         keys.sort();
@@ -1187,6 +1201,8 @@ impl DbManagerMulti {
                 list.push(self.make_summary(&k, mgr, label, color));
             }
         }
+        let mut cache = self.summary_cache.lock();
+        *cache = Some((Instant::now(), list.clone()));
         list
     }
 
@@ -1283,6 +1299,7 @@ impl DbManagerMulti {
     }
 
     pub fn truncate_table(&self, db_id: Option<&str>, table: &str) -> Result<(), String> {
+        self.invalidate_summary_cache();
         self.resolve_mgr(db_id).truncate_table(db_id, table)
     }
 
@@ -1291,6 +1308,7 @@ impl DbManagerMulti {
     }
 
     pub fn clean_all_tables(&self, db_id: Option<&str>) -> Result<Vec<String>, String> {
+        self.invalidate_summary_cache();
         self.resolve_mgr(db_id).clean_all_tables()
     }
 
