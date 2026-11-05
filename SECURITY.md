@@ -76,3 +76,24 @@ Se você identificar uma vulnerabilidade técnica real no núcleo NIO (`commons`
 2. Reporte a vulnerabilidade de forma privada através dos [**Avisos de Segurança do GitHub (GitHub Security Advisories)**](https://github.com/kamidaki/aion-classic-5.0/security/advisories/new) neste repositório.
 3. A equipe técnica responderá em até **48 horas** confirmando o recebimento e definindo o plano de mitigação.
 4. Após a correção e auditoria do patch, a correção será mesclada na branch `main` com o devido crédito técnico ao pesquisador no histórico de commits.
+
+---
+
+## 5. Auditorias de Dependências e Histórico de Mitigações (Dependabot)
+
+Em conformidade com as políticas contínuas de segurança e auditoria do GitHub Dependabot, todas as bibliotecas de terceiros integradas ao ecossistema Aion Classic passam por revisões periódicas.
+
+Abaixo está o registro formal das mitigações aplicadas na pilha de rede assíncrona do `chat-server` (`io.netty`):
+
+| Identificador CVE | GitHub Advisory (GHSA) | Pacote Afetado | Severidade | Versão Vulnerável | Versão Corrigida | Descrição Técnica do Vetor de Ataque |
+| :--- | :--- | :--- | :---: | :---: | :---: | :--- |
+| **CVE-2025-58057** | `GHSA-3p8m-j85q-pgmj` | `io.netty:netty-codec` | **Crítica** (9.8) | $\le$ `4.1.124.Final` | `4.1.138.Final` | Negação de Serviço (*DoS*) via descompressão ilimitada (*zip-bomb*) em decodificadores de compressão, gerando consumo irrestrito de memória e exaustão de JVM heap. |
+| **CVE-2026-45416** | `GHSA-4h8r-8x4v-849w` | `io.netty:netty-handler` | **Alta** (7.5) | $\le$ `4.1.134.Final` | `4.1.138.Final` | Pré-alocação antecipada de até 16 MiB em `SslClientHelloHandler.decode()` a partir de cabeçalhos TLS controlados pelo atacante sem limites de timeout. |
+| **CVE-2026-62243** | `GHSA-m8gf-w8j2-r2hh` | `io.netty:netty-handler` | **Alta** (7.5) | $\le$ `4.1.136.Final` | `4.1.138.Final` | Desativação inadvertida de verificação de hostname TLS sob configurações de cliente OpenSSL em caminhos específicos de negociação segura. |
+| **CVE-2026-42578** | `GHSA-ff6q-8p2f-c57h` | `io.netty:netty-handler` | **Alta** (7.5) | $\le$ `4.1.132.Final` | `4.1.138.Final` | Injeção de cabeçalhos HTTP e CRLF em `HttpProxyHandler` devido à desativação explícita de validação (`withValidation(false)`) em conexões CONNECT. |
+| **CVE-2026-100658** | `GHSA-2g37-3h88-55hc` | `io.netty:netty-codec` / `netty-handler` | **Alta** (7.5) | $\le$ `4.1.137.Final` | `4.1.138.Final` | Esgotamento de memória Heap (`OutOfMemoryError`) via fila per-connection irrestrita em `WebSocketServerExtensionHandler` sob pipelining HTTP/1.1. |
+| **CVE-2026-93488** | `GHSA-rmcw-9fcq-wjq7` | `io.netty:netty-codec` | **Alta** (7.5) | $\le$ `4.1.137.Final` | `4.1.138.Final` | Consumo descontrolado de recursos em `SpdySessionHandler` decorrente de fluxos remotos simultâneos ilimitados (*stream exhaustion*). |
+| **CVE-2025-59419** | `GHSA-2mhr-792v-g427` | `io.netty:netty-codec` | **Moderada** (6.5) | $\le$ `4.1.128.Final` | `4.1.138.Final` | Injeção de comandos no codec SMTP devido a falha na validação e sanitização estrita de quebras de linha (`CRLF`). |
+| **CVE-2026-44249** | `GHSA-xpw8-rcwv-8f8p` | `io.netty:netty-handler` | **Moderada** (5.3) | $\le$ `4.1.129.Final` | `4.1.138.Final` | Bypass de regras de filtro de sub-rede IPv6 em `IpSubnetFilterRule` decorrente de mascaramento incorreto de bits no método `compareTo()`. |
+
+> **Nota de Implementação:** As dependências do `chat-server` foram unificadas na versão **`4.1.138.Final`** e os binários de distribuição final sincronizados em `Emulador - Produto Final/ChatServer/libs`, eliminando a presença de quaisquer artefatos Netty desatualizados no runtime.
