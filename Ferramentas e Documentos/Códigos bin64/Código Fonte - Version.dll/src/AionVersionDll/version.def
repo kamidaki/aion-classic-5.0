@@ -18,3 +18,4 @@ VerLanguageNameW = zzVerLanguageNameW
 VerQueryValueA = zzVerQueryValueA
 VerQueryValueW = zzVerQueryValueW
 IsWebPortClient
+RequestHostShutdown

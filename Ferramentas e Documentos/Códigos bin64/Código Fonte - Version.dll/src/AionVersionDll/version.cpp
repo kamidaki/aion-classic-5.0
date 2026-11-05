@@ -480,6 +480,122 @@ static LONG WINAPI zzSetWindowLongA(_In_ HWND hWnd, _In_ int nIndex, _In_ LONG d
     return real_SetWindowLongA(hWnd, nIndex, dwNewLong);
 }
 
+// =========================================================================
+// Silent WebPort Clientless Window Interception Hooks
+// Enforces headless offscreen rendering redirection when -webPort is passed
+// =========================================================================
+static HWND s_hGameWindow = NULL;
+
+static decltype(CreateWindowExA)* real_CreateWindowExA = CreateWindowExA;
+static HWND WINAPI zzCreateWindowExA(
+    DWORD dwExStyle, LPCSTR lpClassName, LPCSTR lpWindowName, DWORD dwStyle,
+    int X, int Y, int nWidth, int nHeight,
+    HWND hWndParent, HMENU hMenu, HINSTANCE hInstance, LPVOID lpParam
+) {
+    if (s_isWebPort && !hWndParent) {
+        dwStyle &= ~WS_VISIBLE;
+        dwStyle |= WS_POPUP;
+        dwExStyle |= WS_EX_TOOLWINDOW | WS_EX_NOACTIVATE;
+        X = -32000;
+        Y = -32000;
+    }
+    HWND hWnd = real_CreateWindowExA(dwExStyle, lpClassName, lpWindowName, dwStyle, X, Y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
+    if (s_isWebPort && !hWndParent && hWnd) {
+        s_hGameWindow = hWnd;
+    }
+    return hWnd;
+}
+
+static decltype(CreateWindowExW)* real_CreateWindowExW = CreateWindowExW;
+static HWND WINAPI zzCreateWindowExW(
+    DWORD dwExStyle, LPCWSTR lpClassName, LPCWSTR lpWindowName, DWORD dwStyle,
+    int X, int Y, int nWidth, int nHeight,
+    HWND hWndParent, HMENU hMenu, HINSTANCE hInstance, LPVOID lpParam
+) {
+    if (s_isWebPort && !hWndParent) {
+        dwStyle &= ~WS_VISIBLE;
+        dwStyle |= WS_POPUP;
+        dwExStyle |= WS_EX_TOOLWINDOW | WS_EX_NOACTIVATE;
+        X = -32000;
+        Y = -32000;
+    }
+    HWND hWnd = real_CreateWindowExW(dwExStyle, lpClassName, lpWindowName, dwStyle, X, Y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
+    if (s_isWebPort && !hWndParent && hWnd) {
+        s_hGameWindow = hWnd;
+    }
+    return hWnd;
+}
+
+static decltype(ShowWindow)* real_ShowWindow = ShowWindow;
+static BOOL WINAPI zzShowWindow(HWND hWnd, int nCmdShow) {
+    if (s_isWebPort && (hWnd == s_hGameWindow || !s_hGameWindow)) {
+        return real_ShowWindow(hWnd, SW_HIDE);
+    }
+    return real_ShowWindow(hWnd, nCmdShow);
+}
+
+static decltype(SetWindowPos)* real_SetWindowPos = SetWindowPos;
+static BOOL WINAPI zzSetWindowPos(HWND hWnd, HWND hWndInsertAfter, int X, int Y, int cx, int cy, UINT uFlags) {
+    if (s_isWebPort && (hWnd == s_hGameWindow || !s_hGameWindow)) {
+        uFlags &= ~SWP_SHOWWINDOW;
+        uFlags |= SWP_HIDEWINDOW | SWP_NOACTIVATE | SWP_NOZORDER;
+        X = -32000;
+        Y = -32000;
+    }
+    return real_SetWindowPos(hWnd, hWndInsertAfter, X, Y, cx, cy, uFlags);
+}
+
+// =========================================================================
+// Dual Execution Mode & Process Termination Interception
+// Preserves conventional Windows client behavior when -webPort is NOT passed.
+// In -webPort mode: intercepts accidental or in-game ExitProcess/TerminateProcess
+// calls to prevent crashing the shared host process when an individual web session logs out.
+// =========================================================================
+static decltype(ExitProcess)* real_ExitProcess = ExitProcess;
+static void WINAPI zzExitProcess(UINT uExitCode) {
+    if (s_isWebPort) {
+        // Requirement 10.3 & 10.4:
+        // Do NOT suppress non-zero exit codes (fatal errors, crash handlers, abnormal exits).
+        // Suppressing fatal crashes leaves processes in undefined corrupted states.
+        if (uExitCode != 0) {
+            OutputDebugStringA("[AION_VERSION_DLL] WebPort: Fatal non-zero exit code detected. Forwarding to real ExitProcess.\n");
+            real_ExitProcess(uExitCode);
+            return;
+        }
+
+        // Clean user/session logout (uExitCode == 0):
+        // ExitProcess is [[noreturn]]. Returning from it corrupts caller execution stack.
+        // Instead, terminate the calling exit thread cleanly without taking down shared host.
+        OutputDebugStringA("[AION_VERSION_DLL] WebPort: Intercepted clean ExitProcess(0). Preserving shared host Aion.bin process.\n");
+        ExitThread(0);
+        return;
+    }
+    real_ExitProcess(uExitCode);
+}
+
+static decltype(TerminateProcess)* real_TerminateProcess = TerminateProcess;
+static BOOL WINAPI zzTerminateProcess(HANDLE hProcess, UINT uExitCode) {
+    if (s_isWebPort && (hProcess == GetCurrentProcess() || GetProcessId(hProcess) == GetCurrentProcessId())) {
+        if (uExitCode != 0) {
+            OutputDebugStringA("[AION_VERSION_DLL] WebPort: Fatal non-zero TerminateProcess detected. Forwarding.\n");
+            return real_TerminateProcess(hProcess, uExitCode);
+        }
+        OutputDebugStringA("[AION_VERSION_DLL] WebPort: Intercepted clean TerminateProcess(0) on self. Preserving shared host Aion.bin process.\n");
+        ExitThread(0);
+        return TRUE;
+    }
+    return real_TerminateProcess(hProcess, uExitCode);
+}
+
+extern "C" __declspec(dllexport) void WINAPI RequestHostShutdown(UINT uExitCode) {
+    OutputDebugStringA("[AION_VERSION_DLL] WebPort: Administrative Host Shutdown requested.\n");
+    if (real_ExitProcess) {
+        real_ExitProcess(uExitCode);
+    } else {
+        ExitProcess(uExitCode);
+    }
+}
+
 static void FixClientStartupWithHighCoreCountCpus() {
     SYSTEM_INFO info;
     GetSystemInfo(&info);
@@ -491,6 +607,17 @@ static void FixClientStartupWithHighCoreCountCpus() {
 }
 
 static void InstallPatch() {
+    // Early check for -webPort in raw command line
+    LPCWSTR cmdW = GetCommandLineW();
+    if (cmdW) {
+        std::wstring rawW(cmdW);
+        std::transform(rawW.begin(), rawW.end(), rawW.begin(), ::tolower);
+        if (rawW.find(L"-webport") != std::wstring::npos) {
+            s_isWebPort = true;
+            InitializeWebPortHooks();
+        }
+    }
+
     // Early language table patch for main module
     PatchLanguageTableInModule(GetModuleHandleW(nullptr));
     BypassCountryCheckInCryEngineModule(GetModuleHandleW(nullptr));
@@ -504,6 +631,10 @@ static void InstallPatch() {
     Install64BitStackFix();
 #endif
     DetourAttach(&(PVOID&)real_SetWindowLongA, zzSetWindowLongA);
+    DetourAttach(&(PVOID&)real_CreateWindowExA, zzCreateWindowExA);
+    DetourAttach(&(PVOID&)real_CreateWindowExW, zzCreateWindowExW);
+    DetourAttach(&(PVOID&)real_ShowWindow, zzShowWindow);
+    DetourAttach(&(PVOID&)real_SetWindowPos, zzSetWindowPos);
     DetourAttach(&(PVOID&)real_LoadLibraryA, zzLoadLibraryA);
     DetourAttach(&(PVOID&)real_LoadLibraryExA, zzLoadLibraryExA);
     DetourAttach(&(PVOID&)real_LoadLibraryW, zzLoadLibraryW);
@@ -512,6 +643,8 @@ static void InstallPatch() {
     DetourAttach(&(PVOID&)real_MessageBoxW, zzMessageBoxW);
     DetourAttach(&(PVOID&)real_GetCommandLineA, zzGetCommandLineA);
     DetourAttach(&(PVOID&)real_GetCommandLineW, zzGetCommandLineW);
+    DetourAttach(&(PVOID&)real_ExitProcess, zzExitProcess);
+    DetourAttach(&(PVOID&)real_TerminateProcess, zzTerminateProcess);
     DetourTransactionCommit();
 
     FixClientStartupWithHighCoreCountCpus();

@@ -198,6 +198,10 @@ static HRESULT WINAPI zzCreateDevice(
     D3DPRESENT_PARAMETERS* pPresentationParameters,
     IDirect3DDevice9** ppReturnedDeviceInterface
 ) {
+    if (IsWebPortClient() && pPresentationParameters) {
+        pPresentationParameters->Windowed = TRUE;
+        pPresentationParameters->FullScreen_RefreshRateInHz = 0;
+    }
     HRESULT hr = real_CreateDevice(pThis, Adapter, DeviceType, hFocusWindow, BehaviorFlags, pPresentationParameters, ppReturnedDeviceInterface);
     if (SUCCEEDED(hr) && ppReturnedDeviceInterface && *ppReturnedDeviceInterface) {
         IDirect3DDevice9* pDev = *ppReturnedDeviceInterface;

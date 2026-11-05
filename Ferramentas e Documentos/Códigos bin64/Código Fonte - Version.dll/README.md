@@ -40,6 +40,13 @@ DLL nativa (`version.dll`) desenvolvida como proxy DLL de sistema para o cliente
 * **Quna Balance Fix (`quna_fix.h`)**: Intercepta pacotes de saldo de Quna recebidos do emulador e atualiza os ponteiros em memória do `game.dll` para exibição correta no inventário, armazém e Quna Market.
 * **Siel Hammer Fix (`siel_hammer_fix.h`)**: Evita o travamento do diálogo de desmonte e cancelamento de progresso de quebra de itens (`DlgItemCrushResult`).
 
+### 6. Modo Dual e Interoperabilidade WebPort (`-webPort`)
+* **Detecção Automática de Modo**: O hook em `GetCommandLineA/W` detecta a presença da flag `-webPort` e expõe a função exportada `IsWebPortClient()` (ordinal 17).
+* **Redirecionamento Gráfico Offscreen**: Intercepta `CreateWindowExA/W`, `ShowWindow` e `SetWindowPos` para forçar coordenadas `-32000, -32000` e estilo `SW_HIDE`, viabilizando captura headless sem janela na tela.
+* **Preservação de Processo Hospedeiro Compartilhado**: Intercepta chamadas de saída limpa (`ExitProcess(0)` e `TerminateProcess(0)`) originadas por logout web ou timeout de rede, finalizando a thread chamadora (`ExitThread(0)`) sem derrubar o processo hospedeiro `Aion.bin`. Falhas anômalas (código != 0) são repassadas ao SO.
+* **Encerramento Administrativo Seguro**: Exporta `RequestHostShutdown(UINT uExitCode)` (ordinal 18) para encerramento gracioso via chamadas RPC do orquestrador Node.js.
+* **Preservação do Modo Windows Desktop**: Sem a flag `-webPort`, o cliente opera normalmente em modo janela/tela cheia com encerramento convencional.
+
 ---
 
 ## Validação Obrigatória com Evidências Oficiais (Ghidra & Wireshark)
