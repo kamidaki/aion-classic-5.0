@@ -35,12 +35,14 @@ public class AccountController {
 	private static final org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(AccountController.class);
 
 	/**
-	 * Map with accounts that are active on LoginServer or joined GameServer and are not authenticated yet.
+	 * Map with accounts that are active on LoginServer or joined GameServer and are
+	 * not authenticated yet.
 	 */
 	private static final Map<Integer, LoginConnection> accountsOnLS = new ConcurrentHashMap<>();
 
 	/**
-	 * Map with accounts that are reconnecting to LoginServer ie was joined GameServer.
+	 * Map with accounts that are reconnecting to LoginServer ie was joined
+	 * GameServer.
 	 */
 	private static final Map<Integer, ReconnectingAccount> reconnectingAccounts = new HashMap<>();
 
@@ -53,7 +55,7 @@ public class AccountController {
 	 * Removes account from list of connections
 	 * 
 	 * @param account
-	 *          account
+	 *                account
 	 */
 	public static void removeAccountOnLS(Account account) {
 		accountsOnLS.remove(account.getId());
@@ -61,7 +63,8 @@ public class AccountController {
 	}
 
 	/**
-	 * This method is for answering GameServer question about account authentication on GameServer side.
+	 * This method is for answering GameServer question about account authentication
+	 * on GameServer side.
 	 */
 	public static void checkAuth(SessionKey key, GsConnection gsConnection) {
 		LoginConnection con = accountsOnLS.get(key.accountId);
@@ -71,8 +74,9 @@ public class AccountController {
 			byte currentGsId = gsConnection.getGameServerInfo().getId();
 			if (selectedGsId != currentGsId) {
 				log.warn("Account {} requested GS #{} but tried to auth on GS #{}! Rejecting cross-server routing.",
-					key.accountId, selectedGsId, currentGsId);
-				gsConnection.sendPacket(new SM_ACCOUNT_AUTH_RESPONSE(key.accountId, false, null, 0, (byte) 0, (byte) 0, null));
+						key.accountId, selectedGsId, currentGsId);
+				gsConnection.sendPacket(
+						new SM_ACCOUNT_AUTH_RESPONSE(key.accountId, false, null, 0, (byte) 0, (byte) 0, null));
 				return;
 			}
 			// account is successful logged in on gs remove it from here
@@ -89,9 +93,12 @@ public class AccountController {
 			AccountDAO.updateLastServer(acc.getId(), acc.getLastServer());
 
 			// Send response to GameServer
-			gsConnection.sendPacket(new SM_ACCOUNT_AUTH_RESPONSE(key.accountId, true, acc.getName(), acc.getCreationDate().getTime(), acc.getAccessLevel(), acc.getMembership(), acc.getAllowedHddSerial()));
+			gsConnection.sendPacket(
+					new SM_ACCOUNT_AUTH_RESPONSE(key.accountId, true, acc.getName(), acc.getCreationDate().getTime(),
+							acc.getAccessLevel(), acc.getMembership(), acc.getAllowedHddSerial()));
 		} else {
-			gsConnection.sendPacket(new SM_ACCOUNT_AUTH_RESPONSE(key.accountId, false, null, 0, (byte) 0, (byte) 0, null));
+			gsConnection
+					.sendPacket(new SM_ACCOUNT_AUTH_RESPONSE(key.accountId, false, null, 0, (byte) 0, (byte) 0, null));
 		}
 	}
 
@@ -103,15 +110,16 @@ public class AccountController {
 	 * Check if reconnecting account may auth.
 	 * 
 	 * @param accountId
-	 *          id of account
+	 *                     id of account
 	 * @param loginOk
-	 *          loginOk
+	 *                     loginOk
 	 * @param reconnectKey
-	 *          reconnect key
+	 *                     reconnect key
 	 * @param client
-	 *          aion client
+	 *                     aion client
 	 */
-	public static synchronized void authReconnectingAccount(int accountId, int loginOk, int reconnectKey, LoginConnection client) {
+	public static synchronized void authReconnectingAccount(int accountId, int loginOk, int reconnectKey,
+			LoginConnection client) {
 		ReconnectingAccount reconnectingAccount = reconnectingAccounts.remove(accountId);
 
 		if (reconnectingAccount != null && reconnectingAccount.getReconnectionKey() == reconnectKey) {
@@ -129,15 +137,17 @@ public class AccountController {
 
 	/**
 	 * Tries to authenticate account.<br>
-	 * If success returns {@link AionAuthResponse#AUTHED} and sets account object to connection.<br>
-	 * If {@link com.aionemu.loginserver.configs.Config#ACCOUNT_AUTO_CREATION} is enabled - creates new account.<br>
+	 * If success returns {@link AionAuthResponse#AUTHED} and sets account object to
+	 * connection.<br>
+	 * If {@link com.aionemu.loginserver.configs.Config#ACCOUNT_AUTO_CREATION} is
+	 * enabled - creates new account.<br>
 	 * 
 	 * @param name
-	 *          name of account
+	 *                   name of account
 	 * @param password
-	 *          password of account
+	 *                   password of account
 	 * @param connection
-	 *          connection for account
+	 *                   connection for account
 	 * @return Response with error code
 	 */
 	public static AionAuthResponse login(String name, String password, LoginConnection connection) {
@@ -154,7 +164,8 @@ public class AccountController {
 				return AionAuthResponse.STR_L2AUTH_S_ACCOUNTCACHESERVER_DOWN;
 			}
 
-			AionAuthResponse response = AionAuthResponse.getByIdOrDefault(auth.aionAuthResponseId(), AionAuthResponse.STR_L2AUTH_UNKNOWN4);
+			AionAuthResponse response = AionAuthResponse.getByIdOrDefault(auth.aionAuthResponseId(),
+					AionAuthResponse.STR_L2AUTH_UNKNOWN4);
 			if (response != AionAuthResponse.STR_L2AUTH_S_ALL_OK) {
 				return response;
 			}
@@ -228,7 +239,7 @@ public class AccountController {
 	 * Kicks account from LoginServer and GameServers
 	 * 
 	 * @param accountId
-	 *          account ID to kick
+	 *                  account ID to kick
 	 */
 	public static void kickAccount(int accountId) {
 		synchronized (AccountController.class) {
@@ -242,10 +253,11 @@ public class AccountController {
 	}
 
 	/**
-	 * Loads account from DB and returns it, or returns null if account was not loaded
+	 * Loads account from DB and returns it, or returns null if account was not
+	 * loaded
 	 * 
 	 * @param name
-	 *          acccount name
+	 *             acccount name
 	 * @return loaded account or null
 	 */
 	public static Account loadAccount(String name) {
@@ -270,12 +282,13 @@ public class AccountController {
 	}
 
 	/**
-	 * Creates new account and stores it in DB. Returns account object in case of success or null if failed
+	 * Creates new account and stores it in DB. Returns account object in case of
+	 * success or null if failed
 	 * 
 	 * @param name
-	 *          account name
+	 *                 account name
 	 * @param password
-	 *          account password
+	 *                 account password
 	 * @return account object or null
 	 */
 	public static Account createAccount(String name, String password) {
@@ -302,12 +315,39 @@ public class AccountController {
 			if (gsc != null)
 				gsc.sendPacket(new SM_GS_CHARACTER_RESPONSE(accountId));
 			else
-				accountCharacterCount.put(gsi.getId(), 0);
+				accountCharacterCount.put(gsi.getId(), getCharacterCountFromDb(gsi.getId(), accountId));
 		}
 		accountsGSCharacterCounts.put(accountId, accountCharacterCount);
 
 		if (hasAllGSCharacterCounts(accountId))
 			sendServerListFor(accountId);
+	}
+
+	public static int getCharacterCountFromDb(byte gsId, int accountId) {
+		String schema = switch (gsId) {
+			case 1 -> "aionclassic_gs";
+			case 2 -> "aionclassic_gs2";
+			case 3 -> "aionclassic_gs3";
+			default -> null;
+		};
+		if (schema == null) {
+			return 0;
+		}
+		String sql = "SELECT COUNT(*) FROM " + schema
+				+ ".players WHERE account_id = ? AND (deletion_date IS NULL OR deletion_date > NOW())";
+		try (java.sql.Connection conn = com.aionemu.commons.database.DatabaseFactory.getConnection();
+				java.sql.PreparedStatement stmt = conn.prepareStatement(sql)) {
+			stmt.setInt(1, accountId);
+			try (java.sql.ResultSet rs = stmt.executeQuery()) {
+				if (rs.next()) {
+					return rs.getInt(1);
+				}
+			}
+		} catch (Exception e) {
+			log.warn("Could not query offline character count for GS #{} from schema {}: {}", gsId, schema,
+					e.getMessage());
+		}
+		return 0;
 	}
 
 	/**
@@ -349,7 +389,8 @@ public class AccountController {
 
 	public static void updateServerListForAllLoggedInPlayers() {
 		accountsOnLS.values().forEach(con -> {
-			if (con.getState() == State.AUTHED_LOGIN && !con.isJoinedGs() && hasAllGSCharacterCounts(con.getAccount().getId()))
+			if (con.getState() == State.AUTHED_LOGIN && !con.isJoinedGs()
+					&& hasAllGSCharacterCounts(con.getAccount().getId()))
 				con.sendPacket(new SM_SERVER_LIST());
 		});
 	}

@@ -70,15 +70,25 @@ public class SM_SERVER_LIST extends AionServerPacket {
 			writeC(0x00); // age limit
 			writeC(0x01); // pvp=1
 			writeH(cur);
-			writeH(loadLevel); // bytes 13..14: load level enum in Game.dll (0=Green, 1=Yellow, 2=Orange, 3=Red)
+			writeH(loadLevel); // bytes 13..14: load level enum in Game.dll (0=Green, 1=Yellow, 2=Orange,
+								// 3=Red)
 			writeC(serverStatus);
 			writeD(serverBits);
 			writeC(0x00);
 		}
+		// Character count block for Classic 5.0 Game.dll (0x18088de65):
+		// Game.dll reads:
+		// word len = readH(); // total block length = 1 (flag) + maxId
+		// memcpy(buf, packet, len);
+		// if (buf[0] == 1) { // flag MUST be 0x01; if 0x00, Game.dll skips and leaves
+		// counts at 0
+		// memcpy(&char_counts[1], &buf[1], len - 1);
+		// }
+		// In server loop, Game.dll reads char_counts[serverId] (1-indexed).
 		writeH(maxId + 1);
-		writeC(0x00); // 0x00 presents full server selection grid with all available shards
-		for (byte gsId = 0; gsId <= maxId; gsId++) {
-			writeC(gsId == 0 ? 0 : (charCountOnServer != null ? charCountOnServer.getOrDefault(gsId, 0) : 0));
+		writeC(0x01); // 0x01 enables character count processing in Game.dll
+		for (byte gsId = 1; gsId <= maxId; gsId++) {
+			writeC(charCountOnServer != null ? charCountOnServer.getOrDefault(gsId, 0) : 0);
 		}
 		writeB(new byte[15]); // classic na 15 bytes
 	}

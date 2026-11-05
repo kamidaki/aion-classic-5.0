@@ -49,7 +49,8 @@ static volatile struct {
     LONG tries;
     LONG patchedSelect;
     LONG patchedMapGroup;
-} s_multiServerDiag = { "MSVDIAG1", 0, 0, 0, 0 };
+    LONG patchedShardCopy;
+} s_multiServerDiag = { "MSVDIAG2", 0, 0, 0, 0, 0 };
 
 static SRWLOCK s_multiServerLock = SRWLOCK_INIT;
 static bool s_multiServerChecked = false;
@@ -120,10 +121,20 @@ static void PatchMultiServerRouting(HMODULE module) {
         static const char mapGroupMask[] = "xxxxxxxxxxxxxxxxxxxxx";
         static_assert(sizeof(mapGroupMask) - 1 == sizeof(mapGroupSig), "Map group signature mask length");
 
+        // Signature 3: Shard Copy Loop (0x18088df08)
+        // mov eax, [r14 + 8]; cmp [r14 + 4], eax; je +0x5D; mov rdi, [r13 + 8]
+        // 41 8B 46 08 41 39 46 04 74 5D 49 8B 7D 08
+        static const BYTE shardCopySig[] = {
+            0x41, 0x8B, 0x46, 0x08, 0x41, 0x39, 0x46, 0x04, 0x74, 0x5D, 0x49, 0x8B, 0x7D, 0x08
+        };
+        static const char shardCopyMask[] = "xxxxxxxxxxxxxx";
+        static_assert(sizeof(shardCopyMask) - 1 == sizeof(shardCopySig), "Shard copy signature mask length");
+
         BYTE* selectAt = QunaFindUnique(base, nt, selectSig, selectMask, sizeof(selectSig));
         BYTE* mapGroupAt = QunaFindUnique(base, nt, mapGroupSig, mapGroupMask, sizeof(mapGroupSig));
+        BYTE* shardCopyAt = QunaFindUnique(base, nt, shardCopySig, shardCopyMask, sizeof(shardCopySig));
 
-        if (!selectAt || !mapGroupAt) {
+        if (!selectAt || !mapGroupAt || !shardCopyAt) {
             s_multiServerDiag.step = 2;
             __leave;
         }
@@ -134,16 +145,31 @@ static void PatchMultiServerRouting(HMODULE module) {
             s_multiServerDiag.patchedSelect = 1;
         }
 
-        // Patch 2: change je (74 0C) to jmp (EB 0C) at offset 7
-        static const BYTE jmpOpcode = 0xEB;
-        if (MultiServerWrite(mapGroupAt + 7, &jmpOpcode, sizeof(jmpOpcode))) {
+        // Patch 2: replace the lowest-serverId map overwrite with direct self-identity assignment:
+        // mov eax, [r15 + 4] (real serverId)
+        // mov [r15 + 8], eax
+        // 8x nop
+        static const BYTE selfIdAssignCode[16] = {
+            0x41, 0x8B, 0x47, 0x04,                         // mov eax, dword ptr [r15 + 4]
+            0x41, 0x89, 0x47, 0x08,                         // mov dword ptr [r15 + 8], eax
+            0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90, 0x90  // nop nop nop nop nop nop nop nop
+        };
+        if (MultiServerWrite(mapGroupAt, selfIdAssignCode, sizeof(selfIdAssignCode))) {
             s_multiServerDiag.patchedMapGroup = 1;
         }
 
-        if (s_multiServerDiag.patchedSelect && s_multiServerDiag.patchedMapGroup) {
+        // Patch 3: change 'je +0x5D' (74 5D) to 'jmp +0x5D' (EB 5D) at offset 8 in shardCopySig.
+        // This unconditionally skips 0x18089c550, preventing Game.dll from ever overwriting
+        // secondary GameServers' ports (e.g. port 7779 -> 7778), character counts, or properties.
+        static const BYTE jmpOpcode = 0xEB;
+        if (MultiServerWrite(shardCopyAt + 8, &jmpOpcode, sizeof(jmpOpcode))) {
+            s_multiServerDiag.patchedShardCopy = 1;
+        }
+
+        if (s_multiServerDiag.patchedSelect && s_multiServerDiag.patchedMapGroup && s_multiServerDiag.patchedShardCopy) {
             s_multiServerChecked = true;
             s_multiServerDiag.step = 3;
-            OutputDebugStringA("[Multi-Server] Multi-GameServer routing fix applied successfully (UI selection and IP map group patched).\n");
+            OutputDebugStringA("[Multi-Server] Multi-GameServer routing fix applied successfully (UI selection, self-identity GS ID, and shard copy bypass).\n");
         }
     }
     __finally {
