@@ -77,12 +77,14 @@ static DWORD WINAPI MultiServerRetryThread(LPVOID module) {
 }
 
 static void InstallMultiServerFix(HMODULE module) {
+    if (!module) return;
     if (InterlockedCompareExchange(&s_multiServerRetrying, 1, 0) != 0) return;
     HANDLE thread = CreateThread(nullptr, 0, MultiServerRetryThread, module, 0, nullptr);
     if (thread) CloseHandle(thread);
 }
 
 static void PatchMultiServerRouting(HMODULE module) {
+    if (!module) return;
     if (!TryAcquireSRWLockExclusive(&s_multiServerLock)) return;
     __try {
         if (s_multiServerChecked) __leave;

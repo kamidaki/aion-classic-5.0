@@ -168,6 +168,7 @@ public class ChatService {
 	}
 
 	public void onGameServerDisconnect(byte gameServerId) {
+		ChatChannels.onGameServerDisconnect(gameServerId);
 		java.util.List<Long> toRemove = new java.util.ArrayList<>();
 		for (Map.Entry<Long, ChatClient> entry : players.entrySet()) {
 			if (entry.getValue().getGameServerId() == gameServerId) {

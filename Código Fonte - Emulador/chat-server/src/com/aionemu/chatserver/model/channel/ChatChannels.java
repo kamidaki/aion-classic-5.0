@@ -84,4 +84,9 @@ public class ChatChannels {
 		}
 		return channel;
 	}
+
+	public static void onGameServerDisconnect(int gameServerId) {
+		channels.entrySet().removeIf(entry -> entry.getValue().getGameServerId() == gameServerId);
+		log.info("Cleaned up chat channels for GameServer #{}", gameServerId);
+	}
 }

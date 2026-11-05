@@ -57,6 +57,7 @@ public class AccountController {
 	 */
 	public static void removeAccountOnLS(Account account) {
 		accountsOnLS.remove(account.getId());
+		accountsGSCharacterCounts.remove(account.getId());
 	}
 
 	/**
@@ -76,6 +77,7 @@ public class AccountController {
 			}
 			// account is successful logged in on gs remove it from here
 			accountsOnLS.remove(key.accountId);
+			accountsGSCharacterCounts.remove(key.accountId);
 
 			GameServerInfo gsi = gsConnection.getGameServerInfo();
 			Account acc = con.getAccount();
@@ -233,6 +235,7 @@ public class AccountController {
 			GameServerTable.kickAccountFromGameServer(accountId, false);
 
 			LoginConnection conn = accountsOnLS.remove(accountId);
+			accountsGSCharacterCounts.remove(accountId);
 			if (conn != null)
 				conn.close(new SM_ACCOUNT_KICK(AionAuthResponse.STR_L2AUTH_S_BLOCKED_IP));
 		}

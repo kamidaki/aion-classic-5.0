@@ -13,7 +13,7 @@ import com.aionemu.chatserver.network.aion.serverpackets.SM_CHANNEL_MESSAGE;
 public class BroadcastService {
 
 	private static final BroadcastService instance = new BroadcastService();
-	private final Map<Integer, ChatClient> clients = new ConcurrentHashMap<>();
+	private final Map<Long, ChatClient> clients = new ConcurrentHashMap<>();
 
 	public static BroadcastService getInstance() {
 		return instance;
@@ -24,11 +24,11 @@ public class BroadcastService {
 	}
 
 	public void addClient(ChatClient client) {
-		clients.put(client.getClientId(), client);
+		clients.put(ChatService.makePlayerKey(client.getGameServerId(), client.getClientId()), client);
 	}
 
 	public void removeClient(ChatClient client) {
-		clients.remove(client.getClientId());
+		clients.remove(ChatService.makePlayerKey(client.getGameServerId(), client.getClientId()));
 	}
 
 	public void broadcastMessage(Message message) {
