@@ -226,6 +226,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="exports.h" />
+    <ClInclude Include="multiserver_fix.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>

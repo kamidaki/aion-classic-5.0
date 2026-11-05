@@ -40,6 +40,7 @@ public class GameServerService {
 
 	public void setOffline(byte gameServerId) {
 		registeredServers.remove(gameServerId);
+		ChatService.getInstance().onGameServerDisconnect(gameServerId);
 		log.info("Gameserver #{} is disconnected from ChatServer", gameServerId);
 	}
 

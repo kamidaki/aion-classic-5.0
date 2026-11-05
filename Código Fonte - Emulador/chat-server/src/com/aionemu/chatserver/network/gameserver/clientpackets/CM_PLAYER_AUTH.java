@@ -41,7 +41,8 @@ public class CM_PLAYER_AUTH extends GsClientPacket {
 	@Override
 	protected void runImpl() {
 		try {
-			ChatClient chatClient = ChatService.getInstance().registerPlayer(playerId, accName, nick, Race.getById(raceId), accessLevel);
+			byte gsId = getConnection().getGameServerId();
+			ChatClient chatClient = ChatService.getInstance().registerPlayer(gsId, playerId, accName, nick, Race.getById(raceId), accessLevel);
 			sendPacket(new SM_PLAYER_AUTH_RESPONSE(chatClient));
 		} catch (NoSuchAlgorithmException e) {
 			log.error("Error registering player {} on ChatServer", playerId, e);

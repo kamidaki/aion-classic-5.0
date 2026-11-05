@@ -26,6 +26,7 @@ public class CM_PLAYER_GAG extends GsClientPacket {
 
 	@Override
 	protected void runImpl() {
-		ChatService.getInstance().gagPlayer(playerId, gagTimeMillis);
+		byte gsId = getConnection().getGameServerId();
+		ChatService.getInstance().gagPlayer(gsId, playerId, gagTimeMillis);
 	}
 }

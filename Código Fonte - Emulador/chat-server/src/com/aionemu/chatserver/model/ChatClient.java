@@ -13,6 +13,7 @@ import com.aionemu.chatserver.network.netty.handler.ClientChannelHandler;
  */
 public class ChatClient {
 
+	private final byte gameServerId;
 	private final int clientId;
 	private final byte[] token;
 	private final String accName;
@@ -30,13 +31,18 @@ public class ChatClient {
 	private final Map<ChannelType, List<Channel>> channels = new ConcurrentHashMap<>();
 	private final Map<ChannelType, Long> lastMessageTime = new ConcurrentHashMap<>();
 
-	public ChatClient(int clientId, byte[] token, String accName, String nick, Race race, byte accessLevel) {
+	public ChatClient(byte gameServerId, int clientId, byte[] token, String accName, String nick, Race race, byte accessLevel) {
+		this.gameServerId = gameServerId;
 		this.clientId = clientId;
 		this.token = token;
 		this.accName = accName;
 		this.name = nick;
 		this.race = race;
 		this.accessLevel = accessLevel;
+	}
+
+	public byte getGameServerId() {
+		return gameServerId;
 	}
 
 	public int getClientId() {

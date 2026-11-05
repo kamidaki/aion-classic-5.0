@@ -13,6 +13,7 @@ import com.aionemu.chatserver.service.ChatService;
  */
 public class CM_PLAYER_AUTH extends AbstractClientPacket {
 
+	private int serverId;
 	private int playerId;
 	private byte[] token;
 	private byte[] identifier;
@@ -31,7 +32,7 @@ public class CM_PLAYER_AUTH extends AbstractClientPacket {
 		int gameNameLength = readH() * 2;
 		readB(gameNameLength); // AION
 		readD(); // 27
-		readD(); // 1 or 3
+		serverId = readD(); // GameServer ID
 		readD(); // 0
 		playerId = readD();
 		readD(); // 0
@@ -55,6 +56,6 @@ public class CM_PLAYER_AUTH extends AbstractClientPacket {
 		String charName = sepIndex >= 0 ? nameIdentifier.substring(0, sepIndex) : nameIdentifier;
 		// Classic 5.0 client sends account name with "_sd_" prefix; strip it before comparison
 		String cleanAccountName = (accountName != null && accountName.startsWith("_sd_")) ? accountName.substring(4) : (accountName != null ? accountName : "");
-		ChatService.getInstance().registerPlayerConnection(playerId, token, identifier, charName, cleanAccountName, clientChannelHandler);
+		ChatService.getInstance().registerPlayerConnection((byte) serverId, playerId, token, identifier, charName, cleanAccountName, clientChannelHandler);
 	}
 }

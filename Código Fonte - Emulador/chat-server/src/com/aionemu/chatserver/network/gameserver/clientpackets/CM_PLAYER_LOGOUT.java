@@ -24,6 +24,7 @@ public class CM_PLAYER_LOGOUT extends GsClientPacket {
 
 	@Override
 	protected void runImpl() {
-		ChatService.getInstance().playerLogout(playerId);
+		byte gsId = getConnection().getGameServerId();
+		ChatService.getInstance().playerLogout(gsId, playerId);
 	}
 }

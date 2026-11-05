@@ -68,7 +68,7 @@ public class AccountController {
 		if (con != null && con.getSessionKey().checkSessionKey(key)) {
 			byte selectedGsId = con.getSelectedGameServerId();
 			byte currentGsId = gsConnection.getGameServerInfo().getId();
-			if (selectedGsId != 0 && selectedGsId != currentGsId) {
+			if (selectedGsId != currentGsId) {
 				log.warn("Account {} requested GS #{} but tried to auth on GS #{}! Rejecting cross-server routing.",
 					key.accountId, selectedGsId, currentGsId);
 				gsConnection.sendPacket(new SM_ACCOUNT_AUTH_RESPONSE(key.accountId, false, null, 0, (byte) 0, (byte) 0, null));

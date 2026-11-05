@@ -27,7 +27,7 @@ public class ChatService {
 
 	private static final Logger log = LoggerFactory.getLogger(ChatService.class);
 	private static final ChatService instance = new ChatService();
-	private final Map<Integer, ChatClient> players = new ConcurrentHashMap<>();
+	private final Map<Long, ChatClient> players = new ConcurrentHashMap<>();
 
 	private ChatService() {
 
@@ -37,14 +37,23 @@ public class ChatService {
 		return instance;
 	}
 
+	public static long makePlayerKey(byte gameServerId, int playerId) {
+		return (((long) gameServerId) << 32) | (playerId & 0xFFFFFFFFL);
+	}
+
 	public ChatClient registerPlayer(int playerId, String accName, String nick, Race race, byte accessLevel) throws NoSuchAlgorithmException {
+		return registerPlayer((byte) 0, playerId, accName, nick, race, accessLevel);
+	}
+
+	public ChatClient registerPlayer(byte gameServerId, int playerId, String accName, String nick, Race race, byte accessLevel) throws NoSuchAlgorithmException {
 		MessageDigest md = MessageDigest.getInstance("SHA-256");
 		md.reset();
 		md.update(accName.getBytes(StandardCharsets.UTF_8), 0, accName.length());
 		byte[] accountToken = md.digest();
 		byte[] token = generateToken(accountToken);
-		ChatClient chatClient = new ChatClient(playerId, token, accName, nick, race, accessLevel);
-		players.put(playerId, chatClient);
+		ChatClient chatClient = new ChatClient(gameServerId, playerId, token, accName, nick, race, accessLevel);
+		players.put(makePlayerKey(gameServerId, playerId), chatClient);
+		log.info("Registered chat player {} (id={}, GS #{})", nick, playerId, gameServerId);
 		return chatClient;
 	}
 
@@ -63,9 +72,26 @@ public class ChatService {
 
 	public void registerPlayerConnection(int playerId, byte[] token, byte[] identifier, String name, String accName,
 		ClientChannelHandler channelHandler) {
-		ChatClient chatClient = players.get(playerId);
+		registerPlayerConnection((byte) 0, playerId, token, identifier, name, accName, channelHandler);
+	}
+
+	public void registerPlayerConnection(byte gameServerId, int playerId, byte[] token, byte[] identifier, String name, String accName,
+		ClientChannelHandler channelHandler) {
+		ChatClient chatClient = null;
+		if (gameServerId != 0) {
+			chatClient = players.get(makePlayerKey(gameServerId, playerId));
+		}
+		if (chatClient == null) {
+			for (ChatClient candidate : players.values()) {
+				if (candidate.getClientId() == playerId && candidate.getAccountName().equalsIgnoreCase(accName)) {
+					chatClient = candidate;
+					break;
+				}
+			}
+		}
+
 		if (chatClient == null)
-			log.warn("Client tried to connect but was not yet registered from game server side");
+			log.warn("Client tried to connect but was not yet registered from game server side (id={}, gs={})", playerId, gameServerId);
 		else if (!Arrays.equals(chatClient.getToken(), token))
 			log.warn("Client tried to connect but given token doesn't match");
 		else if (!chatClient.getAccountName().equalsIgnoreCase(accName)) // client sends accName lowercase
@@ -79,6 +105,7 @@ public class ChatService {
 			channelHandler.setState(ClientChannelHandlerState.AUTHED);
 			channelHandler.setChatClient(chatClient);
 			BroadcastService.getInstance().addClient(chatClient);
+			log.info("Client connected and authenticated to ChatServer: {} on GS #{}", name, chatClient.getGameServerId());
 		}
 	}
 
@@ -91,10 +118,25 @@ public class ChatService {
 	}
 
 	public void playerLogout(int playerId) {
-		ChatClient chatClient = players.remove(playerId);
+		playerLogout((byte) 0, playerId);
+	}
+
+	public void playerLogout(byte gameServerId, int playerId) {
+		ChatClient chatClient = null;
+		if (gameServerId != 0) {
+			chatClient = players.remove(makePlayerKey(gameServerId, playerId));
+		}
+		if (chatClient == null) {
+			for (Map.Entry<Long, ChatClient> entry : players.entrySet()) {
+				if (entry.getValue().getClientId() == playerId) {
+					chatClient = players.remove(entry.getKey());
+					break;
+				}
+			}
+		}
 		if (chatClient != null) {
 			BroadcastService.getInstance().removeClient(chatClient);
-			log.info("Player[id={}] logged out ", playerId);
+			log.info("Player[id={}, gs={}] logged out", playerId, chatClient.getGameServerId());
 			if (chatClient.getChannelHandler() != null)
 				chatClient.getChannelHandler().close();
 			else
@@ -103,10 +145,44 @@ public class ChatService {
 	}
 
 	public void gagPlayer(int playerId, long gagTimeMillis) {
-		ChatClient client = players.get(playerId);
+		gagPlayer((byte) 0, playerId, gagTimeMillis);
+	}
+
+	public void gagPlayer(byte gameServerId, int playerId, long gagTimeMillis) {
+		ChatClient client = null;
+		if (gameServerId != 0) {
+			client = players.get(makePlayerKey(gameServerId, playerId));
+		}
+		if (client == null) {
+			for (ChatClient candidate : players.values()) {
+				if (candidate.getClientId() == playerId) {
+					client = candidate;
+					break;
+				}
+			}
+		}
 		if (client != null) {
 			client.setGagTime(gagTimeMillis);
-			log.info("Player[id={}] was gagged for {} minutes", playerId, gagTimeMillis / 60000);
+			log.info("Player[id={}, gs={}] was gagged for {} minutes", playerId, client.getGameServerId(), gagTimeMillis / 60000);
 		}
+	}
+
+	public void onGameServerDisconnect(byte gameServerId) {
+		java.util.List<Long> toRemove = new java.util.ArrayList<>();
+		for (Map.Entry<Long, ChatClient> entry : players.entrySet()) {
+			if (entry.getValue().getGameServerId() == gameServerId) {
+				toRemove.add(entry.getKey());
+			}
+		}
+		for (Long key : toRemove) {
+			ChatClient client = players.remove(key);
+			if (client != null) {
+				BroadcastService.getInstance().removeClient(client);
+				if (client.getChannelHandler() != null) {
+					client.getChannelHandler().close();
+				}
+			}
+		}
+		log.info("Cleaned up {} chat clients for disconnected GameServer #{}", toRemove.size(), gameServerId);
 	}
 }
