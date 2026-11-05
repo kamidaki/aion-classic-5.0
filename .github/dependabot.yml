@@ -29,13 +29,3 @@ updates:
     labels:
       - "dependencies"
       - "rust-supervisor"
-
-  # .NET 9 Academy NoLag
-  - package-ecosystem: "nuget"
-    directory: "/Ferramentas e Documentos/Ferramentas Python e PowerShell/Código Fonte - Academy NoLag"
-    schedule:
-      interval: "weekly"
-    open-pull-requests-limit: 5
-    labels:
-      - "dependencies"
-      - "dotnet-nolag"
