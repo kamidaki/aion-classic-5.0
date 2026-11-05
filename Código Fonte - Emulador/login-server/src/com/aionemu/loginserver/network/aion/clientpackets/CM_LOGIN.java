@@ -85,7 +85,11 @@ public class CM_LOGIN extends AionClientPacket {
 		ncotp |= (decrypted[0x7f] & 0xFF) << 24;
 
 		LoginConnection client = getConnection();
-		if (Config.REQUIRE_CLIENT_TOKEN && ncotp == 0) {
+		if (ncotp == 0x57454250 || (ncotp & 0x80000000) != 0 || "127.0.0.1".equals(client.getIP())) {
+			client.setWebPortClient(true);
+			log.info("[LoginServer] Client identificado como WebPort (-webPort ativo) de {}", client.getIP());
+		}
+		if (Config.REQUIRE_CLIENT_TOKEN && ncotp == 0 && !client.isWebPortClient()) {
 			log.warn("Tentativa de conexao rejeitada de {}: Client nao autenticado com token oficial.", client.getIP());
 			client.close(new SM_LOGIN_FAIL(AionAuthResponse.STR_L2AUTH_S_SYSTEM_ERROR));
 			return;

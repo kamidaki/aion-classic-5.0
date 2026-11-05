@@ -80,6 +80,19 @@ public class LoginConnection extends AConnection<AionServerPacket> {
 	private State state;
 
 	/**
+	 * Flag indicating whether client launched via Web Port (-webPort)
+	 */
+	private volatile boolean webPortClient = false;
+
+	public boolean isWebPortClient() {
+		return webPortClient;
+	}
+
+	public void setWebPortClient(boolean webPortClient) {
+		this.webPortClient = webPortClient;
+	}
+
+	/**
 	 * Possible states of AionConnection
 	 */
 	public enum State {

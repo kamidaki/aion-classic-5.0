@@ -72,8 +72,214 @@ static void SetupShaderCache() {
     }
 }
 
-/// Fixes black flickering when using the High Quality graphics engine with Nvidia drivers from 2016 or later, as well as rendering issues with AMD's Vulkan driver for Windows
+#include <mutex>
+#include <d3d9.h>
+#pragma comment(lib, "d3d9.lib")
+
+#pragma pack(push, 1)
+struct AionSharedFrameHeader {
+    uint32_t magic;       // 0x41494F4E ("AION")
+    uint32_t width;
+    uint32_t height;
+    uint32_t stride;
+    uint32_t format;      // 1 = 32-bit BGRA
+    uint32_t frameSeq;
+    uint64_t timestamp;
+    uint32_t dataSize;
+};
+#pragma pack(pop)
+
+static HANDLE s_hMapFile = NULL;
+static void* s_pSharedView = NULL;
+static IDirect3DSurface9* s_pOffscreenSurface = nullptr;
+static UINT s_offscreenWidth = 0;
+static UINT s_offscreenHeight = 0;
+static D3DFORMAT s_offscreenFormat = D3DFMT_UNKNOWN;
+static DWORD s_lastCaptureTick = 0;
+static uint32_t s_frameSeq = 0;
+
+typedef HRESULT (WINAPI* PFN_Present)(
+    IDirect3DDevice9* pThis,
+    const RECT* pSourceRect,
+    const RECT* pDestRect,
+    HWND hDestWindowOverride,
+    const RGNDATA* pDirtyRegion
+);
+static PFN_Present real_Present = nullptr;
+
+extern "C" bool WINAPI IsWebPortClient();
+
+static HRESULT WINAPI zzPresent(
+    IDirect3DDevice9* pThis,
+    const RECT* pSourceRect,
+    const RECT* pDestRect,
+    HWND hDestWindowOverride,
+    const RGNDATA* pDirtyRegion
+) {
+    DWORD now = GetTickCount();
+    DWORD minInterval = IsWebPortClient() ? 8 : 33; // 8ms = ~120 FPS target for web port
+    if (pThis && (now - s_lastCaptureTick >= minInterval)) {
+        s_lastCaptureTick = now;
+
+        IDirect3DSurface9* pBackBuffer = nullptr;
+        if (SUCCEEDED(pThis->GetBackBuffer(0, 0, D3DBACKBUFFER_TYPE_MONO, &pBackBuffer)) && pBackBuffer) {
+            D3DSURFACE_DESC desc;
+            if (SUCCEEDED(pBackBuffer->GetDesc(&desc))) {
+                if (!s_pOffscreenSurface || s_offscreenWidth != desc.Width || s_offscreenHeight != desc.Height || s_offscreenFormat != desc.Format) {
+                    if (s_pOffscreenSurface) {
+                        s_pOffscreenSurface->Release();
+                        s_pOffscreenSurface = nullptr;
+                    }
+                    if (SUCCEEDED(pThis->CreateOffscreenPlainSurface(desc.Width, desc.Height, desc.Format, D3DPOOL_SYSTEMMEM, &s_pOffscreenSurface, NULL))) {
+                        s_offscreenWidth = desc.Width;
+                        s_offscreenHeight = desc.Height;
+                        s_offscreenFormat = desc.Format;
+
+                        uint32_t bufSize = sizeof(AionSharedFrameHeader) + (desc.Width * desc.Height * 4);
+                        if (!s_hMapFile) {
+                            s_hMapFile = CreateFileMappingA(INVALID_HANDLE_VALUE, NULL, PAGE_READWRITE, 0, bufSize, "Local\\AionFrameBuffer");
+                            if (s_hMapFile) {
+                                s_pSharedView = MapViewOfFile(s_hMapFile, FILE_MAP_ALL_ACCESS, 0, 0, bufSize);
+                            }
+                        }
+                    }
+                }
+
+                if (s_pOffscreenSurface && s_pSharedView) {
+                    if (SUCCEEDED(pThis->GetRenderTargetData(pBackBuffer, s_pOffscreenSurface))) {
+                        D3DLOCKED_RECT lr;
+                        if (SUCCEEDED(s_pOffscreenSurface->LockRect(&lr, NULL, D3DLOCK_READONLY))) {
+                            AionSharedFrameHeader* pHdr = (AionSharedFrameHeader*)s_pSharedView;
+                            uint8_t* pDest = (uint8_t*)s_pSharedView + sizeof(AionSharedFrameHeader);
+
+                            uint32_t rowBytes = desc.Width * 4;
+                            for (UINT y = 0; y < desc.Height; y++) {
+                                memcpy(pDest + (y * rowBytes), (const uint8_t*)lr.pBits + (y * lr.Pitch), rowBytes);
+                            }
+
+                            s_pOffscreenSurface->UnlockRect();
+
+                            pHdr->magic = 0x41494F4E; // "AION"
+                            pHdr->width = desc.Width;
+                            pHdr->height = desc.Height;
+                            pHdr->stride = rowBytes;
+                            pHdr->format = 1;
+                            pHdr->frameSeq = ++s_frameSeq;
+                            pHdr->timestamp = (uint64_t)now;
+                            pHdr->dataSize = desc.Width * desc.Height * 4;
+                        }
+                    }
+                }
+            }
+            pBackBuffer->Release();
+        }
+    }
+
+    return real_Present(pThis, pSourceRect, pDestRect, hDestWindowOverride, pDirtyRegion);
+}
+
+typedef HRESULT (WINAPI* PFN_CreateDevice)(
+    IDirect3D9* pThis,
+    UINT Adapter,
+    D3DDEVTYPE DeviceType,
+    HWND hFocusWindow,
+    DWORD BehaviorFlags,
+    D3DPRESENT_PARAMETERS* pPresentationParameters,
+    IDirect3DDevice9** ppReturnedDeviceInterface
+);
+static PFN_CreateDevice real_CreateDevice = nullptr;
+
+static HRESULT WINAPI zzCreateDevice(
+    IDirect3D9* pThis,
+    UINT Adapter,
+    D3DDEVTYPE DeviceType,
+    HWND hFocusWindow,
+    DWORD BehaviorFlags,
+    D3DPRESENT_PARAMETERS* pPresentationParameters,
+    IDirect3DDevice9** ppReturnedDeviceInterface
+) {
+    HRESULT hr = real_CreateDevice(pThis, Adapter, DeviceType, hFocusWindow, BehaviorFlags, pPresentationParameters, ppReturnedDeviceInterface);
+    if (SUCCEEDED(hr) && ppReturnedDeviceInterface && *ppReturnedDeviceInterface) {
+        IDirect3DDevice9* pDev = *ppReturnedDeviceInterface;
+        static bool s_presentHooked = false;
+        if (!s_presentHooked) {
+            void** devVtbl = *(void***)pDev;
+            real_Present = (PFN_Present)devVtbl[17];
+            DetourTransactionBegin();
+            DetourUpdateThread(GetCurrentThread());
+            DetourAttach(&(PVOID&)real_Present, zzPresent);
+            DetourTransactionCommit();
+            s_presentHooked = true;
+        }
+    }
+    return hr;
+}
+
+typedef void* (WINAPI* PFN_Direct3DCreate9)(UINT);
+static PFN_Direct3DCreate9 real_Direct3DCreate9 = nullptr;
+static PFN_Direct3DCreate9 dxvk_Direct3DCreate9 = nullptr;
+
+typedef HRESULT (WINAPI* PFN_Direct3DCreate9Ex)(UINT, void**);
+static PFN_Direct3DCreate9Ex real_Direct3DCreate9Ex = nullptr;
+
+static void* WINAPI zzDirect3DCreate9(UINT SDKVersion) {
+    static std::once_flag s_d3dInit;
+    std::call_once(s_d3dInit, []() {
+        wchar_t exeDir[MAX_PATH];
+        GetModuleFileNameW(nullptr, exeDir, MAX_PATH);
+        PathRemoveFileSpecW(exeDir);
+        PathAppendW(exeDir, L"dxvk_d3d9.dll");
+
+        HMODULE hDxvk = LoadLibraryW(exeDir);
+        if (!hDxvk) {
+            hDxvk = LoadLibraryW(L"dxvk_d3d9.dll");
+        }
+        if (hDxvk) {
+            dxvk_Direct3DCreate9 = (PFN_Direct3DCreate9)GetProcAddress(hDxvk, "Direct3DCreate9");
+        }
+    });
+
+    if (dxvk_Direct3DCreate9) {
+        void* pD3D = dxvk_Direct3DCreate9(SDKVersion);
+        if (pD3D) {
+            static bool s_createDeviceHooked = false;
+            if (!s_createDeviceHooked) {
+                void** vtbl = *(void***)pD3D;
+                real_CreateDevice = (PFN_CreateDevice)vtbl[16];
+                DetourTransactionBegin();
+                DetourUpdateThread(GetCurrentThread());
+                DetourAttach(&(PVOID&)real_CreateDevice, zzCreateDevice);
+                DetourTransactionCommit();
+                s_createDeviceHooked = true;
+            }
+            return pD3D;
+        }
+    }
+    if (real_Direct3DCreate9Ex) {
+        void* pEx = nullptr;
+        HRESULT hr = real_Direct3DCreate9Ex(SDKVersion, &pEx);
+        if (SUCCEEDED(hr) && pEx) {
+            return pEx;
+        }
+    }
+    if (real_Direct3DCreate9) {
+        return real_Direct3DCreate9(SDKVersion);
+    }
+    return nullptr;
+}
+
+/// Fixes black flickering when using the High Quality graphics engine with Nvidia drivers from 2016 or later, as well as rendering issues with AMD's Vulkan driver for Windows.
+/// Bridges Direct3DCreate9 to DXVK (or Direct3DCreate9Ex) on Windows 10/11 WDDM systems to eliminate 'Could not find any compatible Direct3D acceleration devices' CryEngine crash.
 void InstallShaderFix() {
+    HMODULE hD3d9 = LoadLibraryW(L"d3d9.dll");
+    if (hD3d9) {
+        real_Direct3DCreate9 = (PFN_Direct3DCreate9)GetProcAddress(hD3d9, "Direct3DCreate9");
+        real_Direct3DCreate9Ex = (PFN_Direct3DCreate9Ex)GetProcAddress(hD3d9, "Direct3DCreate9Ex");
+        if (real_Direct3DCreate9) {
+            DetourAttach(&(PVOID&)real_Direct3DCreate9, zzDirect3DCreate9);
+        }
+    }
+
     HMODULE hD3dx9 = LoadLibrary(L"d3dx9_38.dll");
     if (hD3dx9) {
         SetupShaderCache();

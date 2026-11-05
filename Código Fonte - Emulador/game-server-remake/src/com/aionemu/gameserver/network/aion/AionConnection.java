@@ -97,6 +97,15 @@ public class AionConnection extends AConnection<AionServerPacket> {
 
 	private String macAddress;
 	private String hddSerial;
+	private volatile boolean webPortClient = false;
+
+	public boolean isWebPortClient() {
+		return webPortClient;
+	}
+
+	public void setWebPortClient(boolean webPortClient) {
+		this.webPortClient = webPortClient;
+	}
 
 	private ConnectionAliveChecker connectionAliveChecker;
 

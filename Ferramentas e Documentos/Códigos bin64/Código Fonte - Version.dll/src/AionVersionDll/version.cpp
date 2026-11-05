@@ -354,6 +354,19 @@ static void AppendProbabilityOptions(std::basic_string<C>& cmd) {
         cmd += std::basic_string<C>(space) + probability2;
 }
 
+// =========================================================================
+// WebPort Runtime Mode Detection & Custom Mod Hooks
+// =========================================================================
+static bool s_isWebPort = false;
+
+extern "C" __declspec(dllexport) bool WINAPI IsWebPortClient() {
+    return s_isWebPort;
+}
+
+static void InitializeWebPortHooks() {
+    OutputDebugStringA("[AION_VERSION_DLL] WebPort execution mode ACTIVE (-webPort detected). Runtime adapted for Web/Mobile viewport.\n");
+}
+
 static decltype(GetCommandLineA)* real_GetCommandLineA = GetCommandLineA;
 static LPSTR WINAPI zzGetCommandLineA() {
     static std::string s_hookedCmdA;
@@ -362,6 +375,15 @@ static LPSTR WINAPI zzGetCommandLineA() {
         LPSTR cmd = real_GetCommandLineA();
         s_hookedCmdA = cmd ? cmd : "";
         AppendProbabilityOptions(s_hookedCmdA);
+
+        // Detect -webPort parameter (case-insensitive)
+        std::string lowerCmdA = s_hookedCmdA;
+        std::transform(lowerCmdA.begin(), lowerCmdA.end(), lowerCmdA.begin(), ::tolower);
+        if (lowerCmdA.find("-webport") != std::string::npos) {
+            s_isWebPort = true;
+            InitializeWebPortHooks();
+        }
+
         size_t p = 0;
         while ((p = s_hookedCmdA.find("-LANG:", p)) != std::string::npos) {
             s_hookedCmdA.replace(p, 6, "-lang:");
@@ -390,6 +412,9 @@ static LPSTR WINAPI zzGetCommandLineA() {
         if (s_hookedCmdA.find("-classic") == std::string::npos) {
             s_hookedCmdA += " -noweb -classic -nowebshop -dnpshop -st -dpetition -hidepromo -nosatab -nosarefund -disabletempbanner -disabledevaschedule -old_charInstance -charnamemenu -dwsm -probability -nospamcheck";
         }
+        if (s_isWebPort && s_hookedCmdA.find("-webPort") == std::string::npos && s_hookedCmdA.find("-webport") == std::string::npos) {
+            s_hookedCmdA += " -webPort";
+        }
     });
     return const_cast<LPSTR>(s_hookedCmdA.c_str());
 }
@@ -402,6 +427,15 @@ static LPWSTR WINAPI zzGetCommandLineW() {
         LPWSTR cmd = real_GetCommandLineW();
         s_hookedCmdW = cmd ? cmd : L"";
         AppendProbabilityOptions(s_hookedCmdW);
+
+        // Detect -webPort parameter (case-insensitive)
+        std::wstring lowerCmdW = s_hookedCmdW;
+        std::transform(lowerCmdW.begin(), lowerCmdW.end(), lowerCmdW.begin(), ::tolower);
+        if (lowerCmdW.find(L"-webport") != std::wstring::npos) {
+            s_isWebPort = true;
+            InitializeWebPortHooks();
+        }
+
         size_t p = 0;
         while ((p = s_hookedCmdW.find(L"-LANG:", p)) != std::wstring::npos) {
             s_hookedCmdW.replace(p, 6, L"-lang:");
@@ -429,6 +463,9 @@ static LPWSTR WINAPI zzGetCommandLineW() {
         }
         if (s_hookedCmdW.find(L"-classic") == std::wstring::npos) {
             s_hookedCmdW += L" -noweb -classic -nowebshop -dnpshop -st -dpetition -hidepromo -nosatab -nosarefund -disabletempbanner -disabledevaschedule -old_charInstance -charnamemenu -dwsm -probability -nospamcheck";
+        }
+        if (s_isWebPort && s_hookedCmdW.find(L"-webPort") == std::wstring::npos && s_hookedCmdW.find(L"-webport") == std::wstring::npos) {
+            s_hookedCmdW += L" -webPort";
         }
     });
     return const_cast<LPWSTR>(s_hookedCmdW.c_str());
