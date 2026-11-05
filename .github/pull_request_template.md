@@ -1,4 +1,4 @@
-## 📋 Descrição das Alterações
+## Descrição das Alterações
 ## Resumo das Alterações
 
 <!-- Forneça um resumo claro e conciso das alterações implementadas e o problema resolvido. -->
@@ -8,16 +8,16 @@ Fixes #(issue)
 
 ---
 
-## 🏷️ Tipo de Mudança
+## Tipo de Mudança
 ## GameServer ou Componente Específico Afetado
 
-- [ ] 🐛 Correção de Bug (*bug fix*)
-- [ ] ✨ Nova Funcionalidade (*new feature*)
-- [ ] ♻️ Refatoração de Código (*refactor*)
-- [ ] ⚡ Otimização de Performance (*perf*)
-- [ ] 🔒 Melhoria de Segurança (*security*)
-- [ ] 📚 Documentação (*docs*)
-- [ ] 🔧 Manutenção / Build / CI (*chore*)
+- [ ] Correção de Bug (*bug fix*)
+- [ ] Nova Funcionalidade (*new feature*)
+- [ ] Refatoração de Código (*refactor*)
+- [ ] Otimização de Performance (*perf*)
+- [ ] Melhoria de Segurança (*security*)
+- [ ] Documentação (*docs*)
+- [ ] Manutenção / Build / CI (*chore*)
 <!-- Selecione OBRIGATORIAMENTE apenas um GameServer ou o componente de infraestrutura correspondente. -->
 <!-- NUNCA suba alterações para múltiplos GameServers no mesmo Pull Request. -->
 
@@ -33,7 +33,7 @@ Fixes #(issue)
 
 ---
 
-## 🧩 Componentes Afetados
+## Componentes Afetados
 ## Tipo de Mudança
 
 - [ ] `Código Fonte - Emulador` (Java 25 Backend - `commons`, `login-server`, `game-server`, `chat-server`)
@@ -51,7 +51,7 @@ Fixes #(issue)
 
 ---
 
-## ✅ Checklist de Validação
+## Checklist de Validação
 ## Lista de Verificação de Fidelidade, Evidências e Qualidade
 
 - [ ] O código compila com sucesso (`mvn clean package` / `cargo check` / `dotnet build`).
