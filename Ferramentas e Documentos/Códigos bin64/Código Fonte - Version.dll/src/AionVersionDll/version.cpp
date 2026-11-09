@@ -631,6 +631,10 @@ static LRESULT CALLBACK WebPortSubclassProc(HWND hWnd, UINT uMsg, WPARAM wParam,
             RecordInterceptedPlayerExit(3, "WndProc(SC_CLOSE)");
             return 0;
         }
+        if (uMsg == WM_DESTROY || uMsg == WM_NCDESTROY || uMsg == WM_QUIT) {
+            RecordInterceptedPlayerExit(3, "WndProc(WM_DESTROY/QUIT)");
+            return 0;
+        }
     }
     return DefSubclassProc(hWnd, uMsg, wParam, lParam);
 }
@@ -974,7 +978,7 @@ static void WINAPI zzPostQuitMessage(int nExitCode) {
 
 static decltype(DestroyWindow)* real_DestroyWindow = DestroyWindow;
 static BOOL WINAPI zzDestroyWindow(HWND hWnd) {
-    if (s_isWebPort && !s_adminShutdownRequested.load(std::memory_order_relaxed) && hWnd && hWnd == s_hGameWindow) {
+    if (s_isWebPort && !s_adminShutdownRequested.load(std::memory_order_relaxed) && hWnd && (hWnd == s_hGameWindow || IsTargetGameWindow(hWnd))) {
         RecordInterceptedPlayerExit(5, "DestroyWindow(s_hGameWindow)");
         return TRUE;
     }
@@ -982,6 +986,26 @@ static BOOL WINAPI zzDestroyWindow(HWND hWnd) {
 }
 
 static decltype(ExitProcess)* real_ExitProcess = ExitProcess;
+
+static void WebPortPreventMainThreadExit(UINT uExitCode) {
+    if (s_mainThreadId != 0 && GetCurrentThreadId() != s_mainThreadId) {
+        ExitThread(0);
+    }
+    // Main engine thread: caller assumes noreturn.
+    // Entering message pump loop keeps the Win32 window, message queue, and DirectX context alive!
+    while (!s_adminShutdownRequested.load(std::memory_order_relaxed)) {
+        MSG msg;
+        while (PeekMessageW(&msg, NULL, 0, 0, PM_REMOVE)) {
+            TranslateMessage(&msg);
+            DispatchMessageW(&msg);
+        }
+        Sleep(16);
+    }
+    if (real_ExitProcess) {
+        real_ExitProcess(uExitCode);
+    }
+}
+
 static void WINAPI zzExitProcess(UINT uExitCode) {
     char dbg[256];
     sprintf_s(dbg, "[AION_HOOK_CALL] zzExitProcess: uExitCode=%u (0x%08X), TID=%lu, mainTID=%lu, isWebPort=%d\n", uExitCode, uExitCode, GetCurrentThreadId(), s_mainThreadId, (int)s_isWebPort);
@@ -995,10 +1019,7 @@ static void WINAPI zzExitProcess(UINT uExitCode) {
         }
 
         RecordInterceptedPlayerExit(1, "ExitProcess");
-        if (s_mainThreadId != 0 && GetCurrentThreadId() != s_mainThreadId) {
-            ExitThread(0);
-        }
-        // On main thread, do NOT call ExitThread(0) (which would terminate the main game loop thread).
+        WebPortPreventMainThreadExit(uExitCode);
         return;
     }
     real_ExitProcess(uExitCode);
@@ -1016,9 +1037,7 @@ static BOOL WINAPI zzTerminateProcess(HANDLE hProcess, UINT uExitCode) {
             return real_TerminateProcess(hProcess, uExitCode);
         }
         RecordInterceptedPlayerExit(2, "TerminateProcess(self)");
-        if (s_mainThreadId != 0 && GetCurrentThreadId() != s_mainThreadId) {
-            ExitThread(0);
-        }
+        WebPortPreventMainThreadExit(uExitCode);
         return TRUE;
     }
     return real_TerminateProcess(hProcess, uExitCode);
@@ -1037,9 +1056,7 @@ static VOID NTAPI zzRtlExitUserProcess(UINT uExitCode) {
             return;
         }
         RecordInterceptedPlayerExit(7, "RtlExitUserProcess");
-        if (s_mainThreadId != 0 && GetCurrentThreadId() != s_mainThreadId) {
-            ExitThread(0);
-        }
+        WebPortPreventMainThreadExit(uExitCode);
         return;
     }
     real_RtlExitUserProcess(uExitCode);
@@ -1058,6 +1075,7 @@ static LONG NTAPI zzNtTerminateProcess(HANDLE ProcessHandle, LONG ExitStatus) {
             return real_NtTerminateProcess(ProcessHandle, ExitStatus);
         }
         RecordInterceptedPlayerExit(8, "NtTerminateProcess(self)");
+        WebPortPreventMainThreadExit((UINT)ExitStatus);
         return 0; // STATUS_SUCCESS
     }
     return real_NtTerminateProcess(ProcessHandle, ExitStatus);
