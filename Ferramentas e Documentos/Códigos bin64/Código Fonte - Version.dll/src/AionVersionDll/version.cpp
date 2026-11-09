@@ -118,6 +118,18 @@ static void PatchLanguageTableInModule(HMODULE hMod) {
             BYTE* s = base + sec->VirtualAddress;
             DWORD sz = sec->Misc.VirtualSize;
             if (sz < patternLen) continue;
+
+            // Clamp scanning range to valid committed memory pages via VirtualQuery
+            MEMORY_BASIC_INFORMATION mbi = { 0 };
+            if (VirtualQuery(s, &mbi, sizeof(mbi)) && mbi.State == MEM_COMMIT) {
+                size_t committedBytes = (BYTE*)mbi.BaseAddress + mbi.RegionSize - s;
+                if (sz > (DWORD)committedBytes) {
+                    sz = (DWORD)committedBytes;
+                }
+            } else {
+                continue;
+            }
+            if (sz < patternLen) continue;
             BYTE* s_end = s + sz - patternLen;
 
             for (BYTE* p = s; p <= s_end; p++) {
@@ -187,6 +199,18 @@ static void BypassCountryCheckInCryEngineModule(HMODULE hMod) {
 
             BYTE* s = base + sec->VirtualAddress;
             DWORD sz = sec->Misc.VirtualSize;
+            if (sz < 32) continue;
+
+            // Clamp scanning range to valid committed memory pages via VirtualQuery
+            MEMORY_BASIC_INFORMATION mbi = { 0 };
+            if (VirtualQuery(s, &mbi, sizeof(mbi)) && mbi.State == MEM_COMMIT) {
+                size_t committedBytes = (BYTE*)mbi.BaseAddress + mbi.RegionSize - s;
+                if (sz > (DWORD)committedBytes) {
+                    sz = (DWORD)committedBytes;
+                }
+            } else {
+                continue;
+            }
             if (sz < 32) continue;
             BYTE* s_end = s + sz - 18;
 
@@ -599,8 +623,8 @@ static LPWSTR WINAPI zzGetCommandLineW() {
 
 static LRESULT CALLBACK WebPortSubclassProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData) {
     if (s_isWebPort && !s_adminShutdownRequested.load(std::memory_order_relaxed)) {
-        if (uMsg == WM_CLOSE || uMsg == WM_QUIT || uMsg == WM_DESTROY || uMsg == WM_NCDESTROY) {
-            RecordInterceptedPlayerExit(3, "WndProc(WM_CLOSE/WM_QUIT)");
+        if (uMsg == WM_CLOSE) {
+            RecordInterceptedPlayerExit(3, "WndProc(WM_CLOSE)");
             return 0;
         }
         if (uMsg == WM_SYSCOMMAND && ((wParam & 0xFFF0) == SC_CLOSE)) {
@@ -963,13 +987,14 @@ static void WINAPI zzExitProcess(UINT uExitCode) {
     sprintf_s(dbg, "[AION_HOOK_CALL] zzExitProcess: uExitCode=%u (0x%08X), TID=%lu, mainTID=%lu, isWebPort=%d\n", uExitCode, uExitCode, GetCurrentThreadId(), s_mainThreadId, (int)s_isWebPort);
     OutputDebugStringA(dbg);
     if (s_isWebPort && !s_adminShutdownRequested.load(std::memory_order_relaxed)) {
-        if (uExitCode != 0) {
-            OutputDebugStringA("[AION_VERSION_DLL] WebPort: Fatal non-zero exit code detected. Forwarding to real ExitProcess.\n");
+        // Forward only truly fatal system exceptions / crash codes (STATUS_ACCESS_VIOLATION, etc.)
+        if (uExitCode >= 0xC0000000 || uExitCode == 0x40000015) {
+            OutputDebugStringA("[AION_VERSION_DLL] WebPort: Fatal exception code detected. Forwarding to real ExitProcess.\n");
             real_ExitProcess(uExitCode);
             return;
         }
 
-        RecordInterceptedPlayerExit(1, "ExitProcess(0)");
+        RecordInterceptedPlayerExit(1, "ExitProcess");
         if (s_mainThreadId != 0 && GetCurrentThreadId() != s_mainThreadId) {
             ExitThread(0);
         }
@@ -986,11 +1011,11 @@ static BOOL WINAPI zzTerminateProcess(HANDLE hProcess, UINT uExitCode) {
     OutputDebugStringA(dbg);
     if (s_isWebPort && !s_adminShutdownRequested.load(std::memory_order_relaxed) &&
         (hProcess == NULL || hProcess == GetCurrentProcess() || GetProcessId(hProcess) == GetCurrentProcessId())) {
-        if (uExitCode != 0) {
-            OutputDebugStringA("[AION_VERSION_DLL] WebPort: Fatal non-zero TerminateProcess detected. Forwarding.\n");
+        if (uExitCode >= 0xC0000000 || uExitCode == 0x40000015) {
+            OutputDebugStringA("[AION_VERSION_DLL] WebPort: Fatal exception TerminateProcess detected. Forwarding.\n");
             return real_TerminateProcess(hProcess, uExitCode);
         }
-        RecordInterceptedPlayerExit(2, "TerminateProcess(self, 0)");
+        RecordInterceptedPlayerExit(2, "TerminateProcess(self)");
         if (s_mainThreadId != 0 && GetCurrentThreadId() != s_mainThreadId) {
             ExitThread(0);
         }
@@ -1006,12 +1031,12 @@ static VOID NTAPI zzRtlExitUserProcess(UINT uExitCode) {
     sprintf_s(dbg, "[AION_HOOK_CALL] zzRtlExitUserProcess: uExitCode=%u (0x%08X), TID=%lu, isWebPort=%d\n", uExitCode, uExitCode, GetCurrentThreadId(), (int)s_isWebPort);
     OutputDebugStringA(dbg);
     if (s_isWebPort && !s_adminShutdownRequested.load(std::memory_order_relaxed)) {
-        if (uExitCode != 0) {
-            OutputDebugStringA("[AION_VERSION_DLL] WebPort: Fatal non-zero RtlExitUserProcess detected. Forwarding.\n");
+        if (uExitCode >= 0xC0000000 || uExitCode == 0x40000015) {
+            OutputDebugStringA("[AION_VERSION_DLL] WebPort: Fatal exception RtlExitUserProcess detected. Forwarding.\n");
             real_RtlExitUserProcess(uExitCode);
             return;
         }
-        RecordInterceptedPlayerExit(7, "RtlExitUserProcess(0)");
+        RecordInterceptedPlayerExit(7, "RtlExitUserProcess");
         if (s_mainThreadId != 0 && GetCurrentThreadId() != s_mainThreadId) {
             ExitThread(0);
         }
@@ -1028,11 +1053,11 @@ static LONG NTAPI zzNtTerminateProcess(HANDLE ProcessHandle, LONG ExitStatus) {
     OutputDebugStringA(dbg);
     if (s_isWebPort && !s_adminShutdownRequested.load(std::memory_order_relaxed) &&
         (ProcessHandle == NULL || ProcessHandle == GetCurrentProcess() || GetProcessId(ProcessHandle) == GetCurrentProcessId())) {
-        if (ExitStatus != 0) {
-            OutputDebugStringA("[AION_VERSION_DLL] WebPort: Fatal non-zero NtTerminateProcess detected. Forwarding.\n");
+        if ((DWORD)ExitStatus >= 0xC0000000 || (DWORD)ExitStatus == 0x40000015) {
+            OutputDebugStringA("[AION_VERSION_DLL] WebPort: Fatal exception NtTerminateProcess detected. Forwarding.\n");
             return real_NtTerminateProcess(ProcessHandle, ExitStatus);
         }
-        RecordInterceptedPlayerExit(8, "NtTerminateProcess(self, 0)");
+        RecordInterceptedPlayerExit(8, "NtTerminateProcess(self)");
         return 0; // STATUS_SUCCESS
     }
     return real_NtTerminateProcess(ProcessHandle, ExitStatus);
@@ -1140,7 +1165,18 @@ static void InstallPatch() {
 static LONG WINAPI WebPortVectoredExceptionHandler(PEXCEPTION_POINTERS pEx) {
     if (pEx && pEx->ExceptionRecord) {
         DWORD code = pEx->ExceptionRecord->ExceptionCode;
-        if (code == 0xC00000FD || code == 0xC0000005 || (code & 0xC0000000) == 0xC0000000) {
+        // Ignore normal C++ exceptions (MSVC throw/catch), thread-name events, and benign RPC statuses
+        if (code == 0xE06D7363 || // MSVC C++ Exception
+            code == 0x406D1388 || // Thread naming exception
+            code == 0x000006BA || // RPC_S_SERVER_UNAVAILABLE
+            code == 0x800706BA || // HRESULT from RPC_S_SERVER_UNAVAILABLE
+            code == 0x40010006 || // DBG_PRINTEXCEPTION_C
+            code == 0x4001000A)   // DBG_PRINTEXCEPTION_WIDE_C
+        {
+            return EXCEPTION_CONTINUE_SEARCH;
+        }
+
+        if (code == 0xC00000FD || code == 0xC0000005 || code == 0xC000001D || code == 0xC0000025 || code == 0xC0000008) {
             char buf[512];
             HMODULE hMod = NULL;
             GetModuleHandleExA(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS, (LPCSTR)pEx->ExceptionRecord->ExceptionAddress, &hMod);
