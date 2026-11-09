@@ -19,3 +19,6 @@ VerQueryValueA = zzVerQueryValueA
 VerQueryValueW = zzVerQueryValueW
 IsWebPortClient
 RequestHostShutdown
+GetInterceptedExitCount
+SetActiveWebSessionId
+TriggerSessionReturnToLogin

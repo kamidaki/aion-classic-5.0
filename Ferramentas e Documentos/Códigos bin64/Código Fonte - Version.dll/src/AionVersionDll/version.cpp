@@ -1,6 +1,8 @@
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
 #include <winsock2.h>
 #include <windows.h>
+#include <commctrl.h>
+#pragma comment(lib, "comctl32.lib")
 #include <stdint.h>
 #include <stdio.h>
 #include <string>
@@ -357,16 +359,131 @@ static void AppendProbabilityOptions(std::basic_string<C>& cmd) {
 }
 
 // =========================================================================
-// WebPort Runtime Mode Detection & Custom Mod Hooks
+// WebPort Runtime Mode Detection, Shared Input State & Process Protection
 // =========================================================================
 static bool s_isWebPort = false;
+static DWORD s_mainThreadId = 0;
+static std::atomic<bool> s_adminShutdownRequested{ false };
+static HWND s_hGameWindow = NULL;
+
+#pragma pack(push, 1)
+struct AionWebPortInputState {
+    uint32_t magic;                  // 0x41494E50 ("AINP")
+    uint32_t version;                // 1
+    int32_t  virtualX;               // Client-space cursor X
+    int32_t  virtualY;               // Client-space cursor Y
+    int32_t  clientWidth;            // Virtual client width (default 1920)
+    int32_t  clientHeight;           // Virtual client height (default 1080)
+    uint32_t mouseButtons;           // Bit 0: LBUTTON, Bit 1: RBUTTON, Bit 2: MBUTTON
+    uint32_t modifiers;              // Bit 0: SHIFT, Bit 1: CTRL, Bit 2: ALT
+    uint8_t  keyStates[256];         // 0x80 if pressed, 0x00 if released
+    uint64_t activeHCursor;          // Most recent HCURSOR set by Game.dll via SetCursor
+    int32_t  cursorVisible;          // Cursor visibility state
+    uint32_t cursorShapeId;          // Sequential cursor shape ID (1..N)
+    uint32_t interceptedExitCount;   // Incremented whenever a player exit is blocked
+    uint32_t lastExitReason;         // 1=ExitProcess, 2=TerminateProcess, 3=WM_CLOSE, 4=PostQuitMessage, 5=DestroyWindow
+    uint32_t returnToLoginRequested; // Polled by host engine to redirect session to login
+    uint32_t focusIsolated;          // 1 when browser window has focus, 0 when blurred
+    uint64_t lastInputTimestampMs;   // Timestamp of most recent input event
+    char     activeSessionId[64];    // Current active session ID
+    uint8_t  reserved[632];          // Pad to 1024 bytes total
+};
+#pragma pack(pop)
+static_assert(sizeof(AionWebPortInputState) == 1024, "AionWebPortInputState must be exactly 1024 bytes");
+
+static HANDLE s_hInputMapFile = NULL;
+static AionWebPortInputState* s_pInputState = nullptr;
+static SRWLOCK s_cursorMapLock = SRWLOCK_INIT;
+static uint64_t s_knownCursors[128] = {};
+static uint32_t s_knownCursorCount = 0;
+
+static AionWebPortInputState* GetWebPortInputState() {
+    if (s_pInputState) return s_pInputState;
+    static SRWLOCK s_initLock = SRWLOCK_INIT;
+    AcquireSRWLockExclusive(&s_initLock);
+    if (!s_pInputState) {
+        s_hInputMapFile = CreateFileMappingA(
+            INVALID_HANDLE_VALUE, NULL, PAGE_READWRITE,
+            0, sizeof(AionWebPortInputState), "Local\\AionWebPortInputState"
+        );
+        if (s_hInputMapFile) {
+            bool alreadyExists = (GetLastError() == ERROR_ALREADY_EXISTS);
+            void* pView = MapViewOfFile(s_hInputMapFile, FILE_MAP_ALL_ACCESS, 0, 0, sizeof(AionWebPortInputState));
+            if (pView) {
+                s_pInputState = reinterpret_cast<AionWebPortInputState*>(pView);
+                if (!alreadyExists || s_pInputState->magic != 0x41494E50) {
+                    memset(s_pInputState, 0, sizeof(AionWebPortInputState));
+                    s_pInputState->magic = 0x41494E50;
+                    s_pInputState->version = 1;
+                    s_pInputState->virtualX = 960;
+                    s_pInputState->virtualY = 540;
+                    s_pInputState->clientWidth = 1920;
+                    s_pInputState->clientHeight = 1080;
+                    s_pInputState->cursorVisible = 1;
+                    s_pInputState->cursorShapeId = 1;
+                    s_pInputState->focusIsolated = 1;
+                    strcpy_s(s_pInputState->activeSessionId, "default");
+                }
+            }
+        }
+    }
+    ReleaseSRWLockExclusive(&s_initLock);
+    return s_pInputState;
+}
+
+static void RecordInterceptedPlayerExit(uint32_t reasonCode, const char* sourceDesc) {
+    AionWebPortInputState* pState = GetWebPortInputState();
+    uint32_t count = 1;
+    const char* sessionId = "unknown";
+    if (pState) {
+        count = InterlockedIncrement((volatile LONG*)&pState->interceptedExitCount);
+        pState->lastExitReason = reasonCode;
+        pState->returnToLoginRequested = 1;
+        pState->mouseButtons = 0;
+        pState->modifiers = 0;
+        memset(pState->keyStates, 0, sizeof(pState->keyStates));
+        if (pState->activeSessionId[0]) {
+            sessionId = pState->activeSessionId;
+        }
+    }
+    char logBuf[512];
+    sprintf_s(
+        logBuf,
+        "[AION_VERSION_DLL] WebPort Shared Process Protection: Blocked player exit (%s, reason=%u, count=%u) on PID=%lu Thread=%lu Session=%s. Shared Aion.bin preserved; redirecting session to login.\n",
+        sourceDesc ? sourceDesc : "Unknown",
+        reasonCode,
+        count,
+        GetCurrentProcessId(),
+        GetCurrentThreadId(),
+        sessionId
+    );
+    OutputDebugStringA(logBuf);
+}
 
 extern "C" __declspec(dllexport) bool WINAPI IsWebPortClient() {
     return s_isWebPort;
 }
 
+extern "C" __declspec(dllexport) uint32_t WINAPI GetInterceptedExitCount() {
+    AionWebPortInputState* pState = GetWebPortInputState();
+    return pState ? pState->interceptedExitCount : 0;
+}
+
+extern "C" __declspec(dllexport) void WINAPI SetActiveWebSessionId(LPCSTR sessionId) {
+    AionWebPortInputState* pState = GetWebPortInputState();
+    if (pState && sessionId) {
+        strncpy_s(pState->activeSessionId, sizeof(pState->activeSessionId), sessionId, _TRUNCATE);
+    }
+}
+
+extern "C" __declspec(dllexport) bool WINAPI TriggerSessionReturnToLogin() {
+    RecordInterceptedPlayerExit(6, "TriggerSessionReturnToLogin");
+    return true;
+}
+
 static void InitializeWebPortHooks() {
-    OutputDebugStringA("[AION_VERSION_DLL] WebPort execution mode ACTIVE (-webPort detected). Runtime adapted for Web/Mobile viewport.\n");
+    GetWebPortInputState();
+    OutputDebugStringA("[AION_VERSION_DLL] WebPort execution mode ACTIVE (-webPort detected). Shared input state and process protection enabled.\n");
 }
 
 static decltype(GetCommandLineA)* real_GetCommandLineA = GetCommandLineA;
@@ -473,6 +590,32 @@ static LPWSTR WINAPI zzGetCommandLineW() {
     return const_cast<LPWSTR>(s_hookedCmdW.c_str());
 }
 
+// =========================================================================
+// Subclassed Game Window Procedure for Shared Process Protection
+// Uses standard ComCtl32 SetWindowSubclass/DefSubclassProc to safely isolate
+// the shared Aion.bin process without recursion or global proc pointer races.
+// =========================================================================
+#define AION_WEBPORT_SUBCLASS_ID 0x57454250 // 'WEBP'
+
+static LRESULT CALLBACK WebPortSubclassProc(HWND hWnd, UINT uMsg, WPARAM wParam, LPARAM lParam, UINT_PTR uIdSubclass, DWORD_PTR dwRefData) {
+    if (s_isWebPort && !s_adminShutdownRequested.load(std::memory_order_relaxed)) {
+        if (uMsg == WM_CLOSE || uMsg == WM_QUIT || uMsg == WM_DESTROY || uMsg == WM_NCDESTROY) {
+            RecordInterceptedPlayerExit(3, "WndProc(WM_CLOSE/WM_QUIT)");
+            return 0;
+        }
+        if (uMsg == WM_SYSCOMMAND && ((wParam & 0xFFF0) == SC_CLOSE)) {
+            RecordInterceptedPlayerExit(3, "WndProc(SC_CLOSE)");
+            return 0;
+        }
+    }
+    return DefSubclassProc(hWnd, uMsg, wParam, lParam);
+}
+
+static void EnsureGameWindowSubclassed(HWND hWnd) {
+    if (!s_isWebPort || !hWnd) return;
+    SetWindowSubclass(hWnd, WebPortSubclassProc, AION_WEBPORT_SUBCLASS_ID, 0);
+}
+
 static decltype(SetWindowLongA)* real_SetWindowLongA = SetWindowLongA;
 static LONG WINAPI zzSetWindowLongA(_In_ HWND hWnd, _In_ int nIndex, _In_ LONG dwNewLong) {
     if (!s_gfxEnabled) {
@@ -483,10 +626,37 @@ static LONG WINAPI zzSetWindowLongA(_In_ HWND hWnd, _In_ int nIndex, _In_ LONG d
 }
 
 // =========================================================================
-// Silent WebPort Clientless Window Interception Hooks
-// Enforces headless offscreen rendering redirection when -webPort is passed
+// Silent WebPort Clientless Window Interception & Virtual Cursor/Input Hooks
+// Restricts off-screen displacement and subclassing strictly to the Aion
+// game window ("AIONClientWndClass1.0", "CryENGINE", "AION").
 // =========================================================================
-static HWND s_hGameWindow = NULL;
+static bool IsAionWindowClassA(LPCSTR lpClassName) {
+    if (!lpClassName || ((uintptr_t)lpClassName < 0x10000)) return false;
+    char lower[128] = { 0 };
+    strncpy_s(lower, lpClassName, _TRUNCATE);
+    for (int i = 0; lower[i]; i++) lower[i] = (char)::tolower(lower[i]);
+    return (strstr(lower, "aionclient") != nullptr || strstr(lower, "cryengine") != nullptr || strstr(lower, "aion") != nullptr);
+}
+
+static bool IsAionWindowClassW(LPCWSTR lpClassName) {
+    if (!lpClassName || ((uintptr_t)lpClassName < 0x10000)) return false;
+    wchar_t lower[128] = { 0 };
+    wcsncpy_s(lower, lpClassName, _TRUNCATE);
+    for (int i = 0; lower[i]; i++) lower[i] = (wchar_t)::towlower(lower[i]);
+    return (wcsstr(lower, L"aionclient") != nullptr || wcsstr(lower, L"cryengine") != nullptr || wcsstr(lower, L"aion") != nullptr);
+}
+
+static bool IsTargetGameWindow(HWND hWnd) {
+    if (!hWnd) return false;
+    char cls[128] = { 0 };
+    if (GetClassNameA(hWnd, cls, sizeof(cls)) > 0) {
+        for (int i = 0; cls[i]; i++) cls[i] = (char)::tolower(cls[i]);
+        if (strstr(cls, "aionclient") != nullptr || strstr(cls, "cryengine") != nullptr || strstr(cls, "aion") != nullptr) {
+            return true;
+        }
+    }
+    return false;
+}
 
 static decltype(CreateWindowExA)* real_CreateWindowExA = CreateWindowExA;
 static HWND WINAPI zzCreateWindowExA(
@@ -494,7 +664,8 @@ static HWND WINAPI zzCreateWindowExA(
     int X, int Y, int nWidth, int nHeight,
     HWND hWndParent, HMENU hMenu, HINSTANCE hInstance, LPVOID lpParam
 ) {
-    if (s_isWebPort && !hWndParent) {
+    bool isGameWnd = s_isWebPort && !hWndParent && IsAionWindowClassA(lpClassName);
+    if (isGameWnd) {
         dwStyle &= ~WS_VISIBLE;
         dwStyle |= WS_POPUP;
         dwExStyle |= WS_EX_TOOLWINDOW | WS_EX_NOACTIVATE;
@@ -503,7 +674,15 @@ static HWND WINAPI zzCreateWindowExA(
     }
     HWND hWnd = real_CreateWindowExA(dwExStyle, lpClassName, lpWindowName, dwStyle, X, Y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
     if (s_isWebPort && !hWndParent && hWnd) {
-        s_hGameWindow = hWnd;
+        if (isGameWnd || (!s_hGameWindow && IsTargetGameWindow(hWnd))) {
+            s_hGameWindow = hWnd;
+            AionWebPortInputState* pState = GetWebPortInputState();
+            if (pState && nWidth > 0 && nHeight > 0) {
+                pState->clientWidth = nWidth;
+                pState->clientHeight = nHeight;
+            }
+            EnsureGameWindowSubclassed(hWnd);
+        }
     }
     return hWnd;
 }
@@ -514,7 +693,8 @@ static HWND WINAPI zzCreateWindowExW(
     int X, int Y, int nWidth, int nHeight,
     HWND hWndParent, HMENU hMenu, HINSTANCE hInstance, LPVOID lpParam
 ) {
-    if (s_isWebPort && !hWndParent) {
+    bool isGameWnd = s_isWebPort && !hWndParent && IsAionWindowClassW(lpClassName);
+    if (isGameWnd) {
         dwStyle &= ~WS_VISIBLE;
         dwStyle |= WS_POPUP;
         dwExStyle |= WS_EX_TOOLWINDOW | WS_EX_NOACTIVATE;
@@ -523,14 +703,22 @@ static HWND WINAPI zzCreateWindowExW(
     }
     HWND hWnd = real_CreateWindowExW(dwExStyle, lpClassName, lpWindowName, dwStyle, X, Y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
     if (s_isWebPort && !hWndParent && hWnd) {
-        s_hGameWindow = hWnd;
+        if (isGameWnd || (!s_hGameWindow && IsTargetGameWindow(hWnd))) {
+            s_hGameWindow = hWnd;
+            AionWebPortInputState* pState = GetWebPortInputState();
+            if (pState && nWidth > 0 && nHeight > 0) {
+                pState->clientWidth = nWidth;
+                pState->clientHeight = nHeight;
+            }
+            EnsureGameWindowSubclassed(hWnd);
+        }
     }
     return hWnd;
 }
 
 static decltype(ShowWindow)* real_ShowWindow = ShowWindow;
 static BOOL WINAPI zzShowWindow(HWND hWnd, int nCmdShow) {
-    if (s_isWebPort && (hWnd == s_hGameWindow || !s_hGameWindow)) {
+    if (s_isWebPort && s_hGameWindow && hWnd == s_hGameWindow) {
         return real_ShowWindow(hWnd, SW_HIDE);
     }
     return real_ShowWindow(hWnd, nCmdShow);
@@ -538,38 +726,254 @@ static BOOL WINAPI zzShowWindow(HWND hWnd, int nCmdShow) {
 
 static decltype(SetWindowPos)* real_SetWindowPos = SetWindowPos;
 static BOOL WINAPI zzSetWindowPos(HWND hWnd, HWND hWndInsertAfter, int X, int Y, int cx, int cy, UINT uFlags) {
-    if (s_isWebPort && (hWnd == s_hGameWindow || !s_hGameWindow)) {
+    if (s_isWebPort && s_hGameWindow && hWnd == s_hGameWindow) {
         uFlags &= ~SWP_SHOWWINDOW;
         uFlags |= SWP_HIDEWINDOW | SWP_NOACTIVATE | SWP_NOZORDER;
         X = -32000;
         Y = -32000;
+        if (cx > 0 && cy > 0) {
+            AionWebPortInputState* pState = GetWebPortInputState();
+            if (pState) {
+                pState->clientWidth = cx;
+                pState->clientHeight = cy;
+            }
+        }
     }
     return real_SetWindowPos(hWnd, hWndInsertAfter, X, Y, cx, cy, uFlags);
 }
 
+static decltype(GetCursorPos)* real_GetCursorPos = GetCursorPos;
+static BOOL WINAPI zzGetCursorPos(LPPOINT lpPoint) {
+    if (s_isWebPort && lpPoint) {
+        AionWebPortInputState* pState = GetWebPortInputState();
+        if (pState) {
+            lpPoint->x = pState->virtualX;
+            lpPoint->y = pState->virtualY;
+            return TRUE;
+        }
+    }
+    return real_GetCursorPos(lpPoint);
+}
+
+static decltype(SetCursorPos)* real_SetCursorPos = SetCursorPos;
+static BOOL WINAPI zzSetCursorPos(int X, int Y) {
+    if (s_isWebPort) {
+        AionWebPortInputState* pState = GetWebPortInputState();
+        if (pState) {
+            pState->virtualX = X;
+            pState->virtualY = Y;
+        }
+        return TRUE;
+    }
+    return real_SetCursorPos(X, Y);
+}
+
+static decltype(ScreenToClient)* real_ScreenToClient = ScreenToClient;
+static BOOL WINAPI zzScreenToClient(HWND hWnd, LPPOINT lpPoint) {
+    if (s_isWebPort && s_hGameWindow && hWnd == s_hGameWindow && lpPoint) {
+        // In WebPort mode, virtual cursor coordinates are already in [0..clientWidth, 0..clientHeight]
+        return TRUE;
+    }
+    return real_ScreenToClient(hWnd, lpPoint);
+}
+
+static decltype(ClientToScreen)* real_ClientToScreen = ClientToScreen;
+static BOOL WINAPI zzClientToScreen(HWND hWnd, LPPOINT lpPoint) {
+    if (s_isWebPort && s_hGameWindow && hWnd == s_hGameWindow && lpPoint) {
+        return TRUE;
+    }
+    return real_ClientToScreen(hWnd, lpPoint);
+}
+
+static decltype(GetWindowRect)* real_GetWindowRect = GetWindowRect;
+static BOOL WINAPI zzGetWindowRect(HWND hWnd, LPRECT lpRect) {
+    if (s_isWebPort && s_hGameWindow && hWnd == s_hGameWindow && lpRect) {
+        RECT clientRc = { 0, 0, 1920, 1080 };
+        if (hWnd && GetClientRect(hWnd, &clientRc) && (clientRc.right - clientRc.left) > 0) {
+            lpRect->left = 0;
+            lpRect->top = 0;
+            lpRect->right = clientRc.right - clientRc.left;
+            lpRect->bottom = clientRc.bottom - clientRc.top;
+            AionWebPortInputState* pState = GetWebPortInputState();
+            if (pState) {
+                pState->clientWidth = lpRect->right;
+                pState->clientHeight = lpRect->bottom;
+            }
+            return TRUE;
+        }
+        AionWebPortInputState* pState = GetWebPortInputState();
+        lpRect->left = 0;
+        lpRect->top = 0;
+        lpRect->right = (pState && pState->clientWidth > 0) ? pState->clientWidth : 1920;
+        lpRect->bottom = (pState && pState->clientHeight > 0) ? pState->clientHeight : 1080;
+        return TRUE;
+    }
+    return real_GetWindowRect(hWnd, lpRect);
+}
+
+static SHORT QueryWebPortVirtualKey(int vKey) {
+    AionWebPortInputState* pState = GetWebPortInputState();
+    if (!pState || pState->focusIsolated == 0) {
+        return 0;
+    }
+    if (vKey == VK_LBUTTON) return (pState->mouseButtons & 0x01) ? (SHORT)0x8000 : 0;
+    if (vKey == VK_RBUTTON) return (pState->mouseButtons & 0x02) ? (SHORT)0x8000 : 0;
+    if (vKey == VK_MBUTTON) return (pState->mouseButtons & 0x04) ? (SHORT)0x8000 : 0;
+    if (vKey == VK_SHIFT || vKey == VK_LSHIFT || vKey == VK_RSHIFT) {
+        return ((pState->modifiers & 0x01) || (pState->keyStates[VK_SHIFT] & 0x80)) ? (SHORT)0x8000 : 0;
+    }
+    if (vKey == VK_CONTROL || vKey == VK_LCONTROL || vKey == VK_RCONTROL) {
+        return ((pState->modifiers & 0x02) || (pState->keyStates[VK_CONTROL] & 0x80)) ? (SHORT)0x8000 : 0;
+    }
+    if (vKey == VK_MENU || vKey == VK_LMENU || vKey == VK_RMENU) {
+        return ((pState->modifiers & 0x04) || (pState->keyStates[VK_MENU] & 0x80)) ? (SHORT)0x8000 : 0;
+    }
+    if (vKey >= 0 && vKey < 256) {
+        return (pState->keyStates[vKey] & 0x80) ? (SHORT)0x8000 : 0;
+    }
+    return 0;
+}
+
+static decltype(GetAsyncKeyState)* real_GetAsyncKeyState = GetAsyncKeyState;
+static SHORT WINAPI zzGetAsyncKeyState(int vKey) {
+    if (s_isWebPort) {
+        return QueryWebPortVirtualKey(vKey);
+    }
+    return real_GetAsyncKeyState(vKey);
+}
+
+static decltype(GetKeyState)* real_GetKeyState = GetKeyState;
+static SHORT WINAPI zzGetKeyState(int nVirtKey) {
+    if (s_isWebPort) {
+        return QueryWebPortVirtualKey(nVirtKey);
+    }
+    return real_GetKeyState(nVirtKey);
+}
+
+static decltype(GetForegroundWindow)* real_GetForegroundWindow = GetForegroundWindow;
+static HWND WINAPI zzGetForegroundWindow() {
+    if (s_isWebPort) {
+        AionWebPortInputState* pState = GetWebPortInputState();
+        if (pState && pState->focusIsolated == 0) {
+            return NULL;
+        }
+        if (s_hGameWindow) return s_hGameWindow;
+    }
+    return real_GetForegroundWindow();
+}
+
+static decltype(GetActiveWindow)* real_GetActiveWindow = GetActiveWindow;
+static HWND WINAPI zzGetActiveWindow() {
+    if (s_isWebPort) {
+        AionWebPortInputState* pState = GetWebPortInputState();
+        if (pState && pState->focusIsolated == 0) {
+            return NULL;
+        }
+        if (s_hGameWindow) return s_hGameWindow;
+    }
+    return real_GetActiveWindow();
+}
+
+static decltype(GetFocus)* real_GetFocus = GetFocus;
+static HWND WINAPI zzGetFocus() {
+    HWND hFocus = real_GetFocus();
+    if (hFocus) return hFocus;
+    if (s_isWebPort && s_hGameWindow) {
+        AionWebPortInputState* pState = GetWebPortInputState();
+        if (!pState || pState->focusIsolated != 0) {
+            return s_hGameWindow;
+        }
+    }
+    return NULL;
+}
+
+static decltype(SetCursor)* real_SetCursor = SetCursor;
+static HCURSOR WINAPI zzSetCursor(HCURSOR hCursor) {
+    if (s_isWebPort) {
+        AionWebPortInputState* pState = GetWebPortInputState();
+        if (pState && hCursor != NULL) {
+            uint64_t hVal = (uint64_t)(uintptr_t)hCursor;
+            pState->activeHCursor = hVal;
+            AcquireSRWLockExclusive(&s_cursorMapLock);
+            uint32_t shapeId = 0;
+            for (uint32_t i = 0; i < s_knownCursorCount; i++) {
+                if (s_knownCursors[i] == hVal) {
+                    shapeId = i + 1;
+                    break;
+                }
+            }
+            if (shapeId == 0 && s_knownCursorCount < 128) {
+                s_knownCursors[s_knownCursorCount] = hVal;
+                shapeId = ++s_knownCursorCount;
+            }
+            ReleaseSRWLockExclusive(&s_cursorMapLock);
+            if (shapeId > 0) {
+                pState->cursorShapeId = shapeId;
+            }
+        }
+    }
+    return real_SetCursor(hCursor);
+}
+
+typedef HRESULT(WINAPI* PFN_DirectInput8Create)(HINSTANCE, DWORD, REFIID, LPVOID*, LPUNKNOWN);
+static PFN_DirectInput8Create real_DirectInput8Create = nullptr;
+static HRESULT WINAPI zzDirectInput8Create(HINSTANCE hinst, DWORD dwVersion, REFIID riidltf, LPVOID* ppvOut, LPUNKNOWN punkOuter) {
+    if (s_isWebPort) {
+        // In WebPort mode, return S_OK with *ppvOut = nullptr.
+        // CryInput.dll's CXKeyboard::Init (0x1800015e0) checks if (*ppvOut != NULL), skips creating
+        // the physical DirectInput8 keyboard device, and returns 1 (success), eliminating physical
+        // keyboard polling leaks across multi-monitor windows while keeping Win32 virtual key dispatch!
+        if (ppvOut) {
+            *ppvOut = nullptr;
+        }
+        OutputDebugStringA("[AION_VERSION_DLL] WebPort: DirectInput8 hardware keyboard polling disabled for multi-monitor focus isolation.\n");
+        return S_OK;
+    }
+    return real_DirectInput8Create(hinst, dwVersion, riidltf, ppvOut, punkOuter);
+}
+
 // =========================================================================
-// Dual Execution Mode & Process Termination Interception
+// Dual Execution Mode & Shared Process Termination Interception
 // Preserves conventional Windows client behavior when -webPort is NOT passed.
-// In -webPort mode: intercepts accidental or in-game ExitProcess/TerminateProcess
-// calls to prevent crashing the shared host process when an individual web session logs out.
+// In -webPort mode: intercepts player-initiated process exits (WM_CLOSE,
+// PostQuitMessage, DestroyWindow, ExitProcess(0), TerminateProcess(self, 0))
+// to keep the shared Aion.bin process alive while isolating session logout.
 // =========================================================================
+static decltype(PostQuitMessage)* real_PostQuitMessage = PostQuitMessage;
+static void WINAPI zzPostQuitMessage(int nExitCode) {
+    if (s_isWebPort && !s_adminShutdownRequested.load(std::memory_order_relaxed)) {
+        RecordInterceptedPlayerExit(4, "PostQuitMessage");
+        return;
+    }
+    real_PostQuitMessage(nExitCode);
+}
+
+static decltype(DestroyWindow)* real_DestroyWindow = DestroyWindow;
+static BOOL WINAPI zzDestroyWindow(HWND hWnd) {
+    if (s_isWebPort && !s_adminShutdownRequested.load(std::memory_order_relaxed) && hWnd && hWnd == s_hGameWindow) {
+        RecordInterceptedPlayerExit(5, "DestroyWindow(s_hGameWindow)");
+        return TRUE;
+    }
+    return real_DestroyWindow(hWnd);
+}
+
 static decltype(ExitProcess)* real_ExitProcess = ExitProcess;
 static void WINAPI zzExitProcess(UINT uExitCode) {
-    if (s_isWebPort) {
-        // Requirement 10.3 & 10.4:
-        // Do NOT suppress non-zero exit codes (fatal errors, crash handlers, abnormal exits).
-        // Suppressing fatal crashes leaves processes in undefined corrupted states.
+    char dbg[256];
+    sprintf_s(dbg, "[AION_HOOK_CALL] zzExitProcess: uExitCode=%u (0x%08X), TID=%lu, mainTID=%lu, isWebPort=%d\n", uExitCode, uExitCode, GetCurrentThreadId(), s_mainThreadId, (int)s_isWebPort);
+    OutputDebugStringA(dbg);
+    if (s_isWebPort && !s_adminShutdownRequested.load(std::memory_order_relaxed)) {
         if (uExitCode != 0) {
             OutputDebugStringA("[AION_VERSION_DLL] WebPort: Fatal non-zero exit code detected. Forwarding to real ExitProcess.\n");
             real_ExitProcess(uExitCode);
             return;
         }
 
-        // Clean user/session logout (uExitCode == 0):
-        // ExitProcess is [[noreturn]]. Returning from it corrupts caller execution stack.
-        // Instead, terminate the calling exit thread cleanly without taking down shared host.
-        OutputDebugStringA("[AION_VERSION_DLL] WebPort: Intercepted clean ExitProcess(0). Preserving shared host Aion.bin process.\n");
-        ExitThread(0);
+        RecordInterceptedPlayerExit(1, "ExitProcess(0)");
+        if (s_mainThreadId != 0 && GetCurrentThreadId() != s_mainThreadId) {
+            ExitThread(0);
+        }
+        // On main thread, do NOT call ExitThread(0) (which would terminate the main game loop thread).
         return;
     }
     real_ExitProcess(uExitCode);
@@ -577,20 +981,69 @@ static void WINAPI zzExitProcess(UINT uExitCode) {
 
 static decltype(TerminateProcess)* real_TerminateProcess = TerminateProcess;
 static BOOL WINAPI zzTerminateProcess(HANDLE hProcess, UINT uExitCode) {
-    if (s_isWebPort && (hProcess == GetCurrentProcess() || GetProcessId(hProcess) == GetCurrentProcessId())) {
+    char dbg[256];
+    sprintf_s(dbg, "[AION_HOOK_CALL] zzTerminateProcess: hProcess=%p, uExitCode=%u (0x%08X), TID=%lu, isWebPort=%d\n", hProcess, uExitCode, uExitCode, GetCurrentThreadId(), (int)s_isWebPort);
+    OutputDebugStringA(dbg);
+    if (s_isWebPort && !s_adminShutdownRequested.load(std::memory_order_relaxed) &&
+        (hProcess == NULL || hProcess == GetCurrentProcess() || GetProcessId(hProcess) == GetCurrentProcessId())) {
         if (uExitCode != 0) {
             OutputDebugStringA("[AION_VERSION_DLL] WebPort: Fatal non-zero TerminateProcess detected. Forwarding.\n");
             return real_TerminateProcess(hProcess, uExitCode);
         }
-        OutputDebugStringA("[AION_VERSION_DLL] WebPort: Intercepted clean TerminateProcess(0) on self. Preserving shared host Aion.bin process.\n");
-        ExitThread(0);
+        RecordInterceptedPlayerExit(2, "TerminateProcess(self, 0)");
+        if (s_mainThreadId != 0 && GetCurrentThreadId() != s_mainThreadId) {
+            ExitThread(0);
+        }
         return TRUE;
     }
     return real_TerminateProcess(hProcess, uExitCode);
 }
 
+typedef VOID(NTAPI* PFN_RtlExitUserProcess)(UINT uExitCode);
+static PFN_RtlExitUserProcess real_RtlExitUserProcess = nullptr;
+static VOID NTAPI zzRtlExitUserProcess(UINT uExitCode) {
+    char dbg[256];
+    sprintf_s(dbg, "[AION_HOOK_CALL] zzRtlExitUserProcess: uExitCode=%u (0x%08X), TID=%lu, isWebPort=%d\n", uExitCode, uExitCode, GetCurrentThreadId(), (int)s_isWebPort);
+    OutputDebugStringA(dbg);
+    if (s_isWebPort && !s_adminShutdownRequested.load(std::memory_order_relaxed)) {
+        if (uExitCode != 0) {
+            OutputDebugStringA("[AION_VERSION_DLL] WebPort: Fatal non-zero RtlExitUserProcess detected. Forwarding.\n");
+            real_RtlExitUserProcess(uExitCode);
+            return;
+        }
+        RecordInterceptedPlayerExit(7, "RtlExitUserProcess(0)");
+        if (s_mainThreadId != 0 && GetCurrentThreadId() != s_mainThreadId) {
+            ExitThread(0);
+        }
+        return;
+    }
+    real_RtlExitUserProcess(uExitCode);
+}
+
+typedef LONG(NTAPI* PFN_NtTerminateProcess)(HANDLE ProcessHandle, LONG ExitStatus);
+static PFN_NtTerminateProcess real_NtTerminateProcess = nullptr;
+static LONG NTAPI zzNtTerminateProcess(HANDLE ProcessHandle, LONG ExitStatus) {
+    char dbg[256];
+    sprintf_s(dbg, "[AION_HOOK_CALL] zzNtTerminateProcess: ProcessHandle=%p, ExitStatus=0x%08X, TID=%lu, isWebPort=%d\n", ProcessHandle, ExitStatus, GetCurrentThreadId(), (int)s_isWebPort);
+    OutputDebugStringA(dbg);
+    if (s_isWebPort && !s_adminShutdownRequested.load(std::memory_order_relaxed) &&
+        (ProcessHandle == NULL || ProcessHandle == GetCurrentProcess() || GetProcessId(ProcessHandle) == GetCurrentProcessId())) {
+        if (ExitStatus != 0) {
+            OutputDebugStringA("[AION_VERSION_DLL] WebPort: Fatal non-zero NtTerminateProcess detected. Forwarding.\n");
+            return real_NtTerminateProcess(ProcessHandle, ExitStatus);
+        }
+        RecordInterceptedPlayerExit(8, "NtTerminateProcess(self, 0)");
+        return 0; // STATUS_SUCCESS
+    }
+    return real_NtTerminateProcess(ProcessHandle, ExitStatus);
+}
+
 extern "C" __declspec(dllexport) void WINAPI RequestHostShutdown(UINT uExitCode) {
+    s_adminShutdownRequested.store(true, std::memory_order_release);
     OutputDebugStringA("[AION_VERSION_DLL] WebPort: Administrative Host Shutdown requested.\n");
+    if (s_hGameWindow) {
+        RemoveWindowSubclass(s_hGameWindow, WebPortSubclassProc, AION_WEBPORT_SUBCLASS_ID);
+    }
     if (real_ExitProcess) {
         real_ExitProcess(uExitCode);
     } else {
@@ -625,6 +1078,16 @@ static void InstallPatch() {
     BypassCountryCheckInCryEngineModule(GetModuleHandleW(nullptr));
     PatchAllLoadedLanguageModules();
 
+    HMODULE hDinput8 = LoadLibraryW(L"dinput8.dll");
+    if (hDinput8) {
+        real_DirectInput8Create = (PFN_DirectInput8Create)GetProcAddress(hDinput8, "DirectInput8Create");
+    }
+    HMODULE hNtdll = GetModuleHandleW(L"ntdll.dll");
+    if (hNtdll) {
+        real_RtlExitUserProcess = (PFN_RtlExitUserProcess)GetProcAddress(hNtdll, "RtlExitUserProcess");
+        real_NtTerminateProcess = (PFN_NtTerminateProcess)GetProcAddress(hNtdll, "NtTerminateProcess");
+    }
+
     DetourTransactionBegin();
     DetourUpdateThread(GetCurrentThread());
     InstallIpFix();
@@ -632,11 +1095,31 @@ static void InstallPatch() {
 #if defined(_M_AMD64)
     Install64BitStackFix();
 #endif
+    if (real_DirectInput8Create) {
+        DetourAttach(&(PVOID&)real_DirectInput8Create, zzDirectInput8Create);
+    }
+    if (real_RtlExitUserProcess) {
+        DetourAttach(&(PVOID&)real_RtlExitUserProcess, zzRtlExitUserProcess);
+    }
+    if (real_NtTerminateProcess) {
+        DetourAttach(&(PVOID&)real_NtTerminateProcess, zzNtTerminateProcess);
+    }
     DetourAttach(&(PVOID&)real_SetWindowLongA, zzSetWindowLongA);
     DetourAttach(&(PVOID&)real_CreateWindowExA, zzCreateWindowExA);
     DetourAttach(&(PVOID&)real_CreateWindowExW, zzCreateWindowExW);
     DetourAttach(&(PVOID&)real_ShowWindow, zzShowWindow);
     DetourAttach(&(PVOID&)real_SetWindowPos, zzSetWindowPos);
+    DetourAttach(&(PVOID&)real_GetCursorPos, zzGetCursorPos);
+    DetourAttach(&(PVOID&)real_SetCursorPos, zzSetCursorPos);
+    DetourAttach(&(PVOID&)real_ScreenToClient, zzScreenToClient);
+    DetourAttach(&(PVOID&)real_ClientToScreen, zzClientToScreen);
+    DetourAttach(&(PVOID&)real_GetWindowRect, zzGetWindowRect);
+    DetourAttach(&(PVOID&)real_GetAsyncKeyState, zzGetAsyncKeyState);
+    DetourAttach(&(PVOID&)real_GetKeyState, zzGetKeyState);
+    DetourAttach(&(PVOID&)real_GetForegroundWindow, zzGetForegroundWindow);
+    DetourAttach(&(PVOID&)real_GetActiveWindow, zzGetActiveWindow);
+    DetourAttach(&(PVOID&)real_GetFocus, zzGetFocus);
+    DetourAttach(&(PVOID&)real_SetCursor, zzSetCursor);
     DetourAttach(&(PVOID&)real_LoadLibraryA, zzLoadLibraryA);
     DetourAttach(&(PVOID&)real_LoadLibraryExA, zzLoadLibraryExA);
     DetourAttach(&(PVOID&)real_LoadLibraryW, zzLoadLibraryW);
@@ -645,6 +1128,8 @@ static void InstallPatch() {
     DetourAttach(&(PVOID&)real_MessageBoxW, zzMessageBoxW);
     DetourAttach(&(PVOID&)real_GetCommandLineA, zzGetCommandLineA);
     DetourAttach(&(PVOID&)real_GetCommandLineW, zzGetCommandLineW);
+    DetourAttach(&(PVOID&)real_PostQuitMessage, zzPostQuitMessage);
+    DetourAttach(&(PVOID&)real_DestroyWindow, zzDestroyWindow);
     DetourAttach(&(PVOID&)real_ExitProcess, zzExitProcess);
     DetourAttach(&(PVOID&)real_TerminateProcess, zzTerminateProcess);
     DetourTransactionCommit();
@@ -652,8 +1137,52 @@ static void InstallPatch() {
     FixClientStartupWithHighCoreCountCpus();
 }
 
+static LONG WINAPI WebPortVectoredExceptionHandler(PEXCEPTION_POINTERS pEx) {
+    if (pEx && pEx->ExceptionRecord) {
+        DWORD code = pEx->ExceptionRecord->ExceptionCode;
+        if (code == 0xC00000FD || code == 0xC0000005 || (code & 0xC0000000) == 0xC0000000) {
+            char buf[512];
+            HMODULE hMod = NULL;
+            GetModuleHandleExA(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS, (LPCSTR)pEx->ExceptionRecord->ExceptionAddress, &hMod);
+            char modName[MAX_PATH] = "Unknown";
+            uintptr_t rva = 0;
+            if (hMod) {
+                GetModuleFileNameA(hMod, modName, MAX_PATH);
+                rva = (uintptr_t)pEx->ExceptionRecord->ExceptionAddress - (uintptr_t)hMod;
+            }
+            sprintf_s(buf, "[AION_CRASH_TRAP] Code=0x%08X at %p (Mod: %s + 0x%zX)! Target=%p, RW=%lu\n",
+                code,
+                pEx->ExceptionRecord->ExceptionAddress,
+                modName,
+                rva,
+                (void*)pEx->ExceptionRecord->ExceptionInformation[1],
+                (ULONG)pEx->ExceptionRecord->ExceptionInformation[0]);
+            OutputDebugStringA(buf);
+
+            PVOID frames[16];
+            USHORT count = CaptureStackBackTrace(0, 16, frames, NULL);
+            for (USHORT i = 0; i < count; i++) {
+                HMODULE fMod = NULL;
+                GetModuleHandleExA(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS, (LPCSTR)frames[i], &fMod);
+                char fName[MAX_PATH] = "Unknown";
+                uintptr_t fRva = 0;
+                if (fMod) {
+                    GetModuleFileNameA(fMod, fName, MAX_PATH);
+                    fRva = (uintptr_t)frames[i] - (uintptr_t)fMod;
+                }
+                char frameBuf[512];
+                sprintf_s(frameBuf, "  [Frame %u] %p (%s + 0x%zX)\n", i, frames[i], fName, fRva);
+                OutputDebugStringA(frameBuf);
+            }
+        }
+    }
+    return EXCEPTION_CONTINUE_SEARCH;
+}
+
 BOOL WINAPI DllMain(_In_ HINSTANCE hinstDLL, _In_ DWORD fdwReason, _In_ LPVOID lpvReserved) {
     if (fdwReason == DLL_PROCESS_ATTACH) {
+        AddVectoredExceptionHandler(1, WebPortVectoredExceptionHandler);
+        s_mainThreadId = GetCurrentThreadId();
         DisableThreadLibraryCalls(hinstDLL);
 
         // Pin version.dll in memory so it is NEVER unloaded by dynamic FreeLibrary calls

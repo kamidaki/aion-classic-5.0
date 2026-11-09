@@ -136,11 +136,17 @@ static HRESULT WINAPI zzPresent(
                         s_offscreenFormat = desc.Format;
 
                         uint32_t bufSize = sizeof(AionSharedFrameHeader) + (desc.Width * desc.Height * 4);
-                        if (!s_hMapFile) {
-                            s_hMapFile = CreateFileMappingA(INVALID_HANDLE_VALUE, NULL, PAGE_READWRITE, 0, bufSize, "Local\\AionFrameBuffer");
-                            if (s_hMapFile) {
-                                s_pSharedView = MapViewOfFile(s_hMapFile, FILE_MAP_ALL_ACCESS, 0, 0, bufSize);
-                            }
+                        if (s_pSharedView) {
+                            UnmapViewOfFile(s_pSharedView);
+                            s_pSharedView = NULL;
+                        }
+                        if (s_hMapFile) {
+                            CloseHandle(s_hMapFile);
+                            s_hMapFile = NULL;
+                        }
+                        s_hMapFile = CreateFileMappingA(INVALID_HANDLE_VALUE, NULL, PAGE_READWRITE, 0, bufSize, "Local\\AionFrameBuffer");
+                        if (s_hMapFile) {
+                            s_pSharedView = MapViewOfFile(s_hMapFile, FILE_MAP_ALL_ACCESS, 0, 0, bufSize);
                         }
                     }
                 }
@@ -226,6 +232,31 @@ static PFN_Direct3DCreate9 dxvk_Direct3DCreate9 = nullptr;
 typedef HRESULT (WINAPI* PFN_Direct3DCreate9Ex)(UINT, void**);
 static PFN_Direct3DCreate9Ex real_Direct3DCreate9Ex = nullptr;
 
+static void HookD3D9CreateDevice(void* pD3D) {
+    if (!pD3D) return;
+    static bool s_createDeviceHooked = false;
+    if (!s_createDeviceHooked) {
+        void** vtbl = *(void***)pD3D;
+        if (vtbl && vtbl[16]) {
+            real_CreateDevice = (PFN_CreateDevice)vtbl[16];
+            DetourTransactionBegin();
+            DetourUpdateThread(GetCurrentThread());
+            DetourAttach(&(PVOID&)real_CreateDevice, zzCreateDevice);
+            DetourTransactionCommit();
+            s_createDeviceHooked = true;
+        }
+    }
+}
+
+static HRESULT WINAPI zzDirect3DCreate9Ex(UINT SDKVersion, void** ppD3D) {
+    if (!real_Direct3DCreate9Ex) return E_FAIL;
+    HRESULT hr = real_Direct3DCreate9Ex(SDKVersion, ppD3D);
+    if (SUCCEEDED(hr) && ppD3D && *ppD3D) {
+        HookD3D9CreateDevice(*ppD3D);
+    }
+    return hr;
+}
+
 static void* WINAPI zzDirect3DCreate9(UINT SDKVersion) {
     static std::once_flag s_d3dInit;
     std::call_once(s_d3dInit, []() {
@@ -246,16 +277,7 @@ static void* WINAPI zzDirect3DCreate9(UINT SDKVersion) {
     if (dxvk_Direct3DCreate9) {
         void* pD3D = dxvk_Direct3DCreate9(SDKVersion);
         if (pD3D) {
-            static bool s_createDeviceHooked = false;
-            if (!s_createDeviceHooked) {
-                void** vtbl = *(void***)pD3D;
-                real_CreateDevice = (PFN_CreateDevice)vtbl[16];
-                DetourTransactionBegin();
-                DetourUpdateThread(GetCurrentThread());
-                DetourAttach(&(PVOID&)real_CreateDevice, zzCreateDevice);
-                DetourTransactionCommit();
-                s_createDeviceHooked = true;
-            }
+            HookD3D9CreateDevice(pD3D);
             return pD3D;
         }
     }
@@ -263,11 +285,16 @@ static void* WINAPI zzDirect3DCreate9(UINT SDKVersion) {
         void* pEx = nullptr;
         HRESULT hr = real_Direct3DCreate9Ex(SDKVersion, &pEx);
         if (SUCCEEDED(hr) && pEx) {
+            HookD3D9CreateDevice(pEx);
             return pEx;
         }
     }
     if (real_Direct3DCreate9) {
-        return real_Direct3DCreate9(SDKVersion);
+        void* pD3D = real_Direct3DCreate9(SDKVersion);
+        if (pD3D) {
+            HookD3D9CreateDevice(pD3D);
+        }
+        return pD3D;
     }
     return nullptr;
 }
@@ -281,6 +308,9 @@ void InstallShaderFix() {
         real_Direct3DCreate9Ex = (PFN_Direct3DCreate9Ex)GetProcAddress(hD3d9, "Direct3DCreate9Ex");
         if (real_Direct3DCreate9) {
             DetourAttach(&(PVOID&)real_Direct3DCreate9, zzDirect3DCreate9);
+        }
+        if (real_Direct3DCreate9Ex) {
+            DetourAttach(&(PVOID&)real_Direct3DCreate9Ex, zzDirect3DCreate9Ex);
         }
     }
 
