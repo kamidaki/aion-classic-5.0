@@ -410,7 +410,11 @@ struct AionWebPortInputState {
     uint32_t focusIsolated;          // 1 when browser window has focus, 0 when blurred
     uint64_t lastInputTimestampMs;   // Timestamp of most recent input event
     char     activeSessionId[64];    // Current active session ID
-    uint8_t  reserved[632];          // Pad to 1024 bytes total
+    uint32_t activeSessionCount;     // Number of active virtual sessions
+    uint32_t voiceCommandCode;       // 1=attack, 2=target, 3=jump, 4=sit_stand, 5=skill
+    uint32_t voiceCommandSeq;        // Monotonic sequence counter for voice commands
+    char     voiceTargetSpec[64];    // Voice command target specification / details
+    uint8_t  reserved[556];          // Pad to 1024 bytes total
 };
 #pragma pack(pop)
 static_assert(sizeof(AionWebPortInputState) == 1024, "AionWebPortInputState must be exactly 1024 bytes");
@@ -502,6 +506,68 @@ extern "C" __declspec(dllexport) void WINAPI SetActiveWebSessionId(LPCSTR sessio
 
 extern "C" __declspec(dllexport) bool WINAPI TriggerSessionReturnToLogin() {
     RecordInterceptedPlayerExit(6, "TriggerSessionReturnToLogin");
+    return true;
+}
+
+static SRWLOCK s_sessionLock = SRWLOCK_INIT;
+static std::unordered_set<std::string> s_registeredSessions;
+
+extern "C" __declspec(dllexport) bool WINAPI RegisterWebSession(LPCSTR sessionId) {
+    if (!sessionId || !sessionId[0]) return false;
+    AcquireSRWLockExclusive(&s_sessionLock);
+    s_registeredSessions.insert(std::string(sessionId));
+    AionWebPortInputState* pState = GetWebPortInputState();
+    if (pState) {
+        pState->activeSessionCount = (uint32_t)s_registeredSessions.size();
+        strncpy_s(pState->activeSessionId, sizeof(pState->activeSessionId), sessionId, _TRUNCATE);
+    }
+    ReleaseSRWLockExclusive(&s_sessionLock);
+    return true;
+}
+
+extern "C" __declspec(dllexport) bool WINAPI UnregisterWebSession(LPCSTR sessionId) {
+    if (!sessionId || !sessionId[0]) return false;
+    AcquireSRWLockExclusive(&s_sessionLock);
+    s_registeredSessions.erase(std::string(sessionId));
+    AionWebPortInputState* pState = GetWebPortInputState();
+    if (pState) {
+        pState->activeSessionCount = (uint32_t)s_registeredSessions.size();
+    }
+    ReleaseSRWLockExclusive(&s_sessionLock);
+    return true;
+}
+
+extern "C" __declspec(dllexport) uint32_t WINAPI GetActiveWebSessionCount() {
+    AcquireSRWLockShared(&s_sessionLock);
+    uint32_t count = (uint32_t)s_registeredSessions.size();
+    ReleaseSRWLockShared(&s_sessionLock);
+    return count;
+}
+
+extern "C" __declspec(dllexport) bool WINAPI DispatchWebVoiceCommand(LPCSTR sessionId, LPCSTR command, LPCSTR spec) {
+    if (!command) return false;
+    AionWebPortInputState* pState = GetWebPortInputState();
+    if (!pState) return false;
+
+    uint32_t code = 0;
+    if (_stricmp(command, "attack") == 0) code = 1;
+    else if (_stricmp(command, "target") == 0) code = 2;
+    else if (_stricmp(command, "jump") == 0) code = 3;
+    else if (_stricmp(command, "sit_stand") == 0) code = 4;
+    else if (_stricmp(command, "skill1") == 0) code = 5;
+    else code = 99;
+
+    pState->voiceCommandCode = code;
+    pState->voiceCommandSeq++;
+    if (spec) {
+        strncpy_s(pState->voiceTargetSpec, sizeof(pState->voiceTargetSpec), spec, _TRUNCATE);
+    } else {
+        pState->voiceTargetSpec[0] = '\0';
+    }
+
+    if (sessionId && sessionId[0]) {
+        strncpy_s(pState->activeSessionId, sizeof(pState->activeSessionId), sessionId, _TRUNCATE);
+    }
     return true;
 }
 
@@ -658,11 +724,28 @@ static LONG WINAPI zzSetWindowLongA(_In_ HWND hWnd, _In_ int nIndex, _In_ LONG d
 // Restricts off-screen displacement and subclassing strictly to the Aion
 // game window ("AIONClientWndClass1.0", "CryENGINE", "AION").
 // =========================================================================
+static bool IsSplashWindowClassA(LPCSTR lpClassName) {
+    if (!lpClassName || ((uintptr_t)lpClassName < 0x10000)) return false;
+    char lower[128] = { 0 };
+    strncpy_s(lower, lpClassName, _TRUNCATE);
+    for (int i = 0; lower[i]; i++) lower[i] = (char)::tolower(lower[i]);
+    return (strstr(lower, "splash") != nullptr);
+}
+
+static bool IsSplashWindowClassW(LPCWSTR lpClassName) {
+    if (!lpClassName || ((uintptr_t)lpClassName < 0x10000)) return false;
+    wchar_t lower[128] = { 0 };
+    wcsncpy_s(lower, lpClassName, _TRUNCATE);
+    for (int i = 0; lower[i]; i++) lower[i] = (wchar_t)::towlower(lower[i]);
+    return (wcsstr(lower, L"splash") != nullptr);
+}
+
 static bool IsAionWindowClassA(LPCSTR lpClassName) {
     if (!lpClassName || ((uintptr_t)lpClassName < 0x10000)) return false;
     char lower[128] = { 0 };
     strncpy_s(lower, lpClassName, _TRUNCATE);
     for (int i = 0; lower[i]; i++) lower[i] = (char)::tolower(lower[i]);
+    if (strstr(lower, "splash") != nullptr) return false;
     return (strstr(lower, "aionclient") != nullptr || strstr(lower, "cryengine") != nullptr || strstr(lower, "aion") != nullptr);
 }
 
@@ -671,6 +754,7 @@ static bool IsAionWindowClassW(LPCWSTR lpClassName) {
     wchar_t lower[128] = { 0 };
     wcsncpy_s(lower, lpClassName, _TRUNCATE);
     for (int i = 0; lower[i]; i++) lower[i] = (wchar_t)::towlower(lower[i]);
+    if (wcsstr(lower, L"splash") != nullptr) return false;
     return (wcsstr(lower, L"aionclient") != nullptr || wcsstr(lower, L"cryengine") != nullptr || wcsstr(lower, L"aion") != nullptr);
 }
 
@@ -679,6 +763,7 @@ static bool IsTargetGameWindow(HWND hWnd) {
     char cls[128] = { 0 };
     if (GetClassNameA(hWnd, cls, sizeof(cls)) > 0) {
         for (int i = 0; cls[i]; i++) cls[i] = (char)::tolower(cls[i]);
+        if (strstr(cls, "splash") != nullptr) return false;
         if (strstr(cls, "aionclient") != nullptr || strstr(cls, "cryengine") != nullptr || strstr(cls, "aion") != nullptr) {
             return true;
         }
@@ -686,14 +771,14 @@ static bool IsTargetGameWindow(HWND hWnd) {
     return false;
 }
 
+static decltype(ShowWindow)* real_ShowWindow = ShowWindow;
 static decltype(CreateWindowExA)* real_CreateWindowExA = CreateWindowExA;
 static HWND WINAPI zzCreateWindowExA(
     DWORD dwExStyle, LPCSTR lpClassName, LPCSTR lpWindowName, DWORD dwStyle,
     int X, int Y, int nWidth, int nHeight,
     HWND hWndParent, HMENU hMenu, HINSTANCE hInstance, LPVOID lpParam
 ) {
-    bool isGameWnd = s_isWebPort && !hWndParent && IsAionWindowClassA(lpClassName);
-    if (isGameWnd) {
+    if (s_isWebPort && !hWndParent) {
         dwStyle &= ~WS_VISIBLE;
         dwStyle |= WS_POPUP;
         dwExStyle |= WS_EX_TOOLWINDOW | WS_EX_NOACTIVATE;
@@ -702,7 +787,9 @@ static HWND WINAPI zzCreateWindowExA(
     }
     HWND hWnd = real_CreateWindowExA(dwExStyle, lpClassName, lpWindowName, dwStyle, X, Y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
     if (s_isWebPort && !hWndParent && hWnd) {
-        if (isGameWnd || (!s_hGameWindow && IsTargetGameWindow(hWnd))) {
+        real_ShowWindow(hWnd, SW_HIDE);
+        bool isSplash = IsSplashWindowClassA(lpClassName);
+        if (!isSplash && (IsTargetGameWindow(hWnd) || IsAionWindowClassA(lpClassName))) {
             s_hGameWindow = hWnd;
             AionWebPortInputState* pState = GetWebPortInputState();
             if (pState && nWidth > 0 && nHeight > 0) {
@@ -721,8 +808,7 @@ static HWND WINAPI zzCreateWindowExW(
     int X, int Y, int nWidth, int nHeight,
     HWND hWndParent, HMENU hMenu, HINSTANCE hInstance, LPVOID lpParam
 ) {
-    bool isGameWnd = s_isWebPort && !hWndParent && IsAionWindowClassW(lpClassName);
-    if (isGameWnd) {
+    if (s_isWebPort && !hWndParent) {
         dwStyle &= ~WS_VISIBLE;
         dwStyle |= WS_POPUP;
         dwExStyle |= WS_EX_TOOLWINDOW | WS_EX_NOACTIVATE;
@@ -731,7 +817,9 @@ static HWND WINAPI zzCreateWindowExW(
     }
     HWND hWnd = real_CreateWindowExW(dwExStyle, lpClassName, lpWindowName, dwStyle, X, Y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
     if (s_isWebPort && !hWndParent && hWnd) {
-        if (isGameWnd || (!s_hGameWindow && IsTargetGameWindow(hWnd))) {
+        real_ShowWindow(hWnd, SW_HIDE);
+        bool isSplash = IsSplashWindowClassW(lpClassName);
+        if (!isSplash && (IsTargetGameWindow(hWnd) || IsAionWindowClassW(lpClassName))) {
             s_hGameWindow = hWnd;
             AionWebPortInputState* pState = GetWebPortInputState();
             if (pState && nWidth > 0 && nHeight > 0) {
@@ -744,9 +832,8 @@ static HWND WINAPI zzCreateWindowExW(
     return hWnd;
 }
 
-static decltype(ShowWindow)* real_ShowWindow = ShowWindow;
 static BOOL WINAPI zzShowWindow(HWND hWnd, int nCmdShow) {
-    if (s_isWebPort && s_hGameWindow && hWnd == s_hGameWindow) {
+    if (s_isWebPort && !s_adminShutdownRequested.load(std::memory_order_relaxed)) {
         return real_ShowWindow(hWnd, SW_HIDE);
     }
     return real_ShowWindow(hWnd, nCmdShow);
@@ -754,7 +841,7 @@ static BOOL WINAPI zzShowWindow(HWND hWnd, int nCmdShow) {
 
 static decltype(SetWindowPos)* real_SetWindowPos = SetWindowPos;
 static BOOL WINAPI zzSetWindowPos(HWND hWnd, HWND hWndInsertAfter, int X, int Y, int cx, int cy, UINT uFlags) {
-    if (s_isWebPort && s_hGameWindow && hWnd == s_hGameWindow) {
+    if (s_isWebPort && !s_adminShutdownRequested.load(std::memory_order_relaxed)) {
         uFlags &= ~SWP_SHOWWINDOW;
         uFlags |= SWP_HIDEWINDOW | SWP_NOACTIVATE | SWP_NOZORDER;
         X = -32000;

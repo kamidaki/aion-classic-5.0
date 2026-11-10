@@ -22,3 +22,7 @@ RequestHostShutdown
 GetInterceptedExitCount
 SetActiveWebSessionId
 TriggerSessionReturnToLogin
+RegisterWebSession
+UnregisterWebSession
+GetActiveWebSessionCount
+DispatchWebVoiceCommand
