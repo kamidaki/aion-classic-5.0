@@ -23,7 +23,7 @@ jobs:
 
     steps:
       - name: 📥 Checkout do Repositório
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: 🔧 Configurar .NET 9 SDK
         uses: actions/setup-dotnet@v4
