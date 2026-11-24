@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<hotspot_template xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="hotspot_template.xsd">
+	<!-- gerado por fix_50_hotspot_somnium.py a partir do client_zonemap_hotspot.xml (5.0) -->
+	<!-- HOTSPOT_LC1_01 -->
+	<hotspot_location id="1" worldId="110010000" x="1397" y="1511" z="575" h="0" race="ELYOS" price="0"/>
+	<!-- HOTSPOT_LC1_02 -->
+	<hotspot_location id="2" worldId="110010000" x="1524" y="1580" z="575" h="110" race="ELYOS" price="0"/>
+	<!-- HOTSPOT_LC1_03 -->
+	<hotspot_location id="3" worldId="110010000" x="1524" y="1445" z="575" h="10" race="ELYOS" price="0"/>
+	<!-- HOTSPOT_LC1_04 -->
+	<hotspot_location id="4" worldId="110010000" x="1475" y="1604" z="574" h="45" race="ELYOS" price="0"/>
+	<!-- HOTSPOT_LC1_05 -->
+	<hotspot_location id="5" worldId="110010000" x="1476" y="1356" z="565" h="83" race="ELYOS" price="0"/>
+	<!-- HOTSPOT_LC1_06 -->
+	<hotspot_location id="6" worldId="110010000" x="1457" y="1437" z="574" h="75" race="ELYOS" price="0"/>
+	<!-- HOTSPOT_LC1_07 -->
+	<hotspot_location id="7" worldId="110010000" x="1599" y="1512" z="575" h="0" race="ELYOS" price="0"/>
+	<!-- HOTSPOT_DC1_01 -->
+	<hotspot_location id="8" worldId="120010000" x="1274" y="1448" z="215" h="90" race="ASMODIANS" price="0"/>
+	<!-- HOTSPOT_DC1_02 -->
+	<hotspot_location id="9" worldId="120010000" x="1344" y="1373" z="215" h="83" race="ASMODIANS" price="0"/>
+	<!-- HOTSPOT_DC1_03 -->
+	<hotspot_location id="10" worldId="120010000" x="1201" y="1373" z="210" h="97" race="ASMODIANS" price="0"/>
+	<!-- HOTSPOT_DC1_04 -->
+	<hotspot_location id="11" worldId="120010000" x="1466" y="1405" z="178" h="30" race="ASMODIANS" price="0"/>
+	<!-- HOTSPOT_DC1_05 -->
+	<hotspot_location id="12" worldId="120010000" x="1327" y="1488" z="210" h="23" race="ASMODIANS" price="0"/>
+	<!-- HOTSPOT_DC1_06 -->
+	<hotspot_location id="13" worldId="120010000" x="1220" y="1490" z="214" h="33" race="ASMODIANS" price="0"/>
+	<!-- HOTSPOT_DC1_07 -->
+	<hotspot_location id="14" worldId="120010000" x="1403" y="1419" z="210" h="30" race="ASMODIANS" price="0"/>
+	<!-- HOTSPOT_LF4_01 -->
+	<hotspot_location id="15" worldId="210050000" x="1335" y="278" z="590" h="15" race="ELYOS" price="100"/>
+	<!-- HOTSPOT_LF4_02 -->
+	<hotspot_location id="16" worldId="210050000" x="1779" y="260" z="525" h="0" race="ELYOS" price="150" min_level="5"/>
+	<!-- HOTSPOT_LF4_03 -->
+	<hotspot_location id="17" worldId="210050000" x="2272" y="277" z="472" h="110" race="ELYOS" price="150" min_level="10"/>
+	<!-- HOTSPOT_LF4_04 -->
+	<hotspot_location id="18" worldId="210050000" x="2728" y="929" z="392" h="115" race="ELYOS" price="200" min_level="15"/>
+	<!-- HOTSPOT_LF4_05 -->
+	<hotspot_location id="19" worldId="210050000" x="2712" y="1478" z="383" h="97" race="ELYOS" price="200" min_level="20"/>
+	<!-- HOTSPOT_LF4_06 -->
+	<hotspot_location id="20" worldId="210050000" x="1870" y="1055" z="395" h="87" race="ELYOS" price="200" min_level="20"/>
+	<!-- HOTSPOT_LF4_07 -->
+	<hotspot_location id="21" worldId="210050000" x="574" y="463" z="460" h="113" race="ELYOS" price="300" min_level="25"/>
+	<!-- HOTSPOT_LF4_08 -->
+	<hotspot_location id="22" worldId="210050000" x="383" y="943" z="461" h="23" race="ELYOS" price="300" min_level="30"/>
+	<!-- HOTSPOT_LF4_09 -->
+	<hotspot_location id="23" worldId="210050000" x="1080" y="1582" z="408" h="30" race="ELYOS" price="300" min_level="35"/>
+	<!-- HOTSPOT_LF4_10 -->
+	<hotspot_location id="24" worldId="210050000" x="708" y="1509" z="362" h="30" race="ELYOS" price="400" min_level="40"/>
+	<!-- HOTSPOT_LF4_11 -->
+	<hotspot_location id="25" worldId="210050000" x="594" y="1578" z="300" h="90" race="ELYOS" price="400" min_level="45"/>
+	<!-- HOTSPOT_LF4_12 -->
+	<hotspot_location id="26" worldId="210050000" x="1667" y="1607" z="174" h="90" race="ELYOS" price="400" min_level="50"/>
+	<!-- HOTSPOT_LF4_13 -->
+	<hotspot_location id="27" worldId="210050000" x="1901" y="1744" z="330" h="0" race="ELYOS" price="500" min_level="50"/>
+	<!-- HOTSPOT_DF4_01 -->
+	<hotspot_location id="28" worldId="220070000" x="1774" y="2915" z="555" h="110" race="ASMODIANS" price="100"/>
+	<!-- HOTSPOT_DF4_02 -->
+	<hotspot_location id="29" worldId="220070000" x="1624" y="2600" z="482" h="60" race="ASMODIANS" price="150" min_level="5"/>
+	<!-- HOTSPOT_DF4_03 -->
+	<hotspot_location id="30" worldId="220070000" x="1038" y="2788" z="388" h="67" race="ASMODIANS" price="150" min_level="10"/>
+	<!-- HOTSPOT_DF4_04 -->
+	<hotspot_location id="31" worldId="220070000" x="709" y="2046" z="345" h="100" race="ASMODIANS" price="200" min_level="15"/>
+	<!-- HOTSPOT_DF4_05 -->
+	<hotspot_location id="32" worldId="220070000" x="848" y="1733" z="356" h="57" race="ASMODIANS" price="200" min_level="20"/>
+	<!-- HOTSPOT_DF4_06 -->
+	<hotspot_location id="33" worldId="220070000" x="1420" y="1976" z="355" h="90" race="ASMODIANS" price="200" min_level="20"/>
+	<!-- HOTSPOT_DF4_07 -->
+	<hotspot_location id="34" worldId="220070000" x="2041" y="2753" z="500" h="90" race="ASMODIANS" price="300" min_level="25"/>
+	<!-- HOTSPOT_DF4_08 -->
+	<hotspot_location id="35" worldId="220070000" x="2534" y="2614" z="370" h="100" race="ASMODIANS" price="300" min_level="30"/>
+	<!-- HOTSPOT_DF4_09 -->
+	<hotspot_location id="36" worldId="220070000" x="2512" y="2139" z="465" h="90" race="ASMODIANS" price="300" min_level="35"/>
+	<!-- HOTSPOT_DF4_10 -->
+	<hotspot_location id="37" worldId="220070000" x="1777" y="1798" z="406" h="90" race="ASMODIANS" price="400" min_level="35"/>
+	<!-- HOTSPOT_DF4_11 -->
+	<hotspot_location id="38" worldId="220070000" x="2448" y="1291" z="333" h="53" race="ASMODIANS" price="400" min_level="40"/>
+	<!-- HOTSPOT_DF4_12 -->
+	<hotspot_location id="39" worldId="220070000" x="2184" y="686" z="154" h="10" race="ASMODIANS" price="400" min_level="45"/>
+	<!-- HOTSPOT_DF4_13 -->
+	<hotspot_location id="40" worldId="220070000" x="2426" y="1504" z="237" h="100" race="ASMODIANS" price="500" min_level="50"/>
+	<!-- HOTSPOT_DF4_14 -->
+	<hotspot_location id="41" worldId="220070000" x="1292" y="1554" z="305" h="90" race="ASMODIANS" price="500" min_level="50"/>
+	<!-- HOTSPOT_DF4_15 -->
+	<hotspot_location id="42" worldId="220070000" x="574" y="1221" z="296" h="53" race="ASMODIANS" price="500" min_level="50"/>
+	<!-- HOTSPOT_LDF4_Teva_01 -->
+	<hotspot_location id="43" worldId="800060000" x="2274" y="1565" z="351" h="60" race="PC_ALL" price="3000" distance_price="1"/>
+	<!-- HOTSPOT_LDF4_Teva_02 -->
+	<hotspot_location id="44" worldId="800060000" x="1571" y="1000" z="334" h="30" race="PC_ALL" price="6000" distance_price="1"/>
+	<!-- HOTSPOT_LDF4_Teva_03 -->
+	<hotspot_location id="45" worldId="800060000" x="1636" y="2094" z="304" h="90" race="PC_ALL" price="6000" distance_price="1"/>
+	<!-- HOTSPOT_LDF4_Teva_04 -->
+	<hotspot_location id="46" worldId="800060000" x="1087" y="1545" z="398" h="60" race="PC_ALL" price="15000" distance_price="1"/>
+	<!-- HOTSPOT_LF4_16 -->
+	<hotspot_location id="47" worldId="210050000" x="2652" y="340" z="511" h="0" race="ELYOS" price="180" min_level="15"/>
+	<!-- HOTSPOT_LF4_17 -->
+	<hotspot_location id="48" worldId="210050000" x="1563" y="1160" z="420" h="67" race="ELYOS" price="250" min_level="25"/>
+	<!-- HOTSPOT_LF4_18 -->
+	<hotspot_location id="49" worldId="210050000" x="147" y="119" z="552" h="30" race="ELYOS" price="300" min_level="35"/>
+	<!-- HOTSPOT_LF4_19 -->
+	<hotspot_location id="50" worldId="210050000" x="284" y="1852" z="316" h="60" race="ELYOS" price="450" min_level="45"/>
+	<!-- HOTSPOT_LF4_20 -->
+	<hotspot_location id="51" worldId="210050000" x="2176" y="1948" z="286" h="117" race="ELYOS" price="500" min_level="50"/>
+	<!-- HOTSPOT_DF4_16 -->
+	<hotspot_location id="52" worldId="220070000" x="989" y="2567" z="240" h="117" race="ASMODIANS" price="180" min_level="15"/>
+	<!-- HOTSPOT_DF4_17 -->
+	<hotspot_location id="53" worldId="220070000" x="460" y="1814" z="360" h="45" race="ASMODIANS" price="250" min_level="25"/>
+	<!-- HOTSPOT_DF4_18 -->
+	<hotspot_location id="54" worldId="220070000" x="440" y="2573" z="430" h="60" race="ASMODIANS" price="300" min_level="35"/>
+	<!-- HOTSPOT_DF4_19 -->
+	<hotspot_location id="55" worldId="220070000" x="2774" y="790" z="158" h="60" race="ASMODIANS" price="450" min_level="45"/>
+	<!-- HOTSPOT_DF4_20 -->
+	<hotspot_location id="56" worldId="220070000" x="889" y="1050" z="313" h="90" race="ASMODIANS" price="500" min_level="50"/>
+</hotspot_template>

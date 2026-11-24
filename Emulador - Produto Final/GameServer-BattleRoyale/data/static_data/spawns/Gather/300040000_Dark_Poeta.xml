@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<spawn_map map_id="300040000">
+		<!-- Vinha enorme -->
+		<spawn npc_id="401111" respawn_time="295">
+			<spot x="663.9791" y="1169.7542" z="143.25" h="0"/>
+		</spawn>
+		<!-- Nex -->
+		<spawn npc_id="401112" respawn_time="295">
+			<spot x="253.6462" y="418.4727" z="104.02" h="0"/>
+			<spot x="190.2863" y="399.5997" z="126.37" h="0"/>
+			<spot x="141.2567" y="414.4455" z="135" h="0"/>
+			<spot x="672.8931" y="1200.3801" z="143.76" h="0"/>
+			<spot x="256.2892" y="324.1691" z="120.92" h="0"/>
+		</spawn>
+	</spawn_map>
+</spawns>

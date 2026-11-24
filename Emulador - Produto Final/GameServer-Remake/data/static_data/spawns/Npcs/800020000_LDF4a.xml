@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+	<spawn_map map_id="800020000">
+		<!-- BIDREWARD_TRESUSTOBOXDESPAWNNPCSPAWN_50_N -->
+		<spawn npc_id="281069" respawn_time="295">
+			<spot x="647.6594" y="2577.4966" z="366.86" h="0"/>
+		</spawn>
+	</spawn_map>
+</spawns>

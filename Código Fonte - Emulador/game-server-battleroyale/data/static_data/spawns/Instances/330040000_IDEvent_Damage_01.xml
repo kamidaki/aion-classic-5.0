@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<spawn_map map_id="330040000">
+		<!-- Guerreiro da 11ª tropa de ocupação -->
+		<spawn npc_id="283244" respawn_time="295">
+			<spot x="270.7643" y="214.861" z="197.98" h="73"/>
+		</spawn>
+		<!-- Tempestade de fogo -->
+		<spawn npc_id="749022" respawn_time="295">
+			<spot x="262.7528" y="225.3801" z="197.4" h="0"/>
+			<spot x="276.753" y="202.5241" z="197.61" h="0"/>
+			<spot x="262.6551" y="201.1446" z="197.57" h="0"/>
+			<spot x="298.2364" y="231.9852" z="197.46" h="0"/>
+			<spot x="298.613" y="222.2941" z="197.42" h="0"/>
+			<spot x="280.2215" y="223.3836" z="197.64" h="0"/>
+			<spot x="301.4906" y="209.4693" z="197.45" h="0"/>
+			<spot x="247.4108" y="218.3153" z="197.36" h="0"/>
+			<spot x="288.5421" y="214.6904" z="197.41" h="0"/>
+			<spot x="277.8377" y="189.9334" z="197.59" h="0"/>
+			<spot x="253.5464" y="183.9915" z="197.39" h="0"/>
+			<spot x="256.6132" y="213.2983" z="197.67" h="0"/>
+			<spot x="243.6857" y="190.5526" z="197.34" h="0"/>
+			<spot x="269.6906" y="229.6262" z="197.36" h="0"/>
+			<spot x="269.1598" y="241.3947" z="197.76" h="0"/>
+			<spot x="266.5383" y="185.956" z="197.47" h="0"/>
+			<spot x="246.6048" y="202.063" z="197.26" h="0"/>
+		</spawn>
+		<!-- NPC_803553 -->
+		<spawn npc_id="803553" respawn_time="295">
+			<spot x="226.2213" y="151.0963" z="197.22" h="0"/>
+		</spawn>
+		<!-- Dispositivo de convocação -->
+		<spawn npc_id="803555" respawn_time="295">
+			<spot x="788.9731" y="286.8678" z="399.75" h="0"/>
+		</spawn>
+		<!-- NPC_803566 -->
+		<spawn npc_id="803566" respawn_time="295">
+			<spot x="268.6024" y="209.1602" z="197.98" h="0"/>
+		</spawn>
+		<!-- NPC_803567 -->
+		<spawn npc_id="803567" respawn_time="295">
+			<spot x="272.9396" y="207.9227" z="197.98" h="0"/>
+		</spawn>
+		<!-- Vila de Rhonnam Refugee -->
+		<spawn npc_id="803569" respawn_time="295">
+			<spot x="210.3902" y="126.4899" z="197.67" h="0"/>
+			<spot x="273.5069" y="218.5949" z="197.98" h="0"/>
+			<spot x="189.4" y="106.6884" z="197.2" h="0"/>
+		</spawn>
+	</spawn_map>
+</spawns>

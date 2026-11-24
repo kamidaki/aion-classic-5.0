@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='utf-8'?>
+<npc_skill_templates xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../npc_skills.xsd">
+	
+	<npc_skills npc_ids="219359">
+		<npc_skill id="20963" lv="60" prob="70" cd="25000" />
+		<npc_skill id="20964" lv="60" prob="70" cd="25000" />
+	</npc_skills>
+	
+	<npc_skills npc_ids="236274">
+		<npc_skill id="20915" lv="1" prob="100" cd="30000" max_hp="80" />
+	</npc_skills>
+	
+	<npc_skills npc_ids="283139">
+		<npc_skill id="20985" lv="60" prob="100" cd="9000" />
+		<npc_skill id="20986" lv="60" prob="100" />
+	</npc_skills>
+	
+	<npc_skills npc_ids="283138">
+		<npc_skill id="20968" lv="60" prob="100">
+			<cond delay="1000" despawn_time="3000" />
+		</npc_skill>
+	</npc_skills>
+	
+	<npc_skills npc_ids="283144">
+		<npc_skill id="20969" lv="60" prob="100">
+			<cond delay="500" despawn_time="3000" />
+		</npc_skill>
+	</npc_skills>
+	
+	</npc_skill_templates>

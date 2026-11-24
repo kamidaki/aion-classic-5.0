@@ -1,0 +1,2620 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<player_titles>
+	<title id="1" nameId="1100900" desc_en="Poeta’s Protector" desc_pt="Protetor de poeta" race="ELYOS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="20" bonus="true"/>
+			<add name="PHYSICAL_DEFENSE" value="5" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="2" nameId="1100901" desc_en="Verteron’s Warrior" desc_pt="Verteron o guerreiro" race="ELYOS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="30" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="6" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="3" nameId="1100902" desc_en="Bottled Lightning" desc_pt="Raios engarrafados" race="ELYOS" available="false">
+		<modifiers>
+			<rate name="SPEED" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="4" nameId="1100903" desc_en="Tree Hugger" desc_pt="Árvore do abraço" race="ELYOS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ACCURACY" value="4" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="5" nameId="1100904" desc_en="Krall Hunter" desc_pt="Caçador de Krall" race="ELYOS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_CRITICAL" value="2" bonus="true"/>
+			<add name="FLY_TIME" value="1" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="6" nameId="1100905" desc_en="Straw for Brains" desc_pt="Palha para cérebros" race="ELYOS" available="false">
+		<modifiers>
+			<add name="PARRY" value="5" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="7" nameId="1100906" desc_en="Animal Lover" desc_pt="Amante de animais" race="ELYOS" available="false">
+		<modifiers>
+			<add name="MAXMP" value="20" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="8" nameId="1100907" desc_en="Krall Whisperer" desc_pt="O Sussurrador de Krall" race="ELYOS" available="false">
+		<modifiers>
+			<add name="BOOST_MAGICAL_SKILL" value="5" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="9" nameId="1100908" desc_en="Patient" desc_pt="Paciente" race="ELYOS" available="false">
+		<modifiers>
+			<add name="EVASION" value="3" bonus="true"/>
+			<add name="PHYSICAL_ACCURACY" value="6" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="10" nameId="1100909" desc_en="Mabangtah’s Envoy" desc_pt="Enviado de Mabangtah" race="ELYOS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_DEFENSE" value="10" bonus="true"/>
+			<add name="BLOCK" value="8" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="11" nameId="1100910" desc_en="Demolitions Expert" desc_pt="Demolição Especialista" race="ELYOS" available="false">
+		<modifiers>
+			<add name="BOOST_MAGICAL_SKILL" value="15" bonus="true"/>
+			<add name="PHYSICAL_ATTACK" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="12" nameId="1100911" desc_en="Eltnen’s Hero" desc_pt="Herói de Eltnen" race="ELYOS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_DEFENSE" value="15" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="8" bonus="true"/>
+			<add name="MAXHP" value="40" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="13" nameId="1100912" desc_en="Klaw Hunter" desc_pt="Caçador de Klaws" race="ELYOS" available="false">
+		<modifiers>
+			<add name="MAGICAL_ACCURACY" value="6" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="9" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="14" nameId="1100913" desc_en="Aerialist" desc_pt="Aerialista" race="ELYOS" available="false">
+		<modifiers>
+			<rate name="FLY_SPEED" value="2" bonus="true"/>
+			<add name="FLY_TIME" value="4" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="15" nameId="1100914" desc_en="Kobold Chef" desc_pt="Kobold Chefe" race="ELYOS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="57" bonus="true"/>
+			<add name="MAXMP" value="57" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="16" nameId="1100915" desc_en="Isson’s Apologist" desc_pt="Apologista de Isson" race="ELYOS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_CRITICAL" value="7" bonus="true"/>
+			<add name="PHYSICAL_DEFENSE" value="-5" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="17" nameId="1100916" desc_en="Soul Teacher" desc_pt="n professor universitário. de alma" race="ELYOS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_CRITICAL" value="5" bonus="true"/>
+			<add name="PHYSICAL_ATTACK" value="2" bonus="true"/>
+			<add name="PARRY" value="8" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="18" nameId="1100917" desc_en="Bloodsworn" desc_pt="Jurado de sangue" race="ELYOS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="36" bonus="true"/>
+			<add name="PHYSICAL_DEFENSE" value="15" bonus="true"/>
+			<add name="BLOCK" value="12" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="19" nameId="1100918" desc_en="Veritas Agent" desc_pt="Agente da verdade" race="ELYOS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ACCURACY" value="8" bonus="true"/>
+			<add name="EVASION" value="6" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="20" nameId="1100919" desc_en="Savior of Eiron Forest" desc_pt="Salvador da floresta eiron" race="ELYOS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="30" bonus="true"/>
+			<add name="MAXMP" value="24" bonus="true"/>
+			<rate name="SPEED" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="21" nameId="1100920" desc_en="Gestanerk’s Avenger" desc_pt="Vingador de Gestanerk" race="ELYOS" available="false">
+		<modifiers>
+			<add name="MAXMP" value="36" bonus="true"/>
+			<add name="MAGICAL_ACCURACY" value="2" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="4" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="22" nameId="1100921" desc_en="Bounty Hunter" desc_pt="Caçador de Recompensas" race="ELYOS" available="false">
+		<modifiers>
+			<add name="BOOST_MAGICAL_SKILL" value="8" bonus="true"/>
+			<rate name="FLY_SPEED" value="1" bonus="true"/>
+			<add name="FLY_TIME" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="23" nameId="1100922" desc_en="Arbolu’s Anointed" desc_pt="Ungido de Arbolu" race="ELYOS" available="false">
+		<modifiers>
+			<rate name="SPEED" value="3" bonus="true"/>
+			<add name="PHYSICAL_CRITICAL" value="3" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="8" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="24" nameId="1100923" desc_en="Chief Investigator" desc_pt="Investigador -chefe" race="ELYOS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ATTACK" value="1" bonus="true"/>
+			<rate name="SPEED" value="4" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="8" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="25" nameId="1100924" desc_en="Indratu Bane" desc_pt="Perdição de Indratu" race="ELYOS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_CRITICAL" value="8" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="11" bonus="true"/>
+			<add name="FLY_TIME" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="26" nameId="1100925" desc_en="Big Damn Hero" desc_pt="Grande herói maldito" race="ELYOS" available="false">
+		<modifiers>
+			<add name="BLOCK" value="15" bonus="true"/>
+			<add name="MAXHP" value="35" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="27" nameId="1100926" desc_en="Not-Quite-Master of Disguise" desc_pt="Mestre de Disguary não-Quite" race="ELYOS" available="false">
+		<modifiers>
+			<add name="MAXMP" value="45" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="8" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="28" nameId="1100927" desc_en="Master Angler" desc_pt="Mestre pescador" race="ELYOS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ACCURACY" value="10" bonus="true"/>
+			<add name="MAGICAL_ACCURACY" value="8" bonus="true"/>
+			<add name="PHYSICAL_CRITICAL" value="8" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="29" nameId="1100928" desc_en="Spymaster" desc_pt="Mestre espião" race="ELYOS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="57" bonus="true"/>
+			<add name="PHYSICAL_ATTACK" value="3" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="30" nameId="1100929" desc_en="Balaur Whisperer" desc_pt="Balaur Sussurrador" race="ELYOS" available="false">
+		<modifiers>
+			<add name="MAGICAL_ACCURACY" value="3" bonus="true"/>
+			<add name="MAXMP" value="46" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="31" nameId="1100930" desc_en="Tough" desc_pt="Difícil" race="ELYOS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="40" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="32" nameId="1100931" desc_en="Battle-Hardened" desc_pt="Endurecido por batalha" race="ELYOS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="50" bonus="true"/>
+			<add name="FLY_TIME" value="5" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="33" nameId="1100932" desc_en="Invincible" desc_pt="Invencível" race="ELYOS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="50" bonus="true"/>
+			<add name="FLY_TIME" value="5" bonus="true"/>
+			<rate name="FLY_SPEED" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="34" nameId="1100933" desc_en="Heroic" desc_pt="Heróico" race="ELYOS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="60" bonus="true"/>
+			<add name="FLY_TIME" value="5" bonus="true"/>
+			<rate name="FLY_SPEED" value="2" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="35" nameId="1100934" desc_en="Dread Pirate" desc_pt="Pirata temido" race="ELYOS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_CRITICAL" value="10" bonus="true"/>
+			<add name="MAGICAL_ACCURACY" value="8" bonus="true"/>
+			<add name="MAXHP" value="50" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="36" nameId="1100935" desc_en="Top Expert" desc_pt="Pião especialista" race="ELYOS" available="false">
+		<modifiers>
+			<add name="EVASION" value="6" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="6" bonus="true"/>
+			<add name="PHYSICAL_DEFENSE" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="37" nameId="1100936" desc_en="Miragent Holy Templar" desc_pt="Miragent Sagrado Templário" race="ELYOS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="80" bonus="true"/>
+			<rate name="SPEED" value="3" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="38" nameId="1100937" desc_en="Aetheric Master" desc_pt="Mestre Aetico" race="ELYOS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="45" bonus="true"/>
+			<add name="PHYSICAL_ATTACK" value="3" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="12" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="39" nameId="1100938" desc_en="Daeva of Mercy" desc_pt="Daeva da misericórdia" race="ELYOS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="100" bonus="true"/>
+			<add name="REGEN_HP" value="4" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="40" nameId="1100939" desc_en="Dragon Sword Master" desc_pt="Mestre da Espada de Dragão" race="ELYOS" available="false">
+		<modifiers>
+			<rate name="SPEED" value="4" bonus="true"/>
+			<rate name="FLY_SPEED" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="41" nameId="1100940" desc_en="Honourary Black Cloud" desc_pt="Nuvem Negra Honorária" race="ELYOS" available="false">
+		<modifiers>
+			<rate name="SPEED" value="5" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="42" nameId="1100941" desc_en="Krall Stalker" desc_pt="Perseguidor de Krall" race="ELYOS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="44" bonus="true"/>
+			<add name="MAXMP" value="44" bonus="true"/>
+			<add name="FLY_TIME" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="43" nameId="1100942" desc_en="Battering Ram" desc_pt="Aríete" race="ELYOS" available="false">
+		<modifiers>
+			<rate name="FLY_SPEED" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="44" nameId="1100943" desc_en="Tenacious Pursuer" desc_pt="Perseguidor tenaz" race="ELYOS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="48" bonus="true"/>
+			<add name="MAXMP" value="48" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="45" nameId="1100944" desc_en="Gullible" desc_pt="Crédulo" race="ELYOS" available="false">
+		<modifiers>
+			<rate name="FLY_SPEED" value="2" bonus="true"/>
+			<add name="EVASION" value="4" bonus="true"/>
+			<add name="FLY_TIME" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="46" nameId="1100945" desc_en="Traitor’s Bane" desc_pt="Bane do traidor" race="ELYOS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_CRITICAL" value="6" bonus="true"/>
+			<add name="MAXMP" value="36" bonus="true"/>
+			<add name="PARRY" value="8" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="47" nameId="1100946" desc_en="Drakanhammer" desc_pt="Drakanhammer" race="ELYOS" available="false">
+		<modifiers>
+			<add name="BOOST_MAGICAL_SKILL" value="15" bonus="true"/>
+			<add name="MAXHP" value="-45" bonus="true"/>
+			<add name="PHYSICAL_ATTACK" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="48" nameId="1100947" desc_en="Knight Errant" desc_pt="Cavaleiro andante" race="ELYOS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="40" bonus="true"/>
+			<add name="EVASION" value="8" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="-6" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="49" nameId="1100948" desc_en="Seraphic Vindicator" desc_pt="Vindicador Seraficas" race="ELYOS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="52" bonus="true"/>
+			<add name="PHYSICAL_DEFENSE" value="30" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="50" nameId="1100949" desc_en="Dark Sovereign" desc_pt="Soberano escuro" race="ELYOS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="65" bonus="true"/>
+			<add name="MAGICAL_ACCURACY" value="10" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="51" nameId="1101100" desc_en="Raider Hero" desc_pt="Herói invasor" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="20" bonus="true"/>
+			<add name="PHYSICAL_DEFENSE" value="5" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="52" nameId="1101101" desc_en="Treasure Hunter" desc_pt="Caçador de tesouros" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ACCURACY" value="4" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="53" nameId="1101102" desc_en="Mosbear Slayer" desc_pt="Matador de Mosbear" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="EVASION" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="54" nameId="1101103" desc_en="Mau Whisperer" desc_pt="Quer sussurro" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="BOOST_MAGICAL_SKILL" value="5" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="55" nameId="1101104" desc_en="Kind" desc_pt="Tipo" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="MAXMP" value="20" bonus="true"/>
+			<add name="FLY_TIME" value="1" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="56" nameId="1101105" desc_en="Legendary Hunter" desc_pt="Caçador lendário" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="PARRY" value="6" bonus="true"/>
+			<rate name="SPEED" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="57" nameId="1101106" desc_en="Protector of Altgard" desc_pt="Protetor de Altgard" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_CRITICAL" value="2" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="6" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="58" nameId="1101107" desc_en="Tayga Slayer" desc_pt="Matador de Tayga" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="EVASION" value="8" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="8" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="59" nameId="1101108" desc_en="Curse Breaker" desc_pt="Maldição do disjuntor" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="MAXMP" value="34" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="8" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="60" nameId="1101109" desc_en="Protector of Morheim" desc_pt="Protetor de Morheim" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_DEFENSE" value="15" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="8" bonus="true"/>
+			<add name="MAXHP" value="40" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="61" nameId="1101110" desc_en="Shugo Chef" desc_pt="Chef" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="EVASION" value="6" bonus="true"/>
+			<add name="FLY_TIME" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="62" nameId="1101111" desc_en="Ginseng-Infused" desc_pt="Panax infundiu" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="40" bonus="true"/>
+			<rate name="SPEED" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="63" nameId="1101112" desc_en="Honourary Kidorun" desc_pt="Kidorun Honorário" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="PARRY" value="8" bonus="true"/>
+			<add name="EVASION" value="6" bonus="true"/>
+			<rate name="FLY_SPEED" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="64" nameId="1101113" desc_en="Shedim Altruist" desc_pt="Altruísta" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="MAXMP" value="42" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="12" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="65" nameId="1101114" desc_en="Mosbear Nemesis" desc_pt="Nêmesis de Mosbear" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="BLOCK" value="15" bonus="true"/>
+			<add name="MAXHP" value="40" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="66" nameId="1101115" desc_en="Silver Mane Ally" desc_pt="Aliada da juba de prata" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ATTACK" value="2" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="15" bonus="true"/>
+			<add name="PARRY" value="6" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="67" nameId="1101116" desc_en="Elim Messenger" desc_pt="Elim Mensageiro" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="36" bonus="true"/>
+			<add name="MAXMP" value="36" bonus="true"/>
+			<rate name="SPEED" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="68" nameId="1101117" desc_en="Provocateur" desc_pt="Provocador" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ACCURACY" value="8" bonus="true"/>
+			<add name="EVASION" value="6" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="69" nameId="1101118" desc_en="Tenacious" desc_pt="Tenaz" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_CRITICAL" value="8" bonus="true"/>
+			<add name="PHYSICAL_DEFENSE" value="15" bonus="true"/>
+			<add name="PHYSICAL_ATTACK" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="70" nameId="1101119" desc_en="The Cat's Meow" desc_pt="O gato é miau" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="BOOST_MAGICAL_SKILL" value="6" bonus="true"/>
+			<rate name="FLY_SPEED" value="1" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="71" nameId="1101120" desc_en="Unyielding Pioneer" desc_pt="Pioneiro inflexível" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="MAGICAL_ACCURACY" value="6" bonus="true"/>
+			<add name="MAXMP" value="28" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="72" nameId="1101121" desc_en="Protector of Brusthonin" desc_pt="Protetor de Brusthonin" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_CRITICAL" value="3" bonus="true"/>
+			<add name="PHYSICAL_ATTACK" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="73" nameId="1101122" desc_en="Easy Mark" desc_pt="Marca fácil" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ACCURACY" value="10" bonus="true"/>
+			<add name="MAGICAL_ACCURACY" value="8" bonus="true"/>
+			<rate name="SPEED" value="4" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="74" nameId="1101123" desc_en="Beluslan's Hero" desc_pt="Herói de Beluslan" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_CRITICAL" value="8" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="11" bonus="true"/>
+			<add name="FLY_TIME" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="75" nameId="1101124" desc_en="Snowfield Predator" desc_pt="Predador do campo de neve" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ACCURACY" value="9" bonus="true"/>
+			<add name="PHYSICAL_CRITICAL" value="7" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="76" nameId="1101125" desc_en="Besfer's Shield" desc_pt="escudo de Besfer" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="MAGICAL_ACCURACY" value="8" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="77" nameId="1101126" desc_en="Scourge of Mt. Musphel" desc_pt="Flagelo do Monte Musphel" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="FIRE_RESISTANCE" value="3" bonus="true"/>
+			<add name="MAXHP" value="32" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="78" nameId="1101127" desc_en="Loremaster" desc_pt="Mestre da tradição" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ATTACK" value="2" bonus="true"/>
+			<add name="BLOCK" value="12" bonus="true"/>
+			<add name="MAXHP" value="40" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="79" nameId="1101128" desc_en="Emissary" desc_pt="Emissário" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="57" bonus="true"/>
+			<add name="PHYSICAL_CRITICAL" value="8" bonus="true"/>
+			<add name="PHYSICAL_DEFENSE" value="20" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="80" nameId="1101129" desc_en="Balaur Whisperer" desc_pt="Balaur Sussurrador" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="MAGICAL_ACCURACY" value="3" bonus="true"/>
+			<add name="MAXMP" value="46" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="81" nameId="1101130" desc_en="Tough" desc_pt="Difícil" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="40" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="82" nameId="1101131" desc_en="Battle-Hardened" desc_pt="Endurecido por batalha" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="50" bonus="true"/>
+			<add name="FLY_TIME" value="5" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="83" nameId="1101132" desc_en="Invincible" desc_pt="Invencível" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="50" bonus="true"/>
+			<add name="FLY_TIME" value="5" bonus="true"/>
+			<rate name="FLY_SPEED" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="84" nameId="1101133" desc_en="Heroic" desc_pt="Heróico" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="60" bonus="true"/>
+			<add name="FLY_TIME" value="5" bonus="true"/>
+			<rate name="FLY_SPEED" value="2" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="85" nameId="1101134" desc_en="Steel Rake Headhunter" desc_pt="Cabeça de aço" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_CRITICAL" value="10" bonus="true"/>
+			<add name="MAGICAL_ACCURACY" value="8" bonus="true"/>
+			<add name="MAXHP" value="50" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="86" nameId="1101135" desc_en="Top Expert" desc_pt="Pião especialista" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="EVASION" value="6" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="6" bonus="true"/>
+			<add name="PHYSICAL_DEFENSE" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="87" nameId="1101136" desc_en="Fenris Fangs" desc_pt="Presa de Fenris" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="80" bonus="true"/>
+			<rate name="SPEED" value="3" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="88" nameId="1101137" desc_en="Aetheric Master" desc_pt="Mestre Aetico" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="45" bonus="true"/>
+			<add name="PHYSICAL_ATTACK" value="3" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="12" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="89" nameId="1101138" desc_en="Azphel's Aegis" desc_pt="Égide de Azphel" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="100" bonus="true"/>
+			<add name="REGEN_HP" value="4" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="90" nameId="1101139" desc_en="Master of Agrif's Rage" desc_pt="Mestre da raiva de Agrif" race="ASMODIANS" available="false">
+		<modifiers>
+			<rate name="SPEED" value="4" bonus="true"/>
+			<rate name="FLY_SPEED" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="91" nameId="1101140" desc_en="Wheeler-Dealer" desc_pt="Revendedor Veículo com rodas" race="ASMODIANS" available="false">
+		<modifiers>
+			<rate name="SPEED" value="5" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="92" nameId="1101141" desc_en="Factotum" desc_pt="Factótum" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="MAXMP" value="57" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="7" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="15" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="93" nameId="1101142" desc_en="Valiant" desc_pt="Valente" race="ASMODIANS" available="false">
+		<modifiers>
+			<rate name="FLY_SPEED" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="94" nameId="1101143" desc_en="Silver Mane Champion" desc_pt="Campeão de Prateado juba" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="44" bonus="true"/>
+			<add name="MAXMP" value="44" bonus="true"/>
+			<add name="FLY_TIME" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="95" nameId="1101144" desc_en="Born Merchant" desc_pt="Mercante nascido" race="ASMODIANS" available="false">
+		<modifiers>
+			<rate name="FLY_SPEED" value="2" bonus="true"/>
+			<add name="EVASION" value="4" bonus="true"/>
+			<add name="FLY_TIME" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="96" nameId="1101145" desc_en="Shadow Marked" desc_pt="Sombra marcada" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="27" bonus="true"/>
+			<add name="PHYSICAL_DEFENSE" value="20" bonus="true"/>
+			<add name="MAXMP" value="28" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="97" nameId="1101146" desc_en="Spiritspeaker" desc_pt="Spiritspeaker" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="50" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="98" nameId="1101147" desc_en="Pirate of the Carobian" desc_pt="Pirata do carobiano" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ATTACK" value="2" bonus="true"/>
+			<add name="PHYSICAL_CRITICAL" value="6" bonus="true"/>
+			<add name="FLY_TIME" value="4" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="99" nameId="1101148" desc_en="Shedim Conquerer" desc_pt="Shedim Conquiser" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="52" bonus="true"/>
+			<add name="PHYSICAL_DEFENSE" value="30" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="100" nameId="1101149" desc_en="Dark Vindicator" desc_pt="Vindicante Sombrio" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="65" bonus="true"/>
+			<add name="MAGICAL_ACCURACY" value="10" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="101" nameId="1101600" desc_en="Settler of Aion" desc_pt="Colono de Aion" race="PC_ALL" available="false">
+		<modifiers>
+			<add name="PHYSICAL_CRITICAL" value="3" bonus="true"/>
+			<add name="PHYSICAL_ATTACK" value="1" bonus="true"/>
+			<add name="PARRY" value="8" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="102" nameId="1101601" desc_en="Destiny Ascendant" desc_pt="Destino ascendente" race="PC_ALL" available="false">
+		<modifiers>
+			<add name="MAXHP" value="36" bonus="true"/>
+			<add name="PHYSICAL_DEFENSE" value="4" bonus="true"/>
+			<add name="BLOCK" value="8" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="103" nameId="1101602" desc_en="Adept of Aion" desc_pt="Adepto de Aion" race="PC_ALL" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ACCURACY" value="8" bonus="true"/>
+			<add name="EVASION" value="3" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="104" nameId="1101603" desc_en="Shining Intellectual" desc_pt="Intelectual brilhante" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="SPEED" value="3" bonus="true"/>
+			<add name="MAXHP" value="100" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="105" nameId="1101604" desc_en="Sage of Aion" desc_pt="Sábio de Aion" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="SPEED" value="4" bonus="true"/>
+			<rate name="FLY_SPEED" value="3" bonus="true"/>
+			<add name="MAXHP" value="150" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="106" nameId="1101605" desc_en="Munificent" desc_pt="Munífico" race="PC_ALL" available="false">
+		<modifiers>
+			<add name="MAXHP" value="60" bonus="true"/>
+			<add name="MAXMP" value="60" bonus="true"/>
+			<rate name="SPEED" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="107" nameId="1100950" desc_en="Iron Stomached" desc_pt="Ferro de estômago" race="ELYOS" available="false">
+		<modifiers>
+			<add name="REGEN_HP" value="3" bonus="true"/>
+			<add name="MAXHP" value="60" bonus="true"/>
+			<add name="REGEN_MP" value="3" bonus="true"/>
+			<add name="MAXMP" value="60" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="108" nameId="1100951" desc_en="Shulack Friend" desc_pt="Amigo shulack" race="ELYOS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ATTACK" value="2" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="10" bonus="true"/>
+			<add name="MAXHP" value="50" bonus="true"/>
+			<add name="PHYSICAL_DEFENSE" value="20" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="109" nameId="1100952" desc_en="Guardian Ally" desc_pt="Aliado do guardião" race="ELYOS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="65" bonus="true"/>
+			<add name="MAGICAL_ACCURACY" value="10" bonus="true"/>
+			<add name="PHYSICAL_ACCURACY" value="14" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="110" nameId="1100953" desc_en="Kaisinel's Assassin" desc_pt="Assassino de Kaininel" race="ELYOS" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+			<add name="PHYSICAL_ATTACK" value="3" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="15" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="111" nameId="1100954" desc_en="Guardian Protector" desc_pt="Protetor de Guardião" race="ELYOS" available="false">
+		<modifiers>
+			<add name="HEAL_BOOST" value="12" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="17" bonus="true"/>
+			<add name="MAXHP" value="50" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="112" nameId="1100955" desc_en="Balaur Eradicator" desc_pt="Dragão do Erradicador" race="ELYOS" available="false">
+		<modifiers>
+			<add name="BLOCK" value="14" bonus="true"/>
+			<add name="PHYSICAL_DEFENSE" value="25" bonus="true"/>
+			<rate name="BOOST_HATE" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="113" nameId="1100956" desc_en="Discoverer of the Secret" desc_pt="Descoberador do segredo" race="ELYOS" available="false">
+		<modifiers>
+			<add name="EVASION" value="7" bonus="true"/>
+			<add name="PHYSICAL_ACCURACY" value="14" bonus="true"/>
+			<add name="MAGICAL_ACCURACY" value="10" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="114" nameId="1100957" desc_en="Vanquisher of Mastarius" desc_pt="Conquistador de Mastarius" race="ELYOS" available="false">
+		<modifiers>
+			<rate name="SPEED" value="3" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="115" nameId="1100958" desc_en="Alabaster Wing" desc_pt="Asa Alabastro" race="ELYOS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ATTACK" value="2" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="116" nameId="1100959" desc_en="Alabaster Eye" desc_pt="Olho de Alabastro" race="ELYOS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ATTACK" value="3" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="17" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="117" nameId="1100960" desc_en="Alabaster Hand" desc_pt="Mão alabastro" race="ELYOS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ATTACK" value="3" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="17" bonus="true"/>
+			<rate name="SPEED" value="4" bonus="true"/>
+			<rate name="FLY_SPEED" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="118" nameId="1100961" desc_en="Radiant Fist" desc_pt="Punho radiante" race="ELYOS" available="false">
+		<modifiers>
+			<add name="PVP_ATTACK_RATIO" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="119" nameId="1100962" desc_en="Radiant Shield" desc_pt="escudo radiante" race="ELYOS" available="false">
+		<modifiers>
+			<add name="PVP_DEFEND_RATIO" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="120" nameId="1100963" desc_en="Radiant Blade" desc_pt="Lâmina radiante" race="ELYOS" available="false">
+		<modifiers>
+			<add name="PVP_ATTACK_RATIO" value="20" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="121" nameId="1100964" desc_en="Radiant Shroud" desc_pt="Mortalha radiante" race="ELYOS" available="false">
+		<modifiers>
+			<add name="PVP_DEFEND_RATIO" value="20" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="122" nameId="1100965" desc_en="Seeker" desc_pt="Buscador" race="ELYOS" available="false">
+		<modifiers>
+			<add name="PVP_ATTACK_RATIO" value="20" bonus="true"/>
+			<add name="PVP_DEFEND_RATIO" value="20" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="123" nameId="1100966" desc_en="Tracker" desc_pt="Rastreador" race="ELYOS" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-1" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="1" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="124" nameId="1100967" desc_en="Hunter" desc_pt="Caçador" race="ELYOS" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="125" nameId="1100968" desc_en="Fortuneer" desc_pt="Adivinho" race="ELYOS" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="126" nameId="1101150" desc_en="Lesson Giver" desc_pt="Lição doador" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="REGEN_HP" value="3" bonus="true"/>
+			<add name="MAXHP" value="60" bonus="true"/>
+			<add name="REGEN_MP" value="3" bonus="true"/>
+			<add name="MAXMP" value="60" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="127" nameId="1101151" desc_en="Incarnation of Vengeance" desc_pt="Encarnação da vingança" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ATTACK" value="2" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="10" bonus="true"/>
+			<add name="MAXHP" value="50" bonus="true"/>
+			<add name="PHYSICAL_DEFENSE" value="20" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="128" nameId="1101152" desc_en="Apostle of Justice" desc_pt="Apóstolo da justiça" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="65" bonus="true"/>
+			<add name="MAGICAL_ACCURACY" value="10" bonus="true"/>
+			<add name="PHYSICAL_ACCURACY" value="14" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="129" nameId="1101153" desc_en="Veille's Adversary" desc_pt="O adversário de Veille" race="ASMODIANS" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+			<add name="PHYSICAL_ATTACK" value="3" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="15" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="130" nameId="1101154" desc_en="Hand of Support" desc_pt="Mão de apoio" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="HEAL_BOOST" value="12" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="17" bonus="true"/>
+			<add name="MAXHP" value="50" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="131" nameId="1101155" desc_en="Balaur Voltaire" desc_pt="Balaur Voltaire" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="BLOCK" value="14" bonus="true"/>
+			<add name="PHYSICAL_DEFENSE" value="25" bonus="true"/>
+			<rate name="BOOST_HATE" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="132" nameId="1101156" desc_en="Delver of Mysteries" desc_pt="Aprofundar de mistérios" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="EVASION" value="7" bonus="true"/>
+			<add name="PHYSICAL_ACCURACY" value="14" bonus="true"/>
+			<add name="MAGICAL_ACCURACY" value="10" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="133" nameId="1101157" desc_en="Vanquisher of Veille" desc_pt="Conquistador de Veille" race="ASMODIANS" available="false">
+		<modifiers>
+			<rate name="SPEED" value="3" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="134" nameId="1101158" desc_en="Field Warden" desc_pt="Diretor de campo" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ATTACK" value="2" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="135" nameId="1101159" desc_en="Field Agent" desc_pt="Agente de campo" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ATTACK" value="3" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="17" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="136" nameId="1101160" desc_en="Field Director" desc_pt="Diretor de campo" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ATTACK" value="3" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="17" bonus="true"/>
+			<rate name="SPEED" value="4" bonus="true"/>
+			<rate name="FLY_SPEED" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="137" nameId="1101161" desc_en="Blood Champion" desc_pt="Campeão de Sangue" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="PVP_ATTACK_RATIO" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="138" nameId="1101162" desc_en="Blood Sentinel" desc_pt="Sentinela de Sangue" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="PVP_DEFEND_RATIO" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="139" nameId="1101163" desc_en="Blood Conqueror" desc_pt="Conquistador de sangue" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="PVP_ATTACK_RATIO" value="20" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="140" nameId="1101164" desc_en="Blood Phalanx" desc_pt="Falanx de sangue" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="PVP_DEFEND_RATIO" value="20" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="141" nameId="1101165" desc_en="Fixer" desc_pt="Fixador" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="PVP_ATTACK_RATIO" value="20" bonus="true"/>
+			<add name="PVP_DEFEND_RATIO" value="20" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="142" nameId="1101166" desc_en="Operator" desc_pt="Operador" race="ASMODIANS" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-1" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="1" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="143" nameId="1101167" desc_en="Handler" desc_pt="Manipulador" race="ASMODIANS" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="144" nameId="1101168" desc_en="Daemon" desc_pt="Demônio" race="ASMODIANS" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="145" nameId="1199247" desc_en="Taegeuk Hero" desc_pt="Herói de Taegeuk" race="PC_ALL" available="false">
+		<modifiers>
+			<add name="MAXHP" value="100" bonus="true"/>
+			<add name="MAXMP" value="100" bonus="true"/>
+			<add name="FLY_TIME" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="146" nameId="1199249" desc_en="Daddy Long Legs" desc_pt="Papai pernas longas" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+			<rate name="SPEED" value="4" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="147" nameId="1199251" desc_en="Akarios' Friend" desc_pt="Amigo de Akarios" race="ELYOS" available="false">
+		<modifiers>
+			<rate name="FLY_SPEED" value="2" bonus="true"/>
+			<add name="FLY_TIME" value="5" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="148" nameId="1199252" desc_en="Arekedil's Hope" desc_pt="Esperança de Arekedil" race="ASMODIANS" available="false">
+		<modifiers>
+			<rate name="FLY_SPEED" value="2" bonus="true"/>
+			<add name="FLY_TIME" value="5" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="149" nameId="1199257" desc_en="Tiamat Stalker" desc_pt="Perseguidor de Tiamat" race="ELYOS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ATTACK" value="3" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="17" bonus="true"/>
+			<add name="PHYSICAL_CRITICAL" value="7" bonus="true"/>
+			<add name="MAGICAL_CRITICAL" value="4" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="150" nameId="1199255" desc_en="Obstinate Herdsman" desc_pt="Pastor obstinado" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ATTACK" value="3" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="17" bonus="true"/>
+			<add name="PHYSICAL_CRITICAL" value="7" bonus="true"/>
+			<add name="MAGICAL_CRITICAL" value="4" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="151" nameId="1199259" desc_en="Master of Many Pets" desc_pt="Mestre de muitos animais de estimação" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+			<add name="PHYSICAL_ATTACK" value="3" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="15" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="152" nameId="1185032" desc_en="Charmer" desc_pt="Encantador" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-1" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="1" bonus="true"/>
+			<rate name="SPEED" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="153" nameId="1185034" desc_en="Sucker" desc_pt="Otário" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+			<rate name="SPEED" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="154" nameId="1100969" desc_en="Circumspect Advisor" desc_pt="Conselheiro cauteloso" race="ELYOS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_CRITICAL" value="4" bonus="true"/>
+			<add name="MAGICAL_CRITICAL" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="155" nameId="1100970" desc_en="Kind Counsel" desc_pt="Conselheiro gentil" race="ELYOS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_CRITICAL" value="8" bonus="true"/>
+			<add name="MAGICAL_CRITICAL" value="4" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="156" nameId="1100971" desc_en="Key Master" desc_pt="Mestre -chave" race="ELYOS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_CRITICAL" value="8" bonus="true"/>
+			<add name="MAGICAL_CRITICAL" value="4" bonus="true"/>
+			<rate name="SPEED" value="5" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="157" nameId="1101169" desc_en="Shrewd Counsel" desc_pt="Conselheiro astuto" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_CRITICAL" value="4" bonus="true"/>
+			<add name="MAGICAL_CRITICAL" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="158" nameId="1101170" desc_en="Superb Counsel" desc_pt="Conselho excelente" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_CRITICAL" value="8" bonus="true"/>
+			<add name="MAGICAL_CRITICAL" value="4" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="159" nameId="1101171" desc_en="The Circle Leader" desc_pt="O líder do círculo" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_CRITICAL" value="8" bonus="true"/>
+			<add name="MAGICAL_CRITICAL" value="4" bonus="true"/>
+			<rate name="SPEED" value="5" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="160" nameId="1199261" desc_en="Gufrinerk's Patron" desc_pt="Patrono de Gufrinerk" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="SPEED" value="4" bonus="true"/>
+			<rate name="FLY_SPEED" value="3" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="161" nameId="1199262" desc_en="Jielinlinerk's Patron" desc_pt="Patrono de Jielinliner" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="SPEED" value="4" bonus="true"/>
+			<rate name="FLY_SPEED" value="3" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="162" nameId="1199263" desc_en="Gufrinerk's Faithful Patron" desc_pt="Patrono fiel de Gufrinerk" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<rate name="FLY_SPEED" value="4" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="163" nameId="1199264" desc_en="Jielinlinerk's Faithful Patron" desc_pt="Patrono fiel de Jielinliner" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<rate name="FLY_SPEED" value="4" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="164" nameId="1199269" desc_en="Empyrean Challenger" desc_pt="Desafiador Empreo" race="ELYOS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ACCURACY" value="6" bonus="true"/>
+			<add name="MAGICAL_ACCURACY" value="4" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="165" nameId="1199270" desc_en="Up-and-Comer" desc_pt="Apresento" race="ELYOS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ACCURACY" value="8" bonus="true"/>
+			<add name="MAGICAL_ACCURACY" value="6" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="166" nameId="1199271" desc_en="Master of Preceptors" desc_pt="Mestre de Preceptores" race="ELYOS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ACCURACY" value="10" bonus="true"/>
+			<add name="MAGICAL_ACCURACY" value="8" bonus="true"/>
+			<add name="PHYSICAL_ATTACK" value="1" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="5" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="167" nameId="1199272" desc_en="Mighty Combatant" desc_pt="Poderoso combatente" race="ELYOS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ACCURACY" value="12" bonus="true"/>
+			<add name="MAGICAL_ACCURACY" value="10" bonus="true"/>
+			<add name="PHYSICAL_ATTACK" value="2" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="168" nameId="1199273" desc_en="Crucible Champion" desc_pt="Campeão Crucicado" race="ELYOS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ACCURACY" value="14" bonus="true"/>
+			<add name="MAGICAL_ACCURACY" value="12" bonus="true"/>
+			<add name="PHYSICAL_ATTACK" value="3" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="15" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="169" nameId="1199274" desc_en="Empyrean Challenger" desc_pt="Desafiador Empreo" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ACCURACY" value="6" bonus="true"/>
+			<add name="MAGICAL_ACCURACY" value="4" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="170" nameId="1199275" desc_en="Up-and-Comer" desc_pt="Apresento" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ACCURACY" value="8" bonus="true"/>
+			<add name="MAGICAL_ACCURACY" value="6" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="171" nameId="1199276" desc_en="Master of Preceptors" desc_pt="Mestre de Preceptores" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ACCURACY" value="10" bonus="true"/>
+			<add name="MAGICAL_ACCURACY" value="8" bonus="true"/>
+			<add name="PHYSICAL_ATTACK" value="1" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="5" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="172" nameId="1199277" desc_en="Mighty Combatant" desc_pt="Poderoso combatente" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ACCURACY" value="12" bonus="true"/>
+			<add name="MAGICAL_ACCURACY" value="10" bonus="true"/>
+			<add name="PHYSICAL_ATTACK" value="2" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="173" nameId="1199278" desc_en="Crucible Champion" desc_pt="Campeão Crucicado" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ACCURACY" value="14" bonus="true"/>
+			<add name="MAGICAL_ACCURACY" value="12" bonus="true"/>
+			<add name="PHYSICAL_ATTACK" value="3" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="15" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="174" nameId="1199289" desc_en="Memory Journaler" desc_pt="Revistas de memória" race="ELYOS" available="false">
+		<modifiers>
+			<add name="EVASION" value="10" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="10" bonus="true"/>
+			<add name="BLOCK" value="10" bonus="true"/>
+			<add name="PARRY" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="175" nameId="1199291" desc_en="Dream Journaler" desc_pt="Revistas dos sonhos" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="EVASION" value="10" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="10" bonus="true"/>
+			<add name="BLOCK" value="10" bonus="true"/>
+			<add name="PARRY" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="176" nameId="1185036" desc_en="Festival Crab" desc_pt="Caranguejo do n festival" race="PC_ALL" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ATTACK" value="3" bonus="true"/>
+			<rate name="FLY_SPEED" value="2" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="17" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="177" nameId="1185166" desc_en="[Event] Memorialist" desc_pt="[Anômalo] memorialista" race="PC_ALL" available="false">
+		<modifiers>
+			<add name="MAXHP" value="100" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="8" bonus="true"/>
+			<add name="PHYSICAL_DEFENSE" value="25" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="178" nameId="1185168" desc_en="Indomitable" desc_pt="Indomável" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<add name="MAXHP" value="100" bonus="true"/>
+			<add name="PVP_DEFEND_RATIO" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="179" nameId="1185170" desc_en="New Year" desc_pt="Ano Novo" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="SPEED" value="3" bonus="true"/>
+			<add name="MAXHP" value="200" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="20" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="180" nameId="1185172" desc_en="You Little Chicken!" desc_pt="Seu pequeno frango!" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="SPEED" value="4" bonus="true"/>
+			<add name="MAXHP" value="500" bonus="true"/>
+			<add name="PVP_DEFEND_RATIO" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="181" nameId="1185174" desc_en="Don't Pick On Me!" desc_pt="Não me pegue!" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="SPEED" value="4" bonus="true"/>
+			<add name="MAXHP" value="500" bonus="true"/>
+			<add name="PVP_DEFEND_RATIO" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="182" nameId="1185176" desc_en="Shining Master" desc_pt="Mestre brilhante" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="SPEED" value="4" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-4" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="4" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="183" nameId="1199293" desc_en="Crucible Challenger" desc_pt="Desafiante cadinho" race="ELYOS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ATTACK" value="1" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="5" bonus="true"/>
+			<add name="MAXHP" value="30" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="184" nameId="1199294" desc_en="Crucible Challenger" desc_pt="Desafiante cadinho" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ATTACK" value="1" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="5" bonus="true"/>
+			<add name="MAXHP" value="30" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="185" nameId="1199297" desc_en="Majordomo of Discipline" desc_pt="n mordomo da disciplina" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+			<rate name="SPEED" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="186" nameId="1199299" desc_en="Atreia’s Challenger" desc_pt="Musculoso" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+			<rate name="SPEED" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="187" nameId="1199301" desc_en="Sea-Like" desc_pt="Como um mar" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+			<rate name="SPEED" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="188" nameId="1199307" desc_en="Universally Friendly" desc_pt="Novato" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+			<rate name="SPEED" value="4" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="189" nameId="1199309" desc_en="Universally Earnest" desc_pt="Retorno" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<rate name="FLY_SPEED" value="5" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="190" nameId="1199311" desc_en="Chaser of Atreia" desc_pt="Universalmente amigável" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="SPEED" value="4" bonus="true"/>
+			<add name="BLOCK" value="7" bonus="true"/>
+			<add name="MAXHP" value="200" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="191" nameId="1199313" desc_en="Friendly Sponsor" desc_pt="Universalmente sincero" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<add name="MAXHP" value="200" bonus="true"/>
+			<add name="MAXMP" value="200" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="192" nameId="1199315" desc_en="Earnest Sponsor" desc_pt="Pioneiro" race="PC_ALL" available="false">
+		<modifiers>
+			<add name="PVP_ATTACK_RATIO" value="20" bonus="true"/>
+			<add name="PHYSICAL_ATTACK" value="2" bonus="true"/>
+			<rate name="SPEED" value="4" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="193" nameId="1199317" desc_en="Diligent Sponsor" desc_pt="Patrocinador amigável" race="PC_ALL" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ATTACK" value="2" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-3" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="194" nameId="1199319" desc_en="Big Hitter" desc_pt="Patrocinador sincero" race="PC_ALL" available="false">
+		<modifiers>
+			<add name="MAXHP" value="200" bonus="true"/>
+			<add name="PHYSICAL_ACCURACY" value="6" bonus="true"/>
+			<add name="MAGICAL_ACCURACY" value="6" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="195" nameId="1199321" desc_en="Eager Hitter" desc_pt="Patrocinador diligente" race="PC_ALL" available="false">
+		<modifiers>
+			<add name="BOOST_MAGICAL_SKILL" value="10" bonus="true"/>
+			<add name="MAGICAL_CRITICAL" value="4" bonus="true"/>
+			<add name="PHYSICAL_ATTACK" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="196" nameId="1199323" desc_en="Hard Hitter" desc_pt="Grande rebatedor" race="PC_ALL" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ATTACK" value="3" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="10" bonus="true"/>
+			<rate name="SPEED" value="5" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="197" nameId="1199325" desc_en="Heavy Hitter" desc_pt="Rebatedor de eger" race="PC_ALL" available="false">
+		<modifiers>
+			<add name="BLOCK" value="8" bonus="true"/>
+			<add name="PHYSICAL_DEFENSE" value="20" bonus="true"/>
+			<rate name="SPEED" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="198" nameId="1199327" desc_en="Hard Hitter" desc_pt="Hard Hitter" race="PC_ALL" available="false">
+		<modifiers>
+			<add name="EVASION" value="10" bonus="true"/>
+			<add name="MAGICAL_ACCURACY" value="10" bonus="true"/>
+			<rate name="SPEED" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="199" nameId="1199329" desc_en="Heavy Hitter" desc_pt="Heavy Hitter" race="PC_ALL" available="false">
+		<modifiers>
+			<add name="PVP_ATTACK_RATIO" value="10" bonus="true"/>
+			<add name="PVP_DEFEND_RATIO" value="10" bonus="true"/>
+			<rate name="SPEED" value="4" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="200" nameId="1199331" desc_en="Dreamer" desc_pt="Sonhador" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+			<rate name="SPEED" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="201" nameId="1199357" desc_en="First Captain Conqueror" desc_pt="Primeiro Capitão Conquistador" race="ELYOS" available="false">
+		<modifiers>
+			<add name="BOOST_MAGICAL_SKILL" value="12" bonus="true"/>
+			<add name="MAGICAL_ACCURACY" value="8" bonus="true"/>
+			<add name="MAXMP" value="50" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="202" nameId="1199359" desc_en="Dark Poeta Specialist" desc_pt="Especialista em Sombrio Poeta" race="ELYOS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_CRITICAL" value="10" bonus="true"/>
+			<add name="PHYSICAL_ATTACK" value="3" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="203" nameId="1199361" desc_en="Best Dredgion Strategist" desc_pt="Melhor Estrategista de Dredgion" race="ELYOS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ATTACK" value="2" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="12" bonus="true"/>
+			<add name="MAXHP" value="70" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="204" nameId="1199363" desc_en="Best Elyos Defender" desc_pt="Melhor Defensor Elyos" race="ELYOS" available="false">
+		<modifiers>
+			<add name="BOOST_MAGICAL_SKILL" value="17" bonus="true"/>
+			<add name="MAGICAL_ACCURACY" value="12" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="205" nameId="1199365" desc_en="Lucky Swine" desc_pt="Porco Sortudo" race="ELYOS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ATTACK" value="3" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="17" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="206" nameId="1199367" desc_en="You won 1st place (S rank) in the ‘So They Became Heroes’ event." desc_pt="Você conquistou o 1º lugar (Ranque S) no evento &quot;Assim Eles se Tornaram Heróis&quot;." race="ELYOS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="50" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="6" bonus="true"/>
+			<add name="MAGIC_SKILL_BOOST_RESIST" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="207" nameId="1199369" desc_en="You won 3rd place (S rank) in the ‘So They Became Heroes’ event." desc_pt="Você conquistou o 3º lugar (Ranque S) no evento &quot;Assim Eles se Tornaram Heróis&quot;." race="ELYOS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="70" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="8" bonus="true"/>
+			<add name="MAGIC_SKILL_BOOST_RESIST" value="15" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="208" nameId="1199371" desc_en="You won 2nd place (A rank) in the ‘So They Became Heroes’ event." desc_pt="Você conquistou o 2º lugar (Ranque A) no evento &quot;Assim Eles se Tornaram Heróis&quot;." race="ELYOS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="100" bonus="true"/>
+			<add name="PHYSICAL_DEFENSE" value="30" bonus="true"/>
+			<add name="BLOCK" value="15" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="209" nameId="1199373" desc_en="You’re the first to defeat Calindi." desc_pt="Você foi o primeiro a derrotar Calindi." race="ELYOS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="70" bonus="true"/>
+			<add name="PHYSICAL_DEFENSE" value="20" bonus="true"/>
+			<add name="BLOCK" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="210" nameId="1199375" desc_en="You’re the first to have been recognised as a member of the Miragent Holy Templars." desc_pt="Você foi o primeiro no servidor reconhecido como membro dos Templários Sagrados de Miragent." race="ELYOS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_CRITICAL" value="7" bonus="true"/>
+			<add name="PHYSICAL_ACCURACY" value="9" bonus="true"/>
+			<add name="PHYSICAL_ATTACK" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="211" nameId="1199377" desc_en="You’re the first to defeat Captain Adhati on the Dredgion." desc_pt="Você foi o primeiro a derrotar o Capitão Adhati no Dredgion." race="ELYOS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="100" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="12" bonus="true"/>
+			<add name="MAGIC_SKILL_BOOST_RESIST" value="20" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="212" nameId="1199335" desc_en="First Conqueror of Bakarma" desc_pt="Malopeous" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="BOOST_MAGICAL_SKILL" value="12" bonus="true"/>
+			<add name="MAGICAL_ACCURACY" value="8" bonus="true"/>
+			<add name="MAXMP" value="50" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="213" nameId="1199337" desc_en="First Elyos Officer" desc_pt="Primeiro Oficial Elyos" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_CRITICAL" value="10" bonus="true"/>
+			<add name="PHYSICAL_ATTACK" value="3" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="214" nameId="1199339" desc_en="First Slayer" desc_pt="Primeiro Assassino" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ATTACK" value="2" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="12" bonus="true"/>
+			<add name="MAXHP" value="70" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="215" nameId="1199341" desc_en="You’re the first on the server to have defeated Kromede." desc_pt="Você foi o primeiro no servidor a derrotar Kromede." race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="BOOST_MAGICAL_SKILL" value="17" bonus="true"/>
+			<add name="MAGICAL_ACCURACY" value="12" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="216" nameId="1199343" desc_en="You’re the first Brigade General to have conquered a fortress." desc_pt="Você é o primeiro General de Brigada a conquistar uma fortaleza." race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ATTACK" value="3" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="17" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="217" nameId="1199345" desc_en="You’re the first on the server to become an Asmodian Officer." desc_pt="Você foi o primeiro no servidor a se tornar um Oficial Asmodiano." race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="50" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="6" bonus="true"/>
+			<add name="MAGIC_SKILL_BOOST_RESIST" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="218" nameId="1199347" desc_en="Shimmering S Rank" desc_pt="Ranque S Cintilante" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="70" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="8" bonus="true"/>
+			<add name="MAGIC_SKILL_BOOST_RESIST" value="15" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="219" nameId="1199349" desc_en="Gleaming S Rank" desc_pt="Ranque S Reluzente" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="100" bonus="true"/>
+			<add name="PHYSICAL_DEFENSE" value="30" bonus="true"/>
+			<add name="BLOCK" value="15" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="220" nameId="1199351" desc_en="Shining A Rank" desc_pt="Ranque A Brilhante" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="70" bonus="true"/>
+			<add name="PHYSICAL_DEFENSE" value="20" bonus="true"/>
+			<add name="BLOCK" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="221" nameId="1199353" desc_en="First Conqueror of Calindi" desc_pt="Primeiro Conquistador de Calindi" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_CRITICAL" value="7" bonus="true"/>
+			<add name="PHYSICAL_ACCURACY" value="9" bonus="true"/>
+			<add name="PHYSICAL_ATTACK" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="222" nameId="1199355" desc_en="First Miragent Holy Templar" desc_pt="Primeiro Templário Sagrado de Miragent" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="MAXHP" value="100" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="12" bonus="true"/>
+			<add name="MAGIC_SKILL_BOOST_RESIST" value="20" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="223" nameId="1199379" desc_en="You have made the most attacks on the Dark Poeta." desc_pt="Você realizou o maior número de ataques em Sombrio Poeta." race="PC_ALL" available="false">
+		<modifiers>
+			<add name="MAXMP" value="200" bonus="true"/>
+			<add name="MAXMP" value="200" bonus="true"/>
+			<rate name="FLY_SPEED" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="224" nameId="1199380" desc_en="You have gathered the most Nex Ore in Dark Poeta." desc_pt="Você coletou a maior quantidade de Minério de Nex em Sombrio Poeta." race="PC_ALL" available="false">
+		<modifiers>
+			<add name="BLOCK" value="8" bonus="true"/>
+			<add name="PHYSICAL_DEFENSE" value="20" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="225" nameId="1199381" desc_en="You have won the most victories on the Dredgion." desc_pt="Você conquistou o maior número de vitórias no Dredgion." race="PC_ALL" available="false">
+		<modifiers>
+			<add name="EVASION" value="7" bonus="true"/>
+			<add name="PHYSICAL_ACCURACY" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="226" nameId="1199382" desc_en="You have won the most Abyss Points on the Dredgion." desc_pt="Você acumulou o maior número de Pontos Abissais no Dredgion." race="PC_ALL" available="false">
+		<modifiers>
+			<add name="PHYSICAL_CRITICAL" value="10" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="227" nameId="1199383" desc_en="You have killed the most Asmodian fighters." desc_pt="Você abateu o maior número de combatentes Asmodianos." race="PC_ALL" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ATTACK" value="3" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="4" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="228" nameId="1199384" desc_en="You have killed the most Elyos fighters." desc_pt="Você abateu o maior número de combatentes Elyos." race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="SPEED" value="4" bonus="true"/>
+			<rate name="FLY_SPEED" value="4" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="229" nameId="1199385" desc_en="You have acquired the most eternal pieces of equipment." desc_pt="Você adquiriu o maior número de peças de equipamento eterno." race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<rate name="FLY_SPEED" value="5" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="230" nameId="1199393" desc_en="Lively Child" desc_pt="Criança Animada" race="PC_ALL" available="false">
+		<modifiers>
+			<add name="MAGICAL_RESIST" value="10" bonus="true"/>
+			<add name="PARRY" value="10" bonus="true"/>
+			<add name="BLOCK" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="231" nameId="1199394" desc_en="Cute Chubby Hand" desc_pt="Mãozinha Fofinha" race="PC_ALL" available="false">
+		<modifiers>
+			<add name="MAXHP" value="150" bonus="true"/>
+			<add name="MAXMP" value="100" bonus="true"/>
+			<rate name="SPEED" value="5" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="232" nameId="1199395" desc_en="Student Becomes Master" desc_pt="O Aprendiz Supera o Mestre" race="PC_ALL" available="false">
+		<modifiers>
+			<add name="MAXHP" value="100" bonus="true"/>
+			<add name="PHYSICAL_CRITICAL" value="8" bonus="true"/>
+			<add name="MAGICAL_CRITICAL" value="8" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="233" nameId="1199396" desc_en="Dream Journey" desc_pt="Jornada dos Sonhos" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-3" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="3" bonus="true"/>
+			<rate name="SPEED" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="234" nameId="1199401" desc_en="Scintillating Saviour" desc_pt="Salvador Cintilante" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-1" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="1" bonus="true"/>
+			<rate name="SPEED" value="4" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="235" nameId="1199403" desc_en="A title for Valentine’s Day." desc_pt="Um título para o Dia dos Namorados." race="PC_ALL" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ATTACK" value="3" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="10" bonus="true"/>
+			<rate name="SPEED" value="5" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="236" nameId="1199405" desc_en="A title for White Day." desc_pt="Um título para o Dia Branco." race="PC_ALL" available="false">
+		<modifiers>
+			<add name="PHYSICAL_ATTACK" value="2" bonus="true"/>
+			<rate name="SPEED" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="237" nameId="1199475" desc_en="Siel's Warrior" desc_pt="Siel's Warrior" race="ELYOS" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+			<rate name="SPEED" value="3" bonus="true"/>
+			<add name="MAGIC_SKILL_BOOST_RESIST" value="20" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="238" nameId="1199476" desc_en="Siel's Fighter" desc_pt="Siel's Fighter" race="ASMODIANS" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+			<rate name="SPEED" value="3" bonus="true"/>
+			<add name="MAGIC_SKILL_BOOST_RESIST" value="20" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="239" nameId="1199540" desc_en="Ten-time Champion" desc_pt="Ten-time Champion" race="ELYOS" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+			<rate name="SPEED" value="3" bonus="true"/>
+			<add name="MAXHP" value="80" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="240" nameId="1199541" desc_en="Twenty-time Champion" desc_pt="Twenty-time Champion" race="ELYOS" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+			<rate name="SPEED" value="3" bonus="true"/>
+			<add name="MAXHP" value="100" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="241" nameId="1199542" desc_en="Thirty-time Champion" desc_pt="Thirty-time Champion" race="ELYOS" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+			<rate name="SPEED" value="4" bonus="true"/>
+			<add name="MAXHP" value="100" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="242" nameId="1199543" desc_en="Forty-time Champion" desc_pt="Forty-time Champion" race="ELYOS" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+			<rate name="SPEED" value="4" bonus="true"/>
+			<add name="MAXHP" value="120" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="243" nameId="1199544" desc_en="Academy Legend" desc_pt="Academy Legend" race="ELYOS" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<add name="MAXHP" value="120" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="244" nameId="1199545" desc_en="Ten-time Champion" desc_pt="Ten-time Champion" race="ASMODIANS" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+			<rate name="SPEED" value="3" bonus="true"/>
+			<add name="MAXHP" value="80" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="245" nameId="1199546" desc_en="Twenty-time Champion" desc_pt="Twenty-time Champion" race="ASMODIANS" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+			<rate name="SPEED" value="3" bonus="true"/>
+			<add name="MAXHP" value="100" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="246" nameId="1199547" desc_en="Thirty-time Champion" desc_pt="Thirty-time Champion" race="ASMODIANS" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+			<rate name="SPEED" value="4" bonus="true"/>
+			<add name="MAXHP" value="100" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="247" nameId="1199548" desc_en="Forty-time Champion" desc_pt="Forty-time Champion" race="ASMODIANS" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+			<rate name="SPEED" value="4" bonus="true"/>
+			<add name="MAXHP" value="120" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="248" nameId="1199549" desc_en="Priory Legend" desc_pt="Priory Legend" race="ASMODIANS" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<add name="MAXHP" value="120" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="249" nameId="1199795" desc_en="Tiamat's Challenger" desc_pt="Tiamat's Challenger" race="ELYOS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_CRITICAL" value="7" bonus="true"/>
+			<add name="MAGICAL_CRITICAL" value="4" bonus="true"/>
+			<rate name="SPEED" value="4" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="250" nameId="1199796" desc_en="Tiamat's Challenger" desc_pt="Tiamat's Challenger" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="PHYSICAL_CRITICAL" value="7" bonus="true"/>
+			<add name="MAGICAL_CRITICAL" value="4" bonus="true"/>
+			<rate name="SPEED" value="4" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="251" nameId="1199993" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<add name="MAXHP" value="150" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="252" nameId="1199831" desc_en="Dragonbane" desc_pt="Dragonbane" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<add name="PHYSICAL_ATTACK" value="3" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="15" bonus="true"/>
+			<add name="MAXHP" value="100" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="253" nameId="1199832" desc_en="Dragon Slayer" desc_pt="Dragon Slayer" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<add name="PHYSICAL_ATTACK" value="3" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="15" bonus="true"/>
+			<add name="MAXHP" value="100" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="254" nameId="1199833" desc_en="The Pinnacle Of Beauty" desc_pt="The Pinnacle Of Beauty" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="SPEED" value="3" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="255" nameId="1199834" desc_en="Top Gun" desc_pt="Top Gun" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-3" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="3" bonus="true"/>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<add name="MAXHP" value="100" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="256" nameId="1199889" desc_en="Katalam's Hope" desc_pt="Katalam's Hope" race="PC_ALL" available="false">
+		<modifiers>
+			<add name="PHYSICAL_CRITICAL" value="8" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="15" bonus="true"/>
+			<rate name="SPEED" value="4" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="257" nameId="1199890" desc_en="Katalam's Light" desc_pt="Katalam's Light" race="PC_ALL" available="false">
+		<modifiers>
+			<add name="PHYSICAL_CRITICAL" value="8" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="15" bonus="true"/>
+			<rate name="SPEED" value="4" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="258" nameId="1199891" desc_en="Watcher of the Forest" desc_pt="Watcher of the Forest" race="PC_ALL" available="false">
+		<modifiers>
+			<add name="MAGICAL_CRITICAL" value="5" bonus="true"/>
+			<add name="MAGIC_SKILL_BOOST_RESIST" value="21" bonus="true"/>
+			<rate name="SPEED" value="4" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="259" nameId="1199892" desc_en="Nature's Friend" desc_pt="Nature's Friend" race="PC_ALL" available="false">
+		<modifiers>
+			<add name="MAGICAL_CRITICAL" value="5" bonus="true"/>
+			<add name="MAGIC_SKILL_BOOST_RESIST" value="21" bonus="true"/>
+			<rate name="SPEED" value="4" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="260" nameId="1199897" desc_en="Victor in All Realms" desc_pt="Victor in All Realms" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+			<rate name="SPEED" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="261" nameId="1199933" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
+		<modifiers>
+			<add name="WATER_RESISTANCE" value="50" bonus="true"/>
+			<add name="WIND_RESISTANCE" value="80" bonus="true"/>
+			<add name="FIRE_RESISTANCE" value="100" bonus="true"/>
+			<add name="EARTH_RESISTANCE" value="150" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="262" nameId="1199935" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
+		<modifiers>
+			<add name="ROOT_RESISTANCE" value="50" bonus="true"/>
+			<add name="STUN_RESISTANCE" value="80" bonus="true"/>
+			<add name="SLEEP_RESISTANCE" value="100" bonus="true"/>
+			<add name="OPENAERIAL_RESISTANCE" value="150" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="263" nameId="1199939" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" race="ELYOS" available="false">
+		<modifiers>
+			<add name="MAGICAL_RESIST" value="12" bonus="true"/>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-1" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="1" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="264" nameId="1199942" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" race="ASMODIANS" available="false">
+		<modifiers>
+			<add name="MAGICAL_RESIST" value="12" bonus="true"/>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-1" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="1" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="265" nameId="1199943" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="SPEED" value="3" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+			<add name="PHYSICAL_ATTACK" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="266" nameId="1199944" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<add name="PHYSICAL_CRITICAL" value="8" bonus="true"/>
+			<add name="PHYSICAL_ATTACK" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="267" nameId="1199945" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+			<add name="MAGICAL_CRITICAL" value="4" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="17" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="268" nameId="1199949" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
+		<modifiers>
+			<add name="MAXHP" value="500" bonus="true"/>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-3" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="269" nameId="1199951" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="SPEED" value="1" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="270" nameId="1199955" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-3" bonus="true"/>
+			<add name="PHYSICAL_CRITICAL" value="10" bonus="true"/>
+			<add name="PHYSICAL_ATTACK" value="4" bonus="true"/>
+			<add name="MAXHP" value="120" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="271" nameId="1199956" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="BOOST_CASTING_TIME" value="3" bonus="true"/>
+			<add name="MAGICAL_CRITICAL" value="8" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="18" bonus="true"/>
+			<add name="MAXHP" value="120" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="272" nameId="1199959" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="SPEED" value="3" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-4" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="4" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="273" nameId="1199981" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="SPEED" value="5" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="274" nameId="1199983" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
+		<modifiers>
+			<add name="PVP_DEFEND_RATIO" value="20" bonus="true"/>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-4" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="4" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="275" nameId="1199993" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-1" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="1" bonus="true"/>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<add name="FLY_TIME" value="5" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="276" nameId="1199995" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+			<rate name="SPEED" value="4" bonus="true"/>
+			<rate name="FLY_SPEED" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="277" nameId="1185798" desc_en="Lord Anoha" desc_pt="Lord Anoha" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<add name="PVP_DEFEND_RATIO" value="20" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="278" nameId="1800213" desc_en="[Event] Jakunerk Game Insignia: Costume" desc_pt="[Evento] Insígnia do Jogo de Jakunerk: Traje" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-1" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="1" bonus="true"/>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<add name="MAXHP" value="200" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="279" nameId="1800273" desc_en="Felling Chainblades" desc_pt="Lâminas em Corrente da Queda" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+			<add name="MAXHP" value="200" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="280" nameId="1800274" desc_en="Meeting Sienola" desc_pt="Encontrando Sienola" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+			<add name="MAXHP" value="100" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="281" nameId="1800275" desc_en="Way of the Revenant" desc_pt="O Caminho do espectro" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-1" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="1" bonus="true"/>
+			<add name="MAXHP" value="100" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="282" nameId="1800289" desc_en="All those random items the Bonkers Shugo sold after losing his memory. Are they worth anything? Who knows..." desc_pt="Todos aqueles itens aleatórios que o Shugo Maluco vendeu após perder a memória. Valem alguma coisa? Quem sabe.." race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-1" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="1" bonus="true"/>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="12" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="283" nameId="1800298" desc_en="[Ancient Artwork] Identify an Unknown Lesser Tiamat Painting Fragment" desc_pt="[Arte Antiga] Identifique um Fragmento de Pintura Tiamat Menor Desconhecido" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<add name="PHYSICAL_ACCURACY" value="12" bonus="true"/>
+			<add name="MAGICAL_ACCURACY" value="6" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="284" nameId="1800316" desc_en="Soft Clay" desc_pt="Argila Macia" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="SPEED" value="3" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="285" nameId="1800318" desc_en="Merchants of Ephegeon" desc_pt="Comerciantes de Ephegeon" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="SPEED" value="3" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="286" nameId="1801075" desc_en="Top Part of the Secret Document" desc_pt="Parte superior do Documento Secreto" race="PC_ALL" available="false">
+		<modifiers>
+			<add name="MAXHP" value="500" bonus="true"/>
+			<add name="MAXMP" value="500" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="287" nameId="1801154" desc_en="[Weekly] Dealing with Leowasps" desc_pt="[Semanal] Lidando com as Leovespas" race="ELYOS" available="false">
+		<modifiers>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-1" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="1" bonus="true"/>
+			<add name="MAXHP" value="200" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="288" nameId="1801156" desc_en="[Weekly] Culling Pucas" desc_pt="[Semanal] Abatendo Pucas" race="ELYOS" available="false">
+		<modifiers>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-1" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="1" bonus="true"/>
+			<add name="MAXHP" value="200" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="289" nameId="1801158" desc_en="[Weekly] Culling Plumas" desc_pt="[Semanal] Abatendo Plumas" race="ELYOS" available="false">
+		<modifiers>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-1" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="1" bonus="true"/>
+			<add name="MAXHP" value="200" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="290" nameId="1801160" desc_en="Guardian Labourer’s Information" desc_pt="Informações do Trabalhador Guardião" race="ASMODIANS" available="false">
+		<modifiers>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-1" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="1" bonus="true"/>
+			<add name="MAXHP" value="200" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="291" nameId="1801162" desc_en="Reian Refugee’s Information" desc_pt="Informações do Refugiado Reian" race="ASMODIANS" available="false">
+		<modifiers>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-1" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="1" bonus="true"/>
+			<add name="MAXHP" value="200" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="292" nameId="1801164" desc_en="Archon Labourer’s Information" desc_pt="Informações do Trabalhador Arconte" race="ASMODIANS" available="false">
+		<modifiers>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-1" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="1" bonus="true"/>
+			<add name="MAXHP" value="200" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="293" nameId="1801166" desc_en="Reian Refugee’s Information" desc_pt="Informações do Refugiado Reian" race="ELYOS" available="false">
+		<modifiers>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<add name="PHYSICAL_CRITICAL" value="8" bonus="true"/>
+			<add name="MAGICAL_CRITICAL" value="5" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="294" nameId="1801168" desc_en="The Guardian Labourer’s Information." desc_pt="As Informações do Trabalhador Guardião." race="ASMODIANS" available="false">
+		<modifiers>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<add name="PHYSICAL_CRITICAL" value="8" bonus="true"/>
+			<add name="MAGICAL_CRITICAL" value="5" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="295" nameId="1199943" desc_en="(unused) New zone tab name range 1199900-1199998 / update after use" desc_pt="(Não em uso) Nova aba de zona 1199900-1199998 / atualizar após uso" race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="SPEED" value="3" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="296" nameId="1801354" desc_en="테스트용 과일" desc_pt="Fruta de Teste" race="PC_ALL" available="false">
+		<modifiers>
+			<add name="MAXHP" value="300" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-1" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="1" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="297" nameId="1801355" desc_en="테스트용 과일입니다." desc_pt="Esta é uma fruta para testes." race="PC_ALL" available="false">
+		<modifiers>
+			<add name="MAXHP" value="100" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+			<rate name="SPEED" value="1" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="298" nameId="1801356" desc_en="Am I Bothered?" desc_pt="Eu Me Importo?" race="PC_ALL" available="false">
+		<modifiers>
+			<add name="MAXHP" value="100" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="SPEED" value="1" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="299" nameId="1801357" desc_en="A title to celebrate the webtoon “I Can’t Be Bothered, But I Saved the Girl.&quot;" desc_pt="Um título para celebrar o evento especial de salvamento." race="PC_ALL" available="false">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-1" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="1" bonus="true"/>
+			<rate name="SPEED" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="300" nameId="1801358" desc_en="A New Stigma Slot" desc_pt="Um Novo Espaço de Estigma" race="PC_ALL" available="false">
+		<modifiers>
+			<add name="MAXHP" value="500" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-4" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="4" bonus="true"/>
+			<rate name="SPEED" value="5" bonus="true"/>
+		</modifiers>
+	</title>
+
+	<title id="408" nameId="1803041" desc_en="Terminal Wings" desc_pt="Asas Terminais" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="80" bonus="true"/>
+			<permille name="ATTACK_SPEED" value="-50" bonus="true"/>
+			<permille name="BOOST_CASTING_TIME" value="50" bonus="true"/>
+			<add name="CRITICAL_DAMAGE_BOOST" value="8" bonus="true"/>
+			<add name="PVP_ATTACK_RATIO" value="25" bonus="true"/>
+			<add name="PVE_ATTACK_RATIO" value="25" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="409" nameId="1803042" desc_en="Sharp Blade" desc_pt="Lâmina Afiada" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="58" bonus="true"/>
+			<permille name="ATTACK_SPEED" value="-35" bonus="true"/>
+			<add name="POWER" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="410" nameId="1803043" desc_en="Steadfast Shield" desc_pt="Firme escudo" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="58" bonus="true"/>
+			<permille name="ATTACK_SPEED" value="-35" bonus="true"/>
+			<add name="HEALTH" value="5" bonus="true"/>
+			<add name="BLOCK" value="31" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="411" nameId="1803044" desc_en="Mortal Blow" desc_pt="Golpe n mortal" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="58" bonus="true"/>
+			<permille name="ATTACK_SPEED" value="-35" bonus="true"/>
+			<add name="AGILITY" value="5" bonus="true"/>
+			<add name="PHYSICAL_CRITICAL" value="30" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="412" nameId="1803045" desc_en="Eye of the Ranger" desc_pt="Olho do Arqueiro" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="58" bonus="true"/>
+			<permille name="ATTACK_SPEED" value="-35" bonus="true"/>
+			<add name="ACCURACY" value="5" bonus="true"/>
+			<add name="PVP_ATTACK_RATIO" value="10" bonus="true"/>
+			<add name="PVE_ATTACK_RATIO" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="413" nameId="1803046" desc_en="Frenzied Magic" desc_pt="Magia Frenética" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="58" bonus="true"/>
+			<permille name="BOOST_CASTING_TIME" value="35" bonus="true"/>
+			<add name="KNOWLEDGE" value="1" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="414" nameId="1803047" desc_en="Ruler of Souls" desc_pt="Governante das Almas" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="58" bonus="true"/>
+			<permille name="BOOST_CASTING_TIME" value="35" bonus="true"/>
+			<add name="WILL" value="5" bonus="true"/>
+			<add name="PVP_ATTACK_RATIO" value="10" bonus="true"/>
+			<add name="PVE_ATTACK_RATIO" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="415" nameId="1803048" desc_en="Holy Radiance" desc_pt="Esplendor Sagrado" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="58" bonus="true"/>
+			<permille name="BOOST_CASTING_TIME" value="35" bonus="true"/>
+			<add name="MAXHP" value="1120" bonus="true"/>
+			<add name="HEAL_BOOST" value="30" bonus="true"/>
+			<add name="PVP_DEFEND_RATIO" value="30" bonus="true"/>
+			<add name="PVE_DEFEND_RATIO" value="30" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="416" nameId="1803049" desc_en="Battlefield Prayer" desc_pt="Oração no campo de batalha" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="58" bonus="true"/>
+			<permille name="ATTACK_SPEED" value="-35" bonus="true"/>
+			<add name="POWER" value="1" bonus="true"/>
+			<add name="HEAL_BOOST" value="30" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="417" nameId="1803050" desc_en="Relentless Execution" desc_pt="Execução implacável" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="58" bonus="true"/>
+			<permille name="ATTACK_SPEED" value="-35" bonus="true"/>
+			<add name="PHYSICAL_ATTACK" value="10" bonus="true"/>
+			<add name="PHYSICAL_ACCURACY" value="27" bonus="true"/>
+			<add name="PVP_ATTACK_RATIO" value="10" bonus="true"/>
+			<add name="PVE_ATTACK_RATIO" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="418" nameId="1803051" desc_en="Fist of the Storm" desc_pt="Punho da Tempestade" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="58" bonus="true"/>
+			<permille name="ATTACK_SPEED" value="-35" bonus="true"/>
+			<add name="PHYSICAL_CRITICAL" value="21" bonus="true"/>
+			<add name="PVP_ATTACK_RATIO" value="15" bonus="true"/>
+			<add name="PVE_ATTACK_RATIO" value="15" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="419" nameId="1803052" desc_en="Flash of Light" desc_pt="Flash de Luz" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="58" bonus="true"/>
+			<permille name="ATTACK_SPEED" value="-35" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="27" bonus="true"/>
+			<add name="MAGICAL_CRITICAL" value="4" bonus="true"/>
+			<add name="PVP_ATTACK_RATIO" value="10" bonus="true"/>
+			<add name="PVE_ATTACK_RATIO" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="420" nameId="1803053" desc_en="Flame Bullet" desc_pt="Bala de chama" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="58" bonus="true"/>
+			<permille name="ATTACK_SPEED" value="-35" bonus="true"/>
+			<add name="MAGICAL_ACCURACY" value="18" bonus="true"/>
+			<add name="MAGICAL_CRITICAL" value="4" bonus="true"/>
+			<add name="PVP_ATTACK_RATIO" value="10" bonus="true"/>
+			<add name="PVE_ATTACK_RATIO" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="421" nameId="1803054" desc_en="Magical Blade" desc_pt="Lâmina Mágica" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="58" bonus="true"/>
+			<permille name="ATTACK_SPEED" value="-35" bonus="true"/>
+			<add name="PHYSICAL_ATTACK" value="5" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="27" bonus="true"/>
+			<add name="PVP_ATTACK_RATIO" value="15" bonus="true"/>
+			<add name="PVE_ATTACK_RATIO" value="15" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="422" nameId="1803055" desc_en="YOLO" desc_pt="YOLO" race="PC_ALL">
+		<modifiers>
+			<add name="PVP_ATTACK_RATIO" value="50" bonus="true"/>
+			<add name="PVE_ATTACK_RATIO" value="50" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="423" nameId="1803056" desc_en="Red Winged Fighter" desc_pt="Lutador de Asas Vermelhas" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="55" bonus="true"/>
+			<permille name="ATTACK_SPEED" value="-25" bonus="true"/>
+			<permille name="BOOST_CASTING_TIME" value="25" bonus="true"/>
+			<add name="PHYSICAL_CRITICAL" value="21" bonus="true"/>
+			<add name="CRITICAL_DAMAGE_BOOST" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="424" nameId="1803057" desc_en="Defier of Fate" desc_pt="Desafiador do Destino" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="55" bonus="true"/>
+			<permille name="ATTACK_SPEED" value="-25" bonus="true"/>
+			<permille name="BOOST_CASTING_TIME" value="25" bonus="true"/>
+			<add name="MAGICAL_CRITICAL" value="4" bonus="true"/>
+			<add name="CRITICAL_DAMAGE_BOOST" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="425" nameId="1803058" desc_en="Fatebreaker" desc_pt="Quebra-destino" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="55" bonus="true"/>
+			<permille name="ATTACK_SPEED" value="-25" bonus="true"/>
+			<permille name="BOOST_CASTING_TIME" value="25" bonus="true"/>
+			<add name="PVE_ATTACK_RATIO" value="20" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="426" nameId="1803059" desc_en="Holy Shadow" desc_pt="Sombra Sagrada" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="55" bonus="true"/>
+			<permille name="ATTACK_SPEED" value="-28" bonus="true"/>
+			<add name="PVP_ATTACK_RATIO" value="10" bonus="true"/>
+			<add name="PVE_ATTACK_RATIO" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="427" nameId="1803060" desc_en="Twilight Duellist" desc_pt="Duelista 1 crepuscular. 2 indistinto" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="55" bonus="true"/>
+			<permille name="BOOST_CASTING_TIME" value="28" bonus="true"/>
+			<add name="PVP_ATTACK_RATIO" value="10" bonus="true"/>
+			<add name="PVE_ATTACK_RATIO" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="428" nameId="1803061" desc_en="Corrupted Wings" desc_pt="Asas Corrompidas" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="55" bonus="true"/>
+			<permille name="ATTACK_SPEED" value="-26" bonus="true"/>
+			<permille name="BOOST_CASTING_TIME" value="26" bonus="true"/>
+			<add name="PVP_DEFEND_RATIO" value="20" bonus="true"/>
+			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="429" nameId="1803062" desc_en="Apostle of Starlight" desc_pt="Apóstolo da Luz Estelar" race="PC_ALL">
+		<modifiers>
+			<permille name="ATTACK_SPEED" value="-30" bonus="true"/>
+			<permille name="BOOST_CASTING_TIME" value="30" bonus="true"/>
+			<add name="PVP_ATTACK_RATIO" value="20" bonus="true"/>
+			<add name="PVE_ATTACK_RATIO" value="20" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="430" nameId="1803063" desc_en="Mark of Oblivion" desc_pt="Marca do Esquecimento" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="50" bonus="true"/>
+			<permille name="ATTACK_SPEED" value="-35" bonus="true"/>
+			<permille name="BOOST_CASTING_TIME" value="35" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="431" nameId="1803064" desc_en="World Saviour" desc_pt="Salvador Mundial" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="53" bonus="true"/>
+			<permille name="ATTACK_SPEED" value="-20" bonus="true"/>
+			<permille name="BOOST_CASTING_TIME" value="20" bonus="true"/>
+			<add name="PVE_ATTACK_RATIO" value="20" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="432" nameId="1803065" desc_en="Divine Fragment Bearer" desc_pt="Portador do Fragmento Divino" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="53" bonus="true"/>
+			<permille name="ATTACK_SPEED" value="-20" bonus="true"/>
+			<permille name="BOOST_CASTING_TIME" value="20" bonus="true"/>
+			<add name="PVP_DEFEND_RATIO" value="20" bonus="true"/>
+			<add name="PVE_DEFEND_RATIO" value="20" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="433" nameId="1803066" desc_en="Conqueror of the Abyssal Throne" desc_pt="Conquistador do Trono Abissal" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="55" bonus="true"/>
+			<add name="EVASION" value="21" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="18" bonus="true"/>
+			<add name="BLOCK" value="31" bonus="true"/>
+			<add name="PARRY" value="31" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="434" nameId="1803067" desc_en="Battlefield Oath" desc_pt="Juramento do campo de batalha" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="55" bonus="true"/>
+			<add name="MAGIC_SKILL_BOOST_RESIST" value="35" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="435" nameId="1803068" desc_en="Reliable Companion" desc_pt="Companheiro confiável" race="PC_ALL">
+		<modifiers>
+			<permille name="BOOST_CASTING_TIME" value="30" bonus="true"/>
+			<add name="HEAL_BOOST" value="50" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="436" nameId="1803069" desc_en="Commander" desc_pt="Comandante" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="65" bonus="true"/>
+			<permille name="FLY_SPEED" value="65" bonus="true"/>
+			<add name="FLY_TIME" value="50" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="437" nameId="1803070" desc_en="Source of Strength" desc_pt="Fonte de Força" race="PC_ALL">
+		<modifiers>
+			<add name="POWER" value="1" bonus="true"/>
+			<add name="HEALTH" value="1" bonus="true"/>
+			<add name="AGILITY" value="1" bonus="true"/>
+			<add name="ACCURACY" value="1" bonus="true"/>
+			<add name="KNOWLEDGE" value="1" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="438" nameId="1803071" desc_en="Free Spirit" desc_pt="Espírito Livre" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="62" bonus="true"/>
+			<add name="PHYSICAL_DEFENSE" value="115" bonus="true"/>
+			<add name="MAXHP" value="150" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="439" nameId="1803072" desc_en="Dimension Overcomer" desc_pt="Superador de Dimensão" race="PC_ALL">
+		<modifiers>
+			<add name="REGEN_HP" value="15" bonus="true"/>
+			<add name="MAXHP" value="360" bonus="true"/>
+			<add name="REGEN_MP" value="15" bonus="true"/>
+			<add name="MAXMP" value="360" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="440" nameId="1803073" desc_en="Peculiar" desc_pt="prerrogativa" race="PC_ALL">
+		<modifiers>
+			<permille name="ATTACK_SPEED" value="-30" bonus="true"/>
+			<permille name="BOOST_CASTING_TIME" value="30" bonus="true"/>
+			<add name="POWER" value="1" bonus="true"/>
+			<add name="FLY_TIME" value="50" bonus="true"/>
+			<rate name="FLY_SPEED" value="6" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="441" nameId="1803074" desc_en="Sensitive" desc_pt="Sensível" race="PC_ALL">
+		<modifiers>
+			<permille name="ATTACK_SPEED" value="-30" bonus="true"/>
+			<permille name="BOOST_CASTING_TIME" value="30" bonus="true"/>
+			<add name="KNOWLEDGE" value="1" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="442" nameId="1803075" desc_en="Honourary Black Cloud" desc_pt="Nuvem Negra Honorária" race="PC_ALL">
+		<modifiers>
+			<rate name="SPEED" value="5" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="443" nameId="1803076" desc_en="Wheeler-Dealer" desc_pt="Revendedor Veículo com rodas" race="PC_ALL">
+		<modifiers>
+			<rate name="SPEED" value="5" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="444" nameId="1803077" desc_en="Delegate of the Alabaster Order" desc_pt="Delegado da Ordem do Alabastro" race="PC_ALL">
+		<modifiers>
+			<add name="PHYSICAL_ATTACK" value="3" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="17" bonus="true"/>
+			<rate name="SPEED" value="4" bonus="true"/>
+			<rate name="FLY_SPEED" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="445" nameId="1803078" desc_en="Seeker" desc_pt="Buscador" race="PC_ALL">
+		<modifiers>
+			<add name="PVP_ATTACK_RATIO" value="20" bonus="true"/>
+			<add name="PVP_DEFEND_RATIO" value="20" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="446" nameId="1803079" desc_en="Fortuneer" desc_pt="Adivinho" race="PC_ALL">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+			<add name="FLY_TIME" value="30" bonus="true"/>
+			<rate name="FLY_SPEED" value="5" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="447" nameId="1803080" desc_en="Observatory Protector" desc_pt="Protetor de observatório" race="PC_ALL">
+		<modifiers>
+			<add name="PHYSICAL_ATTACK" value="3" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="17" bonus="true"/>
+			<rate name="SPEED" value="4" bonus="true"/>
+			<rate name="FLY_SPEED" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="448" nameId="1803081" desc_en="Fixer" desc_pt="Fixador" race="PC_ALL">
+		<modifiers>
+			<add name="PVP_ATTACK_RATIO" value="20" bonus="true"/>
+			<add name="PVP_DEFEND_RATIO" value="20" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="449" nameId="1803082" desc_en="Daemon" desc_pt="Demônio" race="PC_ALL">
+		<modifiers>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="450" nameId="1803083" desc_en="Key Master" desc_pt="Mestre -chave" race="PC_ALL">
+		<modifiers>
+			<add name="PHYSICAL_CRITICAL" value="8" bonus="true"/>
+			<add name="MAGICAL_CRITICAL" value="4" bonus="true"/>
+			<rate name="SPEED" value="5" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="451" nameId="1803084" desc_en="The Circle Leader" desc_pt="O líder do círculo" race="PC_ALL">
+		<modifiers>
+			<add name="PHYSICAL_CRITICAL" value="8" bonus="true"/>
+			<add name="MAGICAL_CRITICAL" value="4" bonus="true"/>
+			<rate name="SPEED" value="5" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="452" nameId="1803085" desc_en="Bounty Expert" desc_pt="ItemPlay1 orientado a dados1" race="PC_ALL">
+		<modifiers>
+			<add name="MAXHP" value="200" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="20" bonus="true"/>
+			<rate name="SPEED" value="4" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="453" nameId="1803086" desc_en="Specialist" desc_pt="Especialista Mestre" race="PC_ALL">
+		<modifiers>
+			<add name="MAXHP" value="200" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="20" bonus="true"/>
+			<rate name="SPEED" value="4" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="454" nameId="1803087" desc_en="Hope and Glory" desc_pt="Scolopen Cauda" race="PC_ALL">
+		<modifiers>
+			<rate name="SPEED" value="3" bonus="true"/>
+			<add name="PHYSICAL_ATTACK" value="2" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="10" bonus="true"/>
+			<add name="MAXHP" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="455" nameId="1803088" desc_en="Natural Talent" desc_pt="Item de Maloren" race="PC_ALL">
+		<modifiers>
+			<add name="PHYSICAL_ACCURACY" value="12" bonus="true"/>
+			<add name="MAGICAL_ACCURACY" value="10" bonus="true"/>
+			<add name="PHYSICAL_ATTACK" value="2" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="456" nameId="1803089" desc_en="Phantasmata" desc_pt="Coleta de amostras" race="PC_ALL">
+		<modifiers>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<add name="MAGICAL_CRITICAL" value="4" bonus="true"/>
+			<add name="PHYSICAL_CRITICAL" value="8" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="457" nameId="1803090" desc_en="Role Model of Youth" desc_pt="Curandeiros aquáticos" race="PC_ALL">
+		<modifiers>
+			<add name="PHYSICAL_DEFENSE" value="35" bonus="true"/>
+			<add name="MAXHP" value="60" bonus="true"/>
+			<add name="FLY_TIME" value="30" bonus="true"/>
+			<rate name="FLY_SPEED" value="5" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="458" nameId="1803091" desc_en="On the Trail of Blood" desc_pt="Esse item irá aumentar seu prestígio e resetar seu nível para o 50." race="PC_ALL">
+		<modifiers>
+			<add name="PVP_ATTACK_RATIO" value="20" bonus="true"/>
+			<add name="PVP_DEFEND_RATIO" value="20" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="459" nameId="1803092" desc_en="Protectorate Patrol" desc_pt="Patrulha do Protetorado" race="PC_ALL">
+		<modifiers>
+			<add name="PHYSICAL_ATTACK" value="3" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="17" bonus="true"/>
+			<rate name="SPEED" value="4" bonus="true"/>
+			<rate name="FLY_SPEED" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="460" nameId="1803093" desc_en="Protectorate Guardian" desc_pt="Guardião do Protetorado" race="PC_ALL">
+		<modifiers>
+			<add name="MAXHP" value="200" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="20" bonus="true"/>
+			<rate name="SPEED" value="4" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="461" nameId="1803094" desc_en="First Guardian General Vanquisher" desc_pt="Primeiro General Guardião Conquistador" race="PC_ALL">
+		<modifiers>
+			<add name="PHYSICAL_ACCURACY" value="15" bonus="true"/>
+			<add name="MAGICAL_ACCURACY" value="5" bonus="true"/>
+			<add name="MAXHP" value="100" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="462" nameId="1803095" desc_en="Last Guardian General’s Witness" desc_pt="Testemunha do Último Guardião Geral" race="PC_ALL">
+		<modifiers>
+			<add name="PHYSICAL_ATTACK" value="2" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="10" bonus="true"/>
+			<add name="MAXHP" value="100" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="463" nameId="1803096" desc_en="Wandering Adventurer" desc_pt="Aventureiro Errante" race="PC_ALL">
+		<modifiers>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+			<add name="MAXHP" value="100" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="464" nameId="1803097" desc_en="Wandering Adventurer II" desc_pt="Aventureiro Errante II" race="PC_ALL">
+		<modifiers>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+			<add name="PVE_ATTACK_RATIO" value="20" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="465" nameId="1803098" desc_en="Wandering Adventurer III" desc_pt="Aventureiro Errante III" race="PC_ALL">
+		<modifiers>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="2" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="56" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="466" nameId="1803099" desc_en="Krall Hunter" desc_pt="Caçador de Krall" race="PC_ALL">
+		<modifiers>
+			<add name="PHYSICAL_CRITICAL" value="2" bonus="true"/>
+			<add name="FLY_TIME" value="1" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="467" nameId="1803100" desc_en="Patient" desc_pt="Paciente" race="PC_ALL">
+		<modifiers>
+			<add name="EVASION" value="3" bonus="true"/>
+			<add name="PHYSICAL_ACCURACY" value="6" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="468" nameId="1803101" desc_en="Soul Teacher" desc_pt="n professor universitário. de alma" race="PC_ALL">
+		<modifiers>
+			<add name="PHYSICAL_CRITICAL" value="5" bonus="true"/>
+			<add name="PHYSICAL_ATTACK" value="2" bonus="true"/>
+			<add name="PARRY" value="8" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="469" nameId="1803102" desc_en="Chief Investigator" desc_pt="Investigador -chefe" race="PC_ALL">
+		<modifiers>
+			<add name="PHYSICAL_ATTACK" value="1" bonus="true"/>
+			<rate name="SPEED" value="4" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="8" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="470" nameId="1803103" desc_en="Invincible" desc_pt="Invencível" race="PC_ALL">
+		<modifiers>
+			<add name="MAXHP" value="50" bonus="true"/>
+			<add name="FLY_TIME" value="15" bonus="true"/>
+			<rate name="FLY_SPEED" value="4" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="471" nameId="1803104" desc_en="Seraphic Vindicator" desc_pt="Vindicador Seraficas" race="PC_ALL">
+		<modifiers>
+			<add name="MAXHP" value="52" bonus="true"/>
+			<add name="PHYSICAL_DEFENSE" value="30" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="472" nameId="1803105" desc_en="Unyielding Pioneer" desc_pt="Pioneiro inflexível" race="PC_ALL">
+		<modifiers>
+			<add name="MAGICAL_ACCURACY" value="6" bonus="true"/>
+			<add name="MAXMP" value="28" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="473" nameId="1803106" desc_en="Invincible" desc_pt="Invencível" race="PC_ALL">
+		<modifiers>
+			<add name="MAXHP" value="50" bonus="true"/>
+			<add name="FLY_TIME" value="5" bonus="true"/>
+			<rate name="FLY_SPEED" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="474" nameId="1803107" desc_en="Shedim Conquerer" desc_pt="Shedim Conquiser" race="PC_ALL">
+		<modifiers>
+			<add name="MAXHP" value="52" bonus="true"/>
+			<add name="PHYSICAL_DEFENSE" value="30" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-2" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="475" nameId="1803108" desc_en="Hand of Support" desc_pt="Mão de apoio" race="PC_ALL">
+		<modifiers>
+			<add name="HEAL_BOOST" value="12" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="17" bonus="true"/>
+			<add name="MAXHP" value="50" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="476" nameId="1803109" desc_en="Obstinate Herdsman" desc_pt="Pastor obstinado" race="PC_ALL">
+		<modifiers>
+			<add name="PHYSICAL_ATTACK" value="3" bonus="true"/>
+			<add name="BOOST_MAGICAL_SKILL" value="17" bonus="true"/>
+			<add name="PHYSICAL_CRITICAL" value="7" bonus="true"/>
+			<add name="MAGICAL_CRITICAL" value="4" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="477" nameId="1803110" desc_en="Dream Journaler" desc_pt="Revistas dos sonhos" race="PC_ALL">
+		<modifiers>
+			<add name="EVASION" value="10" bonus="true"/>
+			<add name="MAGICAL_RESIST" value="10" bonus="true"/>
+			<add name="BLOCK" value="10" bonus="true"/>
+			<add name="PARRY" value="10" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="478" nameId="1803111" desc_en="Treasured" desc_pt="Estimado" race="PC_ALL">
+		<modifiers>
+			<rate name="SPEED" value="5" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="479" nameId="1803112" desc_en="Atreia’s Champion" desc_pt="Q9692 Item 3 da missão (reunir)" race="PC_ALL">
+		<modifiers>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-3" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="3" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="480" nameId="1803113" desc_en="Lord of Valour" desc_pt="Q9693 Item 1 da missão (itens de reunir)" race="PC_ALL">
+		<modifiers>
+			<add name="PVP_ATTACK_RATIO" value="20" bonus="true"/>
+			<rate name="SPEED" value="5" bonus="true"/>
+			<rate name="ATTACK_SPEED" value="-1" bonus="true"/>
+			<rate name="BOOST_CASTING_TIME" value="1" bonus="true"/>
+		</modifiers>
+	</title>
+	<title id="481" nameId="1803192" desc_en="Transcended Descendant" desc_pt="Descendente Transcendido" race="PC_ALL">
+		<modifiers>
+			<permille name="SPEED" value="65" bonus="true"/>
+			<permille name="ATTACK_SPEED" value="-38" bonus="true"/>
+			<permille name="BOOST_CASTING_TIME" value="38" bonus="true"/>
+			<add name="PVP_ATTACK_RATIO" value="20" bonus="true"/>
+			<add name="PVE_ATTACK_RATIO" value="20" bonus="true"/>
+		</modifiers>
+	</title>
+</player_titles>

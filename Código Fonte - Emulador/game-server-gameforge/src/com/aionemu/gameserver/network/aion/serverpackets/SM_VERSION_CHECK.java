@@ -1,0 +1,98 @@
+package com.aionemu.gameserver.network.aion.serverpackets;
+
+import java.lang.management.ManagementFactory;
+import java.util.Calendar;
+
+import com.aionemu.gameserver.configs.main.GSConfig;
+import com.aionemu.gameserver.configs.main.MembershipConfig;
+import com.aionemu.gameserver.configs.network.NetworkConfig;
+import com.aionemu.gameserver.network.aion.AionConnection;
+import com.aionemu.gameserver.network.aion.AionServerPacket;
+import com.aionemu.gameserver.network.chatserver.ChatServer;
+import com.aionemu.gameserver.utils.time.ServerTime;
+
+public class SM_VERSION_CHECK extends AionServerPacket {
+
+	private int version;
+	private int characterLimitCount;
+	private final int characterFactionsMode;
+	private final int characterCreateMode;
+
+	public SM_VERSION_CHECK(com.aionemu.gameserver.model.EventTheme eventTheme) {
+		this(192);
+	}
+
+	public SM_VERSION_CHECK(int version) {
+		this.version = version;
+		if (MembershipConfig.CHARACTER_ADDITIONAL_ENABLE != 10 && MembershipConfig.CHARACTER_ADDITIONAL_COUNT > GSConfig.CHARACTER_LIMIT_COUNT) {
+			characterLimitCount = MembershipConfig.CHARACTER_ADDITIONAL_COUNT;
+		} else {
+			characterLimitCount = GSConfig.CHARACTER_LIMIT_COUNT;
+		}
+		if (GSConfig.CHARACTER_CREATION_MODE < 0 || GSConfig.CHARACTER_CREATION_MODE > 2) {
+			characterFactionsMode = 0;
+		} else {
+			characterFactionsMode = GSConfig.CHARACTER_CREATION_MODE;
+		}
+		if (GSConfig.CHARACTER_FACTION_LIMITATION_MODE < 0 || GSConfig.CHARACTER_FACTION_LIMITATION_MODE > 3) {
+			characterCreateMode = 0;
+		} else {
+			characterCreateMode = GSConfig.CHARACTER_FACTION_LIMITATION_MODE * 0x04;
+		}
+	}
+
+	@Override
+	protected void writeImpl(AionConnection con) {
+		if (version < 192) {
+			writeC(0x02);
+			return;
+		}
+		writeC(0x00);
+		writeC(NetworkConfig.GAMESERVER_ID);
+		writeD(240726);
+		writeD(240726);
+		writeD(0);
+		writeD(240726);
+		// início do servidor: o cliente soma o tempo no ar do S_SYNC_TIME (1º D) e tira daí a hora do chat. No oficial, 07:14:40 + 5,9 h de
+		// uptime = 13:08:56 UTC da captura (Login_World 27/08). Com a hora atual aqui, o chat adiantava o tempo em que o servidor estava no ar.
+		writeD((int) (ManagementFactory.getRuntimeMXBean().getStartTime() / 1000));
+		writeC(0);
+		writeC(GSConfig.SERVER_COUNTRY_CODE);
+		writeC(0);
+		// Cliente de setembro em diante (58 b, todas as capturas desde 11/09): modo e limite em bytes separados, oficial 01 0C. O layout de agosto
+		// juntava os dois num byte (0xC1) e tinha 57 b; com ele o cliente atual lia a hora, o fuso e o endereço do chat deslocados em 1 byte.
+		writeC(characterFactionsMode | characterCreateMode);
+		writeC(characterLimitCount);
+		writeD((int) (Calendar.getInstance().getTimeInMillis() / 1000));
+		// fuso em segundos com o sinal invertido (UTC - valor = hora local), duas vezes como no oficial EU (-3600, -3600). Vem do
+		// gameserver.timezone (vazio = fuso do sistema).
+		int timezone = -ServerTime.now().getOffset().getTotalSeconds();
+		writeD(timezone);
+		writeD(timezone);
+		writeH(1); // loop size
+		{
+			writeC(0x00); // spacer
+			byte[] chatIp = ChatServer.getInstance().getPublicIP();
+			if (chatIp == null || chatIp.length == 0) {
+				if (NetworkConfig.CLIENT_CONNECT_ADDRESS != null && NetworkConfig.CLIENT_CONNECT_ADDRESS.getAddress() != null) {
+					chatIp = NetworkConfig.CLIENT_CONNECT_ADDRESS.getAddress().getAddress();
+				} else {
+					chatIp = new byte[] { 127, 0, 0, 1 };
+				}
+			}
+			writeB(chatIp);
+			int port = ChatServer.getInstance().getPublicPort();
+			if (port == 0) {
+				port = NetworkConfig.CHAT_ADDRESS != null ? NetworkConfig.CHAT_ADDRESS.getPort() : 9021;
+			}
+			writeH(port);
+		}
+		// Cauda oficial, igual nas 14 sessoes capturadas: D 667, C 0, C 1, D 0.
+		// O C em +0x5c e um modo global do Game.dll (31 leituras); 1 derruba o cliente na lista de personagens.
+		writeD(667);
+		writeC(0);
+		writeC(1);
+		writeD(0);
+	}
+}
+

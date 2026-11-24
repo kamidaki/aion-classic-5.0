@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='utf-8'?>
+<quest_scripts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="quest_script_data.xsd">
+	<item_collecting id="10120" />
+	<item_collecting id="10121" />
+	<item_collecting id="10129" />
+	<report_to id="10122" />
+	<report_to id="10123" />
+	<report_to id="10124" />
+	<report_to id="10125" />
+	<report_to id="10126" />
+	<report_to id="10127" />
+	<report_to id="10128" />
+	<report_to id="19534" />
+	<report_to id="19536" />
+	<report_to id="29534" />
+	<report_to id="29536" />
+	<report_to id="30703" />
+	<report_to id="30704" />
+	<monster_hunt id="19535" />
+	<monster_hunt id="29535" />
+</quest_scripts>

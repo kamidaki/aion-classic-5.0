@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<spawn_map map_id="300580000">
+		<!-- Amaldiçoado Lago Seiren -->
+		<spawn npc_id="219820" respawn_time="295">
+			<spot x="899.5927" y="1071.6425" z="145.52" h="90"/>
+		</spawn>
+		<!-- Wild Drake -->
+		<spawn npc_id="219831" respawn_time="295">
+			<spot x="899.9903" y="996.324" z="158.86" h="90"/>
+		</spawn>
+		<!-- Mossback Troll -->
+		<spawn npc_id="219832" respawn_time="295">
+			<spot x="895.5546" y="898.8372" z="163.1306" h="90"/>
+		</spawn>
+		<!-- Passadas famintas Karnif -->
+		<spawn npc_id="219833" respawn_time="295">
+			<spot x="904.9789" y="898.8038" z="163.1306" h="90"/>
+		</spawn>
+		<!-- Canhão de defesa operacional -->
+		<spawn npc_id="800968" respawn_time="295">
+			<spot x="900.1685" y="1097.2101" z="166.6506" h="0"/>
+			<spot x="900.251" y="835.9857" z="163.22" h="0"/>
+		</spawn>
+		<!-- NPC_803076 -->
+		<spawn npc_id="803076" respawn_time="295">
+			<spot x="903.4717" y="1073.8909" z="145.52" h="0"/>
+		</spawn>
+	</spawn_map>
+</spawns>

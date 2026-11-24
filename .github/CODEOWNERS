@@ -1,0 +1,17 @@
+# =========================================================================
+#  AION CLASSIC 5.0 — LOST ACADEMY GROUP - GITHUB CODEOWNERS
+# =========================================================================
+
+# Global maintainer and project owner
+* @kamidaki
+
+# Core Backend Java (Foco Oficial GameForge GSID 1)
+Código\ Fonte\ -\ Emulador/ @kamidaki
+Código\ Fonte\ -\ Emulador/game-server-gameforge/ @kamidaki
+Código\ Fonte\ -\ Emulador/chat-server/ @kamidaki
+Código\ Fonte\ -\ Emulador/login-server/ @kamidaki
+Código\ Fonte\ -\ Emulador/commons/ @kamidaki
+
+# Native Client Modules (C/C++)
+Ferramentas\ e\ Documentos/Códigos\ bin64/ @kamidaki
+Ferramentas\ e\ Documentos/Códigos\ bin64/Código\ Fonte\ -\ Version.dll/ @kamidaki

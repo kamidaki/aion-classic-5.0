@@ -1,0 +1,21 @@
+version: 2
+updates:
+  # Dependências Java Maven
+  - package-ecosystem: "maven"
+    directory: "/Código Fonte - Emulador"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 10
+    labels:
+      - "dependencies"
+      - "backend-java"
+
+  # GitHub Actions Workflows
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    labels:
+      - "dependencies"
+      - "ci/cd"

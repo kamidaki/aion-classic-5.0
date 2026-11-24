@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='utf-8'?>
+<global_rules xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../global_rules.xsd">
+	<!-- Single Monster Drops -->
+	<gd_rule rule_name="Named Treasure Crate" chance="100" member_limit="6">
+		<gd_maps>
+			<gd_map map_id="300590000" />
+			<!-- Ophidan_Bridge -->
+		</gd_maps>
+		<gd_npcs>
+			<!-- Spirited Velkur -->
+			<!-- Velkur Aethercaster -->
+			<!-- Velkur Aetherpriest -->
+			<!-- Velkur Aetherknife -->
+		</gd_npcs>
+		<gd_items>
+			<gd_item id="188052612" />
+			<!-- Vera's Treasure Crate -->
+		</gd_items>
+	</gd_rule>
+	<gd_rule rule_name="Named Armor (Unique)" chance="31">
+		<gd_maps>
+			<gd_map map_id="300590000" />
+			<!-- Ophidan_Bridge -->
+		</gd_maps>
+		<gd_npcs>
+			<!-- Fugitive Mazikin Leader -->
+			<!-- Runaway Hirakiki Leader -->
+			<!-- Escapee Asachin Leader -->
+		</gd_npcs>
+		<gd_items>
+			<!-- Vera Defender Shoes -->
+			<!-- Vera Defender Boots -->
+			<!-- Vera Defender Brogans -->
+			<!-- Vera Defender's Magic Brogans -->
+			<!-- Vera Defender Sabatons -->
+			<!-- Vera Defender Tunic -->
+			<!-- Vera Defender Jerkin -->
+			<!-- Vera Defender Hauberk -->
+			<gd_item id="110550930" />
+			<!-- Vera Defender's Magic Hauberk -->
+			<!-- Vera Defender Breastplate -->
+			<!-- Vera Defender Leggings -->
+			<!-- Vera Defender Breeches -->
+			<!-- Vera Defender Chausses -->
+			<!-- Vera Defender's Magic Chausses -->
+			<!-- Vera Defender Greaves -->
+			<!-- Vera Defender Gloves -->
+			<!-- Vera Defender Vambrace -->
+			<!-- Vera Defender Handguards -->
+			<!-- Vera Defender's Magic Handguards -->
+			<!-- Vera Defender Gauntlets -->
+			<!-- Vera Defender Pauldrons -->
+			<!-- Vera Defender Shoulderguards -->
+			<!-- Vera Defender Spaulders -->
+			<!-- Vera Defender's Magic Spaulders -->
+			<!-- Vera Defender Shoulderplates -->
+		</gd_items>
+	</gd_rule>
+	<gd_rule rule_name="Named Armor (Epic)" chance="10.4">
+		<gd_maps>
+			<gd_map map_id="300590000" />
+			<!-- Ophidan_Bridge -->
+		</gd_maps>
+		<gd_npcs>
+			<!-- Fugitive Mazikin Leader -->
+			<!-- Runaway Hirakiki Leader -->
+			<!-- Escapee Asachin Leader -->
+		</gd_npcs>
+		<gd_items>
+			<!-- Vera Defender Captain's Shoes -->
+			<!-- Vera Defender Captain's Boots -->
+			<!-- Vera Defender Captain's Brogans -->
+			<!-- Vera Defender Captain's Magic Brogans -->
+			<!-- Vera Defender Captain's Sabatons -->
+			<!-- Vera Defender Captain's Tunic -->
+			<!-- Vera Defender Captain's Jerkin -->
+			<!-- Vera Defender Captain's Hauberk -->
+			<gd_item id="110550931" />
+			<!-- Vera Defender Captain's Magic Hauberk -->
+			<!-- Vera Defender Captain's Breastplate -->
+			<!-- Vera Defender Captain's Leggings -->
+			<!-- Vera Defender Captain's Breeches -->
+			<!-- Vera Defender Captain's Chausses -->
+			<!-- Vera Defender Captain's Magic Chausses -->
+			<!-- Vera Defender Captain's Greaves -->
+			<!-- Vera Defender Captain's Gloves -->
+			<!-- Vera Defender Captain's Vambrace -->
+			<!-- Vera Defender Captain's Handguards -->
+			<!-- Vera Defender Captain's Magic Handguards -->
+			<!-- Vera Defender Captain's Gauntlets -->
+			<!-- Vera Defender Captain's Pauldrons -->
+			<!-- Vera Defender Captain's Shoulderguards -->
+			<!-- Vera Defender Captain's Spaulders -->
+			<!-- Vera Defender Captain's Magic Spaulders -->
+			<!-- Vera Defender Captain's Shoulderplates -->
+		</gd_items>
+	</gd_rule>
+	<gd_rule rule_name="Bundle A" chance="100" member_limit="6">
+		<gd_maps>
+			<gd_map map_id="300590000" />
+			<!-- Ophidan_Bridge -->
+		</gd_maps>
+		<gd_npcs>
+			<!-- Fugitive Mazikin Leader -->
+			<!-- Runaway Hirakiki Leader -->
+			<!-- Escapee Asachin Leader -->
+		</gd_npcs>
+		<gd_items>
+			<gd_item id="188053685" />
+			<!-- Sand Wanderers Trader's Bundle -->
+		</gd_items>
+	</gd_rule>
+	<gd_rule rule_name="Bundle B" chance="100" member_limit="6">
+		<gd_maps>
+			<gd_map map_id="300590000" />
+			<!-- Ophidan_Bridge -->
+		</gd_maps>
+		<gd_npcs>
+			<!-- Fugitive Mazikin Leader -->
+			<!-- Runaway Hirakiki Leader -->
+			<!-- Escapee Asachin Leader -->
+		</gd_npcs>
+		<gd_items>
+			<gd_item id="188053686" />
+			<!-- Sand Wanderers Trader's Treasure Box -->
+		</gd_items>
+	</gd_rule>
+	<gd_rule rule_name="Named Bundle" chance="100">
+		<gd_maps>
+			<gd_map map_id="300590000" />
+			<!-- Ophidan_Bridge -->
+		</gd_maps>
+		<gd_npcs>
+			<!-- Hakara -->
+			<!-- Zubala -->
+			<!-- Visha -->
+			<!-- Bahapa -->
+		</gd_npcs>
+		<gd_items>
+			<gd_item id="188052579" />
+			<!-- Dragon's Blood Mark Box -->
+		</gd_items>
+	</gd_rule>
+</global_rules>

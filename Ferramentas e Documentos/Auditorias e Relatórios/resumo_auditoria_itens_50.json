@@ -1,0 +1,72 @@
+{
+  "fonte_cliente": "5 - Documentação e Referências/3 - Client 5.0 - Dados Extraidos/data/europe/Items/client_items.xml",
+  "sha256_cliente": "0db9fe61322d0b93049f3aa1914afa8748a26d7dcc027eb3704a2b57c585828d",
+  "fonte_emulador": "Código Fonte - Emulador/game-server/data/static_data/items/item_templates.xml",
+  "sha256_emulador": "f2cffd21ee937958043fe3798d3b2b6367e1c1adf56e586723a541e16c379789",
+  "itens_oficiais": 79664,
+  "itens_emulador": 79664,
+  "itens_por_status": {
+    "COMPATIVEL_NOS_CAMPOS_AUDITADOS": 79112,
+    "PENDENTE_RELACAO": 552
+  },
+  "itens_por_categoria": {
+    "acessorios": 3831,
+    "arcament": 12,
+    "armaduras": 26615,
+    "armas": 11296,
+    "consumiveis": 1921,
+    "materiais": 281,
+    "melhorias": 1250,
+    "missao": 4240,
+    "outros": 17685,
+    "power_shards": 19,
+    "receitas": 7798,
+    "skill_books": 2585,
+    "stigmas": 1691,
+    "utilizaveis": 440
+  },
+  "strings_de_item_resolvidas": 78262,
+  "skills_oficiais_indexadas": 12114,
+  "titulos_oficiais_indexados": 74,
+  "titulos_servidor_indexados": 374,
+  "itens_siel_hammer_indexados": 4446,
+  "arquitetura_por_camada": {
+    "java": 433,
+    "dados": 51,
+    "pcap": 70
+  },
+  "variantes_catalogo_cliente": {
+    "5 - Documentação e Referências/3 - Client 5.0 - Dados Extraidos/data/europe/Items/client_items.xml": {
+      "bytes": 220012547,
+      "sha256": "0db9fe61322d0b93049f3aa1914afa8748a26d7dcc027eb3704a2b57c585828d"
+    },
+    "5 - Documentação e Referências/3 - Client 5.0 - Dados Extraidos/data/europe/Items/special/client_items.xml": {
+      "bytes": 220063614,
+      "sha256": "b0baa92254c75e189acae4c54f4336fa3250be9fbd7b4d969fd5feed13b30a29"
+    },
+    "5 - Documentação e Referências/3 - Client 5.0 - Dados Extraidos/data/europe/Items/special2/client_items.xml": {
+      "bytes": 219280050,
+      "sha256": "51ab14b8a49737412abceeff9d32612ea3777dee6bd51de7c31b28511c190e04"
+    },
+    "5 - Documentação e Referências/3 - Client 5.0 - Dados Extraidos/data/items/client_items.xml": {
+      "bytes": 220034226,
+      "sha256": "c5288b6c253b909d205fe70d475debf02e2d3037b6f792038401a1622df0e4f0"
+    },
+    "5 - Documentação e Referências/3 - Client 5.0 - Dados Extraidos/data/items/special/client_items.xml": {
+      "bytes": 220063614,
+      "sha256": "b0baa92254c75e189acae4c54f4336fa3250be9fbd7b4d969fd5feed13b30a29"
+    },
+    "5 - Documentação e Referências/3 - Client 5.0 - Dados Extraidos/data/items/special2/client_items.xml": {
+      "bytes": 219397056,
+      "sha256": "d8fbf50027eb6f067bda1dc429b64b9c977d2f26c8cf39e43dfff4938db18b63"
+    }
+  },
+  "itens_diferentes_por_variante_contra_europe": {
+    "data/europe/Items/special/client_items.xml": 58323,
+    "data/europe/Items/special2/client_items.xml": 39454,
+    "data/items/client_items.xml": 208,
+    "data/items/special/client_items.xml": 58323,
+    "data/items/special2/client_items.xml": 39406
+  },
+  "criterio": "Compatibilidade limitada aos campos de equivalencia direta; pendencias nao contam como validadas."
+}

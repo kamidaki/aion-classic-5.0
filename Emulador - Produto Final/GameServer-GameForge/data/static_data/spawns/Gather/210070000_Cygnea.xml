@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='utf-8'?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+	<spawn_map map_id="210070000">
+		<!-- Lupide -->
+		<!-- Entrin -->
+		<!-- Coslu -->
+		<!-- Malevite Miasma -->
+		<!-- Drenite -->
+		<!-- Corundum -->
+		<!-- Turquoise -->
+		<!-- Elatrite -->
+		<!-- Nanyu Log -->
+		<!-- Prolix -->
+		<!-- Zeldt -->
+		<!-- Nenana -->
+		<!-- Beshu -->
+		<!-- Plindit -->
+		<!-- Innesi -->
+		<!-- Anevra -->
+		<!-- Feena -->
+		<!-- Ancient Aether -->
+		<!-- Magical Aether -->
+		<!-- Magical Aether -->
+		<!-- Magical Aether -->
+		<!-- Magical Aether -->
+		<!-- Huge Nanyu Log -->
+		<!-- Huge Drenite -->
+		<!-- Huge Corundum -->
+		<!-- Huge Elatrite -->
+		<!-- Giant Turquoise -->
+	</spawn_map>
+</spawns>

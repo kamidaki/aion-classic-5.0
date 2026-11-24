@@ -1,0 +1,133 @@
+package com.aionemu.gameserver.model.templates.item.actions;
+
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlType;
+
+import com.aionemu.gameserver.controllers.observer.ItemUseObserver;
+import com.aionemu.gameserver.dataholders.DataManager;
+import com.aionemu.gameserver.model.TaskId;
+import com.aionemu.gameserver.model.gameobjects.Item;
+import com.aionemu.gameserver.model.gameobjects.player.Player;
+import com.aionemu.gameserver.model.templates.item.AssemblyItem;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_ITEM_USAGE_ANIMATION;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
+import com.aionemu.gameserver.services.item.ItemService;
+import com.aionemu.gameserver.utils.PacketSendUtility;
+import com.aionemu.gameserver.utils.ThreadPoolManager;
+
+/**
+ * @author Lost Academy Team & Durak
+ */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "AssemblyItemAction")
+public class AssemblyItemAction extends AbstractItemAction {
+
+	@XmlAttribute
+	private int item;
+
+	@Override
+	public boolean canAct(Player player, Item parentItem, Item targetItem, Object... params) {
+		AssemblyItem assemblyItem = getAssemblyItem();
+		if (assemblyItem == null) {
+			return false;
+		}
+		Map<Integer, Long> requiredCounts = getRequiredCounts(assemblyItem);
+		for (Map.Entry<Integer, Long> requiredCount : requiredCounts.entrySet()) {
+			if (player.getInventory().getItemCountByItemId(requiredCount.getKey()) < requiredCount.getValue()) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	@Override
+	public void act(final Player player, final Item parentItem, Item targetItem, Object... params) {
+		player.getController().cancelUseItem();
+		int castingDelay = parentItem.getItemTemplate().getCastingDelay();
+		if (castingDelay <= 0) {
+			finishUse(player, parentItem);
+			return;
+		}
+		PacketSendUtility.broadcastPacket(player, new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), parentItem.getObjectId(), parentItem.getItemId(),
+			castingDelay, 0, 0), true);
+		final ItemUseObserver observer = new ItemUseObserver() {
+
+			@Override
+			public void abort() {
+				player.getController().cancelTask(TaskId.ITEM_USE);
+				PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_ASSEMBLY_ITEM_CANCELED());
+				PacketSendUtility.broadcastPacket(player, new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), parentItem.getObjectId(), parentItem
+					.getItemTemplate().getTemplateId(), 0, 2, 0), true);
+				player.getObserveController().removeObserver(this);
+			}
+
+		};
+
+		player.getObserveController().attach(observer);
+		player.getController().addTask(TaskId.ITEM_USE, ThreadPoolManager.getInstance().schedule(() -> {
+			player.getObserveController().removeObserver(observer);
+			finishUse(player, parentItem);
+		}, castingDelay));
+	}
+
+	private void finishUse(Player player, Item parentItem) {
+		AssemblyItem assemblyItem = getAssemblyItem();
+		if (assemblyItem == null)
+			return;
+		synchronized (player.getInventory()) {
+			if (player.getInventory().getItemByObjId(parentItem.getObjectId()) != parentItem)
+				return;
+			Map<Integer, Long> requiredCounts = getRequiredCounts(assemblyItem);
+			for (Map.Entry<Integer, Long> requiredCount : requiredCounts.entrySet()) {
+				if (player.getInventory().getItemCountByItemId(requiredCount.getKey()) < requiredCount.getValue()) {
+					PacketSendUtility.broadcastPacket(player, new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), parentItem.getObjectId(), parentItem
+						.getItemTemplate().getTemplateId(), 0, 2, 0), true);
+					return;
+				}
+			}
+			java.util.List<Integer> decreasedParts = new java.util.ArrayList<>();
+			boolean success = true;
+			for (Integer itemId : assemblyItem.getParts()) {
+				if (player.getInventory().decreaseByItemId(itemId, 1)) {
+					decreasedParts.add(itemId);
+				} else {
+					success = false;
+					break;
+				}
+			}
+			if (!success) {
+				for (Integer itemId : decreasedParts) {
+					ItemService.addItem(player, itemId, 1);
+				}
+				PacketSendUtility.broadcastPacket(player, new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), parentItem.getObjectId(), parentItem
+					.getItemTemplate().getTemplateId(), 0, 2, 0), true);
+				return;
+			}
+			if (ItemService.addItem(player, assemblyItem.getId(), 1) != 0) {
+				for (Integer itemId : decreasedParts)
+					ItemService.addItem(player, itemId, 1);
+				PacketSendUtility.broadcastPacket(player, new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), parentItem.getObjectId(), parentItem
+					.getItemTemplate().getTemplateId(), 0, 2, 0), true);
+				return;
+			}
+			player.startCooldown(parentItem);
+			PacketSendUtility.broadcastPacket(player, new SM_ITEM_USAGE_ANIMATION(player.getObjectId(), parentItem.getObjectId(), parentItem
+				.getItemTemplate().getTemplateId(), 0, 1, 0), true);
+			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_USE_ITEM(parentItem.getL10n()));
+			PacketSendUtility.sendPacket(player, SM_SYSTEM_MESSAGE.STR_ASSEMBLY_ITEM_SUCCEEDED());
+		}
+	}
+
+	private static Map<Integer, Long> getRequiredCounts(AssemblyItem assemblyItem) {
+		return assemblyItem.getParts().stream().collect(Collectors.groupingBy(id -> id, Collectors.counting()));
+	}
+
+	public AssemblyItem getAssemblyItem() {
+		return DataManager.ASSEMBLY_ITEM_DATA.getAssemblyItem(item);
+	}
+}

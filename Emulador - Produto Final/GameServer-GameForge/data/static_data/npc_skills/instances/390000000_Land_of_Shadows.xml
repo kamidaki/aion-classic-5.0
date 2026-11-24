@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='utf-8'?>
+<npc_skill_templates xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../npc_skills.xsd">
+	<!-- Skills confirmadas nas capturas oficiais Elyos/Phoenix e Asmodiano/Sorcerer de 2026-09-25. -->
+	<npc_skills npc_ids="224300"><npc_skill id="16516" lv="5" prob="25" /></npc_skills>
+	<npc_skills npc_ids="224301"><npc_skill id="17444" lv="5" prob="25" /></npc_skills>
+	<npc_skills npc_ids="224302"><npc_skill id="17003" lv="5" prob="25" /></npc_skills>
+	<npc_skills npc_ids="224303 224304"><npc_skill id="21474" lv="5" prob="25" /></npc_skills>
+	<npc_skills npc_ids="224305">
+		<npc_skill id="20602" lv="60" prob="0" is_post_spawn="true" target="ME" />
+		<npc_skill id="16602" lv="5" prob="25" />
+	</npc_skills>
+	<npc_skills npc_ids="224306"><npc_skill id="16602" lv="5" prob="25" /></npc_skills>
+	<npc_skills npc_ids="224307"><npc_skill id="16628" lv="5" prob="25" /></npc_skills>
+	<npc_skills npc_ids="224308"><npc_skill id="16643" lv="5" prob="25" /></npc_skills>
+	<npc_skills npc_ids="224309"><npc_skill id="16663" lv="5" prob="25" /></npc_skills>
+	<npc_skills npc_ids="224310"><npc_skill id="16725" lv="5" prob="25" /></npc_skills>
+	<npc_skills npc_ids="224311 224313 224314"><npc_skill id="16516" lv="5" prob="25" /></npc_skills>
+	<npc_skills npc_ids="224312"><npc_skill id="17332" lv="5" prob="25" /></npc_skills>
+	<npc_skills npc_ids="224315 224316 224317 224319">
+		<npc_skill id="20602" lv="60" prob="0" is_post_spawn="true" target="ME" />
+		<npc_skill id="16516" lv="7" prob="25" />
+	</npc_skills>
+	<npc_skills npc_ids="224318 224320">
+		<npc_skill id="20602" lv="60" prob="0" is_post_spawn="true" target="ME" />
+		<npc_skill id="16516" lv="7" prob="25" />
+	</npc_skills>
+
+	<!-- Os bosses permanecem parados; somente as rotacoes oficiais de skills foram adicionadas. -->
+	<npc_skills npc_ids="224333">
+		<npc_skill id="20645" lv="1" prob="100" next_chain_id="1" next_skill_time="4500" />
+		<npc_skill id="20646" lv="1" prob="100" chain_id="1" next_chain_id="2" next_skill_time="4500" />
+		<npc_skill id="20645" lv="1" prob="100" chain_id="2" next_chain_id="3" next_skill_time="4500" />
+		<npc_skill id="20646" lv="1" prob="100" chain_id="3" next_chain_id="4" next_skill_time="4500" />
+		<npc_skill id="20643" lv="1" prob="100" chain_id="4" next_chain_id="5" next_skill_time="4500" />
+		<npc_skill id="20645" lv="1" prob="100" chain_id="5" next_chain_id="6" next_skill_time="4500" />
+		<npc_skill id="20644" lv="1" prob="100" chain_id="6" next_chain_id="7" next_skill_time="4500" />
+		<npc_skill id="20645" lv="1" prob="100" chain_id="7" next_chain_id="8" next_skill_time="4500" />
+		<npc_skill id="20646" lv="1" prob="100" chain_id="8" next_chain_id="9" next_skill_time="4500" />
+		<npc_skill id="20645" lv="1" prob="100" chain_id="9" next_chain_id="1" next_skill_time="4500" />
+	</npc_skills>
+
+	<npc_skills npc_ids="224334">
+		<npc_skill id="21462" lv="1" prob="100" next_chain_id="1" next_skill_time="4500" />
+		<npc_skill id="21467" lv="1" prob="100" chain_id="1" next_chain_id="2" next_skill_time="4500" />
+		<npc_skill id="21466" lv="1" prob="100" chain_id="2" next_chain_id="3" next_skill_time="4500" />
+		<npc_skill id="21462" lv="1" prob="100" chain_id="3" next_chain_id="1" next_skill_time="4500" />
+	</npc_skills>
+
+	<npc_skills npc_ids="224335">
+		<npc_skill id="19975" lv="1" prob="100" next_chain_id="1" next_skill_time="4500" />
+		<npc_skill id="19976" lv="1" prob="100" chain_id="1" next_chain_id="2" next_skill_time="4500" />
+		<npc_skill id="19977" lv="1" prob="100" chain_id="2" next_chain_id="3" next_skill_time="4500" />
+		<npc_skill id="19975" lv="1" prob="100" chain_id="3" next_chain_id="1" next_skill_time="4500" />
+	</npc_skills>
+</npc_skill_templates>

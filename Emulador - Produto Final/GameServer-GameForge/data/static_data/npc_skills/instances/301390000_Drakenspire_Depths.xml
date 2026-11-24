@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='utf-8'?>
+<npc_skill_templates xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../npc_skills.xsd">
+	
+	<npc_skills npc_ids="209736 209801">
+		<npc_skill id="20834" lv="1" prob="100" next_chain_id="1" next_skill_time="5000" cd="60000" />
+		<npc_skill id="21494" lv="65" prob="100" chain_id="1" />
+	</npc_skills>
+	
+	<npc_skills npc_ids="209734 209799">
+		<npc_skill id="20835" lv="1" prob="100" next_chain_id="1" next_skill_time="5000" cd="60000" />
+		<npc_skill id="21494" lv="65" prob="100" chain_id="1" />
+	</npc_skills>
+	
+	<npc_skills npc_ids="209735 209737 209800 209802">
+		<npc_skill id="20836" lv="1" prob="100" next_chain_id="1" next_skill_time="5000" cd="60000" />
+		<npc_skill id="21494" lv="65" prob="100" chain_id="1" />
+	</npc_skills>
+	
+	<npc_skills npc_ids="236103">
+		<npc_skill id="18548" lv="67" prob="100" prio="1" cd="20000" />
+		<npc_skill id="18647" lv="67" prob="70" />
+		<npc_skill id="19164" lv="67" prob="70" />
+		<npc_skill id="21092" lv="67" prob="70" />
+	</npc_skills>
+	
+	<npc_skills npc_ids="236109 236221 236142">
+		<npc_skill id="21300" lv="67" prob="70" />
+	</npc_skills>
+	
+	<npc_skills npc_ids="236101 236125 236137">
+		<npc_skill id="19915" lv="1" prob="0" is_post_spawn="true" />
+		<npc_skill id="18159" lv="67" prob="100" prio="1" cd="20000" />
+		<npc_skill id="21301" lv="67" prob="70" />
+		<npc_skill id="17933" lv="67" prob="70" />
+		<npc_skill id="21092" lv="67" prob="70" />
+		<npc_skill id="16411" lv="1" prob="70" cd="10000" />
+	</npc_skills>
+	
+	<npc_skills npc_ids="236124 236222">
+		<npc_skill id="17543" lv="67" prob="70" cd="12000" />
+		<npc_skill id="16919" lv="67" prob="70" />
+		<npc_skill id="17096" lv="67" prob="70" cd="12000" />
+	</npc_skills>
+	
+	<npc_skills npc_ids="236155">
+		<npc_skill id="17716" lv="67" prob="70" cd="12000" />
+		<npc_skill id="18548" lv="67" prob="70" cd="18000" />
+		<npc_skill id="18559" lv="67" prob="70" cd="16000" />
+		<npc_skill id="19714" lv="67" prob="70" cd="18000" />
+	</npc_skills>
+	
+	<npc_skills npc_ids="236223">
+		<npc_skill id="20779" lv="67" prob="100" />
+		<npc_skill id="17543" lv="67" prob="40" cd="20000" />
+	</npc_skills>
+	
+	<npc_skills npc_ids="236154">
+		<npc_skill id="17048" lv="67" prob="70" cd="12000" />
+		<npc_skill id="17935" lv="67" prob="70" cd="12000" />
+		<npc_skill id="18548" lv="67" prob="70" cd="12000" />
+		<npc_skill id="21300" lv="67" prob="70" cd="9000" />
+	</npc_skills>
+	
+	<npc_skills npc_ids="856459">
+		<npc_skill id="18579" lv="65" prob="100" target="ME">
+			<cond despawn_time="3000" can_die="false" delay="1000" />
+		</npc_skill>
+	</npc_skills>
+</npc_skill_templates>

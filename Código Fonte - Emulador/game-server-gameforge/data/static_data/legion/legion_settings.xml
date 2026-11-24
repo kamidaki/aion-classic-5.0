@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<legion_settings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="legion_settings.xsd">
+	<level level="1" kinah="10000" required_members="0" required_contribution="0" max_members="24" warehouse_slots="24" warehouse_deposit_kinah="15000000" warehouse_withdraw_kinah="15000000" />
+	<level level="2" kinah="100000" required_members="10" required_contribution="0" max_members="36" warehouse_slots="32" warehouse_deposit_kinah="15000000" warehouse_withdraw_kinah="15000000" />
+	<level level="3" kinah="1000000" required_members="15" required_contribution="0" max_members="48" warehouse_slots="40" warehouse_deposit_kinah="15000000" warehouse_withdraw_kinah="15000000" />
+	<level level="4" kinah="5000000" required_members="20" required_contribution="0" max_members="60" warehouse_slots="48" warehouse_deposit_kinah="15000000" warehouse_withdraw_kinah="15000000" />
+	<level level="5" kinah="25000000" required_members="25" required_contribution="0" max_members="72" warehouse_slots="56" warehouse_deposit_kinah="15000000" warehouse_withdraw_kinah="15000000" />
+</legion_settings>

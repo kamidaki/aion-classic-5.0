@@ -1,0 +1,1095 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<pets>
+	<pet id="900000" name_en="Siberian Wild Tiger (Purebred)" name_pt="Tigre selvagem da Sibéria (de raça pura)" nameid="1600012" condition_reward="188051378">
+		<petfunction id="1020013" type="BAG"/>
+		<petfunction id="31" type="DOPING"/>
+		<petfunction id="1" type="LOOT"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900001" name_en="Siberian Wild Tiger (Companion)" name_pt="Tigre selvagem da Sibéria (Companheiro)" nameid="1600021" condition_reward="188051378">
+		<petfunction id="1" type="LOOT"/>
+		<petfunction id="6" type="FOOD"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0" altitude="1.5"/>
+	</pet>
+	<pet id="900002" name_en="Siberian Wild Tiger (Signal)" name_pt="Tigre selvagem da Sibéria (sinal)" nameid="1600023" condition_reward="188051378">
+		<petfunction id="6" type="FOOD"/>
+		<petfunction id="1" type="WAREHOUSE" slots="6"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.2"/>
+	</pet>
+	<pet id="900003" name_en="Siberian Wild Tiger (Pack)" name_pt="Tigre selvagem da Sibéria (pacote)" nameid="1600025" condition_reward="188051378">
+		<petfunction id="1020010" type="BAG"/>
+		<petfunction id="31" type="DOPING"/>
+		<petfunction id="1" type="WAREHOUSE" slots="6"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.2"/>
+	</pet>
+	<pet id="900004" name_en="Siberian Wild Tiger (Fortune 1)" name_pt="Tigre selvagem da Sibéria (Fortuna 1)" nameid="1600027" condition_reward="188051378">
+		<petfunction id="7" type="DOPING"/>
+		<petfunction id="1" type="LOOT"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.6"/>
+	</pet>
+	<pet id="900005" name_en="Siberian Wild Tiger (Fortune 2)" name_pt="Tigre selvagem da Sibéria (Fortuna 2)" nameid="1600029" condition_reward="188051378">
+		<petfunction id="15" type="DOPING"/>
+		<petfunction id="1" type="LOOT"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.5"/>
+	</pet>
+	<pet id="900006" name_en="Siberian Wild Tiger (Fortune 3)" name_pt="Tigre selvagem da Sibéria (Fortuna 3)" nameid="1600031" condition_reward="188051378">
+		<petfunction id="23" type="DOPING"/>
+		<petfunction id="1" type="LOOT"/>
+		<petfunction id="1030001" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900007" name_en="Siberian Wild Tiger (Fortune 4)" name_pt="Tigre selvagem da Sibéria (Fortuna 4)" nameid="1600033" condition_reward="188051378">
+		<petfunction id="1020014" type="BAG"/>
+		<petfunction id="25" type="DOPING"/>
+		<petfunction id="1" type="LOOT"/>
+		<petfunction id="1030001" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.7"/>
+	</pet>
+	<pet id="900008" name_en="Siberian Wild Tiger (Fortune 5)" name_pt="Tigre selvagem da Sibéria (Fortuna 5)" nameid="1600035" condition_reward="188051378">
+		<petfunction id="1020012" type="BAG"/>
+		<petfunction id="6" type="FOOD"/>
+		<petfunction id="1" type="LOOT"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900009" name_en="Siberian Wild Tiger (Fortune 6)" name_pt="Tigre selvagem da Sibéria (Fortuna 6)" nameid="1600037" condition_reward="188051378">
+		<petfunction id="1" type="WAREHOUSE" slots="6"/>
+		<petfunction id="1" type="LOOT"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.2"/>
+	</pet>
+	<pet id="900010" name_en="Grassy Drakie" name_pt="Drakie gramado" nameid="1600039" condition_reward="188051378">
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="0.7"/>
+	</pet>
+	<pet id="900011" name_en="Red Eye Larail" name_pt="Olho Vermelho Larail" nameid="1600041" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="0.7"/>
+	</pet>
+	<pet id="900012" name_en="Quick Kirca" name_pt="Kirca rápido" nameid="1600043" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.8"/>
+	</pet>
+	<pet id="900013" name_en="Manic Aukwi" name_pt="Maníaco Aukwi" nameid="1600045" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="0.7"/>
+	</pet>
+	<pet id="900014" name_en="Rotund Methu" name_pt="Redondo falhou" nameid="1600047" condition_reward="188051378">
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="0.7"/>
+	</pet>
+	<pet id="900015" name_en="Indigo Ribbit" name_pt="Costela índigo" nameid="1600049" condition_reward="188051378">
+		<petfunction id="1030001" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.8"/>
+	</pet>
+	<pet id="900016" name_en="Striped Elroco" name_pt="Elroco listrado" nameid="1600051" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.9"/>
+	</pet>
+	<pet id="900017" name_en="Fuzzy Elroco" name_pt="Elroco difuso" nameid="1600053" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.9"/>
+	</pet>
+	<pet id="900018" name_en="Sawtooth Rotan" name_pt="Sawteeth Ratã" nameid="1600055" condition_reward="188051378">
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.3"/>
+	</pet>
+	<pet id="900019" name_en="Skullabra Krall" name_pt="Skullabra Krall" nameid="1600057" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.4"/>
+	</pet>
+	<pet id="900020" name_en="Bottlenose Tion" name_pt="Tion-nariz-de-garrafa" nameid="1600059" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900021" name_en="Mau Cubling" name_pt="Maunath bhanjan Cubling" nameid="1600061" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900022" name_en="Golden Wuf" name_pt="Wuf Dourado" nameid="1600063" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="1.4"/>
+	</pet>
+	<pet id="900023" name_en="Silver Wuf" name_pt="Wuf Prateado" nameid="1600065" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="1.4"/>
+	</pet>
+	<pet id="900024" name_en="Desert Naeda" name_pt="Deserto Naeda" nameid="1600067" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="2.0"/>
+	</pet>
+	<pet id="900025" name_en="Jumpy Shugo" name_pt="Salto de salto" nameid="1600069" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900026" name_en="Acute Shugo" name_pt="Shugo agudo" nameid="1600071" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900027" name_en="Golden Nyanco" name_pt="Nyanco Dourado" nameid="1600073" condition_reward="188051378">
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0" altitude="1.5"/>
+	</pet>
+	<pet id="900028" name_en="Pink Nyanco" name_pt="Niveo rosa" nameid="1600075" condition_reward="188051378">
+		<petfunction id="1" type="LOOT"/>
+		<petstats run_speed="6.0" walk_speed="1.132" height="1.0" altitude="1.5"/>
+	</pet>
+	<pet id="900029" name_en="Annoying Manduri" name_pt="Manduri irritante" nameid="1600077" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.5"/>
+	</pet>
+	<pet id="900030" name_en="Whitebeard Manduri" name_pt="Barba Branca Manduri" nameid="1600079" condition_reward="188051378">
+		<petfunction id="7" type="DOPING"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats run_speed="6.0" walk_speed="1.132" height="0.6"/>
+	</pet>
+	<pet id="900031" name_en="Bluehair Steren" name_pt="Steren de cabelo azul" nameid="1600081" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="1.2"/>
+	</pet>
+	<pet id="900032" name_en="Pinkhair Steren" name_pt="Pinkhair Steren" nameid="1600083" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="1.2"/>
+	</pet>
+	<pet id="900033" name_en="Silvertail Dorion" name_pt="Dorion Rabo Prateado" nameid="1600085" condition_reward="188051378">
+		<petfunction id="1020009" type="BAG"/>
+		<petfunction id="3" type="WAREHOUSE" slots="6"/>
+		<petfunction id="1030001" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900034" name_en="Goldentail Dorion" name_pt="Dorion Rabo Dourado" nameid="1600087" condition_reward="188051378">
+		<petfunction id="1020009" type="BAG"/>
+		<petfunction id="3" type="WAREHOUSE" slots="6"/>
+		<petfunction id="1030001" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900035" name_en="Potbelly Inquin" name_pt="Barrigudo inquirin" nameid="1600089" condition_reward="188051378">
+		<petfunction id="1020010" type="BAG"/>
+		<petfunction id="4" type="WAREHOUSE" slots="12"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="1.2"/>
+	</pet>
+	<pet id="900036" name_en="Cresent Inquin" name_pt="Crent Engina" nameid="1600091" condition_reward="188051378">
+		<petfunction id="1020010" type="BAG"/>
+		<petfunction id="4" type="WAREHOUSE" slots="12"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="1.2"/>
+	</pet>
+	<pet id="900037" name_en="Bluemane Trico" name_pt="Bluemane Trico" nameid="1600093" condition_reward="188051378">
+		<petfunction id="1020011" type="BAG"/>
+		<petfunction id="4" type="WAREHOUSE" slots="12"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.7"/>
+	</pet>
+	<pet id="900038" name_en="Goldmane Trico" name_pt="Juba Dourada Trico" nameid="1600095" condition_reward="188051378">
+		<petfunction id="1020011" type="BAG"/>
+		<petfunction id="4" type="WAREHOUSE" slots="12"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.7"/>
+	</pet>
+	<pet id="900039" name_en="Micro MuMu" name_pt="Micro vermelho" nameid="1600097" condition_reward="188051378">
+		<petfunction id="1020012" type="BAG"/>
+		<petfunction id="5" type="WAREHOUSE" slots="18"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900040" name_en="Mini MuMu" name_pt="Mini vermelho" nameid="1600099" condition_reward="188051378">
+		<petfunction id="1020012" type="BAG"/>
+		<petfunction id="5" type="WAREHOUSE" slots="18"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900041" name_en="Shugo Lass" name_pt="Moça Shugo" nameid="1600103" condition_reward="188051378">
+		<petfunction id="1020013" type="BAG"/>
+		<petfunction id="6" type="WAREHOUSE" slots="24"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900042" name_en="Shugo Lad" name_pt="Ladra Shugo" nameid="1600101" condition_reward="188051378">
+		<petfunction id="1020013" type="BAG"/>
+		<petfunction id="6" type="WAREHOUSE" slots="24"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900043" name_en="Button-Eye Mookie" name_pt="Olho de botão Mookie" nameid="1600105" condition_reward="188051378">
+		<petfunction id="7" type="FOOD"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="0.8"/>
+	</pet>
+	<pet id="900044" name_en="Mellow Ksellid" name_pt="1 maduro Ksellid" nameid="1600107" condition_reward="188051378">
+		<petfunction id="8" type="FOOD"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.5"/>
+	</pet>
+	<pet id="900045" name_en="Rotund Ayas" name_pt="Ayas Rotundas" nameid="1600109" condition_reward="188051378">
+		<petfunction id="9" type="FOOD"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="0.6"/>
+	</pet>
+	<pet id="900046" name_en="Hungry Porgus" name_pt="Porgus famintas" nameid="1600111" condition_reward="188051378">
+		<petfunction id="10" type="FOOD"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.6"/>
+	</pet>
+	<pet id="900047" name_en="Pudgy Porgus" name_pt="Porgus de pelúcia" nameid="1600113" condition_reward="188051378">
+		<petfunction id="11" type="FOOD"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.6"/>
+	</pet>
+	<pet id="900048" name_en="Mean Poroco" name_pt="Poroco médio" nameid="1600115" condition_reward="188051378">
+		<petfunction id="12" type="FOOD"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.7"/>
+	</pet>
+	<pet id="900049" name_en="Headstrong Poroco" name_pt="Porco Teimoso" nameid="1600117" condition_reward="188051378">
+		<petfunction id="13" type="FOOD"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.7"/>
+	</pet>
+	<pet id="900050" name_en="Azure Drakie" name_pt="Drakie Azul" nameid="1600119" condition_reward="188051378">
+		<petfunction id="14" type="FOOD"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="0.7"/>
+	</pet>
+	<pet id="900051" name_en="Pointyhat Sprigg" name_pt="Sprigg de chapéu pontudo" nameid="1600121" condition_reward="188051378">
+		<petfunction id="26" type="DOPING"/>
+		<petfunction id="1030001" type="WING"/>
+		<petstats run_speed="6.0" walk_speed="1.132" height="0.7"/>
+	</pet>
+	<pet id="900052" name_en="Boxing King Kerub" name_pt="Boxe no querubo" nameid="1600123" condition_reward="188051378">
+		<petfunction id="1020015" type="BAG"/>
+		<petfunction id="4" type="WAREHOUSE" slots="12"/>
+		<petfunction id="1030001" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.7"/>
+	</pet>
+	<pet id="900053" name_en="Tin Narky" name_pt="Lata Narky" nameid="1600125" condition_reward="188051378">
+		<petfunction id="1020016" type="BAG"/>
+		<petfunction id="4" type="WAREHOUSE" slots="12"/>
+		<petfunction id="15" type="FOOD"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900054" name_en="Pink Griffo" name_pt="Grifo Rosa" nameid="1600127" condition_reward="188051378">
+		<petfunction id="1020020" type="BAG"/>
+		<petfunction id="4" type="WAREHOUSE" slots="12"/>
+		<petfunction id="16" type="FOOD"/>
+		<petfunction id="1030001" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="0.8"/>
+	</pet>
+	<pet id="900055" name_en="Golden Drakie" name_pt="Drakie de ouro" nameid="1600129" condition_reward="188051378">
+		<petfunction id="1020021" type="BAG"/>
+		<petfunction id="4" type="WAREHOUSE" slots="12"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.7"/>
+	</pet>
+	<pet id="900056" name_en="Teasing Jefi" name_pt="Provocando Jefi" nameid="1600131" condition_reward="188051378">
+		<petfunction id="1" type="LOOT"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.2"/>
+	</pet>
+	<pet id="900057" name_en="Aqua Griffo" name_pt="Água Griffo" nameid="1600133" condition_reward="188051378">
+		<petfunction id="1020017" type="BAG"/>
+		<petfunction id="5" type="WAREHOUSE" slots="18"/>
+		<petfunction id="19" type="FOOD"/>
+		<petfunction id="1030001" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="0.8"/>
+	</pet>
+	<pet id="900058" name_en="Sunset Drakie" name_pt="Pôr do sol Drakie" nameid="1600135" condition_reward="188051378">
+		<petfunction id="1020018" type="BAG"/>
+		<petfunction id="5" type="WAREHOUSE" slots="18"/>
+		<petfunction id="20" type="FOOD"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="0.7"/>
+	</pet>
+	<pet id="900059" name_en="Wild Kitter" name_pt="Kitter selvagem" nameid="1600137" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.3"/>
+	</pet>
+	<pet id="900060" name_en="Beluslan Kitter" name_pt="Beluslan Kitter" nameid="1600139" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.3"/>
+	</pet>
+	<pet id="900061" name_en="Altgard Kitter" name_pt="Altgard Kitter" nameid="1600141" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.3"/>
+	</pet>
+	<pet id="900062" name_en="Heiron Kitter" name_pt="Hion Kitter" nameid="1600143" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.3"/>
+	</pet>
+	<pet id="900063" name_en="White Dagg" name_pt="Dagg branco" nameid="1600145" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.2"/>
+	</pet>
+	<pet id="900064" name_en="Border Daggie" name_pt="Fronteira do dia" nameid="1600147" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.2"/>
+	</pet>
+	<pet id="900065" name_en="Speckled Ailu" name_pt="Ailu manchado" nameid="1600149" condition_reward="188051378">
+		<petfunction id="3" type="WAREHOUSE" slots="6"/>
+		<petfunction id="1030001" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="0.7"/>
+	</pet>
+	<pet id="900066" name_en="Purple Ribbit" name_pt="Ribbit roxo" nameid="1600339" condition_reward="188051378">
+		<petfunction id="1030001" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.8"/>
+	</pet>
+	<pet id="900067" name_en="Green Ribbit" name_pt="Ribbit verde" nameid="1600341" condition_reward="188051378">
+		<petfunction id="1030001" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.8"/>
+	</pet>
+	<pet id="900068" name_en="Croaking Ribbit" name_pt="Ribbit de coaking" nameid="1600343" condition_reward="188051378">
+		<petfunction id="1030001" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.8"/>
+	</pet>
+	<pet id="900069" name_en="Blue Ribbit" name_pt="Ribbit azul" nameid="1600345" condition_reward="188051378">
+		<petfunction id="1030001" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.8"/>
+	</pet>
+	<pet id="900070" name_en="Ribbitron" name_pt="Ribbitron" nameid="1600347" condition_reward="188051378">
+		<petfunction id="1030001" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.8"/>
+	</pet>
+	<pet id="900071" name_en="Red Ribbit" name_pt="Ribbit vermelho" nameid="1600349" condition_reward="188051378">
+		<petfunction id="1030001" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.8"/>
+	</pet>
+	<pet id="900072" name_en="Tangerine Ribbit" name_pt="Tangerina ribbit" nameid="1600351" condition_reward="188051378">
+		<petfunction id="1030001" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.8"/>
+	</pet>
+	<pet id="900073" name_en="Violet Ribbit" name_pt="Ѳ Violeta" nameid="1600353" condition_reward="188051378">
+		<petfunction id="1030001" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.8"/>
+	</pet>
+	<pet id="900074" name_en="Auric Ribbit" name_pt="Ribbit aurico" nameid="1600355" condition_reward="188051378">
+		<petfunction id="1030001" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.8"/>
+	</pet>
+	<pet id="900075" name_en="Black Ribbit" name_pt="Ribbit preto" nameid="1600357" condition_reward="188051378">
+		<petfunction id="1030001" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.8"/>
+	</pet>
+	<pet id="900076" name_en="Speckled Ailu" name_pt="Ailu manchado" nameid="1600359" condition_reward="188051378">
+		<petfunction id="1020022" type="BAG"/>
+		<petfunction id="4" type="WAREHOUSE" slots="12"/>
+		<petfunction id="1030001" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="0.7"/>
+	</pet>
+	<pet id="900077" name_en="Capped Fungie" name_pt="Fungos presos" nameid="1600361" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.8"/>
+	</pet>
+	<pet id="900078" name_en="Silvertail Dorion" name_pt="Dorion Rabo Prateado" nameid="1600406" condition_reward="188051378">
+		<petfunction id="1020009" type="BAG"/>
+		<petfunction id="3" type="WAREHOUSE" slots="6"/>
+		<petfunction id="1030001" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900079" name_en="Dapper Taegeuk Shugo" name_pt="Elegante Taegeuk Shugo" nameid="1600408" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900080" name_en="Cute Taegeuk Shugo" name_pt="Taegeuk fofo Shugo" nameid="1600410" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900081" name_en="Pesky Manduri" name_pt="Manduri traquina" nameid="1600412" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.5"/>
+	</pet>
+	<pet id="900082" name_en="Mischievous Manduri" name_pt="Manduri travesso" nameid="1600414" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.5"/>
+	</pet>
+	<pet id="900083" name_en="Eager Sprigg" name_pt="Raminho ansioso" nameid="1600416" condition_reward="188051378">
+		<petfunction id="1020014" type="BAG"/>
+		<petfunction id="4" type="WAREHOUSE" slots="12"/>
+		<petfunction id="1030001" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.7"/>
+	</pet>
+	<pet id="900084" name_en="Crimson Kerub" name_pt="Corub carmesim" nameid="1600418" condition_reward="188051378">
+		<petfunction id="1020015" type="BAG"/>
+		<petfunction id="4" type="WAREHOUSE" slots="12"/>
+		<petfunction id="1030001" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.7"/>
+	</pet>
+	<pet id="900085" name_en="Stately Crestlich" name_pt="Crestlich imponente" nameid="1600420" condition_reward="188051378">
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.7"/>
+	</pet>
+	<pet id="900086" name_en="Spurred Crestlich" name_pt="Crestlich estimulado" nameid="1600422" condition_reward="188051378">
+		<petfunction id="21" type="FOOD"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.7"/>
+	</pet>
+	<pet id="900087" name_en="Palmist Acarun" name_pt="Palmista Acarun" nameid="1600424" condition_reward="188051378">
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900088" name_en="Pointytail Acarun" name_pt="Acarun pontual" nameid="1600426" condition_reward="188051378">
+		<petfunction id="22" type="FOOD"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900089" name_en="Snowy Radama" name_pt="Radama com neve" nameid="1600428" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="0.8"/>
+	</pet>
+	<pet id="900090" name_en="Golden Radama" name_pt="Radama Dourado" nameid="1600430" condition_reward="188051378">
+		<petfunction id="1020023" type="BAG"/>
+		<petfunction id="4" type="WAREHOUSE" slots="12"/>
+		<petfunction id="23" type="FOOD"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="0.8"/>
+	</pet>
+	<pet id="900091" name_en="Robust Ailu" name_pt="Ailu robusto" nameid="1600432" condition_reward="188051378">
+		<petfunction id="1030001" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900092" name_en="Watchful Ailu" name_pt="Tudo bem atento" nameid="1600434" condition_reward="188051378">
+		<petfunction id="1030001" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900093" name_en="Hungry Porgus" name_pt="Porgus famintas" nameid="1600111" condition_reward="188051378">
+		<petfunction id="24" type="FOOD"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.6"/>
+	</pet>
+	<pet id="900094" name_en="Pudgy Porgus" name_pt="Porgus de pelúcia" nameid="1600113" condition_reward="188051378">
+		<petfunction id="25" type="FOOD"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.6"/>
+	</pet>
+	<pet id="900095" name_en="Jumpy Shugo" name_pt="Salto de salto" nameid="1600563" condition_reward="188051378">
+		<petfunction id="27" type="DOPING"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900096" name_en="Acute Shugo" name_pt="Shugo agudo" nameid="1600564" condition_reward="188051378">
+		<petfunction id="27" type="DOPING"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900097" name_en="Azure Drakie" name_pt="Drakie Azul" nameid="1600119" condition_reward="188051378">
+		<petfunction id="28" type="FOOD"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="0.7"/>
+	</pet>
+	<pet id="900098" name_en="Azure Drakie" name_pt="Drakie Azul" nameid="1600119" condition_reward="188051378">
+		<petfunction id="29" type="FOOD"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="0.7"/>
+	</pet>
+	<pet id="900099" name_en="Headstrong Poroco" name_pt="Porco Teimoso" nameid="1600117" condition_reward="188051378">
+		<petfunction id="26" type="FOOD"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.7"/>
+	</pet>
+	<pet id="900100" name_en="Headstrong Poroco" name_pt="Porco Teimoso" nameid="1600117" condition_reward="188051378">
+		<petfunction id="27" type="FOOD"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.7"/>
+	</pet>
+	<pet id="900101" name_en="Sunset Drakie" name_pt="Pôr do sol Drakie" nameid="1606721" condition_reward="188051378">
+		<petfunction id="1020018" type="BAG"/>
+		<petfunction id="5" type="WAREHOUSE" slots="18"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="0.7"/>
+	</pet>
+	<pet id="900102" name_en="Centennial Golden Saam" name_pt="Centenário Dourado Saam" nameid="1607473" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="0.7"/>
+	</pet>
+	<pet id="900103" name_en="Ten-Thousand-Year-Old Golden Saam" name_pt="Saam Dourado, de dez mil anos" nameid="1607475" condition_reward="188051378">
+		<petfunction id="27" type="DOPING"/>
+		<petfunction id="30" type="FOOD"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="0.7"/>
+	</pet>
+	<pet id="900104" name_en="Flattop Fungie" name_pt="Fungie plano" nameid="1607477" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="0.8"/>
+	</pet>
+	<pet id="900105" name_en="Crewcut Fungie" name_pt="Fungos da tripulação" nameid="1607479" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="0.8"/>
+	</pet>
+	<pet id="900106" name_en="Flame Bogel" name_pt="Bogel de chama" nameid="1607481" condition_reward="188051378">
+		<petfunction id="1" type="LOOT"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.5" altitude="1.5"/>
+	</pet>
+	<pet id="900107" name_en="Flash Bogel" name_pt="Flash nu" nameid="1607483" condition_reward="188051378">
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.5" altitude="1.5"/>
+	</pet>
+	<pet id="900108" name_en="School Paksigue" name_pt="Casca vermelha potcrab" nameid="1607485" condition_reward="188051378">
+		<petfunction id="1020026" type="BAG"/>
+		<petfunction id="4" type="WAREHOUSE" slots="12"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.7"/>
+	</pet>
+	<pet id="900109" name_en="Green Shell Potcrab" name_pt="Casca verde potcrab" nameid="1607487" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.7"/>
+	</pet>
+	<pet id="900110" name_en="Sticky Wooden Box" name_pt="Caixa de madeira pegajosa" nameid="1607489" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="0.6"/>
+	</pet>
+	<pet id="900111" name_en="Muddy Wooden Box" name_pt="Caixa de madeira lamacenta" nameid="1607491" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="0.6"/>
+	</pet>
+	<pet id="900112" name_en="Worg of the Dead" name_pt="Worg dos mortos" nameid="1607493" condition_reward="188051378">
+		<petfunction id="1" type="LOOT"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.7"/>
+	</pet>
+	<pet id="900113" name_en="Waxy Humpback Worg" name_pt="Worg" nameid="1607495" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.7"/>
+	</pet>
+	<pet id="900114" name_en="Yellow Bulldozer" name_pt="Trator de esteira amarelo" nameid="1607497" condition_reward="188051378">
+		<petfunction id="1" type="LOOT"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.8"/>
+	</pet>
+	<pet id="900115" name_en="Blue Bulldozer" name_pt="Trator de esteira azul" nameid="1607499" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.8"/>
+	</pet>
+	<pet id="900116" name_en="Blue Bandana Kobushka" name_pt="Bandana Azul Kobushka" nameid="1607501" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="0.9"/>
+	</pet>
+	<pet id="900117" name_en="Red Cap Kobushka" name_pt="Boné Vermelho Kobushka" nameid="1607503" condition_reward="188051378">
+		<petfunction id="27" type="DOPING"/>
+		<petfunction id="31" type="FOOD"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="0.9"/>
+	</pet>
+	<pet id="900118" name_en="Red Diabol" name_pt="Diabo vermelho" nameid="1607505" condition_reward="188051378">
+		<petfunction id="27" type="DOPING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0" altitude="1.5"/>
+	</pet>
+	<pet id="900119" name_en="Green Diabol" name_pt="Diabo Verde" nameid="1607507" condition_reward="188051378">
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0" altitude="1.5"/>
+	</pet>
+	<pet id="900120" name_en="Pink Merek" name_pt="Marca rosa" nameid="1607509" condition_reward="188051378">
+		<petfunction id="1" type="LOOT"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="1.0" altitude="1.5"/>
+	</pet>
+	<pet id="900121" name_en="Blue Merek" name_pt="Marca azul" nameid="1607511" condition_reward="188051378">
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="1.0" altitude="1.5"/>
+	</pet>
+	<pet id="900122" name_en="Kung Fu Manduri" name_pt="Kung fu manduri" nameid="1609021" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.5"/>
+	</pet>
+	<pet id="900123" name_en="Turkish Kitter" name_pt="Kitter turco" nameid="1609023" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.3"/>
+	</pet>
+	<pet id="900124" name_en="Crikey Kitter" name_pt="Caramba Kitter" nameid="1609025" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.3"/>
+	</pet>
+	<pet id="900125" name_en="Runaway Poppy" name_pt="Papoula em fuga" nameid="1609255" condition_reward="188051378">
+		<petfunction id="32" type="FOOD"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.6"/>
+	</pet>
+	<pet id="900126" name_en="A Highly Developed Potbelly Inquin." name_pt="Barrigudo inquirin" nameid="1609338" condition_reward="188051378">
+		<petfunction id="1020010" type="BAG"/>
+		<petfunction id="7" type="WAREHOUSE" slots="12"/>
+		<petfunction id="1" type="LOOT"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="1.2"/>
+	</pet>
+	<pet id="900127" name_en="A Highly Developed Crescent Inquin." name_pt="Crent Engina" nameid="1609340" condition_reward="188051378">
+		<petfunction id="1020010" type="BAG"/>
+		<petfunction id="7" type="WAREHOUSE" slots="12"/>
+		<petfunction id="1" type="LOOT"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="1.2"/>
+	</pet>
+	<pet id="900128" name_en="A Highly Developed Micro MuMu." name_pt="Micro vermelho" nameid="1609342" condition_reward="188051378">
+		<petfunction id="1020012" type="BAG"/>
+		<petfunction id="8" type="WAREHOUSE" slots="18"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900129" name_en="A Highly Developed Mini MuMu." name_pt="Mini vermelho" nameid="1609344" condition_reward="188051378">
+		<petfunction id="1020012" type="BAG"/>
+		<petfunction id="8" type="WAREHOUSE" slots="18"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900130" name_en="Big Boy Shugo" name_pt="Garotão Shugo" nameid="1609649" condition_reward="188051378">
+		<petfunction id="1020027" type="BAG"/>
+		<petfunction id="9" type="WAREHOUSE" slots="30"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900131" name_en="Big Girl Shugo" name_pt="Garota Grande Shugo" nameid="1609651" condition_reward="188051378">
+		<petfunction id="1020028" type="BAG"/>
+		<petfunction id="9" type="WAREHOUSE" slots="30"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900132" name_en="An Event Pet Pouch with 16 slots." name_pt="Tahabatlet" nameid="1609807" condition_reward="188051378">
+		<petfunction id="1" type="LOOT"/>
+		<petfunction id="27" type="DOPING"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="1.2"/>
+	</pet>
+	<pet id="900133" name_en="An incredibly cute pet. It warns you when there are enemies nearby." name_pt="Tempestade" nameid="1609809" condition_reward="188051378">
+		<petfunction id="1" type="LOOT"/>
+		<petfunction id="27" type="DOPING"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="1.2"/>
+	</pet>
+	<pet id="900134" name_en="Keep feeding it Sweet Cocoa or Tteok Powder to receive a Choco Tteok Bundle." name_pt="Lukeshunek" nameid="1609811" condition_reward="188051378">
+		<petfunction id="33" type="FOOD"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900135" name_en="Valentine’s Day? That one’s not important. New Year’s Day is much more important!" name_pt="Soloriário" nameid="1609813" condition_reward="188051378">
+		<petfunction id="1020029" type="BAG"/>
+		<petfunction id="6" type="WAREHOUSE" slots="24"/>
+		<petfunction id="27" type="DOPING"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900136" name_en="I’m really cool!" name_pt="Drakie de ouro" nameid="1609823" condition_reward="188051378">
+		<petfunction id="1020018" type="BAG"/>
+		<petfunction id="5" type="WAREHOUSE" slots="18"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.7"/>
+	</pet>
+	<pet id="900137" name_en="My mood has improved." name_pt="Kitter pontudos" nameid="1609825" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.3"/>
+	</pet>
+	<pet id="900139" name_en="We claw together." name_pt="Pontos rosa Radama" nameid="1610363" condition_reward="188051378">
+		<petfunction id="34" type="FOOD"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="0.85"/>
+	</pet>
+	<pet id="900140" name_en="Whitebeard Manduri" name_pt="Barba Branca Manduri" nameid="1600079" condition_reward="188051378">
+		<petfunction id="7" type="DOPING"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats run_speed="6.0" walk_speed="1.132" height="0.6"/>
+	</pet>
+	<pet id="900141" name_en="Look at me! Look at me!" name_pt="Stormwing" nameid="1610519" condition_reward="188051378">
+		<petfunction id="1" type="LOOT"/>
+		<petfunction id="27" type="DOPING"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="1.2"/>
+	</pet>
+	<pet id="900142" name_en="Can I keep the ball? Can I?" name_pt="Um sherpa ailu altamente desenvolvido" nameid="1610521" condition_reward="188051378">
+		<petfunction id="1020022" type="BAG"/>
+		<petfunction id="1" type="LOOT"/>
+		<petfunction id="8" type="WAREHOUSE" slots="18"/>
+		<petfunction id="1030001" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="0.7"/>
+	</pet>
+	<pet id="900143" name_en="Can I keep the ball? Can I?" name_pt="Modificado i" nameid="1610522" condition_reward="188051378">
+		<petfunction id="7" type="DOPING"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.5"/>
+	</pet>
+	<pet id="900144" name_en="This is fun! We should do this more often." name_pt="Jefi sofisticado de risada" nameid="1610523" condition_reward="188051378">
+		<petfunction id="1" type="LOOT"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.2"/>
+	</pet>
+	<pet id="900145" name_en="Let’s play some more!" name_pt="Marca pura" nameid="1610527" condition_reward="188051378">
+		<petfunction id="27" type="DOPING"/>
+		<petfunction id="35" type="FOOD"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="1.0" altitude="1.5"/>
+	</pet>
+	<pet id="900146" name_en="Let’s play some more!" name_pt="Diabo helllfire" nameid="1610528" condition_reward="188051378">
+		<petfunction id="27" type="DOPING"/>
+		<petfunction id="36" type="FOOD"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="1.0" altitude="1.5"/>
+	</pet>
+	<pet id="900147" name_en="I’ll romp around until all my hair falls out!" name_pt="Escudeiro ailu" nameid="1610529" condition_reward="188051378">
+		<petfunction id="1020030" type="BAG"/>
+		<petfunction id="11" type="WAREHOUSE" slots="30"/>
+		<petfunction id="1030001" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900148" name_en="medalist shugo" name_pt="medalist shugo" nameid="1610765" condition_reward="188051378">
+		<petfunction id="27" type="DOPING"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900149" name_en="golden crown akarun" name_pt="golden crown akarun" nameid="1610767" condition_reward="188051378">
+		<petfunction id="37" type="FOOD"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900150" name_en="red bulldozer" name_pt="red bulldozer" nameid="1610844" condition_reward="188051378">
+		<petfunction id="1" type="LOOT"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.8"/>
+	</pet>
+	<pet id="900151" name_en="steel narki" name_pt="steel narki" nameid="1610924" condition_reward="188051378">
+		<petfunction id="27" type="DOPING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900152" name_en="woodkeeper ailu" name_pt="woodkeeper ailu" nameid="1610925" condition_reward="188051378">
+		<petfunction id="1020030" type="BAG"/>
+		<petfunction id="5" type="WAREHOUSE" slots="18"/>
+		<petfunction id="1030001" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900153" name_en="sillus fortress golden stormwing" name_pt="sillus fortress golden stormwing" nameid="1610926" condition_reward="188051378">
+		<petfunction id="27" type="DOPING"/>
+		<petfunction id="6" type="WAREHOUSE" slots="24"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="1.2"/>
+	</pet>
+	<pet id="900154" name_en="gold porgus" name_pt="gold porgus" nameid="1611155" condition_reward="188051378">
+		<petfunction id="38" type="FOOD"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.6"/>
+	</pet>
+	<pet id="900155" name_en="dandi" name_pt="dandi" nameid="1611309" condition_reward="188051378">
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.2"/>
+	</pet>
+	<pet id="900156" name_en="shugo flag bearer, turkey" name_pt="shugo flag bearer, turkey" nameid="1611311" condition_reward="188051378">
+		<petfunction id="1020013" type="BAG"/>
+		<petfunction id="27" type="DOPING"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900157" name_en="shugo flag bearer, usa" name_pt="shugo flag bearer, usa" nameid="1611388" condition_reward="188051378">
+		<petfunction id="1020013" type="BAG"/>
+		<petfunction id="27" type="DOPING"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900158" name_en="shugo flag bearer, canada" name_pt="shugo flag bearer, canada" nameid="1611465" condition_reward="188051378">
+		<petfunction id="1020013" type="BAG"/>
+		<petfunction id="27" type="DOPING"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900159" name_en="shugo flag bearer, australia" name_pt="shugo flag bearer, australia" nameid="1611542" condition_reward="188051378">
+		<petfunction id="1020013" type="BAG"/>
+		<petfunction id="27" type="DOPING"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900160" name_en="shugo flag bearer, brazil" name_pt="shugo flag bearer, brazil" nameid="1611619" condition_reward="188051378">
+		<petfunction id="1020013" type="BAG"/>
+		<petfunction id="27" type="DOPING"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900161" name_en="shugo flag bearer, argentina" name_pt="shugo flag bearer, argentina" nameid="1611696" condition_reward="188051378">
+		<petfunction id="1020013" type="BAG"/>
+		<petfunction id="27" type="DOPING"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900162" name_en="shugo flag bearer, germany" name_pt="shugo flag bearer, germany" nameid="1611773" condition_reward="188051378">
+		<petfunction id="1020013" type="BAG"/>
+		<petfunction id="27" type="DOPING"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900163" name_en="shugo flag bearer, france" name_pt="shugo flag bearer, france" nameid="1611850" condition_reward="188051378">
+		<petfunction id="1020013" type="BAG"/>
+		<petfunction id="27" type="DOPING"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900164" name_en="shugo flag bearer, uk" name_pt="shugo flag bearer, uk" nameid="1611927" condition_reward="188051378">
+		<petfunction id="1020013" type="BAG"/>
+		<petfunction id="27" type="DOPING"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900165" name_en="shugo flag bearer, china" name_pt="shugo flag bearer, china" nameid="1612010" condition_reward="188051378">
+		<petfunction id="1020013" type="BAG"/>
+		<petfunction id="27" type="DOPING"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900166" name_en="shugo flag bearer, taiwan" name_pt="shugo flag bearer, taiwan" nameid="1612087" condition_reward="188051378">
+		<petfunction id="1020013" type="BAG"/>
+		<petfunction id="27" type="DOPING"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900167" name_en="shugo flag bearer, japan" name_pt="shugo flag bearer, japan" nameid="1612164" condition_reward="188051378">
+		<petfunction id="1020013" type="BAG"/>
+		<petfunction id="27" type="DOPING"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900168" name_en="shugo flag bearer, russia" name_pt="shugo flag bearer, russia" nameid="1612241" condition_reward="188051378">
+		<petfunction id="1020013" type="BAG"/>
+		<petfunction id="27" type="DOPING"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900169" name_en="traveling kitter" name_pt="traveling kitter" nameid="1612004" condition_reward="188051378">
+		<petfunction id="1020031" type="BAG"/>
+		<petfunction id="12" type="WAREHOUSE" slots="26"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.3"/>
+	</pet>
+	<pet id="900170" name_en="tahabata" name_pt="tahabata" nameid="1612005" condition_reward="188051378">
+		<petfunction id="1020032" type="BAG"/>
+		<petfunction id="9" type="WAREHOUSE" slots="30"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="1.2"/>
+	</pet>
+	<pet id="900171" name_en="golden saam" name_pt="golden saam" nameid="1612318" condition_reward="188051378">
+		<petfunction id="1020033" type="BAG"/>
+		<petfunction id="13" type="WAREHOUSE" slots="32"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="0.7"/>
+	</pet>
+	<pet id="900172" name_en="shugo flag bearer, italy" name_pt="shugo flag bearer, italy" nameid="1612326" condition_reward="188051378">
+		<petfunction id="1020013" type="BAG"/>
+		<petfunction id="27" type="DOPING"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900173" name_en="shugo flag bearer, spain" name_pt="shugo flag bearer, spain" nameid="1612403" condition_reward="188051378">
+		<petfunction id="1020013" type="BAG"/>
+		<petfunction id="27" type="DOPING"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900174" name_en="shugo flag bearer, poland" name_pt="shugo flag bearer, poland" nameid="1612480" condition_reward="188051378">
+		<petfunction id="1020013" type="BAG"/>
+		<petfunction id="27" type="DOPING"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900175" name_en="shugo flag bearer, singapore" name_pt="shugo flag bearer, singapore" nameid="1612557" condition_reward="188051378">
+		<petfunction id="1020013" type="BAG"/>
+		<petfunction id="27" type="DOPING"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900176" name_en="shugo flag bearer, thailand" name_pt="shugo flag bearer, thailand" nameid="1612634" condition_reward="188051378">
+		<petfunction id="1020013" type="BAG"/>
+		<petfunction id="27" type="DOPING"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900177" name_en="shugo flag bearer, philippines" name_pt="shugo flag bearer, philippines" nameid="1612711" condition_reward="188051378">
+		<petfunction id="1020013" type="BAG"/>
+		<petfunction id="27" type="DOPING"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900178" name_en="shugo flag bearer, indonesia" name_pt="shugo flag bearer, indonesia" nameid="1612788" condition_reward="188051378">
+		<petfunction id="1020013" type="BAG"/>
+		<petfunction id="27" type="DOPING"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900179" name_en="shugo flag bearer, malaysia" name_pt="shugo flag bearer, malaysia" nameid="1612865" condition_reward="188051378">
+		<petfunction id="1020013" type="BAG"/>
+		<petfunction id="27" type="DOPING"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900180" name_en="shugo vietnam fan" name_pt="shugo vietnam fan" nameid="1612942" condition_reward="188051378">
+		<petfunction id="1020013" type="BAG"/>
+		<petfunction id="27" type="DOPING"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900181" name_en="cheery kobushka" name_pt="cheery kobushka" nameid="1613022" condition_reward="188051378">
+		<petfunction id="39" type="FOOD"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="0.9"/>
+	</pet>
+	<pet id="900182" name_en="hearty ailu" name_pt="hearty ailu" nameid="1613099" condition_reward="188051378">
+		<petfunction id="1020030" type="BAG"/>
+		<petfunction id="1030001" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900183" name_en="one of yume's pixie helpers." name_pt="one of yume's pixie helpers." nameid="1613176" condition_reward="188051378">
+		<petfunction id="28" type="DOPING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="1.0" altitude="1.5"/>
+	</pet>
+	<pet id="900184" name_en="clever yongsam" name_pt="clever yongsam" nameid="1613253" condition_reward="188051378">
+		<petfunction id="28" type="DOPING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900185" name_en="devil of honor" name_pt="devil of honor" nameid="1613259" condition_reward="188051378">
+		<petfunction id="28" type="DOPING"/>
+		<petfunction id="1" type="LOOT"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0" altitude="1.5"/>
+	</pet>
+	<pet id="900186" name_en="angel of honor" name_pt="angel of honor" nameid="1613260" condition_reward="188051378">
+		<petfunction id="28" type="DOPING"/>
+		<petfunction id="1" type="LOOT"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="1.0" altitude="1.5"/>
+	</pet>
+	<pet id="900187" name_en="harvest saam" name_pt="harvest saam" nameid="1613413" condition_reward="188051378">
+		<petfunction id="1020033" type="BAG"/>
+		<petfunction id="11" type="WAREHOUSE" slots="30"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="0.7"/>
+	</pet>
+	<pet id="900188" name_en="red bulldozer of glory" name_pt="red bulldozer of glory" nameid="1613492" condition_reward="188051378">
+		<petfunction id="28" type="DOPING"/>
+		<petfunction id="1" type="LOOT"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.8"/>
+	</pet>
+	<pet id="900189" name_en="ailu claw" name_pt="ailu claw" nameid="1613569" condition_reward="188051378">
+		<petfunction id="1020034" type="BAG"/>
+		<petfunction id="14" type="WAREHOUSE" slots="34"/>
+		<petfunction id="1030001" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="0.7"/>
+	</pet>
+	<pet id="900190" name_en="cheering dandi" name_pt="cheering dandi" nameid="1613726" condition_reward="188051378">
+		<petfunction id="27" type="DOPING"/>
+		<petfunction id="1" type="LOOT"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.2"/>
+	</pet>
+	<pet id="900191" name_en="royal kitter" name_pt="royal kitter" nameid="1613648" condition_reward="188051378">
+		<petfunction id="3" type="MERCHANT" rate_price="15"/>
+		<petfunction id="1" type="LOOT"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900192" name_en="tiamat whelp" name_pt="tiamat whelp" nameid="1613729" condition_reward="188051378">
+		<petfunction id="28" type="DOPING"/>
+		<petfunction id="1" type="LOOT"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="1.2"/>
+	</pet>
+	<pet id="900193" name_en="kennercan" name_pt="kennercan" nameid="1613883" condition_reward="188051378">
+		<petfunction id="4" type="MERCHANT" rate_price="20"/>
+		<petfunction id="1" type="LOOT"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900194" name_en="royal kitter" name_pt="royal kitter" nameid="1613961" condition_reward="188051378">
+		<petfunction id="5" type="BUFF"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900195" name_en="shu-ghost" name_pt="shu-ghost" nameid="1613967" condition_reward="188051378">
+		<petfunction id="3" type="BUFF"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0" altitude="1.5"/>
+	</pet>
+	<pet id="900196" name_en="pinkybell" name_pt="pinkybell" nameid="1613969" condition_reward="188051378">
+		<petfunction id="4" type="BUFF"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0" altitude="1.5"/>
+	</pet>
+	<pet id="900197" name_en="bottlenose tion" name_pt="bottlenose tion" nameid="1613965" condition_reward="188051378">
+		<petfunction id="28" type="DOPING"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="900198" name_en="tiamat whelp" name_pt="tiamat whelp" nameid="1613971" condition_reward="188051378">
+		<petfunction id="6" type="BUFF"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="1.2"/>
+	</pet>
+	<pet id="900199" name_en="squeeble" name_pt="squeeble" nameid="1613973" condition_reward="188051378">
+		<petfunction id="7" type="BUFF"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0" altitude="1.5"/>
+	</pet>
+	<pet id="900200" name_en="kungfu ailu" name_pt="kungfu ailu" nameid="1613975" condition_reward="188051378">
+		<petfunction id="1020034" type="BAG"/>
+		<petfunction id="14" type="WAREHOUSE" slots="34"/>
+		<petfunction id="1030001" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="0.7"/>
+	</pet>
+	<pet id="900201" name_en="mini hyperion" name_pt="mini hyperion" nameid="1613977" condition_reward="188051378">
+		<petfunction id="4" type="MERCHANT" rate_price="20"/>
+		<petfunction id="1" type="LOOT"/>
+		<petfunction id="1030001" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.7"/>
+	</pet>
+	<pet id="900202" name_en="stormbringer" name_pt="stormbringer" nameid="1613979" condition_reward="188051378">
+		<petfunction id="9" type="BUFF"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="1.2"/>
+	</pet>
+	<pet id="970000" name_en="[Event] Make Choco Tteok" name_pt="Ajudante 01" nameid="1609815" condition_reward="188051378">
+		<petfunction id="1020013" type="BAG"/>
+		<petfunction id="1" type="MERCHANT" rate_price="10"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="970001" name_en="You can mix together [Event] Sweet Cocoa and [Event] Tteok Powder to make [Event] Choco Tteok." name_pt="Ajudante 02" nameid="1609816" condition_reward="188051378">
+		<petfunction id="2" type="MERCHANT" rate_price="30"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0" altitude="1.5"/>
+	</pet>
+	<pet id="970002" name_en="Choco Tteok Ingredients" name_pt="Ajudante 03" nameid="1609817" condition_reward="188051378">
+		<petfunction id="7" type="FOOD"/>
+		<petfunction id="3" type="WAREHOUSE" slots="6"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.2"/>
+	</pet>
+	<pet id="970003" name_en="Altgard Kitter" name_pt="Ajudante 04" nameid="1609818" condition_reward="188051378">
+		<petfunction id="1020010" type="BAG"/>
+		<petfunction id="31" type="DOPING"/>
+		<petfunction id="3" type="WAREHOUSE" slots="6"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.2"/>
+	</pet>
+	<pet id="970004" name_en="That’s funny." name_pt="Ajudante Su-Ro Kim" nameid="1610207" condition_reward="188051378">
+		<petfunction id="27" type="DOPING"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.85"/>
+	</pet>
+	<pet id="970005" name_en="Put my name on the ball later, okay?" name_pt="Ajudante Canela-Jovem Kim" nameid="1610284" condition_reward="188051378">
+		<petfunction id="1" type="LOOT"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="970006" name_en="That’s funny." name_pt="Ajudante Su-Ro Kim" nameid="1610207" condition_reward="188051378">
+		<petfunction id="27" type="DOPING"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.85"/>
+	</pet>
+	<pet id="970007" name_en="Put my name on the ball later, okay?" name_pt="Ajudante Canela-Jovem Kim" nameid="1610284" condition_reward="188051378">
+		<petfunction id="1" type="LOOT"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="970008" name_en="That’s funny." name_pt="Ajudante Su-Ro Kim" nameid="1610207" condition_reward="188051378">
+		<petfunction id="27" type="DOPING"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="0.85"/>
+	</pet>
+	<pet id="970009" name_en="Put my name on the ball later, okay?" name_pt="Ajudante Canela-Jovem Kim" nameid="1610284" condition_reward="188051378">
+		<petfunction id="1" type="LOOT"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0"/>
+	</pet>
+	<pet id="970010" name_en="sidekick iu" name_pt="sidekick iu" nameid="1611232" condition_reward="188051378">
+		<petfunction id="27" type="DOPING"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="1.2" altitude="1.5"/>
+	</pet>
+	<pet id="970011" name_en="Red Diabol" name_pt="Diabo vermelho" nameid="1607505" condition_reward="188051378">
+		<petfunction id="1" type="LOOT"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="1.0" altitude="1.5"/>
+	</pet>
+	<pet id="970012" name_en="Pink Merek" name_pt="Marca rosa" nameid="1607509" condition_reward="188051378">
+		<petfunction id="1" type="LOOT"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="1.0" altitude="1.5"/>
+	</pet>
+	<pet id="970013" name_en="sidekick yume" name_pt="sidekick yume" nameid="1613415" condition_reward="188051378">
+		<petfunction id="29" type="DOPING"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="1.2" altitude="1.5"/>
+	</pet>
+	<pet id="970014" name_en="demon newspawn" name_pt="demon newspawn" nameid="1613806" condition_reward="188051378">
+		<petfunction id="30" type="DOPING"/>
+		<petfunction id="1030000" type="WING"/>
+		<petstats reaction="cowardly" run_speed="6.0" walk_speed="1.132" height="1.2" altitude="1.5"/>
+	</pet>
+	<pet id="970015" name_en="wee devil" name_pt="wee devil" nameid="1613963" condition_reward="188051378">
+		<petfunction id="27" type="DOPING"/>
+		<petstats reaction="brave" run_speed="6.0" walk_speed="1.132" height="1.0" altitude="1.5"/>
+	</pet>
+</pets>

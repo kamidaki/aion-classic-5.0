@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<!-- Produção da Legion (Classic 5.0), gerado do PC/client_guild_craft.xml por parse_legion_craft_50.py. Só receitas ativas.
+		Componentes na ordem do cliente: kinah e item são doados pelos membros (C_GUILD 0x14); essence e essence_piece vêm da Legion. -->
+	<xs:element name="legion_craft">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="recipe" minOccurs="1" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:choice minOccurs="0" maxOccurs="unbounded">
+							<xs:element name="kinah">
+								<xs:complexType>
+									<xs:attribute name="amount" type="xs:positiveInteger" use="required"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="item">
+								<xs:complexType>
+									<xs:attribute name="id" type="xs:positiveInteger" use="required"/>
+									<xs:attribute name="count" type="xs:positiveInteger" use="required"/>
+									<xs:attribute name="points" type="xs:nonNegativeInteger" use="required"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="essence">
+								<xs:complexType>
+									<xs:attribute name="count" type="xs:positiveInteger" use="required"/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="essence_piece">
+								<xs:complexType>
+									<xs:attribute name="count" type="xs:positiveInteger" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:choice>
+						<xs:attribute name="id" type="xs:positiveInteger" use="required"/>
+						<xs:attribute name="name" type="xs:string" use="required"/>
+						<xs:attribute name="race" type="LegionDonationRace" use="required"/>
+						<xs:attribute name="type" type="LegionCraftType" use="required"/>
+						<xs:attribute name="craft_time" type="xs:nonNegativeInteger" use="required"/>
+						<xs:attribute name="product_id" type="xs:positiveInteger"/>
+						<xs:attribute name="product_count" type="xs:positiveInteger"/>
+						<xs:attribute name="essence_count" type="xs:positiveInteger"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="LegionCraftType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="COMMON"/>
+			<xs:enumeration value="EVENT"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

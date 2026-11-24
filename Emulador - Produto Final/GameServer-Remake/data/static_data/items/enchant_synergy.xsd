@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<!-- Sinergia de encantamento (Classic 5.0, client_accumulated_enchant_effect.xml): nível = soma dos encantamentos dos itens
+		equipados da lista; vale o maior level com sum <= soma. Gerado por parse_enchant_synergy_50.py. -->
+	<xs:simpleType name="EnchantSynergyItemIds">
+		<xs:list itemType="xs:positiveInteger"/>
+	</xs:simpleType>
+	<xs:element name="enchant_synergy">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="items" type="EnchantSynergyItemIds"/>
+				<xs:element name="level" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="modifiers" type="Modifiers"/>
+						</xs:sequence>
+						<xs:attribute name="sum" type="xs:positiveInteger" use="required"/>
+						<xs:attribute name="skill_id" type="xs:positiveInteger"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

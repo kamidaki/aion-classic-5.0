@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0">
+	<xs:simpleType name="flyRewardType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="POTION" />
+			<xs:enumeration value="SCROLL" />
+			<xs:enumeration value="FOOD" />
+			<xs:enumeration value="EGG" />
+			<xs:enumeration value="LIMITED_EXPIRATION" />
+			<xs:enumeration value="CANDY" />
+		</xs:restriction>
+	</xs:simpleType>
+
+	<xs:complexType name="flyDrop">
+		<xs:attribute name="type" type="flyRewardType" use="required" />
+		<xs:attribute name="item_id" type="xs:int" use="required" />
+		<xs:attribute name="chance" type="xs:float" default="100" />
+		<xs:attribute name="min_amount" type="xs:int" default="1" />
+		<xs:attribute name="max_amount" type="xs:int" default="1" />
+		<xs:attribute name="min_player_level" type="xs:int" default="1" />
+		<xs:attribute name="max_player_level" type="xs:int" default="79" />
+		<xs:attribute name="recommended_level" type="xs:int" default="0" />
+	</xs:complexType>
+
+	<xs:element name="fly_loot">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="drop" type="flyDrop" minOccurs="0" maxOccurs="unbounded" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

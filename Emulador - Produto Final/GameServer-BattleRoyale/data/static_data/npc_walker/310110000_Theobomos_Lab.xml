@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<npc_walker xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="npc_walker.xsd">
+	<walker_template route_id="81A2D7233FBB15F8B91C5BCE9D48A4FA20A7A40E">
+		<routestep z="188.14394" y="732.73047" x="404.26022" />
+		<routestep z="188.92496" y="750.50867" x="414.79214" />
+		<routestep z="188.9252" y="768.93964" x="411.94653" />
+		<routestep z="188.92668" y="771.6343" x="393.93668" />
+		<routestep z="188.92767" y="765.9283" x="372.32846" />
+		<routestep z="188.92572" y="751.7711" x="370.23312" />
+		<routestep z="188.14383" y="734.25366" x="372.08008" />
+		<routestep z="188.14398" y="731.989" x="402.58774" />
+	</walker_template>
+</npc_walker>

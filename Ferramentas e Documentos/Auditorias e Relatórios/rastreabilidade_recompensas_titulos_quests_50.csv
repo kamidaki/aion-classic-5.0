@@ -1,0 +1,86 @@
+﻿quest_id;quest_nome_servidor;grupo_recompensa;titulo_legado_id;quest_no_cliente_atual;campo_oficial_residual;status;fonte_oficial;fonte_servidor
+1718;Negociando para baixo;extended_rewards;45;sim;reward_title_ext=light_title45;REMOVIDO_CAMPO_RESIDUAL_SEM_TITULO_ATUAL;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+2368;Uma cota de criaturas;extended_rewards;127;sim;reward_title_ext=dark_title27;REMOVIDO_CAMPO_RESIDUAL_SEM_TITULO_ATUAL;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+2718;Negociando para baixo;extended_rewards;145;sim;reward_title_ext=dark_title45;REMOVIDO_CAMPO_RESIDUAL_SEM_TITULO_ATUAL;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+3121;Archaeologist Pyrrha;rewards;47;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+3340;Preparing for the Destruction of the Lepharist Bastion;rewards;11;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+3547;Enemy Harassing the Elim;rewards;23;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+3548;Results of Horrible Research;rewards;24;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+3912;Intenção de Lady Yustiel;extended_rewards;39;sim;reward_title_ext=light_title39;REMOVIDO_CAMPO_RESIDUAL_SEM_TITULO_ATUAL;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+4120;Vengeful Spirit Consolation;rewards;97;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+4338;Necklace War;rewards;59;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+4542;The Secret of the Seiren Treasure;rewards;73;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+4933;Intenção do Senhor Marchutan;extended_rewards;139;sim;reward_title_ext=dark_title39;REMOVIDO_CAMPO_RESIDUAL_SEM_TITULO_ATUAL;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+10053;Revelations;rewards;202;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+10064;The Oldest of Foes;rewards;204;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+10073;Shattered Alliance;rewards;249;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+10073;Shattered Alliance;rewards;249;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+11304;The Remaining Faithful;rewards;149;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+11512;[Group] Lovers Lost;rewards;201;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+11523;The Shining Spear;rewards;205;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+12052;Tulin's in Trouble;rewards;203;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+12068;A Hands-On Experience;rewards;204;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+13530;[Hero] A Hero's Reward;rewards;263;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+14015;Not Blinded by Vengeance;rewards;5;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+14016;A Gate Agape;rewards;2;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+14016;A Gate Agape;rewards;2;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+14024;A Krall-ing Suspicion;rewards;10;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+14024;A Krall-ing Suspicion;rewards;10;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+14026;A Lone Defense;rewards;12;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+14026;A Lone Defense;rewards;12;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+14030;Retrieved Memory;rewards;49;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+14043;Drawling Balaur;rewards;30;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+14047;Chaining Memories;rewards;46;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+14054;Krall-ing to Kralltumagna;rewards;25;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+14054;Krall-ing to Kralltumagna;rewards;25;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+14071;Hurdling for Truth;rewards;202;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+14091;Identity Business;rewards;249;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+18219;Arena of Glory Challenge 1;rewards;239;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+18220;Arena of Glory Challenge 2;rewards;240;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+18221;Arena of Glory Challenge 3;rewards;241;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+18222;Arena of Glory Challenge 4;rewards;242;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+18223;Arena of Glory Challenge 5;rewards;243;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+18700;[Grupo] invasão da prisão;rewards;208;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+18802;[Housing] And A Home for Every Daeva;rewards;206;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+18954;A prova de vitória;rewards;293;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+19056;[Expert] Construction Expert;rewards;36;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+19074;The Technist Preceptor's Task;rewards;38;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+19075;The Muse Preceptor's Task;rewards;38;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+19078;Master Aethertech;rewards;38;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+20053;The Protector's Blessing;rewards;213;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+20064;Nemesis;rewards;215;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+20073;Alliances Undone;rewards;250;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+20073;Alliances Undone;rewards;250;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+21511;[Group] The Stink of Victory;rewards;212;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+21522;The Shadow Spear;rewards;216;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+22052;Asmodian Unleashed;rewards;214;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+22068;To Tiamaranta's Eye;rewards;215;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+23530;[Hero] Just Rewards;rewards;264;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+24016;A Strange New Threat;rewards;57;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+24022;Sneak Behind the Ice Claw;rewards;58;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+24026;A Hand from Each Side;rewards;60;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+24026;A Hand from Each Side;rewards;60;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+24030;Showdown with Destiny;rewards;99;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+24043;Lazy Language Lessons;rewards;80;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+24046;The Shadow Calls;rewards;96;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+24054;Crisis in Beluslan;rewards;74;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+24062;A Dark Plan;rewards;150;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+24071;The Protector's Test;rewards;213;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+24091;Unending Mission;rewards;250;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+28219;Entering the Arena of Glory;rewards;244;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+28220;Back for More;rewards;245;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+28221;Making an Impression;rewards;246;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+28222;Making a Bigger Impression;rewards;247;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+28223;The Final Test;rewards;248;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+28700;[Grupo] Raksang: a prisão da morte;rewards;219;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+28802;[Housing] Be It Ever So Humble;rewards;217;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+28954;A prova de vitória;rewards;294;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+29056;[Expert] Expert Constructor;rewards;86;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+29074;The Technist Preceptor's Test;rewards;88;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+29075;The Muse Preceptor's Test;rewards;88;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+29078;Aethertech Master's Test;rewards;88;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+30514;(More talking);rewards;211;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+30564;[Instance/Group] A última esperança;rewards;222;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+30751;[Alliance] Death to the Dragon Lord!;rewards;250;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+41470;The Elyos of Siel's Spear;rewards;237;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml
+41471;The Asmodian of Siel's Spear;rewards;238;não;;REMOVIDO_QUEST_LEGADA_AUSENTE_DO_CLIENTE;"data/Quest/quest.xml;data/PC/client_titles.xml";data/static_data/quest_data/quest_data.xml

@@ -1,0 +1,37 @@
+name: Sugestao de Melhoria / Multilinguas
+description: Proponha uma melhoria PvE alinhada ao GameForge GSID 1 ou ao sistema multilinguas (mantendo Portugues como padrao).
+title: "[FEAT]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Propostas devem contribuir diretamente para a fidelidade 100% PvE ao Aion Retail Oficial EU (Gameforge — GSID 1) ou implementar melhorias no sistema multilinguas sem alterar o idioma padrao (Portugues).
+        Propostas para servidores secundários (GSID 2 / GSID 3) ou mudanca do idioma padrao para ingles serao recusadas.
+  - type: dropdown
+    id: component
+    attributes:
+      label: Componente Alvo
+      options:
+        - "GameServer GameForge (GSID 1)"
+        - "LoginServer (Java 25)"
+        - "ChatServer (Java 25)"
+        - "Commons (Java 25)"
+        - "Client Hook (version.dll)"
+        - "Sistema Multilinguas (l10n)"
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Descricao da Melhoria
+      description: O que deve ser implementado e como contribui para o objetivo oficial Gameforge EU ou multilinguas.
+    validations:
+      required: true
+  - type: textarea
+    id: official_evidence
+    attributes:
+      label: Evidencia Oficial ou Justificativa Tecnica
+      description: Referencias oficiais do Gameforge EU (dados, comportamento PvE, protocolo) que respaldam a proposta.
+    validations:
+      required: true

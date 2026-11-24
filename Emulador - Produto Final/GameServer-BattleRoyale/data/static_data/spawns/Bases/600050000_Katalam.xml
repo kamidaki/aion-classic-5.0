@@ -1,0 +1,1101 @@
+<?xml version='1.0' encoding='utf-8'?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+	<spawn_map map_id="600050000">
+		<base_spawn id="71">
+			<!-- 71-Occupier's Lounge -->
+			<occupier_template occupier="ELYOS">
+				<!-- Ultrid -->
+				<spawn npc_id="801600">
+					<spot x="225.67972" y="835.3145" z="216.086" />
+				</spawn>
+				<!-- Territory Boss -->
+				<!-- Occupation Garrison Shieldcaptain -->
+				<!-- Occupation Garrison Assassin -->
+				<!-- Occupation Garrison Combatant -->
+				<!-- Occupation Garrison Protector -->
+				<!-- Occupation Garrison Healer -->
+				<!-- Occupation Garrison Sentry -->
+				<!-- Caixa de correio -->
+				<spawn npc_id="700000" respawn_time="295">
+					<spot x="225.6701" y="838.7197" z="210.8750" />
+				</spawn>
+				<!-- Gladiador especial dos reforços do Pandaemonium -->
+				<spawn npc_id="800648" respawn_time="295">
+					<spot x="224.7814" y="845.0668" z="210.8750" />
+				</spawn>
+				<!-- Sacerdote especial dos reforços do Pandaemonium -->
+				<spawn npc_id="800649" respawn_time="295">
+					<spot x="234.9009" y="849.0286" z="210.8750" h="100" />
+				</spawn>
+				<!-- Invocador especial dos reforços do Pandaemonium -->
+				<spawn npc_id="800650" respawn_time="295">
+					<spot x="238.5945" y="828.9783" z="210.8750" h="26" />
+				</spawn>
+				<!-- Templário Especial dos reforços da Guilda da Grada de Griffon -->
+				<spawn npc_id="800651" respawn_time="295">
+					<spot x="230.1254" y="847.4946" z="210.8750" h="100" />
+				</spawn>
+				<!-- Saída de circo -->
+				<spawn npc_id="801230" respawn_time="295">
+					<spot x="233.2867" y="829.9488" z="210.8750" />
+				</spawn>
+				<!-- Sub Base Asmodian Spawns -->
+				<!-- Occupation Recon Combatant -->
+				<!-- Occupation Recon Sentry -->
+				<!-- Occupation Recon Supervisor -->
+				<!-- Occupation Scout Envoy -->
+			</occupier_template>
+			<occupier_template occupier="ASMODIANS">
+				<!-- Scrooge -->
+				<spawn npc_id="801601">
+					<spot x="225.67972" y="835.3145" z="216.086" />
+				</spawn>
+				<!-- Territory Boss -->
+				<!-- Occupation Shieldcaptain -->
+				<!-- Occupation Assassin -->
+				<!-- Occupation Combatant -->
+				<!-- Occupation Protector -->
+				<!-- Occupation Healer -->
+				<!-- Occupation Sentry -->
+				<!-- Caixa de correio -->
+				<spawn npc_id="700079" respawn_time="295">
+					<spot x="225.6701" y="838.7197" z="210.8750" />
+				</spawn>
+				<!-- IU-Harlequin -->
+				<spawn npc_id="801239" respawn_time="295">
+					<spot x="233.2867" y="829.9488" z="210.8750" />
+				</spawn>
+				<!-- Gladiador especial dos reforços da Guilda da Grada de Griffon -->
+				<spawn npc_id="800652" respawn_time="295">
+					<spot x="224.7814" y="845.0668" z="210.8750" />
+				</spawn>
+				<!-- Sacerdote especial dos reforços da Guilda da Grada de Griffon -->
+				<spawn npc_id="800653" respawn_time="295">
+					<spot x="234.90094" y="849.02863" z="212.1178" h="100" />
+				</spawn>
+				<!-- Brusthonin Templário Especial -->
+				<spawn npc_id="800654" respawn_time="295">
+					<spot x="238.5945" y="828.9783" z="210.8750" h="26" />
+				</spawn>
+				<!-- Brusthonin Gladiador Especial -->
+				<spawn npc_id="800655" respawn_time="295">
+					<spot x="230.1254" y="847.4946" z="210.8750" h="100" />
+				</spawn>
+				<!-- Sub Base Elyos Spawns -->
+				<!-- Occupation Pioneers Combatant -->
+				<!-- Occupation Pioneers Sentry -->
+				<!-- Occupation Pioneers Supervisor -->
+				<!-- Occupation Scout Envoy -->
+			</occupier_template>
+			<occupier_template occupier="BALAUR">
+				<!-- Desconhecido -->
+				<spawn npc_id="801602">
+					<spot x="225.67972" y="835.3145" z="216.086" />
+				</spawn>
+				<!-- Territory Boss -->
+				<!-- Occupation Subjugator Shieldcaptain -->
+				<!-- Occupation Subjugator Assassin -->
+				<!-- Occupation Subjugator Combatant -->
+				<!-- Occupation Subjugator Protector -->
+				<!-- Occupation Subjugator Healer -->
+				<!-- Occupation Subjugator Sentry -->
+			</occupier_template>
+		</base_spawn>
+		<base_spawn id="72">
+			<!-- 72-Spiralroot Shelter -->
+			<occupier_template occupier="ELYOS">
+				<!-- Desconhecido -->
+				<spawn npc_id="801603">
+					<spot x="138.1662" y="2208.9534" z="184.1250" h="88" />
+				</spawn>
+				<!-- Territory Boss -->
+				<!-- Spiralroot Garrison Shieldcaptain -->
+				<!-- Spiralroot Garrison Assassin -->
+				<!-- Spiralroot Garrison Combatant -->
+				<!-- Spiralroot Garrison Protector -->
+				<!-- Spiralroot Garrison Healer -->
+				<!-- Spiralroot Garrison Sentry -->
+				<!-- Caixa de correio -->
+				<spawn npc_id="700000" respawn_time="295">
+					<spot x="133.0322" y="2203.4038" z="184.1250" h="90" />
+				</spawn>
+				<!-- Brusthonin Clérigo Special -->
+				<spawn npc_id="800656" respawn_time="295">
+					<spot x="143.1435" y="2204.7368" z="184.1250" h="90" />
+				</spawn>
+				<!-- Baltasar Canhão Keeper -->
+				<spawn npc_id="800657" respawn_time="295">
+					<spot x="127.5038" y="2196.2080" z="184.1250" />
+				</spawn>
+				<!-- Canhão montado no Jamanok Inn -->
+				<spawn npc_id="800658" respawn_time="295">
+					<spot x="150.2473" y="2194.7266" z="184.1250" h="60" />
+				</spawn>
+				<!-- Canhão montado em Baltasar -->
+				<spawn npc_id="800659" respawn_time="295">
+					<spot x="129.0440" y="2200.9377" z="184.1250" h="110" />
+				</spawn>
+				<!-- Kobold Cleaner -->
+				<spawn npc_id="801231" respawn_time="295">
+					<spot x="150.0544" y="2207.2302" z="184.1250" h="90" />
+				</spawn>
+				<!-- Battlegroup Supply Box -->
+				<!-- Sub Camp Asmodian Base Spawns -->
+				<!-- Spiralroot Recon Combatant -->
+				<!-- Spiralroot Recon Sentry -->
+				<!-- Spiralroot Recon Supervisor -->
+				<!-- Spiralroot Recon Messenger -->
+			</occupier_template>
+			<occupier_template occupier="ASMODIANS">
+				<!-- Duonerk -->
+				<spawn npc_id="801604">
+					<spot x="138.1662" y="2208.9534" z="184.1250" h="100" />
+				</spawn>
+				<!-- Territory Boss -->
+				<!-- Spiralroot Shieldcaptain -->
+				<!-- Spiralroot Assassin -->
+				<!-- Spiralroot Combatant -->
+				<!-- Spiralroot Protector -->
+				<!-- Spiralroot Healer -->
+				<!-- Spiralroot Sentry -->
+				<!-- Caixa de correio -->
+				<spawn npc_id="700079" respawn_time="295">
+					<spot x="133.0322" y="2203.4038" z="184.1250" h="90" />
+				</spawn>
+				<!-- Battlegroup Supply Box -->
+				<!-- Jamanok -->
+				<spawn npc_id="800660" respawn_time="295">
+					<spot x="143.1435" y="2204.7368" z="184.1250" h="90" />
+				</spawn>
+				<spawn npc_id="800661" respawn_time="295">
+					<spot x="127.503754" y="2196.208008" z="185.512955" />
+				</spawn>
+				<!-- Abunka -->
+				<spawn npc_id="800662" respawn_time="295">
+					<spot x="150.2473" y="2194.7266" z="184.1250" h="60" />
+				</spawn>
+				<!-- Surt -->
+				<spawn npc_id="800663" respawn_time="295">
+					<spot x="129.0440" y="2200.9377" z="184.1250" h="110" />
+				</spawn>
+				<!-- <FORTRIZEMA EMBLEME MERCOMENTO> -->
+				<spawn npc_id="801240" respawn_time="295">
+					<spot x="150.0544" y="2207.2302" z="184.1250" h="90" />
+				</spawn>
+				<!-- Sub Camp Elyos Base Spawns -->
+				<!-- Spiralroot Pioneers Combatant -->
+				<!-- Spiralroot Pioneers Sentry -->
+				<!-- Spiralroot Pioneers Supervisor -->
+				<!-- Spiralroot Scout Envoy -->
+			</occupier_template>
+			<occupier_template occupier="BALAUR">
+				<!-- Duonerk -->
+				<spawn npc_id="801605">
+					<spot x="138.16624" y="2208.9534" z="192.916" />
+				</spawn>
+				<!-- Territory Boss -->
+				<!-- Spiralroot Subjugator Tesserari -->
+				<!-- Spiralroot Subjugator Assassin -->
+				<!-- Spiralroot Subjugator Combatant -->
+				<!-- Spiralroot Subjugator Protector -->
+				<!-- Spiralroot Subjugator Healer -->
+				<!-- Spiralroot Subjugator Sentry -->
+			</occupier_template>
+		</base_spawn>
+		<base_spawn id="73">
+			<!-- 73-Beritran Foothold -->
+			<occupier_template occupier="ELYOS">
+				<!-- Duonerk -->
+				<spawn npc_id="801606">
+					<spot x="1110.6884" y="511.8578" z="184.7500" h="85" />
+				</spawn>
+				<!-- Territory Boss -->
+				<!-- Foothold Garrison Shieldcaptain -->
+				<!-- Foothold Garrison Assassin -->
+				<!-- Foothold Garrison Combatant -->
+				<!-- Foothold Garrison Protector -->
+				<!-- Foothold Garrison Healer -->
+				<!-- Foothold Garrison Sentry -->
+				<!-- Foothold Garrison Supervisor -->
+				<!-- Giel -->
+				<spawn npc_id="800664" respawn_time="295">
+					<spot x="1104.6735" y="505.9909" z="184.7504" h="76" />
+				</spawn>
+				<!-- Dinos -->
+				<spawn npc_id="800665" respawn_time="295">
+					<spot x="1114.7546" y="504.8595" z="184.7500" h="76" />
+				</spawn>
+				<!-- Apenas para teste npc_system01 -->
+				<spawn npc_id="800666" respawn_time="295">
+					<spot x="1116.4993" y="503.9944" z="184.7500" h="76" />
+				</spawn>
+				<!-- Gerador de fenda portal em Brusthonin -->
+				<spawn npc_id="800667" respawn_time="295">
+					<spot x="1092.4353" y="499.5628" z="184.7286" h="105" />
+				</spawn>
+				<!-- <Potencializadores Extra> -->
+				<spawn npc_id="800668" respawn_time="295">
+					<spot x="1109.1857" y="490.0416" z="184.6250" h="50" />
+				</spawn>
+				<!-- Feiticeiro de protetorado de Jamanok -->
+				<spawn npc_id="800669" respawn_time="295">
+					<spot x="1093.8470" y="501.6663" z="184.7500" h="105" />
+				</spawn>
+				<!-- <Limpador empregado> -->
+				<spawn npc_id="801232" respawn_time="295">
+					<spot x="1111.5592" y="497.1464" z="184.6250" h="60" />
+				</spawn>
+				<!-- Baú de armazenamento de bomba -->
+				<spawn npc_id="801402" respawn_time="295">
+					<spot x="1111.0746" y="491.3936" z="184.6250" h="50" />
+				</spawn>
+				<!-- Idian Depths Teleport Device -->
+				<spawn npc_id="801791" respawn_time="295">
+					<spot x="1113.1454" y="513.6146" z="184.7500" h="83" />
+				</spawn>
+				<!-- Sub Camp Asmodian Spawns -->
+				<!-- Foothold Recon Combatant -->
+				<!-- Foothold Recon Sentry -->
+				<!-- Foothold Recon Supervisor -->
+				<!-- Foothold Recon Messenger -->
+			</occupier_template>
+			<occupier_template occupier="ASMODIANS">
+				<!-- TRIONERK -->
+				<spawn npc_id="801607">
+					<spot x="1110.6884" y="511.8578" z="184.7500" h="34" />
+				</spawn>
+				<!-- Territory Boss -->
+				<!-- Foothold Shieldcaptain -->
+				<!-- Foothold Assassin -->
+				<!-- Foothold Combatant -->
+				<!-- Foothold Protector -->
+				<!-- Foothold Healer -->
+				<!-- Foothold Sentry -->
+				<!-- Foothold Supervisor -->
+				<!-- Brusthonin Gladiador -->
+				<spawn npc_id="800670" respawn_time="295">
+					<spot x="1104.6735" y="505.9909" z="184.7504" h="90" />
+				</spawn>
+				<!-- Brusthonin Archer -->
+				<spawn npc_id="800671" respawn_time="295">
+					<spot x="1114.7546" y="504.8595" z="184.7500" h="76" />
+				</spawn>
+				<!-- Feiticor de Brusthonin -->
+				<spawn npc_id="800672" respawn_time="295">
+					<spot x="1116.4993" y="503.9944" z="184.7500" h="76" />
+				</spawn>
+				<!-- Kent sério -->
+				<spawn npc_id="800673" respawn_time="295">
+					<spot x="1092.4353" y="499.5628" z="184.7286" h="16" />
+				</spawn>
+				<!-- Inisha -->
+				<spawn npc_id="800674" respawn_time="295">
+					<spot x="1109.1857" y="490.0416" z="184.6250" h="50" />
+				</spawn>
+				<!-- Windton, o Womanizer -->
+				<spawn npc_id="800675" respawn_time="295">
+					<spot x="1093.8470" y="501.6663" z="184.7500" h="105" />
+				</spawn>
+				<!-- Idian Depths Teleport Device -->
+				<spawn npc_id="801792" respawn_time="295">
+					<spot x="1113.1454" y="513.6146" z="184.7500" h="83" />
+				</spawn>
+				<!-- <Rel&#237;quias Emblem&#225;ticas> -->
+				<spawn npc_id="801241" respawn_time="295">
+					<spot x="1111.5592" y="497.1464" z="184.6250" h="60" />
+				</spawn>
+				<!-- Baú de armazenamento de bomba -->
+				<spawn npc_id="801401" respawn_time="295">
+					<spot x="1111.0746" y="491.3936" z="184.6250" h="50" />
+				</spawn>
+				<!-- Sub Camp Elyos Spawns -->
+				<!-- Foothold Pioneers Combatant -->
+				<!-- Foothold Pioneers Sentry -->
+				<!-- Foothold Pioneers Supervisor -->
+				<!-- Foothold Scout Envoy -->
+			</occupier_template>
+			<occupier_template occupier="BALAUR">
+				<!-- TRIONERK -->
+				<spawn npc_id="801608">
+					<spot x="1110.6884" y="511.85785" z="184.75" />
+				</spawn>
+				<!-- Territory Boss -->
+				<!-- Foothold Subjugator Tesserari -->
+				<!-- Foothold Subjugator Assassin -->
+				<!-- Foothold Subjugator Combatant -->
+				<!-- Foothold Subjugator Protector -->
+				<!-- Foothold Subjugator Healer -->
+				<!-- Foothold Subjugator Sentry -->
+				<!-- Foothold Subjugator Supervisor -->
+			</occupier_template>
+		</base_spawn>
+		<base_spawn id="74">
+			<!-- 74-Primeval Ruins -->
+			<occupier_template occupier="ELYOS">
+				<!-- Elyos Territory -->
+				<spawn npc_id="801609">
+					<spot x="844.6785" y="2759.2375" z="182.1250" />
+				</spawn>
+				<!-- Territory Boss -->
+				<!-- Ruins Garrison Shieldcaptain -->
+				<!-- Ruins Garrison Assassin -->
+				<!-- Ruins Garrison Combatant -->
+				<!-- Ruins Garrison Protector -->
+				<!-- Ruins Garrison Healer -->
+				<!-- Ruins Garrison Sentry -->
+				<!-- Ruins Garrison Supervisor -->
+				<!-- Sharinne -->
+				<spawn npc_id="800676" respawn_time="295">
+					<spot x="856.3464" y="2765.6436" z="182.1250" h="103" />
+				</spawn>
+				<!-- Suike -->
+				<spawn npc_id="800677" respawn_time="295">
+					<spot x="844.8800" y="2749.0713" z="182.1250" />
+				</spawn>
+				<!-- Warrick -->
+				<spawn npc_id="800678" respawn_time="295">
+					<spot x="844.8473" y="2751.1599" z="182.1250" />
+				</spawn>
+				<!-- Loylung -->
+				<spawn npc_id="800679" respawn_time="295">
+					<spot x="851.6402" y="2745.5100" z="182.1250" h="15" />
+				</spawn>
+				<!-- Morrendo grande alma -->
+				<spawn npc_id="800680" respawn_time="295">
+					<spot x="865.6063" y="2759.0520" z="182.1250" h="75" />
+				</spawn>
+				<!-- Lilas Special Vendor -->
+				<spawn npc_id="800681" respawn_time="295">
+					<spot x="849.6420" y="2746.5576" z="182.1250" h="15" />
+				</spawn>
+				<!-- Cidadão Reian caído -->
+				<spawn npc_id="801404" respawn_time="295">
+					<spot x="863.8289" y="2762.8884" z="182.1250" h="75" />
+				</spawn>
+				<!-- <Iu de amigo> -->
+				<spawn npc_id="801233" respawn_time="295">
+					<spot x="853.3615" y="2761.5935" z="182.125" h="119" />
+				</spawn>
+				<!-- Idian Depths Teleport Device -->
+				<spawn npc_id="801793" respawn_time="295">
+					<spot x="839.9595" y="2754.6411" z="182.1250" h="116" />
+				</spawn>
+				<spawn npc_id="801406" respawn_time="295">
+					<spot x="862.039" y="2769.1572" z="182.12256" h="77" />
+				</spawn>
+				<!-- Sub Camp Asmodian Spawns -->
+				<!-- Ruins Recon Combatant -->
+				<!-- Ruins Recon Sentry -->
+				<!-- Ruins Recon Supervisor -->
+				<!-- Ruins Recon Messenger -->
+			</occupier_template>
+			<occupier_template occupier="ASMODIANS">
+				<!-- Asmodians Territory -->
+				<spawn npc_id="801610">
+					<spot x="844.6785" y="2759.2375" z="182.1250" h="112" />
+				</spawn>
+				<!-- Territory Boss -->
+				<!-- Ruins Shieldcaptain -->
+				<!-- Klain -->
+				<spawn npc_id="801242" respawn_time="295">
+					<spot x="853.2407" y="2757.1309" z="182.125" h="115" />
+				</spawn>
+				<!-- Ruins Combatant -->
+				<!-- Ruins Protector -->
+				<!-- Ruins Healer -->
+				<!-- Ruins Sentry -->
+				<!-- Ruins Supervisor -->
+				<!-- Banc Soul Healer -->
+				<spawn npc_id="800682" respawn_time="295">
+					<spot x="856.3464" y="2765.6436" z="182.1250" h="103" />
+				</spawn>
+				<!-- Viake Conditioning Officer -->
+				<spawn npc_id="800683" respawn_time="295">
+					<spot x="844.8800" y="2749.0713" z="182.1250" />
+				</spawn>
+				<!-- Bohenar Augmenting Officer -->
+				<spawn npc_id="800684" respawn_time="295">
+					<spot x="844.8473" y="2751.1599" z="182.1250" />
+				</spawn>
+				<!-- Miuk Kisk Merchant -->
+				<spawn npc_id="800685" respawn_time="295">
+					<spot x="851.6402" y="2745.5100" z="182.1250" h="15" />
+				</spawn>
+				<!-- Cheneka Food -->
+				<spawn npc_id="800686" respawn_time="295">
+					<spot x="865.6063" y="2759.0520" z="182.1250" h="75" />
+				</spawn>
+				<!-- Skorund Special Vendor -->
+				<spawn npc_id="800687" respawn_time="295">
+					<spot x="849.6420" y="2746.5576" z="182.1250" h="15" />
+				</spawn>
+				<!-- Danmora General Goods Merchant -->
+				<spawn npc_id="801403" respawn_time="295">
+					<spot x="863.8289" y="2762.8884" z="182.1250" h="75" />
+				</spawn>
+				<spawn npc_id="801405" respawn_time="295">
+					<spot x="862.1221" y="2769.1672" z="182.11737" h="81" />
+				</spawn>
+				<!-- Idian Depths Teleport Device -->
+				<spawn npc_id="801794" respawn_time="295">
+					<spot x="839.9595" y="2754.6411" z="182.1250" h="116" />
+				</spawn>
+				<!-- Sub Camp Elyos Spawns -->
+				<!-- Ruins Pioneers Combatant -->
+				<!-- Ruins Pioneers Sentry -->
+				<!-- Ruins Pioneers Supervisor -->
+				<!-- Ruins Scout Envoy -->
+			</occupier_template>
+			<occupier_template occupier="BALAUR">
+				<!-- Balaur Territory -->
+				<spawn npc_id="801611">
+					<spot x="844.6785" y="2759.2375" z="190.57112" />
+				</spawn>
+				<!-- Territory Boss -->
+				<!-- Ruins Subjugator Tesserari -->
+				<!-- Ruins Subjugator Assassin -->
+				<!-- Ruins Subjugator Combatant -->
+				<!-- Ruins Subjugator Protector -->
+				<!-- Ruins Subjugator Healer -->
+				<!-- Ruins Subjugator Sentry -->
+				<!-- Ruins Subjugator Supervisor -->
+			</occupier_template>
+		</base_spawn>
+		<base_spawn id="75">
+			<!-- 75-Broken Cliff Camp -->
+			<occupier_template occupier="ELYOS">
+				<!-- Elyos Territory -->
+				<spawn npc_id="801612">
+					<spot x="1571.7942" y="1472.2792" z="129.6250" h="33" />
+				</spawn>
+				<!-- Territory Boss -->
+				<!-- Cliffside Garrison Shieldcaptain -->
+				<!-- Cliffside Garrison Assassin -->
+				<!-- Cliffside Garrison Combatant -->
+				<!-- Cliffside Garrison Protector -->
+				<!-- Cliffside Garrison Healer -->
+				<!-- Cliffside Garrison Sentry -->
+				<!-- Caixa de correio -->
+				<spawn npc_id="700000" respawn_time="295">
+					<spot x="1561.7084" y="1487.1411" z="129.2682" />
+				</spawn>
+				<!-- Fidekas Soul Healer -->
+				<spawn npc_id="800688" respawn_time="295">
+					<spot x="1570.9136" y="1475.1307" z="129.5866" h="30" />
+				</spawn>
+				<!-- Palikras Food -->
+				<spawn npc_id="800690" respawn_time="295">
+					<spot x="1561.4171" y="1481.7968" z="129.2537" h="6" />
+				</spawn>
+				<!-- Zetakanos Special Vendor -->
+				<spawn npc_id="800692" respawn_time="295">
+					<spot x="1583.9296" y="1480.9175" z="129.6250" h="45" />
+				</spawn>
+				<!-- <Tropa ARUNT do 40º Exército> -->
+				<spawn npc_id="801408" respawn_time="295">
+					<spot x="1573.5452" y="1474.2893" z="129.6250" h="31" />
+				</spawn>
+				<!-- <Tropa ARUNT do 40º Exército> -->
+				<spawn npc_id="801410" respawn_time="295">
+					<spot x="1574.9664" y="1474.4030" z="129.6250" h="31" />
+				</spawn>
+				<!-- Northern Guardian Base Area -->
+				<spawn npc_id="801412" respawn_time="295">
+					<spot x="1561.7808" y="1484.0839" z="129.2506" h="6" />
+				</spawn>
+				<!-- Amante -->
+				<spawn npc_id="801556" respawn_time="295">
+					<spot x="1585.7476" y="1482.2584" z="129.6250" h="45" />
+				</spawn>
+				<spawn npc_id="801795" respawn_time="295">
+					<spot x="1578.42" y="1472.1812" z="130.55295" h="31" />
+				</spawn>
+				<!-- Teleport Device -->
+				<spawn npc_id="730655" respawn_time="295">
+					<spot x="1584.7114" y="1487.7985" z="132.7523" h="45" static_id="788" />
+				</spawn>
+				<spawn npc_id="801234" respawn_time="295">
+					<spot x="1561.633" y="1477.556" z="129.40274" h="13" />
+				</spawn>
+				<spawn npc_id="800689" respawn_time="295">
+					<spot x="1582.0591" y="1475.3824" z="129.625" h="47" />
+				</spawn>
+				<spawn npc_id="800691" respawn_time="295">
+					<spot x="1582.6027" y="1478.5961" z="129.625" h="55" />
+				</spawn>
+				<!-- Sub Camp Asmodian Spawns -->
+				<!-- Cliffside Recon Combatant -->
+				<!-- Cliffside Recon Sentry -->
+				<!-- Cliffside Recon Supervisor -->
+				<!-- Cliffside Recon Messenger -->
+			</occupier_template>
+			<occupier_template occupier="ASMODIANS">
+				<!-- Asmodians Territory -->
+				<spawn npc_id="801613">
+					<spot x="1571.7942" y="1472.2792" z="129.625" />
+				</spawn>
+				<!-- Territory Boss -->
+				<!-- Cliffside Shieldcaptain -->
+				<!-- Cliffside Assassin -->
+				<!-- Cliffside Combatant -->
+				<!-- Cliffside Protector -->
+				<!-- Cliffside Healer -->
+				<!-- Cliffside Force Sentry -->
+				<!-- Caixa de correio -->
+				<spawn npc_id="700079" respawn_time="295">
+					<spot x="1561.7084" y="1487.1411" z="129.2682" />
+				</spawn>
+				<!-- Shedia Soul Healer -->
+				<spawn npc_id="800693" respawn_time="295">
+					<spot x="1570.9136" y="1475.1307" z="129.59833" h="30" />
+				</spawn>
+				<!-- Baerg Food -->
+				<spawn npc_id="800695" respawn_time="295">
+					<spot x="1561.4171" y="1481.7968" z="130.1053" h="7" />
+				</spawn>
+				<!-- Ludweig Special Vendor -->
+				<spawn npc_id="800697" respawn_time="295">
+					<spot x="1583.9296" y="1480.9175" z="131.4137" h="45" />
+				</spawn>
+				<!-- IUTitlesong_Vasharti -->
+				<spawn npc_id="801407" respawn_time="295">
+					<spot x="1573.5452" y="1474.2893" z="131.4137" h="32" />
+				</spawn>
+				<!-- <Tropa ARUNT do 40º Exército> -->
+				<spawn npc_id="801409" respawn_time="295">
+					<spot x="1574.9664" y="1474.403" z="131.4137" h="32" />
+				</spawn>
+				<!-- IUTitlesong_Lighting -->
+				<spawn npc_id="801411" respawn_time="295">
+					<spot x="1561.7808" y="1484.0839" z="130.1053" h="7" />
+				</spawn>
+				<!-- Lovelinerk -->
+				<spawn npc_id="801555" respawn_time="295">
+					<spot x="1585.7476" y="1482.2584" z="131.4137" h="45" />
+				</spawn>
+				<spawn npc_id="801243" respawn_time="295">
+					<spot x="1561.633" y="1477.556" z="129.40274" h="13" />
+				</spawn>
+				<spawn npc_id="800694" respawn_time="295">
+					<spot x="1582.101" y="1475.4031" z="129.625" h="45" />
+				</spawn>
+				<!-- Idian Depths Teleport Device -->
+				<spawn npc_id="801796" respawn_time="295">
+					<spot x="1578.3298" y="1474.6975" z="131.4137" h="32" />
+				</spawn>
+				<!-- Teleport Device -->
+				<spawn npc_id="730654" respawn_time="295">
+					<spot x="1584.7114" y="1487.7985" z="132.7523" h="45" static_id="788" />
+				</spawn>
+				<!-- Sub Camp Elyos Spawns -->
+				<!-- Cliffside Pioneers Combatant -->
+				<!-- Cliffside Pioneers Sentry -->
+				<!-- Cliffside Pioneers Supervisor -->
+				<!-- Cliffside Scout Envoy -->
+			</occupier_template>
+			<occupier_template occupier="BALAUR">
+				<!-- Quarto -->
+				<spawn npc_id="801614">
+					<spot x="1571.7942" y="1472.2792" z="129.625" />
+				</spawn>
+				<!-- Territory Boss -->
+				<!-- Cliffside Subjugator Tessari -->
+				<!-- Cliffside Subjugator Assassin -->
+				<!-- Cliffside Subjugator Combatant -->
+				<!-- Cliffside Subjugator Protector -->
+				<!-- Cliffside Subjugator Healer -->
+				<!-- Cliffside Subjugator Force Sentry -->
+			</occupier_template>
+		</base_spawn>
+		<base_spawn id="76">
+			<!-- 76-Irigani Keep -->
+			<occupier_template occupier="ELYOS">
+				<!-- Patrono justo -->
+				<spawn npc_id="801615">
+					<spot x="1686.3455" y="1121.6199" z="200.7053" h="119" />
+				</spawn>
+				<!-- Territory Boss -->
+				<!-- Irigani Garrison Veteran Assassin -->
+				<!-- Irigani Garrison Shieldcaptain -->
+				<!-- Irigani Garrison Warmarshal -->
+				<!-- Irigani Garrison Priest -->
+				<!-- Irigani Garrison Veteran Sentry -->
+				<!-- Irigani Garrison Veteran Supervisor -->
+				<!-- Teleport Device -->
+				<!-- Inaros Soul Healer -->
+				<spawn npc_id="800698" respawn_time="295">
+					<spot x="1696.8531" y="1116.3068" z="186.3248" h="83" />
+				</spawn>
+				<!-- Leonas Consumable Item Distributor -->
+				<spawn npc_id="800699" respawn_time="295">
+					<spot x="1673.2354" y="1122.3911" z="186.3248" h="90" />
+				</spawn>
+				<!-- IU-Tiger -->
+				<spawn npc_id="801235" respawn_time="295">
+					<spot x="1693.9078" y="1116.8210" z="186.3248" h="83" />
+				</spawn>
+				<!-- Mistmorn Fenda Area -->
+				<spawn npc_id="801414" respawn_time="295">
+					<spot x="1651.0814" y="1086.7291" z="183.4350" />
+				</spawn>
+				<!-- Arnish General Goods Merchant -->
+				<spawn npc_id="801421" respawn_time="295">
+					<spot x="1659.5654" y="1108.8036" z="183.8002" h="100" />
+				</spawn>
+				<!-- Hemeka Supplement Merchant -->
+				<spawn npc_id="801423" respawn_time="295">
+					<spot x="1695.2778" y="1094.1334" z="182.3780" h="60" />
+				</spawn>
+				<!-- Adante Food -->
+				<spawn npc_id="801425" respawn_time="295">
+					<spot x="1654.3064" y="1104.4537" z="183.7500" h="100" />
+				</spawn>
+				<!-- Namanus Kisk Merchant -->
+				<spawn npc_id="801427" respawn_time="295">
+					<spot x="1658.0139" y="1105.7303" z="183.7323" h="105" />
+				</spawn>
+				<!-- Sub Camp Asmodian Spawns -->
+				<!-- Irigani Recon Veteran Combatant -->
+				<!-- Irigani Recon Veteran Sentry -->
+				<!-- Irigani Recon Veteran Supervisor -->
+				<!-- Irigani Recon Veteran Gunslinger -->
+				<!-- Irigani Recon Messenger -->
+			</occupier_template>
+			<occupier_template occupier="ASMODIANS">
+				<!-- <Elysea Protectorate> -->
+				<spawn npc_id="801616">
+					<spot x="1686.3455" y="1121.6199" z="200.7053" h="22" />
+				</spawn>
+				<!-- Territory Boss -->
+				<!-- Irigani Veteran Assassin -->
+				<!-- Irigani Shieldcaptain -->
+				<!-- Irigani Warmarshal -->
+				<!-- Irigani Priest -->
+				<!-- Irigani Veteran Sentry -->
+				<!-- Irigani Veteran Supervisor -->
+				<!-- Teleport Device -->
+				<spawn npc_id="730656" respawn_time="295">
+					<spot x="1663.3134" y="1113.8021" z="185.2672" h="45" static_id="742" />
+				</spawn>
+				<!-- Mireas Soul Healer -->
+				<spawn npc_id="800703" respawn_time="295">
+					<spot x="1696.8531" y="1116.3068" z="186.3248" h="83" />
+				</spawn>
+				<!-- Lenor Consumable Item Distributor -->
+				<spawn npc_id="800704" respawn_time="295">
+					<spot x="1673.2354" y="1122.3911" z="186.3248" h="90" />
+				</spawn>
+				<!-- Drian -->
+				<spawn npc_id="801244" respawn_time="295">
+					<spot x="1693.9078" y="1116.8210" z="186.3248" h="83" />
+				</spawn>
+				<!-- Brackwater Area -->
+				<spawn npc_id="801413" respawn_time="295">
+					<spot x="1651.0814" y="1086.7291" z="184.8828" />
+				</spawn>
+				<!-- Mistmorn Fenda Area -->
+				<spawn npc_id="801418" respawn_time="295">
+					<spot x="1651.1268" y="1090.2479" z="184.8828" />
+				</spawn>
+				<!-- Nobern General Goods Merchant -->
+				<spawn npc_id="801420" respawn_time="295">
+					<spot x="1659.5654" y="1108.8036" z="184.8828" h="100" />
+				</spawn>
+				<!-- Nekra Supplement Merchant-->
+				<spawn npc_id="801422" respawn_time="295">
+					<spot x="1695.2778" y="1094.1334" z="182.3780" h="60" />
+				</spawn>
+				<!-- Oktber Food -->
+				<spawn npc_id="801424" respawn_time="295">
+					<spot x="1654.3064" y="1104.4537" z="184.8828" h="100" />
+				</spawn>
+				<!-- Yeta Kisk Merchant -->
+				<spawn npc_id="801426" respawn_time="295">
+					<spot x="1658.0139" y="1105.7303" z="183.7323" h="105" />
+				</spawn>
+				<spawn npc_id="800705" respawn_time="295">
+					<spot x="1695.8999" y="1086.8195" z="182.375" h="57" />
+				</spawn>
+				<spawn npc_id="800707" respawn_time="295">
+					<spot x="1694.0571" y="1099.7291" z="182.5" h="67" />
+				</spawn>
+				<spawn npc_id="801416" respawn_time="295">
+					<spot x="1670.8005" y="1123.1255" z="186.3248" h="94" />
+				</spawn>
+				<spawn npc_id="801415" respawn_time="295">
+					<spot x="1675.2102" y="1124.2125" z="186.3248" h="96" />
+				</spawn>
+				<!-- Sub Camp Elyos Spawns -->
+				<!-- Irigani Pioneers Veteran Combatant -->
+				<!-- Irigani Pioneers Veteran Sentry -->
+				<!-- Irigani Pioneers Veteran Supervisor -->
+				<!-- Irigani Pioneers Veteran Gunslinger -->
+				<!-- Irigani Scout Envoy -->
+			</occupier_template>
+			<occupier_template occupier="BALAUR">
+				<!-- <Asmodae Protetorate> -->
+				<spawn npc_id="801617">
+					<spot x="1686.3455" y="1121.6199" z="195.51602" />
+				</spawn>
+				<!-- Territory Boss -->
+				<!-- Irigani Subjugator Veteran Assassin -->
+				<!-- Irigani Subjugator Tesserari -->
+				<!-- Irigani Subjugator Prefectus -->
+				<!-- Irigani Subjugator Medic -->
+				<!-- Irigani Subjugator Veteran Sentry -->
+				<!-- Irigani Subjugator Veteran Supervisor -->
+			</occupier_template>
+		</base_spawn>
+		<base_spawn id="77">
+			<!-- 77-Crumbling Redoubt -->
+			<occupier_template occupier="ELYOS">
+				<!-- <Sacerdote de Ariel> -->
+				<spawn npc_id="801618">
+					<spot x="1544.1140" y="2260.9583" z="200.7053" />
+				</spawn>
+				<!-- Territory Boss -->
+				<!-- Redoubt Garrison Veteran Assassin -->
+				<!-- Redoubt Garrison Shieldcaptain -->
+				<!-- Redoubt Garrison Warmarshal -->
+				<!-- Redoubt Garrison Priest -->
+				<!-- Teleport Device -->
+				<spawn npc_id="730657" respawn_time="295">
+					<spot x="1556.7842" y="2245.4985" z="177.7881" h="45" />
+				</spawn>
+				<!-- Teleport Device -->
+				<!-- Admirador do príncipe herdeiro -->
+				<spawn npc_id="800709" respawn_time="295">
+					<spot x="1565.3582" y="2237.6680" z="176.0401" h="15" />
+				</spawn>
+				<!-- Arena Administrator -->
+				<spawn npc_id="801429" respawn_time="295">
+					<spot x="1579.5123" y="2236.0789" z="175.7352" h="31" />
+				</spawn>
+				<!-- <225 pontos> -->
+				<spawn npc_id="801433" respawn_time="295">
+					<spot x="1582.1764" y="2237.2048" z="175.4744" h="31" />
+				</spawn>
+				<!-- <225 pontos> -->
+				<spawn npc_id="801435" respawn_time="295">
+					<spot x="1573.5419" y="2282.9263" z="174.7500" h="90" />
+				</spawn>
+				<!-- <225 pontos> -->
+				<spawn npc_id="801437" respawn_time="295">
+					<spot x="1562.2885" y="2238.7061" z="176.1250" h="15" />
+				</spawn>
+				<!-- <75 pontos> -->
+				<spawn npc_id="801439" respawn_time="295">
+					<spot x="1564.4740" y="2277.2537" z="174.7500" h="90" />
+				</spawn>
+				<!-- Pollemo Kisk Merchant -->
+				<spawn npc_id="801441" respawn_time="295">
+					<spot x="1567.2073" y="2277.3359" z="174.7500" h="90" />
+				</spawn>
+				<!-- Sub Camp Asmodian Spawns -->
+				<!-- Redoubt Recon Veteran Combatant -->
+				<!-- Redoubt Recon Veteran Sentry -->
+				<!-- Redoubt Recon Supervisor -->
+				<!-- Redoubt Recon Veteran Gunslinger -->
+				<!-- Redoubt Recon Messenger -->
+			</occupier_template>
+			<occupier_template occupier="ASMODIANS">
+				<!-- <Sacerdote de Azphel> -->
+				<spawn npc_id="801619">
+					<spot x="1544.114" y="2260.9583" z="184.08958" />
+				</spawn>
+				<!-- Territory Boss -->
+				<!-- Redoubt Veteran Assassin -->
+				<!-- Redoubt Shieldcaptain -->
+				<!-- Redoubt Warmarshal -->
+				<!-- Redoubt Priest -->
+				<!-- Teleport Device -->
+				<spawn npc_id="730656" respawn_time="295">
+					<spot x="1556.7842" y="2245.4985" z="177.7881" h="45" static_id="791" />
+				</spawn>
+				<!-- Admirador encantado da imperatriz -->
+				<spawn npc_id="800714" respawn_time="295">
+					<spot x="1565.3582" y="2237.668" z="176.47769" h="15" />
+				</spawn>
+				<!-- Kungsholleum Material Conversion Designs -->
+				<spawn npc_id="801428" respawn_time="295">
+					<spot x="1579.5123" y="2236.0789" z="176.47769" h="32" />
+				</spawn>
+				<!-- <225 pontos> -->
+				<spawn npc_id="801432" respawn_time="295">
+					<spot x="1582.1764" y="2237.2048" z="176.47769" h="32" />
+				</spawn>
+				<!-- <225 pontos> -->
+				<spawn npc_id="801434" respawn_time="295">
+					<spot x="1573.5419" y="2282.9263" z="176.25769" h="90" />
+				</spawn>
+				<!-- <225 pontos> -->
+				<spawn npc_id="801436" respawn_time="295">
+					<spot x="1562.2885" y="2238.7061" z="176.1250" h="15" />
+				</spawn>
+				<!-- <225 pontos> -->
+				<spawn npc_id="801438" respawn_time="295">
+					<spot x="1564.474" y="2277.2537" z="176.25769" h="90" />
+				</spawn>
+				<!-- Caixa de tesouro -->
+				<spawn npc_id="801440" respawn_time="295">
+					<spot x="1567.2073" y="2277.3359" z="174.7500" h="90" />
+				</spawn>
+				<!-- Sub Camp Elyos Spawns -->
+				<!-- Redoubt Pioneers Veteran Combatant -->
+				<!-- Redoubt Pioneers Veteran Sentry -->
+				<!-- Redoubt Pioneers Supervisor -->
+				<!-- Redoubt Pioneers Veteran Gunslinger -->
+				<!-- Redoubt Scout Envoy -->
+			</occupier_template>
+			<occupier_template occupier="BALAUR">
+				<!-- peixe -->
+				<spawn npc_id="801620">
+					<spot x="1544.114" y="2260.9583" z="184.08958" />
+				</spawn>
+				<!-- Territory Boss -->
+				<!-- Redoubt Subjugator Veteran Assassin -->
+				<!-- Redoubt Subjugator Tesserari -->
+				<!-- Redoubt Subjugator Prefectus -->
+				<!-- Redoubt Subjugator Medic -->
+				<!-- Redoubt Subjugator Veteran Sentry -->
+				<!-- Redoubt Subjugator Supervisor -->
+			</occupier_template>
+		</base_spawn>
+		<base_spawn id="78">
+			<!-- 78-Windswept Camp -->
+			<occupier_template occupier="ELYOS">
+				<!-- Sharmaine -->
+				<spawn npc_id="801621">
+					<spot x="1902.3711" y="1179.6218" z="259.2688" h="109" />
+				</spawn>
+				<!-- Territory Boss -->
+				<!-- Windswept Garrison Assassin -->
+				<!-- Windswept Garrison Protector -->
+				<!-- Windswept Garrison Combatant -->
+				<!-- Windswept Garrison Healer -->
+				<!-- Windswept Garrison Sentry -->
+				<!-- Não -linha -->
+				<spawn npc_id="730659" respawn_time="295">
+					<spot x="1890.0247" y="1178.1595" z="261.5746" h="45" static_id="2913" />
+				</spawn>
+				<!-- Marion Reiving -->
+				<spawn npc_id="800718" respawn_time="295">
+					<spot x="1888.3840" y="1180.8652" z="259.2364" h="15" />
+				</spawn>
+				<!-- Moeda npc01 -->
+				<spawn npc_id="800719" respawn_time="295">
+					<spot x="1888.0930" y="1185.4955" z="259.3793" h="15" />
+				</spawn>
+				<!-- Bavrius Food -->
+				<!-- Urso polar -->
+				<spawn npc_id="801237" respawn_time="295">
+					<spot x="1903.4720" y="1179.8046" z="259.3330" h="45" />
+				</spawn>
+				<!-- Cebes Ceramium Trade Administrator -->
+				<spawn npc_id="801443" respawn_time="295">
+					<spot x="1905.8456" y="1189.3507" z="259.6250" h="70" />
+				</spawn>
+				<!-- Ioren -->
+				<spawn npc_id="801447" respawn_time="295">
+					<spot x="1903.1980" y="1192.2169" z="259.6250" h="70" />
+				</spawn>
+				<spawn npc_id="801449" respawn_time="295">
+					<spot x="1895.6519" y="1180.894" z="259.18088" h="37" />
+				</spawn>
+				<spawn npc_id="801417" respawn_time="295">
+					<spot x="1675.4369" y="1124.1022" z="186.3248" h="98" />
+				</spawn>
+				<spawn npc_id="801419" respawn_time="295">
+					<spot x="1651.1268" y="1090.2479" z="183.24963" h="119" />
+				</spawn>
+				<spawn npc_id="801445" respawn_time="295">
+					<spot x="1905.4436" y="1185.6033" z="259.625" h="54" />
+				</spawn>
+				<!-- Sub Camp Asmodian Spawns -->
+				<!-- Windswept Recon Combatant -->
+				<!-- Windswept Recon Sentry -->
+				<!-- Windswept Recon Supervisor -->
+				<!-- Windswept Recon Messenger -->
+			</occupier_template>
+			<occupier_template occupier="ASMODIANS">
+				<!-- Capitão Protetor Sherylin -->
+				<spawn npc_id="801622">
+					<spot x="1902.3711" y="1179.6218" z="259.2688" h="104" />
+				</spawn>
+				<!-- Territory Boss -->
+				<!-- Windswept Assassin -->
+				<!-- Windswept Protector -->
+				<!-- Windswept Combatant -->
+				<!-- Windswept Healer -->
+				<!-- Windswept Sentry -->
+				<!-- Teleport Device -->
+				<spawn npc_id="730658" respawn_time="295">
+					<spot x="1890.0247" y="1178.1595" z="261.5746" h="45" static_id="2913" />
+				</spawn>
+				<!-- Relíquia do príncipe herdeiro -->
+				<spawn npc_id="800722" respawn_time="295">
+					<spot x="1888.3840" y="1180.8652" z="259.2364" h="15" />
+				</spawn>
+				<!-- Skill Box01 -->
+				<spawn npc_id="800723" respawn_time="295">
+					<spot x="1888.0930" y="1185.4955" z="259.3793" h="15" />
+				</spawn>
+				<!-- ATHER GRIP TRAP -->
+				<spawn npc_id="800725" respawn_time="295">
+					<spot x="1901.0243" y="1194.4457" z="260.44849" h="70" />
+				</spawn>
+				<!-- <Distribuidor de Acessórios para Glória> -->
+				<spawn npc_id="801246" respawn_time="295">
+					<spot x="1903.4720" y="1179.8046" z="259.3330" h="45" />
+				</spawn>
+				<!-- Jionas -->
+				<spawn npc_id="801442" respawn_time="295">
+					<spot x="1905.8456" y="1189.3507" z="259.6250" h="70" />
+				</spawn>
+				<!-- Jionas -->
+				<spawn npc_id="801446" respawn_time="295">
+					<spot x="1903.1980" y="1192.2169" z="259.6250" h="70" />
+				</spawn>
+				<spawn npc_id="800724" respawn_time="295">
+					<spot x="1905.4948" y="1185.3856" z="259.625" h="54" />
+				</spawn>
+				<spawn npc_id="801448" respawn_time="295">
+					<spot x="1895.4886" y="1180.6147" z="259.16342" h="37" />
+				</spawn>
+				<!-- Sub Camp Elyos Spawns -->
+				<!-- Windswept Pioneers Combatant -->
+				<!-- Windswept Pioneers Sentry -->
+				<!-- Windswept Pioneers Supervisor -->
+				<!-- Windswept Scout Envoy -->
+			</occupier_template>
+			<occupier_template occupier="BALAUR">
+				<!-- Capitão protetor Ashif -->
+				<spawn npc_id="801623" respawn_time="295">
+					<spot x="1902.3711" y="1179.6218" z="259.25" />
+				</spawn>
+				<!-- Territory Boss -->
+				<!-- Windswept Subjugator Assassin -->
+				<!-- Windswept Subjugator Protector -->
+				<!-- Windswept Subjugator Combatant -->
+				<!-- Windswept Subjugator Healer -->
+				<!-- Windswept Subjugator Sentry -->
+			</occupier_template>
+		</base_spawn>
+		<base_spawn id="79">
+			<!-- 79-Sillus Pass Watchpost -->
+			<occupier_template occupier="ELYOS">
+				<!-- Capitão Protetor Lailin -->
+				<spawn npc_id="801624">
+					<spot x="2492.3337" y="1830.4594" z="325.6250" />
+				</spawn>
+				<!-- Territory Boss -->
+				<!-- Pass Garrison Assassin -->
+				<!-- Pass Garrison Protector -->
+				<!-- Pass Garrison Combatant -->
+				<!-- Pass Garrison Sentry -->
+				<!-- Pass Garrison Supervisor -->
+				<!-- Caixa de correio -->
+				<spawn npc_id="700000" respawn_time="295">
+					<spot x="2483.5681" y="1845.7616" z="325.5000" h="113" />
+				</spawn>
+				<!-- Adereno -->
+				<spawn npc_id="730661" respawn_time="295">
+					<spot x="2483.2947" y="1850.1829" z="327.7146" h="45" static_id="752" />
+				</spawn>
+				<!-- Você fez uma cobaia fora de mim ... -->
+				<spawn npc_id="800726" respawn_time="295">
+					<spot x="2485.3142" y="1831.0632" z="325.9563" h="20" />
+				</spawn>
+				<!-- Eu vou te transformar em um golem, irmão ... -->
+				<spawn npc_id="800728" respawn_time="295">
+					<spot x="2503.4424" y="1838.9840" z="325.8750" h="45" />
+				</spawn>
+				<!-- Kannaris Field Achievement Steward -->
+				<spawn npc_id="800729" respawn_time="295">
+					<spot x="2479.8049" y="1832.5497" z="325.8792" h="15" />
+				</spawn>
+				<!-- IU-Tiger -->
+				<spawn npc_id="801238" respawn_time="295">
+					<spot x="2488.3040" y="1830.6973" z="325.7310" h="20" />
+				</spawn>
+				<!-- Pelilu -->
+				<spawn npc_id="801451" respawn_time="295">
+					<spot x="2482.7334" y="1842.1658" z="325.5000" h="116" />
+				</spawn>
+				<!-- Caixa de tesouro -->
+				<spawn npc_id="801968" respawn_time="295">
+					<spot x="2490.3811" y="1828.1097" z="325.7206" h="20" />
+				</spawn>
+				<!-- Sub Camp Asmodian Spawns -->
+				<!-- Pass Recon Combatant -->
+				<!-- Pass Recon Sentry -->
+				<!-- Pass Recon Supervisor -->
+				<!-- Pass Recon Messenger -->
+			</occupier_template>
+			<occupier_template occupier="ASMODIANS">
+				<!-- Capitão Protetor Jayshif -->
+				<spawn npc_id="801625">
+					<spot x="2492.3337" y="1830.4594" z="325.6250" h="16" />
+				</spawn>
+				<!-- Territory Boss -->
+				<!-- Pass Assassin -->
+				<!-- Pass Protector -->
+				<!-- Pass Combatant -->
+				<!-- Pass Sentry -->
+				<!-- Pass Supervisor -->
+				<!-- Caixa de correio -->
+				<spawn npc_id="700079" respawn_time="295">
+					<spot x="2483.5681" y="1845.7616" z="325.5000" h="113" />
+				</spawn>
+				<!-- ROIRUNKER -->
+				<spawn npc_id="730660" respawn_time="295">
+					<spot x="2483.2947" y="1850.1829" z="327.7146" h="45" static_id="752" />
+				</spawn>
+				<!-- Hagalaz Soul Healer -->
+				<spawn npc_id="800730" respawn_time="296">
+					<spot x="2485.3142" y="1831.0632" z="325.9563" h="20" />
+				</spawn>
+				<spawn npc_id="800731" respawn_time="295">
+					<spot x="2480.3918" y="1836.8519" z="325.62073" h="119" />
+				</spawn>
+				<!-- Pieril Food -->
+				<spawn npc_id="800732" respawn_time="295">
+					<spot x="2503.4424" y="1838.9840" z="325.8750" h="45" />
+				</spawn>
+				<!-- Isabelle Field Achievement Steward -->
+				<spawn npc_id="800733" respawn_time="295">
+					<spot x="2479.8049" y="1832.5497" z="325.8792" h="15" />
+				</spawn>
+				<!-- <Booster para acessórios de glória> -->
+				<spawn npc_id="801247" respawn_time="295">
+					<spot x="2488.3040" y="1830.6973" z="325.7310" h="20" />
+				</spawn>
+				<!-- Bardo (mulher) -->
+				<spawn npc_id="801450" respawn_time="295">
+					<spot x="2482.7334" y="1842.1658" z="325.5000" h="116" />
+				</spawn>
+				<!-- Setuk Special Vendor -->
+				<spawn npc_id="801969" respawn_time="295">
+					<spot x="2490.3811" y="1828.1097" z="325.7206" h="20" />
+				</spawn>
+				<!-- Sub Camp Elyos Spawns -->
+				<!-- Pass Pioneers Combatant -->
+				<!-- Pass Pioneers Sentry -->
+				<!-- Pass Pioneers Supervisor -->
+				<!-- Pass Scout Envoy -->
+			</occupier_template>
+			<occupier_template occupier="BALAUR">
+				<!-- Protetor você -->
+				<spawn npc_id="801626">
+					<spot x="2492.3337" y="1830.4594" z="325.625" />
+				</spawn>
+				<!-- Territory Boss -->
+				<!-- Pass Subjugator Assassin -->
+				<!-- Pass Subjugator Protector -->
+				<!-- Pass Subjugator Combatant -->
+				<!-- Pass Subjugator Sentry -->
+				<!-- Pass Subjugator Supervisor -->
+			</occupier_template>
+		</base_spawn>
+	</spawn_map>
+</spawns>

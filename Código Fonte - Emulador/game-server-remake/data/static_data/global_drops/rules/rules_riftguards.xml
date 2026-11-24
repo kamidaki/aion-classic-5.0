@@ -1,0 +1,138 @@
+<?xml version='1.0' encoding='utf-8'?>
+<global_rules xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../global_rules.xsd">
+	<gd_rule rule_name="RIFT_GUARD_MAJOR_AP_POTION" chance="40">
+		<gd_npcs>
+			<!-- Eltnen Sentinel -->
+			<!-- Heiron Protector -->
+			<!-- Inggison Sentinel -->
+			<!-- Morheim Protector -->
+			<!-- Beluslan Protector -->
+			<!-- Gelkmaros Protector -->
+			<!-- Eltnen Elite Templar -->
+			<!-- Eltnen Elite Gladiator -->
+			<!-- Eltnen Elite Ranger -->
+			<!-- Eltnen Elite Sorcerer -->
+			<!-- Eltnen Elite Cleric -->
+			<!-- Heiron Elite Templar -->
+			<!-- Heiron Elite Gladiator -->
+			<!-- Heiron Elite Marksman -->
+			<!-- Heiron Elite Sorcerer -->
+			<!-- Heiron Elite Cleric -->
+			<!-- Inggison Elite Templar -->
+			<!-- Inggison Elite Gladiator -->
+			<!-- Inggison Elite Ranger -->
+			<!-- Inggison Elite Sorcerer -->
+			<!-- Inggison Elite Cleric -->
+			<!-- Morheim Elite Templar -->
+			<!-- Morheim Elite Gladiator -->
+			<!-- Morheim Elite Ranger -->
+			<!-- Morheim Elite Sorcerer -->
+			<!-- Morheim Elite Cleric -->
+			<!-- Beluslan Elite Templar -->
+			<!-- Beluslan Elite Gladiator -->
+			<!-- Beluslan Elite Ranger -->
+			<!-- Beluslan Elite Sorcerer -->
+			<!-- Beluslan Elite Cleric -->
+			<!-- Gelkmaros Elite Templar -->
+			<!-- Gelkmaros Elite Gladiator -->
+			<!-- Gelkmaros Elite Ranger -->
+			<!-- Gelkmaros Elite Sorcerer -->
+			<!-- Gelkmaros Elite Cleric -->
+		</gd_npcs>
+		<gd_items>
+			<gd_item id="162000069" />
+			<!-- Major Divine Life Serum -->
+			<gd_item id="162000070" />
+			<!-- Major Divine Mana Serum -->
+		</gd_items>
+	</gd_rule>
+	<gd_rule rule_name="RIFT_GUARD_RELICS" chance="40">
+		<gd_npcs>
+			<!-- Eltnen Sentinel -->
+			<!-- Heiron Protector -->
+			<!-- Inggison Sentinel -->
+			<!-- Morheim Protector -->
+			<!-- Beluslan Protector -->
+			<!-- Gelkmaros Protector -->
+			<!-- Eltnen Elite Templar -->
+			<!-- Eltnen Elite Gladiator -->
+			<!-- Eltnen Elite Ranger -->
+			<!-- Eltnen Elite Sorcerer -->
+			<!-- Eltnen Elite Cleric -->
+			<!-- Heiron Elite Templar -->
+			<!-- Heiron Elite Gladiator -->
+			<!-- Heiron Elite Marksman -->
+			<!-- Heiron Elite Sorcerer -->
+			<!-- Heiron Elite Cleric -->
+			<!-- Inggison Elite Templar -->
+			<!-- Inggison Elite Gladiator -->
+			<!-- Inggison Elite Ranger -->
+			<!-- Inggison Elite Sorcerer -->
+			<!-- Inggison Elite Cleric -->
+			<!-- Morheim Elite Templar -->
+			<!-- Morheim Elite Gladiator -->
+			<!-- Morheim Elite Ranger -->
+			<!-- Morheim Elite Sorcerer -->
+			<!-- Morheim Elite Cleric -->
+			<!-- Beluslan Elite Templar -->
+			<!-- Beluslan Elite Gladiator -->
+			<!-- Beluslan Elite Ranger -->
+			<!-- Beluslan Elite Sorcerer -->
+			<!-- Beluslan Elite Cleric -->
+			<!-- Gelkmaros Elite Templar -->
+			<!-- Gelkmaros Elite Gladiator -->
+			<!-- Gelkmaros Elite Ranger -->
+			<!-- Gelkmaros Elite Sorcerer -->
+			<!-- Gelkmaros Elite Cleric -->
+		</gd_npcs>
+		<gd_items>
+			<gd_item id="186000051" />
+			<!-- Major Ancient Crown -->
+			<gd_item id="186000052" />
+			<!-- Greater Ancient Crown -->
+		</gd_items>
+	</gd_rule>
+	<gd_rule rule_name="Named Boss Volatile Bundle" chance="100" member_limit="18">
+		<gd_npcs>
+			<gd_npc npc_id="219887" />
+			<!-- Captain Brimas -->
+			<gd_npc npc_id="219906" />
+			<!-- Captain Meriward  -->
+			<gd_npc npc_id="219913" />
+			<!-- Captaim Roblick -->
+			<!-- Third Ironlightian Deity General -->
+			<!-- Sixth Ironlightian Deity General -->
+			<!-- Seventh Ironlightian Deity General -->
+		</gd_npcs>
+		<gd_items>
+			<gd_item id="188053717" />
+			<!-- Volatile Rift Victory Loot Bundle -->
+		</gd_items>
+	</gd_rule>
+	<gd_rule rule_name="Named Volatile Bundle" chance="100" member_limit="3">
+		<gd_npcs>
+			<!-- Mutated Gatorback Skilex -->
+			<!-- Aggressive Coral Corask  -->
+			<!-- Frostshard Kirrin -->
+			<!-- Freezing Petrahulk -->
+			<!-- Stygian Mist Warrior -->
+			<!-- Stygian Mist Protector -->
+			<gd_npc npc_id="219699" />
+			<!-- Flameskin Cellatu -->
+			<gd_npc npc_id="219700" />
+			<!-- Frenzied Skyray -->
+			<gd_npc npc_id="219776" />
+			<!-- Awoken Jotun Worker -->
+			<gd_npc npc_id="219777" />
+			<!-- Awoken Jotun Craftsman -->
+			<gd_npc npc_id="219787" />
+			<!-- Frenzied Darksea Spiner -->
+			<gd_npc npc_id="219788" />
+			<!-- Primeval Sea Giant -->
+		</gd_npcs>
+		<gd_items>
+			<gd_item id="188053716" />
+			<!-- Volatile Rift Loot Bundle -->
+		</gd_items>
+	</gd_rule>
+</global_rules>

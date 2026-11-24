@@ -1,0 +1,81 @@
+AION CLASSIC 5.0 EMULADOR — LICENÇA DE PESQUISA EDUCACIONAL E NÃO COMERCIAL (CLEAN-ROOM / BYOC)
+AION CLASSIC 5.0 EMULATOR — NON-COMMERCIAL EDUCATIONAL & INTEROPERABILITY RESEARCH LICENSE
+
+Copyright (c) 2026 Aion Classic 5.0 Emulator Project Contributors (@kamidaki)
+Todos os direitos reservados sobre o código do servidor emulador, supervisor nativo e ferramentas de interoperabilidade.
+All rights reserved over the clean-room emulator server code, native supervisor, and interoperability tooling.
+
+================================================================================
+PARTE I — TERMOS EM PORTUGUÊS BRASIL (VERSÃO OFICIAL PADRÃO)
+================================================================================
+
+1. ESCOPO E FINALIDADE ESTRITAMENTE EDUCACIONAL / NÃO COMERCIAL
+   A permissão de visualização, estudo, execução local e contribuição técnica para
+   este software e seus arquivos de documentação ("Software") é concedida de forma
+   gratuita exclusivamente para fins de estudo acadêmico em sistemas distribuídos
+   (Java 25 LTS / Rust), preservação histórica do jogo Aion Classic 5.0 e pesquisa
+   de interoperabilidade de protocolos de rede e navegação tridimensional, sujeita
+   às seguintes condições inegociáveis:
+
+   a) PROIBIÇÃO COMERCIAL ABSOLUTA: É terminantemente proibido utilizar, copiar,
+      modificar, integrar, hospedar ou distribuir este Software, total ou
+      parcialmente, para fins comerciais, vendas, licenciamentos pagos, cobrança
+      de acesso, sistemas de doação vinculada, venda de moedas virtuais (Quna /
+      Cash Shop) ou qualquer forma de monetização direta ou indireta.
+
+   b) POLÍTICA BRING YOUR OWN CLIENT (BYOC) E PROPRIEDADE INTELECTUAL: Este
+      repositório destina-se ao estudo do servidor emulador e ferramentas de
+      interoperabilidade. Aion e Aion Classic são marcas registradas e propriedade
+      intelectual da NCSoft Corporation, publicadas na Europa pela Gameforge 4D
+      GmbH, e a tecnologia CryEngine pertence à Crytek GmbH. É proibida a
+      redistribuição comercial de ativos protegidos por direitos autorais de
+      terceiros.
+
+   c) PRESERVAÇÃO DE AVISOS LEGAIS: Este aviso de direitos autorais e a cláusula
+      de isenção total de suporte (SUPPORT.md) devem ser mantidos intactos em
+      todas as cópias ou bifurcações (forks) do Software.
+
+2. FORNECIMENTO "COMO É" (AS-IS) E AUSÊNCIA TOTAL DE SUPORTE TÉCNICO
+   O SOFTWARE É FORNECIDO ESTRITAMENTE "COMO É" (AS-IS), SEM GARANTIA DE QUALQUER
+   ESPÉCIE, EXPRESSA OU IMPLÍCITA, INCLUINDO, MAS NÃO SE LIMITANDO ÀS GARANTIAS
+   DE ADEQUAÇÃO A UMA FINALIDADE ESPECÍFICA E NÃO VIOLAÇÃO. NENHUM SUPORTE TÉCNICO,
+   AJUDA DE INSTALAÇÃO, CONFIGURAÇÃO DE BANCO DE DADOS OU MANUTENÇÃO CONTÍNUA SERÁ
+   CONCEDIDA PELOS AUTORES OU MANTENEDORES. EM NENHUMA HIPÓTESE OS AUTORES SERÃO
+   RESPONSÁVEIS POR QUAISQUER REIVINDICAÇÕES, DANOS OU OUTRAS RESPONSABILIDADES
+   DECORRENTES DO USO OU DA INCAPACIDADE DE USO DO SOFTWARE.
+
+================================================================================
+PART II — ENGLISH TERMS (OPTIONAL INTERNATIONAL REFERENCE)
+================================================================================
+
+1. STRICTLY EDUCATIONAL & NON-COMMERCIAL INTEROPERABILITY SCOPE
+   Permission to view, study, execute locally, and contribute technically to this
+   software and associated documentation files (the "Software") is granted free
+   of charge exclusively for academic study in distributed systems (Java 25 LTS /
+   Rust), digital preservation of Aion Classic 5.0, and technical interoperability
+   research, subject to the following non-negotiable conditions:
+
+   a) STRICT COMMERCIAL PROHIBITION: You may not use, copy, modify, merge, host,
+      or distribute this Software, in whole or in part, for any commercial
+      purpose, paid licensing, paid access, monetized servers, cash shops, or any
+      form of direct or indirect financial exploitation.
+
+   b) BRING YOUR OWN CLIENT (BYOC) & INTELLECTUAL PROPERTY: This repository is
+      dedicated to server emulation research and interoperability tooling. Aion
+      and Aion Classic are registered trademarks of NCSoft Corporation, published
+      in Europe by Gameforge 4D GmbH, and CryEngine is a trademark of Crytek GmbH.
+      Commercial redistribution of third-party copyrighted assets is strictly
+      prohibited.
+
+   c) PRESERVATION OF LEGAL NOTICES: The above copyright notice and the
+      zero-support disclaimer (SUPPORT.md) must be retained in all copies or
+      forks of the Software.
+
+2. "AS-IS" PROVISION & COMPLETE ABSENCE OF TECHNICAL SUPPORT
+   THE SOFTWARE IS PROVIDED STRICTLY "AS-IS", WITHOUT WARRANTY OF ANY KIND,
+   EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF FITNESS FOR
+   A PARTICULAR PURPOSE AND NONINFRINGEMENT. NO TECHNICAL SUPPORT, INSTALLATION
+   ASSISTANCE, DATABASE CONFIGURATION HELP, OR CONTINUOUS MAINTENANCE WILL BE
+   PROVIDED BY THE AUTHORS OR MAINTAINERS. IN NO EVENT SHALL THE AUTHORS BE
+   LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY ARISING FROM, OUT OF, OR IN
+   CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

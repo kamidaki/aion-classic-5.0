@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<!-- Nível de crescimento da Legion (Classic 5.0), gerado do PC/client_guild_growth.xml por parse_legion_growth_50.py.
+		exp = exp para chegar ao nível (o contador zera a cada nível); essence e essence_piece = o que a Legion ganha ao chegar nele. -->
+	<xs:element name="legion_growth">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="level" minOccurs="1" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:attribute name="level" type="xs:positiveInteger" use="required"/>
+						<xs:attribute name="exp" type="xs:nonNegativeInteger" use="required"/>
+						<xs:attribute name="essence" type="xs:nonNegativeInteger" use="required"/>
+						<xs:attribute name="essence_piece" type="xs:nonNegativeInteger" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

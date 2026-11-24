@@ -1,0 +1,54 @@
+name: Public Release Pipeline
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Build & Publish Release (GameForge GSID 1)
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout do Repositorio
+        uses: actions/checkout@v7
+
+      - name: Configurar Java 25 LTS
+        uses: actions/setup-java@v5
+        with:
+          distribution: 'oracle'
+          java-version: '25'
+          cache: 'maven'
+
+      - name: Compilar Backend Java 25
+        shell: pwsh
+        run: |
+          mvn clean package --file "Código Fonte - Emulador/pom.xml" "-DskipTests=false" "-Dmaven.javadoc.skip=true"
+
+      - name: Empacotar Release Bundle
+        shell: pwsh
+        run: |
+          $ReleaseDir = "release-bundle"
+          New-Item -ItemType Directory -Path $ReleaseDir -Force
+
+          Copy-Item "Código Fonte - Emulador/commons/target/commons-LostAcademyGroup.jar" -Destination $ReleaseDir
+          Copy-Item "Código Fonte - Emulador/login-server/target/login-server-LostAcademyGroup.jar" -Destination $ReleaseDir
+          Copy-Item "Código Fonte - Emulador/chat-server/target/chat-server-LostAcademyGroup.jar" -Destination $ReleaseDir
+          Copy-Item "Código Fonte - Emulador/game-server-gameforge/target/game-server-LostAcademyGroup.jar" -Destination $ReleaseDir
+
+          Compress-Archive -Path "$ReleaseDir/*" -DestinationPath "aion-classic-5.0-release-${{ github.ref_name }}.zip"
+
+      - name: Criar GitHub Release
+        uses: softprops/action-gh-release@v3
+        with:
+          files: aion-classic-5.0-release-*.zip
+          draft: false
+          prerelease: false
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

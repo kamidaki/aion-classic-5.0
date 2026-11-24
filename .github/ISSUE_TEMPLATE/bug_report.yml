@@ -1,0 +1,52 @@
+name: Relato de Bug Tecnico
+description: Relate uma falha tecnica reproduzivel referente ao servidor oficial GameForge GSID 1 (Aion Classic 5.0 EU).
+title: "[BUG]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado por contribuir com o **Aion Classic 5.0 — Lost Academy Group**.
+        Este projeto tem como objetivo 100% de fidelidade PvE ao Aion Retail Oficial EU (Gameforge) utilizando exclusivamente o **GameServer 1 — GameForge GSID 1**.
+        Lembre-se: o projeto e fornecido AS-IS, sem suporte tecnico individual. Relatos envolvendo GSID 2 ou GSID 3 ou solicitacoes de instalacao local nao sao aceitos.
+  - type: dropdown
+    id: component
+    attributes:
+      label: Componente Afetado
+      description: Selecione o componente do ecossistema GameForge GSID 1 onde o erro ocorre.
+      options:
+        - "GameServer GameForge (GSID 1 | Porta 7777)"
+        - "LoginServer (Java 25 | Porta 2106)"
+        - "ChatServer (Java 25 | Porta 10241)"
+        - "Commons (Nucleo Java 25)"
+        - "Client Hook (version.dll C/C++)"
+        - "Geo and Nav Builder / Static Data"
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Descricao do Bug
+      description: Explicacao objetiva do comportamento divergente observado.
+    validations:
+      required: true
+  - type: textarea
+    id: official_comparison
+    attributes:
+      label: Comparacao com o Servidor Oficial Aion Classic Gameforge EU
+      description: Qual e o comportamento real no servidor oficial Gameforge? Inclua pacotes, formulas, NPCs, skills ou quests oficiais observados.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Passos para Reproduzir
+      description: Etapas exatas para reproduzir o problema no GameForge GSID 1.
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / Stacktrace (higienizados)
+      description: Cole logs relevantes removendo IPs privados, credenciais ou caminhos pessoais.
+      render: shell

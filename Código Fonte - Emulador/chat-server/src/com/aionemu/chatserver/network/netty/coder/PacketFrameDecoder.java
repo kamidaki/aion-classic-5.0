@@ -1,0 +1,20 @@
+package com.aionemu.chatserver.network.netty.coder;
+
+import java.nio.ByteOrder;
+import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
+
+/**
+ * @author Lost Academy Team & Durak
+ */
+public class PacketFrameDecoder extends LengthFieldBasedFrameDecoder {
+
+	private static final int MAX_PACKET_LENGTH = 8192 * 2;
+	private static final int LENGTH_FIELD_OFFSET = 0;
+	private static final int LENGTH_FIELD_LENGTH = 2;
+	private static final int LENGTH_FIELD_ADJUSTMENT = -2;
+	private static final int INITIAL_BYTES_TO_STRIP = 2;
+
+	public PacketFrameDecoder() {
+		super(ByteOrder.LITTLE_ENDIAN, MAX_PACKET_LENGTH, LENGTH_FIELD_OFFSET, LENGTH_FIELD_LENGTH, LENGTH_FIELD_ADJUSTMENT, INITIAL_BYTES_TO_STRIP, true);
+	}
+}

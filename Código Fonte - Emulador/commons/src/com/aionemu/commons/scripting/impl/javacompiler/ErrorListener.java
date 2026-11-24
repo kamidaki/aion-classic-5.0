@@ -1,0 +1,53 @@
+package com.aionemu.commons.scripting.impl.javacompiler;
+
+import java.util.Locale;
+
+import javax.tools.Diagnostic;
+import javax.tools.DiagnosticListener;
+import javax.tools.JavaFileObject;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * @author Lost Academy Team & Durak
+ */
+public class ErrorListener implements DiagnosticListener<JavaFileObject> {
+
+	private static final Logger log = LoggerFactory.getLogger(ErrorListener.class);
+
+	/**
+	 * Reports compilation errors to log4j
+	 * 
+	 * @param diagnostic
+	 *          compiler errors
+	 */
+	@Override
+	public void report(Diagnostic<? extends JavaFileObject> diagnostic) {
+		String msg = diagnostic.getMessage(Locale.ENGLISH);
+		if (diagnostic.getKind() == Diagnostic.Kind.NOTE) {
+			log.debug("Java Compiler NOTE: {}", msg);
+			return;
+		}
+		StringBuilder sb = new StringBuilder();
+		sb.append("Java Compiler ");
+		sb.append(diagnostic.getKind());
+		sb.append(": ");
+		sb.append(msg);
+		if (diagnostic.getSource() != null) {
+			sb.append("\n");
+			sb.append("Source: ");
+			sb.append(diagnostic.getSource().getName());
+			sb.append("\n");
+			sb.append("Line: ");
+			sb.append(diagnostic.getLineNumber());
+			sb.append("\n");
+			sb.append("Column: ");
+			sb.append(diagnostic.getColumnNumber());
+		}
+		if (diagnostic.getKind() == Diagnostic.Kind.ERROR)
+			log.error(sb.toString());
+		else
+			log.warn(sb.toString());
+	}
+}

@@ -1,0 +1,84 @@
+package consolecommands;
+
+import com.aionemu.gameserver.dataholders.DataManager;
+import com.aionemu.gameserver.model.gameobjects.VisibleObject;
+import com.aionemu.gameserver.model.gameobjects.player.Player;
+import com.aionemu.gameserver.services.AdminService;
+import com.aionemu.gameserver.services.item.ItemService;
+import com.aionemu.gameserver.utils.PacketSendUtility;
+import com.aionemu.gameserver.utils.chathandlers.ConsoleCommand;
+
+/**
+ * @author Lost Academy Team & Durak
+ */
+public class Wishid extends ConsoleCommand {
+
+	public Wishid() {
+		super("wishid");
+	}
+
+	@Override
+	public void execute(Player admin, String... params) {
+		if (params.length < 1) {
+			info(admin, null);
+			return;
+		}
+
+		Player target = admin;
+		if (admin.getTarget() instanceof Player player) {
+			target = player;
+		}
+
+		long itemCount = 1;
+		int itemId = 0;
+
+		try {
+			long val0 = Long.parseLong(params[0]);
+			if (params.length == 1) {
+				itemId = (int) val0;
+				itemCount = 1;
+			} else {
+				long val1 = Long.parseLong(params[1]);
+				if (DataManager.ITEM_DATA.getItemTemplate((int) val0) != null) {
+					itemId = (int) val0;
+					itemCount = val1;
+				} else if (DataManager.ITEM_DATA.getItemTemplate((int) val1) != null) {
+					itemId = (int) val1;
+					itemCount = val0;
+				} else {
+					itemId = (int) val1;
+					itemCount = val0;
+				}
+			}
+		} catch (NumberFormatException e) {
+			info(admin, null);
+			return;
+		}
+
+		if (DataManager.ITEM_DATA.getItemTemplate(itemId) == null) {
+			PacketSendUtility.sendMessage(admin, "Item id is incorrect: " + itemId);
+			return;
+		}
+
+		if (!AdminService.getInstance().canOperate(admin, target, itemId, "command ///wishid"))
+			return;
+
+		long count = ItemService.addItem(target, itemId, itemCount, true);
+
+		if (count == 0) {
+			if (admin != target) {
+				PacketSendUtility.sendMessage(admin, "You successfully gave " + itemCount + " x [item:" + itemId + "] to " + target.getName() + ".");
+				PacketSendUtility.sendMessage(target, "You successfully received " + itemCount + " x [item:" + itemId + "] from " + admin.getName() + ".");
+			} else
+				PacketSendUtility.sendMessage(admin, "You successfully received " + itemCount + " x [item:" + itemId + "]");
+		} else {
+			PacketSendUtility.sendMessage(admin, "Item couldn't be added");
+		}
+	}
+
+	@Override
+	public void info(Player admin, String message) {
+		PacketSendUtility.sendMessage(admin, "syntax ///wishid <Quantity> <item Id>");
+	}
+
+}

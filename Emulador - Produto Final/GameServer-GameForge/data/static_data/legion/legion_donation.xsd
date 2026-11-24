@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<!-- Produção de moedas pessoais da Legion (Classic 5.0), gerado do PC/client_guild_donation.xml por parse_legion_donation_50.py.
+		Cada group entra na lista do dia com um index; entry = item e quantidade consumidos, pontos de produção e moedas ganhas. -->
+	<xs:element name="legion_donation">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="group" minOccurs="1" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="entry" minOccurs="1" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:attribute name="index" type="xs:positiveInteger" use="required"/>
+									<xs:attribute name="item_id" type="xs:positiveInteger" use="required"/>
+									<xs:attribute name="count" type="xs:positiveInteger" use="required"/>
+									<xs:attribute name="points" type="xs:nonNegativeInteger" use="required"/>
+									<xs:attribute name="coins" type="xs:nonNegativeInteger" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+						<xs:attribute name="id" type="xs:positiveInteger" use="required"/>
+						<xs:attribute name="name" type="xs:string" use="required"/>
+						<xs:attribute name="race" type="LegionDonationRace" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute name="reset_time" type="xs:string" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="LegionDonationRace">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ALL"/>
+			<xs:enumeration value="ELYOS"/>
+			<xs:enumeration value="ASMODIANS"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

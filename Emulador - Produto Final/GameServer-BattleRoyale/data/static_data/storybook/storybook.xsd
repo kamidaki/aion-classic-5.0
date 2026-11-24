@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<!-- Book of Legends (Classic 5.0): livros do client_storybook.xml com a recompensa do client_storybook_reward.xml, e a identificação dos
+		fragmentos desconhecidos do client_appraise_item.xml (rate em 1/10000, somando 10000). piece count = unidades do item que o livro pede.
+		Gerado por parse_storybook_50.py. -->
+	<xs:include schemaLocation="../modifiers.xsd"/>
+	<xs:simpleType name="StorybookType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PUZZLE"/>
+			<xs:enumeration value="NATURE"/>
+			<xs:enumeration value="ADVENTURE"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="StorybookItem">
+		<xs:attribute name="item_id" type="xs:positiveInteger" use="required"/>
+		<xs:attribute name="count" type="xs:positiveInteger" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="StorybookSkill">
+		<xs:attribute name="skill_id" type="xs:positiveInteger" use="required"/>
+		<xs:attribute name="level" type="xs:positiveInteger" use="required"/>
+	</xs:complexType>
+	<xs:complexType name="StorybookAppraiseResult">
+		<xs:attribute name="item_id" type="xs:positiveInteger" use="required"/>
+		<xs:attribute name="count" type="xs:positiveInteger" use="required"/>
+		<xs:attribute name="rate" use="required">
+			<xs:simpleType>
+				<xs:restriction base="xs:int">
+					<xs:minInclusive value="1"/>
+					<xs:maxInclusive value="10000"/>
+				</xs:restriction>
+			</xs:simpleType>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:element name="storybooks">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="storybook" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="piece" type="StorybookItem" minOccurs="1" maxOccurs="unbounded"/>
+							<xs:element name="modifiers" type="Modifiers" minOccurs="0" maxOccurs="1"/>
+							<xs:element name="reward_skill" type="StorybookSkill" minOccurs="0" maxOccurs="unbounded"/>
+							<xs:element name="reward_item" type="StorybookItem" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:sequence>
+						<xs:attribute name="id" type="xs:positiveInteger" use="required"/>
+						<xs:attribute name="name" type="xs:string" use="required"/>
+						<xs:attribute name="type" type="StorybookType" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="appraise" minOccurs="0" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="result" type="StorybookAppraiseResult" minOccurs="1" maxOccurs="unbounded"/>
+						</xs:sequence>
+						<xs:attribute name="item_id" type="xs:positiveInteger" use="required"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

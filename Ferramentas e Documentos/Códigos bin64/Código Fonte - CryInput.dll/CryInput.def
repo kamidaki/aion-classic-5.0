@@ -1,0 +1,4 @@
+LIBRARY "CryInput"
+EXPORTS
+    CreateInput
+    CryModuleGetMemoryInfo

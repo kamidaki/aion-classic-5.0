@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<spawn_map map_id="300440000">
+		<!-- Nex -->
+		<spawn npc_id="401112" respawn_time="295">
+			<spot x="744.2048" y="583.8395" z="128.5867" h="0"/>
+			<spot x="671.2831" y="539.9297" z="130.7063" h="0"/>
+			<spot x="671.0617" y="613.9208" z="130.7063" h="0"/>
+			<spot x="693.632" y="595.0761" z="129.4074" h="0"/>
+			<spot x="758.8763" y="593.593" z="130.7063" h="0"/>
+			<spot x="670.2071" y="561.6473" z="130.7063" h="0"/>
+			<spot x="723.8879" y="604.5415" z="130.3399" h="0"/>
+			<spot x="757.5679" y="617.5715" z="129.9887" h="0"/>
+			<spot x="708.1555" y="557.5851" z="128.693" h="0"/>
+			<spot x="757.95" y="565.5011" z="130.7063" h="0"/>
+		</spawn>
+	</spawn_map>
+</spawns>

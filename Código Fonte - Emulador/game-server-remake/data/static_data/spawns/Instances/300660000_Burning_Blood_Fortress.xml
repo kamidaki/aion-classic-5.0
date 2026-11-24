@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='utf-8'?>
+<spawns>
+	<spawn_map map_id="300660000">
+		
+		<spawn npc_id="730585" respawn_time="295">
+			<spot x="699.3378" y="308.1902" z="233.06" h="0" />
+		</spawn>
+		
+		<spawn npc_id="730586" respawn_time="295">
+			<spot x="702.4009" y="308.2555" z="233.19" h="0" />
+		</spawn>
+		
+		<spawn npc_id="730587" respawn_time="295">
+			<spot x="707.3486" y="306.9777" z="232.28" h="0" />
+		</spawn>
+		
+		<spawn npc_id="801650" respawn_time="295">
+			<spot x="704.7817" y="330.7567" z="232.33" h="0" />
+			<spot x="948.2524" y="514.0066" z="210.97" h="0" />
+		</spawn>
+		
+		<spawn npc_id="801651" respawn_time="295">
+			<spot x="898.6188" y="505.0243" z="210.54" h="0" />
+		</spawn>
+		
+		<spawn npc_id="801652" respawn_time="295">
+			<spot x="530.6648" y="380.7781" z="1036.58" h="0" />
+			<spot x="530.1561" y="646.7582" z="1036.58" h="0" />
+			<spot x="898.6188" y="505.0243" z="210.54" h="0" />
+			<spot x="898.6285" y="518.3732" z="210.54" h="0" />
+		</spawn>
+		
+		<spawn npc_id="801736" respawn_time="295">
+			<spot x="502.9945" y="353.8177" z="1036.58" h="0" />
+			<spot x="502.5199" y="646.7201" z="1036.58" h="0" />
+			</spawn>
+		
+		<spawn npc_id="801738" respawn_time="295">
+			<spot x="924.2092" y="527.0867" z="210.37" h="0" />
+		</spawn>
+		
+		<spawn npc_id="801979" respawn_time="295">
+			<spot x="530.6648" y="380.7781" z="1036.58" h="0" />
+		</spawn>
+		
+		<spawn npc_id="801980" respawn_time="295">
+			<spot x="530.1561" y="646.7582" z="1036.58" h="0" />
+		</spawn>
+		
+		<spawn npc_id="801984" respawn_time="295">
+			<spot x="699.5407" y="303.535" z="232.23" h="10" />
+			<spot x="706.8972" y="305.3571" z="232.28" h="45" />
+			<spot x="709.6612" y="309.7891" z="232.28" h="45" />
+			<spot x="702.6445" y="301.3009" z="232.23" h="22" />
+			<spot x="699.16" y="310.3064" z="232.28" h="3" />
+		</spawn>
+		
+		<spawn npc_id="803076" respawn_time="295">
+			<spot x="892.5136" y="508.6565" z="210.47" h="0" />
+		</spawn>
+	</spawn_map>
+</spawns>

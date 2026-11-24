@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='utf-8'?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+	<spawn_map map_id="220020000">
+		<base_spawn id="2220">
+			<!-- Musphel Outpost -->
+			<occupier_template occupier="ELYOS">
+				<!-- Elyos Territory -->
+				<!-- Territory Boss -->
+				<!-- Elyos Morheim Inspector -->
+				<!-- Morheim Infiltrator -->
+				<!-- Landing Site Teleport Statue -->
+				<spawn npc_id="801168" handler="MERCHANT" respawn_time="295">
+					<spot x="1583.4044" y="1667.53" z="214.1113" h="37" />
+				</spawn>
+				<!-- Landing Site Teleport Statue -->
+				<spawn npc_id="801169" handler="MERCHANT" respawn_time="295">
+					<spot x="1573.5592" y="1677.3947" z="215.2019" h="90" />
+				</spawn>
+				<!-- Diaros -->
+				<spawn npc_id="801170" handler="MERCHANT" respawn_time="295">
+					<spot x="1590.8715" y="1669.8474" z="213.2375" h="75" />
+				</spawn>
+			</occupier_template>
+			<occupier_template occupier="ASMODIANS">
+				<!-- Asmodians Territory -->
+				<!-- Territory Boss -->
+				<!-- Asmodian Morheim Inspector -->
+				<!-- Morheim Defender -->
+				<!-- Dirini -->
+				<spawn npc_id="801171" handler="MERCHANT" respawn_time="295">
+					<spot x="1583.4044" y="1667.53" z="214.1113" h="37" />
+				</spawn>
+				<!-- Ronius -->
+				<spawn npc_id="801172" handler="MERCHANT" respawn_time="295">
+					<spot x="1573.5592" y="1677.3947" z="215.2019" h="90" />
+				</spawn>
+				<!-- Rihina -->
+				<spawn npc_id="801173" handler="MERCHANT" respawn_time="295">
+					<spot x="1590.8715" y="1669.8474" z="213.2375" h="75" />
+				</spawn>
+			</occupier_template>
+			<occupier_template occupier="BALAUR">
+				<!-- Lepharist Territory -->
+				<!-- Territory Boss -->
+				<!-- Lepharist Assassin -->
+				<!-- Lepharist Vanguard -->
+				<!-- Lepharist Protector -->
+			</occupier_template>
+		</base_spawn>
+		<!-- Mist Mane Defense Post -->
+		<base_spawn id="2221">
+			<occupier_template occupier="ELYOS">
+				<!-- Elyos Territory -->
+				<!-- Territory Boss -->
+				<!-- Elyos Morheim Inspector -->
+				<!-- Morheim Defender -->
+				<!-- Shariana -->
+				<spawn npc_id="801174" handler="MERCHANT" respawn_time="295">
+					<spot x="2033.5592" y="731.14465" z="246.125" h="113" />
+				</spawn>
+				<!-- Dionamion -->
+				<spawn npc_id="801175" handler="MERCHANT" respawn_time="295">
+					<spot x="2039.0592" y="720.64465" z="246.7282" h="30" />
+				</spawn>
+				<!-- Nirr -->
+				<spawn npc_id="801176" handler="MERCHANT" respawn_time="295">
+					<spot x="2035.8092" y="734.89465" z="246" />
+				</spawn>
+			</occupier_template>
+			<occupier_template occupier="ASMODIANS">
+				<!-- Asmodians Territory -->
+				<!-- Territory Boss -->
+				<!-- Asmodian Morheim Inspector -->
+				<!-- Morheim Defender -->
+				<!-- Duaro -->
+				<spawn npc_id="801177" handler="MERCHANT" respawn_time="295">
+					<spot x="2033.5592" y="731.14465" z="246.125" h="113" />
+				</spawn>
+				<!-- Lalasia -->
+				<spawn npc_id="801178" handler="MERCHANT" respawn_time="295">
+					<spot x="2039.0592" y="720.64465" z="246.7282" h="30" />
+				</spawn>
+				<!-- Myrdos -->
+				<spawn npc_id="801179" handler="MERCHANT" respawn_time="295">
+					<spot x="2035.8092" y="734.89465" z="246" />
+				</spawn>
+			</occupier_template>
+			<occupier_template occupier="BALAUR">
+				<!-- Mau Territory -->
+				<!-- Territory Boss -->
+				<!-- Mist Mane Assassin -->
+				<!-- Mist Mane Vanguard -->
+				<!-- Mist Mane Protector -->
+			</occupier_template>
+		</base_spawn>
+	</spawn_map>
+</spawns>

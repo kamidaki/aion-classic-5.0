@@ -1,0 +1,7 @@
+Release64/*.obj
+Release64/*.exp
+Release64/*.res
+Release64/*.pdb
+Release64/*.tlog
+Release64/*.idb
+Release64/*.ilk

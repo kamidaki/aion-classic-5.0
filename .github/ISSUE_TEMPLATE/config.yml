@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Discussoes e Intercambio Tecnico
+    url: https://github.com/kamidaki/aion-classic-5.0/discussions
+    about: Utilize para duvidas de arquitetura, compilacao e trocas de informacoes tecnicas entre desenvolvedores.
+  - name: Vulnerabilidades de Seguranca
+    url: https://github.com/kamidaki/aion-classic-5.0/security/advisories/new
+    about: Canal privado para reporte confidencial de falhas de seguranca.

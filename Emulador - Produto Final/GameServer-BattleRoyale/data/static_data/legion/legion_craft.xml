@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<legion_craft xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="legion_craft.xsd">
+	<recipe id="1" name="guild_essence" race="ALL" type="COMMON" craft_time="0" essence_count="1">
+		<essence_piece count="10" />
+	</recipe>
+	<recipe id="2" name="guild_essence_02" race="ALL" type="COMMON" craft_time="0" essence_count="10">
+		<essence_piece count="100" />
+	</recipe>
+	<recipe id="3" name="guild_essence_03" race="ALL" type="COMMON" craft_time="0" essence_count="50">
+		<essence_piece count="500" />
+	</recipe>
+	<recipe id="6" name="guild_craft_kist_light_01" race="ELYOS" type="COMMON" craft_time="10" product_id="184002036" product_count="1">
+		<kinah amount="3000000" />
+		<essence count="1" />
+	</recipe>
+	<recipe id="7" name="guild_craft_kist_light_02" race="ELYOS" type="COMMON" craft_time="10" product_id="184002038" product_count="1">
+		<kinah amount="100000" />
+		<essence_piece count="5" />
+	</recipe>
+	<recipe id="8" name="guild_craft_kist_light_03" race="ELYOS" type="COMMON" craft_time="10" product_id="184002040" product_count="1">
+		<kinah amount="100000" />
+		<essence_piece count="5" />
+	</recipe>
+	<recipe id="9" name="guild_craft_kist_light_04" race="ELYOS" type="COMMON" craft_time="10" product_id="184002042" product_count="1">
+		<kinah amount="100000" />
+		<essence_piece count="5" />
+	</recipe>
+	<recipe id="10" name="guild_craft_kist_light_05" race="ELYOS" type="COMMON" craft_time="10" product_id="184002044" product_count="1">
+		<kinah amount="100000" />
+		<essence_piece count="5" />
+	</recipe>
+	<recipe id="11" name="guild_craft_kist_light_06" race="ELYOS" type="COMMON" craft_time="10" product_id="184002048" product_count="1">
+		<kinah amount="100000" />
+		<essence_piece count="5" />
+	</recipe>
+	<recipe id="12" name="guild_craft_kist_light_07" race="ELYOS" type="COMMON" craft_time="10" product_id="184002050" product_count="1">
+		<kinah amount="100000" />
+		<essence_piece count="5" />
+	</recipe>
+	<recipe id="13" name="guild_craft_kist_dark_01" race="ASMODIANS" type="COMMON" craft_time="10" product_id="184002037" product_count="1">
+		<kinah amount="3000000" />
+		<essence count="1" />
+	</recipe>
+	<recipe id="14" name="guild_craft_kist_dark_02" race="ASMODIANS" type="COMMON" craft_time="10" product_id="184002039" product_count="1">
+		<kinah amount="100000" />
+		<essence_piece count="5" />
+	</recipe>
+	<recipe id="15" name="guild_craft_kist_dark_03" race="ASMODIANS" type="COMMON" craft_time="10" product_id="184002041" product_count="1">
+		<kinah amount="100000" />
+		<essence_piece count="5" />
+	</recipe>
+	<recipe id="16" name="guild_craft_kist_dark_04" race="ASMODIANS" type="COMMON" craft_time="10" product_id="184002043" product_count="1">
+		<kinah amount="100000" />
+		<essence_piece count="5" />
+	</recipe>
+	<recipe id="17" name="guild_craft_kist_dark_05" race="ASMODIANS" type="COMMON" craft_time="10" product_id="184002047" product_count="1">
+		<kinah amount="100000" />
+		<essence_piece count="5" />
+	</recipe>
+	<recipe id="18" name="guild_craft_kist_dark_06" race="ASMODIANS" type="COMMON" craft_time="10" product_id="184002049" product_count="1">
+		<kinah amount="100000" />
+		<essence_piece count="5" />
+	</recipe>
+	<recipe id="19" name="guild_craft_kist_dark_07" race="ASMODIANS" type="COMMON" craft_time="10" product_id="184002053" product_count="1">
+		<kinah amount="100000" />
+		<essence_piece count="5" />
+	</recipe>
+	<recipe id="20" name="guild_craft_kist_light_v28_01" race="ELYOS" type="COMMON" craft_time="10" product_id="184002056" product_count="1">
+		<kinah amount="580000" />
+		<essence_piece count="5" />
+	</recipe>
+	<recipe id="21" name="guild_craft_kist_light_v28_02" race="ELYOS" type="COMMON" craft_time="10" product_id="184002058" product_count="1">
+		<kinah amount="580000" />
+		<essence_piece count="5" />
+	</recipe>
+	<recipe id="22" name="guild_craft_kist_light_v28_03" race="ELYOS" type="COMMON" craft_time="10" product_id="184002062" product_count="1">
+		<kinah amount="580000" />
+		<essence_piece count="5" />
+	</recipe>
+	<recipe id="23" name="guild_craft_kist_light_v28_04" race="ELYOS" type="COMMON" craft_time="10" product_id="184002064" product_count="1">
+		<kinah amount="580000" />
+		<essence_piece count="5" />
+	</recipe>
+	<recipe id="24" name="guild_craft_kist_dark_v28_01" race="ASMODIANS" type="COMMON" craft_time="10" product_id="184002057" product_count="1">
+		<kinah amount="580000" />
+		<essence_piece count="5" />
+	</recipe>
+	<recipe id="25" name="guild_craft_kist_dark_v28_02" race="ASMODIANS" type="COMMON" craft_time="10" product_id="184002061" product_count="1">
+		<kinah amount="580000" />
+		<essence_piece count="5" />
+	</recipe>
+	<recipe id="26" name="guild_craft_kist_dark_v28_03" race="ASMODIANS" type="COMMON" craft_time="10" product_id="184002063" product_count="1">
+		<kinah amount="580000" />
+		<essence_piece count="5" />
+	</recipe>
+	<recipe id="27" name="guild_craft_kist_dark_v28_04" race="ASMODIANS" type="COMMON" craft_time="10" product_id="184002067" product_count="1">
+		<kinah amount="580000" />
+		<essence_piece count="5" />
+	</recipe>
+	<recipe id="100" name="guild_craft_artifact_g1_light" race="ELYOS" type="COMMON" craft_time="1" product_id="188020000" product_count="1">
+		<item id="152020118" count="3" points="1" />
+		<item id="152020117" count="5" points="1" />
+		<item id="169400075" count="11" points="1" />
+		<item id="152000902" count="16" points="1" />
+	</recipe>
+	<recipe id="101" name="guild_craft_artifact_g2_light" race="ELYOS" type="COMMON" craft_time="1" product_id="188020001" product_count="1">
+		<item id="152020122" count="8" points="1" />
+		<item id="152020121" count="13" points="1" />
+		<item id="169400076" count="17" points="1" />
+		<item id="152000904" count="19" points="1" />
+	</recipe>
+	<recipe id="102" name="guild_craft_artifact_g1_dark" race="ASMODIANS" type="COMMON" craft_time="1" product_id="188020000" product_count="1">
+		<item id="152025118" count="3" points="1" />
+		<item id="152025117" count="5" points="1" />
+		<item id="169400075" count="11" points="1" />
+		<item id="152000902" count="16" points="1" />
+	</recipe>
+	<recipe id="103" name="guild_craft_artifact_g2_dark" race="ASMODIANS" type="COMMON" craft_time="1" product_id="188020001" product_count="1">
+		<item id="152025122" count="8" points="1" />
+		<item id="152025121" count="13" points="1" />
+		<item id="169400076" count="17" points="1" />
+		<item id="152000904" count="19" points="1" />
+	</recipe>
+	<recipe id="200" name="guild_craft_siege02_light" race="ELYOS" type="COMMON" craft_time="1" product_id="188000008" product_count="1">
+		<item id="152020242" count="1" points="1" />
+		<item id="152020243" count="1" points="1" />
+		<item id="152020244" count="1" points="1" />
+		<item id="152020246" count="1" points="1" />
+		<item id="152020245" count="1" points="1" />
+		<item id="152020247" count="2" points="1" />
+	</recipe>
+	<recipe id="201" name="guild_craft_siege02_dark" race="ASMODIANS" type="COMMON" craft_time="1" product_id="188000009" product_count="1">
+		<item id="152029243" count="1" points="1" />
+		<item id="152029244" count="1" points="1" />
+		<item id="152029245" count="1" points="1" />
+		<item id="152029247" count="1" points="1" />
+		<item id="152029246" count="1" points="1" />
+		<item id="152029248" count="2" points="1" />
+	</recipe>
+	<recipe id="300" name="guild_craft_play_01" race="ALL" type="COMMON" craft_time="1" product_id="188053047" product_count="1">
+		<kinah amount="10000" />
+	</recipe>
+	<recipe id="301" name="guild_craft_play_02" race="ALL" type="COMMON" craft_time="1" product_id="169600184" product_count="1">
+		<kinah amount="100000" />
+		<item id="186000184" count="5" points="1" />
+	</recipe>
+	<recipe id="302" name="guild_craft_play_03" race="ALL" type="COMMON" craft_time="1" product_id="169600185" product_count="1">
+		<kinah amount="100000" />
+		<item id="186000184" count="5" points="1" />
+	</recipe>
+	<recipe id="303" name="guild_craft_play_04" race="ALL" type="COMMON" craft_time="1" product_id="169600186" product_count="1">
+		<kinah amount="100000" />
+		<item id="186000184" count="5" points="1" />
+	</recipe>
+	<recipe id="304" name="guild_craft_play_05" race="ALL" type="COMMON" craft_time="1" product_id="169600187" product_count="1">
+		<kinah amount="100000" />
+		<item id="186000184" count="5" points="1" />
+	</recipe>
+	<recipe id="305" name="guild_craft_play_06" race="ALL" type="COMMON" craft_time="1" product_id="169600188" product_count="1">
+		<kinah amount="100000" />
+		<item id="186000184" count="5" points="1" />
+	</recipe>
+	<recipe id="306" name="guild_craft_play_07" race="ALL" type="COMMON" craft_time="1" product_id="169600189" product_count="1">
+		<kinah amount="100000" />
+		<item id="186000184" count="5" points="1" />
+	</recipe>
+	<recipe id="307" name="guild_craft_play_08" race="ALL" type="COMMON" craft_time="1" product_id="169600190" product_count="1">
+		<kinah amount="100000" />
+		<item id="186000184" count="5" points="1" />
+	</recipe>
+	<recipe id="308" name="guild_craft_play_09" race="ALL" type="COMMON" craft_time="1" product_id="169600191" product_count="1">
+		<kinah amount="100000" />
+		<item id="186000184" count="5" points="1" />
+	</recipe>
+	<recipe id="400" name="guild_craft_dress_head_01" race="ALL" type="COMMON" craft_time="60" product_id="125030009" product_count="1">
+		<kinah amount="2000000" />
+		<essence_piece count="3" />
+	</recipe>
+	<recipe id="401" name="guild_craft_dress_head_02" race="ALL" type="COMMON" craft_time="60" product_id="125030010" product_count="1">
+		<kinah amount="2000000" />
+		<essence_piece count="3" />
+	</recipe>
+	<recipe id="402" name="guild_craft_dress_head_03" race="ALL" type="COMMON" craft_time="60" product_id="125030011" product_count="1">
+		<kinah amount="2000000" />
+		<essence_piece count="3" />
+	</recipe>
+	<recipe id="403" name="guild_craft_dress_head_04" race="ALL" type="COMMON" craft_time="60" product_id="125030012" product_count="1">
+		<kinah amount="2000000" />
+		<essence_piece count="3" />
+	</recipe>
+	<recipe id="404" name="guild_craft_dress_head_05" race="ALL" type="COMMON" craft_time="60" product_id="125030013" product_count="1">
+		<kinah amount="2000000" />
+		<essence_piece count="3" />
+	</recipe>
+	<recipe id="405" name="guild_craft_dress_head_06" race="ALL" type="COMMON" craft_time="60" product_id="125030014" product_count="1">
+		<kinah amount="2000000" />
+		<essence_piece count="3" />
+	</recipe>
+	<recipe id="406" name="guild_craft_dress_head_07_light" race="ELYOS" type="COMMON" craft_time="60" product_id="125030015" product_count="1">
+		<kinah amount="2000000" />
+		<essence_piece count="5" />
+	</recipe>
+	<recipe id="407" name="guild_craft_dress_head_07_dark" race="ASMODIANS" type="COMMON" craft_time="60" product_id="125030016" product_count="1">
+		<kinah amount="2000000" />
+		<essence_piece count="5" />
+	</recipe>
+	<recipe id="408" name="guild_craft_dress_body_01" race="ALL" type="COMMON" craft_time="60" product_id="110101405" product_count="1">
+		<kinah amount="10000000" />
+		<essence_piece count="5" />
+	</recipe>
+	<recipe id="409" name="guild_craft_dress_body_02" race="ALL" type="COMMON" craft_time="60" product_id="110101406" product_count="1">
+		<kinah amount="10000000" />
+		<essence_piece count="5" />
+	</recipe>
+	<recipe id="501" name="guild_craft_iddramata_01_weaponbox_supply" race="ALL" type="COMMON" craft_time="10" product_id="188054303" product_count="1">
+		<kinah amount="1000000" />
+		<item id="186020328" count="40" points="1" />
+	</recipe>
+	<recipe id="503" name="guild_craft_event_matter_enchant_120" race="ALL" type="EVENT" craft_time="1" product_id="166000120" product_count="1">
+		<item id="186000192" count="10" points="1" />
+	</recipe>
+	<recipe id="504" name="guild_craft_classic_legion_essence01" race="ALL" type="COMMON" craft_time="1" product_id="186020343" product_count="1">
+		<essence count="5" />
+		<item id="186020344" count="15" points="1" />
+	</recipe>
+	<recipe id="506" name="guild_craft_Legion_War_reward_01" race="ALL" type="COMMON" craft_time="1" product_id="188056695" product_count="1">
+		<item id="186020412" count="10" points="0" />
+		<essence count="3" />
+	</recipe>
+	<recipe id="507" name="guild_craft_Legion_War_xp_absolute_box_01" race="ALL" type="COMMON" craft_time="1" product_id="188056694" product_count="1">
+		<item id="186020412" count="3" points="0" />
+		<essence_piece count="15" />
+	</recipe>
+</legion_craft>

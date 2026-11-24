@@ -1,0 +1,14 @@
+componente;estado_encontrado;risco;correcao_etapa_15;status;evidencia
+client_titles.xml;74 títulos oficiais IDs 408–481;nenhum;catálogo mantido como autoridade de disponibilidade;VALIDADO;data/PC/client_titles.xml
+player_titles.xml;374 templates sendo 300 legados e 74 atuais;legados eram expostos como utilizáveis;300 templates marcados available=false e mantidos somente para leitura histórica;CORRIGIDO;data/static_data/player_titles.xml
+player_titles banco ativo;1 registro legado ID 101 e nenhum registro atual;registro seria enviado ao cliente antes da correção;levantamento somente leitura e migração reversível preparada;PENDENTE_EXECUCAO_MIGRACAO;consulta MariaDB em 2026-09-27
+players.title_id banco ativo;0 referências legadas ativas e 0 atuais;seleção inválida poderia persistir em outros bancos;normalização defensiva no carregamento e script de arquivamento;CORRIGIDO_EM_RUNTIME;PlayerCommonData + TitleList.setOwner
+players.bonus_title_id banco ativo;0 referências legadas ativas e 0 atuais;bônus legado poderia aplicar atributos;normalização defensiva e bloqueio em TitleChangeListener;CORRIGIDO_EM_RUNTIME;TitleList + TitleChangeListener
+PlayerTitleListDAO;carrega registros 1–300 devido aos templates de compatibilidade;remoção imediata perderia histórico;carregamento histórico preservado sem exposição ao cliente;VALIDADO;PlayerTitleListDAO.java
+SM_TITLE_INFO ação 0;serializava todos os títulos carregados;cliente recebia IDs inexistentes;passou a serializar somente available=true e contagem correspondente;CORRIGIDO;SM_TITLE_INFO.java + teste binário
+SM_TITLE_INFO ação 1;login enviava o título ativo também como título bônus;bônus persistido diferente era perdido no wire;login passou a enviar título ativo e bônus separadamente;CORRIGIDO;PlayerEnterWorldService.java
+CM_TITLE_SET;aceitava qualquer ID existente na lista interna;permitia selecionar título legado;validação passou a exigir containsAvailable;CORRIGIDO;CM_TITLE_SET.java
+CM_BONUS_TITLE;aceitava qualquer ID existente na lista interna;permitia reativar bônus legado;validação passou a exigir containsAvailable;CORRIGIDO;CM_BONUS_TITLE.java
+atributos de título bônus;seleção atual não era reaplicada após relog;bônus atual podia desaparecer até nova seleção;reaplicação após os atributos de equipamento e bloqueio dos legados;CORRIGIDO;PlayerService.java + TitleChangeListener.java
+quests 13813 13820 13821 23813 23820 23821;exigem título legado 278 e estão ausentes do cliente atual;remoção isolada abriria conteúdo legado;condições preservadas para aposentadoria conjunta das quests;PENDENTE_DESATIVACAO_CONJUNTA;quest_data.xml + data/Quest/quest.xml
+migração SQL;nenhum arquivo de arquivamento existia;remoção direta seria irreversível;criados update e rollback com tabelas de arquivo;PREPARADO_NAO_EXECUTADO;sql/update_2026-09-27_classic_titles.sql

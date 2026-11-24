@@ -1,0 +1,77 @@
+package com.aionemu.gameserver.skillengine.properties;
+
+import com.aionemu.gameserver.geoEngine.collision.IgnoreProperties;
+import com.aionemu.gameserver.model.gameobjects.Creature;
+import com.aionemu.gameserver.model.gameobjects.player.Player;
+import com.aionemu.gameserver.network.aion.serverpackets.SM_SYSTEM_MESSAGE;
+import com.aionemu.gameserver.skillengine.effect.AbnormalState;
+import com.aionemu.gameserver.skillengine.model.Skill;
+import com.aionemu.gameserver.skillengine.properties.Properties.CastState;
+import com.aionemu.gameserver.utils.PacketSendUtility;
+import com.aionemu.gameserver.utils.PositionUtil;
+import com.aionemu.gameserver.world.geo.GeoService;
+
+/**
+ * @author Lost Academy Team & Durak
+ */
+public class FirstTargetRangeProperty {
+
+	public static boolean set(Skill skill, Properties properties, CastState castState) {
+		if (!skill.isFirstTargetRangeCheck())
+			return true;
+
+		Creature effector = skill.getEffector();
+		Creature firstTarget = skill.getFirstTarget();
+		float firstTargetRange = calculateRange(properties.getFirstTargetRange(), properties.isAddWeaponRange(),
+			effector.getGameStats().getAttackRange().getCurrent());
+
+		if (properties.getFirstTarget() == FirstTargetAttribute.POINT) {
+			 if (!GeoService.getInstance().canSee(effector, skill.getX(), skill.getY(), skill.getZ(), IgnoreProperties.of(effector.getRace()))) {
+				 if (effector instanceof Player) {
+					 PacketSendUtility.sendPacket((Player) effector, SM_SYSTEM_MESSAGE.STR_SKILL_OBSTACLE());
+				 }
+				 return false;
+			 }
+			 return true;
+		}
+
+		if (firstTarget == null)
+			return false;
+
+		if (firstTarget.equals(effector))
+			return true;
+
+		if (castState != CastState.CAST_START && !(effector instanceof Player)) // NPCs don't cancel skills once started, could be abused -> no range or geo to check
+			return true;
+
+		// on end cast check add revision distance value (only for pvp targets, checked on 4.6 PTS)
+		if (castState == CastState.CAST_END && firstTarget.getMaster() instanceof Player) {
+			firstTargetRange += properties.getRevisionDistance();
+		}
+
+		// fixes first hit sometimes incorrectly not going through
+		if (effector.getMoveController().isInMove() && !firstTarget.getAggroList().isHating(effector))
+			firstTargetRange += PositionUtil.calculateMaxCoveredDistance(effector, 50);
+
+		if (!firstTarget.getEffectController().isInAnyAbnormalState(AbnormalState.CANT_MOVE_STATE)
+			&& !PositionUtil.isInAttackRange(effector, firstTarget, firstTargetRange)) {
+			if (effector instanceof Player)
+				PacketSendUtility.sendPacket((Player) effector, SM_SYSTEM_MESSAGE.STR_SKILL_TOO_FAR());
+			return false;
+		}
+
+		// TODO check for all targets too
+		if (!GeoService.getInstance().canSee(effector, firstTarget)) {
+			if (effector instanceof Player) {
+				PacketSendUtility.sendPacket((Player) effector, SM_SYSTEM_MESSAGE.STR_SKILL_OBSTACLE());
+			}
+			return false;
+		}
+		return true;
+	}
+
+	public static float calculateRange(int baseRange, boolean addWeaponRange, int attackRange) {
+		return baseRange + (addWeaponRange ? attackRange / 1000f : 0);
+	}
+
+}

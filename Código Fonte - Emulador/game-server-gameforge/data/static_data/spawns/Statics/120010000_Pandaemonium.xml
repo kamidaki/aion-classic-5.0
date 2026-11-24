@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../spawns.xsd">
+	<spawn_map map_id="120010000">
+		<!-- Loom -->
+		<!-- Workbench -->
+		<!-- Alchemists Table -->
+		<!-- Armor Forge -->
+		<!-- Weapon Forge -->
+		<!-- Oven -->
+		<!-- Construction Bench -->
+	</spawn_map>
+</spawns>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<spawns xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<spawn_map map_id="300350000">
+		<!-- Design: [Tipo C] Prêmio Supremo Abismo -->
+		<spawn npc_id="405000" respawn_time="295">
+			<spot x="1316.8162" y="1097.8611" z="337.5" h="0"/>
+			<spot x="1349.5219" y="1057.3735" z="337.375" h="0"/>
+		</spawn>
+		<!-- Design: [Tipo C] Prêmio Balaurea -->
+		<spawn npc_id="405001" respawn_time="295">
+			<spot x="1349.5525" y="1093.4425" z="337.625" h="0"/>
+			<spot x="1317.2399" y="1058.0667" z="337.375" h="0"/>
+		</spawn>
+	</spawn_map>
+</spawns>
