@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<img src="Ferramentas%20e%20Documentos/Banner/LostAcademyGroup.png" alt="Aion Classic 5.0" width="100%" />
+<img src="Ferramentas%20e%20Documentos/Banner/LostAcademyGroup.png" alt="Aion Classic 5.0" width="180" height="180" />
 
 </div>
 
