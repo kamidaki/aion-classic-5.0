@@ -169,25 +169,37 @@ Ele representa a junção de **Aion Retail** com **Aion Classic 5.0**, tendo rec
 
 ---
 
+
 ## Origem e Créditos
 
+**POC Variant:** [https://github.com/acottis/aion](https://github.com/acottis/aion)
 **Beyond Aion:** [https://github.com/beyond-aion/aion-server](https://github.com/beyond-aion/aion-server)
 
 Este emulador possui origem técnica direta no código **Retail 4.8 da Beyond Aion**, conforme o fluxo de evolução abaixo:
 
 ```text
-Retail 4.8 da Beyond Aion
+Versão POC em Rust
+↓
+Primeiro emulador em Rust funcional
+↓
+Emulador estável em Rust na 4.5 EU GameForge
+↓
+Atualização do Emulador em Rust para versão 5.0 EU GameForge
+↓
+Estabilização de OPCODES e OFFSETS, marcando emulador Rust totalmente compatível com o CLIENT 5.0 Oficial
+↓ 
+Portabilidade completa do emulador RUST 5.0 para dentro do JAVA Retail 4.8 da Beyond Aion
 ↓
 Modificação pesada e reestruturação
 ↓
-Aion Classic 5.0 — Lost Academy Group
+Aion Classic 5.0 — Lost Academy Group (Java 25 LTS)
 ```
 
-O projeto nasceu a partir da base Retail 4.8 da Beyond Aion e passou por modificações profundas, adaptações de protocolo e reestruturação estrutural para operar como o atual **Aion Classic 5.0**. Por esse motivo, diversos códigos, estruturas, definições e comportamentos ainda guardam herança da implementação Retail 4.8.
+O projeto nasceu a partir da POC escrita em Rust, foi onde nós adaptamos e corrigimos para ficar compatível inicialmente com a versão 4.5 Classic, conseguimos desenvolver toda base inicial de login, criação de personagens, entrar no jogo e conseguir executar funções básicas, em sequência a GameForge atualizou para 5.0, foi quando nós também atualizamos nosso emulador Rust para 5.0, realizamos toda adaptação necessária, depois nós baixamos o emulador base Retail 4.8 da Beyond Aion e portamos o emulador Rust para dentro dele, realizando por modificações profundas, adaptações de protocolo e reestruturação estrutural para operar como o atual **Aion Classic 5.0**. Por esse motivo, diversos códigos, estruturas, definições e comportamentos ainda guardam herança da implementação Retail 4.8.
 
 A identificação e a correção dessas heranças devem acontecer **individualmente, código por código, sem substituições indiscriminadas** (consulte o inventário técnico em [`Ferramentas e Documentos/docs/AUDITORIA_HERANCAS_RETAIL_4.8.md`](./Ferramentas%20e%20Documentos/docs/AUDITORIA_HERANCAS_RETAIL_4.8.md)).
 
 ### Créditos e Avisos Legais
-- Créditos preservados aos autores originais da base **Beyond Aion** e colaboradores da comunidade de emulação Aion (`LICENSE`).
+- Créditos preservados aos autores originais da base **Rust POC - Acottis** e **Beyond Aion** e colaboradores da comunidade de emulação Aion (`LICENSE`).
 - **Desenvolvimento Aion Classic 5.0:** Lost Academy Group.
 - **Aviso de não afiliação:** Este projeto Open Source independente **não possui qualquer afiliação, endosso ou vínculo oficial com a Gameforge 4D GmbH, NCSOFT Corporation ou Beyond Aion**. Todas as marcas pertencem aos seus respectivos proprietários.
