@@ -115,9 +115,13 @@ Os artefatos principais gerados seguem a padronização `LostAcademyGroup`:
 - `chat-server-LostAcademyGroup.jar`
 - `game-server-LostAcademyGroup.jar`
 
-### Módulos Auxiliares de Cliente e Patch 5.0
+### Módulos OBRIGATÓRIOS para que o Cliente oficial funcione:
 - A conexão do cliente ao emulador é feita de forma autônoma pela proxy `version.dll` localizada em [`Ferramentas e Documentos/Códigos bin64/Código Fonte - Version.dll/`](./Ferramentas%20e%20Documentos/C%C3%B3digos%20bin64/C%C3%B3digo%20Fonte%20-%20Version.dll/README.md).
 - O pacote do Patch Client 5.0 e seu histórico de versões estão documentados em [`Ferramentas e Documentos/Patch final - Client 5.0/README.md`](./Ferramentas%20e%20Documentos/Patch%20final%20-%20Client%205.0/README.md).
+
+Observação: Baixe o cliente oficial pelo site [https://gameforge.com/en-GB/play/aion_classic](https://gameforge.com/en-GB/play/aion_classic), depois acesse o Link do Patch acima e baixe-o também, depois COPIE TODAS PASTAS E ARQUIVOS PRA DENTRO DO CLIENT OFICIAL e SUBSTITUA.
+
+Ainda está com problema ? Tente solicitar ajuda para algum modelo de IA (Por exemplo: Gemini, GPT ou Claude)
 
 ---
 
@@ -195,9 +199,9 @@ Modificação pesada e reestruturação
 Aion Classic 5.0 — Lost Academy Group (Java 25 LTS)
 ```
 
-O projeto nasceu a partir da POC escrita em Rust, foi onde nós adaptamos e corrigimos para ficar compatível inicialmente com a versão 4.5 Classic, conseguimos desenvolver toda base inicial de login, criação de personagens, entrar no jogo e conseguir executar funções básicas, em sequência a GameForge atualizou para 5.0, foi quando nós também atualizamos nosso emulador Rust para 5.0, realizamos toda adaptação necessária, depois nós baixamos o emulador base Retail 4.8 da Beyond Aion e portamos o emulador Rust para dentro dele, realizando por modificações profundas, adaptações de protocolo e reestruturação estrutural para operar como o atual **Aion Classic 5.0**. Por esse motivo, diversos códigos, estruturas, definições e comportamentos ainda guardam herança da implementação Retail 4.8.
+O projeto nasceu a partir da POC escrita em Rust, foi onde nós adaptamos e corrigimos para ficar compatível inicialmente com a versão 4.5 Classic, conseguimos desenvolver toda base inicial de login, criação de personagens, entrar no jogo e conseguir executar funções básicas, em sequência a GameForge atualizou para 5.0, foi quando nós também atualizamos nosso emulador Rust para 5.0, realizamos toda adaptação necessária, depois nós baixamos o emulador base Retail 4.8 da Beyond Aion e portamos o emulador Rust para dentro dele, realizando modificações profundas, adaptações de protocolo e reestruturação estrutural para operar como o atual **Aion Classic 5.0**. Por esse motivo, diversos códigos, estruturas, definições e comportamentos ainda guardam herança da implementação Retail 4.8.
 
-A identificação e a correção dessas heranças devem acontecer **individualmente, código por código, sem substituições indiscriminadas** (consulte o inventário técnico em [`Ferramentas e Documentos/docs/AUDITORIA_HERANCAS_RETAIL_4.8.md`](./Ferramentas%20e%20Documentos/docs/AUDITORIA_HERANCAS_RETAIL_4.8.md)).
+A identificação e a correção dessas heranças devem acontecer **individualmente, código por código, sem substituições indiscriminadas**.
 
 ### Créditos e Avisos Legais
 - Créditos preservados aos autores originais da base **Rust POC - Acottis** e **Beyond Aion** e colaboradores da comunidade de emulação Aion (`LICENSE`).
