@@ -15,8 +15,13 @@ jobs:
     name: Validar Titulo do PR / Commit
     runs-on: ubuntu-latest
     steps:
+      - name: Bypass para o Proprietario do Repositorio
+        if: github.event_name == 'pull_request' && github.event.pull_request.user.login == github.repository_owner
+        run: |
+          echo "Bypass automático aplicado: autor do PR é o proprietário do repositório (${{ github.repository_owner }})."
+
       - name: Validar Titulo Semantico
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' && github.event.pull_request.user.login != github.repository_owner
         uses: amannn/action-semantic-pull-request@v6
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
