@@ -37,7 +37,7 @@ Os indicadores abaixo refletem o estágio atual conhecido do emulador em relaç�
 
 ## Objetivo Principal
 
-O objetivo principal deste projeto é alcançar **100% de fidelidade PvE ao Aion Retail Oficial EU, publicado pela Gameforge**.
+O objetivo principal deste projeto é alcançar **100% de fidelidade PvE ao Aion Classic 5.0 Oficial EU, publicado pela Gameforge**.
 
 O único servidor de referência adotado para o desenvolvimento Open Source é exclusivamente:
 
