@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from aion_formats.level import (
+from formats.level import (
     LIQUID_KIND_LAVA,
     LIQUID_PRESET_LAVA_EMISSIVE,
     LIQUID_PRESET_NORMAL,
@@ -27,8 +27,8 @@ def apply_liquid_surface_material(
     water_result,
     recipe: LiquidSurfaceRecipe,
     *,
-    alpha: float = 0.35,
-    tile_scale: float = 32.0,
+    alpha: float = 0.72,
+    tile_scale: float = 48.0,
     animate_liquid: bool = False,
     simple_shader: bool = False,
 ):
@@ -109,16 +109,18 @@ def _create_liquid_material(
     material = bpy.data.materials.new(f"AION_Liquid_{recipe.selected_kind.lower()}_{recipe.selected_preset.lower()}")
     material.use_nodes = True
     try:
-        material.blend_method = "CLIP" if simple_shader else "BLEND"
+        # NEVER use CLIP on semi-transparent water (alpha < 0.5 vanishes completely!)
+        material.blend_method = "BLEND"
     except (AttributeError, TypeError):
         pass
     try:
-        material.surface_render_method = "DITHERED" if simple_shader else "BLENDED"
+        material.surface_render_method = "BLENDED"
     except (AttributeError, TypeError):
         pass
     try:
-        material.show_transparent_back = not simple_shader
+        material.show_transparent_back = False
         material.use_transparent_shadow = False
+        material.use_backface_culling = False
     except (AttributeError, TypeError):
         pass
     tree = material.node_tree
@@ -191,15 +193,19 @@ def _wire_water(
     loaded,
     preset,
     alpha,
-    tile_scale=32.0,
+    tile_scale=48.0,
     *,
     animate_liquid: bool = False,
     simple_shader: bool = False,
 ):
     bsdf = nodes.new("ShaderNodeBsdfPrincipled")
-    bsdf.inputs["Alpha"].default_value = max(0.0, min(1.0, float(alpha)))
-    bsdf.inputs["Base Color"].default_value = (0.05, 0.28, 0.42, max(0.0, min(1.0, float(alpha))))
-    bsdf.inputs["Roughness"].default_value = 0.14 if simple_shader else 0.08
+    effective_alpha = 0.55 if preset == LIQUID_PRESET_TRANSPARENT else max(0.55, min(0.92, float(alpha)))
+    bsdf.inputs["Alpha"].default_value = effective_alpha
+    water_tint = (0.04, 0.30, 0.48, 1.0)
+    bsdf.inputs["Base Color"].default_value = water_tint
+    bsdf.inputs["Roughness"].default_value = 0.10 if simple_shader else 0.06
+    if "Specular IOR Level" in bsdf.inputs:
+        bsdf.inputs["Specular IOR Level"].default_value = 0.65
     try:
         bsdf.inputs["IOR"].default_value = 1.333
     except Exception:
@@ -211,7 +217,20 @@ def _wire_water(
         tex = nodes.new("ShaderNodeTexImage")
         tex.image = texture["image"]
         links.new(mapping.outputs["Vector"], tex.inputs["Vector"])
-        links.new(tex.outputs["Color"], bsdf.inputs["Base Color"])
+        try:
+            mix = nodes.new("ShaderNodeMix")
+            mix.data_type = "RGBA"
+            mix.blend_type = "MIX"
+            fac_in = mix.inputs.get("Factor_Float") or mix.inputs[0]
+            a_in = mix.inputs.get("A_Color") or mix.inputs[6]
+            b_in = mix.inputs.get("B_Color") or mix.inputs[7]
+            res_out = mix.outputs.get("Result_Color") or mix.outputs[2]
+            fac_in.default_value = 0.5
+            a_in.default_value = water_tint
+            links.new(tex.outputs["Color"], b_in)
+            links.new(res_out, bsdf.inputs["Base Color"])
+        except Exception:
+            links.new(tex.outputs["Color"], bsdf.inputs["Base Color"])
         used.append(texture)
 
     normal_connected = False
@@ -229,8 +248,18 @@ def _wire_water(
             normal_connected = True
             used.append(normal_texture)
 
+    if not normal_connected and texture:
+        try:
+            bump = nodes.new("ShaderNodeBump")
+            bump.inputs["Strength"].default_value = 0.14
+            bump.inputs["Distance"].default_value = 0.08
+            links.new(tex.outputs["Color"], bump.inputs["Height"])
+            links.new(bump.outputs["Normal"], bsdf.inputs["Normal"])
+        except Exception:
+            pass
+
     # 4D animated noise + bump is very heavy on weak GPUs; enable ONLY when explicitly requested
-    if animate_liquid and not simple_shader and not normal_connected:
+    if animate_liquid and not simple_shader and not normal_connected and not texture:
         try:
             noise = nodes.new("ShaderNodeTexNoise")
             noise.noise_dimensions = "4D"
@@ -251,7 +280,7 @@ def _wire_water(
             pass
 
     if preset == LIQUID_PRESET_TRANSPARENT:
-        bsdf.inputs["Alpha"].default_value = min(bsdf.inputs["Alpha"].default_value, 0.35)
+        bsdf.inputs["Alpha"].default_value = 0.55
     return used
 
 

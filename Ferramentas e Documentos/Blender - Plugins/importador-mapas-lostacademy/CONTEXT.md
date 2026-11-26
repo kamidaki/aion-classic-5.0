@@ -1,6 +1,6 @@
 # Aion Blender Toolkit: Referência Técnica de Arquitetura e Desenvolvimento (CONTEXT.md)
 
-**Versão do Documento:** 2.1.0 (Versão do Toolkit: 2.1.0 — Não-Bloqueante 60+ FPS / Thread-Safe)  
+**Versão do Documento:** 2.2.0 (Versão do Toolkit: 2.2.0 — 100% do Mapa 60+ FPS / Rotas PT-BR / Toggle ao Vivo)  
 **Ambiente Alvo:** Blender 4.0 - 5.2+ LTS, Python 3.11+ (nativo do Blender)  
 **Repositório:** [`kamidaki/aion-classic-5.0`](https://github.com/kamidaki/aion-classic-5.0/)  
 **Localização no Repositório:** `Ferramentas e Documentos/Blender - Plugins/importador-mapas-lostacademy`  
@@ -198,6 +198,23 @@ Ao dar manutenção ou estender este projeto:
 
 
 ---
+
+## 11. Atualizações da Versão 2.2.0 (100% do Mapa, Rotas PT-BR & Zero Congelamento Pós-Carga)
+
+- **Fim do Falso Cancelamento & Congelamento Pós-Importação (`importers/level_importer.py`, `importers/terrain_importer.py`, `config/performance_profiles.py`):**
+  - Corrigido bug em `level_importer.py` onde `finally:` disparava `cancel_ev.set()` incondicionalmente ao concluir o gerador, causando falsa mensagem `"Importação cancelada pelo usuário."`.
+  - Removidos os 28 materiais não utilizados dos slots de preview do terreno após a criação do grafo unificado (`1 único shader`), eliminando o congelamento de ~2 minutos de compilação no Eevee.
+  - `apply_viewport_60fps_optimization()` e `frame_viewport_on_map()` agora percorrem todos os `window_managers` com `clip_end = 50000.0`, funcionando inclusive dentro de `bpy.app.timers`.
+- **100% do Mapa a 60+ FPS (`core/pak_engine.py`, `importers/level_instances.py`, `importers/liquid_surface_importer.py`, `importers/water_importer.py`, `importers/particle_effects_importer.py`):**
+  - Vegetação (`objects.lst`) instanciada automaticamente via Geometry Nodes (`AION_PointInstancer`) e separada em subcoleções (`Trees & Forest`, `Bushes & Flowers`, `Grass & Cover`).
+  - Água translúcida corrigida (`BLEND`/`BLENDED`, alpha real e tintura) + suporte a múltiplos `<WaterVolume>` via `create_water_volumes()`.
+  - Indexação estendida a `Effects/*.pak` e `Data/skybox/*.pak`, com criação fatiada por `mesh` compartilhado de sprites cruzados e preparo prévio em worker (`prepare_particle_effects_stage_data`).
+- **Spawns, Rotas de Caminhada & Nameplates PT-BR (`formats/level/npc_spawns.py`, `core/client_provider.py`, `importers/npc_importer.py`, `importers/armature_importer.py`):**
+  - Tabelas `l10n/<idioma>/data/z_Patch001.pak` + `data.pak` (padrão `BRA`) carregadas antes do fallback coreano.
+  - Leitura de spawns e rotas (`walker_id` -> `npc_walker.xml`) via `static_data` do emulador (ou XML do cliente), aplicando ciclos contínuos `Linear + CYCLES` e ciclos NLA CAF `walk`/`idle` com placas de texto verticais PT-BR por categoria.
+- **Toggle Instantâneo ao Vivo (`properties/scene_properties.py`, `ui/panels.py`):**
+  - Todas as categorias visuais habilitadas por padrão (`import_collision=False`), com callbacks `update=` que ocultam/exibem coleções e fator `AION_TerrainShadowMultiply` em tempo real sem recarregar o mapa.
+
 
 ## 10. Atualizações de Arquitetura (Versões 2.0.0 – 2.1.0 - Pipeline Linear, Thread-Safety & Zero Congelamentos)
 

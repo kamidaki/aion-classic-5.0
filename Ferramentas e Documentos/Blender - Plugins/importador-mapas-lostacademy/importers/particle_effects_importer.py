@@ -3,8 +3,8 @@ from dataclasses import dataclass
 import math
 from pathlib import Path
 
-from aion_formats.cgf.texture_sequences import resolve_texture_sequence
-from aion_formats.level import (
+from formats.cgf.texture_sequences import resolve_texture_sequence
+from formats.level.particle_effects import (
     EntityContextParticleEffect,
     parse_entitycontext_particle_effects,
     resolve_particle_effect_definition,
@@ -51,24 +51,99 @@ class ParticleEffectsImportResult:
     skip_reasons: dict
 
 
-def create_particle_effects(
+@dataclass(frozen=True)
+class PreparedParticleEffectsData:
+    parsed: object
+    entries: tuple[tuple[object, object, tuple[object, ...]], ...]
+
+
+def prepare_particle_effects_stage_data(
+    level_dir: str | Path,
+    client_root: str | Path,
+    *,
+    level_data=None,
+) -> PreparedParticleEffectsData:
+    """Thread-safe worker preparation: parses entitycontexts and pre-extracts .prt/.dds assets."""
+    level_path = Path(level_dir)
+    client_root_path = Path(client_root)
+    parsed = parse_entitycontext_particle_effects(level_path, level_data=level_data)
+    prepared_entries = []
+    for record in parsed.records:
+        definition = resolve_particle_effect_definition(client_root_path, record.effect_name)
+        texture_refs = _existing_textures(definition.texture_references)
+        prepared_entries.append((record, definition, texture_refs))
+    return PreparedParticleEffectsData(parsed=parsed, entries=tuple(prepared_entries))
+
+
+def _get_or_create_particle_cross_mesh(bpy, sprite_size: float):
+    """Creates one shared crossed-quad billboard mesh so hundreds of effects share 1 mesh datablock."""
+    size_key = round(float(sprite_size), 3)
+    mesh_name = f"AION_ParticleCrossQuad_{size_key:.3f}"
+    existing = bpy.data.meshes.get(mesh_name)
+    if existing is not None:
+        return existing
+
+    half = float(sprite_size) * 0.5
+    verts = [
+        # Quad 1 (X-Z plane)
+        (-half, 0.0, -half),
+        (half, 0.0, -half),
+        (half, 0.0, half),
+        (-half, 0.0, half),
+        # Quad 2 (Y-Z plane)
+        (0.0, -half, -half),
+        (0.0, half, -half),
+        (0.0, half, half),
+        (0.0, -half, half),
+    ]
+    faces = [(0, 1, 2, 3), (4, 5, 6, 7)]
+    mesh = bpy.data.meshes.new(mesh_name)
+    mesh.from_pydata(verts, [], faces)
+    mesh.update()
+    uv_layer = mesh.uv_layers.new(name="AION_ParticleUV")
+    quad_uvs = ((0.0, 0.0), (1.0, 0.0), (1.0, 1.0), (0.0, 1.0)) * 2
+    for loop, uv in zip(uv_layer.data, quad_uvs):
+        loop.uv = uv
+    # Reserve 1 material slot so per-object slot linkage swaps textures on one shared mesh.
+    mesh.materials.append(None)
+    return mesh
+
+
+def iter_create_particle_effects(
     context,
     level_dir: str | Path,
     client_root: str | Path,
     *,
     level_data=None,
     sprite_size: float = 2.0,
-) -> ParticleEffectsImportResult:
+    pre_prepared: PreparedParticleEffectsData | None = None,
+    target_collection=None,
+    disable_shadows: bool = True,
+    batch_size: int = 24,
+):
+    """Time-sliced generator creating all particle effect visuals without freezing the UI thread."""
     level_path = Path(level_dir)
     client_root_path = Path(client_root)
     if sprite_size <= 0 or not math.isfinite(float(sprite_size)):
         raise ValueError("particle sprite size must be finite and positive")
 
-    parsed = parse_entitycontext_particle_effects(level_path, level_data=level_data)
+    if pre_prepared is None:
+        pre_prepared = prepare_particle_effects_stage_data(
+            level_path,
+            client_root_path,
+            level_data=level_data,
+        )
+    parsed = pre_prepared.parsed
+
     import bpy
 
-    collection = bpy.data.collections.new(PARTICLE_EFFECTS_COLLECTION_NAME)
-    context.scene.collection.children.link(collection)
+    if target_collection is not None:
+        collection = target_collection
+    else:
+        collection = bpy.data.collections.new(PARTICLE_EFFECTS_COLLECTION_NAME)
+        context.scene.collection.children.link(collection)
+
+    shared_mesh = _get_or_create_particle_cross_mesh(bpy, sprite_size)
     material_cache = {}
     statuses = []
     skip_reasons = Counter()
@@ -78,11 +153,12 @@ def create_particle_effects(
     marker_count = 0
     unsupported_count = 0
 
-    for record in parsed.records:
-        definition = resolve_particle_effect_definition(client_root_path, record.effect_name)
+    total = len(pre_prepared.entries)
+    step_yield = max(1, int(batch_size))
+
+    for idx, (record, definition, texture_refs) in enumerate(pre_prepared.entries, start=1):
         if definition.definition_found:
             definitions_found += 1
-        texture_refs = _existing_textures(definition.texture_references)
         if texture_refs:
             textures_resolved += len(texture_refs)
             for layer_index, texture_ref in enumerate(texture_refs):
@@ -96,6 +172,8 @@ def create_particle_effects(
                     sprite_size=sprite_size,
                     layer_index=layer_index,
                     layer_count=len(texture_refs),
+                    shared_mesh=shared_mesh,
+                    disable_shadows=disable_shadows,
                 )
                 if obj is not None:
                     sprite_count += 1
@@ -134,6 +212,8 @@ def create_particle_effects(
                     reason,
                 )
             )
+        if idx % step_yield == 0 and idx < total:
+            yield idx, total
 
     return ParticleEffectsImportResult(
         requested=True,
@@ -145,11 +225,38 @@ def create_particle_effects(
         marker_fallback_created=marker_count,
         skipped_invalid_placements=parsed.skipped_invalid_positions,
         unsupported_effects=unsupported_count,
-        collection_name=PARTICLE_EFFECTS_COLLECTION_NAME,
+        collection_name=collection.name,
         coordinate_variant=PARTICLE_EFFECTS_COORDINATE_VARIANT,
         statuses=tuple(statuses),
         skip_reasons=dict(skip_reasons),
     )
+
+
+def create_particle_effects(
+    context,
+    level_dir: str | Path,
+    client_root: str | Path,
+    *,
+    level_data=None,
+    sprite_size: float = 2.0,
+    target_collection=None,
+    disable_shadows: bool = True,
+) -> ParticleEffectsImportResult:
+    gen = iter_create_particle_effects(
+        context,
+        level_dir,
+        client_root,
+        level_data=level_data,
+        sprite_size=sprite_size,
+        target_collection=target_collection,
+        disable_shadows=disable_shadows,
+        batch_size=999999,
+    )
+    try:
+        while True:
+            next(gen)
+    except StopIteration as exc:
+        return exc.value
 
 
 def _create_sprite_object(
@@ -163,26 +270,42 @@ def _create_sprite_object(
     sprite_size,
     layer_index,
     layer_count,
+    shared_mesh=None,
+    disable_shadows: bool = True,
 ):
     try:
         material = _particle_material(bpy, texture_ref, material_cache, definition, client_root=client_root)
     except RuntimeError as exc:
         return None, "marker_texture_load_failed", f"texture_load_failed:{exc}"
 
-    half = float(sprite_size) * 0.5
-    mesh = bpy.data.meshes.new(f"AION_ParticleEffect_{record.record_index:04d}_Mesh")
-    mesh.from_pydata(
-        [(-half, 0.0, -half), (half, 0.0, -half), (half, 0.0, half), (-half, 0.0, half)],
-        [],
-        [(0, 1, 2, 3)],
-    )
-    mesh.update()
-    uv_layer = mesh.uv_layers.new(name="AION_ParticleUV")
-    for loop, uv in zip(uv_layer.data, ((0.0, 0.0), (1.0, 0.0), (1.0, 1.0), (0.0, 1.0))):
-        loop.uv = uv
-    mesh.materials.append(material)
-    obj = bpy.data.objects.new(_object_name(record, layer_index=layer_index, layer_count=layer_count), mesh)
-    obj.location = _raw_position(record.position)
+    if shared_mesh is not None and len(shared_mesh.materials) > 0:
+        mesh = shared_mesh
+        obj = bpy.data.objects.new(_object_name(record, layer_index=layer_index, layer_count=layer_count), mesh)
+        obj.material_slots[0].link = "OBJECT"
+        obj.material_slots[0].material = material
+    else:
+        half = float(sprite_size) * 0.5
+        mesh = bpy.data.meshes.new(f"AION_ParticleEffect_{record.record_index:04d}_Mesh")
+        mesh.from_pydata(
+            [(-half, 0.0, -half), (half, 0.0, -half), (half, 0.0, half), (-half, 0.0, half)],
+            [],
+            [(0, 1, 2, 3)],
+        )
+        mesh.update()
+        uv_layer = mesh.uv_layers.new(name="AION_ParticleUV")
+        for loop, uv in zip(uv_layer.data, ((0.0, 0.0), (1.0, 0.0), (1.0, 1.0), (0.0, 1.0))):
+            loop.uv = uv
+        mesh.materials.append(material)
+        obj = bpy.data.objects.new(_object_name(record, layer_index=layer_index, layer_count=layer_count), mesh)
+
+    if disable_shadows and hasattr(obj, "visible_shadow"):
+        try:
+            obj.visible_shadow = False
+        except (AttributeError, TypeError):
+            pass
+    base_pos = _raw_position(record.position)
+    # Slight Z offset for upper layers prevents Z-fighting on overlapping emitter sprites
+    obj.location = (base_pos[0], base_pos[1], base_pos[2] + float(layer_index) * 0.05)
     _assign_custom_properties(obj, record, definition, texture_ref, "sprite_texture", "")
     obj["aion_particle_layer_index"] = int(layer_index)
     obj["aion_particle_layer_count"] = int(layer_count)
@@ -220,13 +343,32 @@ def _particle_material(bpy, texture_ref, material_cache, definition, *, client_r
         image.filepath_raw = sequence.frame_paths[0]
     material = bpy.data.materials.new(f"AION Particle {Path(texture_ref.texture_path).stem}")
     material.use_nodes = True
-    material.blend_method = "BLEND"
+    if hasattr(material, "blend_method"):
+        material.blend_method = "BLEND"
+    if hasattr(material, "surface_render_method"):
+        material.surface_render_method = "BLENDED"
+    if hasattr(material, "use_backface_culling"):
+        material.use_backface_culling = False
+    if hasattr(material, "show_transparent_back"):
+        material.show_transparent_back = False
     if hasattr(material, "use_screen_refraction"):
         material.use_screen_refraction = False
     nodes = material.node_tree.nodes
-    bsdf = next((n for n in nodes if n.type == "BSDF_PRINCIPLED"), None) or nodes.get("Principled BSDF")
+    links = material.node_tree.links
+    nodes.clear()
+    out_node = nodes.new(type="ShaderNodeOutputMaterial")
+    out_node.location = (420, 0)
+    mix_shader = nodes.new(type="ShaderNodeMixShader")
+    mix_shader.location = (220, 0)
+    transparent = nodes.new(type="ShaderNodeBsdfTransparent")
+    transparent.location = (0, 80)
+    emission = nodes.new(type="ShaderNodeEmission")
+    emission.location = (0, -80)
+    if "Strength" in emission.inputs:
+        emission.inputs["Strength"].default_value = 1.6
     texture = nodes.new(type="ShaderNodeTexImage")
     texture.name = "AION Particle Texture"
+    texture.location = (-280, 0)
     texture.image = image
     image_user = getattr(texture, "image_user", None)
     if sequence.is_sequence and image_user is not None:
@@ -235,10 +377,14 @@ def _particle_material(bpy, texture_ref, material_cache, definition, *, client_r
         image_user.frame_offset = int(sequence.blender_frame_offset)
         image_user.use_cyclic = True
         image_user.use_auto_refresh = True
-    if bsdf is not None:
-        material.node_tree.links.new(texture.outputs["Color"], bsdf.inputs["Base Color"])
-        if "Alpha" in texture.outputs and "Alpha" in bsdf.inputs:
-            material.node_tree.links.new(texture.outputs["Alpha"], bsdf.inputs["Alpha"])
+    links.new(texture.outputs["Color"], emission.inputs["Color"])
+    if "Alpha" in texture.outputs:
+        links.new(texture.outputs["Alpha"], mix_shader.inputs["Fac"])
+    else:
+        mix_shader.inputs["Fac"].default_value = 0.85
+    links.new(transparent.outputs["BSDF"], mix_shader.inputs[1])
+    links.new(emission.outputs["Emission"], mix_shader.inputs[2])
+    links.new(mix_shader.outputs["Shader"], out_node.inputs["Surface"])
     material["aion_particle_texture"] = texture_ref.texture_path
     material["aion_particle_texture_exists"] = bool(texture_ref.exists)
     material["aion_particle_emitter_name"] = texture_ref.emitter_name

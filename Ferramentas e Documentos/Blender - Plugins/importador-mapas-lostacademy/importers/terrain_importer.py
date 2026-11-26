@@ -212,8 +212,9 @@ def prepare_terrain_stage_data(
     loop_starts = array("I", range(0, num_faces * 4, 4))
     loop_totals = array("I", [4]) * num_faces
 
+    blend_radius = max(1, min(2, int(lod) // 2))
     blend_data = (
-        prepare_subsampled_terrain_blend_data(land_map, lod=lod, radius=1)
+        prepare_subsampled_terrain_blend_data(land_map, lod=lod, radius=blend_radius)
         if compute_blend
         else None
     )
@@ -366,12 +367,13 @@ def iter_create_terrain_mesh(
                 apply_precomputed_terrain_blend_attributes(mesh, precomputed["blend_data"])
             )
         else:
+            blend_radius = max(1, min(2, int(lod) // 2))
             blend_attribute_result, subsampled_sample_counts, blend_boundary_sample_count = (
                 create_fast_subsampled_terrain_blend_attributes(
                     mesh,
                     land_map,
                     lod=lod,
-                    radius=1,
+                    radius=blend_radius,
                 )
             )
         yield (0.45, "Pesos de blend do terreno aplicados")
@@ -463,6 +465,26 @@ def iter_create_terrain_mesh(
                     )
             except StopIteration as exc_sh:
                 blend_shader_result = exc_sh.value
+
+            # Strip the 28 unused slot preview materials so Eevee compiles ONLY 1 terrain shader (no post-load freeze).
+            if blend_shader_result.graph_created and len(mesh.materials) > 1:
+                blend_mat = mesh.materials[-1]
+                old_slot_mats = [m for m in mesh.materials if m is not None and m is not blend_mat]
+                mesh.materials.clear()
+                mesh.materials.append(blend_mat)
+                if len(mesh.polygons) > 0:
+                    mesh.polygons.foreach_set("material_index", array("i", [0]) * len(mesh.polygons))
+                unused_mats = [m for m in old_slot_mats if m.users == 0]
+                if unused_mats:
+                    try:
+                        bpy.data.batch_remove(ids=unused_mats)
+                    except Exception:
+                        for om in unused_mats:
+                            try:
+                                if om.users == 0:
+                                    bpy.data.materials.remove(om)
+                            except Exception:
+                                pass
 
     terrain_object = bpy.data.objects.new(name, mesh)
     if disable_shadows and hasattr(terrain_object, "visible_shadow"):

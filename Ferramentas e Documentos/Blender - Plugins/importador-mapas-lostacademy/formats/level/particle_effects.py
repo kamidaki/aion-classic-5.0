@@ -3,6 +3,7 @@ from pathlib import Path
 import math
 import re
 import struct
+import threading
 
 
 PRINTABLE_RE = re.compile(rb"[ -~]{4,}")
@@ -120,16 +121,40 @@ def parse_entitycontext_particle_effects(
     )
 
 
+_PRT_CACHE_LOCK = threading.RLock()
+_PRT_LIB_BYTES_CACHE: dict[tuple[str, str], bytes | None] = {}
+_PRT_TEX_PATH_CACHE: dict[tuple[str, str], Path | None] = {}
+
+
+def clear_particle_effects_cache() -> None:
+    with _PRT_CACHE_LOCK:
+        _PRT_LIB_BYTES_CACHE.clear()
+        _PRT_TEX_PATH_CACHE.clear()
+
+
 def resolve_particle_effect_definition(
     client_root: str | Path,
     effect_name: str,
 ) -> PrtEffectDefinition:
     client_root_path = Path(client_root)
     library_path = particle_effect_library_path(client_root_path, effect_name)
-    if library_path is None or not library_path.is_file():
+    if library_path is None:
         return PrtEffectDefinition(
             effect_name=effect_name,
-            library_path=library_path or client_root_path / "effects" / "prt" / "<unknown>.prt",
+            library_path=client_root_path / "effects" / "prt" / "<unknown>.prt",
+            definition_found=False,
+            effect_offset=-1,
+            texture_references=(),
+            emitter_records=(),
+            record_layout="missing",
+            selected_record_count=0,
+            raw_nearby_strings=(),
+            warnings=("prt_library_missing",),
+        )
+    if not library_path.is_file():
+        return PrtEffectDefinition(
+            effect_name=effect_name,
+            library_path=library_path,
             definition_found=False,
             effect_offset=-1,
             texture_references=(),
@@ -150,7 +175,13 @@ def parse_prt_effect_definition(
     window_bytes: int = 8192,
 ) -> PrtEffectDefinition:
     source_path = Path(library_path)
-    data = source_path.read_bytes()
+    cache_key = (str(source_path).lower(), str(client_root or "").lower())
+    with _PRT_CACHE_LOCK:
+        data = _PRT_LIB_BYTES_CACHE.get(cache_key)
+    if data is None:
+        data = source_path.read_bytes()
+        with _PRT_CACHE_LOCK:
+            _PRT_LIB_BYTES_CACHE[cache_key] = data
     encoded = effect_name.encode("latin1", errors="ignore")
     offset = data.find(encoded)
     if offset < 0:
@@ -259,7 +290,21 @@ def particle_effect_library_path(client_root: str | Path, effect_name: str) -> P
     if not effect_name or "." not in effect_name:
         return None
     library_name = effect_name.split(".", 1)[0]
-    return Path(client_root) / "effects" / "prt" / f"{library_name}.prt"
+    root = Path(client_root)
+    loose = root / "effects" / "prt" / f"{library_name}.prt"
+    if loose.is_file():
+        return loose
+    try:
+        from core.pak_engine import get_pak_resolver
+        resolver = get_pak_resolver(root)
+        if resolver is not None:
+            for cand in (f"prt/{library_name}.prt", f"effects/prt/{library_name}.prt", f"{library_name}.prt"):
+                res = resolver.resolve_resource(cand)
+                if res is not None and res.is_file():
+                    return res
+    except Exception:
+        pass
+    return loose
 
 
 def _parse_entitycontext_file(source_path: Path, *, x_max, y_max, start_index):
@@ -468,10 +513,46 @@ def _texture_reference(
 def _resolve_texture_path(texture_path, client_root):
     if client_root is None or not texture_path:
         return None
+    clean = texture_path.replace("\\", "/").lstrip("/")
+    tkey = (clean.lower(), str(client_root).lower())
+    with _PRT_CACHE_LOCK:
+        if tkey in _PRT_TEX_PATH_CACHE:
+            return _PRT_TEX_PATH_CACHE[tkey]
+
+    root = Path(client_root)
     path = Path(texture_path.replace("/", "\\").lstrip("\\/"))
-    if path.is_absolute():
+    if path.is_absolute() and path.is_file():
+        with _PRT_CACHE_LOCK:
+            _PRT_TEX_PATH_CACHE[tkey] = path
         return path
-    return client_root / path
+
+    loose = root / path
+    if loose.is_file():
+        with _PRT_CACHE_LOCK:
+            _PRT_TEX_PATH_CACHE[tkey] = loose
+        return loose
+
+    resolved = None
+    try:
+        from core.pak_engine import get_pak_resolver
+        resolver = get_pak_resolver(root)
+        if resolver is not None:
+            cands = [clean]
+            if clean.lower().startswith("effects/"):
+                cands.append(clean[len("effects/"):])
+            cands.append(Path(clean).name)
+            for c in cands:
+                res = resolver.resolve_resource(c)
+                if res is not None and res.is_file():
+                    resolved = res
+                    break
+    except Exception:
+        resolved = None
+
+    result = resolved if resolved is not None else loose
+    with _PRT_CACHE_LOCK:
+        _PRT_TEX_PATH_CACHE[tkey] = result
+    return result
 
 
 def _decode_printable(value):

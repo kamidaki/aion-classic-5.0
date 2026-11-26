@@ -1,7 +1,7 @@
 import math
 from dataclasses import dataclass
 
-from aion_formats.level import LevelInfo
+from formats.level import LevelInfo
 
 
 DEFAULT_WATER_NAME = "Aion Water"
@@ -106,3 +106,115 @@ def _skipped_result(xy_scale: float, reason: str) -> WaterPlaneResult:
         xy_scale=xy_scale,
         skip_reason=reason,
     )
+
+
+def create_water_volumes(
+    context,
+    mission_xml_path,
+    client_root,
+    *,
+    water_material=None,
+    target_collection=None,
+    disable_shadows: bool = True,
+    simple_shaders: bool = True,
+) -> int:
+    """
+    Imports `<Object Type="WaterVolume">` lakes, swamps, and rivers from `mission_mission0.xml`
+    (via WaterGeometry CGF if available or fallback polygon mesh from Points) into `target_collection`.
+    """
+    from pathlib import Path
+    import bpy
+    from formats.level.liquid_surface import parse_water_volumes
+    from core.pak_engine import get_pak_resolver
+    from importers.cgf_importer import iter_load_cgf
+
+    mission_xml_file = Path(mission_xml_path)
+    if mission_xml_file.is_dir():
+        mission_xml_file = mission_xml_file / "mission_mission0.xml"
+    volumes = parse_water_volumes(mission_xml_file)
+    if not volumes:
+        return 0
+
+    dest_col = target_collection if target_collection is not None else context.scene.collection
+    resolver = get_pak_resolver(client_root)
+    created = 0
+
+    for idx, vol in enumerate(volumes):
+        v_name = vol["name"]
+        water_geom = vol.get("water_geometry") or ""
+        points = vol.get("points") or []
+        pos = vol.get("pos") or (0.0, 0.0, 0.0)
+        obj_created = False
+
+        if water_geom and resolver is not None:
+            resolved = resolver.resolve_resource(water_geom)
+            if resolved is not None and resolved.is_file():
+                try:
+                    tmp_col = bpy.data.collections.new(f"__wv_tmp_{idx}__")
+                    gen = iter_load_cgf(
+                        context,
+                        str(resolved),
+                        import_mode="VISUAL",
+                        client_root=str(client_root),
+                        simple_shaders=simple_shaders,
+                        optimize_material_preview=True,
+                        target_collection=tmp_col,
+                        link_to_scene=False,
+                        time_slice_s=9999.0,
+                    )
+                    try:
+                        while True:
+                            next(gen)
+                    except StopIteration as exc_g:
+                        res_status, _ = exc_g.value
+                    if res_status == {"FINISHED"}:
+                        for wobj in list(tmp_col.objects):
+                            tmp_col.objects.unlink(wobj)
+                            if wobj.type == "MESH" and wobj.data is not None and len(wobj.data.materials) == 0 and water_material is not None:
+                                wobj.data.materials.append(water_material)
+                            if disable_shadows and hasattr(wobj, "visible_shadow"):
+                                try:
+                                    wobj.visible_shadow = False
+                                except (AttributeError, TypeError):
+                                    pass
+                            wobj["aion_source_type"] = "water_volume"
+                            dest_col.objects.link(wobj)
+                            created += 1
+                            obj_created = True
+                    bpy.data.collections.remove(tmp_col)
+                except Exception:
+                    try:
+                        if tmp_col.name in bpy.data.collections:
+                            bpy.data.collections.remove(tmp_col)
+                    except Exception:
+                        pass
+
+        if not obj_created and len(points) >= 3:
+            try:
+                avg_z = sum(p[2] for p in points) / len(points)
+                verts = [(p[0], p[1], avg_z) for p in points]
+                face = tuple(range(len(verts)))
+                wmesh = bpy.data.meshes.new(f"{v_name}_Mesh")
+                wmesh.from_pydata(verts, (), (face,))
+                wmesh.update(calc_edges=False)
+                if len(wmesh.polygons) > 0:
+                    uv_layer = wmesh.uv_layers.new(name="UVMap")
+                    for poly in wmesh.polygons:
+                        for lidx in poly.loop_indices:
+                            co = wmesh.vertices[wmesh.loops[lidx].vertex_index].co
+                            uv_layer.data[lidx].uv = (co.x * 0.05, co.y * 0.05)
+                if water_material is not None:
+                    wmesh.materials.append(water_material)
+                wobj = bpy.data.objects.new(v_name, wmesh)
+                if disable_shadows and hasattr(wobj, "visible_shadow"):
+                    try:
+                        wobj.visible_shadow = False
+                    except (AttributeError, TypeError):
+                        pass
+                wobj["aion_source_type"] = "water_volume"
+                dest_col.objects.link(wobj)
+                created += 1
+            except Exception:
+                pass
+
+    return created

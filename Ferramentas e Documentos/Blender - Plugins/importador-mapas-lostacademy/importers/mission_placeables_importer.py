@@ -1,9 +1,9 @@
 from collections import Counter
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 import math
 from pathlib import Path
 
-from aion_formats.level import MissionPlaceableCandidate, parse_mission_placeables
+from formats.level import MissionPlaceableCandidate, parse_mission_placeables
 
 
 MISSION_PLACEABLES_COLLECTION_NAME = "AION Mission Placeables"
@@ -43,7 +43,7 @@ class MissionPlaceablesImportResult:
     candidate_statuses: tuple[MissionPlaceableImportStatus, ...]
 
 
-def create_mission_placeables(
+def iter_create_mission_placeables(
     context,
     level_dir: str | Path,
     client_root: str | Path,
@@ -56,7 +56,12 @@ def create_mission_placeables(
     limit: int | None = None,
     load_cgf=None,
     get_cgf_import_report=None,
-) -> MissionPlaceablesImportResult:
+    target_collection=None,
+    disable_shadows: bool = True,
+    simple_shaders: bool = False,
+    batch_size: int = 8,
+):
+    """Time-sliced generator creating mission placeables without stalling the Blender UI thread."""
     level_path = Path(level_dir)
     client_root_path = Path(client_root)
     source_path = level_path / "mission_mission0.xml"
@@ -90,9 +95,24 @@ def create_mission_placeables(
 
     import bpy
 
-    candidates = parsed.candidates[:limit] if limit is not None else parsed.candidates
-    collection = bpy.data.collections.new(MISSION_PLACEABLES_COLLECTION_NAME)
-    context.scene.collection.children.link(collection)
+    try:
+        from core.pak_engine import get_pak_resolver
+        resolver = get_pak_resolver(client_root_path)
+    except Exception:
+        resolver = None
+
+    raw_candidates = list(parsed.candidates)
+    # Include PAK-backed candidates if filesystem probe left resolved_path None
+    if not raw_candidates and hasattr(parsed, "skipped"):
+        raw_candidates = [
+            c for c in parsed.skipped
+            if c.classification in {"cgf_missing", "asset_missing"} and c.asset_path
+        ]
+    candidates = raw_candidates[:limit] if limit is not None else raw_candidates
+
+    collection = target_collection if target_collection is not None else bpy.data.collections.new(MISSION_PLACEABLES_COLLECTION_NAME)
+    if target_collection is None:
+        context.scene.collection.children.link(collection)
 
     col_obelisks = bpy.data.collections.new("Aion Obelisks & Binding Stones")
     collection.children.link(col_obelisks)
@@ -115,8 +135,21 @@ def create_mission_placeables(
     candidate_statuses = []
     created_count = 0
     angles_applied_count = 0
+    total = len(candidates)
+    step_yield = max(1, int(batch_size))
 
-    for candidate in candidates:
+    for idx, candidate in enumerate(candidates, start=1):
+        resolved_path = candidate.resolved_path
+        if (resolved_path is None or not Path(resolved_path).is_file()) and resolver is not None and candidate.asset_path:
+            pak_hit = resolver.resolve_resource(candidate.asset_path)
+            if pak_hit and pak_hit.is_file():
+                candidate = replace(candidate, resolved_path=pak_hit)
+
+        if candidate.resolved_path is None or not Path(candidate.resolved_path).is_file():
+            skip_reasons["cgf_missing"] += 1
+            candidate_statuses.append(_candidate_status(candidate, "skipped", "cgf_missing"))
+            continue
+
         template_collection, skip_reason, failure_reason = _mission_template_collection(
             context,
             candidate,
@@ -128,6 +161,8 @@ def create_mission_placeables(
             animate_shader_uv_scroll=animate_shader_uv_scroll,
             texture_animation_fps=texture_animation_fps,
             client_root=str(client_root_path),
+            disable_shadows=disable_shadows,
+            simple_shaders=simple_shaders,
         )
         if skip_reason:
             skip_reasons[skip_reason] += 1
@@ -142,6 +177,7 @@ def create_mission_placeables(
             candidate,
             template_collection,
             apply_angles=apply_angles,
+            disable_shadows=disable_shadows,
         )
 
         # Route to appropriate subcollection
@@ -169,6 +205,8 @@ def create_mission_placeables(
         created_count += 1
         if instance.get("aion_rotation_used"):
             angles_applied_count += 1
+        if idx % step_yield == 0 and idx < total:
+            yield idx, total
 
     # Prune empty subcollections
     for sub in (col_obelisks, col_npcs, col_spawns, col_furniture, col_misc):
@@ -194,6 +232,47 @@ def create_mission_placeables(
     )
 
 
+def create_mission_placeables(
+    context,
+    level_dir: str | Path,
+    client_root: str | Path,
+    *,
+    apply_angles: bool = True,
+    apply_smoothing_groups: bool = False,
+    animate_texture_sequences: bool = False,
+    animate_shader_uv_scroll: bool = False,
+    texture_animation_fps: int = 10,
+    limit: int | None = None,
+    load_cgf=None,
+    get_cgf_import_report=None,
+    target_collection=None,
+    disable_shadows: bool = True,
+    simple_shaders: bool = False,
+) -> MissionPlaceablesImportResult:
+    gen = iter_create_mission_placeables(
+        context,
+        level_dir,
+        client_root,
+        apply_angles=apply_angles,
+        apply_smoothing_groups=apply_smoothing_groups,
+        animate_texture_sequences=animate_texture_sequences,
+        animate_shader_uv_scroll=animate_shader_uv_scroll,
+        texture_animation_fps=texture_animation_fps,
+        limit=limit,
+        load_cgf=load_cgf,
+        get_cgf_import_report=get_cgf_import_report,
+        target_collection=target_collection,
+        disable_shadows=disable_shadows,
+        simple_shaders=simple_shaders,
+        batch_size=999999,
+    )
+    try:
+        while True:
+            next(gen)
+    except StopIteration as exc:
+        return exc.value
+
+
 def _mission_template_collection(
     context,
     candidate: MissionPlaceableCandidate,
@@ -206,6 +285,8 @@ def _mission_template_collection(
     animate_shader_uv_scroll: bool,
     texture_animation_fps: int,
     client_root: str | None = None,
+    disable_shadows: bool = True,
+    simple_shaders: bool = False,
 ):
     key = str(candidate.resolved_path)
     cached = template_cache.get(key)
@@ -226,17 +307,30 @@ def _mission_template_collection(
                 animate_shader_uv_scroll=animate_shader_uv_scroll,
                 texture_animation_fps=texture_animation_fps,
                 client_root=client_root,
+                simple_shaders=simple_shaders,
             )
         except TypeError:
-            result = load_cgf(
-                context,
-                str(candidate.resolved_path),
-                import_mode="VISUAL",
-                apply_smoothing_groups=apply_smoothing_groups,
-                animate_texture_sequences=animate_texture_sequences,
-                animate_shader_uv_scroll=animate_shader_uv_scroll,
-                texture_animation_fps=texture_animation_fps,
-            )
+            try:
+                result = load_cgf(
+                    context,
+                    str(candidate.resolved_path),
+                    import_mode="VISUAL",
+                    apply_smoothing_groups=apply_smoothing_groups,
+                    animate_texture_sequences=animate_texture_sequences,
+                    animate_shader_uv_scroll=animate_shader_uv_scroll,
+                    texture_animation_fps=texture_animation_fps,
+                    client_root=client_root,
+                )
+            except TypeError:
+                result = load_cgf(
+                    context,
+                    str(candidate.resolved_path),
+                    import_mode="VISUAL",
+                    apply_smoothing_groups=apply_smoothing_groups,
+                    animate_texture_sequences=animate_texture_sequences,
+                    animate_shader_uv_scroll=animate_shader_uv_scroll,
+                    texture_animation_fps=texture_animation_fps,
+                )
     except Exception as exc:
         return None, None, f"cgf_error_{type(exc).__name__}"
     report = get_cgf_import_report() if get_cgf_import_report is not None else None
@@ -252,16 +346,28 @@ def _mission_template_collection(
     template_collection = _find_imported_collection(new_collections)
     if template_collection is None:
         return None, "no_template_collection", None
+    if disable_shadows:
+        for t_obj in template_collection.objects:
+            if hasattr(t_obj, "visible_shadow"):
+                try:
+                    t_obj.visible_shadow = False
+                except (AttributeError, TypeError):
+                    pass
     _unlink_from_scene_root(context, template_collection)
     template_cache[key] = template_collection
     return template_collection, None, None
 
 
-def _create_placeable_instance(bpy, candidate, template_collection, *, apply_angles):
+def _create_placeable_instance(bpy, candidate, template_collection, *, apply_angles, disable_shadows: bool = True):
     obj = bpy.data.objects.new(_object_name(candidate), None)
     obj.instance_type = "COLLECTION"
     obj.instance_collection = template_collection
     obj.empty_display_size = 0.001
+    if disable_shadows and hasattr(obj, "visible_shadow"):
+        try:
+            obj.visible_shadow = False
+        except (AttributeError, TypeError):
+            pass
     obj.location = _raw_position(candidate.position)
     rotation_used = False
     if apply_angles and candidate.angles is not None:

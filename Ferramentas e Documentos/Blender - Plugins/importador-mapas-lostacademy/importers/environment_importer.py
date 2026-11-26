@@ -319,6 +319,7 @@ def create_physical_skydome(
     radius: float = 3500.0,
     animate_clouds: bool = False,
     override_viewport_shading: bool = False,
+    target_collection=None,
 ):
     """
     Creates or imports an authentic Aion physical SkyDome mesh centered over the map
@@ -330,25 +331,31 @@ def create_physical_skydome(
     resolver = get_pak_resolver(client_root)
     skydome_cgf = resolver.resolve_resource("skydome.cgf") if resolver else None
 
-    col_name = "Aion Sky & Environment"
-    sky_col = bpy.data.collections.get(col_name)
-    if not sky_col:
-        sky_col = bpy.data.collections.new(col_name)
-        context.scene.collection.children.link(sky_col)
+    if target_collection is not None:
+        sky_col = target_collection
+    else:
+        col_name = "Aion Sky & Environment"
+        sky_col = bpy.data.collections.get(col_name)
+        if not sky_col:
+            sky_col = bpy.data.collections.new(col_name)
+            context.scene.collection.children.link(sky_col)
 
     existing = bpy.data.objects.get("AION_SkyDome")
     if existing:
+        if existing.name not in sky_col.objects:
+            sky_col.objects.link(existing)
         return existing
 
     sky_obj = None
     if skydome_cgf and skydome_cgf.is_file():
         try:
             from importers.cgf_importer import load
+            cols_before = set(bpy.data.collections)
             load(context, skydome_cgf, client_root=str(client_root))
-            sky_obj = bpy.data.objects.get("SkyDome")
+            sky_obj = bpy.data.objects.get("SkyDome") or bpy.data.objects.get("skydome")
             if sky_obj:
                 sky_obj.name = "AION_SkyDome"
-                for c in bpy.data.collections:
+                for c in list(bpy.data.collections):
                     if sky_obj.name in c.objects and c != sky_col:
                         try:
                             c.objects.unlink(sky_obj)
@@ -356,6 +363,13 @@ def create_physical_skydome(
                             pass
                 if sky_obj.name not in sky_col.objects:
                     sky_col.objects.link(sky_obj)
+            # Clean empty temporary collections created during SkyDome CGF import
+            for c in set(bpy.data.collections) - cols_before:
+                if c != sky_col and not c.objects and not c.children:
+                    try:
+                        bpy.data.collections.remove(c)
+                    except Exception:
+                        pass
         except Exception:
             sky_obj = None
 
@@ -459,17 +473,26 @@ def create_physical_skydome(
         pass
     sky_obj.data.materials.clear()
     sky_obj.data.materials.append(mat)
+    if hasattr(sky_obj, "visible_shadow"):
+        try:
+            sky_obj.visible_shadow = False
+        except Exception:
+            pass
 
     if override_viewport_shading:
-        # Optionally enable scene world in 3D viewports when high-quality mode wants it
+        # Enable scene world across all open 3D viewports (including inside bpy.app.timers).
         try:
-            if hasattr(context, "screen") and context.screen:
-                for area in context.screen.areas:
-                    if area.type == "VIEW_3D":
-                        for space in area.spaces:
-                            if space.type == "VIEW_3D":
-                                space.shading.use_scene_world = True
-                                space.shading.use_scene_lights = True
+            for wm in getattr(bpy.data, "window_managers", ()):
+                for win in getattr(wm, "windows", ()):
+                    screen = getattr(win, "screen", None)
+                    if screen is None:
+                        continue
+                    for area in screen.areas:
+                        if area.type == "VIEW_3D":
+                            for space in area.spaces:
+                                if space.type == "VIEW_3D":
+                                    space.shading.use_scene_world = True
+                                    space.shading.use_scene_lights = True
         except Exception:
             pass
 

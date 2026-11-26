@@ -2,7 +2,7 @@ from dataclasses import dataclass
 import math
 from pathlib import Path
 
-from aion_formats.level import parse_static_deferred_lights
+from formats.level import parse_static_deferred_lights
 
 
 STATIC_LIGHTS_COLLECTION_NAME = "AION Static Deferred Lights"
@@ -34,6 +34,8 @@ def create_static_deferred_lights(
     level_dir: str | Path,
     mode: str = STATIC_LIGHTS_MODE_POINT_LIGHT,
     power: float = DEFAULT_STATIC_LIGHT_POWER,
+    *,
+    target_collection=None,
 ) -> StaticLightsImportResult:
     level_path = Path(level_dir)
     source_path = level_path / "staticdeferredlights.lst"
@@ -66,8 +68,11 @@ def create_static_deferred_lights(
 
     import bpy
 
-    collection = bpy.data.collections.new(STATIC_LIGHTS_COLLECTION_NAME)
-    context.scene.collection.children.link(collection)
+    if target_collection is not None:
+        collection = target_collection
+    else:
+        collection = bpy.data.collections.new(STATIC_LIGHTS_COLLECTION_NAME)
+        context.scene.collection.children.link(collection)
     created_count = 0
     failed_count = 0
     for light in parsed.lights:

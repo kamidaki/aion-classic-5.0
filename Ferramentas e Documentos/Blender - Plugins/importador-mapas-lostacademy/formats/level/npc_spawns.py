@@ -27,6 +27,7 @@ class NpcSpawn:
     has_explicit_z: bool = True
     raw_coords: Tuple[float, ...] = ()
     source: str = "world_xml"
+    walker_id: str = ""
 
 
 @dataclass(frozen=True)
@@ -40,14 +41,34 @@ class NpcTemplate:
     category: str = "npc"  # 'npc', 'monster', 'ambient', 'shugo', 'object'
     race: str = ""  # 'DM', 'DF', 'LM', 'LF', etc.
     idle_animation: str = ""
+    desc_key: str = ""
+    title_key: str = ""
+    walk_speed: float = 2.2
 
 
-# Fallback archetype models when specific mesh is omitted or dynamic
+@dataclass(frozen=True)
+class WalkerStep:
+    """Single waypoint step along an NPC walker patrol route."""
+    x: float
+    y: float
+    z: float
+    rest_time: int = 0
+
+
+@dataclass(frozen=True)
+class WalkerRoute:
+    """Authoritative patrol route parsed from emulator npc_walker.xml."""
+    route_id: str
+    steps: Tuple[WalkerStep, ...]
+    loop: bool = True
+
+
+# Fallback archetype models using verified Aion Classic PC/NPC PAK paths
 DEFAULT_HUMANOID_MODELS = {
-    "DM": "objects/npc/human/cam/cam.cgf",
-    "DF": "objects/npc/human/caf/caf.cgf",
-    "LM": "objects/npc/human/cem/cem.cgf",
-    "LF": "objects/npc/human/cff/cff.cgf",
+    "DM": "objects/pc/dm/mesh/dm.cgf",
+    "DF": "objects/pc/df/mesh/df.cgf",
+    "LM": "objects/pc/lm/mesh/lm.cgf",
+    "LF": "objects/pc/lf/mesh/lf.cgf",
     "SHUGO_M": "objects/npc/shugomale/shugomale.cgf",
     "SHUGO_F": "objects/npc/shugofemale/shugofemale.cgf",
 }
@@ -223,6 +244,9 @@ def parse_npc_templates(
 
     # 1. Try Standard XML (Client 2 & Client 3)
     text, is_xml = _decode_xml_bytes(raw)
+    re_walk_speed = re.compile(r"<move_speed_normal_walk>([^<]+)</move_speed_normal_walk>")
+    re_scale = re.compile(r"<scale>([^<]+)</scale>")
+
     if is_xml and ("<npc_client>" in text or "<npc_clients>" in text):
         re_id = re.compile(r"<id>(\d+)</id>")
         re_name = re.compile(r"<name>([^<]+)</name>")
@@ -242,7 +266,8 @@ def parse_npc_templates(
             m_name = re_name.search(b)
             name = m_name.group(1).strip() if m_name else f"NPC_{nid}"
             m_desc = re_desc.search(b)
-            desc = m_desc.group(1).strip() if m_desc else ""
+            desc_raw = m_desc.group(1).strip() if m_desc else ""
+            desc_key = desc_raw if desc_raw.upper().startswith("STR_") and desc_raw.upper() != "STR_NPC_NO_NAME" else ""
 
             m_dir = re_dir.search(b)
             m_mesh = re_mesh.search(b)
@@ -254,13 +279,13 @@ def parse_npc_templates(
             else:
                 m_pc = re_pc.search(b)
                 pc_type = m_pc.group(1).strip().upper() if m_pc else ""
-                if "LIGHT_M" in pc_type or "LM" in pc_type:
+                if "LIGHT_M" in pc_type or pc_type.startswith("LM"):
                     cgf = DEFAULT_HUMANOID_MODELS.get("LM", "")
-                elif "LIGHT_F" in pc_type or "LF" in pc_type:
+                elif "LIGHT_F" in pc_type or pc_type.startswith("LF"):
                     cgf = DEFAULT_HUMANOID_MODELS.get("LF", "")
-                elif "DARK_M" in pc_type or "DM" in pc_type:
+                elif "DARK_M" in pc_type or pc_type.startswith("DM"):
                     cgf = DEFAULT_HUMANOID_MODELS.get("DM", "")
-                elif "DARK_F" in pc_type or "DF" in pc_type:
+                elif "DARK_F" in pc_type or pc_type.startswith("DF"):
                     cgf = DEFAULT_HUMANOID_MODELS.get("DF", "")
 
             m_anim = re_anim.search(b)
@@ -269,17 +294,47 @@ def parse_npc_templates(
             m_race = re_race.search(b)
             race = m_race.group(1).strip() if m_race else ""
 
-            category = "monster" if "monster" in b.lower() or "mat_mob" in b.lower() else "npc"
+            walk_speed = 2.2
+            m_ws = re_walk_speed.search(b)
+            if m_ws:
+                try:
+                    ws = float(m_ws.group(1))
+                    if 0.4 <= ws <= 15.0:
+                        walk_speed = ws
+                except ValueError:
+                    pass
+
+            scale_val = 1.0
+            m_sc = re_scale.search(b)
+            if m_sc:
+                try:
+                    sv = float(m_sc.group(1))
+                    if sv > 10.0:
+                        sv = sv / 100.0
+                    if 0.3 <= sv <= 4.0:
+                        scale_val = sv
+                except ValueError:
+                    pass
+
+            is_monster = (
+                (nid.startswith("2") and len(nid) == 6 and int(nid) >= 210000)
+                or "monster" in b.lower()
+                or "mat_mob" in b.lower()
+            )
+            category = "monster" if is_monster else "npc"
 
             templates[nid] = NpcTemplate(
                 id=nid,
                 name=name,
-                title=desc if not desc.startswith("STR_") else "",
+                title="" if desc_raw.upper().startswith("STR_") else desc_raw,
                 cgf_reference=cgf,
-                scale=1.0,
+                scale=scale_val,
                 category=category,
                 race=race,
                 idle_animation=idle_anim,
+                desc_key=desc_key or (name if name.upper().startswith("STR_") else ""),
+                title_key="",
+                walk_speed=walk_speed,
             )
 
         if templates:
@@ -299,6 +354,12 @@ def parse_npc_templates(
 
     i = 0
     num_tokens = len(tokens)
+    _pc_prefix_map = ("LM", "LF", "DM", "DF")
+    _non_mesh_words = (
+        "idle", "guard", "sale", "misc", "teleport", "airlines",
+        "searcher", "looting", "im_", "lf1_", "df1_", "mat_", "foot_",
+        "erect", "general", "none", "bip01", "skill", "summon",
+    )
 
     while i < num_tokens:
         tok = tokens[i]
@@ -309,32 +370,56 @@ def parse_npc_templates(
             cgf_ref = ""
             race = ""
             idle_anim = ""
-            category = "npc"
+            desc_key = ""
+            title_key = ""
+            category = "monster" if (nid[0] == "2" and int(nid) >= 210000) else "npc"
 
             j = i + 1
             while j < min(num_tokens, i + 35):
                 sub = tokens[j]
                 if sub.isdigit() and len(sub) == 6 and sub[0] in ("2", "7", "8"):
                     break
-                if "/" in sub and not cgf_ref:
+                sub_up = sub.upper()
+                sub_low = sub.lower()
+
+                if sub_up.startswith("STR_NPCTITLE_"):
+                    if not title_key:
+                        title_key = sub
+                elif sub_up.startswith("STR_") and sub_up != "STR_NPC_NO_NAME":
+                    if not desc_key:
+                        desc_key = sub
+                elif "/" in sub and not cgf_ref:
                     if j + 1 < num_tokens and not tokens[j + 1].isdigit() and "/" not in tokens[j + 1]:
                         cgf_ref = f"{sub}/{tokens[j + 1]}.cgf"
-                    elif sub.endswith(".cgf"):
+                    elif sub_low.endswith(".cgf"):
                         cgf_ref = sub
-                if "idle" in sub.lower() and not idle_anim:
+                elif "shugomale" in sub_low or "shugo_m" in sub_low:
+                    race = "SHUGO_M"
+                elif "shugofemale" in sub_low or "shugo_f" in sub_low:
+                    race = "SHUGO_F"
+                elif any(sub_up.startswith(p) and (len(sub) == 2 or any(k in sub_low for k in ("normal", "slim", "small", "fat", "muscle"))) for p in _pc_prefix_map):
+                    race = sub_up[:2]
+
+                if "idle" in sub_low and not idle_anim:
                     idle_anim = sub
-                if sub in ("DM", "DF", "LM", "LF", "SHUGO_M", "SHUGO_F"):
-                    race = sub
-                if "monster" in sub.lower():
+                if sub_up in ("DM", "DF", "LM", "LF", "SHUGO_M", "SHUGO_F"):
+                    race = sub_up
+                if "monster" in sub_low:
                     category = "monster"
+                elif any(amb in sub_low for amb in ("critter", "bird", "squirrel", "rabbit", "butterfly", "frog", "fish")) and category != "monster":
+                    category = "ambient"
                 j += 1
 
-            if not cgf_ref and race:
-                race_upper = race.upper()
-                if "DARK" in race_upper or race_upper == "DM":
-                    cgf_ref = DEFAULT_HUMANOID_MODELS.get("DM", "")
-                elif "LIGHT" in race_upper or race_upper == "LM":
+            if not cgf_ref:
+                if race and race in DEFAULT_HUMANOID_MODELS:
+                    cgf_ref = DEFAULT_HUMANOID_MODELS[race]
+                elif category != "monster" and any(t in name.lower() for t in ("shugo",)):
+                    cgf_ref = DEFAULT_HUMANOID_MODELS.get("SHUGO_M", "")
+                elif nid[0] in ("7", "8") and category == "npc" and desc_key.upper().startswith("STR_NPC_"):
                     cgf_ref = DEFAULT_HUMANOID_MODELS.get("LM", "")
+
+            if not desc_key:
+                desc_key = f"STR_NPC_{name}" if category == "npc" else f"STR_{name}"
 
             templates[nid] = NpcTemplate(
                 id=nid,
@@ -345,6 +430,9 @@ def parse_npc_templates(
                 category=category,
                 race=race,
                 idle_animation=idle_anim,
+                desc_key=desc_key,
+                title_key=title_key,
+                walk_speed=2.2,
             )
             i = j
             continue
@@ -417,3 +505,177 @@ def update_world_npc_spawns_xml(
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_bytes(ET.tostring(root, encoding="utf-8", xml_declaration=True))
     return len(modified_npcs)
+
+
+def find_emulator_static_data_dir(
+    explicit_dir: str | Path | None = None,
+    client_root: str | Path | None = None,
+) -> Optional[Path]:
+    """
+    Locates the Aion Classic emulator `data/static_data` directory cleanly without
+    hardcoded user-specific paths.
+    """
+    candidates: List[Path] = []
+    if explicit_dir:
+        p = Path(explicit_dir)
+        candidates.extend([p, p / "data" / "static_data", p / "static_data"])
+
+    rel_suffixes = (
+        Path("Código Fonte - Emulador") / "game-server-gameforge" / "data" / "static_data",
+        Path("game-server-gameforge") / "data" / "static_data",
+        Path("Emulador - Produto Final") / "GameServer" / "data" / "static_data",
+        Path("data") / "static_data",
+    )
+
+    search_roots: List[Path] = [Path(__file__).resolve()]
+    if client_root:
+        search_roots.append(Path(client_root).resolve())
+
+    for root in search_roots:
+        for parent in (root, *root.parents):
+            for suffix in rel_suffixes:
+                cand = parent / suffix
+                if cand not in candidates:
+                    candidates.append(cand)
+
+    for cand in candidates:
+        try:
+            if cand.is_dir() and (cand / "world_maps.xml").is_file():
+                return cand
+        except OSError:
+            continue
+    return None
+
+
+def resolve_world_id_for_map(static_data_dir: str | Path, map_name: str) -> Optional[str]:
+    """Resolves numeric world map ID (e.g. '210010000' for 'lf1') from world_maps.xml."""
+    static_data_dir = Path(static_data_dir)
+    wm_path = static_data_dir / "world_maps.xml"
+    if not wm_path.is_file():
+        return None
+    target = map_name.strip().lower()
+    if not target:
+        return None
+    try:
+        root = ET.fromstring(wm_path.read_text(encoding="utf-8", errors="ignore"))
+        for elem in root.iter("map"):
+            cname = str(elem.attrib.get("cName") or "").strip().lower()
+            if cname == target:
+                wid = str(elem.attrib.get("id") or "").strip()
+                if wid:
+                    return wid
+    except Exception:
+        pass
+    return None
+
+
+def parse_emulator_map_spawns(static_data_dir: str | Path, map_name: str) -> List[NpcSpawn]:
+    """
+    Parses emulator `spawns/Npcs/**/<world_id>_*.xml` to obtain exact spawns, headings
+    and `walker_id` routes for a map (preferring `New/` definitions when present).
+    """
+    static_data_dir = Path(static_data_dir)
+    world_id = resolve_world_id_for_map(static_data_dir, map_name)
+    if not world_id:
+        return []
+    spawns_dir = static_data_dir / "spawns" / "Npcs"
+    if not spawns_dir.is_dir():
+        return []
+
+    xml_files = sorted(spawns_dir.rglob(f"{world_id}*.xml"))
+    if not xml_files:
+        return []
+
+    # Prefer `New/` folder files first so updated spawn spots take precedence over legacy duplicates
+    xml_files.sort(key=lambda p: (0 if "new" in {part.lower() for part in p.parts} else 1, str(p).lower()))
+
+    spawns: List[NpcSpawn] = []
+    seen_keys = set()
+    for xf in xml_files:
+        try:
+            root = ET.fromstring(xf.read_text(encoding="utf-8", errors="ignore"))
+        except Exception:
+            continue
+        for sp_elem in root.iter("spawn"):
+            npc_id = str(sp_elem.attrib.get("npc_id") or "").strip()
+            if not npc_id:
+                continue
+            for spot in sp_elem.findall("spot"):
+                try:
+                    x = float(spot.attrib.get("x", "0"))
+                    y = float(spot.attrib.get("y", "0"))
+                    z_raw = spot.attrib.get("z")
+                    z = float(z_raw) if z_raw is not None else 0.0
+                    h_raw = float(spot.attrib.get("h", "0") or 0.0)
+                    heading_deg = (h_raw * 3.0) % 360.0
+                    walker_id = str(spot.attrib.get("walker_id") or "").strip()
+                    key = (npc_id, round(x, 1), round(y, 1), round(z, 1))
+                    if key in seen_keys:
+                        continue
+                    seen_keys.add(key)
+                    spawns.append(
+                        NpcSpawn(
+                            npc_id=npc_id,
+                            position=(x, y, z),
+                            heading_degrees=heading_deg,
+                            has_explicit_z=(z_raw is not None and abs(z) > 1e-4),
+                            raw_coords=(x, y, z, h_raw),
+                            source="emulator_spawns_xml",
+                            walker_id=walker_id,
+                        )
+                    )
+                except (ValueError, TypeError):
+                    continue
+    return spawns
+
+
+def parse_walker_routes(
+    static_data_dir: str | Path,
+    needed_route_ids: Optional[set[str]] = None,
+) -> Dict[str, WalkerRoute]:
+    """
+    Streams `npc_walker/npc_walker.xml` and `npc_walker/custom_npc_walker.xml` via `iterparse`,
+    returning structured `WalkerRoute` objects for `needed_route_ids`.
+    """
+    static_data_dir = Path(static_data_dir)
+    routes: Dict[str, WalkerRoute] = {}
+    if needed_route_ids is not None and len(needed_route_ids) == 0:
+        return routes
+
+    walker_dir = static_data_dir / "npc_walker"
+    if not walker_dir.is_dir():
+        return routes
+
+    for fname in ("npc_walker.xml", "custom_npc_walker.xml"):
+        wf = walker_dir / fname
+        if not wf.is_file():
+            continue
+        try:
+            for event, elem in ET.iterparse(wf, events=("end",)):
+                if elem.tag != "walker_template":
+                    continue
+                rid = str(elem.attrib.get("route_id") or "").strip()
+                if rid and (needed_route_ids is None or rid in needed_route_ids):
+                    loop = str(elem.attrib.get("loop", "true")).strip().lower() != "false"
+                    steps: List[WalkerStep] = []
+                    for step in elem.findall("routestep"):
+                        try:
+                            steps.append(
+                                WalkerStep(
+                                    x=float(step.attrib.get("x", "0")),
+                                    y=float(step.attrib.get("y", "0")),
+                                    z=float(step.attrib.get("z", "0")),
+                                    rest_time=int(float(step.attrib.get("rest_time", "0") or 0)),
+                                )
+                            )
+                        except (ValueError, TypeError):
+                            continue
+                    if len(steps) >= 2:
+                        routes[rid] = WalkerRoute(route_id=rid, steps=tuple(steps), loop=loop)
+                elem.clear()
+                if needed_route_ids is not None and len(routes) >= len(needed_route_ids) and fname == "npc_walker.xml":
+                    # Still scan custom_npc_walker if overrides might exist
+                    break
+        except Exception:
+            continue
+    return routes

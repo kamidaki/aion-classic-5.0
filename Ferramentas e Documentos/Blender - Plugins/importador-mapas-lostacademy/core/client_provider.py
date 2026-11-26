@@ -324,52 +324,78 @@ class AionClientProvider:
 
         return results
 
-    def load_string_tables(self, preferred_lang: str = "ENG") -> int:
+    def load_string_tables(self, preferred_lang: str = "BRA") -> int:
         """
-        Loads localization strings (client_strings_npc.xml, client_strings_monster.xml)
-        from L10N/<LANG>/data/data.pak or Data/Strings/Strings.pak.
-        Populates _string_tables mapping string keys/IDs to localized display names.
+        Loads localization strings (client_strings_npc.xml, client_strings_monster.xml, etc.)
+        from the highest-priority L10N/<LANG>/data/*.pak (respecting z_Patch*.pak overrides),
+        falling back to Data/Strings/Strings.pak only if no L10N table was found.
         """
         if self._string_tables_loaded:
             return len(self._string_tables)
 
         self._string_tables.clear()
 
-        # Candidate archives in order of preference
-        cand_paks: List[Path] = []
+        lang_order: List[str] = []
+        for lang in (preferred_lang, "BRA", "ENG", "DEU", "FRA"):
+            clean_l = str(lang or "").strip()
+            if clean_l and clean_l not in lang_order:
+                lang_order.append(clean_l)
 
-        # 1. L10N folder (e.g. l10n/ENG/data/data.pak or L10N/ENG/Data/data.pak)
+        string_targets = (
+            "client_strings_npc",
+            "client_strings_monster",
+            "client_strings_dic_monster",
+            "client_strings_etc",
+        )
+
+        # 1. Try L10N/<LANG>/data/*.pak in strict language preference order
         if self.l10n_dir and self.l10n_dir.is_dir():
-            for lang in (preferred_lang, "ENG", "BRA", "DEU", "FRA"):
-                for sub in (
-                    self.l10n_dir / lang / "data" / "data.pak",
-                    self.l10n_dir / lang / "Data" / "data.pak",
-                    self.l10n_dir / lang / f"{lang}.pak",
-                ):
-                    if sub.is_file() and sub not in cand_paks:
-                        cand_paks.append(sub)
+            l10n_subdirs = {d.name.upper(): d for d in self.l10n_dir.iterdir() if d.is_dir()}
+            for lang in lang_order:
+                lang_dir = l10n_subdirs.get(lang.upper())
+                if lang_dir is None:
+                    continue
+                lang_paks: List[Path] = []
+                for sub_data in (lang_dir / "data", lang_dir / "Data"):
+                    if sub_data.is_dir():
+                        lang_paks.extend(sorted(sub_data.glob("*.pak"), key=cryengine_pak_sort_key))
+                root_pak = lang_dir / f"{lang_dir.name}.pak"
+                if root_pak.is_file() and root_pak not in lang_paks:
+                    lang_paks.append(root_pak)
 
-        # 2. Data/Strings/Strings.pak
-        if self.data_dir and self.data_dir.is_dir():
+                for pak_path in lang_paks:
+                    try:
+                        arc = self.catalog.get_archive(pak_path)
+                        for entry_name in sorted(arc.entries.keys()):
+                            entry_lower = entry_name.lower()
+                            if entry_lower.endswith(".xml") and any(t in entry_lower for t in string_targets):
+                                raw = arc.read_file(entry_name)
+                                if raw:
+                                    self._parse_string_xml(raw)
+                    except Exception as exc:
+                        print(f"[AionClientProvider] Warning reading strings from {pak_path}: {exc}")
+
+                if self._string_tables:
+                    break
+
+        # 2. Fallback to Data/Strings/Strings.pak ONLY if no L10N string tables loaded
+        if not self._string_tables and self.data_dir and self.data_dir.is_dir():
             for sp in (
                 self.data_dir / "Strings" / "Strings.pak",
                 self.data_dir / "strings" / "strings.pak",
             ):
-                if sp.is_file() and sp not in cand_paks:
-                    cand_paks.append(sp)
-
-        # Parse string tables
-        for pak_path in cand_paks:
-            try:
-                arc = self.catalog.get_archive(pak_path)
-                for entry_name in list(arc.entries.keys()):
-                    entry_lower = entry_name.lower()
-                    if "client_strings_npc" in entry_lower or "client_strings_monster" in entry_lower:
-                        raw = arc.read_file(entry_name)
-                        if raw:
-                            self._parse_string_xml(raw)
-            except Exception as exc:
-                print(f"[AionClientProvider] Warning reading strings from {pak_path}: {exc}")
+                if not sp.is_file():
+                    continue
+                try:
+                    arc = self.catalog.get_archive(sp)
+                    for entry_name in sorted(arc.entries.keys()):
+                        entry_lower = entry_name.lower()
+                        if any(t in entry_lower for t in string_targets):
+                            raw = arc.read_file(entry_name)
+                            if raw:
+                                self._parse_string_xml(raw)
+                except Exception as exc:
+                    print(f"[AionClientProvider] Warning reading strings from {sp}: {exc}")
 
         self._string_tables_loaded = True
         return len(self._string_tables)
@@ -395,6 +421,7 @@ class AionClientProvider:
                     if s_body:
                         self._string_tables[s_id] = s_body
                         self._string_tables[s_name] = s_body
+                        self._string_tables[s_name.upper()] = s_body
                 return
             except Exception:
                 pass
@@ -429,6 +456,7 @@ class AionClientProvider:
                         self._string_tables[s_id] = s_body
                         if s_name:
                             self._string_tables[s_name] = s_body
+                            self._string_tables[s_name.upper()] = s_body
                     i = j
                 i += 1
 
@@ -437,7 +465,9 @@ class AionClientProvider:
         if not self._string_tables_loaded:
             self.load_string_tables()
         k = str(key_or_id).strip()
-        return self._string_tables.get(k, k)
+        if not k:
+            return k
+        return self._string_tables.get(k) or self._string_tables.get(k.upper(), k)
 
     def ensure_category_paks_indexed(self, relative_path: str) -> None:
         """Dynamically indexes candidate PAK files relevant to the resource directory."""
@@ -459,11 +489,8 @@ class AionClientProvider:
         if (
             "level_object" in clean_lower
             or "npc" in clean_lower
+            or "pc/" in clean_lower
             or "human" in clean_lower
-            or "cam" in clean_lower
-            or "caf" in clean_lower
-            or "cem" in clean_lower
-            or "cff" in clean_lower
             or "shugo" in clean_lower
         ):
             cand_dirs.extend([
@@ -473,6 +500,8 @@ class AionClientProvider:
                 self.root / "Objects" / "npc" / "human",
                 self.root / "objects" / "npc",
                 self.root / "Objects" / "npc",
+                self.root / "objects" / "pc",
+                self.root / "Objects" / "pc",
             ])
 
         for cd in cand_dirs:
@@ -510,12 +539,14 @@ class AionClientProvider:
         return b
 
     def resolve_animation_asset(
-        self, cgf_relative_path: str
+        self,
+        cgf_relative_path: str,
+        preferred_kind: str = "idle",
     ) -> Tuple[Optional[Dict[str, str]], Optional[bytes]]:
         """
-        Given a character model path (e.g. 'objects/npc/shugomale/shugomale.cgf' or 'Monster/brax/brax.cgf'):
+        Given a character model path (e.g. 'objects/pc/lm/mesh/lm.cgf' or 'objects/monster/brax/brax.cgf'):
         1. Finds and parses the corresponding .cal file
-        2. Resolves and extracts the idle .caf animation bytes
+        2. Resolves and extracts the requested .caf animation bytes ('idle' or 'walk')
         Returns (cal_mapping, caf_bytes) or (None, None).
         """
         from formats.cgf.cal_parser import find_default_idle_animation, parse_cal
@@ -573,7 +604,19 @@ class AionClientProvider:
         if not cal_mapping:
             return None, None
 
-        idle_caf_rel = find_default_idle_animation(cal_mapping)
+        if preferred_kind == "walk":
+            idle_caf_rel = None
+            for token in ("nwalk", "normal_walk", "walk", "nrun", "move", "run"):
+                for anim_k, caf_rel in cal_mapping.items():
+                    if token in anim_k.lower() or token in str(caf_rel).lower():
+                        idle_caf_rel = caf_rel
+                        break
+                if idle_caf_rel:
+                    break
+            if not idle_caf_rel:
+                idle_caf_rel = find_default_idle_animation(cal_mapping)
+        else:
+            idle_caf_rel = find_default_idle_animation(cal_mapping)
         if not idle_caf_rel:
             return cal_mapping, None
 

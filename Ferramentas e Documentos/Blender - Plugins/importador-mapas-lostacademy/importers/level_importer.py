@@ -7,6 +7,7 @@ from typing import Callable, Iterable
 
 from config.performance_profiles import (
     apply_viewport_60fps_optimization,
+    frame_viewport_on_map,
     normalize_performance_profile,
     resolve_profile_settings,
 )
@@ -48,10 +49,13 @@ from .liquid_surface_importer import (
 from .mission_placeables_importer import (
     MissionPlaceablesImportResult,
     create_mission_placeables,
+    iter_create_mission_placeables,
 )
 from .particle_effects_importer import (
     ParticleEffectsImportResult,
     create_particle_effects,
+    iter_create_particle_effects,
+    prepare_particle_effects_stage_data,
 )
 from core.resource_resolver import (
     LevelCgfResolutionResult,
@@ -74,7 +78,7 @@ from .terrain_importer import (
     iter_create_terrain_mesh,
     prepare_terrain_stage_data,
 )
-from .water_importer import WaterPlaneResult, create_water_plane
+from .water_importer import WaterPlaneResult, create_water_plane, create_water_volumes
 
 
 
@@ -302,12 +306,18 @@ def _prepare_stage4_worker(
         mission_xml = level_path / "mission_mission0.xml"
         if mission_xml.is_file():
             try:
-                from aion_formats.level.environment import resolve_level_environment
+                from formats.level.environment import resolve_level_environment
                 env_report = resolve_level_environment(
                     mission_xml, client_root_path, time_option=skybox_time_option,
                 )
             except Exception:
-                env_report = None
+                try:
+                    from aion_formats.level.environment import resolve_level_environment
+                    env_report = resolve_level_environment(
+                        mission_xml, client_root_path, time_option=skybox_time_option,
+                    )
+                except Exception:
+                    env_report = None
     return liquid_recipe, env_report
 
 
@@ -322,7 +332,7 @@ def _parse_cga_stage6_worker(
     if not source_path.is_file():
         return None
     try:
-        from aion_formats.level import parse_mission_cga_entities
+        from formats.level import parse_mission_cga_entities
         return parse_mission_cga_entities(
             source_path,
             client_root=client_root_path,
@@ -371,21 +381,21 @@ def import_level_generator(
     import_props: bool = True,
     import_rocks: bool = True,
     import_interactive_objects: bool = True,
-    import_vegetation: bool = False,
+    import_vegetation: bool = True,
     import_trees: bool = True,
-    import_grass: bool = False,
+    import_grass: bool = True,
     import_bushes_flowers: bool = True,
     import_water: bool = True,
     import_textured_liquid_surface: bool = True,
     liquid_kind: str = LIQUID_KIND_AUTO,
     liquid_preset: str = LIQUID_PRESET_AUTO,
-    import_static_lights: bool = False,
+    import_static_lights: bool = True,
     static_lights_mode: str = STATIC_LIGHTS_MODE_POINT_LIGHT,
     static_lights_power: float = DEFAULT_STATIC_LIGHT_POWER,
-    import_mission_placeables: bool = False,
+    import_mission_placeables: bool = True,
     apply_mission_angles: bool = True,
     mission_placeables_limit: int | None = None,
-    import_particle_effects: bool = False,
+    import_particle_effects: bool = True,
     import_cga_entities: bool = True,
     animate_cga_controllers: bool = False,
     apply_smoothing_groups: bool = False,
@@ -395,20 +405,21 @@ def import_level_generator(
     load_cgf: Callable | None = None,
     get_cgf_import_report: Callable | None = None,
     progress_callback: Callable[[LevelImportProgress], None] | None = None,
-    import_skybox: bool = False,
+    import_skybox: bool = True,
     skybox_time_option: str = "Daylight",
     import_environment_lighting: bool = True,
     environment_sun_energy: float = 2.0,
     environment_ambient_strength: float = 0.3,
     terrain_lod: int | None = None,
-    import_collision: bool = True,
-    import_npcs: bool = False,
+    import_collision: bool = False,
+    import_npcs: bool = True,
     import_npc_models: bool = True,
-    animate_npcs: bool = False,
+    animate_npcs: bool = True,
     import_monsters: bool = True,
     import_friendly_npcs: bool = True,
     import_ambient_creatures: bool = True,
-    import_nameplates: bool = False,
+    import_nameplates: bool = True,
+    emulator_data_dir: str | Path | None = None,
     import_lod0: bool = True,
     import_lod1: bool = True,
     import_lod2: bool = True,
@@ -529,6 +540,7 @@ def import_level_generator(
     executor = ThreadPoolExecutor(max_workers=1)
     pending_future = None
     resolver = None
+    completed_ok = False
 
     try:
         # ------------------------------------------------------------------
@@ -632,6 +644,8 @@ def import_level_generator(
             "ROCKS": bpy.data.collections.new("ROCKS"),
             "WATER": bpy.data.collections.new("WATER"),
             "LIGHTING": bpy.data.collections.new("LIGHTING"),
+            "SKYBOX": bpy.data.collections.new("SKYBOX"),
+            "PLACEABLES": bpy.data.collections.new("PLACEABLES"),
             "NPCS": bpy.data.collections.new("NPCS"),
             "EFFECTS": bpy.data.collections.new("EFFECTS"),
             "COLLISION": bpy.data.collections.new("COLLISION"),
@@ -640,6 +654,12 @@ def import_level_generator(
         for cat_name, cat_col in category_collections.items():
             if cat_name != "ROOT":
                 preview_collection.children.link(cat_col)
+
+        veg_root_col = category_collections["VEGETATION"]
+        for veg_sub in ("Trees & Forest", "Bushes & Flowers", "Grass & Cover"):
+            sub_col = bpy.data.collections.new(veg_sub)
+            veg_root_col.children.link(sub_col)
+            category_collections[veg_sub] = sub_col
 
         templates_col = category_collections[".TEMPLATES"]
         templates_col.hide_viewport = True
@@ -702,6 +722,19 @@ def import_level_generator(
             )
         precomputed_terrain = None
         land_map = None  # Free height samples immediately before object phase
+        if terrain_mesh_result is not None:
+            try:
+                apply_viewport_60fps_optimization(context, profile_key)
+                cx = float(terrain_mesh_result.width) * float(terrain_mesh_result.xy_scale) * 0.5
+                cy = float(terrain_mesh_result.height) * float(terrain_mesh_result.xy_scale) * 0.5
+                cz = (float(terrain_mesh_result.min_height) + float(terrain_mesh_result.max_height)) * 0.5
+                span = max(
+                    float(terrain_mesh_result.width) * float(terrain_mesh_result.xy_scale),
+                    float(terrain_mesh_result.height) * float(terrain_mesh_result.xy_scale),
+                )
+                frame_viewport_on_map((cx, cy, cz), distance=max(900.0, span * 0.55))
+            except Exception:
+                pass
         yield (0.30, "[3/8] Terreno concluído.")
 
         # ------------------------------------------------------------------
@@ -743,7 +776,7 @@ def import_level_generator(
             pending_future = None
 
         if import_water:
-            yield (0.315, "[4/8] Criando plano de água leve...")
+            yield (0.315, "[4/8] Criando plano e volumes de água...")
             want_water_waves = bool(animate_water and not effective_lightweight_water and not effective_simple_shaders)
             water_result = create_water_plane(
                 context,
@@ -794,6 +827,25 @@ def import_level_generator(
                     simple_shader=effective_simple_shaders or optimize_material_preview,
                 )
 
+        if import_water:
+            try:
+                water_mat = (
+                    water_result.object.active_material
+                    if water_result is not None and getattr(water_result, "object", None) is not None
+                    else None
+                )
+                create_water_volumes(
+                    context,
+                    level_path / "mission_mission0.xml",
+                    client_root_path,
+                    water_material=water_mat,
+                    disable_shadows=effective_disable_shadows,
+                    simple_shaders=effective_simple_shaders,
+                    target_collection=category_collections["WATER"],
+                )
+            except Exception as exc_wv:
+                print(f"[Aion] WaterVolume warning: {exc_wv}")
+
         if import_environment_lighting:
             yield (0.335, "[4/8] Configurando iluminação ambiente...")
             environment_lighting_result = create_environment_lighting_preview(
@@ -828,6 +880,7 @@ def import_level_generator(
                     center=(center_x, center_y, min_z),
                     animate_clouds=bool(animate_shader_uv_scroll and not effective_simple_shaders),
                     override_viewport_shading=False,
+                    target_collection=category_collections["SKYBOX"],
                 )
             except Exception:
                 pass
@@ -850,6 +903,7 @@ def import_level_generator(
             import_trees=import_trees,
             import_grass=import_grass,
             import_bushes_flowers=import_bushes_flowers,
+            import_effects=import_particle_effects,
             import_collision=import_collision,
             import_lod0=import_lod0,
             import_lod1=import_lod1,
@@ -1292,12 +1346,13 @@ def import_level_generator(
                 level_path,
                 mode=static_lights_mode,
                 power=static_lights_power,
+                target_collection=category_collections["LIGHTING"],
             )
             advance_progress("static_lights", "Static lights processed")
 
         if import_mission_placeables:
             yield (0.80, "[6/8] Importando objetos de missão...")
-            mission_placeables_result = create_mission_placeables(
+            place_gen = iter_create_mission_placeables(
                 context,
                 level_path,
                 client_root_path,
@@ -1309,17 +1364,62 @@ def import_level_generator(
                 limit=mission_placeables_limit,
                 load_cgf=load_cgf,
                 get_cgf_import_report=get_cgf_import_report,
+                target_collection=category_collections["PLACEABLES"],
+                disable_shadows=effective_disable_shadows,
+                simple_shaders=effective_simple_shaders,
+                batch_size=1,
             )
+            try:
+                while True:
+                    if cancel_ev.is_set():
+                        return None
+                    p_done, p_tot = next(place_gen)
+                    yield (
+                        0.80 + 0.009 * (p_done / max(1, p_tot)),
+                        f"[6/8] Objetos de missão ({p_done}/{p_tot})...",
+                    )
+            except StopIteration as exc_pl:
+                mission_placeables_result = exc_pl.value
             advance_progress("mission_placeables", "Mission placeables processed")
 
         if import_particle_effects:
-            yield (0.81, "[6/8] Importando efeitos de partículas...")
-            particle_effects_result = create_particle_effects(
-                context,
+            yield (0.81, "[6/8] Lendo efeitos (.prt/.dds) em segundo plano...")
+            pending_future = executor.submit(
+                prepare_particle_effects_stage_data,
                 level_path,
                 client_root_path,
                 level_data=level_data,
             )
+            while not pending_future.done():
+                if cancel_ev.is_set():
+                    return None
+                yield (0.812, "[6/8] Extraindo efeitos de partículas (.prt/.dds)...")
+            if cancel_ev.is_set():
+                return None
+            fx_pre_prepared = pending_future.result()
+            pending_future = None
+
+            fx_gen = iter_create_particle_effects(
+                context,
+                level_path,
+                client_root_path,
+                level_data=level_data,
+                pre_prepared=fx_pre_prepared,
+                target_collection=category_collections["EFFECTS"],
+                disable_shadows=effective_disable_shadows,
+                batch_size=24,
+            )
+            try:
+                while True:
+                    if cancel_ev.is_set():
+                        return None
+                    fx_done, fx_tot = next(fx_gen)
+                    yield (
+                        0.812 + 0.008 * (fx_done / max(1, fx_tot)),
+                        f"[6/8] Criando partículas ({fx_done}/{fx_tot})...",
+                    )
+            except StopIteration as exc_fx:
+                particle_effects_result = exc_fx.value
             advance_progress("particle_effects", "Particle effects processed")
 
         if import_cga_entities:
@@ -1401,6 +1501,7 @@ def import_level_generator(
                     executor=executor,
                     cancel_event=cancel_ev,
                     terrain_grid=terrain_height_grid,
+                    emulator_data_dir=emulator_data_dir,
                 )
                 while True:
                     if cancel_ev.is_set():
@@ -1480,7 +1581,16 @@ def import_level_generator(
                 ),
             )
 
-        # Prune empty subcollections so user outliner stays perfectly clean
+        # Prune empty subcollections (vegetation children first, then top-level categories)
+        veg_parent = category_collections.get("VEGETATION")
+        veg_sub_names = ("Trees & Forest", "Bushes & Flowers", "Grass & Cover")
+        for veg_sub in veg_sub_names:
+            sub_col = category_collections.pop(veg_sub, None)
+            if sub_col is not None and len(sub_col.objects) == 0 and len(sub_col.children) == 0:
+                if veg_parent is not None and sub_col.name in veg_parent.children.keys():
+                    veg_parent.children.unlink(sub_col)
+                bpy.data.collections.remove(sub_col)
+
         for cat_name, cat_col in list(category_collections.items()):
             if cat_name != "ROOT" and len(cat_col.objects) == 0 and len(cat_col.children) == 0:
                 if cat_col.name in preview_collection.children.keys():
@@ -1503,6 +1613,18 @@ def import_level_generator(
 
         yield (0.985, "[8/8] Otimizando viewport (60+ FPS)...")
         apply_viewport_60fps_optimization(context, profile_key)
+        if terrain_mesh_result is not None:
+            try:
+                cx = float(terrain_mesh_result.width) * float(terrain_mesh_result.xy_scale) * 0.5
+                cy = float(terrain_mesh_result.height) * float(terrain_mesh_result.xy_scale) * 0.5
+                cz = (float(terrain_mesh_result.min_height) + float(terrain_mesh_result.max_height)) * 0.5
+                span = max(
+                    float(terrain_mesh_result.width) * float(terrain_mesh_result.xy_scale),
+                    float(terrain_mesh_result.height) * float(terrain_mesh_result.xy_scale),
+                )
+                frame_viewport_on_map((cx, cy, cz), distance=max(900.0, span * 0.55))
+            except Exception:
+                pass
         advance_progress("complete", "Level import complete")
         try:
             from importers.asset_catalog import invalidate_asset_catalog_cache
@@ -1522,6 +1644,7 @@ def import_level_generator(
             pass
         import gc
         gc.collect(0)
+        completed_ok = True
         return LevelImportResult(
             level_dir=level_path,
             client_root=client_root_path,
@@ -1573,7 +1696,8 @@ def import_level_generator(
             npc_result=npc_result,
         )
     finally:
-        cancel_ev.set()
+        if not completed_ok:
+            cancel_ev.set()
         if pending_future is not None:
             try:
                 pending_future.cancel()

@@ -250,6 +250,164 @@ def _disable_obj_shadows(obj) -> None:
             pass
 
 
+def _get_or_create_geonodes_instancer(bpy):
+    """Returns shared AION_PointInstancer Geometry Nodes group (Blender 5.2 compatible)."""
+    group_name = "AION_PointInstancer"
+    existing = bpy.data.node_groups.get(group_name)
+    if existing is not None and existing.get("aion_object_socket_id"):
+        return existing
+
+    if existing is not None:
+        bpy.data.node_groups.remove(existing)
+
+    tree = bpy.data.node_groups.new(group_name, "GeometryNodeTree")
+    tree.interface.new_socket(name="Geometry", in_out="INPUT", socket_type="NodeSocketGeometry")
+    obj_sock = tree.interface.new_socket(name="Object", in_out="INPUT", socket_type="NodeSocketObject")
+    tree.interface.new_socket(name="Geometry", in_out="OUTPUT", socket_type="NodeSocketGeometry")
+    tree["aion_object_socket_id"] = obj_sock.identifier
+
+    nodes = tree.nodes
+    links = tree.links
+    n_in = nodes.new("NodeGroupInput")
+    n_in.location = (-450, 0)
+    n_out = nodes.new("NodeGroupOutput")
+    n_out.location = (380, 0)
+
+    n_obj = nodes.new("GeometryNodeObjectInfo")
+    n_obj.location = (-220, -140)
+    n_obj.inputs["As Instance"].default_value = True
+
+    n_rot = nodes.new("GeometryNodeInputNamedAttribute")
+    n_rot.location = (-220, -320)
+    n_rot.data_type = "FLOAT_VECTOR"
+    n_rot.inputs["Name"].default_value = "aion_rot"
+
+    n_scale = nodes.new("GeometryNodeInputNamedAttribute")
+    n_scale.location = (-220, -480)
+    n_scale.data_type = "FLOAT_VECTOR"
+    n_scale.inputs["Name"].default_value = "aion_scale"
+
+    n_inst = nodes.new("GeometryNodeInstanceOnPoints")
+    n_inst.location = (120, 0)
+
+    links.new(n_in.outputs["Geometry"], n_inst.inputs["Points"])
+    links.new(n_in.outputs["Object"], n_obj.inputs["Object"])
+    links.new(n_obj.outputs["Geometry"], n_inst.inputs["Instance"])
+    links.new(n_rot.outputs["Attribute"], n_inst.inputs["Rotation"])
+    links.new(n_scale.outputs["Attribute"], n_inst.inputs["Scale"])
+    links.new(n_inst.outputs["Instances"], n_out.inputs["Geometry"])
+    return tree
+
+
+def _assign_geonodes_object_input(mod, sock_id: str, template_obj) -> None:
+    """Assigns Geometry Nodes Object input compatibly across Blender 5.x (properties.inputs) and 4.x."""
+    if hasattr(mod, "properties") and hasattr(mod.properties, "inputs"):
+        try:
+            mod.properties.inputs[sock_id]["value"] = template_obj
+            return
+        except Exception:
+            pass
+    mod[sock_id] = template_obj
+
+
+def _create_geonodes_point_instances(
+    bpy,
+    link_target,
+    mesh_objs,
+    selected_placements,
+    tpl_label: str,
+    *,
+    disable_shadows: bool = True,
+):
+    """Collapses hundreds/thousands of vegetation placements into 1 GPU-instanced PointCloud per template."""
+    from editing.roundtrip_tracker import tag_object_instance
+
+    tree = _get_or_create_geonodes_instancer(bpy)
+    sock_id = str(tree["aion_object_socket_id"])
+
+    instances = []
+    summaries = []
+    placement_skips = []
+
+    valid_records = []
+    for placement in selected_placements:
+        try:
+            matrix = _placement_matrix(placement)
+        except InvalidPlacementError as exc:
+            placement_skips.append(
+                PlacementSkip(
+                    source_type=placement.source_type,
+                    source_index=placement.source_index,
+                    cgf_reference=placement.cgf_reference,
+                    reason_code=exc.reason_code,
+                    reason=str(exc),
+                )
+            )
+            continue
+        summaries.append(_summarize_transform(placement, matrix))
+        valid_records.append((placement, matrix))
+
+    if valid_records:
+        for mesh_idx, template_obj in enumerate(mesh_objs):
+            mesh_offset = template_obj.matrix_world
+            coords = []
+            rots = []
+            scales = []
+            for _placement, matrix in valid_records:
+                composed = matrix @ mesh_offset
+                loc = composed.to_translation()
+                rot = composed.to_euler("XYZ")
+                sca = composed.to_scale()
+                coords.append((float(loc.x), float(loc.y), float(loc.z)))
+                rots.extend((float(rot.x), float(rot.y), float(rot.z)))
+                scales.extend((float(sca.x), float(sca.y), float(sca.z)))
+
+            suffix = "" if len(mesh_objs) == 1 else f"_{mesh_idx}"
+            pc_name = f"AION_GN_{tpl_label}{suffix}"
+            pc_mesh = bpy.data.meshes.new(f"{pc_name}_Points")
+            pc_mesh.from_pydata(coords, [], [])
+
+            rot_attr = pc_mesh.attributes.new(name="aion_rot", type="FLOAT_VECTOR", domain="POINT")
+            rot_attr.data.foreach_set("vector", rots)
+            scale_attr = pc_mesh.attributes.new(name="aion_scale", type="FLOAT_VECTOR", domain="POINT")
+            scale_attr.data.foreach_set("vector", scales)
+            pc_mesh.update()
+
+            pc_obj = bpy.data.objects.new(pc_name, pc_mesh)
+            mod = pc_obj.modifiers.new(name="AION_Instancer", type="NODES")
+            mod.node_group = tree
+            _assign_geonodes_object_input(mod, sock_id, template_obj)
+            pc_obj["aion_geonodes_instance_count"] = len(valid_records)
+            pc_obj["aion_cgf_reference"] = valid_records[0][0].cgf_reference
+            tag_object_instance(
+                pc_obj,
+                source_type=valid_records[0][0].source_type,
+                source_index=valid_records[0][0].source_index,
+                cgf_reference=valid_records[0][0].cgf_reference,
+                matrix=valid_records[0][1],
+                mesh_offset=mesh_offset,
+            )
+            if disable_shadows:
+                _disable_obj_shadows(pc_obj)
+            link_target.objects.link(pc_obj)
+            instances.append(pc_obj)
+
+    return PlacementInstanceBatch(
+        instances=tuple(instances),
+        transform_summaries=tuple(summaries),
+        object_placement_count=sum(s.source_type == SOURCE_OBJECT for s in summaries),
+        brush_placement_count=sum(s.source_type == SOURCE_BRUSH for s in summaries),
+        placement_skips=tuple(placement_skips),
+        invalid_placements_skipped=len(placement_skips),
+        invalid_object_scale_count=sum(
+            skip.reason_code == INVALID_OBJECT_SCALE for skip in placement_skips
+        ),
+        invalid_brush_matrix_count=sum(
+            skip.reason_code == INVALID_BRUSH_MATRIX for skip in placement_skips
+        ),
+    )
+
+
 def iter_create_level_cgf_placement_instances(
     target_collection,
     template_collection,
@@ -257,6 +415,7 @@ def iter_create_level_cgf_placement_instances(
     max_placements: int,
     *,
     use_mesh_instancing: bool = True,
+    use_geonodes_instancing: bool = True,
     disable_shadows: bool = False,
     chunk_size: int = 32,
     template_name: str | None = None,
@@ -272,6 +431,7 @@ def iter_create_level_cgf_placement_instances(
     import bpy
     from mathutils import Matrix
     from editing.roundtrip_tracker import tag_object_instance
+    from importers.level_jobs import classify_vegetation_subcat
 
     instances = []
     summaries = []
@@ -287,16 +447,36 @@ def iter_create_level_cgf_placement_instances(
     tpl_label = template_name or (template_collection.name if template_collection else "AionTemplate")
     can_use_direct_mesh = use_mesh_instancing and (len(mesh_objs) >= 1)
 
-    # Determine link target collection
+    # Determine link target collection (routes trees / bushes / grass into separate sub-collections)
     category = getattr(placements[0], "category", "PROPS") if placements else "PROPS"
     if isinstance(target_collection, dict):
-        dest_col = target_collection.get(category) or target_collection.get("PROPS") or target_collection.get("ROOT")
+        dest_col = None
+        if category == "VEGETATION" and placements:
+            veg_sub = classify_vegetation_subcat(getattr(placements[0], "cgf_reference", ""))
+            dest_col = target_collection.get(veg_sub)
+        if dest_col is None:
+            dest_col = target_collection.get(category) or target_collection.get("PROPS") or target_collection.get("ROOT")
         link_target = dest_col
     else:
         link_target = target_collection
 
     selected_placements = placements[:max_placements]
     total = len(selected_placements)
+
+    # Use Geometry Nodes instancing for dense VEGETATION scatter so 10,000+ objects render at 60+ FPS
+    if use_geonodes_instancing and category == "VEGETATION" and len(mesh_objs) >= 1 and total >= 4:
+        try:
+            return _create_geonodes_point_instances(
+                bpy,
+                link_target,
+                mesh_objs,
+                selected_placements,
+                tpl_label,
+                disable_shadows=disable_shadows,
+            )
+        except Exception as exc_gn:
+            print(f"[AION GeoNodes] Fallback for {tpl_label}: {exc_gn}")
+
     step_yield = max(1, int(chunk_size))
 
     for idx, placement in enumerate(selected_placements, start=1):

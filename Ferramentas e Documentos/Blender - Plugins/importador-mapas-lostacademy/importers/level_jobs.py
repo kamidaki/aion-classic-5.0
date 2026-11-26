@@ -100,6 +100,16 @@ def classify_cgf_category(ref: str) -> str:
     return "PROPS"
 
 
+def classify_vegetation_subcat(ref: str) -> str:
+    """Routes VEGETATION CGF references into granular viewport sub-collections."""
+    clean = str(ref).lower().replace("\\", "/")
+    if any(k in clean for k in ("tree", "greens", "trunk", "branch", "pine", "oak", "palm", "birch")):
+        return "Trees & Forest"
+    if any(k in clean for k in ("grass", "reed", "weed", "lawn", "mushgrass")):
+        return "Grass & Cover"
+    return "Bushes & Flowers"
+
+
 def should_import_cgf_ref(
     ref: str,
     *,
@@ -114,6 +124,7 @@ def should_import_cgf_ref(
     import_trees: bool = True,
     import_grass: bool = True,
     import_bushes_flowers: bool = True,
+    import_effects: bool = True,
     import_collision: bool = True,
     import_lod0: bool = True,
     import_lod1: bool = True,
@@ -167,6 +178,10 @@ def should_import_cgf_ref(
     if any(k in clean for k in ("structure", "building", "house", "wall", "bridge", "tower", "temple", "castle", "ruin", "dungeon", "fortress", "stairs", "roof", "fence", "pillar", "arch")):
         return import_buildings and import_structures
 
+    # Effects & Particles
+    if any(k in clean for k in ("effect", "particle", "/fx/", "_fx.")):
+        return import_effects
+
     # Interactive objects / Signs
     if any(k in clean for k in ("milestone", "sign", "board", "altar", "burner", "pedestal", "obelisk", "items/")):
         return import_props and import_interactive_objects
@@ -190,6 +205,7 @@ def collect_level_cgf_jobs(
     import_trees: bool = True,
     import_grass: bool = True,
     import_bushes_flowers: bool = True,
+    import_effects: bool = True,
     import_collision: bool = True,
     import_lod0: bool = True,
     import_lod1: bool = True,
@@ -211,6 +227,7 @@ def collect_level_cgf_jobs(
         "import_trees": import_trees,
         "import_grass": import_grass,
         "import_bushes_flowers": import_bushes_flowers,
+        "import_effects": import_effects,
         "import_collision": import_collision,
         "import_lod0": import_lod0,
         "import_lod1": import_lod1,

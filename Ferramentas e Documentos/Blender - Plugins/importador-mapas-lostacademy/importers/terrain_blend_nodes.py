@@ -163,7 +163,14 @@ def iter_create_terrain_blend_shader(
                         uv_map = nodes.new(type="ShaderNodeUVMap")
                         uv_map.uv_map = mesh.uv_layers.active.name if mesh.uv_layers.active else ""
                         links.new(uv_map.outputs["UV"], shadow_tex_node.inputs["Vector"])
-                        final_color = _create_multiply_rgb(nodes, links, None, previous_color, shadow_tex_node.outputs["Color"])
+                        final_color = _create_multiply_rgb(
+                            nodes,
+                            links,
+                            None,
+                            previous_color,
+                            shadow_tex_node.outputs["Color"],
+                            node_name="AION_TerrainShadowMultiply",
+                        )
                 except Exception:
                     pass
             if total_steps > 0:
@@ -427,9 +434,11 @@ def _create_mix_rgb(nodes, links, fac_socket, col1_socket, col2_socket):
         return mix.outputs["Color"]
 
 
-def _create_multiply_rgb(nodes, links, fac_socket, col1_socket, col2_socket):
+def _create_multiply_rgb(nodes, links, fac_socket, col1_socket, col2_socket, *, node_name: str | None = None):
     try:
         mix = nodes.new(type="ShaderNodeMix")
+        if node_name:
+            mix.name = node_name
         mix.data_type = "RGBA"
         mix.blend_type = "MULTIPLY"
         mix.clamp_result = True
@@ -446,6 +455,8 @@ def _create_multiply_rgb(nodes, links, fac_socket, col1_socket, col2_socket):
         return result_out
     except Exception:
         mix = nodes.new(type="ShaderNodeMixRGB")
+        if node_name:
+            mix.name = node_name
         mix.blend_type = "MULTIPLY"
         mix.use_clamp = True
         if fac_socket is not None:

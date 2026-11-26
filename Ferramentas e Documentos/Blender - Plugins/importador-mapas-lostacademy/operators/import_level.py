@@ -543,8 +543,8 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
     # Vegetation
     import_vegetation: BoolProperty(
         name="Vegetation",
-        description="Master switch for all vegetation elements (can add thousands of objects; enable when needed)",
-        default=False,
+        description="Master switch for all vegetation elements (instanciado via Geometry Nodes a 60+ FPS)",
+        default=True,
     )
     import_trees: BoolProperty(
         name="Trees & Forest",
@@ -553,8 +553,8 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
     )
     import_grass: BoolProperty(
         name="Grass & Cover",
-        description="Import grass fields, weeds, and ground cover (over 10,000 objects on full maps; enable if required)",
-        default=False,
+        description="Import grass fields, weeds, and ground cover via Geometry Nodes",
+        default=True,
     )
     import_bushes_flowers: BoolProperty(
         name="Bushes & Flowers",
@@ -564,13 +564,13 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
 
     # Water & Liquids
     import_water: BoolProperty(
-        name="Import Water Plane",
-        description="Create a simple water plane from LevelInfo WaterLevel and heightmap dimensions",
+        name="Import Water Plane & Volumes",
+        description="Create water plane and WaterVolumes from LevelInfo and mission XML",
         default=True,
     )
     import_textured_liquid_surface: BoolProperty(
         name="Import Textured Liquid Surface",
-        description="Apply optional water/lava preview material to the imported liquid plane",
+        description="Apply translucent water/lava material to the imported water planes",
         default=True,
     )
     liquid_kind: EnumProperty(
@@ -598,13 +598,13 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
 
     # Environment, Sky & Lighting
     import_skybox: BoolProperty(
-        name="Static Skybox Background (Experimental)",
-        description="Camera-only upper sky; preserves lighting. Reference orientation, no atmosphere or clouds",
-        default=False,
+        name="Skybox & Physical SkyDome",
+        description="Import sky background and authentic physical SkyDome",
+        default=True,
     )
     import_environment_lighting: BoolProperty(
-        name="Environment Lighting Preview (Experimental)",
-        description="Static Lighting_000 SunVector reference + profile ambient; not calibrated game daylight",
+        name="Environment Lighting",
+        description="Static Lighting_000 SunVector reference + profile ambient",
         default=True,
     )
     environment_sun_energy: FloatProperty(
@@ -622,8 +622,8 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
     )
     import_static_lights: BoolProperty(
         name="Import Static Lights",
-        description="Create optional point lights from staticdeferredlights.lst using confirmed raw coordinates",
-        default=False,
+        description="Create point lights from staticdeferredlights.lst using confirmed raw coordinates",
+        default=True,
     )
     static_lights_mode: EnumProperty(
         name="Static Lights Mode",
@@ -653,8 +653,8 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
     # Dynamics, Placeables & Collision
     import_mission_placeables: BoolProperty(
         name="Import Obelisks & Placeables",
-        description="Import hardcoded client Obelisks, pedestals, client NPCs (fauna/critters), and placeables from mission_mission0.xml",
-        default=False,
+        description="Import client Obelisks, pedestals, client NPCs, and placeables from mission_mission0.xml",
+        default=True,
     )
     apply_mission_angles: BoolProperty(
         name="Apply Mission Angles",
@@ -663,8 +663,8 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
     )
     import_particle_effects: BoolProperty(
         name="Import Particle Effects",
-        description="Create ParticleEffect markers/sprites from entitycontexts*.lst and matching .prt libraries",
-        default=False,
+        description="Create textured ParticleEffect sprites from entitycontexts*.lst and .prt libraries",
+        default=True,
     )
     import_cga_entities: BoolProperty(
         name="Import CGA Entities",
@@ -688,10 +688,16 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
     )
 
     # NPCs & World Spawns (Section 7)
+    emulator_data_dir: StringProperty(
+        name="Emulator Static Data",
+        description="Opcional: pasta static_data do emulador para rotas de caminhada",
+        subtype="DIR_PATH",
+        default="",
+    )
     import_npcs: BoolProperty(
         name="NPCs & World Spawns",
         description="Import authoritative NPC spawns linearly after the map finishes",
-        default=False,
+        default=True,
     )
     import_npc_models: BoolProperty(
         name="Resolve & Load 3D NPC Models",
@@ -699,14 +705,14 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
         default=True,
     )
     animate_npcs: BoolProperty(
-        name="Animate NPCs (Armatures & Idle CAF)",
-        description="Build armature rigs and looping idle animations on NPCs (heavy on weak GPUs)",
-        default=False,
+        name="Animate NPCs (Armatures, Walk Routes & CAF)",
+        description="Build armature rigs, looping CAF animations, and emulator walker patrol routes",
+        default=True,
     )
     import_nameplates: BoolProperty(
-        name="NPC 3D Nameplates",
-        description="Create 3D text nameplates above NPCs (heavy on GPU with many curves)",
-        default=False,
+        name="NPC 3D Nameplates (PT-BR)",
+        description="Create lightweight upright PT-BR nameplates above NPCs",
+        default=True,
     )
     import_monsters: BoolProperty(
         name="Monsters & Hostiles",
@@ -762,7 +768,7 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
         settings = getattr(context.scene, "aion_settings", None)
         if settings:
             for prop_name in (
-                "client_root", "performance_profile", "terrain_lod",
+                "client_root", "emulator_data_dir", "performance_profile", "terrain_lod",
                 "import_terrain", "import_terrain_textures", "import_terrain_blend_attributes",
                 "import_terrain_blend_shader", "import_terrain_shadows",
                 "import_buildings", "import_structures", "import_doors_portals",
@@ -770,6 +776,7 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
                 "import_vegetation", "import_trees", "import_grass", "import_bushes_flowers",
                 "import_water", "import_textured_liquid_surface",
                 "import_lighting", "import_environment_lighting", "import_skybox", "import_static_lights",
+                "import_particle_effects", "import_cga_entities",
                 "import_collision", "import_npcs", "import_npc_models", "animate_npcs",
                 "import_nameplates", "import_monsters", "import_friendly_npcs", "import_ambient_creatures",
             ):
@@ -778,6 +785,17 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
                         setattr(self, prop_name, getattr(settings, prop_name))
                     except Exception:
                         pass
+            if hasattr(settings, "import_placeables") and hasattr(self, "import_mission_placeables"):
+                try:
+                    self.import_mission_placeables = bool(settings.import_placeables)
+                except Exception:
+                    pass
+            if hasattr(settings, "import_lighting"):
+                try:
+                    if not settings.import_lighting:
+                        self.import_environment_lighting = False
+                except Exception:
+                    pass
         return super().invoke(context, event)
 
     def execute(self, context):
@@ -921,6 +939,7 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
             import_monsters=visual_mode and self.import_monsters,
             import_friendly_npcs=visual_mode and self.import_friendly_npcs,
             import_ambient_creatures=visual_mode and self.import_ambient_creatures,
+            emulator_data_dir=(self.emulator_data_dir.strip() or None),
             use_mesh_instancing=True,
             optimize_material_preview=True,
             multithreaded_io=True,

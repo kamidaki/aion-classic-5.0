@@ -93,6 +93,7 @@ class AION_PT_level_io(AION_PT_base, bpy.types.Panel):
 
         col = layout.column(align=True)
         col.prop(settings, "client_root", text="Client Root")
+        col.prop(settings, "emulator_data_dir", text="Emulator Data")
         col.separator()
 
         row = col.row(align=True)
@@ -112,30 +113,39 @@ class AION_PT_level_io(AION_PT_base, bpy.types.Panel):
         row_clean2.operator("aion.clean_wind_drivers", text="Limpar Drivers", icon="PLAY")
         row_clean2.operator("aion.purge_unused_data", text="Limpar RAM", icon="TRASH")
 
-        # Category Switches
+        # Category Switches (Live show/hide without reload + Import Defaults)
         box_cat = layout.box()
-        box_cat.label(text="Categorias de Importação:", icon="OUTLINER")
+        box_cat.label(text="Categorias (Exibir/Ocultar ao Vivo):", icon="OUTLINER")
         col = box_cat.column(align=True)
         col.prop(settings, "import_terrain")
         if settings.import_terrain:
-            col.prop(settings, "import_terrain_shadows", text="Lightmap / Sombras do Terreno")
+            sub_t = col.box().column(align=True)
+            sub_t.prop(settings, "import_terrain_shadows", text="Lightmap / Sombras do Terreno")
         col.prop(settings, "import_buildings")
         col.prop(settings, "import_props")
+        col.prop(settings, "import_rocks")
         col.prop(settings, "import_vegetation")
+        if settings.import_vegetation:
+            sub_v = col.box().column(align=True)
+            sub_v.prop(settings, "import_trees")
+            sub_v.prop(settings, "import_bushes_flowers")
+            sub_v.prop(settings, "import_grass")
+        col.prop(settings, "import_water")
+        col.prop(settings, "import_particle_effects")
+        col.prop(settings, "import_cga_entities")
+        col.prop(settings, "import_placeables")
+        col.prop(settings, "import_lighting")
+        col.prop(settings, "import_static_lights")
+        col.prop(settings, "import_skybox")
         col.prop(settings, "import_npcs")
         if settings.import_npcs:
             sub = col.box().column(align=True)
             sub.prop(settings, "import_npc_models")
             sub.prop(settings, "animate_npcs")
-            sub.prop(settings, "import_nameplates", text="Nomes 3D (Pesado)")
-            if settings.import_nameplates:
-                sub.operator("aion.toggle_npc_names", text="Ocultar/Mostrar Nomes", icon="HIDE_OFF")
+            sub.prop(settings, "import_nameplates", text="Nomes 3D (PT-BR)")
             sub.prop(settings, "import_monsters")
             sub.prop(settings, "import_friendly_npcs")
             sub.prop(settings, "import_ambient_creatures")
-        col.prop(settings, "import_water")
-        col.prop(settings, "import_lighting")
-        col.prop(settings, "import_skybox")
         col.prop(settings, "import_collision")
 
 

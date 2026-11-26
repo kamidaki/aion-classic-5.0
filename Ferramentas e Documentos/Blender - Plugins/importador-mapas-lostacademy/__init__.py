@@ -1,10 +1,10 @@
 bl_info = {
     "name": "Aion Map Toolkit - Editor & Importer",
     "author": "Aion Classic & Retail Tools",
-    "version": (2, 1, 0),
+    "version": (2, 2, 0),
     "blender": (4, 0, 0),
     "location": "3D Viewport > Sidebar > Aion Map, File > Import/Export",
-    "description": "Importador Linear Assíncrono Não-Bloqueante (60+ FPS para PC Fraco) e Editor de Mapas do Aion com Salvamento Direto",
+    "description": "Importador Linear Completo e Otimizado (60+ FPS, 100% do Mapa, Rotas de NPCs e Toggle ao Vivo) e Editor com Salvamento Direto",
     "category": "Import-Export",
 }
 

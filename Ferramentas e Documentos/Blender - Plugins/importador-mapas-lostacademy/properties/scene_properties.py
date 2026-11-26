@@ -23,6 +23,91 @@ from config.settings import (
 )
 
 
+_CATEGORY_COLLECTION_MAP = {
+    "import_terrain": ("TERRAIN",),
+    "import_buildings": ("BUILDINGS",),
+    "import_props": ("PROPS",),
+    "import_rocks": ("ROCKS",),
+    "import_vegetation": ("VEGETATION",),
+    "import_trees": ("Trees & Forest",),
+    "import_bushes_flowers": ("Bushes & Flowers",),
+    "import_grass": ("Grass & Cover",),
+    "import_water": ("WATER",),
+    "import_lighting": ("LIGHTING", "AION Static Deferred Lights", "Aion Environment"),
+    "import_environment_lighting": ("LIGHTING", "Aion Environment"),
+    "import_static_lights": ("AION Static Deferred Lights",),
+    "import_skybox": ("SKYBOX", "Aion Sky & Environment"),
+    "import_particle_effects": ("EFFECTS", "Aion Particle Effects"),
+    "import_cga_entities": ("AION CGA Entities",),
+    "import_placeables": ("PLACEABLES", "AION Mission Placeables"),
+    "import_npcs": ("NPCS",),
+    "import_monsters": ("Monsters & Hostiles",),
+    "import_friendly_npcs": ("NPCs - Friendly",),
+    "import_ambient_creatures": ("NPCs - Ambient Fauna",),
+    "import_nameplates": ("NPC_NAMES",),
+    "import_collision": ("COLLISION",),
+}
+
+
+def apply_category_visibility(scene, settings, prop_name: str) -> None:
+    """Instantly toggles visibility of imported collections/shaders without reloading."""
+    if scene is None or settings is None:
+        return
+    visible = bool(getattr(settings, prop_name, True))
+
+    if prop_name == "import_terrain_shadows":
+        mat = bpy.data.materials.get("Aion Terrain Blend Shader Preview")
+        if mat and mat.use_nodes and mat.node_tree:
+            mult = mat.node_tree.nodes.get("AION_TerrainShadowMultiply")
+            if mult is not None:
+                fac = mult.inputs.get("Factor_Float") or mult.inputs.get("Fac") or mult.inputs[0]
+                if fac is not None:
+                    fac.default_value = 1.0 if visible else 0.0
+                mat.node_tree.update_tag()
+        return
+
+    target_names = set(_CATEGORY_COLLECTION_MAP.get(prop_name, ()))
+    if not target_names:
+        return
+
+    def _walk_layer_cols(layer_col):
+        col = getattr(layer_col, "collection", None)
+        if col is not None and col.name in target_names:
+            try:
+                layer_col.hide_viewport = not visible
+            except Exception:
+                pass
+        for child in getattr(layer_col, "children", ()):
+            _walk_layer_cols(child)
+
+    for col_name in target_names:
+        col = bpy.data.collections.get(col_name)
+        if col is not None:
+            col.hide_viewport = not visible
+            col.hide_render = not visible
+
+    view_layer = getattr(bpy.context, "view_layer", None)
+    if view_layer is not None and hasattr(view_layer, "layer_collection"):
+        _walk_layer_cols(view_layer.layer_collection)
+
+    if prop_name == "import_skybox":
+        world = getattr(scene, "world", None)
+        if world and world.use_nodes and world.node_tree:
+            bg = next((n for n in world.node_tree.nodes if n.type == "BACKGROUND"), None)
+            if bg and "Strength" in bg.inputs:
+                bg.inputs["Strength"].default_value = 0.8 if visible else 0.0
+
+
+def _make_visibility_updater(prop_name: str):
+    def _update(self, context):
+        if self.get("aion_syncing_visibility"):
+            return
+        sc = getattr(context, "scene", None) or getattr(bpy.context, "scene", None)
+        apply_category_visibility(sc, self, prop_name)
+
+    return _update
+
+
 def _on_performance_profile_changed(self, context) -> None:
     """Keeps internal legacy LOD properties aligned with the simplified performance profile."""
     cfg = resolve_profile_settings(getattr(self, "performance_profile", "LOW"))
@@ -70,6 +155,13 @@ class AionSceneSettings(bpy.types.PropertyGroup):
         description="Aion game client root directory",
         subtype="DIR_PATH",
         default=get_default_client_root(),
+    )
+
+    emulator_data_dir: StringProperty(
+        name="Emulator Static Data",
+        description="Opcional: pasta static_data do emulador para rotas de caminhada (auto-detectada quando em branco)",
+        subtype="DIR_PATH",
+        default="",
     )
 
     level_path: StringProperty(
@@ -133,6 +225,7 @@ class AionSceneSettings(bpy.types.PropertyGroup):
         name="Import Terrain",
         description="Import terrain heightfield mesh and materials",
         default=True,
+        update=_make_visibility_updater("import_terrain"),
     )
     import_terrain_textures: BoolProperty(
         name="Terrain Detail Textures",
@@ -153,6 +246,7 @@ class AionSceneSettings(bpy.types.PropertyGroup):
         name="Terrain Lightmap / Baked Shadows",
         description="Apply terrainlm.pak baked shadow maps to terrain shader",
         default=True,
+        update=_make_visibility_updater("import_terrain_shadows"),
     )
 
     # Architecture & Props
@@ -160,6 +254,7 @@ class AionSceneSettings(bpy.types.PropertyGroup):
         name="Buildings & Architecture",
         description="Import buildings, structures, bridges, and monuments",
         default=True,
+        update=_make_visibility_updater("import_buildings"),
     )
     import_structures: BoolProperty(
         name="Structural Geometry",
@@ -175,11 +270,13 @@ class AionSceneSettings(bpy.types.PropertyGroup):
         name="Props & Decorative Objects",
         description="Import camp items, furniture, barrels, and totems",
         default=True,
+        update=_make_visibility_updater("import_props"),
     )
     import_rocks: BoolProperty(
         name="Rocks & Natural Formations",
         description="Import boulders, cliffs, stalagmites, and crystals",
         default=True,
+        update=_make_visibility_updater("import_rocks"),
     )
     import_interactive_objects: BoolProperty(
         name="Interactive Objects & Signs",
@@ -190,30 +287,35 @@ class AionSceneSettings(bpy.types.PropertyGroup):
     # Vegetation
     import_vegetation: BoolProperty(
         name="Vegetation",
-        description="Master switch for all vegetation elements (can add thousands of objects; enable when needed)",
-        default=False,
+        description="Master switch for all vegetation elements (instanciado via Geometry Nodes a 60+ FPS)",
+        default=True,
+        update=_make_visibility_updater("import_vegetation"),
     )
     import_trees: BoolProperty(
         name="Trees & Forest",
         description="Import trees, trunks, branches, and pines",
         default=True,
+        update=_make_visibility_updater("import_trees"),
     )
     import_grass: BoolProperty(
         name="Grass & Cover",
-        description="Import dense grass fields and weeds (over 10,000 objects on full maps; enable if detailed grass cover is required)",
-        default=False,
+        description="Import grass fields, weeds, and ground cover via Geometry Nodes",
+        default=True,
+        update=_make_visibility_updater("import_grass"),
     )
     import_bushes_flowers: BoolProperty(
         name="Bushes & Flowers",
         description="Import shrubs, flowers, crops, and aquatic flora",
         default=True,
+        update=_make_visibility_updater("import_bushes_flowers"),
     )
 
     # Water & Liquids
     import_water: BoolProperty(
-        name="Water Planes",
-        description="Import water plane and animated surface shaders",
+        name="Water Planes & Volumes",
+        description="Import water plane, WaterVolumes, and translucent liquid shaders",
         default=True,
+        update=_make_visibility_updater("import_water"),
     )
     import_textured_liquid_surface: BoolProperty(
         name="Textured Liquid Surface",
@@ -226,33 +328,39 @@ class AionSceneSettings(bpy.types.PropertyGroup):
         name="Environment Lighting",
         description="Import environment sun and ambient lighting",
         default=True,
+        update=_make_visibility_updater("import_lighting"),
     )
     import_environment_lighting: BoolProperty(
         name="Daylight Sun & Ambient",
         description="Import sun orientation and daylight profile",
         default=True,
+        update=_make_visibility_updater("import_environment_lighting"),
     )
     import_skybox: BoolProperty(
         name="Skybox Background",
         description="Import camera skybox background and physical skydome",
-        default=False,
+        default=True,
+        update=_make_visibility_updater("import_skybox"),
     )
     import_static_lights: BoolProperty(
         name="Static Deferred Lights",
         description="Import point lights from staticdeferredlights.lst",
-        default=False,
+        default=True,
+        update=_make_visibility_updater("import_static_lights"),
     )
 
     # Effects & Dynamics
     import_particle_effects: BoolProperty(
         name="Particle Effects",
         description="Import particle effects and sprites from entitycontexts",
-        default=False,
+        default=True,
+        update=_make_visibility_updater("import_particle_effects"),
     )
     import_cga_entities: BoolProperty(
         name="CGA Entities",
         description="Import placed .cga entities as lightweight mesh instances",
         default=True,
+        update=_make_visibility_updater("import_cga_entities"),
     )
     animate_cga_controllers: BoolProperty(
         name="Animate CGA Controllers",
@@ -262,19 +370,22 @@ class AionSceneSettings(bpy.types.PropertyGroup):
     import_placeables: BoolProperty(
         name="Obelisks & Placeables",
         description="Import obelisks, pedestals, and mission placeables",
-        default=False,
+        default=True,
+        update=_make_visibility_updater("import_placeables"),
     )
     import_collision: BoolProperty(
         name="Collision Geometry",
         description="Import invisible collision walls and walk obstacles (recommended False for visual scene editing)",
         default=False,
+        update=_make_visibility_updater("import_collision"),
     )
 
     # NPCs & World Spawns (Section 7)
     import_npcs: BoolProperty(
         name="NPCs & World Spawns",
         description="Import authoritative NPC spawns linearly after the map finishes",
-        default=False,
+        default=True,
+        update=_make_visibility_updater("import_npcs"),
     )
     import_npc_models: BoolProperty(
         name="Resolve & Load 3D NPC Models",
@@ -282,24 +393,27 @@ class AionSceneSettings(bpy.types.PropertyGroup):
         default=True,
     )
     animate_npcs: BoolProperty(
-        name="Animate NPCs (Armatures & Idle CAF)",
-        description="Build armature rigs and looping animations (heavy on weak CPUs/GPUs)",
-        default=False,
+        name="Animate NPCs (Walk Routes & CAF)",
+        description="Build armature rigs, looping CAF animations, and emulator walker patrol routes",
+        default=True,
     )
     import_monsters: BoolProperty(
         name="Monsters & Hostiles",
         description="Spawn monsters, wild creatures, and enemy mobs",
         default=True,
+        update=_make_visibility_updater("import_monsters"),
     )
     import_friendly_npcs: BoolProperty(
         name="Friendly NPCs & Merchants",
         description="Spawn town NPCs, quest givers, and merchants",
         default=True,
+        update=_make_visibility_updater("import_friendly_npcs"),
     )
     import_ambient_creatures: BoolProperty(
         name="Ambient Critters & Fauna",
         description="Spawn ambient fauna, birds, and critters",
         default=True,
+        update=_make_visibility_updater("import_ambient_creatures"),
     )
 
     # Hidden/Legacy LOD properties kept for backwards API compatibility
@@ -318,8 +432,9 @@ class AionSceneSettings(bpy.types.PropertyGroup):
 
     import_nameplates: BoolProperty(
         name="NPC 3D Nameplates",
-        description="Create 3D floating text nameplates above NPCs (heavy on GPU with many curves)",
-        default=False,
+        description="Create lightweight upright PT-BR 3D nameplates above NPCs",
+        default=True,
+        update=_make_visibility_updater("import_nameplates"),
     )
 
     import_lod0: BoolProperty(

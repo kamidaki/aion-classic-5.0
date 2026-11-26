@@ -31,6 +31,8 @@ _DEFAULT_TEXTURE_CANDIDATES = (
     "textures/defaults/mrt_oceansunbump.dds",
     "textures/defaults/caustics_sampler.dds",
     "textures/defaults/Default_ReflectionMap.dds",
+    "df1_water1.dds",
+    "df1_water2.dds",
 )
 _REFERENCE_RE = re.compile(
     rb"(?i)([A-Za-z0-9_./\\:\- ]+\.(?:cgf|cga|chr|dds|xml|lua|caf|st5|lst|bin|tmp|uvs|ctc))"
@@ -184,14 +186,20 @@ def resolve_liquid_texture_candidates(
     requested_kind: str = LIQUID_KIND_AUTO,
 ) -> tuple[LiquidTextureCandidate, ...]:
     client_root_path = Path(client_root)
+    resolver = None
+    try:
+        from core.pak_engine import get_pak_resolver
+        resolver = get_pak_resolver(client_root_path)
+    except Exception:
+        resolver = None
     candidates = []
     seen = set()
     for texture_ref in _DEFAULT_TEXTURE_CANDIDATES:
-        _append_candidate(candidates, seen, client_root_path, texture_ref, "default_candidate")
+        _append_candidate(candidates, seen, client_root_path, texture_ref, "default_candidate", resolver=resolver)
     for surface in level_data.surface_types:
         for value in (surface.detail_texture, surface.bumpmap, surface.material, surface.name):
             if value and infer_liquid_kind_from_text(value)[0] != LIQUID_KIND_UNKNOWN:
-                _append_candidate(candidates, seen, client_root_path, value, "leveldata_surface_type")
+                _append_candidate(candidates, seen, client_root_path, value, "leveldata_surface_type", resolver=resolver)
     if level_dir:
         references = extract_liquid_references(
             (
@@ -203,7 +211,7 @@ def resolve_liquid_texture_candidates(
         )
         for reference in references:
             if Path(reference).suffix.lower() == ".dds":
-                _append_candidate(candidates, seen, client_root_path, reference, "level_reference")
+                _append_candidate(candidates, seen, client_root_path, reference, "level_reference", resolver=resolver)
     requested_kind = (requested_kind or LIQUID_KIND_AUTO).upper()
     if requested_kind in {LIQUID_KIND_WATER, LIQUID_KIND_LAVA}:
         candidates = [
@@ -226,7 +234,7 @@ def liquid_surface_recipe_to_dict(recipe: LiquidSurfaceRecipe) -> dict:
     }
 
 
-def _append_candidate(candidates, seen, client_root: Path, texture_ref: str, source: str):
+def _append_candidate(candidates, seen, client_root: Path, texture_ref: str, source: str, *, resolver=None):
     normalized = str(texture_ref).strip().strip("\x00").replace("\\", "/")
     if not normalized or "." not in Path(normalized).name:
         return
@@ -235,11 +243,21 @@ def _append_candidate(candidates, seen, client_root: Path, texture_ref: str, sou
         return
     seen.add(key)
     liquid_kind, confidence, role, visual_candidate = classify_liquid_texture_role(normalized)
+    resolved_file = client_root / normalized
+    exists = resolved_file.is_file()
+    if not exists and resolver is not None:
+        try:
+            pak_res = resolver.resolve_resource(normalized) or resolver.resolve_resource(Path(normalized).name)
+            if pak_res is not None and pak_res.is_file():
+                resolved_file = pak_res
+                exists = True
+        except Exception:
+            pass
     candidates.append(
         LiquidTextureCandidate(
             texture=normalized,
-            resolved_path=str(client_root / normalized),
-            exists=(client_root / normalized).is_file(),
+            resolved_path=str(resolved_file),
+            exists=exists,
             source=source,
             liquid_kind=liquid_kind,
             confidence=confidence,
@@ -247,6 +265,60 @@ def _append_candidate(candidates, seen, client_root: Path, texture_ref: str, sou
             visual_candidate=visual_candidate,
         )
     )
+
+
+def parse_water_volumes(mission_xml_path: str | Path) -> list[dict]:
+    """
+    Parses `<Object Type="WaterVolume">` polygons/CGF references from `mission_mission0.xml`
+    representing elevated rivers, lakes, and pools above sea level.
+    """
+    xml_path = Path(mission_xml_path)
+    if not xml_path.is_file():
+        return []
+    try:
+        import xml.etree.ElementTree as ET
+        root = ET.fromstring(xml_path.read_text(encoding="utf-8", errors="ignore"))
+    except Exception:
+        return []
+
+    volumes: list[dict] = []
+    for elem in root.iter("Object"):
+        if elem.attrib.get("Type") != "WaterVolume":
+            continue
+        name = str(elem.attrib.get("Name") or "WaterVolume").strip()
+        water_geom = str(elem.attrib.get("WaterGeometry") or "").strip()
+        material = str(elem.attrib.get("Material") or "").strip()
+        pos_str = str(elem.attrib.get("Pos") or "").strip()
+        pos = None
+        if pos_str:
+            parts = pos_str.split(",")
+            if len(parts) == 3:
+                try:
+                    pos = (float(parts[0]), float(parts[1]), float(parts[2]))
+                except ValueError:
+                    pos = None
+        points: list[tuple[float, float, float]] = []
+        pts_parent = elem.find("Points")
+        if pts_parent is not None:
+            for pt in pts_parent.findall("Point"):
+                p_str = str(pt.attrib.get("Pos") or "").strip()
+                parts = p_str.split(",")
+                if len(parts) == 3:
+                    try:
+                        points.append((float(parts[0]), float(parts[1]), float(parts[2])))
+                    except ValueError:
+                        continue
+        if len(points) >= 3 or water_geom:
+            volumes.append(
+                {
+                    "name": name,
+                    "pos": pos or (points[0] if points else (0.0, 0.0, 0.0)),
+                    "water_geometry": water_geom,
+                    "material": material,
+                    "points": points,
+                }
+            )
+    return volumes
 
 
 def _select_preset(selected_kind: str, requested_preset: str) -> str:

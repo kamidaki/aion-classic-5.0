@@ -25,14 +25,21 @@ from .liquid_surface import (
     infer_liquid_kind,
     infer_liquid_kind_from_text,
     liquid_surface_recipe_to_dict,
+    parse_water_volumes,
     resolve_liquid_texture_candidates,
 )
 from .client_npcs_data import resolve_client_npc_asset
 from .npc_spawns import (
     NpcSpawn,
     NpcTemplate,
+    WalkerRoute,
+    WalkerStep,
+    find_emulator_static_data_dir,
     parse_world_npc_spawns,
     parse_client_npc_templates,
+    parse_emulator_map_spawns,
+    parse_walker_routes,
+    resolve_world_id_for_map,
 )
 from .mission_placeables import (
     MissionPlaceableCandidate,
@@ -179,4 +186,11 @@ __all__ = [
     "resolve_liquid_texture_candidates",
     "resolve_client_npc_asset",
     "static_deferred_lights_to_dict",
+    "WalkerRoute",
+    "WalkerStep",
+    "find_emulator_static_data_dir",
+    "resolve_world_id_for_map",
+    "parse_emulator_map_spawns",
+    "parse_walker_routes",
+    "parse_water_volumes",
 ]

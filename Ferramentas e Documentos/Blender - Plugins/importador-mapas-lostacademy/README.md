@@ -127,16 +127,17 @@ Os controles redundantes de LOD foram unificados em **um único seletor de Perfi
 
 ### Perfis de Desempenho
 - **PC Fraco / 60+ FPS (Padrão):**
-  - Terreno em passo 4 (`257x257`, ~16x menos vértices) com pesos calculados apenas na grade reduzida e até **6 texturas** dominantes no shader + lightmap de sombra (`cover_low_shadow.dds`).
-  - Modelos importados preferencialmente em **LOD 2** (`_lod2.cgf` -> `_lod1.cgf` -> base) com **fusão automática de sub-malhas estáticas** (1 objeto instanciado por modelo na cena em vez de múltiplos sub-objetos).
-  - Shaders simplificados sem `Normal Map`, `Gloss`, `Subsurface Scattering` (SSS em folhas), `Transmission` (refração em água), modificadores `SUBSURF`/`WAVE` ou drivers Python por frame.
-  - Sombra dinâmica desativada em objetos/folhagens/água e Eevee ajustado (`use_raytracing=False`, `use_fast_gi=False`, `use_shadows=False`, `taa_samples=1`, `use_simplify=True`).
+  - Terreno em passo 4 (`257x257`) consolidado em **1 único material blend shader** com até **10 texturas** de detalhe + lightmap de sombra (`cover_low_shadow.dds`), eliminando compilação múltipla no Eevee.
+  - Vegetação densa (`objects.lst`, árvores, arbustos, flores e grama) instanciada automaticamente via **Geometry Nodes (`AION_PointInstancer`)**, mantendo 10.000+ instâncias a 60+ FPS com zero congelamento.
+  - Modelos importados preferencialmente em **LOD 2** (`_lod2.cgf` -> `_lod1.cgf` -> base) com **fusão automática de sub-malhas estáticas** (1 objeto instanciado por modelo na cena).
+  - Câmera/viewport ajustada automaticamente (`clip_end = 50000 m`) e enquadrada no centro do mapa logo após construir o terreno.
+  - Shaders simplificados e sombra dinâmica desativada em objetos/folhagens/partículas/água (`use_raytracing=False`, `use_fast_gi=False`, `use_shadows=False`, `taa_samples=1`, `use_simplify=True`).
 - **Equilibrado:** Terreno passo 2 (`513x513`), modelos **LOD 1**, até **8 texturas** de terreno e mapas normais sem SSS/refração.
 - **Alta Qualidade:** Terreno passo 2, modelos base **LOD 0**, até **12 texturas** de terreno e mapas PBR completos.
 
-### Categorias de Elementos (Toggles Independentes)
-- **Terreno, Construções, Props, Rochas e Água:** Ativos por padrão e carregados em etapas lineares.
-- **Vegetação, Colisão, Luzes Estáticas, Skybox, Efeitos, Animações e NPCs:** Opcionais sob demanda (desmarcados por padrão no perfil leve para manter 60+ FPS imediatos).
+### Categorias de Elementos (100% Ativas por Padrão + Toggle ao Vivo)
+- **Tudo Visível por Padrão:** Terreno, Lightmap/Sombras, Construções, Props, Rochas, Vegetação (Árvores, Flores/Arbustos, Grama), Água + WaterVolumes, Efeitos de Partículas (`.prt` + `.dds`), Entidades `.cga`, Obeliscos/Placeables, Luzes, SkyDome/Skybox e NPCs com nomes PT-BR e rotas de caminhada vêm **marcados por padrão** (apenas `Collision Geometry` permanece desmarcado para manter a visão limpa).
+- **Ocultar / Exibir em Tempo Real:** Marcar ou desmarcar qualquer caixinha de categoria no painel lateral **Aion Map** oculta/exibe instantaneamente as respectivas coleções (ou fator Multiply do lightmap do terreno) sem precisar recarregar o mapa!
 
 ---
 
@@ -335,8 +336,16 @@ Todo travamento de interface foi eliminado com execução estritamente **linear 
 ### Sistema Automático de LOD Companion (`_lod2`, `_lod1`, `_lod0`)
 O perfil selecionado em **Perfil de Desempenho** escolhe automaticamente a melhor malha disponível (`_lod2.cgf` no perfil PC Fraco, `_lod1.cgf` no Equilibrado e base `.cgf` na Alta Qualidade), com fallback gracioso.
 
-### Nameplates Tridimensionais de NPCs (Opcional)
-Quando **Importar NPCs** e **NPC 3D Nameplates** são marcados manualmente, placas de identificação leves em texto 3D (`NPCLabel_{id}`) são criadas na coleção `NPC_NAMES` (desativadas por padrão para máximo FPS).
+### Nameplates Tridimensionais e Rotas de Caminhada PT-BR (v2.2.0)
+Quando **NPCs & World Spawns** está ativo:
+- Os nomes e títulos oficiais dos NPCs e monstros são resolvidos automaticamente em **Português (PT-BR)** via `l10n/<idioma>/data/z_Patch001.pak` + `data.pak` (padrão `BRA`) antes do fallback coreano.
+- Com **Animate NPCs** habilitado, o importador lê automaticamente as rotas de patrulha (`walker_id` -> `npc_walker.xml`) da pasta `static_data` do emulador (ou informada em **Emulator Data**), criando ciclos suaves `Linear + CYCLES` e ciclos NLA de caminhada/idle em `CAF`.
+- Com **NPC 3D Nameplates (PT-BR)** ativo, placas verticais leves com material `Emission` compartilhado por facção (`Friendly`, `Monster`, `Ambient`) flutuam sobre a cabeça de cada NPC na coleção `NPC_NAMES` com toggle ao vivo sem recarregar o mapa.
+
+### Novidades da Versão 2.2.0
+1. **100% do Mapa Habilitado por Padrão + Toggle em Tempo Real:** Todas as categorias visuais vêm ativas, e qualquer caixa no painel **Aion Map** oculta ou exibe instantaneamente sua coleção na viewport sem reimportar.
+2. **Zero Congelamento Pós-Carregamento:** Corrigido falso status `"Importação cancelada pelo usuário."`, removidos 28 materiais não utilizados do terreno (`1` shader unificado no Eevee) e configurado `clip_end = 50000 m` com enquadramento automático ao terminar o terreno.
+3. **Vegetação via Geometry Nodes & Efeitos Completos:** `objects.lst` (10.937+ árvores, arbustos, flores e grama), planos e volumes de água translúcidos (`WaterVolume`), SkyDome físico, Obeliscos/Placeables e efeitos de partículas (`Effects_Meshes.pak` + `Effects_Textures.pak`) carregam linearmente mantendo 60+ FPS.
 
 ### Edição Completa de Mapas (Adicionar, Mover, Deletar, Repacotar)
 O pipeline de edição agora suporta operações completas:

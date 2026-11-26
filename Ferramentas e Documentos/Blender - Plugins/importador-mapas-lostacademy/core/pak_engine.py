@@ -367,6 +367,10 @@ class AionLevelUnpacker:
         "objects.lst",
         "terrain/land_map.h32",
         "staticdeferredlights.lst",
+        "entitycontexts.lst",
+        "entitycontexts2.lst",
+        "materials.xml",
+        "particles.lst",
     ]
 
     @classmethod
@@ -382,11 +386,12 @@ class AionLevelUnpacker:
         cache_dir = level_path / ".aion_cache"
         marker_file = cache_dir / ".level_pak_mtime"
         level_pak_mtime = pak_path.stat().st_mtime
+        expected_marker = f"v2:{level_pak_mtime}"
 
         if marker_file.is_file():
             try:
-                cached_mtime = float(marker_file.read_text(encoding="utf-8").strip())
-                if cached_mtime == level_pak_mtime:
+                cached_marker = marker_file.read_text(encoding="utf-8").strip()
+                if cached_marker == expected_marker:
                     return cache_dir
             except Exception:
                 pass
@@ -427,7 +432,7 @@ class AionLevelUnpacker:
                 pass
 
         try:
-            _atomic_write_text(marker_file, str(level_pak_mtime), encoding="utf-8")
+            _atomic_write_text(marker_file, expected_marker, encoding="utf-8")
         except Exception:
             pass
 
@@ -520,8 +525,8 @@ class AionCatalogIndex:
             if match:
                 return match
 
-            # 2. Stripped prefix matches (e.g. levels/common/, textures/, objects/)
-            for prefix in ("levels/common/", "textures/", "objects/", "shaders/"):
+            # 2. Stripped prefix matches (e.g. levels/common/, textures/, objects/, shaders/, effects/)
+            for prefix in ("levels/common/", "textures/", "objects/", "shaders/", "effects/"):
                 if clean_lower.startswith(prefix):
                     sub = clean_lower[len(prefix):]
                     match = self._path_to_pak_entry.get(sub)
@@ -595,7 +600,7 @@ class AionCatalogIndex:
                     indexed_paks_list.append(rel_p)
 
             payload = {
-                "version": 1,
+                "version": 2,
                 "timestamp": time.time(),
                 "client_root": str(self.client_root),
                 "indexed_paks": indexed_paks_list,
@@ -641,7 +646,7 @@ class AionCatalogIndex:
                 return False
 
             data = json.loads(raw_bytes.decode("utf-8"))
-            if not isinstance(data, dict) or data.get("version") != 1:
+            if not isinstance(data, dict) or data.get("version") != 2:
                 return False
 
             entries_list = data.get("entries", [])
@@ -715,6 +720,7 @@ class AionClientPakResolver:
         self.catalog = AionCatalogIndex(self.client_root)
         self._resolved_cache: Dict[str, Optional[Path]] = {}
         self._directory_children_cache: Dict[Path, Dict[str, Path]] = {}
+        self._scanned_candidate_dirs: set[Path] = set()
         self._catalog_initialized = False
 
     def _init_cache_dir(self) -> Path:
@@ -745,36 +751,43 @@ class AionClientPakResolver:
             if common_dir.is_dir():
                 self.catalog.index_directory_paks(common_dir, "*.pak")
 
-            # Index client Textures PAKs (recursively)
+            # Index client Textures PAKs (recursively in official precedence order)
             tex_dir = self.client_root / "Textures"
             if tex_dir.is_dir():
-                for pak_file in tex_dir.rglob("*.pak"):
+                for pak_file in sorted(tex_dir.rglob("*.pak"), key=cryengine_pak_sort_key):
                     if cancel_event is not None and cancel_event.is_set():
                         return
                     self.catalog.index_pak(pak_file)
 
-            # Index client Objects PAKs (recursively for all subdirectories like npc/level_object, etc.)
+            # Index client Effects PAKs (.prt libraries, effect CGFs, and particle DDS textures)
+            effects_dir = self.client_root / "Effects"
+            if effects_dir.is_dir():
+                for pak_file in sorted(effects_dir.rglob("*.pak"), key=cryengine_pak_sort_key):
+                    if cancel_event is not None and cancel_event.is_set():
+                        return
+                    self.catalog.index_pak(pak_file)
+
+            # Index client Objects PAKs (recursively for all subdirectories)
             obj_dir = self.client_root / "objects"
             if obj_dir.is_dir():
-                for pak_file in obj_dir.rglob("*.pak"):
+                for pak_file in sorted(obj_dir.rglob("*.pak"), key=cryengine_pak_sort_key):
                     if cancel_event is not None and cancel_event.is_set():
                         return
                     self.catalog.index_pak(pak_file)
 
-            # Index Data/npcs PAK
-            npc_pak = self.client_root / "Data" / "npcs" / "npcs.pak"
-            if npc_pak.is_file():
-                self.catalog.index_pak(npc_pak)
-
-            # Index Data/world PAK
-            world_pak = self.client_root / "Data" / "world" / "world.pak"
-            if world_pak.is_file():
-                self.catalog.index_pak(world_pak)
+            # Index Data/npcs, Data/world, Data/skybox PAKs
+            for sub_p in ("npcs", "world", "skybox"):
+                sd = self.client_root / "Data" / sub_p
+                if sd.is_dir():
+                    for pak_file in sorted(sd.rglob("*.pak"), key=cryengine_pak_sort_key):
+                        if cancel_event is not None and cancel_event.is_set():
+                            return
+                        self.catalog.index_pak(pak_file)
 
             # Index Shaders (recursively)
             shaders_dir = self.client_root / "Shaders"
             if shaders_dir.is_dir():
-                for pak_file in shaders_dir.rglob("*.pak"):
+                for pak_file in sorted(shaders_dir.rglob("*.pak"), key=cryengine_pak_sort_key):
                     if cancel_event is not None and cancel_event.is_set():
                         return
                     self.catalog.index_pak(pak_file)
@@ -793,21 +806,20 @@ class AionClientPakResolver:
         if not parts:
             return
 
+        candidate_dirs: list[Path] = []
         if len(parts) > 1:
-            cand_dir = self.client_root / Path(*parts[:-1])
+            candidate_dirs.append(self.client_root / Path(*parts[:-1]))
+            if len(parts) > 2:
+                candidate_dirs.append(self.client_root / Path(*parts[:-2]))
+        if clean_norm.startswith("objects/") and len(parts) >= 2:
+            candidate_dirs.append(self.client_root / "objects" / parts[1])
+
+        for cand_dir in candidate_dirs:
+            if cand_dir in self._scanned_candidate_dirs:
+                continue
+            self._scanned_candidate_dirs.add(cand_dir)
             if cand_dir.is_dir():
                 self.catalog.index_directory_paks(cand_dir, "*.pak")
-            if len(parts) > 2:
-                cand_parent = self.client_root / Path(*parts[:-2])
-                if cand_parent.is_dir():
-                    self.catalog.index_directory_paks(cand_parent, "*.pak")
-
-        if clean_norm.startswith("objects/"):
-            obj_dir = self.client_root / "objects"
-            if len(parts) >= 2:
-                sub_dir = obj_dir / parts[1]
-                if sub_dir.is_dir():
-                    self.catalog.index_directory_paks(sub_dir, "*.pak")
 
     def close(self) -> None:
         """Closes catalog archives and releases all file locks."""

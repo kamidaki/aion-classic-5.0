@@ -19,7 +19,7 @@ PERFORMANCE_PROFILES: Dict[str, Dict[str, Any]] = {
         "label": "PC Fraco / 60+ FPS (Recomendado)",
         "terrain_lod": 4,
         "target_model_lod": 2,
-        "max_terrain_blend_layers": 6,
+        "max_terrain_blend_layers": 10,
         "simple_shaders": True,
         "disable_dynamic_shadows": True,
         "merge_template_submeshes": True,
@@ -97,13 +97,55 @@ def _safe_setattr(obj: Any, attr: str, value: Any) -> bool:
         return False
 
 
+def frame_viewport_on_map(
+    center_xyz: tuple[float, float, float],
+    distance: float = 1200.0,
+) -> int:
+    """
+    Centers all open 3D Viewports on the map center with clip_end=50000m using pure data API
+    (no bpy.ops required; safe inside bpy.app.timers and background mode).
+    """
+    import math
+    from mathutils import Euler, Vector
+
+    updated = 0
+    target = Vector((float(center_xyz[0]), float(center_xyz[1]), float(center_xyz[2])))
+    rot_q = Euler((math.radians(55.0), 0.0, math.radians(-35.0)), "XYZ").to_quaternion()
+    dist_val = max(50.0, float(distance))
+
+    for wm in getattr(bpy.data, "window_managers", ()):
+        for win in getattr(wm, "windows", ()):
+            screen = getattr(win, "screen", None)
+            if screen is None:
+                continue
+            for area in getattr(screen, "areas", ()):
+                if getattr(area, "type", "") != "VIEW_3D":
+                    continue
+                for space in getattr(area, "spaces", ()):
+                    if getattr(space, "type", "") != "VIEW_3D":
+                        continue
+                    _safe_setattr(space, "clip_start", 1.0)
+                    _safe_setattr(space, "clip_end", 50000.0)
+                    r3d = getattr(space, "region_3d", None)
+                    if r3d is not None:
+                        _safe_setattr(r3d, "view_location", target)
+                        _safe_setattr(r3d, "view_distance", dist_val)
+                        _safe_setattr(r3d, "view_rotation", rot_q)
+                    updated += 1
+                try:
+                    area.tag_redraw()
+                except Exception:
+                    pass
+    return updated
+
+
 def apply_viewport_60fps_optimization(
     context: bpy.types.Context | None = None,
     profile: str | None = "LOW",
 ) -> Dict[str, Any]:
     """
     Configures scene Eevee, simplify, and 3D viewport clipping/shading settings
-    for smooth 60+ FPS navigation on weak GPUs without altering global user preferences.
+    for smooth 60+ FPS navigation on weak GPUs across all open windows.
     """
     cfg = resolve_profile_settings(profile)
     ctx = context or getattr(bpy, "context", None)
@@ -134,22 +176,35 @@ def apply_viewport_60fps_optimization(
             applied["eevee_shadows"] = not cfg["disable_dynamic_shadows"]
             applied["taa_samples"] = cfg["taa_samples"]
 
-    screen = getattr(ctx, "screen", None) if ctx else None
-    if screen is not None:
-        is_low = cfg["profile"] == "LOW"
+    is_low = cfg["profile"] == "LOW"
+    screens = []
+    for wm in getattr(bpy.data, "window_managers", ()):
+        for win in getattr(wm, "windows", ()):
+            sc = getattr(win, "screen", None)
+            if sc is not None and sc not in screens:
+                screens.append(sc)
+    ctx_screen = getattr(ctx, "screen", None) if ctx else None
+    if ctx_screen is not None and ctx_screen not in screens:
+        screens.append(ctx_screen)
+
+    for screen in screens:
         for area in getattr(screen, "areas", ()):
             if getattr(area, "type", "") != "VIEW_3D":
                 continue
             for space in getattr(area, "spaces", ()):
                 if getattr(space, "type", "") != "VIEW_3D":
                     continue
-                _safe_setattr(space, "clip_start", 0.5)
-                _safe_setattr(space, "clip_end", 5000.0)
+                _safe_setattr(space, "clip_start", 1.0)
+                _safe_setattr(space, "clip_end", 50000.0)
                 shading = getattr(space, "shading", None)
                 if shading is not None and is_low:
                     shading_type = getattr(shading, "type", "")
                     if shading_type == "MATERIAL":
                         _safe_setattr(shading, "use_scene_lights", False)
                 applied["viewports_updated"] += 1
+            try:
+                area.tag_redraw()
+            except Exception:
+                pass
 
     return applied
