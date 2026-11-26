@@ -18,7 +18,16 @@ class SkyboxImportResult:
 
 
 def create_environment_lighting_preview(
-    scene, level_dir, client_root, *, time_option="Daylight", sun_energy=2.0, ambient_strength=0.3,
+    scene,
+    level_dir,
+    client_root,
+    *,
+    time_option="Daylight",
+    sun_energy=2.0,
+    ambient_strength=0.3,
+    use_shadow: bool = True,
+    pre_resolved_report=None,
+    target_collection=None,
 ):
     import bpy
     from mathutils import Vector
@@ -26,8 +35,12 @@ def create_environment_lighting_preview(
     try:
         if any(not math.isfinite(value) or value < 0 for value in (sun_energy, ambient_strength)):
             raise ValueError("Lighting preview strengths must be finite and non-negative")
-        report = resolve_level_environment(
-            Path(level_dir) / "mission_mission0.xml", client_root, time_option=time_option,
+        report = (
+            pre_resolved_report
+            if pre_resolved_report is not None
+            else resolve_level_environment(
+                Path(level_dir) / "mission_mission0.xml", client_root, time_option=time_option,
+            )
         )
         settings = lighting_preview_settings(report)
     except (OSError, ElementTree.ParseError, ValueError) as error:
@@ -90,12 +103,13 @@ def create_environment_lighting_preview(
                 sun.data = sun.data.copy()
         else:
             sun = bpy.data.objects.new("AION Environment Sun", bpy.data.lights.new("AION Environment Sun", "SUN"))
-            scene.collection.objects.link(sun)
+            dest_col = target_collection if target_collection is not None else scene.collection
+            dest_col.objects.link(sun)
         sun.rotation_mode = "QUATERNION"
         sun.rotation_quaternion = Vector(settings.ray_direction).to_track_quat("-Z", "Y")
         sun.data.color = settings.sun_color
         sun.data.energy = sun_energy
-        sun.data.use_shadow = True
+        sun.data.use_shadow = bool(use_shadow)
         sun["aion_environment_sun"] = source_key
         sun["aion_sun_ray_direction"] = settings.ray_direction
         sun["aion_sun_source"] = settings.source
@@ -174,12 +188,16 @@ def _panorama(images, width=2048):
     return output
 
 
-def create_skybox_preview(scene, level_dir, client_root, *, time_option="Daylight"):
+def create_skybox_preview(scene, level_dir, client_root, *, time_option="Daylight", pre_resolved_report=None):
     import bpy
 
     try:
-        report = resolve_level_environment(
-            Path(level_dir) / "mission_mission0.xml", client_root, time_option=time_option,
+        report = (
+            pre_resolved_report
+            if pre_resolved_report is not None
+            else resolve_level_environment(
+                Path(level_dir) / "mission_mission0.xml", client_root, time_option=time_option,
+            )
         )
     except (OSError, ElementTree.ParseError, ValueError) as error:
         return SkyboxImportResult(False, "", f"environment_read_error: {error}")
@@ -299,6 +317,8 @@ def create_physical_skydome(
     *,
     center: tuple[float, float, float] = (1536.0, 1536.0, 100.0),
     radius: float = 3500.0,
+    animate_clouds: bool = False,
+    override_viewport_shading: bool = False,
 ):
     """
     Creates or imports an authentic Aion physical SkyDome mesh centered over the map
@@ -405,11 +425,12 @@ def create_physical_skydome(
             cloud_map = nodes.new("ShaderNodeMapping")
             cloud_map.location = (-400, 250)
             links.new(tex_coord.outputs["UV"], cloud_map.inputs["Vector"])
-            try:
-                drv = cloud_map.inputs["Location"].driver_add("default_value", 0)
-                drv.driver.expression = "frame * 0.0008"
-            except Exception:
-                pass
+            if animate_clouds:
+                try:
+                    drv = cloud_map.inputs["Location"].driver_add("default_value", 0)
+                    drv.driver.expression = "frame * 0.0008"
+                except Exception:
+                    pass
             links.new(cloud_map.outputs["Vector"], cloud_node.inputs["Vector"])
 
             mix = nodes.new("ShaderNodeMix")
@@ -439,16 +460,17 @@ def create_physical_skydome(
     sky_obj.data.materials.clear()
     sky_obj.data.materials.append(mat)
 
-    # Enable scene world in 3D viewports so user sees sky lighting immediately
-    try:
-        if hasattr(context, "screen") and context.screen:
-            for area in context.screen.areas:
-                if area.type == "VIEW_3D":
-                    for space in area.spaces:
-                        if space.type == "VIEW_3D":
-                            space.shading.use_scene_world = True
-                            space.shading.use_scene_lights = True
-    except Exception:
-        pass
+    if override_viewport_shading:
+        # Optionally enable scene world in 3D viewports when high-quality mode wants it
+        try:
+            if hasattr(context, "screen") and context.screen:
+                for area in context.screen.areas:
+                    if area.type == "VIEW_3D":
+                        for space in area.spaces:
+                            if space.type == "VIEW_3D":
+                                space.shading.use_scene_world = True
+                                space.shading.use_scene_lights = True
+        except Exception:
+            pass
 
     return sky_obj

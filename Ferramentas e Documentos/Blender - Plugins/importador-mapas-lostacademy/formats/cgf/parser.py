@@ -1,6 +1,7 @@
 import math
 import os
 import struct
+import threading
 
 from .skeleton import parse_bone_name_list, parse_bone_initial_pos, parse_bone_anim, parse_mesh_skin_weights
 from .diagnostics import (
@@ -19,7 +20,7 @@ from .diagnostics import (
 )
 
 
-_ACTIVE_DIAGNOSTICS_COLLECTOR = None
+_DIAGNOSTICS_TLS = threading.local()
 
 
 class ParseError(ValueError):
@@ -67,7 +68,7 @@ def read_ascii_bytes(stream, size, context="ascii"):
 
 
 def _active_collector():
-    return _ACTIVE_DIAGNOSTICS_COLLECTOR
+    return getattr(_DIAGNOSTICS_TLS, "collector", None)
 
 
 class _DiagnosticsScope:
@@ -76,14 +77,12 @@ class _DiagnosticsScope:
         self.previous_collector = None
 
     def __enter__(self):
-        global _ACTIVE_DIAGNOSTICS_COLLECTOR
-        self.previous_collector = _ACTIVE_DIAGNOSTICS_COLLECTOR
-        _ACTIVE_DIAGNOSTICS_COLLECTOR = self.collector
+        self.previous_collector = getattr(_DIAGNOSTICS_TLS, "collector", None)
+        _DIAGNOSTICS_TLS.collector = self.collector
         return self.collector
 
     def __exit__(self, exc_type, exc_value, traceback):
-        global _ACTIVE_DIAGNOSTICS_COLLECTOR
-        _ACTIVE_DIAGNOSTICS_COLLECTOR = self.previous_collector
+        _DIAGNOSTICS_TLS.collector = self.previous_collector
         return False
 
 

@@ -7,14 +7,16 @@ on:
       - 'Código Fonte - Emulador/**'
       - '.github/workflows/ci-backend.yml'
   pull_request:
-    branches: [ "main" ]
-    paths:
-      - 'Código Fonte - Emulador/**'
-      - '.github/workflows/ci-backend.yml'
+    types: [opened, synchronize, reopened, ready_for_review]
   workflow_dispatch:
 
 permissions:
   contents: read
+  pull-requests: read
+
+concurrency:
+  group: ci-backend-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build:
@@ -22,10 +24,41 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Verificar Escopo da Alteração (Fast-Track para Docs / Ferramentas)
+        id: scope
+        uses: actions/github-script@v7
+        with:
+          script: |
+            if (context.eventName !== 'pull_request') {
+              core.setOutput('needs_java_build', 'true');
+              core.info('Build Java obrigatório fora de Pull Requests.');
+              return;
+            }
+            const files = await github.paginate(github.rest.pulls.listFiles, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.payload.pull_request.number,
+              per_page: 100,
+            });
+            const needsBuild = files.some((f) => {
+              const name = (f.filename || '').replace(/\\/g, '/');
+              return name.startsWith('Código Fonte - Emulador/') || name === '.github/workflows/ci-backend.yml';
+            });
+            core.setOutput('needs_java_build', needsBuild ? 'true' : 'false');
+            core.info(`Arquivos no PR: ${files.length} | Requer Build Java: ${needsBuild}`);
+
+      - name: Via Rápida (Sem Alterações no Backend Java)
+        if: steps.scope.outputs.needs_java_build != 'true'
+        run: |
+          echo "Fast-Track aplicado: este PR não altera 'Código Fonte - Emulador/' nem o workflow Java."
+          echo "Compilação Maven JDK 25 dispensada proporcionalmente."
+
       - name: Checkout do Repositorio
+        if: steps.scope.outputs.needs_java_build == 'true'
         uses: actions/checkout@v7
 
       - name: Configurar Java 25
+        if: steps.scope.outputs.needs_java_build == 'true'
         uses: actions/setup-java@v5
         with:
           distribution: 'oracle'
@@ -33,18 +66,19 @@ jobs:
           cache: 'maven'
 
       - name: Compilar e Testar Modulos Ativos (Maven)
+        if: steps.scope.outputs.needs_java_build == 'true'
         id: maven_build
         continue-on-error: ${{ github.event_name == 'pull_request' && github.event.pull_request.user.login == github.repository_owner }}
         run: |
           mvn clean package --file "Código Fonte - Emulador/pom.xml" -DskipTests=false -Dmaven.javadoc.skip=true
 
       - name: Bypass de Validacao para o Proprietario
-        if: steps.maven_build.outcome == 'failure' && github.event_name == 'pull_request' && github.event.pull_request.user.login == github.repository_owner
+        if: steps.scope.outputs.needs_java_build == 'true' && steps.maven_build.outcome == 'failure' && github.event_name == 'pull_request' && github.event.pull_request.user.login == github.repository_owner
         run: |
           echo "::warning::Build/testes Maven falharam, mas o status foi liberado pela imunidade do proprietário (${{ github.repository_owner }})."
 
       - name: Armazenar Artefatos JAR Compilados
-        if: steps.maven_build.outcome == 'success'
+        if: steps.scope.outputs.needs_java_build == 'true' && steps.maven_build.outcome == 'success'
         uses: actions/upload-artifact@v4
         with:
           name: aion-emulator-jars-LostAcademyGroup

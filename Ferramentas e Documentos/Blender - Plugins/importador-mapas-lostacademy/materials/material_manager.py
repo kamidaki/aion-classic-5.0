@@ -159,6 +159,7 @@ def get_or_create_aion_material(
     texture_animation_fps: int = 10,
     animate_shader_uv_scroll: bool = True,
     optimize_material_preview: bool = True,
+    simple_shaders: bool = False,
 ) -> bpy.types.Material:
     """
     Retrieves or creates a Blender material for an Aion CGF material chunk.
@@ -172,17 +173,29 @@ def get_or_create_aion_material(
     if "(" in raw_name and ")" in raw_name:
         shader_hint = raw_name[raw_name.find("(") + 1 : raw_name.find(")")].strip()
 
-    # Resolve all texture slots
-    resolved_textures: Dict[str, str] = {
-        "diffuse": resolve_texture_slot(mat_data.get("texture_diffuse"), model_path, client_root),
-        "bump": resolve_texture_slot(mat_data.get("texture_bump"), model_path, client_root),
-        "specular": resolve_texture_slot(mat_data.get("texture_specular"), model_path, client_root),
-        "gloss": resolve_texture_slot(mat_data.get("texture_gloss"), model_path, client_root),
-        "opacity": resolve_texture_slot(mat_data.get("texture_opacity"), model_path, client_root),
-        "filter": resolve_texture_slot(mat_data.get("texture_filter"), model_path, client_root),
-        "subsurf": resolve_texture_slot(mat_data.get("texture_subsurf"), model_path, client_root),
-        "detail": resolve_texture_slot(mat_data.get("texture_detail"), model_path, client_root),
-    }
+    # In simple_shaders (PC Fraco / 60+ FPS mode), only resolve essential diffuse & opacity textures
+    if simple_shaders:
+        resolved_textures: Dict[str, str] = {
+            "diffuse": resolve_texture_slot(mat_data.get("texture_diffuse"), model_path, client_root),
+            "bump": "",
+            "specular": "",
+            "gloss": "",
+            "opacity": resolve_texture_slot(mat_data.get("texture_opacity"), model_path, client_root),
+            "filter": "",
+            "subsurf": "",
+            "detail": "",
+        }
+    else:
+        resolved_textures = {
+            "diffuse": resolve_texture_slot(mat_data.get("texture_diffuse"), model_path, client_root),
+            "bump": resolve_texture_slot(mat_data.get("texture_bump"), model_path, client_root),
+            "specular": resolve_texture_slot(mat_data.get("texture_specular"), model_path, client_root),
+            "gloss": resolve_texture_slot(mat_data.get("texture_gloss"), model_path, client_root),
+            "opacity": resolve_texture_slot(mat_data.get("texture_opacity"), model_path, client_root),
+            "filter": resolve_texture_slot(mat_data.get("texture_filter"), model_path, client_root),
+            "subsurf": resolve_texture_slot(mat_data.get("texture_subsurf"), model_path, client_root),
+            "detail": resolve_texture_slot(mat_data.get("texture_detail"), model_path, client_root),
+        }
 
     # Resolve shader semantics
     semantics = None
@@ -199,6 +212,7 @@ def get_or_create_aion_material(
     shader_name = semantics.shader_name if semantics else shader_hint
 
     cache_key = "|".join([
+        "simple" if simple_shaders else "full",
         shader_name.lower(),
         diffuse_tex.lower(),
         bump_tex.lower(),
@@ -245,12 +259,12 @@ def get_or_create_aion_material(
             client_root=client_root,
             fps=texture_animation_fps,
         )
-        if animate_texture_sequences and diffuse_info
+        if animate_texture_sequences and not simple_shaders and diffuse_info
         else None
     )
 
     uv_scroll_speed = (0.0, 0.0)
-    if animate_shader_uv_scroll and semantics and semantics.uv_scroll_confirmed:
+    if animate_shader_uv_scroll and not simple_shaders and semantics and semantics.uv_scroll_confirmed:
         uv_scroll_speed = (
             float(semantics.uv_scroll_speed_x or 0.0),
             float(semantics.uv_scroll_speed_y or 0.0),
@@ -265,6 +279,7 @@ def get_or_create_aion_material(
         animate_uv_scroll=animate_shader_uv_scroll,
         uv_scroll_speed=uv_scroll_speed,
         optimize_material_preview=optimize_material_preview,
+        simple_shaders=simple_shaders,
     )
 
     # Attach Aion metadata to the material datablock

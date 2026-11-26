@@ -77,6 +77,7 @@ def load_texture_image(
 
 def clear_texture_cache() -> None:
     _IMAGE_CACHE.clear()
+    _PAK_IMAGE_CACHE.clear()
 
 
 def purge_orphan_datablocks() -> None:
@@ -145,7 +146,14 @@ def load_texture_from_pak_bytes(
         tmp_path = tmp_dir / fname
 
         if not tmp_path.is_file():
-            tmp_path.write_bytes(dds_bytes)
+            import threading
+            atomic_tmp = tmp_path.with_name(f".{tmp_path.name}.{os.getpid()}.{threading.get_ident()}.tmp")
+            try:
+                atomic_tmp.write_bytes(dds_bytes)
+                os.replace(str(atomic_tmp), str(tmp_path))
+            except Exception:
+                atomic_tmp.unlink(missing_ok=True)
+                raise
 
         image = bpy.data.images.load(str(tmp_path), check_existing=True)
         if image is None:

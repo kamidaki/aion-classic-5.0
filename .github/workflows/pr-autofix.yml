@@ -1,0 +1,145 @@
+name: PR Bot — Auto-Correção (/autofix)
+
+on:
+  issue_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: pr-autofix-${{ github.event.issue.number }}
+  cancel-in-progress: true
+
+jobs:
+  autofix:
+    name: Aplicar Auto-Correção Segura (/autofix)
+    if: |
+      github.event.issue.pull_request &&
+      startsWith(github.event.comment.body, '/autofix')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Validar Permissão e Origem do PR
+        id: precheck
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const prNumber = context.payload.issue.number;
+            const commenter = (context.payload.comment.user?.login || '').toLowerCase();
+            const assoc = context.payload.comment.author_association || 'NONE';
+
+            const { data: pr } = await github.rest.pulls.get({ owner, repo, pull_number: prNumber });
+            const isMaintainer = ['OWNER', 'MEMBER', 'COLLABORATOR'].includes(assoc);
+            const isAuthor = pr.user && pr.user.login.toLowerCase() === commenter;
+            const isFork = Boolean(pr.head && pr.head.repo && pr.head.repo.fork);
+
+            if (pr.state !== 'open') {
+              core.setOutput('allowed', 'false');
+              core.info('PR não está aberto.');
+              return;
+            }
+            if (isFork) {
+              core.setOutput('allowed', 'false');
+              await github.rest.issues.createComment({
+                owner,
+                repo,
+                issue_number: prNumber,
+                body: '🤖 `/autofix` não consegue enviar commits automaticamente para branches em forks externos. Você pode ajustar localmente e dar push no seu fork.',
+              });
+              return;
+            }
+            if (!isMaintainer && !isAuthor) {
+              core.setOutput('allowed', 'false');
+              core.info(`Usuário "${commenter}" (${assoc}) sem permissão para /autofix.`);
+              return;
+            }
+
+            const files = await github.paginate(github.rest.pulls.listFiles, {
+              owner,
+              repo,
+              pull_number: prNumber,
+              per_page: 100,
+            });
+            const targets = files
+              .filter((f) => f.status !== 'removed' && f.filename)
+              .map((f) => f.filename);
+
+            core.setOutput('allowed', 'true');
+            core.setOutput('head_ref', pr.head.ref);
+            core.setOutput('targets_json', JSON.stringify(targets));
+
+      - name: Checkout do Branch do PR
+        if: steps.precheck.outputs.allowed == 'true'
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ steps.precheck.outputs.head_ref }}
+          token: ${{ secrets.BOT_PAT || secrets.GITHUB_TOKEN }}
+          fetch-depth: 1
+
+      - name: Executar pr_autofix.py nos Arquivos Alterados
+        if: steps.precheck.outputs.allowed == 'true'
+        id: run_fix
+        env:
+          TARGETS_JSON: ${{ steps.precheck.outputs.targets_json }}
+        run: |
+          python3 - <<'PY'
+          import json, os, subprocess, sys
+          targets = json.loads(os.environ.get("TARGETS_JSON", "[]"))
+          proc = subprocess.run(
+              ["python3", ".github/scripts/pr_autofix.py", "--repo-root", ".", "--files", *targets],
+              capture_output=True,
+              text=True,
+          )
+          print(proc.stdout)
+          if proc.stderr:
+              print(proc.stderr, file=sys.stderr)
+          res = json.loads(proc.stdout.strip() or '{"modified_count":0,"modified":[]}')
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as out:
+              out.write(f"modified_count={res['modified_count']}\n")
+              out.write(f"summary_json={json.dumps(res, ensure_ascii=False)}\n")
+          sys.exit(proc.returncode)
+          PY
+
+      - name: Enviar Commit de Auto-Correção
+        if: steps.precheck.outputs.allowed == 'true' && steps.run_fix.outputs.modified_count != '0'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -u
+          git commit -m "style(ci): aplicar auto-correcao de formatacao e EOF via bot"
+          git push
+
+      - name: Comentar Resultado do /autofix
+        if: steps.precheck.outputs.allowed == 'true'
+        uses: actions/github-script@v7
+        env:
+          HAS_BOT_PAT: ${{ secrets.BOT_PAT != '' }}
+          SUMMARY_JSON: ${{ steps.run_fix.outputs.summary_json }}
+        with:
+          script: |
+            const summary = JSON.parse(process.env.SUMMARY_JSON || '{"modified_count":0,"modified":[]}');
+            const prNumber = context.payload.issue.number;
+            if (!summary.modified_count) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                body: '🤖 `/autofix`: nenhuma pendência mecânica de formatação (CRLF, espaços finais ou quebra EOF) encontrada nos arquivos modificados.',
+              });
+              return;
+            }
+            const list = summary.modified.map((m) => `- \`${m.file}\`: ${m.fixes.join(', ')}`).join('\n');
+            const patNote = process.env.HAS_BOT_PAT === 'true'
+              ? '\n\nOs workflows serão re-executados automaticamente sobre o novo commit.'
+              : '\n\n> [!NOTE]\n> Como este commit foi enviado com o `GITHUB_TOKEN` padrão, se os checks não reiniciarem automaticamente basta fechar e reabrir o PR (ou configurar o secret `BOT_PAT`).';
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+              body: `🛠️ **Auto-correções aplicadas pelo bot:**\n\n${list}${patNote}`,
+            });

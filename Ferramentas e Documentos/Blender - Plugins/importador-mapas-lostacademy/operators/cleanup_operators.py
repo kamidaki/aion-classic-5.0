@@ -6,8 +6,28 @@ Purges leftover Python drivers and unused datablocks to restore 100% responsiven
 from __future__ import annotations
 
 import bpy
+from config.performance_profiles import apply_viewport_60fps_optimization
 from animations.wind_system import clean_python_wind_drivers
 from materials.texture_loader import purge_orphan_datablocks
+
+
+class AION_OT_optimize_viewport_60fps(bpy.types.Operator):
+    """Apply aggressive Eevee & 3D viewport tuning for 60+ FPS on weak GPUs."""
+
+    bl_idname = "aion.optimize_viewport_60fps"
+    bl_label = "Otimizar Viewport (60+ FPS)"
+    bl_description = "Configura Eevee, sombras, simplificação e clip da cena atual para rodar leve em PCs e GPUs fracas"
+    bl_options = {"REGISTER", "UNDO"}
+
+    def execute(self, context):
+        settings = getattr(context.scene, "aion_settings", None)
+        profile = getattr(settings, "performance_profile", "LOW") if settings else "LOW"
+        result = apply_viewport_60fps_optimization(context, profile)
+        self.report(
+            {"INFO"},
+            f"Viewport otimizada (Perfil={result['profile']}, TAA={result.get('taa_samples', 1)}, Sombras={'ON' if result.get('eevee_shadows') else 'OFF'}).",
+        )
+        return {"FINISHED"}
 
 
 class AION_OT_clean_wind_drivers(bpy.types.Operator):

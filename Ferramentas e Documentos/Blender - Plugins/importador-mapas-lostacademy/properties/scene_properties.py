@@ -14,6 +14,7 @@ from bpy.props import (
     StringProperty,
 )
 
+from config.performance_profiles import resolve_profile_settings
 from config.settings import (
     DEFAULT_WIND_SPEED,
     DEFAULT_WIND_STRENGTH,
@@ -22,8 +23,47 @@ from config.settings import (
 )
 
 
+def _on_performance_profile_changed(self, context) -> None:
+    """Keeps internal legacy LOD properties aligned with the simplified performance profile."""
+    cfg = resolve_profile_settings(getattr(self, "performance_profile", "LOW"))
+    try:
+        self["terrain_lod_syncing"] = True
+        self.terrain_lod = str(cfg["terrain_lod"])
+        self.target_model_lod = str(cfg["target_model_lod"])
+        self.optimize_material_preview = True
+        self.use_mesh_instancing = True
+    except Exception:
+        pass
+    finally:
+        self.pop("terrain_lod_syncing", None)
+
+
 class AionSceneSettings(bpy.types.PropertyGroup):
     """Global Aion toolkit settings stored on the Blender Scene."""
+
+    performance_profile: EnumProperty(
+        name="Perfil de Desempenho",
+        description="Ajusta automaticamente terreno, LOD de modelos, shaders e viewport visando 60+ FPS",
+        items=(
+            (
+                "LOW",
+                "PC Fraco / 60+ FPS (Recomendado)",
+                "Terreno passo 4, modelos LOD leves, shaders simples e viewport otimizada para GPUs/CPUs fracas",
+            ),
+            (
+                "BALANCED",
+                "Equilibrado",
+                "Terreno passo 2, modelos LOD1 e mapas normais sem efeitos pesados",
+            ),
+            (
+                "HIGH",
+                "Alta Qualidade",
+                "Terreno detalhado, modelos LOD0 e texturas PBR completas",
+            ),
+        ),
+        default="LOW",
+        update=_on_performance_profile_changed,
+    )
 
     client_root: StringProperty(
         name="Client Root",
@@ -52,15 +92,40 @@ class AionSceneSettings(bpy.types.PropertyGroup):
         default="",
     )
 
+    is_importing: BoolProperty(
+        name="Importando",
+        description="Indica se uma importação assíncrona está em andamento",
+        default=False,
+        options={"SKIP_SAVE"},
+    )
+
+    import_progress: FloatProperty(
+        name="Progresso",
+        description="Progresso da importação linear do mapa",
+        default=0.0,
+        min=0.0,
+        max=100.0,
+        subtype="PERCENTAGE",
+        options={"SKIP_SAVE"},
+    )
+
+    import_stage_message: StringProperty(
+        name="Etapa Atual",
+        description="Descrição da etapa atual da importação",
+        default="",
+        options={"SKIP_SAVE"},
+    )
+
     terrain_lod: EnumProperty(
         name="Terrain LOD",
-        description="Detail level for terrain mesh generation",
+        description="Detail level for terrain mesh generation (auto-managed by Perfil de Desempenho)",
         items=(
-            ("2", "LOD 2 (Fast - Recommended)", "512x512 grid - High performance, smooth in viewport"),
-            ("1", "LOD 1 (Full 100% Quality)", "1024x1024 grid - Highest detail, heavier on memory"),
-            ("4", "LOD 4 (Preview)", "256x256 grid - Ultra fast"),
+            ("4", "LOD 4 (60+ FPS / Leve)", "256x256 grid - Ultra fast for weak PCs"),
+            ("2", "LOD 2 (Equilibrado)", "512x512 grid - Balanced"),
+            ("1", "LOD 1 (Full 100% Quality)", "1024x1024 grid - Heavy"),
         ),
-        default="2",
+        default="4",
+        options={"HIDDEN"},
     )
 
     # Terrain
@@ -185,14 +250,14 @@ class AionSceneSettings(bpy.types.PropertyGroup):
         default=False,
     )
     import_cga_entities: BoolProperty(
-        name="CGA Dynamic Entities",
-        description="Import dynamic entities and animation controllers",
+        name="CGA Entities",
+        description="Import placed .cga entities as lightweight mesh instances",
         default=True,
     )
     animate_cga_controllers: BoolProperty(
         name="Animate CGA Controllers",
-        description="Apply rotational keyframe animations to CGA entities",
-        default=True,
+        description="Apply rotational keyframe animations to CGA entities (heavier)",
+        default=False,
     )
     import_placeables: BoolProperty(
         name="Obelisks & Placeables",
@@ -208,17 +273,17 @@ class AionSceneSettings(bpy.types.PropertyGroup):
     # NPCs & World Spawns (Section 7)
     import_npcs: BoolProperty(
         name="NPCs & World Spawns",
-        description="Import authoritative NPC spawns from client_world XML",
+        description="Import authoritative NPC spawns linearly after the map finishes",
         default=False,
     )
     import_npc_models: BoolProperty(
         name="Resolve & Load 3D NPC Models",
         description="Load 3D CGF meshes for monsters, humanoids, and Shugos",
-        default=False,
+        default=True,
     )
     animate_npcs: BoolProperty(
         name="Animate NPCs (Armatures & Idle CAF)",
-        description="Build armature rigs, assign vertex skinning, and play looping idle animations on NPCs",
+        description="Build armature rigs and looping animations (heavy on weak CPUs/GPUs)",
         default=False,
     )
     import_monsters: BoolProperty(
@@ -237,68 +302,76 @@ class AionSceneSettings(bpy.types.PropertyGroup):
         default=True,
     )
 
-    # LOD Levels (Section 8)
+    # Hidden/Legacy LOD properties kept for backwards API compatibility
     target_model_lod: EnumProperty(
         name="Model LOD",
-        description="Target Level-of-Detail for 3D models (resolves _lod1, _lod2, _lod3 companion assets)",
+        description="Auto-managed by Perfil de Desempenho",
         items=(
-            ("0", "LOD 0 (High Detail)", "Base full mesh detail"),
-            ("1", "LOD 1 (Medium Detail)", "Companion _lod1.cgf geometry"),
-            ("2", "LOD 2 (Low Detail)", "Companion _lod2.cgf geometry"),
-            ("3", "LOD 3 (Distant Detail)", "Companion _lod3.cgf geometry"),
+            ("0", "LOD 0", "Base mesh"),
+            ("1", "LOD 1", "Companion _lod1.cgf"),
+            ("2", "LOD 2", "Companion _lod2.cgf"),
+            ("3", "LOD 3", "Companion _lod3.cgf"),
         ),
-        default="0",
+        default="2",
+        options={"HIDDEN"},
     )
 
     import_nameplates: BoolProperty(
         name="NPC 3D Nameplates",
-        description="Create 3D floating billboard nameplates with localized name and NPC ID above heads",
-        default=True,
+        description="Create 3D floating text nameplates above NPCs (heavy on GPU with many curves)",
+        default=False,
     )
 
     import_lod0: BoolProperty(
-        name="LOD 0 (Full High Detail)",
-        description="Import base full-detail models",
+        name="LOD 0",
+        description="Internal LOD filter (managed by Perfil de Desempenho)",
         default=True,
+        options={"HIDDEN"},
     )
     import_lod1: BoolProperty(
-        name="LOD 1 (Medium Detail)",
-        description="Import level-of-detail 1 models (disabled by default to prevent overlapping duplicates)",
-        default=False,
+        name="LOD 1",
+        description="Internal LOD filter (managed by Perfil de Desempenho)",
+        default=True,
+        options={"HIDDEN"},
     )
     import_lod2: BoolProperty(
-        name="LOD 2 (Low Detail)",
-        description="Import level-of-detail 2 models",
-        default=False,
+        name="LOD 2",
+        description="Internal LOD filter (managed by Perfil de Desempenho)",
+        default=True,
+        options={"HIDDEN"},
     )
     import_lod3: BoolProperty(
-        name="LOD 3 (Distant Detail)",
-        description="Import level-of-detail 3 models",
+        name="LOD 3",
+        description="Internal LOD filter (managed by Perfil de Desempenho)",
         default=False,
+        options={"HIDDEN"},
     )
 
-    # Engine Performance Options
+    # Engine Performance Options (auto-managed for 60+ FPS)
     use_mesh_instancing: BoolProperty(
-        name="Hardware Mesh Instancing (100+ FPS)",
-        description="Direct GPU mesh datablock sharing instead of collection instances. Drastically lowers draw calls and Material Preview lag",
+        name="Hardware Mesh Instancing",
+        description="Direct GPU mesh datablock sharing",
         default=True,
+        options={"HIDDEN"},
     )
     optimize_material_preview: BoolProperty(
-        name="Optimize Material Preview (EEVEE Next)",
-        description="Dithered alpha clip and global material deduplication for smooth navigation",
+        name="Optimize Material Preview",
+        description="Dithered alpha clip and global material deduplication",
         default=True,
+        options={"HIDDEN"},
     )
     multithreaded_io: BoolProperty(
-        name="Multi-threaded Asset Decompression",
-        description="Fast background PAK decompression using CPU worker threads",
+        name="Async Linear PAK Extraction",
+        description="Non-blocking sequential worker extraction",
         default=True,
+        options={"HIDDEN"},
     )
 
-    # Live Animation settings
+    # Live Animation settings (OFF by default for 60+ FPS)
     live_wind: BoolProperty(
         name="Live Wind Sway",
         description="Enable procedural wind swaying on vegetation when playing timeline",
-        default=True,
+        default=False,
     )
 
     wind_strength: FloatProperty(
@@ -372,8 +445,8 @@ class AionSceneSettings(bpy.types.PropertyGroup):
 
     asset_auto_catalog: BoolProperty(
         name="Auto-Catalog on Import",
-        description="Automatically mark imported models as Blender assets with 3D preview generation",
-        default=True,
+        description="Mark imported models as Blender assets (previews are NOT auto-rendered to avoid freezing)",
+        default=False,
     )
 
 

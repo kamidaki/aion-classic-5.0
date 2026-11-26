@@ -178,13 +178,13 @@ class AION_OT_open_asset_browser(bpy.types.Operator):
 
     bl_idname = "aion.open_asset_browser"
     bl_label = "Open 3D Asset Browser (Grid)"
-    bl_description = "Switch or split bottom viewport to Blender's native 3D Asset Browser grid to view model previews"
+    bl_description = "Switch an editor area to Blender's native 3D Asset Browser grid without blocking the viewport"
     bl_options = {"REGISTER"}
 
     def execute(self, context):
         from importers.asset_catalog import catalog_scene_assets
 
-        catalog_scene_assets(context, generate_previews=True)
+        catalog_scene_assets(context, generate_previews=False)
 
         for area in context.screen.areas:
             if area.ui_type == "ASSETS":
@@ -207,18 +207,71 @@ class AION_OT_open_asset_browser(bpy.types.Operator):
 
 
 class AION_OT_catalog_assets(bpy.types.Operator):
-    """Catalog all models in scene and generate 3D thumbnail previews."""
+    """Catalog all models in scene (optionally render 3D thumbnail previews)."""
 
     bl_idname = "aion.catalog_assets"
-    bl_label = "Catalog Scene & Render 3D Previews"
-    bl_description = "Mark all scene models and templates as Blender assets, assign category catalogs, and render 3D previews"
+    bl_label = "Catalogar Modelos da Cena"
+    bl_description = "Marca os modelos importados como Assets do Blender (gera miniaturas 3D apenas se solicitado)"
     bl_options = {"REGISTER", "UNDO"}
 
-    def execute(self, context):
-        from importers.asset_catalog import catalog_scene_assets
+    generate_previews: BoolProperty(
+        name="Gerar Miniaturas 3D (Lento em GPU fraca)",
+        description="Renderiza miniaturas 3D para cada modelo (desativado por padrão para evitar travamento)",
+        default=False,
+    )
 
-        count = catalog_scene_assets(context, generate_previews=True)
-        self.report({"INFO"}, f"Cataloged {count} 3D assets with categories and preview generation!")
+    def execute(self, context):
+        from importers.asset_catalog import catalog_scene_assets, invalidate_asset_catalog_cache
+
+        count = catalog_scene_assets(context, generate_previews=self.generate_previews)
+        invalidate_asset_catalog_cache()
+        self.report({"INFO"}, f"Catalogados {count} assets na cena!")
+        return {"FINISHED"}
+
+
+class AION_OT_refresh_client_assets(bpy.types.Operator):
+    """Scan client PAKs on demand to populate the Client Library Explorer cache."""
+
+    bl_idname = "aion.refresh_client_assets"
+    bl_label = "Escanear Biblioteca do Cliente"
+    bl_description = "Indexa os modelos CGF/CGA disponíveis nos PAKs do cliente (executado apenas sob demanda)"
+    bl_options = {"REGISTER"}
+
+    def execute(self, context):
+        settings = getattr(context.scene, "aion_settings", None)
+        client_root = getattr(settings, "client_root", "") if settings else ""
+        if not client_root or not Path(client_root).is_dir():
+            self.report({"ERROR"}, "Defina um Client Root válido antes de escanear.")
+            return {"CANCELLED"}
+
+        from importers.asset_catalog import get_client_model_items, _CLIENT_MODEL_CACHE
+
+        key = str(Path(client_root).resolve()).lower()
+        _CLIENT_MODEL_CACHE.pop(key, None)
+        items = get_client_model_items(client_root, category_filter="ALL", search_query="", limit=0, allow_scan=True)
+        self.report({"INFO"}, f"Biblioteca escaneada: {len(items)} modelos encontrados em PAKs.")
+        return {"FINISHED"}
+
+
+class AION_OT_refresh_client_diagnostics(bpy.types.Operator):
+    """Inspect client version and level count once on user demand (cached for zero UI redraw cost)."""
+
+    bl_idname = "aion.refresh_client_diagnostics"
+    bl_label = "Verificar Cliente Aion"
+    bl_description = "Detecta a versão e quantidade de mapas do Client Root (armazenado em cache para 60+ FPS na interface)"
+    bl_options = {"REGISTER"}
+
+    def execute(self, context):
+        settings = getattr(context.scene, "aion_settings", None)
+        client_root = getattr(settings, "client_root", "") if settings else ""
+        if not client_root or not Path(client_root).is_dir():
+            self.report({"ERROR"}, "Defina um Client Root válido primeiro.")
+            return {"CANCELLED"}
+
+        from ui.panels import refresh_client_diagnostics_cache
+
+        flavor_name, maps_count = refresh_client_diagnostics_cache(client_root)
+        self.report({"INFO"}, f"Cliente detectado: {flavor_name} ({maps_count} mapas).")
         return {"FINISHED"}
 
 

@@ -1,5 +1,6 @@
 from collections import Counter
 from dataclasses import dataclass
+import os
 from pathlib import Path
 from typing import Iterable
 
@@ -42,8 +43,16 @@ def group_level_cgf_templates(
     resolved_jobs: Iterable[ResolvedLevelCgfJob],
 ) -> LevelCgfTemplateCollection:
     grouped: dict[TemplateKey, list[ResolvedLevelCgfJob]] = {}
+    path_norm_cache: dict[str, str] = {}
     for resolved_job in resolved_jobs:
-        key = make_level_cgf_template_key(resolved_job)
+        if resolved_job.resolved_path is None:
+            raise ValueError("resolved path is required for a level CGF template")
+        raw_str = str(resolved_job.resolved_path)
+        normalized_path = path_norm_cache.get(raw_str)
+        if normalized_path is None:
+            normalized_path = os.path.abspath(raw_str).replace("\\", "/").lower()
+            path_norm_cache[raw_str] = normalized_path
+        key = (normalized_path, resolved_job.job.import_mode)
         grouped.setdefault(key, []).append(resolved_job)
 
     templates = []
@@ -76,4 +85,4 @@ def group_level_cgf_templates(
 
 
 def _normalize_resolved_path(path: Path) -> str:
-    return path.resolve().as_posix().lower()
+    return os.path.abspath(str(path)).replace("\\", "/").lower()

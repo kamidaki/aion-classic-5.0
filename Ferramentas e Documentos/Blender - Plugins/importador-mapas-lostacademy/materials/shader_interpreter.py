@@ -38,6 +38,11 @@ def safe_set_blend_method(
             mat.surface_render_method = "DITHERED"
     except (AttributeError, TypeError):
         pass
+    try:
+        if optimize_material_preview:
+            mat.use_transparent_shadow = False
+    except (AttributeError, TypeError):
+        pass
 
 
 def safe_set_two_sided(mat: bpy.types.Material, two_sided: bool = True) -> None:
@@ -114,10 +119,12 @@ def interpret_and_build_material_graph(
     uv_scroll_speed: tuple[float, float] = (0.0, 0.0),
     texture_sequence_node: Optional[bpy.types.Node] = None,
     optimize_material_preview: bool = True,
+    simple_shaders: bool = False,
 ) -> Dict[str, Any]:
     """
-    Constructs a complete, accurate Blender shader graph for an Aion material.
-    Supports diffuse, normal/bump, specular, emissive/glow, opacity, and vegetation subsurf.
+    Constructs a complete or lightweight GPU-friendly Blender shader graph for an Aion material.
+    When simple_shaders=True (PC Fraco / 60+ FPS mode), skips secondary normal/gloss/filter/subsurf
+    textures and per-frame Python drivers, eliminating GPU bottlenecks.
     """
     mat.use_nodes = True
     tree = mat.node_tree
@@ -172,13 +179,12 @@ def interpret_and_build_material_graph(
         mat_data.get("mtl_flag", {}).get("two_sided")
     ) or is_leaf or is_waterfall or is_water_surface
 
-    # Auto-enable UV scroll for waterfalls and animated water surfaces
-    if is_waterfall and uv_scroll_speed == (0.0, 0.0):
-        uv_scroll_speed = (0.0, -0.04)
-        animate_uv_scroll = True
-    elif is_water_surface and uv_scroll_speed == (0.0, 0.0):
-        uv_scroll_speed = (0.0, 0.02)
-        animate_uv_scroll = True
+    # Only auto-enable UV scroll when animation is allowed (never attach per-frame drivers in 60+ FPS static mode)
+    if animate_uv_scroll and not simple_shaders:
+        if is_waterfall and uv_scroll_speed == (0.0, 0.0):
+            uv_scroll_speed = (0.0, -0.04)
+        elif is_water_surface and uv_scroll_speed == (0.0, 0.0):
+            uv_scroll_speed = (0.0, 0.02)
 
     # Mapping / UV coordinate node
     tex_coord = nodes.new("ShaderNodeTexCoord")
@@ -187,8 +193,8 @@ def interpret_and_build_material_graph(
     mapping.location = (-600, 0)
     links.new(tex_coord.outputs["UV"], mapping.inputs["Vector"])
 
-    # Handle UV scroll driver if confirmed or waterfall/water surface
-    if animate_uv_scroll and (uv_scroll_speed[0] != 0.0 or uv_scroll_speed[1] != 0.0):
+    # Handle UV scroll driver ONLY when explicitly enabled and not in simple shader mode
+    if animate_uv_scroll and not simple_shaders and (uv_scroll_speed[0] != 0.0 or uv_scroll_speed[1] != 0.0):
         try:
             drv_x = mapping.inputs["Location"].driver_add("default_value", 0)
             drv_x.driver.expression = f"frame * {uv_scroll_speed[0]:.6f}"
@@ -237,10 +243,12 @@ def interpret_and_build_material_graph(
     diff_color = mat_data.get("diffuse_color")
     if is_water_surface:
         bsdf.inputs["Base Color"].default_value = (0.05, 0.28, 0.38, 1.0)
-        bsdf.inputs["Roughness"].default_value = 0.05
-        trans_socket = _get_bsdf_socket(bsdf, "Transmission Weight", "Transmission")
-        if trans_socket:
-            trans_socket.default_value = 0.7
+        bsdf.inputs["Roughness"].default_value = 0.14 if (simple_shaders or optimize_material_preview) else 0.05
+        # Avoid Eevee screen-space Transmission raytracing pass on weak GPUs
+        if not simple_shaders and not optimize_material_preview:
+            trans_socket = _get_bsdf_socket(bsdf, "Transmission Weight", "Transmission")
+            if trans_socket:
+                trans_socket.default_value = 0.7
     elif isinstance(diff_color, dict) and all(k in diff_color for k in ("r", "g", "b")):
         r = float(diff_color["r"]) / 255.0
         g = float(diff_color["g"]) / 255.0
@@ -256,13 +264,14 @@ def interpret_and_build_material_graph(
 
     if diffuse_node:
         if is_water_surface:
-            # Swamp water and river water DDS files are vector normal/flow maps!
-            normal_node = nodes.new("ShaderNodeNormalMap")
-            normal_node.location = (-50, -100)
-            normal_node.inputs["Strength"].default_value = 0.8
-            links.new(diffuse_node.outputs["Color"], normal_node.inputs["Color"])
-            if "Normal" in bsdf.inputs:
-                links.new(normal_node.outputs["Normal"], bsdf.inputs["Normal"])
+            if not simple_shaders:
+                # Swamp water and river water DDS files are vector normal/flow maps
+                normal_node = nodes.new("ShaderNodeNormalMap")
+                normal_node.location = (-50, -100)
+                normal_node.inputs["Strength"].default_value = 0.8
+                links.new(diffuse_node.outputs["Color"], normal_node.inputs["Color"])
+                if "Normal" in bsdf.inputs:
+                    links.new(normal_node.outputs["Normal"], bsdf.inputs["Normal"])
         else:
             links.new(diffuse_node.outputs["Color"], bsdf.inputs["Base Color"])
 
@@ -291,10 +300,11 @@ def interpret_and_build_material_graph(
     elif is_waterfall:
         if alpha_in and diffuse_node:
             links.new(diffuse_node.outputs["Alpha"], alpha_in)
-        trans_socket = _get_bsdf_socket(bsdf, "Transmission Weight", "Transmission")
-        if trans_socket:
-            trans_socket.default_value = 0.5
-        bsdf.inputs["Roughness"].default_value = 0.1
+        if not simple_shaders and not optimize_material_preview:
+            trans_socket = _get_bsdf_socket(bsdf, "Transmission Weight", "Transmission")
+            if trans_socket:
+                trans_socket.default_value = 0.5
+        bsdf.inputs["Roughness"].default_value = 0.14 if (simple_shaders or optimize_material_preview) else 0.1
         safe_set_blend_method(mat, "BLEND", optimize_material_preview=optimize_material_preview)
         safe_set_two_sided(mat, True)
     elif is_water_surface:
@@ -327,8 +337,9 @@ def interpret_and_build_material_graph(
     else:
         safe_set_blend_method(mat, "OPAQUE", optimize_material_preview=optimize_material_preview)
 
-    # Normal Map (texture_bump)
-    if bump_path and (bump_path.startswith("__pak__:") or os.path.isfile(bump_path)):
+    # Normal Map (texture_bump) — skipped in simple_shaders (PC Fraco / 60+ FPS mode)
+    normal_connected = False
+    if not simple_shaders and bump_path and (bump_path.startswith("__pak__:") or os.path.isfile(bump_path)):
         normal_tex = nodes.new("ShaderNodeTexImage")
         normal_tex.location = (-300, -300)
         normal_tex.image = _load_tex(bump_path, "Non-Color")
@@ -342,6 +353,7 @@ def interpret_and_build_material_graph(
         normal_in = bsdf.inputs.get("Normal")
         if normal_in:
             links.new(normal_map.outputs["Normal"], normal_in)
+            normal_connected = True
 
     # Specular & Roughness
     shininess = float(mat_data.get("specular_shininess", 0.0) or 0.0)
@@ -351,13 +363,16 @@ def interpret_and_build_material_graph(
     specular_in = _get_bsdf_socket(bsdf, "Specular IOR Level", "Specular")
 
     if roughness_in:
-        calc_roughness = max(0.08, min(1.0, 1.0 - (shininess / 128.0))) if shininess > 0 else 0.75
+        calc_roughness = max(0.08, min(1.0, 1.0 - (shininess / 128.0))) if shininess > 0 else 0.78
         roughness_in.default_value = calc_roughness
 
     if specular_in:
-        specular_in.default_value = max(0.0, min(1.0, spec_level)) if spec_level > 0 else 0.5
+        if simple_shaders:
+            specular_in.default_value = 0.15
+        else:
+            specular_in.default_value = max(0.0, min(1.0, spec_level)) if spec_level > 0 else 0.5
 
-    if gloss_path and (gloss_path.startswith("__pak__:") or os.path.isfile(gloss_path)) and roughness_in:
+    if not simple_shaders and gloss_path and (gloss_path.startswith("__pak__:") or os.path.isfile(gloss_path)) and roughness_in:
         gloss_node = nodes.new("ShaderNodeTexImage")
         gloss_node.location = (-300, -550)
         gloss_node.image = _load_tex(gloss_path, "Non-Color")
@@ -373,7 +388,7 @@ def interpret_and_build_material_graph(
     emission_color_in = _get_bsdf_socket(bsdf, "Emission Color", "Emission")
     emission_strength_in = bsdf.inputs.get("Emission Strength")
 
-    if filter_path and (filter_path.startswith("__pak__:") or os.path.isfile(filter_path)):
+    if not simple_shaders and filter_path and (filter_path.startswith("__pak__:") or os.path.isfile(filter_path)):
         filter_tex = nodes.new("ShaderNodeTexImage")
         filter_tex.location = (-300, 500)
         filter_tex.image = _load_tex(filter_path, "sRGB")
@@ -388,24 +403,26 @@ def interpret_and_build_material_graph(
         if emission_strength_in:
             emission_strength_in.default_value = self_illum
 
-    # Subsurface Scattering / Foliage Translucency
-    subsurf_weight_in = _get_bsdf_socket(bsdf, "Subsurface Weight", "Subsurface")
-    subsurf_color_in = bsdf.inputs.get("Subsurface Color")
+    # Subsurface Scattering: disabled when optimize_material_preview or simple_shaders is active
+    # (Screen-space SSS blur on foliage is a major FPS bottleneck on weak GPUs in Eevee Next)
+    if not simple_shaders and not optimize_material_preview:
+        subsurf_weight_in = _get_bsdf_socket(bsdf, "Subsurface Weight", "Subsurface")
+        subsurf_color_in = bsdf.inputs.get("Subsurface Color")
 
-    if is_leaf:
-        if subsurf_weight_in:
-            subsurf_weight_in.default_value = 0.15
-        if subsurf_color_in and diffuse_node:
-            links.new(diffuse_node.outputs["Color"], subsurf_color_in)
-    elif subsurf_path and (subsurf_path.startswith("__pak__:") or os.path.isfile(subsurf_path)):
-        sub_node = nodes.new("ShaderNodeTexImage")
-        sub_node.location = (-300, 350)
-        sub_node.image = _load_tex(subsurf_path, "sRGB")
-        links.new(mapping.outputs["Vector"], sub_node.inputs["Vector"])
-        if subsurf_color_in:
-            links.new(sub_node.outputs["Color"], subsurf_color_in)
-        if subsurf_weight_in:
-            subsurf_weight_in.default_value = 0.25
+        if is_leaf:
+            if subsurf_weight_in:
+                subsurf_weight_in.default_value = 0.15
+            if subsurf_color_in and diffuse_node:
+                links.new(diffuse_node.outputs["Color"], subsurf_color_in)
+        elif subsurf_path and (subsurf_path.startswith("__pak__:") or os.path.isfile(subsurf_path)):
+            sub_node = nodes.new("ShaderNodeTexImage")
+            sub_node.location = (-300, 350)
+            sub_node.image = _load_tex(subsurf_path, "sRGB")
+            links.new(mapping.outputs["Vector"], sub_node.inputs["Vector"])
+            if subsurf_color_in:
+                links.new(sub_node.outputs["Color"], subsurf_color_in)
+            if subsurf_weight_in:
+                subsurf_weight_in.default_value = 0.25
 
     # Two-sided rendering configuration
     safe_set_two_sided(mat, is_two_sided)
@@ -415,12 +432,13 @@ def interpret_and_build_material_graph(
         "shader": shader_name,
         "is_leaf": is_leaf,
         "two_sided": is_two_sided,
+        "simple_shaders": simple_shaders,
         "textures_connected": {
             "diffuse": bool(diffuse_node),
-            "bump": bool(bump_path),
-            "specular": bool(specular_path),
-            "filter": bool(filter_path),
-            "subsurf": bool(subsurf_path),
+            "bump": bool(normal_connected),
+            "specular": bool(specular_path) and not simple_shaders,
+            "filter": bool(filter_path) and not simple_shaders,
+            "subsurf": bool(subsurf_path) and not simple_shaders and not optimize_material_preview,
         },
     }
 
@@ -431,6 +449,8 @@ def create_aion_principled_material(
     texture_paths: Optional[Dict[str, Any]] = None,
     material_flags: Optional[Dict[str, Any]] = None,
     client_root: Optional[Any] = None,
+    simple_shaders: bool = False,
+    optimize_material_preview: bool = True,
 ) -> bpy.types.Material:
     """Convenience factory to create and initialize a principled Aion material."""
     from formats.cgf.shader_semantics import resolve_client_shader_semantics
@@ -442,7 +462,14 @@ def create_aion_principled_material(
         "shader": shader_name,
         "flags": material_flags or {},
     }
-    semantics = resolve_client_shader_semantics(shader_name, client_root=client_root)
+    semantics = resolve_client_shader_semantics(client_root=client_root, shader_name=shader_name)
     resolved = {k: str(v) for k, v in (texture_paths or {}).items() if v}
-    interpret_and_build_material_graph(mat, mat_data, semantics, resolved)
+    interpret_and_build_material_graph(
+        mat,
+        mat_data,
+        semantics,
+        resolved,
+        simple_shaders=simple_shaders,
+        optimize_material_preview=optimize_material_preview,
+    )
     return mat

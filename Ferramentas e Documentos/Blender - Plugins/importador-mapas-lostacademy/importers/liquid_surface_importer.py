@@ -23,7 +23,15 @@ class LiquidSurfaceMaterialResult:
     warnings: tuple[str, ...] = ()
 
 
-def apply_liquid_surface_material(water_result, recipe: LiquidSurfaceRecipe, *, alpha: float = 0.35, tile_scale: float = 32.0):
+def apply_liquid_surface_material(
+    water_result,
+    recipe: LiquidSurfaceRecipe,
+    *,
+    alpha: float = 0.35,
+    tile_scale: float = 32.0,
+    animate_liquid: bool = False,
+    simple_shader: bool = False,
+):
     if water_result is None or not water_result.created or water_result.object is None or water_result.mesh is None:
         return LiquidSurfaceMaterialResult(
             requested=True,
@@ -42,6 +50,8 @@ def apply_liquid_surface_material(water_result, recipe: LiquidSurfaceRecipe, *, 
         recipe,
         alpha=alpha,
         tile_scale=tile_scale,
+        animate_liquid=animate_liquid,
+        simple_shader=simple_shader,
     )
     water_result.mesh.materials.clear()
     water_result.mesh.materials.append(material)
@@ -86,21 +96,29 @@ def skipped_liquid_surface_result(*, requested, selected_kind="", inferred_kind=
     )
 
 
-def _create_liquid_material(recipe: LiquidSurfaceRecipe, *, alpha: float, tile_scale: float):
+def _create_liquid_material(
+    recipe: LiquidSurfaceRecipe,
+    *,
+    alpha: float,
+    tile_scale: float,
+    animate_liquid: bool = False,
+    simple_shader: bool = False,
+):
     import bpy
 
     material = bpy.data.materials.new(f"AION_Liquid_{recipe.selected_kind.lower()}_{recipe.selected_preset.lower()}")
     material.use_nodes = True
     try:
-        material.blend_method = "BLEND"
+        material.blend_method = "CLIP" if simple_shader else "BLEND"
     except (AttributeError, TypeError):
         pass
     try:
-        material.surface_render_method = "BLENDED"
+        material.surface_render_method = "DITHERED" if simple_shader else "BLENDED"
     except (AttributeError, TypeError):
         pass
     try:
-        material.show_transparent_back = True
+        material.show_transparent_back = not simple_shader
+        material.use_transparent_shadow = False
     except (AttributeError, TypeError):
         pass
     tree = material.node_tree
@@ -114,22 +132,36 @@ def _create_liquid_material(recipe: LiquidSurfaceRecipe, *, alpha: float, tile_s
     mapping.inputs["Scale"].default_value = (float(tile_scale), float(tile_scale), 1.0)
     links.new(tex_coord.outputs["UV"], mapping.inputs["Vector"])
 
-    # Animate water/liquid flow continuously with frame playback
-    try:
-        flow_speed = 0.001 if recipe.selected_kind == LIQUID_KIND_LAVA else 0.003
-        drv_x = mapping.inputs["Location"].driver_add("default_value", 0)
-        drv_x.driver.expression = f"frame * {flow_speed}"
-        drv_y = mapping.inputs["Location"].driver_add("default_value", 1)
-        drv_y.driver.expression = f"frame * {flow_speed * 0.6}"
-    except Exception:
-        pass
+    # Only attach Python drivers when explicitly requested (zero per-frame overhead at 60+ FPS)
+    if animate_liquid and not simple_shader:
+        try:
+            flow_speed = 0.001 if recipe.selected_kind == LIQUID_KIND_LAVA else 0.003
+            drv_x = mapping.inputs["Location"].driver_add("default_value", 0)
+            drv_x.driver.expression = f"frame * {flow_speed}"
+            drv_y = mapping.inputs["Location"].driver_add("default_value", 1)
+            drv_y.driver.expression = f"frame * {flow_speed * 0.6}"
+        except Exception:
+            pass
 
     loaded = _load_candidates(recipe.candidates)
     used = []
     if recipe.selected_kind == LIQUID_KIND_LAVA or recipe.selected_preset == LIQUID_PRESET_LAVA_EMISSIVE:
         used.extend(_wire_lava(nodes, links, mapping, output, loaded, recipe.selected_preset))
     else:
-        used.extend(_wire_water(nodes, links, mapping, output, loaded, recipe.selected_preset, alpha, tile_scale))
+        used.extend(
+            _wire_water(
+                nodes,
+                links,
+                mapping,
+                output,
+                loaded,
+                recipe.selected_preset,
+                alpha,
+                tile_scale,
+                animate_liquid=animate_liquid,
+                simple_shader=simple_shader,
+            )
+        )
     return material, {
         "textures_loaded": len(loaded),
         "textures_used": len({item["candidate"].texture for item in used}),
@@ -151,11 +183,23 @@ def _load_candidates(candidates):
     return loaded
 
 
-def _wire_water(nodes, links, mapping, output, loaded, preset, alpha, tile_scale=32.0):
+def _wire_water(
+    nodes,
+    links,
+    mapping,
+    output,
+    loaded,
+    preset,
+    alpha,
+    tile_scale=32.0,
+    *,
+    animate_liquid: bool = False,
+    simple_shader: bool = False,
+):
     bsdf = nodes.new("ShaderNodeBsdfPrincipled")
     bsdf.inputs["Alpha"].default_value = max(0.0, min(1.0, float(alpha)))
     bsdf.inputs["Base Color"].default_value = (0.05, 0.28, 0.42, max(0.0, min(1.0, float(alpha))))
-    bsdf.inputs["Roughness"].default_value = 0.08
+    bsdf.inputs["Roughness"].default_value = 0.14 if simple_shader else 0.08
     try:
         bsdf.inputs["IOR"].default_value = 1.333
     except Exception:
@@ -171,7 +215,7 @@ def _wire_water(nodes, links, mapping, output, loaded, preset, alpha, tile_scale
         used.append(texture)
 
     normal_connected = False
-    if preset == LIQUID_PRESET_NORMAL:
+    if not simple_shader and preset == LIQUID_PRESET_NORMAL:
         normal_texture = _first_loaded(loaded, roles=("normal_bump",), kinds=("WATER", "SWAMP", "MAGIC", "UNKNOWN"))
         if normal_texture:
             normal_texture["image"].colorspace_settings.name = "Non-Color"
@@ -185,8 +229,8 @@ def _wire_water(nodes, links, mapping, output, loaded, preset, alpha, tile_scale
             normal_connected = True
             used.append(normal_texture)
 
-    # Procedural 4D animated ripples (waves moving dynamically with timeline)
-    if not normal_connected:
+    # 4D animated noise + bump is very heavy on weak GPUs; enable ONLY when explicitly requested
+    if animate_liquid and not simple_shader and not normal_connected:
         try:
             noise = nodes.new("ShaderNodeTexNoise")
             noise.noise_dimensions = "4D"

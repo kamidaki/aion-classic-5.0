@@ -1,4 +1,4 @@
-# Guia de Contribuição e Diretrizes de Engenharia — Aion Classic 5.0 (Lost Academy Group)
+# Guia de Contribuição e Diretrizes — Aion Classic 5.0 (Lost Academy Group)
 
 <p align="center">
   <a href="./CONTRIBUTING.md"><img src="https://img.shields.io/badge/Idioma-Portugu%C3%AAs_(Padr%C3%A3o)-10b981?style=for-the-badge" alt="Português Padrão" /></a>
@@ -6,63 +6,63 @@
   <a href="./SECURITY.md"><img src="https://img.shields.io/badge/Seguran%C3%A7a-SECURITY.md-ef4444?style=for-the-badge" alt="SECURITY.md" /></a>
 </p>
 
-> [!CAUTION]
-> # LEITURA OBRIGATÓRIA ANTES DE SUBMETER QUALQUER CÓDIGO OU PULL REQUEST
-> 1. **ESCOPO EXCLUSIVO GAMEFORGE GSID 1:** Todas as contribuições devem contribuir diretamente para a fidelidade **100% PvE ao Aion Retail Oficial EU (Gameforge)** tendo como única referência o **GameServer 1 — GameForge (`GSID 1`)**.
-> 2. **REJEIÇÃO DE GSID 2 E GSID 3:** Pull Requests que mencionem, alterem ou introduzam referências a **GSID 2** ou **GSID 3**, ou que modifiquem servidores secundários, **NÃO serão aceitos**.
-> 3. **IDIOMA PADRÃO PORTUGUÊS:** Não altere o idioma padrão do projeto para inglês. A única exceção relacionada a idioma é a implementação ou melhoria de **sistema multilínguas** que permita ao usuário escolher o idioma mantendo o padrão atual.
-> 4. **EVIDÊNCIAS OBRIGATÓRIAS:** Submissões devem incluir testes reais e comprovação técnica contra o servidor oficial Gameforge EU (capturas/logs, dados estáticos, análise via Ghidra/Wireshark quando aplicável).
+Quer contribuir corrigindo uma palavra no `README.md`, atualizando guias, melhorando os plugins do Blender ou evoluindo o núcleo Java do emulador? Este repositório utiliza **regras proporcionais ao que foi alterado**: ninguém precisa rodar build Java 25 ou apresentar capturas binárias para enviar uma melhoria de documentação.
 
 ---
 
-## 1. Escopo Aceito e Critérios de Aprovação
+## 1. Via Rápida vs. Validação Completa
 
-Somente serão aceitos Pull Requests que contribuam diretamente para o objetivo principal do **Aion Classic 5.0 — Lost Academy Group**:
+| Tipo de Alteração | O que é exigido | O que é dispensado | Bot & Aprovação |
+| :--- | :--- | :--- | :--- |
+| **Documentação (`docs-only`)**<br>Arquivos `.md`, `.txt`, imagens de docs | Apenas conteúdo limpo (sem tokens/caminhos locais) e sintaxe saudável | Build Maven/JDK 25, Ghidra/Wireshark e formato rígido de título | Recebe `documentation` + `docs-only`, título padronizado se precisar e **aprovação automática** |
+| **Ferramentas / Blender / CI**<br>Scripts Python, `.yml`, `Geo & Nav Builder` | Sintaxe válida (`.py`, `.json`, `.yml`, `.xml`) e zero dados pessoais vazados | Compilação Maven/JDK 25 | Recebe `area/*` + `size/*` e **aprovação automática** se os checks passarem |
+| **Backend Java**<br>Alterações em `Código Fonte - Emulador/` | Título Conventional Commit claro, build Maven JDK 25 verde e escopo GSID 1 | — | Só entra em **aprovação automática** após o `Build e Pacote GameForge GSID 1 (Java 25 LTS)` concluir com sucesso |
 
-### Contribuições Aceitas
-- Correções e melhorias PvE no módulo `game-server-gameforge` (**GameServer 1 — GameForge GSID 1**): quests, NPCs, skills, drops, instâncias, eventos, combate, progressão e regras oficiais;
-- Ajustes de compatibilidade de rede e protocolo em componentes compartilhados (`commons`, `login-server`, `chat-server`, `version.dll`) necessários ao funcionamento do **GameForge GSID 1**;
-- Implementação ou aperfeiçoamento de sistema multilínguas permitindo seleção de idioma pelo usuário sem remover o idioma padrão (Português);
-- Correções de segurança, build Maven (Java 25 LTS) e documentação técnica alinhadas ao projeto.
-
-### Contribuições Recusadas Automaticamente
-Pull Requests serão fechados sem merge caso:
-1. Alterem o escopo para servidores secundários ou contenham referências ao **GSID 2** ou **GSID 3**;
-2. Desviem do comportamento oficial Gameforge EU (exceto correção de bug comprovadamente existente no oficial);
-3. Alterem o idioma padrão do projeto para inglês;
-4. Removam código funcional sem comprovação ou substituam mecânicas específicas por implementações genéricas;
-5. Misturem múltiplos sistemas não relacionados em um único PR ou adicionem código bypass em Java para ocultar falhas em templates XML;
-6. Introduzam credenciais reais, IPs privados, tokens secretos ou caminhos fixos locais (`C:\`, `D:\`).
+> [!IMPORTANT]
+> **Diretrizes Essenciais do Projeto:**
+> 1. **Escopo do Backend:** Contribuições no servidor Java devem focar no **GameServer 1 — GameForge (`GSID 1`)** (`game-server-gameforge`, `commons`, `login-server`, `chat-server`), mantendo intactos os módulos auxiliares desabilitados (`game-server-remake` e `game-server-battleroyale`).
+> 2. **Idioma Padrão Português (PT-BR):** Não remova ou substitua o idioma padrão do projeto para inglês. Adições **multilíngues** com seleção de idioma são bem-vindas.
+> 3. **Higienização Obrigatória:** Nunca inclua credenciais reais, tokens, IPs privados ou caminhos fixos da sua máquina (`C:\Users\<seu_usuario>\...`). Em templates de configuração local, utilize sempre exemplos neutros (`127.0.0.1`, porta `3306`, usuário `LostAcademyGroup`, senha `LostAcademyGroup`).
 
 ---
 
-## 2. Padrão de Qualidade e Testes Obrigatórios
+## 2. Automação do Repositório (Bot Revisor, Labels e `/autofix`)
 
-Antes de abrir um Pull Request, valide localmente:
+Todos os Pull Requests contam com uma suíte automática composta por três fluxos integrados:
 
-1. **Compilação Limpa (Java 25 LTS):**
-   ```bash
-   mvn clean package --file "Código Fonte - Emulador/pom.xml"
-   ```
-2. **Execução de Testes Automatizados:** todos os testes do `commons` e `game-server-gameforge` devem passar sem regressões.
-3. **Preservação de Heranças 4.8:** modificações em códigos herdados da Beyond Aion 4.8 devem ser analisadas e corrigidas item a item, preservando créditos originais e comportamentos já validados para Classic 5.0.
-4. **Portabilidade e Higienização:** use exclusivamente configurações de exemplo locais (`127.0.0.1`, porta `3306`, usuário `LostAcademyGroup`, senha `LostAcademyGroup`) quando editar templates de configuração.
+1. **Classificação e Labels Automáticas:**
+   - O bot aplica automaticamente labels por **tipo** (`documentation`, `docs-only`, `kind/bug`, `kind/feature`, `kind/perf`, `kind/security`, `kind/refactor`, `kind/deps`), **área** (`area/gameforge`, `area/blender-plugins`, `area/geo-nav`, `area/version-dll`, `area/tools`, `area/ci`, etc.) e **tamanho** (`size/XS` a `size/XL`), preservando qualquer label manual adicionada pela equipe.
+2. **Revisão e Aprovação Automática:**
+   - Ao final das verificações (`Revisão Automática e Qualidade do PR`, `Validar Titulo do PR / Commit` e, quando aplicável, `Build e Pacote GameForge GSID 1`), o bot publica um comentário único consolidado com o diagnóstico, adiciona `bot/approved` e envia `APPROVE` oficial quando tudo está saudável (ou `REQUEST_CHANGES` + `bot/needs-attention` indicando arquivo e linha exatos caso exista erro).
+   - Para PRs puramente de documentação (`docs-only`) abertos pela interface web do GitHub com títulos genéricos (como `Update README.md`), o próprio bot padroniza o título automaticamente (`docs: atualizar README.md`) em vez de bloquear a contribuição.
+3. **Comando `/autofix` no PR:**
+   - Se o bot sinalizar pequenos ajustes mecânicos (quebra `CRLF -> LF` em workflows, ausência de quebra de linha no fim do arquivo ou espaços sobrando ao fim de linhas de código), basta comentar `/autofix` no Pull Request (válido para branches do próprio repositório) para o bot corrigir e enviar o commit automaticamente.
 
 ---
 
-## 3. Padrão de Mensagens de Commit
+## 3. Padrão Recomendado de Títulos e Commits
 
-Mantenha mensagens objetivas em Português, no estilo Conventional Commits:
+Para alterações de código, utilize o formato Conventional Commits com mensagens objetivas em Português (o escopo entre parênteses é opcional):
 
 ```text
 fix(gameforge): corrigir dialogo e recompensa de quest em pandaemonium
 feat(l10n): adicionar selecao de idioma nas mensagens do servidor
-fix(login-server): validar tamanho de payload no pacote de autenticacao
-docs: atualizar documentacao tecnica do objetivo GameForge GSID 1
+perf(blender): otimizar carregamento linear do importador de mapas
+docs: corrigir link e instrucoes de uso no README.md
 ```
 
 ---
 
-## 4. Formulário de Pull Request
+## 4. Validação Local (Quando Alterar Código Java)
 
-Ao submeter um Pull Request, preencha completamente o template [`.github/pull_request_template.md`](.github/pull_request_template.md). PRs em branco, sem evidências técnicas ou fora do escopo GameForge GSID 1 serão recusados.
+Se você editou arquivos dentro de `Código Fonte - Emulador/`, valide localmente com JDK 25 antes do envio:
+
+```bash
+mvn clean package --file "Código Fonte - Emulador/pom.xml"
+```
+
+---
+
+## 5. Formulário de Pull Request
+
+Ao abrir um Pull Request, utilize o formulário [`.github/pull_request_template.md`](.github/pull_request_template.md) marcando apenas os itens aplicáveis ao tipo da sua mudança (para `docs-only`, os itens técnicos de Java são dispensados).

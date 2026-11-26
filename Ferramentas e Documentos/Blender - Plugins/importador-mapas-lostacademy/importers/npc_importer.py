@@ -7,6 +7,9 @@ and spawns entities into categorized Blender collections with ground terrain ali
 
 from __future__ import annotations
 
+from array import array
+from bisect import bisect_right
+from concurrent.futures import ThreadPoolExecutor
 import gzip
 import io
 import json
@@ -19,6 +22,7 @@ from typing import Any, Dict, List, Optional, Tuple
 
 import bpy
 from mathutils import Euler, Matrix, Vector
+from mathutils.bvhtree import BVHTree
 
 from core.client_provider import AionClientProvider
 from formats.cgf.parser import get_cgf
@@ -191,13 +195,94 @@ def _get_or_create_collection(
     return col
 
 
+def _sample_terrain_grid_z(x: float, y: float, grid: tuple) -> Optional[float]:
+    """O(1) bilinear height interpolation over a regular axis-aligned terrain height grid."""
+    row_xs, col_ys, z_vals, new_h, new_w = grid
+    if new_h < 2 or new_w < 2 or not row_xs or not col_ys:
+        return None
+    if x < row_xs[0] or x > row_xs[-1] or y < col_ys[0] or y > col_ys[-1]:
+        return None
+
+    r0 = bisect_right(row_xs, x) - 1
+    if r0 < 0:
+        r0 = 0
+    elif r0 > new_h - 2:
+        r0 = new_h - 2
+    r1 = r0 + 1
+
+    c0 = bisect_right(col_ys, y) - 1
+    if c0 < 0:
+        c0 = 0
+    elif c0 > new_w - 2:
+        c0 = new_w - 2
+    c1 = c0 + 1
+
+    dx = row_xs[r1] - row_xs[r0]
+    tx = (x - row_xs[r0]) / dx if dx > 0.0 else 0.0
+    if tx < 0.0:
+        tx = 0.0
+    elif tx > 1.0:
+        tx = 1.0
+
+    dy = col_ys[c1] - col_ys[c0]
+    ty = (y - col_ys[c0]) / dy if dy > 0.0 else 0.0
+    if ty < 0.0:
+        ty = 0.0
+    elif ty > 1.0:
+        ty = 1.0
+
+    base0 = r0 * new_w
+    base1 = r1 * new_w
+    z00 = z_vals[base0 + c0]
+    z01 = z_vals[base0 + c1]
+    z10 = z_vals[base1 + c0]
+    z11 = z_vals[base1 + c1]
+    z0 = z00 + (z01 - z00) * ty
+    z1 = z10 + (z11 - z10) * ty
+    return float(z0 + (z1 - z0) * tx)
+
+
+def _extract_terrain_height_grid(terrain_obj: Optional[bpy.types.Object]) -> Optional[tuple]:
+    """Extracts a fast O(1) bilinear height grid from an imported Aion terrain object."""
+    if terrain_obj is None or terrain_obj.type != "MESH" or terrain_obj.data is None:
+        return None
+    mesh = terrain_obj.data
+    h = int(terrain_obj.get("aion_terrain_grid_h", 0) or 0)
+    w = int(terrain_obj.get("aion_terrain_grid_w", 0) or 0)
+    if h < 2 or w < 2 or h * w != len(mesh.vertices):
+        return None
+    try:
+        flat_co = array("f", [0.0]) * (h * w * 3)
+        mesh.vertices.foreach_get("co", flat_co)
+        loc_x = float(terrain_obj.location.x)
+        loc_y = float(terrain_obj.location.y)
+        loc_z = float(terrain_obj.location.z)
+        row_xs = [flat_co[(r * w) * 3] + loc_x for r in range(h)]
+        col_ys = [flat_co[c * 3 + 1] + loc_y for c in range(w)]
+        z_vals = flat_co[2::3]
+        if abs(loc_z) > 1e-6:
+            z_vals = array("f", (z + loc_z for z in z_vals))
+        return (row_xs, col_ys, z_vals, h, w)
+    except Exception:
+        return None
+
+
 def _snap_z_to_terrain(
     x: float,
     y: float,
     terrain_obj: Optional[bpy.types.Object],
     default_z: float = 0.0,
+    terrain_bvh: Optional[BVHTree] = None,
+    terrain_inv_mat: Optional[Matrix] = None,
+    terrain_grid: Optional[tuple] = None,
 ) -> float:
-    """Raycasts vertically onto terrain mesh to find the exact ground elevation."""
+    """Finds ground Z in O(1) from regular terrain grid, falling back to BVH/raycast if needed."""
+    if terrain_grid is not None:
+        sampled = _sample_terrain_grid_z(x, y, terrain_grid)
+        if sampled is not None:
+            return sampled
+        return default_z
+
     if terrain_obj is None or terrain_obj.type != "MESH":
         return default_z
 
@@ -205,9 +290,16 @@ def _snap_z_to_terrain(
         high_pt = Vector((x, y, 2000.0))
         ray_dir = Vector((0.0, 0.0, -1.0))
 
-        inv_mat = terrain_obj.matrix_world.inverted()
+        inv_mat = terrain_inv_mat if terrain_inv_mat is not None else terrain_obj.matrix_world.inverted()
         local_origin = inv_mat @ high_pt
         local_dir = inv_mat.to_3x3() @ ray_dir
+
+        if terrain_bvh is not None:
+            hit_loc, _, _, _ = terrain_bvh.ray_cast(local_origin, local_dir, 4500.0)
+            if hit_loc is not None:
+                world_hit = terrain_obj.matrix_world @ hit_loc
+                return float(world_hit.z)
+            return default_z
 
         success, hit_loc, _, _ = terrain_obj.ray_cast(local_origin, local_dir)
         if success:
@@ -219,6 +311,19 @@ def _snap_z_to_terrain(
     return default_z
 
 
+def _build_terrain_bvh(terrain_obj: Optional[bpy.types.Object]) -> tuple[Optional[BVHTree], Optional[Matrix]]:
+    if terrain_obj is None or terrain_obj.type != "MESH" or terrain_obj.data is None:
+        return None, None
+    try:
+        mesh = terrain_obj.data
+        verts = [v.co for v in mesh.vertices]
+        polys = [p.vertices for p in mesh.polygons]
+        if not verts or not polys:
+            return None, None
+        return BVHTree.FromPolygons(verts, polys), terrain_obj.matrix_world.inverted()
+    except Exception:
+        return None, None
+
 
 def _create_npc_nameplate(
     target_col: bpy.types.Collection,
@@ -227,8 +332,10 @@ def _create_npc_nameplate(
     localized_name: str,
     title: str = "",
     scale: float = 1.0,
+    *,
+    disable_shadows: bool = True,
 ) -> bpy.types.Object:
-    """Creates a 3D Font Curve Billboard Nameplate above an NPC's head."""
+    """Creates a lightweight 3D Font Curve Billboard Nameplate above an NPC's head."""
     curve_data = bpy.data.curves.new(type="FONT", name=f"NPCLabel_{npc_id}")
     label_text = f"{localized_name} [{npc_id}]"
     if title:
@@ -237,50 +344,38 @@ def _create_npc_nameplate(
     curve_data.align_x = "CENTER"
     curve_data.align_y = "BOTTOM"
     curve_data.size = 0.35 * max(0.5, min(scale, 2.5))
+    curve_data.resolution_u = 2
+    curve_data.extrude = 0.0
+    curve_data.bevel_depth = 0.0
 
     label_obj = bpy.data.objects.new(f"NPCLabel_{npc_id}", curve_data)
     label_obj.location = (0.0, 0.0, 2.2 * scale)
     label_obj.parent = parent_obj
+    if disable_shadows and hasattr(label_obj, "visible_shadow"):
+        try:
+            label_obj.visible_shadow = False
+        except (AttributeError, TypeError):
+            pass
     label_obj["aion_source_type"] = "npc_nameplate"
     label_obj["aion_npc_id"] = npc_id
     label_obj["aion_npc_name"] = localized_name
     target_col.objects.link(label_obj)
     return label_obj
-def create_world_npcs(
-    context: bpy.types.Context,
-    level_dir: Path | str,
-    client_root: Path | str,
-    root_collection: Optional[bpy.types.Collection] = None,
+
+
+def _prepare_npc_stage_data(
+    level_path: Path,
+    client_path: Path,
+    map_name: str,
     *,
-    parent_collection: Optional[bpy.types.Collection] = None,
-    terrain_obj: Optional[bpy.types.Object] = None,
-    load_models: bool = True,
-    import_models: Optional[bool] = None,
-    animate_npcs: bool = True,
-    import_monsters: bool = True,
-    import_friendly: bool = True,
-    import_ambient: bool = True,
-    import_nameplates: bool = True,
-    max_npcs: int = 0,
-) -> NpcImportResult:
-    """
-    Authoritatively loads and places world NPCs into the Blender scene.
-    Supports animated CryEngine skeletons (.caf/.cal) and static fallbacks.
-    """
-    level_path = Path(level_dir).resolve()
-    client_path = Path(client_root).resolve()
-    map_name = _get_map_name_from_level_dir(level_path)
-
-    if import_models is not None:
-        load_models = import_models
-
-    target_parent = parent_collection or root_collection
-    if target_parent is None:
-        target_parent = context.scene.collection
-
+    import_monsters: bool,
+    import_friendly: bool,
+    import_ambient: bool,
+    max_npcs: int,
+) -> dict:
+    """Pure-Python I/O & XML/BXML parsing stage safe for background worker execution."""
     provider = AionClientProvider(client_path)
 
-    # 1. Load world spawns from World.pak
     spawns: List[NpcSpawn] = []
     wdata = provider.read_world_spawns_data(map_name)
     if wdata:
@@ -289,7 +384,6 @@ def create_world_npcs(
         except Exception as exc:
             print(f"[AION NPC] Error parsing world spawns: {exc}")
 
-    # Also check local level directory for client_world_<map>.xml
     for local_cand in (level_path / f"client_world_{map_name}.xml", level_path / f"client_world_{map_name}.bxml"):
         if local_cand.is_file():
             try:
@@ -300,131 +394,21 @@ def create_world_npcs(
                 pass
 
     if not spawns:
-        return NpcImportResult(spawns_found=0, spawns_placed=0)
+        return {"spawns_found": 0, "entries": [], "unique_cgfs": [], "provider": provider}
 
-    # 2. Get NPC templates
     templates = get_cached_npc_templates(client_path)
-
-    # 3. Create Hierarchical Collections
     provider.load_string_tables()
 
-    if target_parent.name == "NPCS":
-        npcs_root_col = target_parent
-    else:
-        npcs_root_col = _get_or_create_collection(target_parent, "NPCS")
-
-    friendly_col = _get_or_create_collection(npcs_root_col, "NPCs - Friendly")
-    monsters_col = _get_or_create_collection(npcs_root_col, "Monsters & Hostiles")
-    ambient_col = _get_or_create_collection(npcs_root_col, "NPCs - Ambient Fauna")
-    nameplates_col = _get_or_create_collection(npcs_root_col, "NPC_NAMES")
-
-    # 4. Cache template datablocks (shared in bpy.data, no dummy scene objects!)
-    static_meshes: Dict[str, bpy.types.Mesh] = {}
-    animated_data: Dict[str, Tuple[bpy.types.Armature, bpy.types.Mesh, bytes, List[str], List[Dict[str, Any]], List[Any]]] = {}
-    action_cache: Dict[str, Optional[bpy.types.Action]] = {}
-
-    def get_or_import_npc_asset(cgf_ref: str, npc_name_clean: str):
-        """
-        Loads CGF mesh and skeleton.
-        Returns: ('ANIMATED', arm_data, mesh_data, caf_bytes, bone_names, bone_anim, skin_weights)
-              or ('STATIC', mesh_data)
-              or ('NONE', None)
-        """
-        if not cgf_ref or not load_models:
-            return "NONE", None
-
-        norm_ref = cgf_ref.replace("\\", "/").strip().lstrip("/").lower()
-
-        # Check existing rig template
-        if animate_npcs and norm_ref in animated_data:
-            return ("ANIMATED",) + animated_data[norm_ref]
-
-        # Check existing static mesh
-        if norm_ref in static_meshes:
-            return "STATIC", static_meshes[norm_ref]
-
-        # Extract CGF bytes
-        cgf_bytes = provider.resolve_cgf_bytes(norm_ref)
-        if not cgf_bytes:
-            return "NONE", None
-
-        try:
-            cgf = get_cgf(io.BytesIO(cgf_bytes))
-        except Exception as exc:
-            print(f"[AION NPC] Failed parsing CGF bytes for {norm_ref}: {exc}")
-            return "NONE", None
-
-        # Check if CGF contains skeleton chunks
-        bone_names = cgf.get("bone_names", [])
-        bone_anim = cgf.get("bone_anim", [])
-        bone_initial_pos = cgf.get("bone_initial_pos", [])
-
-        # Find first valid mesh node
-        nodes = cgf.get("nodes", {})
-        mesh_chunk = None
-        for n_id, n_data in nodes.items():
-            if isinstance(n_data, dict) and "mesh" in n_data and n_data["mesh"]:
-                mesh_chunk = n_data["mesh"]
-                break
-
-        if not mesh_chunk:
-            return "NONE", None
-
-        verts_pos = mesh_chunk.get("vertices", {}).get("position", [])
-        faces_v = mesh_chunk.get("faces", {}).get("v", [])
-        if not verts_pos or not faces_v:
-            return "NONE", None
-
-        skin_weights = mesh_chunk.get("skin_weights", [])
-
-        # If skeleton present and animation requested:
-        if animate_npcs and bone_names and bone_initial_pos:
-            try:
-                # Build Armature datablock
-                arm_data = build_npc_armature(npc_name_clean, bone_names, bone_initial_pos, bone_anim, collection=None)
-                if isinstance(arm_data, bpy.types.Object):
-                    arm_data = arm_data.data
-
-                # Build Mesh datablock
-                m_data = bpy.data.meshes.new(f"{npc_name_clean}_Mesh")
-                m_data.from_pydata(verts_pos, [], faces_v)
-                m_data.update()
-
-                # Resolve CAF animation bytes
-                cal_map, caf_bytes = provider.resolve_animation_asset(norm_ref)
-
-                record = (arm_data, m_data, caf_bytes or b"", bone_names, bone_anim, skin_weights)
-                animated_data[norm_ref] = record
-                return ("ANIMATED",) + record
-            except Exception as exc:
-                print(f"[AION NPC] Skeleton build failed for {norm_ref}, falling back to static: {exc}")
-
-        # Static mesh fallback
-        try:
-            m_data = bpy.data.meshes.new(f"{npc_name_clean}_StaticMesh")
-            m_data.from_pydata(verts_pos, [], faces_v)
-            m_data.update()
-            static_meshes[norm_ref] = m_data
-            return "STATIC", m_data
-        except Exception as exc:
-            print(f"[AION NPC] Static mesh creation failed for {norm_ref}: {exc}")
-            return "NONE", None
-
-    # 5. Place NPCs
-    placed_count = 0
-    instances_created = 0
-    animated_count = 0
-    missing_models = 0
-    resolved_templates_count = 0
-
     spawns_to_process = spawns[:max_npcs] if max_npcs > 0 else spawns
+    entries = []
+    unique_cgfs = []
+    seen_cgfs = set()
 
     for spawn in spawns_to_process:
         npc_id = spawn.npc_id
         template = templates.get(npc_id)
         loc_name = ""
         if template:
-            resolved_templates_count += 1
             name = template.name
             title = template.title
             cgf_ref = template.cgf_reference
@@ -440,7 +424,6 @@ def create_world_npcs(
 
         display_name = loc_name if loc_name and not loc_name.startswith("STR_") else name
 
-        # Apply category filters
         if category == "monster" and not import_monsters:
             continue
         if category == "ambient" and not import_ambient:
@@ -448,136 +431,492 @@ def create_world_npcs(
         if category in ("npc", "shugo") and not import_friendly:
             continue
 
-        # Target subcollection
-        if category == "monster":
-            target_col = monsters_col
-        elif category == "ambient":
-            target_col = ambient_col
-        else:
-            target_col = friendly_col
-
-        x, y, z = spawn.position
-        if not spawn.has_explicit_z or abs(z) < 0.001:
-            z = _snap_z_to_terrain(x, y, terrain_obj, default_z=z)
-
-        # Fallback to humanoid model if template mesh is empty
-        is_object_prop = any(tok in name.lower() for tok in ("stone", "sack", "box", "pouch", "chest", "door", "gate", "tomb"))
+        is_object_prop = any(
+            tok in name.lower()
+            for tok in ("stone", "sack", "box", "pouch", "chest", "door", "gate", "tomb")
+        )
         if not cgf_ref and category in ("npc", "friendly") and not is_object_prop:
             if "df" in map_name or "dc" in map_name:
                 cgf_ref = "objects/npc/human/cam/cam.cgf"
             else:
                 cgf_ref = "objects/npc/human/cem/cem.cgf"
 
-        yaw_rad = math.radians(spawn.heading_degrees)
-        obj_name = f"{name}_{npc_id}"
+        norm_ref = cgf_ref.replace("\\", "/").strip().lstrip("/").lower() if cgf_ref else ""
+        if norm_ref and norm_ref not in seen_cgfs:
+            seen_cgfs.add(norm_ref)
+            unique_cgfs.append(norm_ref)
 
-        # Resolve asset
-        res_type, *res_data = get_or_import_npc_asset(cgf_ref, name)
+        entries.append((spawn, name, display_name, title, scale, category, cgf_ref, norm_ref))
 
-        if res_type == "ANIMATED":
-            arm_data, m_data, caf_bytes, b_names, b_anim, s_weights = res_data
-            rig_inst = bpy.data.objects.new(f"{obj_name}_Rig", arm_data)
-            mesh_inst = bpy.data.objects.new(obj_name, m_data)
+    return {
+        "spawns_found": len(spawns),
+        "entries": entries,
+        "unique_cgfs": unique_cgfs,
+        "provider": provider,
+    }
 
-            target_col.objects.link(rig_inst)
-            target_col.objects.link(mesh_inst)
 
-            mesh_inst.parent = rig_inst
-            apply_skin_weights(mesh_inst, b_names, s_weights, rig_inst)
+def _parse_npc_cgf_chunk(
+    provider: AionClientProvider,
+    cgf_refs: List[str],
+    animate_npcs: bool,
+    cancel_event=None,
+) -> Dict[str, dict]:
+    """Extracts & parses a small chunk of NPC CGFs (plus optional CAF) off the main thread."""
+    parsed_map: Dict[str, dict] = {}
+    for norm_ref in cgf_refs:
+        if cancel_event is not None and cancel_event.is_set():
+            break
+        cgf_bytes = provider.resolve_cgf_bytes(norm_ref)
+        if not cgf_bytes:
+            continue
+        try:
+            cgf = get_cgf(io.BytesIO(cgf_bytes))
+        except Exception as exc:
+            print(f"[AION NPC] Failed parsing CGF bytes for {norm_ref}: {exc}")
+            continue
 
-            # Resolve / attach idle action
-            norm_ref = cgf_ref.replace("\\", "/").strip().lstrip("/").lower()
-            if norm_ref not in action_cache:
-                act = None
-                if caf_bytes:
-                    act_name = f"{name}_Idle"
-                    act = apply_caf_animation(rig_inst, caf_bytes, b_names, b_anim, act_name)
-                action_cache[norm_ref] = act
-            else:
-                act = action_cache[norm_ref]
+        caf_bytes = b""
+        if animate_npcs and cgf.get("bone_names") and cgf.get("bone_initial_pos"):
+            try:
+                _, resolved_caf = provider.resolve_animation_asset(norm_ref)
+                if resolved_caf:
+                    caf_bytes = resolved_caf
+            except Exception:
+                pass
+        parsed_map[norm_ref] = {"cgf": cgf, "caf_bytes": caf_bytes}
+    return parsed_map
 
-            if act:
-                rig_inst.animation_data_create()
-                rig_inst.animation_data.action = act
 
-            rig_inst.location = (x, y, z)
-            rig_inst.rotation_euler = Euler((0.0, 0.0, yaw_rad), "XYZ")
-            rig_inst.scale = (scale, scale, scale)
+def _build_merged_static_npc_mesh(cgf: dict, mesh_name: str) -> Optional[bpy.types.Mesh]:
+    """Combines all valid mesh chunks inside an NPC CGF into one lightweight static Mesh datablock."""
+    nodes = cgf.get("nodes", {}) or {}
+    combined_verts: List[Tuple[float, float, float]] = []
+    combined_faces: List[Tuple[int, ...]] = []
 
-            rig_inst["aion_source_type"] = "npc_rig"
-            rig_inst["aion_npc_id"] = npc_id
-            rig_inst["aion_npc_name"] = name
-            rig_inst["aion_orig_pos"] = [x, y, z]
-            mesh_inst["aion_source_type"] = "npc"
-            mesh_inst["aion_npc_id"] = npc_id
-            mesh_inst["aion_npc_name"] = display_name
-            mesh_inst["aion_orig_pos"] = [x, y, z]
-
-            if import_nameplates:
-                _create_npc_nameplate(nameplates_col, rig_inst, npc_id, display_name, title, scale)
-
-            placed_count += 1
-            instances_created += 1
-            animated_count += 1
-
-        elif res_type == "STATIC":
-            mesh_data = res_data[0]
-            obj = bpy.data.objects.new(obj_name, mesh_data)
-            obj.location = (x, y, z)
-            obj.rotation_euler = Euler((0.0, 0.0, yaw_rad), "XYZ")
-            obj.scale = (scale, scale, scale)
-
-            obj["aion_source_type"] = "npc"
-            obj["aion_npc_id"] = npc_id
-            obj["aion_npc_name"] = name
-            obj["aion_orig_pos"] = [x, y, z]
-            if title:
-                obj["aion_npc_title"] = title
-            if cgf_ref:
-                obj["aion_cgf_reference"] = cgf_ref
-
-            target_col.objects.link(obj)
-            if import_nameplates:
-                _create_npc_nameplate(nameplates_col, obj, npc_id, display_name, title, scale)
-            placed_count += 1
-            instances_created += 1
-
+    for n_data in nodes.values():
+        if not isinstance(n_data, dict):
+            continue
+        mesh_chunk = n_data.get("mesh")
+        if not mesh_chunk:
+            continue
+        verts_pos = mesh_chunk.get("vertices", {}).get("position", [])
+        faces_v = mesh_chunk.get("faces", {}).get("v", [])
+        if not verts_pos or not faces_v:
+            continue
+        v_offset = len(combined_verts)
+        combined_verts.extend(verts_pos)
+        if v_offset == 0:
+            combined_faces.extend(faces_v)
         else:
-            # Fallback marker empty
-            obj = bpy.data.objects.new(obj_name, None)
-            obj.empty_display_type = "SINGLE_ARROW" if category != "monster" else "SPHERE"
-            obj.location = (x, y, z)
-            obj.rotation_euler = Euler((0.0, 0.0, yaw_rad), "XYZ")
-            obj.scale = (scale, scale, scale)
+            combined_faces.extend(tuple(idx + v_offset for idx in face) for face in faces_v)
 
-            obj["aion_source_type"] = "npc_marker"
-            obj["aion_npc_id"] = npc_id
-            obj["aion_npc_name"] = name
-            obj["aion_orig_pos"] = [x, y, z]
-            if title:
-                obj["aion_npc_title"] = title
-            if cgf_ref:
-                obj["aion_cgf_reference"] = cgf_ref
+    if not combined_verts or not combined_faces:
+        return None
 
-            target_col.objects.link(obj)
-            if import_nameplates:
-                _create_npc_nameplate(nameplates_col, obj, npc_id, display_name, title, scale)
-            placed_count += 1
-            instances_created += 1
-            missing_models += 1
+    m_data = bpy.data.meshes.new(mesh_name)
+    m_data.from_pydata(combined_verts, [], combined_faces)
+    m_data.update(calc_edges=False)
+    return m_data
 
-    # Prune empty subcollections in NPCS
-    for sub in (friendly_col, monsters_col, ambient_col, nameplates_col):
-        if len(sub.objects) == 0 and len(sub.children) == 0:
-            if sub.name in npcs_root_col.children.keys():
-                npcs_root_col.children.unlink(sub)
-            bpy.data.collections.remove(sub)
 
-    return NpcImportResult(
-        spawns_found=len(spawns),
-        spawns_placed=placed_count,
-        animated_rigs_created=animated_count,
-        models_loaded=len(static_meshes) + len(animated_data),
-        missing_models=missing_models,
-        instances_created=instances_created,
+def iter_create_world_npcs(
+    context: bpy.types.Context,
+    level_dir: Path | str,
+    client_root: Path | str,
+    root_collection: Optional[bpy.types.Collection] = None,
+    *,
+    parent_collection: Optional[bpy.types.Collection] = None,
+    terrain_obj: Optional[bpy.types.Object] = None,
+    load_models: bool = True,
+    import_models: Optional[bool] = None,
+    animate_npcs: bool = False,
+    import_monsters: bool = True,
+    import_friendly: bool = True,
+    import_ambient: bool = True,
+    import_nameplates: bool = False,
+    max_npcs: int = 0,
+    disable_shadows: bool = True,
+    batch_size: int = 8,
+    executor: Optional[ThreadPoolExecutor] = None,
+    cancel_event=None,
+    terrain_grid: Optional[tuple] = None,
+):
+    """
+    Strictly linear, non-blocking generator for authoritative NPC loading:
+      Stage A (async worker): read & parse spawns + templates + string tables
+      Stage B (async worker chunks): extract & parse unique NPC CGF/CAF bytes
+      Stage C (main thread): build mesh/rig templates cleanly (1 by 1)
+      Stage D (main thread): place NPC instances in tiny batches of `batch_size`
+    Yields `(local_frac, status_message)` in `[0.0, 1.0]` and returns `NpcImportResult`.
+    """
+    level_path = Path(level_dir).resolve()
+    client_path = Path(client_root).resolve()
+    map_name = _get_map_name_from_level_dir(level_path)
+
+    if import_models is not None:
+        load_models = import_models
+
+    target_parent = parent_collection or root_collection
+    if target_parent is None:
+        target_parent = context.scene.collection
+
+    own_executor = executor is None
+    worker = ThreadPoolExecutor(max_workers=1) if own_executor else executor
+    provider = None
+
+    try:
+        # Stage A: Offload World.pak / npcs.pak / L10N parsing completely off main thread
+        fut_meta = worker.submit(
+            _prepare_npc_stage_data,
+            level_path,
+            client_path,
+            map_name,
+            import_monsters=import_monsters,
+            import_friendly=import_friendly,
+            import_ambient=import_ambient,
+            max_npcs=max_npcs,
+        )
+        while not fut_meta.done():
+            if cancel_event is not None and cancel_event.is_set():
+                return NpcImportResult()
+            yield (0.05, "Lendo spawns e templates de NPCs em segundo plano...")
+        stage_data = fut_meta.result()
+
+        spawns_found = stage_data["spawns_found"]
+        entries = stage_data["entries"]
+        unique_cgfs = stage_data["unique_cgfs"]
+        provider = stage_data["provider"]
+
+        if not spawns_found or not entries:
+            return NpcImportResult(spawns_found=spawns_found, spawns_placed=0)
+
+        # Stage B: Extract & parse unique NPC models linearly in small worker chunks
+        parsed_cgf_map: Dict[str, dict] = {}
+        if load_models and unique_cgfs:
+            chunk_n = 6
+            total_u = len(unique_cgfs)
+            for start in range(0, total_u, chunk_n):
+                if cancel_event is not None and cancel_event.is_set():
+                    return NpcImportResult(spawns_found=spawns_found, spawns_placed=0)
+                chunk_refs = unique_cgfs[start : start + chunk_n]
+                pct_msg = f"Extraindo modelos de NPCs ({min(start + len(chunk_refs), total_u)}/{total_u})..."
+                frac = 0.15 + 0.30 * (start / max(1, total_u))
+                fut_chunk = worker.submit(_parse_npc_cgf_chunk, provider, chunk_refs, animate_npcs, cancel_event)
+                while not fut_chunk.done():
+                    if cancel_event is not None and cancel_event.is_set():
+                        return NpcImportResult(spawns_found=spawns_found, spawns_placed=0)
+                    yield (frac, pct_msg)
+                parsed_cgf_map.update(fut_chunk.result())
+
+        # Free PAK archive handles before Blender mesh phase if animation assets are no longer needed
+        if provider is not None:
+            provider.close()
+
+        # Stage C: Prepare collections & terrain inverse matrix on main thread
+        if target_parent.name == "NPCS":
+            npcs_root_col = target_parent
+        else:
+            npcs_root_col = _get_or_create_collection(target_parent, "NPCS")
+
+        friendly_col = _get_or_create_collection(npcs_root_col, "NPCs - Friendly")
+        monsters_col = _get_or_create_collection(npcs_root_col, "Monsters & Hostiles")
+        ambient_col = _get_or_create_collection(npcs_root_col, "NPCs - Ambient Fauna")
+        nameplates_col = _get_or_create_collection(npcs_root_col, "NPC_NAMES")
+
+        yield (0.44, "Preparando referências do terreno para NPCs...")
+        needs_snap = any(
+            (not sp.has_explicit_z or abs(sp.position[2]) < 0.001)
+            for sp, *_ in entries
+        )
+        active_grid = (
+            terrain_grid
+            if (needs_snap and terrain_grid is not None)
+            else (_extract_terrain_height_grid(terrain_obj) if needs_snap else None)
+        )
+        terrain_bvh, terrain_inv_mat = (None, None)
+        if needs_snap and active_grid is None and terrain_obj is not None and terrain_obj.type == "MESH":
+            terrain_bvh, terrain_inv_mat = _build_terrain_bvh(terrain_obj)
+
+        static_meshes: Dict[str, bpy.types.Mesh] = {}
+        animated_data: Dict[str, Tuple[bpy.types.Armature, bpy.types.Mesh, bytes, List[str], List[Dict[str, Any]], List[Any]]] = {}
+        action_cache: Dict[str, Optional[bpy.types.Action]] = {}
+
+        # Build unique Blender mesh/rig templates 1 at a time (yielding between models)
+        if load_models and parsed_cgf_map:
+            ref_to_sample_name = {}
+            for _, name, _, _, _, _, _, norm_ref in entries:
+                if norm_ref and norm_ref not in ref_to_sample_name:
+                    ref_to_sample_name[norm_ref] = name
+
+            parsed_items = list(parsed_cgf_map.items())
+            for idx_m, (norm_ref, bundle) in enumerate(parsed_items, start=1):
+                cgf = bundle["cgf"]
+                caf_bytes = bundle["caf_bytes"]
+                npc_name_clean = ref_to_sample_name.get(norm_ref, Path(norm_ref).stem)
+
+                bone_names = cgf.get("bone_names", [])
+                bone_anim = cgf.get("bone_anim", [])
+                bone_initial_pos = cgf.get("bone_initial_pos", [])
+
+                mesh_chunk = None
+                for n_data in (cgf.get("nodes") or {}).values():
+                    if isinstance(n_data, dict) and n_data.get("mesh"):
+                        mesh_chunk = n_data["mesh"]
+                        break
+
+                if mesh_chunk:
+                    verts_pos = mesh_chunk.get("vertices", {}).get("position", [])
+                    faces_v = mesh_chunk.get("faces", {}).get("v", [])
+                    skin_weights = mesh_chunk.get("skin_weights", [])
+
+                    if verts_pos and faces_v:
+                        if animate_npcs and bone_names and bone_initial_pos:
+                            try:
+                                arm_data = build_npc_armature(
+                                    npc_name_clean, bone_names, bone_initial_pos, bone_anim, collection=None
+                                )
+                                if isinstance(arm_data, bpy.types.Object):
+                                    arm_data = arm_data.data
+                                m_data = bpy.data.meshes.new(f"{npc_name_clean}_Mesh")
+                                m_data.from_pydata(verts_pos, [], faces_v)
+                                m_data.update(calc_edges=False)
+                                animated_data[norm_ref] = (
+                                    arm_data,
+                                    m_data,
+                                    caf_bytes or b"",
+                                    bone_names,
+                                    bone_anim,
+                                    skin_weights,
+                                )
+                            except Exception as exc:
+                                print(f"[AION NPC] Skeleton build failed for {norm_ref}, using static mesh: {exc}")
+
+                        if norm_ref not in animated_data:
+                            static_m = _build_merged_static_npc_mesh(cgf, f"{npc_name_clean}_StaticMesh")
+                            if static_m is not None:
+                                static_meshes[norm_ref] = static_m
+
+                yield (
+                    0.45 + 0.15 * (idx_m / max(1, len(parsed_items))),
+                    f"Construindo malha de NPC {idx_m}/{len(parsed_items)}...",
+                )
+
+        # Stage D: Place NPC instances in small batches
+        placed_count = 0
+        instances_created = 0
+        animated_count = 0
+        missing_models = 0
+        total_entries = len(entries)
+        step_batch = max(1, int(batch_size))
+
+        for idx_e, (spawn, name, display_name, title, scale, category, cgf_ref, norm_ref) in enumerate(entries, start=1):
+            if cancel_event is not None and cancel_event.is_set():
+                break
+            if category == "monster":
+                target_col = monsters_col
+            elif category == "ambient":
+                target_col = ambient_col
+            else:
+                target_col = friendly_col
+
+            x, y, z = spawn.position
+            if not spawn.has_explicit_z or abs(z) < 0.001:
+                z = _snap_z_to_terrain(
+                    x,
+                    y,
+                    terrain_obj,
+                    default_z=z,
+                    terrain_bvh=terrain_bvh,
+                    terrain_inv_mat=terrain_inv_mat,
+                    terrain_grid=active_grid,
+                )
+
+            yaw_rad = math.radians(spawn.heading_degrees)
+            obj_name = f"{name}_{spawn.npc_id}"
+
+            if load_models and animate_npcs and norm_ref in animated_data:
+                arm_data, m_data, caf_bytes, b_names, b_anim, s_weights = animated_data[norm_ref]
+                rig_inst = bpy.data.objects.new(f"{obj_name}_Rig", arm_data)
+                mesh_inst = bpy.data.objects.new(obj_name, m_data)
+
+                if disable_shadows and hasattr(mesh_inst, "visible_shadow"):
+                    try:
+                        mesh_inst.visible_shadow = False
+                    except (AttributeError, TypeError):
+                        pass
+
+                target_col.objects.link(rig_inst)
+                target_col.objects.link(mesh_inst)
+
+                mesh_inst.parent = rig_inst
+                apply_skin_weights(mesh_inst, b_names, s_weights, rig_inst)
+
+                if norm_ref not in action_cache:
+                    act = None
+                    if caf_bytes:
+                        act_name = f"{name}_Idle"
+                        act = apply_caf_animation(rig_inst, caf_bytes, b_names, b_anim, act_name)
+                    action_cache[norm_ref] = act
+                else:
+                    act = action_cache[norm_ref]
+
+                if act:
+                    rig_inst.animation_data_create()
+                    rig_inst.animation_data.action = act
+
+                rig_inst.location = (x, y, z)
+                rig_inst.rotation_euler = Euler((0.0, 0.0, yaw_rad), "XYZ")
+                rig_inst.scale = (scale, scale, scale)
+
+                rig_inst["aion_source_type"] = "npc_rig"
+                rig_inst["aion_npc_id"] = spawn.npc_id
+                rig_inst["aion_npc_name"] = name
+                rig_inst["aion_orig_pos"] = [x, y, z]
+                mesh_inst["aion_source_type"] = "npc"
+                mesh_inst["aion_npc_id"] = spawn.npc_id
+                mesh_inst["aion_npc_name"] = display_name
+                mesh_inst["aion_orig_pos"] = [x, y, z]
+
+                if import_nameplates:
+                    _create_npc_nameplate(
+                        nameplates_col, rig_inst, spawn.npc_id, display_name, title, scale, disable_shadows=disable_shadows
+                    )
+
+                placed_count += 1
+                instances_created += 1
+                animated_count += 1
+
+            elif load_models and norm_ref in static_meshes:
+                mesh_data = static_meshes[norm_ref]
+                obj = bpy.data.objects.new(obj_name, mesh_data)
+                obj.location = (x, y, z)
+                obj.rotation_euler = Euler((0.0, 0.0, yaw_rad), "XYZ")
+                obj.scale = (scale, scale, scale)
+                if disable_shadows and hasattr(obj, "visible_shadow"):
+                    try:
+                        obj.visible_shadow = False
+                    except (AttributeError, TypeError):
+                        pass
+
+                obj["aion_source_type"] = "npc"
+                obj["aion_npc_id"] = spawn.npc_id
+                obj["aion_npc_name"] = name
+                obj["aion_orig_pos"] = [x, y, z]
+                if title:
+                    obj["aion_npc_title"] = title
+                if cgf_ref:
+                    obj["aion_cgf_reference"] = cgf_ref
+
+                target_col.objects.link(obj)
+                if import_nameplates:
+                    _create_npc_nameplate(
+                        nameplates_col, obj, spawn.npc_id, display_name, title, scale, disable_shadows=disable_shadows
+                    )
+                placed_count += 1
+                instances_created += 1
+
+            else:
+                obj = bpy.data.objects.new(obj_name, None)
+                obj.empty_display_type = "SINGLE_ARROW" if category != "monster" else "SPHERE"
+                obj.location = (x, y, z)
+                obj.rotation_euler = Euler((0.0, 0.0, yaw_rad), "XYZ")
+                obj.scale = (scale, scale, scale)
+
+                obj["aion_source_type"] = "npc_marker"
+                obj["aion_npc_id"] = spawn.npc_id
+                obj["aion_npc_name"] = name
+                obj["aion_orig_pos"] = [x, y, z]
+                if title:
+                    obj["aion_npc_title"] = title
+                if cgf_ref:
+                    obj["aion_cgf_reference"] = cgf_ref
+
+                target_col.objects.link(obj)
+                if import_nameplates:
+                    _create_npc_nameplate(
+                        nameplates_col, obj, spawn.npc_id, display_name, title, scale, disable_shadows=disable_shadows
+                    )
+                placed_count += 1
+                instances_created += 1
+                missing_models += 1
+
+            if idx_e % step_batch == 0 and idx_e < total_entries:
+                yield (
+                    0.60 + 0.39 * (idx_e / max(1, total_entries)),
+                    f"Posicionando NPCs {idx_e}/{total_entries}...",
+                )
+
+        # Prune empty subcollections in NPCS
+        for sub in (friendly_col, monsters_col, ambient_col, nameplates_col):
+            if len(sub.objects) == 0 and len(sub.children) == 0:
+                if sub.name in npcs_root_col.children.keys():
+                    npcs_root_col.children.unlink(sub)
+                bpy.data.collections.remove(sub)
+
+        return NpcImportResult(
+            spawns_found=spawns_found,
+            spawns_placed=placed_count,
+            animated_rigs_created=animated_count,
+            models_loaded=len(static_meshes) + len(animated_data),
+            missing_models=missing_models,
+            instances_created=instances_created,
+        )
+    finally:
+        if provider is not None:
+            try:
+                provider.close()
+            except Exception:
+                pass
+        if own_executor:
+            worker.shutdown(wait=False, cancel_futures=True)
+
+
+def create_world_npcs(
+    context: bpy.types.Context,
+    level_dir: Path | str,
+    client_root: Path | str,
+    root_collection: Optional[bpy.types.Collection] = None,
+    *,
+    parent_collection: Optional[bpy.types.Collection] = None,
+    terrain_obj: Optional[bpy.types.Object] = None,
+    load_models: bool = True,
+    import_models: Optional[bool] = None,
+    animate_npcs: bool = False,
+    import_monsters: bool = True,
+    import_friendly: bool = True,
+    import_ambient: bool = True,
+    import_nameplates: bool = False,
+    max_npcs: int = 0,
+    disable_shadows: bool = True,
+) -> NpcImportResult:
+    """Synchronous wrapper around iter_create_world_npcs for headless scripts and tests."""
+    import time
+
+    gen = iter_create_world_npcs(
+        context,
+        level_dir,
+        client_root,
+        root_collection=root_collection,
+        parent_collection=parent_collection,
+        terrain_obj=terrain_obj,
+        load_models=load_models,
+        import_models=import_models,
+        animate_npcs=animate_npcs,
+        import_monsters=import_monsters,
+        import_friendly=import_friendly,
+        import_ambient=import_ambient,
+        import_nameplates=import_nameplates,
+        max_npcs=max_npcs,
+        disable_shadows=disable_shadows,
+        batch_size=100000,
     )
+    last_state = None
+    try:
+        while True:
+            state = next(gen)
+            if state == last_state:
+                time.sleep(0.002)
+            last_state = state
+    except StopIteration as exc:
+        return exc.value

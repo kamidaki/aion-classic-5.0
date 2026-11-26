@@ -2,26 +2,71 @@ name: Conventional Commits Lint
 
 on:
   pull_request:
-    types: [opened, edited, synchronize, reopened]
-  push:
-    branches: [ "main" ]
+    types: [opened, edited, synchronize, reopened, ready_for_review]
 
 permissions:
   pull-requests: read
   contents: read
+
+concurrency:
+  group: commitlint-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
 
 jobs:
   pr-title-lint:
     name: Validar Titulo do PR / Commit
     runs-on: ubuntu-latest
     steps:
-      - name: Bypass para o Proprietario do Repositorio
-        if: github.event_name == 'pull_request' && github.event.pull_request.user.login == github.repository_owner
+      - name: Classificar Pull Request (Owner / Bots / Draft / Docs-Only)
+        id: classify
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const author = (pr.user?.login || '').toLowerCase();
+            const owner = (context.repo.owner || '').toLowerCase();
+            const isOwner = author === owner;
+            const isBot = ['dependabot[bot]', 'renovate[bot]', 'github-actions[bot]'].includes(author);
+            const isWip = Boolean(pr.draft) || /^(?:wip\s*:|\[wip\])\s*/i.test(pr.title || '');
+            const files = await github.paginate(github.rest.pulls.listFiles, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: pr.number,
+              per_page: 100,
+            });
+            const docExts = ['.md', '.markdown', '.txt', '.rst'];
+            const assetExts = ['.png', '.jpg', '.jpeg', '.gif', '.svg', '.webp'];
+            const assetMarkers = [
+              '/docs/',
+              '/banner/',
+              'auditorias e relatórios/',
+              'blender - plugins/',
+              'geo and nav builder',
+              'patch final',
+            ];
+            const isDocFile = (name) => {
+              const low = (name || '').replace(/\\/g, '/').toLowerCase();
+              const base = low.split('/').pop() || '';
+              if (docExts.some((e) => low.endsWith(e)) || ['license', 'license.md', 'license.txt', 'copying'].includes(base)) {
+                return true;
+              }
+              if (assetExts.some((e) => low.endsWith(e))) {
+                return low.startsWith('docs/') || low.startsWith('.github/') || assetMarkers.some((m) => low.includes(m));
+              }
+              return false;
+            };
+            const isDocsOnly = files.length > 0 && files.every((f) => isDocFile(f.filename));
+            const bypass = isOwner || isBot || isWip || isDocsOnly;
+            core.setOutput('bypass', bypass ? 'true' : 'false');
+            core.setOutput('reason', isOwner ? 'owner' : isBot ? 'bot' : isWip ? 'wip/draft' : isDocsOnly ? 'docs-only' : 'strict');
+
+      - name: Fast-Track / Bypass Aplicado
+        if: steps.classify.outputs.bypass == 'true'
         run: |
-          echo "Bypass automático aplicado: autor do PR é o proprietário do repositório (${{ github.repository_owner }})."
+          echo "Validação rígida de título dispensada (${{ steps.classify.outputs.reason }})."
 
       - name: Validar Titulo Semantico
-        if: github.event_name == 'pull_request' && github.event.pull_request.user.login != github.repository_owner
+        if: steps.classify.outputs.bypass != 'true'
         uses: amannn/action-semantic-pull-request@v6
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -39,14 +84,5 @@ jobs:
             chore
             revert
             security
-          scopes: |
-            gameforge
-            login-server
-            chat-server
-            commons
-            version.dll
             l10n
-            docs
-            ci
-            build
           requireScope: false
