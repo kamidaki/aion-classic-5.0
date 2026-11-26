@@ -12,6 +12,7 @@ Supports:
 
 from __future__ import annotations
 
+from collections import OrderedDict
 import gzip
 import io
 import json
@@ -19,11 +20,31 @@ import os
 import shutil
 import struct
 import tempfile
+import threading
 import time
 import zlib
 import zipfile
 from pathlib import Path
 from typing import Dict, Iterable, List, Optional, Set, Tuple
+
+
+def _atomic_write_bytes(dest: Path, data: bytes) -> None:
+    """Writes bytes to a unique temporary file and atomically replaces `dest`."""
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    tmp_path = dest.with_name(f".{dest.name}.{os.getpid()}.{threading.get_ident()}.tmp")
+    try:
+        tmp_path.write_bytes(data)
+        os.replace(str(tmp_path), str(dest))
+    except Exception:
+        try:
+            tmp_path.unlink(missing_ok=True)
+        except Exception:
+            pass
+        raise
+
+
+def _atomic_write_text(dest: Path, text: str, encoding: str = "utf-8") -> None:
+    _atomic_write_bytes(dest, text.encode(encoding))
 
 # 1056-byte XOR table used by Aion Classic CryEngine pak archives
 AION_XOR_TABLE = bytes([
@@ -139,13 +160,15 @@ class AionPakEntry:
 
 
 class AionPakArchive:
-    """Represents an open Aion PAK file with fast random access."""
+    """Represents an open Aion PAK file with thread-safe random access."""
 
     def __init__(self, filepath: str | Path):
         self.filepath = str(filepath)
         self.entries: Dict[str, AionPakEntry] = {}
         self._zip: Optional[zipfile.ZipFile] = None
+        self._is_zip: bool = False
         self._file_handle: Optional[io.BufferedReader] = None
+        self._lock = threading.RLock()
         self._load_central_directory()
 
     def __enter__(self) -> "AionPakArchive":
@@ -155,133 +178,146 @@ class AionPakArchive:
         self.close()
 
     def close(self) -> None:
-        if self._file_handle is not None:
-            try:
-                self._file_handle.close()
-            except Exception:
-                pass
-            self._file_handle = None
-        if self._zip is not None:
-            try:
-                self._zip.close()
-            except Exception:
-                pass
-            self._zip = None
+        with self._lock:
+            if self._file_handle is not None:
+                try:
+                    self._file_handle.close()
+                except Exception:
+                    pass
+                self._file_handle = None
+            if self._zip is not None:
+                try:
+                    self._zip.close()
+                except Exception:
+                    pass
+                self._zip = None
 
     def namelist(self) -> List[str]:
-        return [entry.name for entry in self.entries.values()]
+        with self._lock:
+            return [entry.name for entry in self.entries.values()]
 
     def _load_central_directory(self) -> None:
-        if not os.path.isfile(self.filepath):
-            return
+        with self._lock:
+            if not os.path.isfile(self.filepath):
+                return
 
-        if zipfile.is_zipfile(self.filepath):
-            try:
-                self._zip = zipfile.ZipFile(self.filepath, "r")
-                for info in self._zip.infolist():
+            if zipfile.is_zipfile(self.filepath):
+                try:
+                    self._zip = zipfile.ZipFile(self.filepath, "r")
+                    self._is_zip = True
+                    for info in self._zip.infolist():
+                        entry = AionPakEntry(
+                            name=info.filename,
+                            method=info.compress_type,
+                            csize=info.compress_size,
+                            usize=info.file_size,
+                            crc=info.CRC,
+                            local_offset=getattr(info, "header_offset", 0),
+                            pak_path=self.filepath,
+                        )
+                        self.entries[entry.lower_name] = entry
+                    return
+                except Exception:
+                    self._zip = None
+                    self._is_zip = False
+
+            with open(self.filepath, "rb") as f:
+                f.seek(0, os.SEEK_END)
+                file_len = f.tell()
+                if file_len < 22:
+                    return
+
+                # Scan last 64KB for End of Central Directory signature
+                scan_len = min(65536, file_len)
+                f.seek(file_len - scan_len, os.SEEK_SET)
+                tail = f.read(scan_len)
+
+                eocd_idx = tail.rfind(SIG_EOCD)
+                if eocd_idx == -1:
+                    return
+
+                eocd_pos = (file_len - scan_len) + eocd_idx
+                f.seek(eocd_pos + 4, os.SEEK_SET)
+                eocd_data = f.read(18)
+                if len(eocd_data) < 16:
+                    return
+
+                # EOCD: disk_num(2), cd_disk(2), disk_entries(2), total_entries(2), cd_size(4), cd_offset(4)
+                _, _, _, total_entries, cd_size, cd_offset = struct.unpack("<HHHHII", eocd_data[:16])
+
+                f.seek(cd_offset, os.SEEK_SET)
+                cd_bytes = f.read(cd_size)
+                stream = io.BytesIO(cd_bytes)
+
+                while True:
+                    sig = stream.read(4)
+                    if len(sig) < 4 or sig != SIG_CENTRAL:
+                        break
+
+                    header = stream.read(42)
+                    if len(header) < 42:
+                        break
+
+                    (
+                        v_made,
+                        v_need,
+                        flags,
+                        method,
+                        mtime,
+                        mdate,
+                        crc,
+                        csize,
+                        usize,
+                        fn_len,
+                        extra_len,
+                        comm_len,
+                        d_start,
+                        i_attr,
+                        e_attr,
+                        loc_offset,
+                    ) = struct.unpack("<HHHHHHIIIHHHHHII", header)
+
+                    raw_fn = stream.read(fn_len)
+                    if extra_len:
+                        stream.seek(extra_len, os.SEEK_CUR)
+                    if comm_len:
+                        stream.seek(comm_len, os.SEEK_CUR)
+
+                    fn = raw_fn.decode("latin1", errors="replace")
                     entry = AionPakEntry(
-                        name=info.filename,
-                        method=info.compress_type,
-                        csize=info.compress_size,
-                        usize=info.file_size,
-                        crc=info.CRC,
-                        local_offset=getattr(info, "header_offset", 0),
+                        name=fn,
+                        method=method,
+                        csize=csize,
+                        usize=usize,
+                        crc=crc,
+                        local_offset=loc_offset,
                         pak_path=self.filepath,
                     )
                     self.entries[entry.lower_name] = entry
-                return
-            except Exception:
-                self._zip = None
-
-        with open(self.filepath, "rb") as f:
-            f.seek(0, os.SEEK_END)
-            file_len = f.tell()
-            if file_len < 22:
-                return
-
-            # Scan last 64KB for End of Central Directory signature
-            scan_len = min(65536, file_len)
-            f.seek(file_len - scan_len, os.SEEK_SET)
-            tail = f.read(scan_len)
-
-            eocd_idx = tail.rfind(SIG_EOCD)
-            if eocd_idx == -1:
-                return
-
-            eocd_pos = (file_len - scan_len) + eocd_idx
-            f.seek(eocd_pos + 4, os.SEEK_SET)
-            eocd_data = f.read(18)
-            if len(eocd_data) < 16:
-                return
-
-            # EOCD: disk_num(2), cd_disk(2), disk_entries(2), total_entries(2), cd_size(4), cd_offset(4)
-            _, _, _, total_entries, cd_size, cd_offset = struct.unpack("<HHHHII", eocd_data[:16])
-
-            f.seek(cd_offset, os.SEEK_SET)
-            cd_bytes = f.read(cd_size)
-            stream = io.BytesIO(cd_bytes)
-
-            while True:
-                sig = stream.read(4)
-                if len(sig) < 4 or sig != SIG_CENTRAL:
-                    break
-
-                header = stream.read(42)
-                if len(header) < 42:
-                    break
-
-                (
-                    v_made,
-                    v_need,
-                    flags,
-                    method,
-                    mtime,
-                    mdate,
-                    crc,
-                    csize,
-                    usize,
-                    fn_len,
-                    extra_len,
-                    comm_len,
-                    d_start,
-                    i_attr,
-                    e_attr,
-                    loc_offset,
-                ) = struct.unpack("<HHHHHHIIIHHHHHII", header)
-
-                raw_fn = stream.read(fn_len)
-                if extra_len:
-                    stream.seek(extra_len, os.SEEK_CUR)
-                if comm_len:
-                    stream.seek(comm_len, os.SEEK_CUR)
-
-                fn = raw_fn.decode("latin1", errors="replace")
-                entry = AionPakEntry(
-                    name=fn,
-                    method=method,
-                    csize=csize,
-                    usize=usize,
-                    crc=crc,
-                    local_offset=loc_offset,
-                    pak_path=self.filepath,
-                )
-                self.entries[entry.lower_name] = entry
 
     def read_file(self, filename: str) -> Optional[bytes]:
         """Convenience method to read and decompress a file by relative path."""
         clean = filename.replace("\\", "/").strip().lstrip("/").lower()
-        entry = self.entries.get(clean)
+        with self._lock:
+            entry = self.entries.get(clean)
         if not entry:
             return None
         return self.read_entry(entry)
 
     def read_entry(self, entry: AionPakEntry) -> Optional[bytes]:
         """Reads and decompresses an entry from this PAK file."""
-        if self._zip is not None:
-            try:
-                return self._zip.read(entry.name)
-            except Exception:
-                return None
+        with self._lock:
+            if self._zip is not None:
+                try:
+                    return self._zip.read(entry.name)
+                except Exception:
+                    return None
+            if self._is_zip and os.path.isfile(self.filepath):
+                try:
+                    with zipfile.ZipFile(self.filepath, "r") as zf:
+                        return zf.read(entry.name)
+                except Exception:
+                    return None
 
         if not os.path.isfile(self.filepath):
             return None
@@ -334,7 +370,7 @@ class AionLevelUnpacker:
     ]
 
     @classmethod
-    def prepare_level_directory(cls, level_dir: str | Path) -> Path:
+    def prepare_level_directory(cls, level_dir: str | Path, cancel_event: Optional[threading.Event] = None) -> Path:
         level_path = Path(level_dir).resolve()
         if level_path.is_file():
             level_path = level_path.parent
@@ -356,45 +392,42 @@ class AionLevelUnpacker:
                 pass
 
         cache_dir.mkdir(parents=True, exist_ok=True)
-        archive = AionPakArchive(pak_path)
-        try:
+        with AionPakArchive(pak_path) as archive:
             for rel_file in cls.LEVEL_CRITICAL_FILES:
+                if cancel_event is not None and cancel_event.is_set():
+                    return cache_dir
                 entry = archive.entries.get(rel_file.lower())
                 if entry:
                     dest = cache_dir / rel_file
                     data = archive.read_entry(entry)
                     if data is not None:
-                        dest.parent.mkdir(parents=True, exist_ok=True)
-                        dest.write_bytes(data)
-        finally:
-            archive.close()
+                        _atomic_write_bytes(dest, data)
 
         # Unpack all level-specific PAKs (e.g. lf1.pak, leveletc.pak, terrainlm.pak, levellm.pak)
         for extra_pak in level_path.glob("*.pak"):
+            if cancel_event is not None and cancel_event.is_set():
+                return cache_dir
             if extra_pak.name.lower() == "level.pak":
                 continue
             try:
-                extra_archive = AionPakArchive(extra_pak)
-                try:
+                with AionPakArchive(extra_pak) as extra_archive:
                     for entry in extra_archive.entries.values():
+                        if cancel_event is not None and cancel_event.is_set():
+                            return cache_dir
                         dest = cache_dir / entry.name
                         if not dest.exists():
                             data = extra_archive.read_entry(entry)
                             if data is not None:
-                                dest.parent.mkdir(parents=True, exist_ok=True)
-                                dest.write_bytes(data)
+                                _atomic_write_bytes(dest, data)
                                 if dest.name.lower() == "cover_low_shadow.dds":
                                     shadow_alt = cache_dir / "terrain" / "cover_low_shadow.dds"
                                     if not shadow_alt.exists():
-                                        shadow_alt.parent.mkdir(parents=True, exist_ok=True)
-                                        shadow_alt.write_bytes(data)
-                finally:
-                    extra_archive.close()
+                                        _atomic_write_bytes(shadow_alt, data)
             except Exception:
                 pass
 
         try:
-            marker_file.write_text(str(level_pak_mtime), encoding="utf-8")
+            _atomic_write_text(marker_file, str(level_pak_mtime), encoding="utf-8")
         except Exception:
             pass
 
@@ -423,35 +456,50 @@ def cryengine_pak_sort_key(pak_path: Path | str) -> Tuple[int, str]:
 
 class AionCatalogIndex:
     """
-    In-memory fast inverted index across client PAK files.
-    Allows sub-millisecond O(1) lookups for textures, meshes, and shaders.
+    In-memory thread-safe fast inverted index across client PAK files.
+    Uses bounded LRU archive caching so open handle counts never grow unbounded.
     """
+
+    MAX_OPEN_ARCHIVES = 16
 
     def __init__(self, client_root: Path):
         self.client_root = client_root
+        self._lock = threading.RLock()
         self._path_to_pak_entry: Dict[str, Tuple[Path, AionPakEntry]] = {}
         self._basename_to_pak_entry: Dict[str, Tuple[Path, AionPakEntry]] = {}
         self._indexed_paks: Set[str] = set()
-        self._archives: Dict[str, AionPakArchive] = {}
-        self._file_cache: Dict[str, bytes] = {}
+        self._archives: "OrderedDict[str, AionPakArchive]" = OrderedDict()
+        self._file_cache: "OrderedDict[str, bytes]" = OrderedDict()
 
     def get_archive(self, pak_path: Path | str) -> AionPakArchive:
         key = str(pak_path).lower()
-        if key not in self._archives:
-            self._archives[key] = AionPakArchive(pak_path)
-        return self._archives[key]
+        with self._lock:
+            existing = self._archives.get(key)
+            if existing is not None:
+                self._archives.move_to_end(key)
+                return existing
+            while len(self._archives) >= self.MAX_OPEN_ARCHIVES:
+                _, evicted = self._archives.popitem(last=False)
+                try:
+                    evicted.close()
+                except Exception:
+                    pass
+            arc = AionPakArchive(pak_path)
+            self._archives[key] = arc
+            return arc
 
     def index_pak(self, pak_path: Path) -> None:
         key = str(pak_path).lower()
-        if key in self._indexed_paks or not pak_path.is_file():
-            return
-        self._indexed_paks.add(key)
-        arc = self.get_archive(pak_path)
-        for lower_name, entry in arc.entries.items():
-            self._path_to_pak_entry[lower_name] = (pak_path, entry)
-            base = lower_name.split("/")[-1]
-            # CryEngine: Later patch PAKs (z_*) override earlier base assets
-            self._basename_to_pak_entry[base] = (pak_path, entry)
+        with self._lock:
+            if key in self._indexed_paks or not pak_path.is_file():
+                return
+            self._indexed_paks.add(key)
+            arc = self.get_archive(pak_path)
+            for lower_name, entry in arc.entries.items():
+                self._path_to_pak_entry[lower_name] = (pak_path, entry)
+                base = lower_name.split("/")[-1]
+                # CryEngine: Later patch PAKs (z_*) override earlier base assets
+                self._basename_to_pak_entry[base] = (pak_path, entry)
 
     def index_directory_paks(self, dir_path: Path, pattern: str = "*.pak") -> None:
         if not dir_path.is_dir():
@@ -466,79 +514,85 @@ class AionCatalogIndex:
         if not clean_lower:
             return None
 
-        # 1. Exact relative path match
-        match = self._path_to_pak_entry.get(clean_lower)
-        if match:
-            return match
+        with self._lock:
+            # 1. Exact relative path match
+            match = self._path_to_pak_entry.get(clean_lower)
+            if match:
+                return match
 
-        # 2. Stripped prefix matches (e.g. levels/common/, textures/, objects/)
-        for prefix in ("levels/common/", "textures/", "objects/", "shaders/"):
-            if clean_lower.startswith(prefix):
-                sub = clean_lower[len(prefix):]
-                match = self._path_to_pak_entry.get(sub)
-                if match:
-                    return match
+            # 2. Stripped prefix matches (e.g. levels/common/, textures/, objects/)
+            for prefix in ("levels/common/", "textures/", "objects/", "shaders/"):
+                if clean_lower.startswith(prefix):
+                    sub = clean_lower[len(prefix):]
+                    match = self._path_to_pak_entry.get(sub)
+                    if match:
+                        return match
 
-        # 3. Basename match
-        base = clean_lower.split("/")[-1]
-        return self._basename_to_pak_entry.get(base)
+            # 3. Basename match
+            base = clean_lower.split("/")[-1]
+            return self._basename_to_pak_entry.get(base)
 
     find_file = find_entry
 
     @property
     def indexed_paks_count(self) -> int:
-        return len(self._indexed_paks)
+        with self._lock:
+            return len(self._indexed_paks)
 
     def extract_file(self, rel_path: str) -> Optional[bytes]:
         """Extracts and decompresses a file directly from indexed PAKs with LRU caching for small files."""
         clean_key = rel_path.replace("\\", "/").strip().lstrip("/").lower()
-        if clean_key in self._file_cache:
-            return self._file_cache[clean_key]
+        with self._lock:
+            if clean_key in self._file_cache:
+                self._file_cache.move_to_end(clean_key)
+                return self._file_cache[clean_key]
 
-        entry_info = self.find_entry(rel_path)
-        if not entry_info:
-            return None
-        pak_path, entry = entry_info
-        archive = self.get_archive(pak_path)
+            entry_info = self.find_entry(rel_path)
+            if not entry_info:
+                return None
+            pak_path, entry = entry_info
+            archive = self.get_archive(pak_path)
+
         data = archive.read_entry(entry)
 
         if data is not None and len(data) <= 524288:  # Cache files <= 512KB
-            if len(self._file_cache) >= 256:
-                first_key = next(iter(self._file_cache))
-                del self._file_cache[first_key]
-            self._file_cache[clean_key] = data
+            with self._lock:
+                while len(self._file_cache) >= 256:
+                    self._file_cache.popitem(last=False)
+                self._file_cache[clean_key] = data
 
         return data
 
     def save_cache(self, cache_file: Path | str) -> bool:
-        """Serializes current catalog index to disk cache using compact JSON and transparent gzip."""
+        """Serializes current catalog index atomically to disk cache using compact JSON / gzip."""
         try:
             cache_path = Path(cache_file)
             cache_path.parent.mkdir(parents=True, exist_ok=True)
-            entries_list = []
-            for lower_name, (pak_path, entry) in self._path_to_pak_entry.items():
-                try:
-                    rel_pak = os.path.relpath(pak_path, self.client_root).replace("\\", "/")
-                except Exception:
-                    rel_pak = str(pak_path).replace("\\", "/")
-                entries_list.append([
-                    lower_name,
-                    entry.name,
-                    entry.method,
-                    entry.csize,
-                    entry.usize,
-                    entry.crc,
-                    entry.local_offset,
-                    rel_pak,
-                ])
+            with self._lock:
+                entries_list = []
+                for lower_name, (pak_path, entry) in self._path_to_pak_entry.items():
+                    try:
+                        rel_pak = os.path.relpath(pak_path, self.client_root).replace("\\", "/")
+                    except Exception:
+                        rel_pak = str(pak_path).replace("\\", "/")
+                    entries_list.append([
+                        lower_name,
+                        entry.name,
+                        entry.method,
+                        entry.csize,
+                        entry.usize,
+                        entry.crc,
+                        entry.local_offset,
+                        rel_pak,
+                    ])
 
-            indexed_paks_list = []
-            for p in self._indexed_paks:
-                try:
-                    rel_p = os.path.relpath(p, self.client_root).replace("\\", "/")
-                except Exception:
-                    rel_p = str(p).replace("\\", "/")
-                indexed_paks_list.append(rel_p)
+                indexed_paks_list = []
+                for p in self._indexed_paks:
+                    try:
+                        rel_p = os.path.relpath(p, self.client_root).replace("\\", "/")
+                    except Exception:
+                        rel_p = str(p).replace("\\", "/")
+                    indexed_paks_list.append(rel_p)
 
             payload = {
                 "version": 1,
@@ -554,12 +608,12 @@ class AionCatalogIndex:
             gz_path = cache_path.with_name(cache_path.name + ".gz") if not cache_path.name.endswith(".gz") else cache_path
 
             if len(raw_bytes) > _1MB or cache_path.name.endswith(".gz"):
-                with gzip.open(gz_path, "wb") as f_gz:
-                    f_gz.write(raw_bytes)
+                compressed = gzip.compress(raw_bytes)
+                _atomic_write_bytes(gz_path, compressed)
                 if not cache_path.name.endswith(".gz") and cache_path.is_file():
                     cache_path.unlink(missing_ok=True)
             else:
-                cache_path.write_bytes(raw_bytes)
+                _atomic_write_bytes(cache_path, raw_bytes)
                 if gz_path != cache_path and gz_path.is_file():
                     gz_path.unlink(missing_ok=True)
             return True
@@ -593,64 +647,70 @@ class AionCatalogIndex:
             entries_list = data.get("entries", [])
             indexed_paks_list = data.get("indexed_paks", [])
 
-            pak_path_cache: Dict[str, Tuple[Path, str]] = {}
-            for rel_p in indexed_paks_list:
-                fp = self.client_root / rel_p if not os.path.isabs(rel_p) else Path(rel_p)
-                pair = (fp, str(fp))
-                pak_path_cache[rel_p] = pair
-                self._indexed_paks.add(pair[1].lower())
-
-            path_to_pak = self._path_to_pak_entry
-            base_to_pak = self._basename_to_pak_entry
-            client_root = self.client_root
-
-            for item in entries_list:
-                # [lower_name, name, method, csize, usize, crc, local_offset, rel_pak]
-                lower_name, name, method, csize, usize, crc, loc_offset, rel_pak = item
-                pair = pak_path_cache.get(rel_pak)
-                if pair is None:
-                    fp = client_root / rel_pak if not os.path.isabs(rel_pak) else Path(rel_pak)
+            with self._lock:
+                pak_path_cache: Dict[str, Tuple[Path, str]] = {}
+                for rel_p in indexed_paks_list:
+                    fp = self.client_root / rel_p if not os.path.isabs(rel_p) else Path(rel_p)
                     pair = (fp, str(fp))
-                    pak_path_cache[rel_pak] = pair
+                    pak_path_cache[rel_p] = pair
                     self._indexed_paks.add(pair[1].lower())
 
-                full_pak, pak_str = pair
-                entry = AionPakEntry(
-                    name=name,
-                    method=method,
-                    csize=csize,
-                    usize=usize,
-                    crc=crc,
-                    local_offset=loc_offset,
-                    pak_path=pak_str,
-                )
-                val = (full_pak, entry)
-                path_to_pak[lower_name] = val
-                idx = lower_name.rfind("/")
-                base = lower_name[idx + 1 :] if idx != -1 else lower_name
-                if base not in base_to_pak:
-                    base_to_pak[base] = val
+                path_to_pak = self._path_to_pak_entry
+                base_to_pak = self._basename_to_pak_entry
+                client_root = self.client_root
 
-            return len(self._path_to_pak_entry) > 0
+                for item in entries_list:
+                    # [lower_name, name, method, csize, usize, crc, local_offset, rel_pak]
+                    lower_name, name, method, csize, usize, crc, loc_offset, rel_pak = item
+                    pair = pak_path_cache.get(rel_pak)
+                    if pair is None:
+                        fp = client_root / rel_pak if not os.path.isabs(rel_pak) else Path(rel_pak)
+                        pair = (fp, str(fp))
+                        pak_path_cache[rel_pak] = pair
+                        self._indexed_paks.add(pair[1].lower())
+
+                    full_pak, pak_str = pair
+                    entry = AionPakEntry(
+                        name=name,
+                        method=method,
+                        csize=csize,
+                        usize=usize,
+                        crc=crc,
+                        local_offset=loc_offset,
+                        pak_path=pak_str,
+                    )
+                    val = (full_pak, entry)
+                    path_to_pak[lower_name] = val
+                    idx = lower_name.rfind("/")
+                    base = lower_name[idx + 1 :] if idx != -1 else lower_name
+                    if base not in base_to_pak:
+                        base_to_pak[base] = val
+
+                return len(self._path_to_pak_entry) > 0
         except Exception:
             return False
 
     def close(self) -> None:
         """Closes all open pak archive handles in catalog."""
-        for arc in self._archives.values():
-            arc.close()
-        self._archives.clear()
-        self._file_cache.clear()
+        with self._lock:
+            for arc in self._archives.values():
+                try:
+                    arc.close()
+                except Exception:
+                    pass
+            self._archives.clear()
+            self._file_cache.clear()
 
 
 class AionClientPakResolver:
     """
-    High-performance on-demand resource resolver for CGF models, CGA entities, DDS textures, and Shaders.
-    Extracts requested resources into a local cache on first use.
+    Thread-safe, high-performance on-demand resource resolver for CGF models, CGA entities, DDS textures, and Shaders.
+    Extracts requested resources atomically into a local cache on first use.
     """
 
     def __init__(self, client_root: str | Path):
         self.client_root = Path(client_root)
+        self._lock = threading.RLock()
         self.cache_dir = self._init_cache_dir()
         self.catalog = AionCatalogIndex(self.client_root)
         self._resolved_cache: Dict[str, Optional[Path]] = {}
@@ -661,7 +721,7 @@ class AionClientPakResolver:
         candidate = self.client_root / ".aion_cache"
         try:
             candidate.mkdir(parents=True, exist_ok=True)
-            test_file = candidate / ".perm_check"
+            test_file = candidate / f".perm_check.{os.getpid()}.{threading.get_ident()}"
             test_file.write_text("ok", encoding="utf-8")
             test_file.unlink()
             return candidate
@@ -670,54 +730,61 @@ class AionClientPakResolver:
             temp_cache.mkdir(parents=True, exist_ok=True)
             return temp_cache
 
-    def ensure_catalog(self) -> None:
-        if self._catalog_initialized:
-            return
+    def ensure_catalog(self, cancel_event: Optional[threading.Event] = None) -> None:
+        with self._lock:
+            if self._catalog_initialized:
+                return
 
-        cache_file = self.cache_dir / "catalog_index.json"
-        if self.catalog.load_cache(cache_file):
+            cache_file = self.cache_dir / "catalog_index.json"
+            if self.catalog.load_cache(cache_file):
+                self._catalog_initialized = True
+                return
+
+            # Index common texture & mesh PAKs
+            common_dir = self.client_root / "levels" / "common"
+            if common_dir.is_dir():
+                self.catalog.index_directory_paks(common_dir, "*.pak")
+
+            # Index client Textures PAKs (recursively)
+            tex_dir = self.client_root / "Textures"
+            if tex_dir.is_dir():
+                for pak_file in tex_dir.rglob("*.pak"):
+                    if cancel_event is not None and cancel_event.is_set():
+                        return
+                    self.catalog.index_pak(pak_file)
+
+            # Index client Objects PAKs (recursively for all subdirectories like npc/level_object, etc.)
+            obj_dir = self.client_root / "objects"
+            if obj_dir.is_dir():
+                for pak_file in obj_dir.rglob("*.pak"):
+                    if cancel_event is not None and cancel_event.is_set():
+                        return
+                    self.catalog.index_pak(pak_file)
+
+            # Index Data/npcs PAK
+            npc_pak = self.client_root / "Data" / "npcs" / "npcs.pak"
+            if npc_pak.is_file():
+                self.catalog.index_pak(npc_pak)
+
+            # Index Data/world PAK
+            world_pak = self.client_root / "Data" / "world" / "world.pak"
+            if world_pak.is_file():
+                self.catalog.index_pak(world_pak)
+
+            # Index Shaders (recursively)
+            shaders_dir = self.client_root / "Shaders"
+            if shaders_dir.is_dir():
+                for pak_file in shaders_dir.rglob("*.pak"):
+                    if cancel_event is not None and cancel_event.is_set():
+                        return
+                    self.catalog.index_pak(pak_file)
+
             self._catalog_initialized = True
-            return
 
-        # Index common texture & mesh PAKs
-        common_dir = self.client_root / "levels" / "common"
-        if common_dir.is_dir():
-            self.catalog.index_directory_paks(common_dir, "*.pak")
-
-        # Index client Textures PAKs (recursively)
-        tex_dir = self.client_root / "Textures"
-        if tex_dir.is_dir():
-            for pak_file in tex_dir.rglob("*.pak"):
-                self.catalog.index_pak(pak_file)
-
-        # Index client Objects PAKs (recursively for all subdirectories like npc/level_object, etc.)
-        obj_dir = self.client_root / "objects"
-        if obj_dir.is_dir():
-            for pak_file in obj_dir.rglob("*.pak"):
-                self.catalog.index_pak(pak_file)
-
-        # Index Data/npcs PAK
-        npc_pak = self.client_root / "Data" / "npcs" / "npcs.pak"
-        if npc_pak.is_file():
-            self.catalog.index_pak(npc_pak)
-
-        # Index Data/world PAK
-        world_pak = self.client_root / "Data" / "world" / "world.pak"
-        if world_pak.is_file():
-            self.catalog.index_pak(world_pak)
-
-        # Index Shaders (recursively)
-        shaders_dir = self.client_root / "Shaders"
-        if shaders_dir.is_dir():
-            for pak_file in shaders_dir.rglob("*.pak"):
-                self.catalog.index_pak(pak_file)
-
-        self._catalog_initialized = True
-
-        try:
-            self.catalog.save_cache(cache_file)
-        except Exception:
-            pass
+            try:
+                self.catalog.save_cache(cache_file)
+            except Exception:
+                pass
 
     def _index_candidates_for_ref(self, clean: str) -> None:
         """On-demand indexing of candidate PAK directories for resources not yet in catalog."""
@@ -744,13 +811,14 @@ class AionClientPakResolver:
 
     def close(self) -> None:
         """Closes catalog archives and releases all file locks."""
-        if self.catalog:
-            self.catalog.close()
+        with self._lock:
+            if self.catalog:
+                self.catalog.close()
 
     def resolve_resource(self, reference: str, target_lod: int = 0) -> Optional[Path]:
         """
         Resolves a resource reference (CGF, DDS, CSL, XML) to an absolute Path on disk.
-        If packed in a .pak, extracts it into the cache directory on demand.
+        If packed in a .pak, extracts it atomically into the cache directory on demand.
         Supports LOD companion files (<stem>_lod<N>.cgf) when target_lod > 0.
         """
         clean = reference.replace("\\", "/").strip().lstrip("/").lower()
@@ -770,46 +838,47 @@ class AionClientPakResolver:
         return self._resolve_single_resource(clean)
 
     def _resolve_single_resource(self, clean: str) -> Optional[Path]:
-        if clean in self._resolved_cache:
-            return self._resolved_cache[clean]
+        with self._lock:
+            if clean in self._resolved_cache:
+                return self._resolved_cache[clean]
 
-        # 1. Check if already extracted in cache
-        cached_path = self.cache_dir / clean
-        if cached_path.is_file():
-            self._resolved_cache[clean] = cached_path
-            return cached_path
+            # 1. Check if already extracted in cache
+            cached_path = self.cache_dir / clean
+            if cached_path.is_file():
+                self._resolved_cache[clean] = cached_path
+                return cached_path
 
-        # Also check with basename in cache
-        base_name = clean.split("/")[-1]
-        base_cached = self.cache_dir / base_name
-        if base_cached.is_file():
-            self._resolved_cache[clean] = base_cached
-            return base_cached
+            # Also check with basename in cache
+            base_name = clean.split("/")[-1]
+            base_cached = self.cache_dir / base_name
+            if base_cached.is_file():
+                self._resolved_cache[clean] = base_cached
+                return base_cached
 
-        # 2. Check if exists loose in client root
-        loose = self._resolve_loose(clean)
-        if loose is not None:
-            self._resolved_cache[clean] = loose
-            return loose
+            # 2. Check if exists loose in client root
+            loose = self._resolve_loose(clean)
+            if loose is not None:
+                self._resolved_cache[clean] = loose
+                return loose
 
-        # Also check without levels/common/ prefix if loose
-        if clean.startswith("levels/common/"):
-            short_clean = clean[len("levels/common/"):]
-            loose_short = self._resolve_loose(short_clean)
-            if loose_short is not None:
-                self._resolved_cache[clean] = loose_short
-                return loose_short
+            # Also check without levels/common/ prefix if loose
+            if clean.startswith("levels/common/"):
+                short_clean = clean[len("levels/common/"):]
+                loose_short = self._resolve_loose(short_clean)
+                if loose_short is not None:
+                    self._resolved_cache[clean] = loose_short
+                    return loose_short
 
-        # 3. Ensure catalog index is loaded and query it
-        self.ensure_catalog()
-        match = self.catalog.find_entry(clean)
-        if not match and clean.startswith("levels/common/"):
-            match = self.catalog.find_entry(clean[len("levels/common/"):])
-        if not match:
-            self._index_candidates_for_ref(clean)
+            # 3. Ensure catalog index is loaded and query it
+            self.ensure_catalog()
             match = self.catalog.find_entry(clean)
-        if not match and clean.startswith("levels/common/"):
-            match = self.catalog.find_entry(clean[len("levels/common/"):])
+            if not match and clean.startswith("levels/common/"):
+                match = self.catalog.find_entry(clean[len("levels/common/"):])
+            if not match:
+                self._index_candidates_for_ref(clean)
+                match = self.catalog.find_entry(clean)
+            if not match and clean.startswith("levels/common/"):
+                match = self.catalog.find_entry(clean[len("levels/common/"):])
 
         if match:
             pak_path, entry = match
@@ -817,12 +886,13 @@ class AionClientPakResolver:
             data = arc.read_entry(entry)
             if data is not None:
                 dest_path = self.cache_dir / clean
-                dest_path.parent.mkdir(parents=True, exist_ok=True)
-                dest_path.write_bytes(data)
-                self._resolved_cache[clean] = dest_path
+                _atomic_write_bytes(dest_path, data)
+                with self._lock:
+                    self._resolved_cache[clean] = dest_path
                 return dest_path
 
-        self._resolved_cache[clean] = None
+        with self._lock:
+            self._resolved_cache[clean] = None
         return None
 
     def resolve_resources_batch(
@@ -844,10 +914,12 @@ class AionClientPakResolver:
 
         for ref in refs:
             clean = ref.replace("\\", "/").strip().lstrip("/").lower()
-            if target_lod == 0 and clean in self._resolved_cache:
-                results[ref] = self._resolved_cache[clean]
-            else:
-                pending.append(ref)
+            if target_lod == 0:
+                with self._lock:
+                    if clean in self._resolved_cache:
+                        results[ref] = self._resolved_cache[clean]
+                        continue
+            pending.append(ref)
 
         if not pending:
             return results
@@ -882,11 +954,12 @@ class AionClientPakResolver:
                 continue
             if not current.is_dir():
                 return None
-            if current not in self._directory_children_cache:
-                self._directory_children_cache[current] = {
-                    child.name.lower(): child for child in current.iterdir()
-                }
-            match = self._directory_children_cache[current].get(part.lower())
+            with self._lock:
+                if current not in self._directory_children_cache:
+                    self._directory_children_cache[current] = {
+                        child.name.lower(): child for child in current.iterdir()
+                    }
+                match = self._directory_children_cache[current].get(part.lower())
             if match is None:
                 return None
             current = match
@@ -968,14 +1041,21 @@ def pack_level_directory(source_dir: str | Path, output_pak: str | Path, create_
 
 # Module-level singleton resolver
 _GLOBAL_RESOLVER: Optional[AionClientPakResolver] = None
+_GLOBAL_RESOLVER_LOCK = threading.Lock()
 
 
 def get_pak_resolver(client_root: str | Path | None) -> Optional[AionClientPakResolver]:
-    """Returns or creates the singleton AionClientPakResolver for the given client root."""
+    """Thread-safe singleton getter for AionClientPakResolver."""
     global _GLOBAL_RESOLVER
     if not client_root:
         return None
     root_path = Path(client_root)
-    if _GLOBAL_RESOLVER is None or _GLOBAL_RESOLVER.client_root != root_path:
-        _GLOBAL_RESOLVER = AionClientPakResolver(root_path)
-    return _GLOBAL_RESOLVER
+    with _GLOBAL_RESOLVER_LOCK:
+        if _GLOBAL_RESOLVER is None or _GLOBAL_RESOLVER.client_root != root_path:
+            if _GLOBAL_RESOLVER is not None:
+                try:
+                    _GLOBAL_RESOLVER.close()
+                except Exception:
+                    pass
+            _GLOBAL_RESOLVER = AionClientPakResolver(root_path)
+        return _GLOBAL_RESOLVER

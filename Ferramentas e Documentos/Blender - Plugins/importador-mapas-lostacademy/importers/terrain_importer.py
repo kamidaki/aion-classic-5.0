@@ -1,3 +1,4 @@
+from array import array
 import colorsys
 import math
 from collections import Counter
@@ -15,11 +16,15 @@ from aion_formats.level import (
 
 from .terrain_blend_attributes import (
     TerrainBlendAttributeResult,
+    apply_precomputed_terrain_blend_attributes,
+    create_fast_subsampled_terrain_blend_attributes,
     create_terrain_blend_attributes,
+    prepare_subsampled_terrain_blend_data,
 )
 from .terrain_blend_nodes import (
     TerrainBlendShaderResult,
     create_terrain_blend_shader,
+    iter_create_terrain_blend_shader,
 )
 from .terrain_textures import resolve_terrain_detail_texture
 from .terrain_material_nodes import TerrainTextureNodeResult, create_terrain_texture_nodes
@@ -146,7 +151,151 @@ def build_terrain_geometry(
     return vertices, faces
 
 
-def create_terrain_mesh(
+def prepare_terrain_stage_data(
+    land_map: LandMap,
+    level_data: LevelData | None = None,
+    client_root: str | Path | None = None,
+    *,
+    xy_scale: float = DEFAULT_XY_SCALE,
+    lod: int = 1,
+    compute_blend: bool = True,
+) -> dict:
+    """
+    Pure-Python terrain precomputation safe for background worker thread:
+    builds flat foreach_set mesh buffers, subsampled blend weights, face material indices,
+    UV buffers, and pre-extracts detail DDS files without touching any Blender state.
+    """
+    if land_map.sample_count != land_map.width * land_map.height:
+        raise ValueError("LandMap sample count does not match width * height")
+    if not math.isfinite(xy_scale) or xy_scale <= 0:
+        raise ValueError("terrain XY scale must be finite and positive")
+
+    w = land_map.width
+    h = land_map.height
+    samples = land_map.samples
+    rows, cols = _grid_subsamples(w, h, lod)
+    new_h = len(rows)
+    new_w = len(cols)
+    num_verts = new_h * new_w
+    num_faces = max(0, (new_h - 1) * (new_w - 1))
+
+    flat_co = array("f", [0.0]) * (num_verts * 3)
+    grid_row_xs = [float(r) * xy_scale for r in rows]
+    grid_col_ys = [float(c) * xy_scale for c in cols]
+    grid_z = array("f", [0.0]) * num_verts
+    v_off = 0
+    z_idx = 0
+    for r in rows:
+        rx = float(r) * xy_scale
+        row_off = r * w
+        for c in cols:
+            h_val = float(samples[row_off + c].height)
+            flat_co[v_off] = rx
+            flat_co[v_off + 1] = float(c) * xy_scale
+            flat_co[v_off + 2] = h_val
+            grid_z[z_idx] = h_val
+            v_off += 3
+            z_idx += 1
+
+    flat_loop_verts = array("I", [0]) * (num_faces * 4)
+    l_off = 0
+    for r_idx in range(new_h - 1):
+        base0 = r_idx * new_w
+        base1 = (r_idx + 1) * new_w
+        for c_idx in range(new_w - 1):
+            flat_loop_verts[l_off] = base0 + c_idx
+            flat_loop_verts[l_off + 1] = base1 + c_idx
+            flat_loop_verts[l_off + 2] = base1 + c_idx + 1
+            flat_loop_verts[l_off + 3] = base0 + c_idx + 1
+            l_off += 4
+
+    loop_starts = array("I", range(0, num_faces * 4, 4))
+    loop_totals = array("I", [4]) * num_faces
+
+    blend_data = (
+        prepare_subsampled_terrain_blend_data(land_map, lod=lod, radius=1)
+        if compute_blend
+        else None
+    )
+    resolved_textures: dict[int, object] = {}
+    inventory = None
+    face_mat_indices = None
+    assigned_mat_count = 0
+    preview_uvs = None
+
+    if level_data is not None:
+        inventory = build_terrain_material_inventory(land_map, level_data)
+        slot_by_tmat = {}
+        surface_params = {}
+        for slot_idx, usage in enumerate(inventory.used_material_indices):
+            slot_by_tmat[usage.index] = slot_idx
+            st = usage.surface_type
+            if st is not None:
+                resolved_textures[usage.index] = resolve_terrain_detail_texture(
+                    client_root, st.detail_texture
+                )
+                sx = float(st.detail_scale_x) if st.detail_scale_x is not None else 1.0
+                sy = float(st.detail_scale_y) if st.detail_scale_y is not None else 1.0
+                ou = float(st.offset_u) if st.offset_u is not None else 0.0
+                ov = float(st.offset_v) if st.offset_v is not None else 0.0
+                surface_params[usage.index] = (sx, sy, ou, ov)
+            else:
+                surface_params[usage.index] = (1.0, 1.0, 0.0, 0.0)
+
+        if num_faces > 0:
+            face_mat_indices = array("i", [0]) * num_faces
+            preview_uvs = array("f", [0.0]) * (num_faces * 8)
+            assigned_set = set()
+            poly_idx = 0
+            uv_off = 0
+            for r_idx in range(new_h - 1):
+                r0 = rows[r_idx]
+                r1 = rows[r_idx + 1]
+                sample_off = r0 * w
+                for c_idx in range(new_w - 1):
+                    c0 = cols[c_idx]
+                    c1 = cols[c_idx + 1]
+                    t_mat = samples[sample_off + c0].color
+                    s_idx = slot_by_tmat.get(t_mat)
+                    if s_idx is not None:
+                        face_mat_indices[poly_idx] = s_idx
+                        assigned_set.add(s_idx)
+                    sx, sy, ou, ov = surface_params.get(t_mat, (1.0, 1.0, 0.0, 0.0))
+                    f_c0, f_r0, f_c1, f_r1 = float(c0), float(r0), float(c1), float(r1)
+                    preview_uvs[uv_off] = f_c0 * sx + ou
+                    preview_uvs[uv_off + 1] = f_r0 * sy + ov
+                    preview_uvs[uv_off + 2] = f_c0 * sx + ou
+                    preview_uvs[uv_off + 3] = f_r1 * sy + ov
+                    preview_uvs[uv_off + 4] = f_c1 * sx + ou
+                    preview_uvs[uv_off + 5] = f_r1 * sy + ov
+                    preview_uvs[uv_off + 6] = f_c1 * sx + ou
+                    preview_uvs[uv_off + 7] = f_r0 * sy + ov
+                    poly_idx += 1
+                    uv_off += 8
+            assigned_mat_count = len(assigned_set)
+
+    return {
+        "num_verts": num_verts,
+        "num_faces": num_faces,
+        "grid_h": new_h,
+        "grid_w": new_w,
+        "grid_row_xs": grid_row_xs,
+        "grid_col_ys": grid_col_ys,
+        "grid_z": grid_z,
+        "flat_co": flat_co,
+        "flat_loop_verts": flat_loop_verts,
+        "loop_starts": loop_starts,
+        "loop_totals": loop_totals,
+        "blend_data": blend_data,
+        "inventory": inventory,
+        "resolved_textures": resolved_textures,
+        "face_mat_indices": face_mat_indices,
+        "assigned_mat_count": assigned_mat_count,
+        "preview_uvs": preview_uvs,
+    }
+
+
+def iter_create_terrain_mesh(
     context,
     land_map: LandMap,
     level_data: LevelData | None = None,
@@ -159,14 +308,41 @@ def create_terrain_mesh(
     name: str = DEFAULT_TERRAIN_NAME,
     xy_scale: float = DEFAULT_XY_SCALE,
     lod: int = 1,
-) -> TerrainMeshResult:
+    max_blend_materials: int = 8,
+    simple_shader: bool = False,
+    disable_shadows: bool = False,
+    precomputed: dict | None = None,
+    target_collection=None,
+):
+    """Yields incrementally while creating the terrain mesh and blend shader."""
     import bpy
 
     images_before = len(bpy.data.images)
-    vertices, faces = build_terrain_geometry(land_map, xy_scale=xy_scale, lod=lod)
     mesh = bpy.data.meshes.new(name)
-    mesh.from_pydata(vertices, (), faces)
-    mesh.update(calc_edges=False)
+    if precomputed is not None and "flat_co" in precomputed:
+        num_verts = int(precomputed["num_verts"])
+        num_faces = int(precomputed["num_faces"])
+        if num_verts > 0:
+            mesh.vertices.add(num_verts)
+            mesh.vertices.foreach_set("co", precomputed["flat_co"])
+        if num_faces > 0:
+            mesh.loops.add(num_faces * 4)
+            mesh.loops.foreach_set("vertex_index", precomputed["flat_loop_verts"])
+            mesh.polygons.add(num_faces)
+            mesh.polygons.foreach_set("loop_start", precomputed["loop_starts"])
+            mesh.polygons.foreach_set("loop_total", precomputed["loop_totals"])
+        mesh.update(calc_edges=True)
+    else:
+        if precomputed is not None and "vertices" in precomputed:
+            vertices = precomputed["vertices"]
+            faces = precomputed["faces"]
+        else:
+            vertices, faces = build_terrain_geometry(land_map, xy_scale=xy_scale, lod=lod)
+        num_verts = len(vertices)
+        num_faces = len(faces)
+        mesh.from_pydata(vertices, (), faces)
+        mesh.update(calc_edges=False)
+    yield (0.25, "Malha do terreno criada")
 
     material_slots = ()
     assigned_material_index_count = 0
@@ -176,21 +352,30 @@ def create_terrain_mesh(
         texture_images_failed=0,
         texture_nodes_created=0,
     )
-    blend_weights = None
     blend_attribute_result = TerrainBlendAttributeResult(
         attribute_layers_created=0,
         material_count=0,
         layer_names=(),
     )
+    subsampled_sample_counts: dict[int, int] | None = None
+    blend_boundary_sample_count = 0
+    blend_invalid_weight_count = 0
     if import_terrain_blend_attributes or import_terrain_blend_shader:
-        blend_weights = build_terrain_preview_blend_weights(land_map, radius=1)
-        blend_attribute_result = create_terrain_blend_attributes(
-            mesh,
-            blend_weights,
-            lod=lod,
-            orig_width=land_map.width,
-            orig_height=land_map.height,
-        )
+        if precomputed is not None and precomputed.get("blend_data") is not None:
+            blend_attribute_result, subsampled_sample_counts, blend_boundary_sample_count = (
+                apply_precomputed_terrain_blend_attributes(mesh, precomputed["blend_data"])
+            )
+        else:
+            blend_attribute_result, subsampled_sample_counts, blend_boundary_sample_count = (
+                create_fast_subsampled_terrain_blend_attributes(
+                    mesh,
+                    land_map,
+                    lod=lod,
+                    radius=1,
+                )
+            )
+        yield (0.45, "Pesos de blend do terreno aplicados")
+
     blend_shader_result = TerrainBlendShaderResult(
         enabled=False,
         graph_created=False,
@@ -207,16 +392,39 @@ def create_terrain_mesh(
     )
 
     if level_data is not None:
-        inventory = build_terrain_material_inventory(land_map, level_data)
-        material_slots = _create_terrain_materials(bpy, mesh, inventory, client_root)
-        assigned_material_index_count = _assign_face_material_indices(
-            mesh,
-            land_map,
-            material_slots,
-            lod=lod,
+        inventory = (
+            precomputed.get("inventory")
+            if precomputed is not None and precomputed.get("inventory") is not None
+            else build_terrain_material_inventory(land_map, level_data)
         )
-        _assign_preview_uvs(mesh, land_map, material_slots, lod=lod)
-        if import_terrain_textures:
+        resolved_map = precomputed.get("resolved_textures") if precomputed is not None else None
+        load_slot_nodes = import_terrain_textures and not import_terrain_blend_shader
+        material_slots = _create_terrain_materials(
+            bpy,
+            mesh,
+            inventory,
+            client_root,
+            load_detail_nodes=load_slot_nodes,
+            pre_resolved_textures=resolved_map,
+        )
+        if precomputed is not None and precomputed.get("face_mat_indices") is not None:
+            if len(mesh.polygons) > 0:
+                mesh.polygons.foreach_set("material_index", precomputed["face_mat_indices"])
+            assigned_material_index_count = int(precomputed.get("assigned_mat_count", 0))
+            if precomputed.get("preview_uvs") is not None and len(mesh.loops) > 0:
+                uv_layer = mesh.uv_layers.new(name="Aion Terrain Preview UV")
+                uv_layer.data.foreach_set("uv", precomputed["preview_uvs"])
+        else:
+            assigned_material_index_count = _assign_face_material_indices(
+                mesh,
+                land_map,
+                material_slots,
+                lod=lod,
+            )
+            _assign_preview_uvs(mesh, land_map, material_slots, lod=lod)
+        yield (0.65, "Slots e UVs do terreno atribuídos")
+
+        if load_slot_nodes:
             texture_node_result = create_terrain_texture_nodes(bpy, mesh.materials)
         if import_terrain_blend_shader:
             shadow_path = None
@@ -231,16 +439,37 @@ def create_terrain_mesh(
                     if cand.is_file():
                         shadow_path = cand
                         break
-            blend_shader_result = create_terrain_blend_shader(
+            sample_counts = (
+                subsampled_sample_counts
+                if subsampled_sample_counts is not None
+                else _terrain_material_sample_counts(land_map)
+            )
+            shader_gen = iter_create_terrain_blend_shader(
                 bpy,
                 mesh,
                 material_slots,
-                material_sample_counts=_terrain_material_sample_counts(land_map),
+                material_sample_counts=sample_counts,
                 load_textures=import_terrain_textures,
+                material_limit=max_blend_materials,
+                simple_shader=simple_shader,
                 shadow_texture_path=shadow_path,
             )
+            try:
+                while True:
+                    sh_idx, sh_tot = next(shader_gen)
+                    yield (
+                        0.65 + 0.30 * (sh_idx / max(1, sh_tot)),
+                        f"Carregando shader de terreno ({sh_idx}/{sh_tot})...",
+                    )
+            except StopIteration as exc_sh:
+                blend_shader_result = exc_sh.value
 
     terrain_object = bpy.data.objects.new(name, mesh)
+    if disable_shadows and hasattr(terrain_object, "visible_shadow"):
+        try:
+            terrain_object.visible_shadow = False
+        except (AttributeError, TypeError):
+            pass
     terrain_object["aion_blend_shader_enabled"] = blend_shader_result.enabled
     terrain_object["aion_blend_shader_material_count"] = blend_shader_result.material_count
     terrain_object["aion_blend_shader_included_materials"] = ",".join(
@@ -260,14 +489,23 @@ def create_terrain_mesh(
     )
     terrain_object["aion_blend_shader_projection"] = blend_shader_result.projection_mode
     terrain_object["aion_blend_shader_warnings"] = "; ".join(blend_shader_result.warnings)
-    context.scene.collection.objects.link(terrain_object)
+    if precomputed is not None and "grid_h" in precomputed and "grid_w" in precomputed:
+        terrain_object["aion_terrain_grid_h"] = int(precomputed["grid_h"])
+        terrain_object["aion_terrain_grid_w"] = int(precomputed["grid_w"])
+    else:
+        g_rows, g_cols = _grid_subsamples(land_map.width, land_map.height, lod)
+        terrain_object["aion_terrain_grid_h"] = len(g_rows)
+        terrain_object["aion_terrain_grid_w"] = len(g_cols)
+    yield (0.96, "Vinculando terreno na cena...")
+    dest_col = target_collection if target_collection is not None else context.scene.collection
+    dest_col.objects.link(terrain_object)
     return TerrainMeshResult(
         object=terrain_object,
         mesh=mesh,
         width=land_map.width,
         height=land_map.height,
-        vertex_count=len(vertices),
-        face_count=len(faces),
+        vertex_count=num_verts,
+        face_count=num_faces,
         min_height=land_map.min_height,
         max_height=land_map.max_height,
         xy_scale=xy_scale,
@@ -287,8 +525,8 @@ def create_terrain_mesh(
         blend_attributes_requested=import_terrain_blend_attributes or import_terrain_blend_shader,
         blend_attribute_layers_created=blend_attribute_result.attribute_layers_created,
         blend_weight_material_count=blend_attribute_result.material_count,
-        blend_boundary_sample_count=blend_weights.boundary_sample_count if blend_weights else 0,
-        blend_invalid_weight_count=blend_weights.invalid_weight_count if blend_weights else 0,
+        blend_boundary_sample_count=blend_boundary_sample_count,
+        blend_invalid_weight_count=blend_invalid_weight_count,
         blend_shader_enabled=blend_shader_result.enabled,
         blend_shader_graph_created=blend_shader_result.graph_created,
         blend_shader_material_count=blend_shader_result.material_count,
@@ -304,6 +542,49 @@ def create_terrain_mesh(
     )
 
 
+def create_terrain_mesh(
+    context,
+    land_map: LandMap,
+    level_data: LevelData | None = None,
+    client_root: str | Path | None = None,
+    import_terrain_textures: bool = False,
+    import_terrain_blend_attributes: bool = False,
+    import_terrain_blend_shader: bool = False,
+    import_terrain_shadows: bool = True,
+    level_dir: Path | str | None = None,
+    name: str = DEFAULT_TERRAIN_NAME,
+    xy_scale: float = DEFAULT_XY_SCALE,
+    lod: int = 1,
+    max_blend_materials: int = 8,
+    simple_shader: bool = False,
+    disable_shadows: bool = False,
+    precomputed: dict | None = None,
+) -> TerrainMeshResult:
+    gen = iter_create_terrain_mesh(
+        context,
+        land_map,
+        level_data=level_data,
+        client_root=client_root,
+        import_terrain_textures=import_terrain_textures,
+        import_terrain_blend_attributes=import_terrain_blend_attributes,
+        import_terrain_blend_shader=import_terrain_blend_shader,
+        import_terrain_shadows=import_terrain_shadows,
+        level_dir=level_dir,
+        name=name,
+        xy_scale=xy_scale,
+        lod=lod,
+        max_blend_materials=max_blend_materials,
+        simple_shader=simple_shader,
+        disable_shadows=disable_shadows,
+        precomputed=precomputed,
+    )
+    try:
+        while True:
+            next(gen)
+    except StopIteration as exc:
+        return exc.value
+
+
 def _safe_surface_scale(value: float | None) -> float:
     return value if value is not None and value > 0 else 1.0
 
@@ -313,31 +594,41 @@ def _create_terrain_materials(
     mesh,
     inventory: TerrainMaterialInventory,
     client_root: str | Path | None,
+    *,
+    load_detail_nodes: bool = True,
+    pre_resolved_textures: dict[int, object] | None = None,
 ) -> tuple[TerrainMaterialSlot, ...]:
     slots = []
     for usage in inventory.used_material_indices:
         material_name = _terrain_material_name(usage.index, usage.surface_type)
         material = bpy.data.materials.new(material_name)
-        material.use_nodes = True
-        nodes = material.node_tree.nodes
-        links = material.node_tree.links
-        nodes.clear()
+        material.use_nodes = load_detail_nodes
+        if load_detail_nodes:
+            nodes = material.node_tree.nodes
+            links = material.node_tree.links
+            nodes.clear()
 
-        output = nodes.new("ShaderNodeOutputMaterial")
-        output.location = (400, 0)
-        bsdf = nodes.new("ShaderNodeBsdfPrincipled")
-        bsdf.location = (100, 0)
-        links.new(bsdf.outputs["BSDF"], output.inputs["Surface"])
+            output = nodes.new("ShaderNodeOutputMaterial")
+            output.location = (400, 0)
+            bsdf = nodes.new("ShaderNodeBsdfPrincipled")
+            bsdf.location = (100, 0)
+            links.new(bsdf.outputs["BSDF"], output.inputs["Surface"])
 
-        base_color = _terrain_material_color(usage.index)
-        bsdf.inputs["Base Color"].default_value = base_color
-        bsdf.inputs["Roughness"].default_value = 0.85
+            base_color = _terrain_material_color(usage.index)
+            bsdf.inputs["Base Color"].default_value = base_color
+            bsdf.inputs["Roughness"].default_value = 0.85
+        else:
+            base_color = _terrain_material_color(usage.index)
         material.diffuse_color = base_color
         material["aion_terrain_material_index"] = usage.index
 
         if usage.surface_type is not None:
             material["aion_surface_name"] = usage.surface_type.name or ""
-            texture_ref = resolve_terrain_detail_texture(
+            texture_ref = (
+                pre_resolved_textures.get(usage.index)
+                if pre_resolved_textures is not None
+                else None
+            ) or resolve_terrain_detail_texture(
                 client_root,
                 usage.surface_type.detail_texture,
             )
@@ -346,7 +637,7 @@ def _create_terrain_materials(
             material["aion_detail_texture_resolved"] = texture_ref.resolved_path or ""
             material["aion_detail_texture_exists"] = texture_ref.exists
 
-            if texture_ref.exists and texture_ref.resolved_path:
+            if load_detail_nodes and texture_ref.exists and texture_ref.resolved_path:
                 from materials.texture_loader import load_texture_image
                 img = load_texture_image(texture_ref.resolved_path, colorspace="sRGB")
                 if img is not None:

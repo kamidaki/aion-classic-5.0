@@ -8,6 +8,7 @@ AND directly from the client's Shaders/shaders.pak archive.
 from __future__ import annotations
 
 import re
+import threading
 from dataclasses import asdict, dataclass
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
@@ -49,44 +50,77 @@ class ClientShaderSemantics:
         return asdict(self)
 
 
-# Global in-memory cache for shader texts parsed from shaders.pak or loose files
+# Thread-safe in-memory caches for shader texts and O(1) indexed blocks
+_SHADER_LOCK = threading.RLock()
 _SHADER_FILES_CACHE: Dict[str, Dict[str, str]] = {}  # client_root -> {rel_path_lower: text}
+_SHADER_BLOCK_INDEX: Dict[str, Dict[str, Tuple[str, str, str]]] = {}  # client_root -> {key: (rel, name, block)}
+_SEMANTICS_CACHE: Dict[Tuple[str, str], Optional[ClientShaderSemantics]] = {}
+_ROOT_KEY_CACHE: Dict[str, str] = {}
+_SHADER_DECL_RE = re.compile(r"Shader\s+['\"]([^'\"]+)['\"]\s*(?P<body>[{(])", re.IGNORECASE)
+
+
+def _index_shader_blocks(shader_cache: Dict[str, str]) -> Dict[str, Tuple[str, str, str]]:
+    block_index: Dict[str, Tuple[str, str, str]] = {}
+    for rel_path, text in shader_cache.items():
+        if not rel_path.endswith(".csl"):
+            continue
+        for match in _SHADER_DECL_RE.finditer(text):
+            name = match.group(1).strip()
+            opener = match.group("body")
+            closer = "}" if opener == "{" else ")"
+            start = match.start()
+            end = _matching_block_end(text, match.end() - 1, opener, closer)
+            entry = (rel_path, name, text[start:end])
+            low = name.lower()
+            norm = low.replace("_", "")
+            block_index.setdefault(low, entry)
+            block_index.setdefault(norm, entry)
+    return block_index
 
 
 def _ensure_shader_cache(client_root: Path) -> Dict[str, str]:
     root_key = str(client_root.resolve()).lower()
-    if root_key in _SHADER_FILES_CACHE:
-        return _SHADER_FILES_CACHE[root_key]
+    with _SHADER_LOCK:
+        if root_key in _SHADER_FILES_CACHE:
+            return _SHADER_FILES_CACHE[root_key]
 
-    cache: Dict[str, str] = {}
-    shaders_dir = client_root / "Shaders"
+        cache: Dict[str, str] = {}
+        shaders_dir = client_root / "Shaders"
 
-    # 1. Read from Shaders/shaders.pak if available
-    shaders_pak = shaders_dir / "shaders.pak"
-    if shaders_pak.is_file():
-        try:
-            from core.pak_engine import AionPakArchive
-            arc = AionPakArchive(shaders_pak)
-            for lower_name, entry in arc.entries.items():
-                if lower_name.endswith((".csl", ".csi", ".ext")):
-                    data = arc.read_entry(entry)
-                    if data:
-                        cache[lower_name] = data.decode("utf-8", errors="replace")
-        except Exception:
-            pass
+        # 1. Read from Shaders/shaders.pak if available (always close archive handle!)
+        shaders_pak = shaders_dir / "shaders.pak"
+        if shaders_pak.is_file():
+            try:
+                from core.pak_engine import AionPakArchive
+                with AionPakArchive(shaders_pak) as arc:
+                    for lower_name, entry in arc.entries.items():
+                        if lower_name.endswith((".csl", ".csi", ".ext")):
+                            data = arc.read_entry(entry)
+                            if data:
+                                cache[lower_name] = data.decode("utf-8", errors="replace")
+            except Exception:
+                pass
 
-    # 2. Read any loose files on disk (overrides pak if present)
-    if shaders_dir.is_dir():
-        for path in shaders_dir.rglob("*"):
-            if path.is_file() and path.suffix.lower() in (".csl", ".csi", ".ext"):
-                try:
-                    rel = path.relative_to(shaders_dir).as_posix().lower()
-                    cache[rel] = path.read_text(encoding="utf-8", errors="replace")
-                except Exception:
-                    pass
+        # 2. Read any loose files on disk (overrides pak if present)
+        if shaders_dir.is_dir():
+            for path in shaders_dir.rglob("*"):
+                if path.is_file() and path.suffix.lower() in (".csl", ".csi", ".ext"):
+                    try:
+                        rel = path.relative_to(shaders_dir).as_posix().lower()
+                        cache[rel] = path.read_text(encoding="utf-8", errors="replace")
+                    except Exception:
+                        pass
 
-    _SHADER_FILES_CACHE[root_key] = cache
-    return cache
+        # Keep bounded to avoid stale multi-client bloat
+        if len(_SHADER_FILES_CACHE) >= 2:
+            _SHADER_FILES_CACHE.clear()
+            _SHADER_BLOCK_INDEX.clear()
+            _SEMANTICS_CACHE.clear()
+            _ROOT_KEY_CACHE.clear()
+
+        _SHADER_FILES_CACHE[root_key] = cache
+        _SHADER_BLOCK_INDEX[root_key] = _index_shader_blocks(cache)
+        return cache
 
 
 def resolve_client_shader_semantics(
@@ -99,17 +133,16 @@ def resolve_client_shader_semantics(
     actual_root = client_root
     actual_shader = shader_name
 
-    # Determine whether arg1 is client_root or shader_name
+    # Determine whether arg1 is client_root or shader_name (avoid filesystem stat when separators present)
     if arg1 is not None:
         s_arg1 = str(arg1).strip()
         if (
             actual_root is None
             and (
-                Path(s_arg1).is_dir()
-                or "/" in s_arg1
+                "/" in s_arg1
                 or "\\" in s_arg1
-                or "aion" in s_arg1.lower()
-                and (":" in s_arg1 or "/" in s_arg1)
+                or (":" in s_arg1)
+                or Path(s_arg1).is_dir()
             )
         ):
             actual_root = s_arg1
@@ -125,13 +158,38 @@ def resolve_client_shader_semantics(
     if not actual_shader or not actual_root:
         return None
 
-    root_path = Path(actual_root)
+    raw_root_str = str(actual_root).strip()
+    with _SHADER_LOCK:
+        root_key = _ROOT_KEY_CACHE.get(raw_root_str)
+    if root_key is None:
+        root_path = Path(raw_root_str)
+        root_key = str(root_path.resolve()).lower()
+        with _SHADER_LOCK:
+            _ROOT_KEY_CACHE[raw_root_str] = root_key
+    else:
+        root_path = Path(raw_root_str)
+
+    sem_key = (root_key, actual_shader.lower())
+    with _SHADER_LOCK:
+        if sem_key in _SEMANTICS_CACHE:
+            return _SEMANTICS_CACHE[sem_key]
+
     shader_cache = _ensure_shader_cache(root_path)
     if not shader_cache:
+        with _SHADER_LOCK:
+            _SEMANTICS_CACHE[sem_key] = None
         return None
 
-    shader_block = _find_shader_block_cached(shader_cache, actual_shader)
+    with _SHADER_LOCK:
+        block_index = _SHADER_BLOCK_INDEX.get(root_key)
+    shader_block = None
+    if block_index is not None:
+        shader_block = block_index.get(actual_shader.lower()) or block_index.get(actual_shader.lower().replace("_", ""))
     if shader_block is None:
+        shader_block = _find_shader_block_cached(shader_cache, actual_shader)
+    if shader_block is None:
+        with _SHADER_LOCK:
+            _SEMANTICS_CACHE[sem_key] = None
         return None
 
     definition_rel, resolved_name, block = shader_block
@@ -168,7 +226,7 @@ def resolve_client_shader_semantics(
     if uv_scroll["confirmed"]:
         sources.append("client_shader.uv_scroll")
 
-    return ClientShaderSemantics(
+    semantics_obj = ClientShaderSemantics(
         shader_name=actual_shader,
         resolved_shader_name=resolved_name,
         definition_path=definition_rel,
@@ -196,6 +254,9 @@ def resolve_client_shader_semantics(
         shader_layers=shader_layers,
         semantics_source=tuple(sources),
     )
+    with _SHADER_LOCK:
+        _SEMANTICS_CACHE[sem_key] = semantics_obj
+    return semantics_obj
 
 
 def _find_shader_block_cached(

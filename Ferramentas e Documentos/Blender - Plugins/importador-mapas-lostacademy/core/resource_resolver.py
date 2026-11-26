@@ -28,10 +28,12 @@ def resolve_level_cgf_jobs(
     jobs: Iterable[object],
     client_root: Path,
     target_lod: int = 0,
+    max_workers: int = 1,
 ) -> LevelCgfResolutionResult:
     """
     Resolves each CGF job's file reference using the AionClientPakResolver.
-    Deduplicates unique CGF paths and batches extraction to avoid UI/thread freezes.
+    Deduplicates unique CGF paths and resolves sequentially (max_workers=1 default)
+    to prevent disk thrashing on weak CPUs/HDDs.
     Supports target_lod (0..3) to resolve companion LOD meshes (<stem>_lod<N>.cgf).
     """
     resolver = get_pak_resolver(client_root)
@@ -52,21 +54,30 @@ def resolve_level_cgf_jobs(
             unique_refs[norm] = str(ref)
         job_refs.append((job, norm))
 
-    # 2. Batch resolve unique references using multi-threaded extraction
+    # 2. Resolve unique references (defaults to sequential single-worker extraction)
     resolved_paths: Dict[str, Optional[Path]] = {}
     if resolver and unique_refs:
-        batch_results = resolver.resolve_resources_batch(unique_refs.values(), max_workers=8, target_lod=target_lod)
-        for orig_ref, p_res in batch_results.items():
-            norm = orig_ref.replace("\\", "/").strip().lstrip("/")
-            if p_res and p_res.is_file():
-                resolved_paths[norm] = p_res
-
-        # Fallback query for any unreturned reference
-        for norm, orig in unique_refs.items():
-            if norm not in resolved_paths:
+        if max_workers <= 1:
+            resolver.ensure_catalog()
+            for norm, orig in unique_refs.items():
                 p_res = resolver.resolve_resource(orig, target_lod=target_lod)
                 if p_res and p_res.is_file():
                     resolved_paths[norm] = p_res
+        else:
+            batch_results = resolver.resolve_resources_batch(
+                unique_refs.values(), max_workers=max_workers, target_lod=target_lod
+            )
+            for orig_ref, p_res in batch_results.items():
+                norm = orig_ref.replace("\\", "/").strip().lstrip("/")
+                if p_res and p_res.is_file():
+                    resolved_paths[norm] = p_res
+
+            # Fallback query for any unreturned reference
+            for norm, orig in unique_refs.items():
+                if norm not in resolved_paths:
+                    p_res = resolver.resolve_resource(orig, target_lod=target_lod)
+                    if p_res and p_res.is_file():
+                        resolved_paths[norm] = p_res
 
     # 3. Fast O(1) in-memory mapping to original jobs
     resolved = []

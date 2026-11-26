@@ -25,6 +25,23 @@ CATALOG_DEFINITIONS = {
 }
 
 _CLIENT_MODEL_CACHE: Dict[str, List[Tuple[str, str, str]]] = {}
+_SCENE_MODEL_CACHE: Dict[Tuple[str, int, int, int, str, str], List[Tuple[str, str, str, str]]] = {}
+
+
+def invalidate_asset_catalog_cache() -> None:
+    """Clears cached scene model queries so panels refresh cleanly after imports."""
+    _SCENE_MODEL_CACHE.clear()
+
+
+def is_client_model_cache_ready(client_root: Path | str) -> bool:
+    """Returns True when client model paths for client_root are already indexed in memory."""
+    if not client_root:
+        return False
+    try:
+        key = str(Path(client_root).resolve()).lower()
+        return key in _CLIENT_MODEL_CACHE
+    except Exception:
+        return False
 
 
 def write_asset_catalog_file(target_dir: Path | str) -> Path:
@@ -63,10 +80,10 @@ def infer_asset_category(ref_path: str, obj_name: str = "") -> str:
     return "Props"
 
 
-def catalog_scene_assets(context: bpy.types.Context, generate_previews: bool = True) -> int:
+def catalog_scene_assets(context: bpy.types.Context, generate_previews: bool = False) -> int:
     """
     Scans the scene for all Aion models (in .TEMPLATES and active scene collections),
-    marks them as Blender Assets, tags them into categories, and generates 3D thumbnail previews.
+    marks them as Blender Assets, tags them into categories, and optionally generates 3D thumbnail previews.
     """
     cataloged_count = 0
     seen_assets = set()
@@ -86,20 +103,30 @@ def catalog_scene_assets(context: bpy.types.Context, generate_previews: bool = T
     except Exception:
         pass
 
-    # Find templates collection
+    # Find templates collection (O(1) pointer deduplication — avoids O(N^2) list membership scans)
     templates_col = bpy.data.collections.get(".TEMPLATES")
     candidate_objects = []
+    seen_ptrs = set()
 
     if templates_col:
+        for o in templates_col.objects:
+            ptr = o.as_pointer()
+            if o.type in ("MESH", "EMPTY") and ptr not in seen_ptrs:
+                seen_ptrs.add(ptr)
+                candidate_objects.append(o)
         for child_col in templates_col.children:
             for o in child_col.objects:
-                if o.type in ("MESH", "EMPTY") and o not in candidate_objects:
+                ptr = o.as_pointer()
+                if o.type in ("MESH", "EMPTY") and ptr not in seen_ptrs:
+                    seen_ptrs.add(ptr)
                     candidate_objects.append(o)
 
     # Also scan unique mesh datablocks / objects in the scene
     for o in context.scene.objects:
         if o.get("aion_source_type") or o.get("aion_reference") or o.get("aion_npc_id"):
-            if o not in candidate_objects:
+            ptr = o.as_pointer()
+            if ptr not in seen_ptrs:
+                seen_ptrs.add(ptr)
                 candidate_objects.append(o)
 
     for obj in candidate_objects:
@@ -145,24 +172,60 @@ def get_scene_model_items(
     search_query: str = "",
 ) -> List[Tuple[str, str, str, bpy.types.Object]]:
     """
-    Returns filtered items from the scene:
+    Returns filtered items from the scene (cached by scene state to avoid UI redraw lag):
     [(identifier, display_name, category, obj), ...]
     """
-    results = []
-    seen = set()
+    scene = getattr(context, "scene", None)
+    if scene is None:
+        return []
 
     templates_col = bpy.data.collections.get(".TEMPLATES")
+    tpl_count = (len(templates_col.children) + len(templates_col.objects)) if templates_col else 0
+    cache_key = (
+        scene.name,
+        len(scene.objects),
+        len(bpy.data.meshes),
+        tpl_count,
+        str(category_filter).upper(),
+        search_query.strip().lower(),
+    )
+    cached_entries = _SCENE_MODEL_CACHE.get(cache_key)
+    if cached_entries is not None:
+        resolved_cached = []
+        valid = True
+        for norm_ref, disp_name, category, obj_name in cached_entries:
+            obj = bpy.data.objects.get(obj_name)
+            if obj is None:
+                valid = False
+                break
+            resolved_cached.append((norm_ref, disp_name, category, obj))
+        if valid:
+            return resolved_cached
+        _SCENE_MODEL_CACHE.pop(cache_key, None)
+
+    results = []
+    seen = set()
+    seen_ptrs = set()
     candidate_objects = []
 
     if templates_col:
+        for o in templates_col.objects:
+            ptr = o.as_pointer()
+            if o.type in ("MESH", "EMPTY") and ptr not in seen_ptrs:
+                seen_ptrs.add(ptr)
+                candidate_objects.append(o)
         for child_col in templates_col.children:
             for o in child_col.objects:
-                if o.type in ("MESH", "EMPTY") and o not in candidate_objects:
+                ptr = o.as_pointer()
+                if o.type in ("MESH", "EMPTY") and ptr not in seen_ptrs:
+                    seen_ptrs.add(ptr)
                     candidate_objects.append(o)
 
-    for o in context.scene.objects:
+    for o in scene.objects:
         if o.get("aion_source_type") or o.get("aion_reference"):
-            if o not in candidate_objects:
+            ptr = o.as_pointer()
+            if ptr not in seen_ptrs:
+                seen_ptrs.add(ptr)
                 candidate_objects.append(o)
 
     query_lower = search_query.strip().lower()
@@ -184,7 +247,14 @@ def get_scene_model_items(
         disp_name = Path(norm_ref).stem or obj.name
         results.append((norm_ref, disp_name, category, obj))
 
-    return sorted(results, key=lambda x: (x[2], x[1]))
+    results.sort(key=lambda x: (x[2], x[1]))
+    if len(_SCENE_MODEL_CACHE) > 32:
+        _SCENE_MODEL_CACHE.clear()
+    _SCENE_MODEL_CACHE[cache_key] = [
+        (norm_ref, disp_name, category, obj.name)
+        for norm_ref, disp_name, category, obj in results
+    ]
+    return results
 
 
 def get_client_model_items(
@@ -192,14 +262,20 @@ def get_client_model_items(
     category_filter: str = "ALL",
     search_query: str = "",
     limit: int = 150,
+    *,
+    allow_scan: bool = True,
 ) -> List[Tuple[str, str, str]]:
     """
     Scans and caches 3D CGF/CGA models from client mesh PAK archives.
+    When allow_scan=False (used during UI redraws), only returns already cached entries
+    so drawing panels never performs synchronous PAK I/O on the main thread.
     Returns [(relative_path, display_name, category), ...]
     """
     root = Path(client_root).resolve()
     key = str(root).lower()
     if key not in _CLIENT_MODEL_CACHE:
+        if not allow_scan:
+            return []
         from core.pak_engine import AionPakArchive
 
         all_models = []
@@ -216,15 +292,15 @@ def get_client_model_items(
         seen = set()
         for p in paks:
             try:
-                arc = AionPakArchive(p)
-                for entry_name in arc.entries.keys():
-                    if entry_name.endswith(".cgf") or entry_name.endswith(".cga"):
-                        clean = entry_name.replace("\\", "/").strip().lstrip("/")
-                        if clean not in seen:
-                            seen.add(clean)
-                            cat = infer_asset_category(clean)
-                            disp = Path(clean).stem
-                            all_models.append((clean, disp, cat))
+                with AionPakArchive(p) as arc:
+                    for entry_name in arc.entries.keys():
+                        if entry_name.endswith(".cgf") or entry_name.endswith(".cga"):
+                            clean = entry_name.replace("\\", "/").strip().lstrip("/")
+                            if clean not in seen:
+                                seen.add(clean)
+                                cat = infer_asset_category(clean)
+                                disp = Path(clean).stem
+                                all_models.append((clean, disp, cat))
             except Exception:
                 pass
         _CLIENT_MODEL_CACHE[key] = sorted(all_models, key=lambda x: (x[2], x[1]))

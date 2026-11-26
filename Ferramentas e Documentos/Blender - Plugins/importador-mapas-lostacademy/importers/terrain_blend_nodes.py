@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+from array import array
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -25,16 +26,18 @@ class TerrainBlendShaderResult:
     warnings: tuple[str, ...]
 
 
-def create_terrain_blend_shader(
+def iter_create_terrain_blend_shader(
     bpy,
     mesh,
     material_slots,
     *,
     material_sample_counts: dict[int, int] | None = None,
     load_textures: bool = False,
-    material_limit: int = MAX_BLEND_SHADER_MATERIALS,
+    material_limit: int = 8,
+    simple_shader: bool = False,
     shadow_texture_path: str | Path | None = None,
-) -> TerrainBlendShaderResult:
+):
+    """Yields `(completed, total)` after loading each terrain texture and returns TerrainBlendShaderResult."""
     material_indices = tuple(int(index) for index in mesh.get("aion_blend_material_indices", ()))
     layer_names = tuple(
         name
@@ -69,6 +72,12 @@ def create_terrain_blend_shader(
 
     material = bpy.data.materials.new("Aion Terrain Blend Shader Preview")
     material.use_nodes = True
+    try:
+        material.use_backface_culling = True
+        material.use_transparent_shadow = False
+        material.surface_render_method = "DITHERED"
+    except (AttributeError, TypeError):
+        pass
     material["aion_blend_shader_enabled"] = bool(selected_indices and layer_names)
     material["aion_blend_shader_material_count"] = len(selected_indices)
     material["aion_blend_shader_included_materials"] = ",".join(str(index) for index in selected_indices)
@@ -93,6 +102,12 @@ def create_terrain_blend_shader(
 
     output = nodes.new(type="ShaderNodeOutputMaterial")
     bsdf = nodes.new(type="ShaderNodeBsdfPrincipled")
+    if "Roughness" in bsdf.inputs:
+        bsdf.inputs["Roughness"].default_value = 0.95
+    if "Specular IOR Level" in bsdf.inputs:
+        bsdf.inputs["Specular IOR Level"].default_value = 0.0
+    elif "Specular" in bsdf.inputs:
+        bsdf.inputs["Specular"].default_value = 0.0
     links.new(bsdf.outputs["BSDF"], output.inputs["Surface"])
     geometry = nodes.new(type="ShaderNodeNewGeometry")
     separate_xyz = nodes.new(type="ShaderNodeSeparateXYZ")
@@ -102,8 +117,9 @@ def create_terrain_blend_shader(
     texture_images_failed = 0
     texture_nodes_created = 0
     previous_color = None
+    total_steps = len(selected_indices) + (1 if shadow_texture_path else 0)
 
-    for material_index in selected_indices:
+    for step_idx, material_index in enumerate(selected_indices, start=1):
         slot = slot_by_index[material_index]
         color_output = _create_material_color_source(
             bpy,
@@ -126,15 +142,15 @@ def create_terrain_blend_shader(
         )
         if previous_color is None:
             previous_color = color_output.color_socket
-            continue
-        previous_color = _create_mix_rgb(nodes, links, weight_output, previous_color, color_output.color_socket)
+        else:
+            previous_color = _create_mix_rgb(nodes, links, weight_output, previous_color, color_output.color_socket)
+        if load_textures and total_steps > 0:
+            yield (step_idx, total_steps)
 
     graph_created = previous_color is not None and bool(layer_names)
     if graph_created:
         final_color = previous_color
         if shadow_texture_path:
-            import os
-            from pathlib import Path
             shadow_file = Path(shadow_texture_path)
             if shadow_file.is_file():
                 try:
@@ -150,13 +166,15 @@ def create_terrain_blend_shader(
                         final_color = _create_multiply_rgb(nodes, links, None, previous_color, shadow_tex_node.outputs["Color"])
                 except Exception:
                     pass
+            if total_steps > 0:
+                yield (total_steps, total_steps)
         links.new(final_color, bsdf.inputs["Base Color"])
     material["aion_blend_shader_warnings"] = "; ".join(warnings)
     material["aion_blend_shader_graph_created"] = graph_created
     mesh.materials.append(material)
     blend_slot_index = len(mesh.materials) - 1
     if graph_created and len(mesh.polygons) > 0:
-        mesh.polygons.foreach_set("material_index", [blend_slot_index] * len(mesh.polygons))
+        mesh.polygons.foreach_set("material_index", array("i", [blend_slot_index]) * len(mesh.polygons))
 
     return TerrainBlendShaderResult(
         enabled=True,
@@ -172,6 +190,34 @@ def create_terrain_blend_shader(
         projection_mode=BLEND_SHADER_PROJECTION_PROJ_AXIS,
         warnings=tuple(warnings),
     )
+
+
+def create_terrain_blend_shader(
+    bpy,
+    mesh,
+    material_slots,
+    *,
+    material_sample_counts: dict[int, int] | None = None,
+    load_textures: bool = False,
+    material_limit: int = 8,
+    simple_shader: bool = False,
+    shadow_texture_path: str | Path | None = None,
+) -> TerrainBlendShaderResult:
+    gen = iter_create_terrain_blend_shader(
+        bpy,
+        mesh,
+        material_slots,
+        material_sample_counts=material_sample_counts,
+        load_textures=load_textures,
+        material_limit=material_limit,
+        simple_shader=simple_shader,
+        shadow_texture_path=shadow_texture_path,
+    )
+    try:
+        while True:
+            next(gen)
+    except StopIteration as exc:
+        return exc.value
 
 
 @dataclass(frozen=True)
@@ -273,13 +319,19 @@ def _classify_shader_material_indices(
             skipped.append((index, "missing_texture", sample_count))
         else:
             included.append(index)
-    if len(included) > material_limit:
-        graph_limited = included[material_limit:]
-        included = included[:material_limit]
+    effective_limit = max(1, min(int(material_limit), 12))
+    if len(included) > effective_limit:
+        # Prioritize dominant materials covering the highest sample count (no black base holes!)
+        ranked = sorted(included, key=lambda idx: int(sample_counts.get(idx, 0)), reverse=True)
+        included = ranked[:effective_limit]
+        graph_limited = ranked[effective_limit:]
         skipped.extend(
             (index, "graph_limit", int(sample_counts.get(index, 0)))
             for index in graph_limited
         )
+    else:
+        # Place most dominant material first so base layer fills any unblended areas
+        included = sorted(included, key=lambda idx: int(sample_counts.get(idx, 0)), reverse=True)
     return tuple(included), tuple(skipped)
 
 

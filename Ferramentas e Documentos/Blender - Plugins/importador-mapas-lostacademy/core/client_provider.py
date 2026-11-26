@@ -64,6 +64,20 @@ class AionClientProvider:
         self._string_tables: Dict[str, str] = {}
         self._string_tables_loaded: bool = False
 
+    def __enter__(self) -> "AionClientProvider":
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb) -> None:
+        self.close()
+
+    def close(self) -> None:
+        """Closes underlying PAK archive handles held by the provider catalog."""
+        if getattr(self, "catalog", None) is not None:
+            try:
+                self.catalog.close()
+            except Exception:
+                pass
+
     def _ensure_catalog_initialized(self) -> None:
         """Indexes common PAKs across client structure lazily on first access."""
         if self._catalog_initialized:
@@ -248,9 +262,10 @@ class AionClientProvider:
         for wp in reversed(self.get_world_pak_paths()):
             if not wp.is_file():
                 continue
-            # Check for OADTENC1 encryption signature
+            # Check for OADTENC1 encryption signature (read only 8 bytes, never full PAK!)
             try:
-                head = wp.read_bytes()[:8]
+                with open(wp, "rb") as _f:
+                    head = _f.read(8)
                 if head == b"OADTENC1":
                     print(
                         f"[AionClientProvider] Warning: {wp.name} has OADTENC1 signature (encrypted)."
@@ -285,9 +300,10 @@ class AionClientProvider:
         results: List[Tuple[str, bytes]] = []
 
         for pak_path in paks:
-            # Check for OADTENC1 encryption signature
+            # Check for OADTENC1 encryption signature (read only 8 bytes, never full PAK!)
             try:
-                head = pak_path.read_bytes()[:8]
+                with open(pak_path, "rb") as _f:
+                    head = _f.read(8)
                 if head == b"OADTENC1":
                     print(
                         f"[AionClientProvider] Skipping {pak_path.name}: OADTENC1 encrypted."

@@ -1,4 +1,6 @@
 from pathlib import Path
+import threading
+import time
 
 import bpy
 from bpy.props import BoolProperty, EnumProperty, FloatProperty, IntProperty, StringProperty
@@ -15,7 +17,7 @@ from aion_formats.level import (
     LIQUID_PRESET_TRANSPARENT,
 )
 
-import time
+from config.performance_profiles import resolve_profile_settings
 from importers.level_importer import import_level, import_level_generator
 from importers.level_summary import format_level_import_report
 from importers.static_lights_importer import (
@@ -23,6 +25,363 @@ from importers.static_lights_importer import (
     STATIC_LIGHTS_MODE_EMPTY,
     STATIC_LIGHTS_MODE_POINT_LIGHT,
 )
+
+
+def _has_imported_content(result) -> bool:
+    return not (
+        result.imported_template_count == 0
+        and result.terrain_mesh_result is None
+        and not (result.skybox_result and result.skybox_result.applied)
+        and not (result.environment_lighting_result and result.environment_lighting_result.applied)
+        and not (result.water_result and result.water_result.created)
+        and not (result.liquid_surface_result and result.liquid_surface_result.applied)
+        and not (result.static_lights_result and result.static_lights_result.created)
+        and not (
+            result.mission_placeables_result
+            and result.mission_placeables_result.created_count
+        )
+        and not (
+            result.particle_effects_result
+            and (
+                result.particle_effects_result.sprite_visuals_created
+                or result.particle_effects_result.marker_fallback_created
+            )
+        )
+        and not (
+            result.cga_entities_result
+            and result.cga_entities_result.created_count
+        )
+        and not (
+            result.npc_result
+            and result.npc_result.spawned_count
+        )
+    )
+
+
+def _has_import_warnings(result, meta: dict) -> bool:
+    return bool(
+        result.failed_template_count
+        or (result.skybox_result and not result.skybox_result.applied)
+        or (result.environment_lighting_result and not result.environment_lighting_result.applied)
+        or (meta.get("effective_import_water") and not result.summary.water_created)
+        or (
+            meta.get("effective_import_textured_liquid_surface")
+            and result.liquid_surface_result
+            and not result.liquid_surface_result.applied
+        )
+        or (
+            meta.get("effective_import_static_lights")
+            and result.static_lights_result
+            and result.static_lights_result.failed_count
+        )
+        or (
+            meta.get("effective_import_mission_placeables")
+            and result.mission_placeables_result
+            and result.mission_placeables_result.failed_count
+        )
+        or (
+            meta.get("effective_import_cga_entities")
+            and result.cga_entities_result
+            and result.cga_entities_result.failed_count
+        )
+    )
+
+
+def _build_finish_messages(result, meta: dict, elapsed: float | None = None) -> tuple[str, str, str]:
+    level_name = meta["target_level_dir"].name
+    profile = meta.get("performance_profile", "LOW")
+    failure_samples = _format_cgf_issues(result.failures)
+    skip_samples = _format_cgf_issues(result.skipped_templates)
+    full_msg = format_level_import_report(result.summary) + failure_samples + skip_samples
+
+    if not _has_imported_content(result):
+        concise = (
+            f"Falha ao importar {level_name}: "
+            f"selected={result.selected_template_count}, failed={result.failed_template_count}, "
+            f"skipped={result.skipped_template_count}"
+        )
+        return "ERROR", concise[:220], full_msg
+
+    time_part = f" em {elapsed:.1f}s" if elapsed is not None else ""
+    parts = [
+        f"{level_name} ({profile}){time_part}",
+        f"{result.imported_template_count} modelos",
+        f"{result.placement_objects_created} objetos",
+    ]
+    if result.skipped_template_count:
+        parts.append(f"{result.skipped_template_count} NoDraw")
+    if result.failed_template_count:
+        parts.append(f"{result.failed_template_count} erros")
+    concise = " | ".join(parts)
+    level = "WARNING" if _has_import_warnings(result, meta) else "INFO"
+    return level, concise[:220], full_msg
+
+
+class _LevelImportRunner:
+    """
+    Non-blocking bpy.app.timers import coordinator.
+    Never uses modal_handler_add or wm.progress_begin, guaranteeing Blender's UI
+    stays 100% responsive and unlockable throughout the entire import.
+    """
+
+    def __init__(self) -> None:
+        self._lock = threading.Lock()
+        self.active = False
+        self.generator = None
+        self.cancel_event: threading.Event | None = None
+        self.scene_name = ""
+        self.start_time = 0.0
+        self.last_yield = None
+        self.last_redraw_time = 0.0
+        self.frame_budget_s = 0.005
+        self.meta: dict = {}
+        self.last_result = None
+        self.last_error: str | None = None
+
+    def is_running(self) -> bool:
+        with self._lock:
+            return self.active
+
+    def start(self, context, generator, *, frame_budget_s: float, meta: dict) -> bool:
+        with self._lock:
+            if self.active:
+                return False
+            self.active = True
+            self.generator = generator
+            self.cancel_event = meta["cancel_event"]
+            self.scene_name = context.scene.name
+            self.start_time = time.perf_counter()
+            self.last_yield = None
+            self.last_redraw_time = 0.0
+            self.frame_budget_s = min(0.006, max(0.003, float(frame_budget_s)))
+            self.meta = dict(meta)
+            self.last_result = None
+            self.last_error = None
+
+            settings = getattr(context.scene, "aion_settings", None)
+            if settings is not None:
+                settings.is_importing = True
+                settings.import_progress = 0.0
+                settings.import_stage_message = "Iniciando importação linear..."
+                settings.status_message = f"Importando {meta['target_level_dir'].name}..."
+
+        self._set_workspace_status("Aion Import (0%): Iniciando...")
+        self._tag_ui_redraw(force=True)
+        try:
+            bpy.app.timers.register(self._tick, first_interval=0.02, persistent=False)
+        except Exception:
+            self.force_stop_sync("Falha ao registrar timer assíncrono.")
+            return False
+        return True
+
+    def request_cancel(self) -> bool:
+        with self._lock:
+            if not self.active:
+                return False
+            if self.cancel_event is not None:
+                self.cancel_event.set()
+            scene = self._resolve_scene()
+            settings = getattr(scene, "aion_settings", None) if scene else None
+            if settings is not None:
+                settings.import_stage_message = "Cancelando importação..."
+        self._tag_ui_redraw(force=True)
+        return True
+
+    def force_stop_sync(self, status_msg: str | None = "Importação interrompida.") -> None:
+        with self._lock:
+            self._cleanup_locked(status_msg=status_msg)
+        try:
+            if bpy.app.timers.is_registered(self._tick):
+                bpy.app.timers.unregister(self._tick)
+        except Exception:
+            pass
+
+    def _resolve_scene(self):
+        try:
+            scene = bpy.data.scenes.get(self.scene_name)
+            if scene is not None:
+                return scene
+            return bpy.data.scenes[0] if len(bpy.data.scenes) else None
+        except Exception:
+            return None
+
+    def _set_workspace_status(self, text: str | None) -> None:
+        try:
+            wm = getattr(bpy.context, "window_manager", None)
+            if wm is None and bpy.data.window_managers:
+                wm = bpy.data.window_managers[0]
+            if wm is not None:
+                for win in wm.windows:
+                    ws = getattr(win, "workspace", None)
+                    if ws is not None and hasattr(ws, "status_text_set"):
+                        ws.status_text_set(text)
+        except Exception:
+            pass
+
+    def _tag_ui_redraw(self, force: bool = False) -> None:
+        now = time.perf_counter()
+        if not force and (now - self.last_redraw_time) < 0.08:
+            return
+        self.last_redraw_time = now
+        try:
+            wm = getattr(bpy.context, "window_manager", None)
+            if wm is None and bpy.data.window_managers:
+                wm = bpy.data.window_managers[0]
+            if wm is not None:
+                for win in wm.windows:
+                    scr = getattr(win, "screen", None)
+                    if scr is None:
+                        continue
+                    for area in scr.areas:
+                        if area.type == "VIEW_3D":
+                            area.tag_redraw()
+        except Exception:
+            pass
+
+    def _cleanup_locked(self, status_msg: str | None = None) -> None:
+        if self.cancel_event is not None:
+            try:
+                self.cancel_event.set()
+            except Exception:
+                pass
+        if self.generator is not None:
+            try:
+                self.generator.close()
+            except Exception:
+                pass
+            self.generator = None
+
+        self._set_workspace_status(None)
+        scene = self._resolve_scene()
+        settings = getattr(scene, "aion_settings", None) if scene else None
+        if settings is not None:
+            try:
+                settings.is_importing = False
+                settings.import_stage_message = ""
+                if status_msg is not None:
+                    settings.status_message = status_msg
+            except Exception:
+                pass
+        self._tag_ui_redraw(force=True)
+        self.active = False
+
+    def _tick(self):
+        try:
+            with self._lock:
+                if not self.active or self.generator is None:
+                    self._cleanup_locked()
+                    return None
+                scene = self._resolve_scene()
+                if scene is None:
+                    self._cleanup_locked()
+                    return None
+                if self.cancel_event is not None and self.cancel_event.is_set():
+                    self._cleanup_locked(status_msg="Importação cancelada pelo usuário.")
+                    return None
+                gen = self.generator
+                budget = self.frame_budget_s
+
+            t0 = time.perf_counter()
+            waiting_worker = False
+            steps_done = 0
+
+            while True:
+                if self.cancel_event is not None and self.cancel_event.is_set():
+                    with self._lock:
+                        self._cleanup_locked(status_msg="Importação cancelada pelo usuário.")
+                    return None
+
+                try:
+                    step_t0 = time.perf_counter()
+                    frac, msg = next(gen)
+                    step_dt = time.perf_counter() - step_t0
+                    steps_done += 1
+                    state = (round(float(frac), 4), str(msg))
+                    if state == self.last_yield:
+                        waiting_worker = True
+                        break
+                    self.last_yield = state
+                    settings = getattr(scene, "aion_settings", None)
+                    if settings is not None:
+                        settings.import_progress = max(0.0, min(100.0, float(frac) * 100.0))
+                        settings.import_stage_message = str(msg)
+                    self._set_workspace_status(
+                        f"Aion ({round(float(frac) * 100)}%): {msg} | Use o botão Cancelar no painel Aion Map"
+                    )
+                    self._tag_ui_redraw(force=False)
+                    if step_dt >= budget or (time.perf_counter() - t0) >= budget or steps_done >= 8:
+                        break
+                except StopIteration as exc:
+                    result = exc.value
+                    elapsed = time.perf_counter() - self.start_time
+                    self.last_result = result
+                    with self._lock:
+                        if result is None or (self.cancel_event is not None and self.cancel_event.is_set()):
+                            self._cleanup_locked(status_msg="Importação cancelada pelo usuário.")
+                        else:
+                            level, concise, full_msg = _build_finish_messages(result, self.meta, elapsed)
+                            print(f"[Aion Level Import] [{level}] {full_msg}")
+                            settings = getattr(scene, "aion_settings", None)
+                            if settings is not None and _has_imported_content(result):
+                                settings.loaded_level_dir = str(self.meta["target_level_dir"])
+                                settings.level_path = str(self.meta["target_level_dir"])
+                                settings.client_root = str(self.meta["client_root"])
+                                settings.performance_profile = str(self.meta["performance_profile"])
+                                settings.import_progress = 100.0
+                            self._cleanup_locked(status_msg=concise)
+                    return None
+
+            elapsed_tick = time.perf_counter() - t0
+            if waiting_worker:
+                return 0.025
+            return max(0.016, min(0.04, elapsed_tick * 1.25))
+        except BaseException as exc:
+            import traceback
+            traceback.print_exc()
+            self.last_error = str(exc)
+            with self._lock:
+                self._cleanup_locked(status_msg=f"Erro na importação: {exc}"[:200])
+            return None
+
+
+_IMPORT_RUNNER = _LevelImportRunner()
+
+
+@bpy.app.handlers.persistent
+def _on_load_pre(*_args):
+    _IMPORT_RUNNER.force_stop_sync("Importação cancelada ao trocar arquivo.")
+
+
+def register_handlers() -> None:
+    if _on_load_pre not in bpy.app.handlers.load_pre:
+        bpy.app.handlers.load_pre.append(_on_load_pre)
+
+
+def unregister_handlers() -> None:
+    _IMPORT_RUNNER.force_stop_sync()
+    if _on_load_pre in bpy.app.handlers.load_pre:
+        try:
+            bpy.app.handlers.load_pre.remove(_on_load_pre)
+        except Exception:
+            pass
+
+
+class AION_OT_cancel_level_import(bpy.types.Operator):
+    """Safely cancels an active asynchronous level import."""
+
+    bl_idname = "aion.cancel_level_import"
+    bl_label = "Cancelar Importação"
+    bl_description = "Interrompe com segurança a importação assíncrona em andamento"
+
+    def execute(self, context):
+        if _IMPORT_RUNNER.request_cancel():
+            self.report({"WARNING"}, "Cancelando importação do mapa Aion...")
+            return {"FINISHED"}
+        settings = getattr(context.scene, "aion_settings", None)
+        if settings is not None:
+            settings.is_importing = False
+            settings.import_stage_message = ""
+        return {"CANCELLED"}
 
 
 class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
@@ -67,15 +426,39 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
         default="",
     )
 
+    performance_profile: EnumProperty(
+        name="Perfil de Desempenho",
+        description="Ajusta automaticamente terreno, LOD de modelos, shaders e viewport para rodar liso (60+ FPS)",
+        items=(
+            (
+                "LOW",
+                "PC Fraco / 60+ FPS (Recomendado)",
+                "Terreno passo 4, modelos LOD leves, shaders simples e viewport otimizada",
+            ),
+            (
+                "BALANCED",
+                "Equilibrado",
+                "Terreno passo 2, modelos LOD1 e mapas normais",
+            ),
+            (
+                "HIGH",
+                "Alta Qualidade",
+                "Terreno detalhado, modelos LOD0 e texturas PBR completas",
+            ),
+        ),
+        default="LOW",
+    )
+
     terrain_lod: EnumProperty(
         name="Terrain LOD",
-        description="Terrain mesh detail level. LOD 2 = fast recommended (512x512) renders in ~1.5s, LOD 1 = full (1024x1024)",
+        description="Auto-managed by Perfil de Desempenho",
         items=(
-            ("2", "LOD 2 (Fast - Recommended)", "Half vertex density (512x512) - Renders in ~1.5s, consumes 75% less RAM"),
-            ("1", "LOD 1 (Full 100% Quality)", "Full vertex density (1024x1024) - Very heavy on huge maps"),
-            ("4", "LOD 4 (Ultra Fast / Preview)", "Quarter vertex density (256x256) - Renders in <1s"),
+            ("4", "LOD 4 (60+ FPS)", "256x256 grid - Ultra fast"),
+            ("2", "LOD 2 (Equilibrado)", "512x512 grid"),
+            ("1", "LOD 1 (Full)", "1024x1024 grid"),
         ),
-        default="2",
+        default="4",
+        options={"HIDDEN"},
     )
 
     limited_preview: BoolProperty(
@@ -290,8 +673,8 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
     )
     animate_cga_controllers: BoolProperty(
         name="Animate CGA Controllers",
-        description="Apply decoded CGA rotation controller keyframes for imported CGA entities",
-        default=True,
+        description="Apply decoded CGA rotation controller keyframes for imported CGA entities (heavier)",
+        default=False,
     )
     apply_smoothing_groups: BoolProperty(
         name="Apply CGF Smoothing Groups",
@@ -307,17 +690,22 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
     # NPCs & World Spawns (Section 7)
     import_npcs: BoolProperty(
         name="NPCs & World Spawns",
-        description="Import authoritative NPC spawns from client_world XML",
+        description="Import authoritative NPC spawns linearly after the map finishes",
         default=False,
     )
     import_npc_models: BoolProperty(
         name="Resolve & Load 3D NPC Models",
         description="Load 3D CGF meshes for monsters, humanoids, and Shugos",
-        default=False,
+        default=True,
     )
     animate_npcs: BoolProperty(
         name="Animate NPCs (Armatures & Idle CAF)",
-        description="Build armature rigs, assign vertex skinning, and play looping idle animations on NPCs",
+        description="Build armature rigs and looping idle animations on NPCs (heavy on weak GPUs)",
+        default=False,
+    )
+    import_nameplates: BoolProperty(
+        name="NPC 3D Nameplates",
+        description="Create 3D text nameplates above NPCs (heavy on GPU with many curves)",
         default=False,
     )
     import_monsters: BoolProperty(
@@ -336,55 +724,31 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
         default=True,
     )
 
-    # LOD Levels (Section 8)
-    import_lod0: BoolProperty(
-        name="LOD 0 (Full High Detail)",
-        description="Import base full-detail models",
-        default=True,
-    )
-    import_lod1: BoolProperty(
-        name="LOD 1 (Medium Detail)",
-        description="Import level-of-detail 1 models (disabled by default to prevent overlapping duplicates)",
-        default=False,
-    )
-    import_lod2: BoolProperty(
-        name="LOD 2 (Low Detail)",
-        description="Import level-of-detail 2 models",
-        default=False,
-    )
-    import_lod3: BoolProperty(
-        name="LOD 3 (Distant Detail)",
-        description="Import level-of-detail 3 models",
-        default=False,
-    )
+    # Hidden legacy LOD/engine properties (managed by performance_profile)
+    import_lod0: BoolProperty(name="LOD 0", default=True, options={"HIDDEN"})
+    import_lod1: BoolProperty(name="LOD 1", default=True, options={"HIDDEN"})
+    import_lod2: BoolProperty(name="LOD 2", default=True, options={"HIDDEN"})
+    import_lod3: BoolProperty(name="LOD 3", default=False, options={"HIDDEN"})
 
-    # Engine Performance Options
-    use_mesh_instancing: BoolProperty(
-        name="Hardware Mesh Instancing (100+ FPS)",
-        description="Direct GPU mesh datablock sharing instead of collection instances. Drastically lowers draw calls and Material Preview lag",
-        default=True,
-    )
-    optimize_material_preview: BoolProperty(
-        name="Optimize Material Preview (EEVEE Next)",
-        description="Dithered alpha clip and global material deduplication for smooth navigation",
-        default=True,
-    )
-    multithreaded_io: BoolProperty(
-        name="Multi-threaded Asset Decompression",
-        description="Fast background PAK decompression using CPU worker threads",
-        default=True,
-    )
+    use_mesh_instancing: BoolProperty(name="Hardware Mesh Instancing", default=True, options={"HIDDEN"})
+    optimize_material_preview: BoolProperty(name="Optimize Material Preview", default=True, options={"HIDDEN"})
+    multithreaded_io: BoolProperty(name="Async PAK Extraction", default=True, options={"HIDDEN"})
 
-    # Shaders & Animations
+    # Shaders & Animations (OFF by default for 60+ FPS)
     animate_texture_sequences: BoolProperty(
         name="Animate Texture Sequences",
-        description="Use confirmed diffuse texture frame sequences as Blender image sequences for imported CGFs",
-        default=True,
+        description="Use confirmed diffuse texture frame sequences as Blender image sequences",
+        default=False,
     )
     animate_shader_uv_scroll: BoolProperty(
         name="Animate Shader UV Scroll",
-        description="Use confirmed client shader TexShift semantics to animate supported imported CGF material UVs",
-        default=True,
+        description="Use confirmed client shader TexShift UV scroll drivers (disabled by default for 60+ FPS)",
+        default=False,
+    )
+    animate_water: BoolProperty(
+        name="Animate Water Ripples (Heavy)",
+        description="Add procedural water waves and 4D shaders",
+        default=False,
     )
     texture_animation_fps: IntProperty(
         name="Texture Sequence FPS",
@@ -398,7 +762,7 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
         settings = getattr(context.scene, "aion_settings", None)
         if settings:
             for prop_name in (
-                "client_root", "terrain_lod",
+                "client_root", "performance_profile", "terrain_lod",
                 "import_terrain", "import_terrain_textures", "import_terrain_blend_attributes",
                 "import_terrain_blend_shader", "import_terrain_shadows",
                 "import_buildings", "import_structures", "import_doors_portals",
@@ -407,9 +771,7 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
                 "import_water", "import_textured_liquid_surface",
                 "import_lighting", "import_environment_lighting", "import_skybox", "import_static_lights",
                 "import_collision", "import_npcs", "import_npc_models", "animate_npcs",
-                "import_monsters", "import_friendly_npcs", "import_ambient_creatures",
-                "import_lod0", "import_lod1", "import_lod2", "import_lod3",
-                "use_mesh_instancing", "optimize_material_preview", "multithreaded_io",
+                "import_nameplates", "import_monsters", "import_friendly_npcs", "import_ambient_creatures",
             ):
                 if hasattr(settings, prop_name) and hasattr(self, prop_name):
                     try:
@@ -459,6 +821,11 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
             self.report({"ERROR"}, f"Pasta Client Root do Aion não encontrada: '{client_root}'")
             return {"CANCELLED"}
 
+        # Prevent concurrent overlapping imports
+        if not bpy.app.background and _IMPORT_RUNNER.is_running():
+            self.report({"WARNING"}, "Uma importação de mapa Aion já está em andamento.")
+            return {"CANCELLED"}
+
         from materials.material_manager import clean_material_cache
         from materials.texture_loader import clear_texture_cache, purge_orphan_datablocks
 
@@ -494,19 +861,17 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
         effective_animate_texture_sequences = visual_mode and self.animate_texture_sequences
         effective_animate_shader_uv_scroll = visual_mode and self.animate_shader_uv_scroll
 
-        from core.pak_engine import AionLevelUnpacker
-        try:
-            effective_level_dir = AionLevelUnpacker.prepare_level_directory(target_level_dir)
-        except Exception:
-            effective_level_dir = Path(target_level_dir)
-
-        terrain_path = effective_level_dir / "terrain" / "land_map.h32"
-        if effective_import_terrain and not terrain_path.is_file():
-            self.report({"ERROR"}, f"Arquivo de terreno não encontrado: {terrain_path}")
+        if not target_level_dir.exists():
+            self.report({"ERROR"}, f"Pasta/arquivo do mapa não encontrado: {target_level_dir}")
             return {"CANCELLED"}
 
+        profile_cfg = resolve_profile_settings(self.performance_profile)
+        frame_budget_s = min(0.006, max(0.003, float(profile_cfg["tick_budget_ms"]) / 1000.0))
+        cancel_ev = threading.Event()
+
         import_kwargs = dict(
-            terrain_lod=int(self.terrain_lod),
+            performance_profile=self.performance_profile,
+            terrain_lod=int(profile_cfg["terrain_lod"]),
             import_mode=self.import_mode,
             import_skybox=visual_mode and self.import_skybox,
             skybox_time_option=self.skybox_time_option,
@@ -535,6 +900,7 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
             import_textured_liquid_surface=effective_import_textured_liquid_surface,
             liquid_kind=self.liquid_kind,
             liquid_preset=self.liquid_preset,
+            animate_water=visual_mode and self.animate_water,
             import_static_lights=effective_import_static_lights,
             static_lights_mode=self.static_lights_mode,
             static_lights_power=self.static_lights_power,
@@ -551,174 +917,87 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
             import_npcs=visual_mode and self.import_npcs,
             import_npc_models=visual_mode and self.import_npc_models,
             animate_npcs=visual_mode and self.animate_npcs,
+            import_nameplates=visual_mode and self.import_nameplates,
             import_monsters=visual_mode and self.import_monsters,
             import_friendly_npcs=visual_mode and self.import_friendly_npcs,
             import_ambient_creatures=visual_mode and self.import_ambient_creatures,
-            import_lod0=self.import_lod0,
-            import_lod1=self.import_lod1,
-            import_lod2=self.import_lod2,
-            import_lod3=self.import_lod3,
-            use_mesh_instancing=self.use_mesh_instancing,
-            optimize_material_preview=self.optimize_material_preview,
-            multithreaded_io=self.multithreaded_io,
+            use_mesh_instancing=True,
+            optimize_material_preview=True,
+            multithreaded_io=True,
+            cancel_event=cancel_ev,
         )
 
+        meta = {
+            "target_level_dir": target_level_dir,
+            "client_root": client_root,
+            "performance_profile": self.performance_profile,
+            "effective_import_water": effective_import_water,
+            "effective_import_textured_liquid_surface": effective_import_textured_liquid_surface,
+            "effective_import_static_lights": effective_import_static_lights,
+            "effective_import_mission_placeables": effective_import_mission_placeables,
+            "effective_import_cga_entities": effective_import_cga_entities,
+            "cancel_event": cancel_ev,
+        }
         self._target_level_dir = target_level_dir
         self._client_root = client_root
-        self._effective_import_water = effective_import_water
-        self._effective_import_textured_liquid_surface = effective_import_textured_liquid_surface
-        self._effective_import_static_lights = effective_import_static_lights
-        self._effective_import_mission_placeables = effective_import_mission_placeables
-        self._effective_import_cga_entities = effective_import_cga_entities
+        self._meta = meta
 
         # Headless mode (CLI testing, benchmarks): run synchronously
         if bpy.app.background:
-            result = import_level(context, target_level_dir, client_root, **import_kwargs)
-            return self._finish_import(context, result)
-
-        # Interactive GUI mode: run non-blocking modal timer loop
-        self._generator = import_level_generator(context, target_level_dir, client_root, **import_kwargs)
-        self._start_time = time.perf_counter()
-        wm = context.window_manager
-        self._timer = wm.event_timer_add(0.016, window=context.window)
-        wm.modal_handler_add(self)
-        wm.progress_begin(0, 100)
-        return {"RUNNING_MODAL"}
-
-    def modal(self, context, event):
-        if event.type == "ESC":
-            self._cleanup(context)
-            self.report({"WARNING"}, "Aion level import cancelled by user.")
-            return {"CANCELLED"}
-
-        if event.type == "TIMER":
             t0 = time.perf_counter()
-            # Process steps within a 15ms frame budget to keep Blender 100% responsive
-            while time.perf_counter() - t0 < 0.015:
-                try:
-                    frac, msg = next(self._generator)
-                    context.window_manager.progress_update(round(frac * 100))
-                    context.workspace.status_text_set(f"Aion Import: {msg} ({round(frac * 100)}%)")
-                except StopIteration as exc:
-                    self._cleanup(context)
-                    elapsed = time.perf_counter() - self._start_time
-                    res = self._finish_import(context, exc.value)
-                    context.workspace.status_text_set(f"Aion: Imported in {elapsed:.2f}s")
-                    return res
-                except Exception as exc:
-                    self._cleanup(context)
-                    self.report({"ERROR"}, f"Aion level import failed: {exc}")
-                    return {"CANCELLED"}
+            result = import_level(context, target_level_dir, client_root, **import_kwargs)
+            return self._finish_import(context, result, elapsed=time.perf_counter() - t0)
 
-            return {"PASS_THROUGH"}
-
-        return {"PASS_THROUGH"}
-
-    def _cleanup(self, context):
-        if getattr(self, "_timer", None) is not None:
+        # Interactive GUI mode: launch completely non-blocking bpy.app.timers session
+        # returning FINISHED immediately so UI / viewport / panels never lock up.
+        gen = import_level_generator(context, target_level_dir, client_root, **import_kwargs)
+        started = _IMPORT_RUNNER.start(
+            context,
+            gen,
+            frame_budget_s=frame_budget_s,
+            meta=meta,
+        )
+        if not started:
             try:
-                context.window_manager.event_timer_remove(self._timer)
+                gen.close()
             except Exception:
                 pass
-            self._timer = None
-        try:
-            context.window_manager.progress_end()
-            context.workspace.status_text_set(None)
-        except Exception:
-            pass
-
-    def _finish_import(self, context, result):
-        target_level_dir = self._target_level_dir
-        client_root = self._client_root
-        effective_import_water = self._effective_import_water
-        effective_import_textured_liquid_surface = self._effective_import_textured_liquid_surface
-        effective_import_static_lights = self._effective_import_static_lights
-        effective_import_mission_placeables = self._effective_import_mission_placeables
-        effective_import_cga_entities = self._effective_import_cga_entities
-
-        failure_samples = _format_cgf_issues(result.failures)
-        skip_samples = _format_cgf_issues(result.skipped_templates)
-        water_failure = (
-            f", water={result.water_result.skip_reason}"
-            if result.water_result and result.water_result.skip_reason
-            else ""
-        )
-        if (
-            result.imported_template_count == 0
-            and result.terrain_mesh_result is None
-            and not (result.skybox_result and result.skybox_result.applied)
-            and not (result.environment_lighting_result and result.environment_lighting_result.applied)
-            and not (result.water_result and result.water_result.created)
-            and not (result.liquid_surface_result and result.liquid_surface_result.applied)
-            and not (result.static_lights_result and result.static_lights_result.created)
-            and not (
-                result.mission_placeables_result
-                and result.mission_placeables_result.created_count
-            )
-            and not (
-                result.particle_effects_result
-                and (
-                    result.particle_effects_result.sprite_visuals_created
-                    or result.particle_effects_result.marker_fallback_created
-                )
-            )
-            and not (
-                result.cga_entities_result
-                and result.cga_entities_result.created_count
-            )
-            and not (
-                result.npc_result
-                and result.npc_result.spawned_count
-            )
-        ):
-            self.report(
-                {"ERROR"},
-                "Aion level import failed: "
-                f"selected={result.selected_template_count}, failed={result.failed_template_count}"
-                f", skipped={result.skipped_template_count}"
-                f"{failure_samples}{skip_samples}{water_failure}",
-            )
+            self.report({"ERROR"}, "Não foi possível iniciar o importador assíncrono.")
             return {"CANCELLED"}
 
-        report_type = (
-            {"WARNING"}
-            if result.failed_template_count
-            or (result.skybox_result and not result.skybox_result.applied)
-            or (result.environment_lighting_result and not result.environment_lighting_result.applied)
-            or (effective_import_water and not result.summary.water_created)
-            or (
-                effective_import_textured_liquid_surface
-                and result.liquid_surface_result
-                and not result.liquid_surface_result.applied
-            )
-            or (
-                effective_import_static_lights
-                and result.static_lights_result
-                and result.static_lights_result.failed_count
-            )
-            or (
-                effective_import_mission_placeables
-                and result.mission_placeables_result
-                and result.mission_placeables_result.failed_count
-            )
-            or (
-                effective_import_cga_entities
-                and result.cga_entities_result
-                and result.cga_entities_result.failed_count
-            )
-            else {"INFO"}
+        self.report(
+            {"INFO"},
+            f"Importando '{target_level_dir.name}' ({self.performance_profile}) sem bloquear a tela — acompanhe na aba Aion Map.",
         )
+        return {"FINISHED"}
+
+    def _finish_import(self, context, result, elapsed: float | None = None):
+        meta = getattr(self, "_meta", None) or {
+            "target_level_dir": self._target_level_dir,
+            "client_root": self._client_root,
+            "performance_profile": self.performance_profile,
+            "effective_import_water": False,
+            "effective_import_textured_liquid_surface": False,
+            "effective_import_static_lights": False,
+            "effective_import_mission_placeables": False,
+            "effective_import_cga_entities": False,
+        }
+        level, concise, full_msg = _build_finish_messages(result, meta, elapsed)
+        print(f"[Aion Level Import] [{level}] {full_msg}")
+
+        if level == "ERROR":
+            self.report({"ERROR"}, concise)
+            return {"CANCELLED"}
+
         settings = getattr(context.scene, "aion_settings", None)
         if settings:
-            settings.loaded_level_dir = str(target_level_dir)
-            settings.level_path = str(target_level_dir)
-            settings.client_root = str(client_root)
-            settings.status_message = f"Loaded {target_level_dir.name}"
+            settings.loaded_level_dir = str(meta["target_level_dir"])
+            settings.level_path = str(meta["target_level_dir"])
+            settings.client_root = str(meta["client_root"])
+            settings.performance_profile = self.performance_profile
+            settings.status_message = concise
 
-        self.report(
-            report_type,
-            format_level_import_report(result.summary) + failure_samples + skip_samples,
-        )
+        self.report({level}, concise)
         return {"FINISHED"}
 
     def draw(self, context):
@@ -727,35 +1006,23 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
         layout.use_property_decorate = False
 
         box_main = layout.box()
-        box_main.label(text="Import Configuration", icon="SETTINGS")
+        box_main.label(text="Configuração de Importação", icon="SETTINGS")
         box_main.prop(self, "import_mode")
         box_main.prop(self, "client_root")
 
         if self.import_mode != "VISUAL":
             return
 
-        # Optimization & Viewport
+        # Single unified Performance Profile (replaces redundant LOD checkboxes)
         box_perf = layout.box()
-        box_perf.label(text="Engine & Viewport Optimizations", icon="SHADING_RENDERED")
-        box_perf.prop(self, "use_mesh_instancing")
-        box_perf.prop(self, "optimize_material_preview")
-        box_perf.prop(self, "multithreaded_io")
-
-        # LOD Controls
-        box_lod = layout.box()
-        box_lod.label(text="LOD Level Controls", icon="LOD")
-        row = box_lod.row(align=True)
-        row.prop(self, "import_lod0", text="LOD 0")
-        row.prop(self, "import_lod1", text="LOD 1")
-        row.prop(self, "import_lod2", text="LOD 2")
-        row.prop(self, "import_lod3", text="LOD 3")
+        box_perf.label(text="Desempenho & GPU (60+ FPS)", icon="SHADING_RENDERED")
+        box_perf.prop(self, "performance_profile")
 
         # Terrain & Material Blending
         box_terrain = layout.box()
-        box_terrain.prop(self, "import_terrain", text="Terrain Heightfield", icon="LANDSCAPE")
+        box_terrain.prop(self, "import_terrain", text="Terreno", icon="LANDSCAPE")
         if self.import_terrain:
             col = box_terrain.column()
-            col.prop(self, "terrain_lod")
             col.prop(self, "import_terrain_textures")
             col.prop(self, "import_terrain_blend_shader")
             col.prop(self, "import_terrain_blend_attributes")
@@ -792,6 +1059,7 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
             col = box_npcs.column()
             col.prop(self, "import_npc_models")
             col.prop(self, "animate_npcs")
+            col.prop(self, "import_nameplates")
             col.prop(self, "import_monsters")
             col.prop(self, "import_friendly_npcs")
             col.prop(self, "import_ambient_creatures")
@@ -805,6 +1073,7 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
             if self.import_textured_liquid_surface:
                 col.prop(self, "liquid_kind")
                 col.prop(self, "liquid_preset")
+            col.prop(self, "animate_water")
 
         # Environment, Sky & Lighting
         box_env = layout.box()
@@ -837,7 +1106,7 @@ class AION_OT_import_level_folder(bpy.types.Operator, ImportHelper):
 
         # Shaders & Animations
         box_anim = layout.box()
-        box_anim.label(text="Texture & Shader Animation", icon="ANIM_DATA")
+        box_anim.label(text="Texture & Shader Animation (Opcional)", icon="ANIM_DATA")
         box_anim.prop(self, "animate_texture_sequences")
         box_anim.prop(self, "animate_shader_uv_scroll")
         if self.animate_texture_sequences:

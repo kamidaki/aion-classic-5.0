@@ -31,10 +31,10 @@ Suporta importação abrangente de mapas de larga escala, reconstrução de shad
 - **Cliente Aion:** Aion Classic (Classic 5.0) ou clientes Retail (4.8, 4.6, 7.7, etc.).
 - **Dependências Python:** Nenhuma. 100% Python puro sem DLLs externas, extensões em C ou pacotes pip. Utiliza módulos nativos do Blender (`mathutils`, `bpy`) e da biblioteca padrão (`struct`, `zlib`, `pathlib`).
 
-### Requisitos de Sistema
-- **Memória RAM:** Mínimo de 16 GB (32 GB recomendados para carregar mapas extensos e capitais em LOD 1).
-- **Placa de Vídeo (GPU):** Placa de vídeo dedicada com suporte a Vulkan/OpenGL 4.3+ (NVIDIA RTX ou AMD Radeon recomendada para Material Preview em tempo real).
-- **Armazenamento:** Pelo menos 10 GB de espaço livre na unidade do cliente Aion para descompactação de caches sob demanda.
+### Requisitos de Sistema (Otimizado para PC Fraco — 60+ FPS)
+- **Memória RAM:** 8 GB ou mais (perfil **PC Fraco / 60+ FPS** reduz drasticamente o consumo de RAM e VRAM).
+- **Placa de Vídeo (GPU):** Placa dedicada ou vídeo integrado compatível com OpenGL 4.3+ / Vulkan (sem exigir raytracing ou SSS).
+- **Armazenamento:** Pelo menos 10 GB de espaço livre na unidade do cliente Aion para caches sob demanda.
 
 ### Procedimento de Instalação
 
@@ -83,8 +83,9 @@ Antes de carregar mapas ou recursos, configure o caminho da instalação do jogo
 ├── Level Management & Import
 │   ├── Client Root: [ <caminho-do-cliente-aion-classic>      ]
 │   ├── [ Import Level ]      [ Import CGF ]
-│   ├── Import Categories (Terrain, Buildings, Props, Vegetation, Water, FX, Lighting, Shadows, Collision, NPCs)
-│   └── LOD Selection (LOD 0, LOD 1, LOD 2, LOD 3)
+│   ├── Perfil de Desempenho (PC Fraco 60+ FPS | Equilibrado | Alta Qualidade)
+│   ├── [ Otimizar Viewport 60 FPS ]  [ Limpar Drivers ]  [ Limpar RAM ]
+│   └── Categorias de Importação (Terreno, Construções, Props, Vegetação, NPCs, Água, Luzes)
 ├── Direct Save & Export
 │   ├── [ Direct Save Map ]
 │   └── [ Create Backup (.pak.bak) ]
@@ -120,27 +121,22 @@ Para visualizar a aparência autêntica do jogo:
 
 ---
 
-## 4. Controles Granulares de Importação e LODs
+## 4. Perfil de Desempenho Único e Categorias de Importação
 
-A versão 0.7.0 introduz controle modular completo sobre o que é construído na cena do Blender. **Por padrão, todas as opções vêm ATIVADAS**, mas você pode desmarcar categorias específicas para acelerar a importação ou focar em elementos pontuais:
+Os controles redundantes de LOD foram unificados em **um único seletor de Perfil de Desempenho** (`config/performance_profiles.py`), com foco padrão em **PC Fraco / 60+ FPS**:
 
-### Categorias de Elementos (Toggles Granulares)
-- **Import Terrain:** Cria a malha do terreno (heightfield de 16 bits), materiais de mesclagem multicamada e mapas de sombra.
-- **Import Buildings:** Importa estruturas arquitetônicas fixas, castelos, templos, muralhas e pontes.
-- **Import Props:** Importa caixotes, tochas, barracas, altares, ferramentas e detalhes menores.
-- **Import Vegetation:** Importa árvores, arbustos, florestas e vegetação densa (`objects.lst`).
-- **Import Water:** Cria planos de lagos, rios e oceanos com shaders translúcidos.
-- **Import Effects (FX):** Portais de teletransporte, vórtices mágicos, emissores de partículas e auras.
-- **Import Lighting:** Luzes direcionais solares, iluminação estática e marcadores de lâmpadas.
-- **Import Shadows:** Malhas volumétricas de sombra e texturas multiplicadoras de sombra de terreno.
-- **Import Collision:** Geometrias de colisão física e invisível (organizadas na coleção `COLLISION`).
-- **Import NPCs:** Carrega e posiciona NPCs, monstros, sentinelas e criaturas autoritativas nos pontos exatos do mundo.
+### Perfis de Desempenho
+- **PC Fraco / 60+ FPS (Padrão):**
+  - Terreno em passo 4 (`257x257`, ~16x menos vértices) com pesos calculados apenas na grade reduzida e até **6 texturas** dominantes no shader + lightmap de sombra (`cover_low_shadow.dds`).
+  - Modelos importados preferencialmente em **LOD 2** (`_lod2.cgf` -> `_lod1.cgf` -> base) com **fusão automática de sub-malhas estáticas** (1 objeto instanciado por modelo na cena em vez de múltiplos sub-objetos).
+  - Shaders simplificados sem `Normal Map`, `Gloss`, `Subsurface Scattering` (SSS em folhas), `Transmission` (refração em água), modificadores `SUBSURF`/`WAVE` ou drivers Python por frame.
+  - Sombra dinâmica desativada em objetos/folhagens/água e Eevee ajustado (`use_raytracing=False`, `use_fast_gi=False`, `use_shadows=False`, `taa_samples=1`, `use_simplify=True`).
+- **Equilibrado:** Terreno passo 2 (`513x513`), modelos **LOD 1**, até **8 texturas** de terreno e mapas normais sem SSS/refração.
+- **Alta Qualidade:** Terreno passo 2, modelos base **LOD 0**, até **12 texturas** de terreno e mapas PBR completos.
 
-### Níveis de Detalhe (LOD Filters)
-- **Import LOD 0 (High Detail):** Modelos de geometria de máxima densidade para visualização de perto.
-- **Import LOD 1 (Medium Detail):** Versões intermediárias de malhas.
-- **Import LOD 2 (Low Detail):** Versões leves para distâncias médias.
-- **Import LOD 3 (Far / Distant):** Malhas ultra-leves para horizontes distantes.
+### Categorias de Elementos (Toggles Independentes)
+- **Terreno, Construções, Props, Rochas e Água:** Ativos por padrão e carregados em etapas lineares.
+- **Vegetação, Colisão, Luzes Estáticas, Skybox, Efeitos, Animações e NPCs:** Opcionais sob demanda (desmarcados por padrão no perfil leve para manter 60+ FPS imediatos).
 
 ---
 
@@ -327,17 +323,20 @@ O toolkit detecta automaticamente e adapta estruturas de dados para 4 gerações
 - **Retail 4.6**: 154 mapas, 97.764 strings. Suporte transparente com detecção de criptografia proprietária `OADTENC1`.
 - **Retail 7.7**: 178 mapas, 189.800 strings localizadas, 186.856 arquétipos.
 
-### Resolução de Congelamentos (Arquitetura Modal Não-Bloqueante)
-O congelamento histórico do Blender foi eliminado através de três intervenções de engenharia de software:
-1. **Loop Modal com Orçamento de Tempo (Time Budgeting 15ms):** A Main Thread executa o importador em fatias temporais de até 15 milissegundos por tick de timer nativo do Blender (`PASS_THROUGH`), permitindo que as mensagens do Windows (eventos de mouse, redimensionamento de janela e rotação de viewport) continuem sendo processadas sem interrupções.
-2. **Eliminação de Subcoleções no Outliner:** A criação de centenas de coleções aninhadas (`_inst`) foi eliminada. Todos os objetos são vinculados diretamente às coleções mestras da categoria (`PROPS`, `BRUSHES`, etc.), impedindo o travamento da árvore do Outliner.
-3. **Deduplicação de Texturas com Hash MD5:** O carregador DDS associa um hash MD5 do caminho à textura em disco, eliminando colisões de nomes idênticos em diretórios diferentes.
+### Resolução de Congelamentos (Pipeline Linear Não-Bloqueante v2.1.0 em 8 Etapas)
+Todo travamento de interface foi eliminado com execução estritamente **linear e não-bloqueante** (uma etapa conclui 100% antes de iniciar a próxima, sem capturar cliques do Blender):
+1. **Timers Nativos (`bpy.app.timers` Sem Trava Modal):** A importação não utiliza mais operador modal nem `progress_begin` bloqueante. A viewport, menus e cliques continuam 100% livres durante o carregamento, com barra de progresso ao vivo e botão **Cancelar Importação** no painel `Aion Map`.
+2. **Thread Única Segura (`RLock` + Escrita Atômica + LRU de PAKs):** Descompactação de `Level.pak`, indexação `.pak`, parsing de `mission_mission0.xml`, geração de buffers do terreno e extração de CGFs/NPCs rodam em fila única protegida por `threading.RLock`, limite LRU de 16 arquivos abertos, cancelamento cooperativo via `Event` e escrita atômica em cache.
+3. **Cache de Shaders $O(1)$ e Construção Fatiada:** Técnicas `.csl` de `shaders.pak` são indexadas em tabela hash $O(1)$, templates CGF multi-parte e nós multi-materiais (`iter_load_cgf`) cedem o frame a cada ~6 ms sem recriar coleções na raiz da cena, e volumes `NoDraw`/colisão invisíveis sem geometria visual são ignorados corretamente sem falsos erros.
+4. **Ordem Linear das Etapas:** `[1/8] Level.pak` -> `[2/8] Catálogo` -> `[3/8] Terreno` -> `[4/8] Água & Luzes` -> `[5/8] Modelos CGF (1 por vez + instâncias em lotes de 24)` -> `[6/8] CGA/Dinâmicos` -> `[7/8] NPCs (somente após o mapa terminar, com interpolação bilinear $O(1)$ no heightfield do terreno)` -> `[8/8] Otimização Viewport 60 FPS e fechamento de handles`.
+5. **Painéis Zero-I/O & Sem Miniaturas Pesadas:** Os painéis consultam caches em memória, sem varredura de disco em `draw()` nem renderização automática em massa de miniaturas 3D.
+6. **Fusão de Sub-Malhas Estáticas (`bmesh` + `batch_remove`):** Modelos compostos por várias partes são unificados no template antes da instanciação GPU com remoção em lote via `bpy.data.batch_remove`, reduzindo em 3x–10x o número de objetos e draw calls sem picos na thread principal.
 
-### Sistema Real de LOD Companion (`_lod1`, `_lod2`, `_lod3`)
-A CryEngine armazena modelos de menor detalhe como arquivos companheiros (ex.: `bo_housing01a_lod1.cgf`, `bo_housing01a_lod2.cgf`). O resolvedor dinâmico agora identifica automaticamente essas geometrias quando um nível de LOD > 0 é selecionado, reduzindo o peso poligonal e consumo de VRAM em 46.7% a 71.0%.
+### Sistema Automático de LOD Companion (`_lod2`, `_lod1`, `_lod0`)
+O perfil selecionado em **Perfil de Desempenho** escolhe automaticamente a melhor malha disponível (`_lod2.cgf` no perfil PC Fraco, `_lod1.cgf` no Equilibrado e base `.cgf` na Alta Qualidade), com fallback gracioso.
 
-### Nameplates Tridimensionais de NPCs (Billboards 3D)
-Cada NPC importado no mapa recebe uma placa de identificação em curva de texto 3D (`NPCLabel_{id}`) posicionada acima de sua cabeça com nome localizado em português/inglês e ID oficial (`f"{nome} [{id}]"`). Todas as placas residem na subcoleção `NPC_NAMES`, com alternância instantânea de visibilidade através do botão **Toggle Names Visibility** no painel lateral.
+### Nameplates Tridimensionais de NPCs (Opcional)
+Quando **Importar NPCs** e **NPC 3D Nameplates** são marcados manualmente, placas de identificação leves em texto 3D (`NPCLabel_{id}`) são criadas na coleção `NPC_NAMES` (desativadas por padrão para máximo FPS).
 
 ### Edição Completa de Mapas (Adicionar, Mover, Deletar, Repacotar)
 O pipeline de edição agora suporta operações completas:

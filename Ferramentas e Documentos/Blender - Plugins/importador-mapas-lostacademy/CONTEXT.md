@@ -1,6 +1,6 @@
 # Aion Blender Toolkit: Referência Técnica de Arquitetura e Desenvolvimento (CONTEXT.md)
 
-**Versão do Documento:** 1.1.0 (Versão do Toolkit: 0.7.0)  
+**Versão do Documento:** 2.1.0 (Versão do Toolkit: 2.1.0 — Não-Bloqueante 60+ FPS / Thread-Safe)  
 **Ambiente Alvo:** Blender 4.0 - 5.2+ LTS, Python 3.11+ (nativo do Blender)  
 **Repositório:** [`kamidaki/aion-classic-5.0`](https://github.com/kamidaki/aion-classic-5.0/)  
 **Localização no Repositório:** `Ferramentas e Documentos/Blender - Plugins/importador-mapas-lostacademy`  
@@ -32,9 +32,10 @@ importador-mapas-lostacademy/
 ├── README.md                   # Tutorial de uso, guia de fluxo de trabalho e manual de resolução de problemas
 ├── CONTEXT.md                  # Especificação técnica para desenvolvedores e agentes de IA (este documento)
 │
-├── config/                     # Configurações do toolkit, caminhos padrão e constantes
+├── config/                     # Configurações, constantes e perfis de desempenho 60+ FPS
 │   ├── __init__.py
-│   └── settings.py             # Caminhos padrão do cliente, grades de LOD, constantes de vento e escalas
+│   ├── performance_profiles.py # Perfis LOW/BALANCED/HIGH e tuning Eevee/Viewport 60 FPS
+│   └── settings.py             # Caminhos padrão, constantes de vento e escalas
 │
 ├── core/                       # Motor central de arquivos PAK e resolução de recursos em baixo nível
 │   ├── __init__.py
@@ -198,20 +199,12 @@ Ao dar manutenção ou estender este projeto:
 
 ---
 
-## 10. Atualizações de Arquitetura (Versão 2.0.0 - AAA+ Engineering)
+## 10. Atualizações de Arquitetura (Versões 2.0.0 – 2.1.0 - Pipeline Linear, Thread-Safety & Zero Congelamentos)
 
-- **Eliminação de Congelamentos do Blender:**
-  - `importers/level_instances.py`: Substituição de 500+ subcoleções `_inst` por vínculo direto à coleção mestra da categoria.
-  - `operators/import_level.py`: Refatoração para operador modal orientado a gerador (`import_level_generator`) com fatiamento de 15ms por tick e `PASS_THROUGH`, mantendo o Blender 100% responsivo.
-  - `materials/texture_loader.py`: Prefixo de hash MD5 nos arquivos temporários de textura DDS para garantia de unicidade estrita.
-- **Compatibilidade Multi-Client:**
-  - `core/client_provider.py`: Detecção heurística de clientes `Classic 5.0`, `Retail 4.8`, `Retail 4.6` e `Retail 7.7`.
-  - Tabelas de strings `client_strings_*.xml` lidas diretamente de `Strings.pak` e `data.pak` (79k a 189k entradas).
-  - Tratamento resiliente da criptografia proprietária `OADTENC1` do Retail 4.6.
-- **Sistema de LOD Companion:**
-  - `core/pak_engine.py` e `core/resource_resolver.py`: Resolução dinâmica de arquivos companheiros `_lod1.cgf`, `_lod2.cgf` e `_lod3.cgf` com suporte a fallback gracioso.
-- **Nameplates 3D para NPCs:**
-  - `importers/npc_importer.py`: Criação de objetos de texto de curva 3D (`FONT`) com nome localizado e ID parentados aos NPCs na coleção `NPC_NAMES`.
-- **Edição Bidirecional Completa (Round-Trip):**
-  - `editing/level_serializer.py` e `editing/roundtrip_tracker.py`: Suporte a modificação, adição (duplicação) e deleção de brushes e vegetação, além de atualização de coordenadas de NPCs em `client_world_<map>.xml`.
-  - Repacotamento com salvamento direto no `Level.pak` e backup `.pak.bak`.
+- **Execução Não-Bloqueante via `bpy.app.timers` (`operators/import_level.py`, `properties/scene_properties.py`, `ui/panels.py`):**
+  - Eliminados `RUNNING_MODAL` e `wm.progress_begin` (que podiam capturar entrada/cursor durante importações pelo `ImportHelper`). `_LevelImportRunner` executa fatias <= 6 ms em `bpy.app.timers` com botão **Cancelar Importação** (`aion.cancel_level_import`), progresso ao vivo no painel `Aion Map` e limpeza garantida em erro, cancelamento e troca de cena (`load_pre`).
+- **Thread-Safety, Escrita Atômica e Zero Vazamentos (`core/pak_engine.py`, `core/client_provider.py`, `formats/cgf/shader_semantics.py`, `materials/texture_loader.py`):**
+  - `AionPakArchive`, `AionCatalogIndex` (com LRU limitado a 16 PAKs abertos), `AionClientPakResolver`, `get_pak_resolver()`, `_DIAGNOSTICS_TLS` em `formats/cgf/parser.py` e `_SHADER_BLOCK_INDEX` protegidos por `RLock`/TLS; arquivos em `.aion_cache` gravados atomicamente (`.tmp` + `os.replace`); leitura de assinatura `OADTENC1` limitada a 8 bytes; handles fechados ao fim do estágio e na saída.
+- **Fim de Travamentos na Thread Principal & Correção de Falsos Erros `NoDraw`:**
+  - `importers/cgf_importer.py` & `importers/level_instances.py`: `_LAST_IMPORT_REPORT` sempre atualizado (`no_geometry_for_mode` / `empty_mesh`), leitura fatiada `iter_load_cgf` (incluindo pré-aquecimento fatiado por sub-material em nós multi-material) sem vínculos transitórios em `context.scene.collection`, atribuição em lote via `foreach_set` e fusão de templates estáticos (`iter_merge_static_template_meshes`) com `bpy.data.batch_remove`.
+  - `importers/terrain_importer.py`, `terrain_blend_nodes.py`, `environment_importer.py`, `cga_entities_importer.py`, `npc_importer.py`, `level_importer.py`: construção `foreach_set` do terreno e leitura de `mission_mission0.xml` em segundo plano, posicionamento de NPCs por interpolação bilinear $O(1)$ sobre a grade de altura do terreno (sem `BVHTree`/`ray_cast` bloqueantes), instâncias planas sob `.TEMPLATES` sem 300+ subcoleções extras, e relatório resumido na barra sem popup gigante.

@@ -25,6 +25,10 @@ def create_water_plane(
     level_info: LevelInfo,
     xy_scale: float = DEFAULT_WATER_XY_SCALE,
     name: str = DEFAULT_WATER_NAME,
+    *,
+    subdivide_water: bool = False,
+    disable_shadows: bool = True,
+    target_collection=None,
 ) -> WaterPlaneResult:
     if level_info.water_level is None:
         return _skipped_result(xy_scale, "LevelInfo WaterLevel is missing")
@@ -63,14 +67,21 @@ def create_water_plane(
 
     water_object = bpy.data.objects.new(name, mesh)
     water_object.location.z = level_info.water_level
+    if disable_shadows and hasattr(water_object, "visible_shadow"):
+        try:
+            water_object.visible_shadow = False
+        except (AttributeError, TypeError):
+            pass
 
-    # Subdivide so wave modifier and displacement have physical vertices
-    subdiv = water_object.modifiers.new("Aion_WaterSubdiv", type="SUBSURF")
-    subdiv.subdivision_type = "SIMPLE"
-    subdiv.levels = 1
-    subdiv.render_levels = 1
+    if subdivide_water:
+        # Subdivide only when procedural vertex wave animation is explicitly enabled
+        subdiv = water_object.modifiers.new("Aion_WaterSubdiv", type="SUBSURF")
+        subdiv.subdivision_type = "SIMPLE"
+        subdiv.levels = 1
+        subdiv.render_levels = 1
 
-    context.scene.collection.objects.link(water_object)
+    dest_col = target_collection if target_collection is not None else context.scene.collection
+    dest_col.objects.link(water_object)
 
     return WaterPlaneResult(
         created=True,

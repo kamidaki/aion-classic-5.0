@@ -7,7 +7,25 @@ animating, and direct-saving Aion maps.
 from __future__ import annotations
 
 from pathlib import Path
+from typing import Dict, Tuple
 import bpy
+
+
+# Cached client diagnostics (flavor_name, maps_count) keyed by resolved lowercase root.
+# Populated ONLY on explicit operator request so panel draw() stays 100% disk-free (60+ FPS).
+_CLIENT_DIAG_CACHE: Dict[str, Tuple[str, int]] = {}
+
+
+def refresh_client_diagnostics_cache(client_root: str | Path) -> Tuple[str, int]:
+    """Queries client flavor & map count once and caches the result."""
+    from core.client_provider import AionClientProvider
+
+    root = Path(client_root).resolve()
+    key = str(root).lower()
+    prov = AionClientProvider(root)
+    info = (prov.flavor.name, len(prov.get_available_maps()))
+    _CLIENT_DIAG_CACHE[key] = info
+    return info
 
 
 class AION_PT_base:
@@ -38,8 +56,26 @@ class AION_PT_main_panel(AION_PT_base, bpy.types.Panel):
         else:
             box.label(text="No Level Loaded", icon="INFO")
 
+        if getattr(settings, "is_importing", False):
+            prog_box = box.box()
+            stage_txt = getattr(settings, "import_stage_message", "") or "Processando..."
+            prog_box.label(text=stage_txt, icon="TIME")
+            row_p = prog_box.row(align=True)
+            row_p.enabled = False
+            row_p.prop(settings, "import_progress", text="Progresso", slider=True)
+            row_c = prog_box.row(align=True)
+            row_c.alert = True
+            row_c.scale_y = 1.2
+            row_c.operator("aion.cancel_level_import", text="Cancelar Importação", icon="CANCEL")
+
         if settings.status_message:
-            box.label(text=settings.status_message, icon="CHECKMARK")
+            lower_status = settings.status_message.lower()
+            status_icon = (
+                "ERROR"
+                if ("erro" in lower_status or "falha" in lower_status or "cancel" in lower_status)
+                else "CHECKMARK"
+            )
+            box.label(text=settings.status_message, icon=status_icon)
 
 
 class AION_PT_level_io(AION_PT_base, bpy.types.Panel):
@@ -61,43 +97,39 @@ class AION_PT_level_io(AION_PT_base, bpy.types.Panel):
 
         row = col.row(align=True)
         row.scale_y = 1.3
-        row.operator("import_scene.aion_level_folder", text="Import Level", icon="IMPORT")
+        imp_col = row.row(align=True)
+        imp_col.enabled = not getattr(settings, "is_importing", False)
+        imp_col.operator("import_scene.aion_level_folder", text="Import Level", icon="IMPORT")
         row.operator("import_scene.aion_cgf", text="Import CGF", icon="OBJECT_DATA")
 
-        # Import options & Granular Category Controls
+        # Simplified 60+ FPS Performance Profile (no redundant LOD toggles)
         box_opt = layout.box()
-        box_opt.label(text="LOD & Engine Performance:", icon="PREFERENCES")
-        box_opt.prop(settings, "target_model_lod", text="Model LOD")
-        row = box_opt.row(align=True)
-        row.prop(settings, "import_lod0", text="LOD 0")
-        row.prop(settings, "import_lod1", text="LOD 1")
-        row.prop(settings, "import_lod2", text="LOD 2")
-        row.prop(settings, "import_lod3", text="LOD 3")
-        box_opt.prop(settings, "use_mesh_instancing")
-        box_opt.prop(settings, "optimize_material_preview")
+        box_opt.label(text="Desempenho & GPU (60+ FPS):", icon="PREFERENCES")
+        box_opt.prop(settings, "performance_profile", text="Perfil")
         row_clean = box_opt.row(align=True)
-        row_clean.operator("aion.clean_wind_drivers", text="Fix Playback Freeze", icon="PLAY")
-        row_clean.operator("aion.purge_unused_data", text="Purge RAM", icon="TRASH")
+        row_clean.operator("aion.optimize_viewport_60fps", text="Otimizar Viewport 60 FPS", icon="SHADING_RENDERED")
+        row_clean2 = box_opt.row(align=True)
+        row_clean2.operator("aion.clean_wind_drivers", text="Limpar Drivers", icon="PLAY")
+        row_clean2.operator("aion.purge_unused_data", text="Limpar RAM", icon="TRASH")
 
         # Category Switches
         box_cat = layout.box()
-        box_cat.label(text="Import Categories:", icon="OUTLINER")
+        box_cat.label(text="Categorias de Importação:", icon="OUTLINER")
         col = box_cat.column(align=True)
         col.prop(settings, "import_terrain")
         if settings.import_terrain:
-            row = col.row(align=True)
-            row.prop(settings, "terrain_lod", text="LOD")
-            row.prop(settings, "import_terrain_shadows", text="Shadows")
+            col.prop(settings, "import_terrain_shadows", text="Lightmap / Sombras do Terreno")
         col.prop(settings, "import_buildings")
         col.prop(settings, "import_props")
         col.prop(settings, "import_vegetation")
         col.prop(settings, "import_npcs")
         if settings.import_npcs:
             sub = col.box().column(align=True)
-            sub.prop(settings, "import_nameplates", text="3D Billboard Names")
-            sub.operator("aion.toggle_npc_names", text="Toggle Names Visibility", icon="HIDE_OFF")
             sub.prop(settings, "import_npc_models")
             sub.prop(settings, "animate_npcs")
+            sub.prop(settings, "import_nameplates", text="Nomes 3D (Pesado)")
+            if settings.import_nameplates:
+                sub.operator("aion.toggle_npc_names", text="Ocultar/Mostrar Nomes", icon="HIDE_OFF")
             sub.prop(settings, "import_monsters")
             sub.prop(settings, "import_friendly_npcs")
             sub.prop(settings, "import_ambient_creatures")
@@ -254,17 +286,21 @@ class AION_PT_performance_monitor(AION_PT_base, bpy.types.Panel):
         col.label(text=f"Textures / Images: {len(bpy.data.images)}")
 
         if settings and settings.client_root:
-            from core.client_provider import AionClientProvider
-            client_path = Path(settings.client_root)
-            if client_path.is_dir():
-                box_client = layout.box()
-                box_client.label(text="Client Diagnostics:", icon="GHOST_ENABLED")
-                try:
-                    prov = AionClientProvider(client_path)
-                    box_client.label(text=f"Version: {prov.flavor.name}")
-                    box_client.label(text=f"Levels Available: {len(prov.get_available_maps())}")
-                except Exception as exc:
-                    box_client.label(text=f"Audit: {exc}")
+            box_client = layout.box()
+            box_client.label(text="Client Diagnostics:", icon="GHOST_ENABLED")
+            try:
+                norm_key = str(Path(settings.client_root).resolve()).lower()
+            except Exception:
+                norm_key = str(settings.client_root).strip().lower()
+            cached = _CLIENT_DIAG_CACHE.get(norm_key)
+            if cached is not None:
+                box_client.label(text=f"Version: {cached[0]}")
+                box_client.label(text=f"Levels Available: {cached[1]}")
+            box_client.operator(
+                "aion.refresh_client_diagnostics",
+                text="Atualizar Info do Cliente" if cached else "Detectar Versão do Cliente",
+                icon="FILE_REFRESH",
+            )
 
 
 
@@ -286,7 +322,7 @@ class AION_PT_asset_inventory(AION_PT_base, bpy.types.Panel):
         top_box = layout.box()
         col = top_box.column(align=True)
         col.operator("aion.open_asset_browser", text="Open 3D Asset Browser (Grid)", icon="ASSET_MANAGER")
-        col.operator("aion.catalog_assets", text="Catalog Scene & Render 3D Previews", icon="FILE_REFRESH")
+        col.operator("aion.catalog_assets", text="Catalog Scene Assets", icon="FILE_REFRESH")
 
         # Source Selector
         box_filter = layout.box()
@@ -341,13 +377,16 @@ class AION_PT_asset_inventory(AION_PT_base, bpy.types.Panel):
                     box_items.label(text=f"...and {len(items)-30} more (use 3D Asset Browser for all)", icon="THREE_DOTS")
 
         else:
-            from importers.asset_catalog import get_client_model_items
+            from importers.asset_catalog import get_client_model_items, is_client_model_cache_ready
 
             client_root = settings.client_root
             if not client_root or not Path(client_root).is_dir():
                 box_items.label(text="Valid Client Root is required.", icon="ERROR")
+            elif not is_client_model_cache_ready(client_root):
+                box_items.label(text="Biblioteca ainda não indexada.", icon="INFO")
+                box_items.operator("aion.refresh_client_assets", text="Escanear Modelos do Cliente", icon="FILE_REFRESH")
             else:
-                items = get_client_model_items(client_root, category_filter=cat, search_query=query, limit=30)
+                items = get_client_model_items(client_root, category_filter=cat, search_query=query, limit=30, allow_scan=False)
                 box_items.label(text=f"Client Library: ({len(items)} shown)", icon="FILE_FOLDER")
                 if not items:
                     box_items.label(text="No client models matching filter.", icon="INFO")
