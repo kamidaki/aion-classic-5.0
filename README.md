@@ -2,7 +2,7 @@
 
 <div align="center">
 
-<img src="Ferramentas%20e%20Documentos/Banner/LostAcademyGroup.png" alt="Aion Classic 5.0" width="180" height="180" />
+<img src="Ferramentas%20e%20Documentos/Banner/logo-512x512.png" alt="Aion Classic 5.0" width="180" height="180" />
 
 </div>
 
@@ -72,12 +72,13 @@ Toda implementação deve ser **idêntica à referência oficial Gameforge**, se
 │   └── game-server-battleroyale/         # Módulo auxiliar isolado em perfil opcional (DESABILITADO por padrão)
 ├── Emulador - Produto Final/             # Distribuição pronta com configs locais de exemplo e libs sincronizadas
 ├── Ferramentas e Documentos/
-│   ├── Auditorias e Relatórios/          # Relatórios e matrizes técnicas de auditoria
-│   ├── Códigos bin64/                    # Módulos nativos C/C++ (incluindo version.dll e estudos RTTI)
-│   ├── Geo and Nav Builder - Official Client/ # Gerador de malhas geográficas e navegação
-│   ├── Opcodes Oficiais - Classic 5.0/    # Referências de opcodes do cliente oficial 5.0
-│   ├── Patch final - Client 5.0/         # Patch do cliente e guia de versões em README.md
-│   └── docs/                             # Relatórios de auditoria, PRs, vulnerabilidades e validação final
+│   ├── Auditorias e Relatórios/              # Relatórios e matrizes técnicas de auditoria
+│   ├── Blender - Plugins/                    # Plugins de mapas e modelos 3D para Blender (pastas e .zip)
+│   ├── Códigos bin64/                        # Módulos nativos C/C++ (incluindo version.dll e estudos RTTI)
+│   ├── Geo and Nav Builder - Official Client/# Gerador nativo Java de Geodata (.geo/.mesh/.png) e NavMesh (.nav) sem Blender
+│   ├── Opcodes Oficiais - Classic 5.0/        # Referências de opcodes do cliente oficial 5.0
+│   ├── Patch final - Client 5.0/             # Patch do cliente e guia de versões em README.md
+│   └── docs/                                 # Relatórios de auditoria, PRs, vulnerabilidades e validação final
 ```
 
 Por padrão de distribuição e inicialização (`Emulador - Produto Final/Config/config.json`), **apenas o GameServer GameForge (`GSID 1`)** permanece habilitado em conjunto com `ChatServer` e `LoginServer`.
