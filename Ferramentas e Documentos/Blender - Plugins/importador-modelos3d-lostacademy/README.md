@@ -3,6 +3,11 @@
 Biblioteca visual de ativos, visualizador 3D, reprodutor de animações esqueléticas e editor transacional de modelos CryEngine `.cgf` / `.cga` / `.cal` / `.caf` nativo para **Blender 4.0 a 5.2+ LTS**, integrado ao projeto **[Aion Classic 5.0 — Lost Academy Group](https://github.com/kamidaki/aion-classic-5.0/)**.
 
 ---
+Alguns prints durante os testes (LEMBRANDO QUE O PLUGIN ESTÁ LONGE DE FICAR PRONTO, estimo que esteja em uns 60%, os outros 40% são animações, estados, efeitos visuais e sonoros, entre outras coisas)
+<img width="1907" height="1042" alt="image" src="https://github.com/user-attachments/assets/893abccd-854d-479e-bbc7-4583d3743cbd" />
+<img width="3839" height="1041" alt="image" src="https://github.com/user-attachments/assets/2f18896d-2440-49fc-897c-4663063c8c7a" />
+<img width="1916" height="1016" alt="image" src="https://github.com/user-attachments/assets/e8918550-e040-448a-9732-6ef76ce8df28" />
+<img width="1897" height="963" alt="image" src="https://github.com/user-attachments/assets/84663423-b5b3-443a-b3b7-f2743b3ac377" />
 
 ## Visão Geral: Pipeline Bidirecional Completo
 
