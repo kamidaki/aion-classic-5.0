@@ -93,6 +93,7 @@ cache/
 *.bik
 *.7z
 *.zip
+!Ferramentas e Documentos/Blender - Plugins/*.zip
 *.rar
 *.bak*
 *.bundle

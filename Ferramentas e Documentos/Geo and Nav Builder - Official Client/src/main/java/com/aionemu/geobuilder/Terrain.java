@@ -148,11 +148,8 @@ public class Terrain {
         }
       } catch (Exception ignored) {}
 
-      Path p4 = Path.of("Ferramentas [Emulador e Client]/GeoBuilder/oxipng", binaryName);
+      Path p4 = Path.of("Ferramentas e Documentos/Geo and Nav Builder - Official Client/oxipng", binaryName);
       if (Files.isRegularFile(p4)) return p4.toAbsolutePath();
-
-      Path p5 = Path.of("F:/Aion Live Clássico - América do Sul/ZONA DE CUSTOM/LOST ACADEMY/Ferramentas [Emulador e Client]/GeoBuilder/oxipng", binaryName);
-      if (Files.isRegularFile(p5)) return p5.toAbsolutePath();
 
       return null;
     }
