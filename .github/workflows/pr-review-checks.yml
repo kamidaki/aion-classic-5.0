@@ -1,0 +1,86 @@
+name: PR Automated Review & Checks
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review, edited]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: pr-review-checks-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  review-checks:
+    name: Revisão Automática e Qualidade do PR
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout do Head do PR
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Coletar Arquivos e Metadados do PR
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const path = require('path');
+            const pr = context.payload.pull_request;
+            const files = await github.paginate(github.rest.pulls.listFiles, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: pr.number,
+              per_page: 100,
+            });
+            const eventData = {
+              pr_number: pr.number,
+              title: pr.title || '',
+              body: pr.body || '',
+              author: pr.user ? pr.user.login : 'unknown',
+              repo_owner: context.repo.owner,
+              head_sha: pr.head ? pr.head.sha : '',
+              base_ref: pr.base ? pr.base.ref : '',
+              head_ref: pr.head ? pr.head.ref : '',
+              is_fork: Boolean(pr.head && pr.head.repo && pr.head.repo.fork),
+              draft: Boolean(pr.draft),
+            };
+            const tmpDir = process.env.RUNNER_TEMP || '/tmp';
+            fs.writeFileSync(path.join(tmpDir, 'pr-files.json'), JSON.stringify(files), 'utf8');
+            fs.writeFileSync(path.join(tmpDir, 'pr-event.json'), JSON.stringify(eventData), 'utf8');
+            core.info(`Coletados ${files.length} arquivo(s) para o PR #${pr.number}.`);
+
+      - name: Executar Analisador Proporcional do PR
+        run: |
+          python3 .github/scripts/pr_analyzer.py \
+            --files-json "${{ runner.temp }}/pr-files.json" \
+            --event-json "${{ runner.temp }}/pr-event.json" \
+            --repo-root . \
+            --output "${{ runner.temp }}/pr-review-report.json"
+
+      - name: Enviar Relatório de Análise (Artefato)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr-review-report
+          path: ${{ runner.temp }}/pr-review-report.json
+          retention-days: 1
+
+      - name: Verificar Resultado dos Checks
+        run: |
+          python3 - <<'PY'
+          import json, os, sys
+          from pathlib import Path
+          report = json.loads(Path(os.environ["RUNNER_TEMP"], "pr-review-report.json").read_text(encoding="utf-8"))
+          print(f"Modo docs-only: {report['is_docs_only']} | Requer build Java: {report['needs_java_build']}")
+          print(f"Labels sugeridas: {', '.join(report['labels'])}")
+          for issue in report.get("blocking_issues", []):
+              print(f"::error file={issue['file']},line={issue.get('line', 1)}::{issue['rule']}: {issue['message']}")
+          for warn in report.get("warnings", []):
+              print(f"::warning file={warn['file']},line={warn.get('line', 1)}::{warn['rule']}: {warn['message']}")
+          if not report.get("passed", False):
+              sys.exit(1)
+          PY

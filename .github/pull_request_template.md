@@ -1,47 +1,43 @@
 ## Resumo das Alterações
 
-<!-- Descreva de forma objetiva qual problema PvE ou melhoria de compatibilidade com o Aion Classic 5.0 Oficial EU (Gameforge — GSID 1) este Pull Request implementa. -->
+<!-- Descreva objetivamente o que este Pull Request corrige, adiciona ou documenta. -->
 
 Fixes #(issue)
 
 ---
 
-## Componente Afetado (Escopo Estrito — GameForge GSID 1)
+> [!TIP]
+> **Contribuição apenas de Documentação (`.md` / imagens / `README` / guias)?**
+> Você está na **Via Rápida (`docs-only`)**! **NÃO** é necessário compilar Maven/JDK 25, gerar capturas de Wireshark/Ghidra nem preencher itens de código Java — o bot rotula, revisa e aprova automaticamente assim que as verificações leves passarem.
 
-> **Atenção:** Pull Requests que mencionem ou modifiquem servidores secundários (GSID 2 / GSID 3) ou alterem o idioma padrão do projeto para inglês **não serão aceitos**. A única exceção referente a idioma é a implementação de sistema **multilínguas** com escolha de idioma pelo usuário.
+---
 
+## Componente Afetado
+
+- [ ] **Documentação (`.md` / Guias / Diagramas — Via Rápida `docs-only`)**
 - [ ] `GameServer GameForge` (`game-server-gameforge` — GSID 1 | Referência Oficial EU)
-- [ ] `LoginServer` (`login-server` — compatibilidade GameForge GSID 1)
-- [ ] `ChatServer` (`chat-server` — compatibilidade GameForge GSID 1)
-- [ ] `Commons` (`commons` — núcleo compartilhado)
+- [ ] `LoginServer` (`login-server`) / `ChatServer` (`chat-server`) / `Commons` (`commons`)
 - [ ] `Client Hook` (`version.dll` — conectividade e fixes de cliente)
-- [ ] `Sistema Multilínguas (l10n)` (sem alterar idioma padrão Português)
-- [ ] `Documentação / Build / CI` (`README.md`, `Ferramentas e Documentos/docs/`, Maven, `.github/`)
+- [ ] `Plugins Blender` (`Ferramentas e Documentos/Blender - Plugins/`)
+- [ ] `Geo & Nav Builder / Ferramentas` (`Ferramentas e Documentos/`)
+- [ ] `Sistema Multilínguas (l10n)` (preservando Português PT-BR como padrão)
+- [ ] `Build / CI` (`.github/`, Maven)
 
 ---
 
-## Tipo de Mudança
+## Checklist Proporcional ao Tipo de Mudança
 
-- [ ] Correção de Bug (*bug fix*)
-- [ ] Fidelidade PvE Gameforge EU (skills, quests, NPCs, drops, instâncias, eventos, combate)
-- [ ] Otimização de Performance (*perf*)
-- [ ] Melhoria de Segurança (*security*)
-- [ ] Sistema Multilínguas (*i18n / l10n*)
-- [ ] Documentação / Build / CI (*docs / build / ci*)
+### Obrigatório para qualquer PR
+- [ ] Nenhuma credencial real, token privado, IP interno ou caminho local do PC (`C:\Users\<seu_usuario>\...`, `D:\AionCliente\...`) foi incluído.
+- [ ] O idioma padrão do projeto (**Português / PT-BR**) foi preservado (exceto quando o recurso implementa seletor multilíngue).
 
----
-
-## Checklist Obrigatória de Validação
-
-- [ ] **Escopo Exclusivo GameForge GSID 1:** Confirmo que este PR contribui exclusivamente para o objetivo oficial EU no **GameServer 1 (GameForge GSID 1)** e NÃO contém alterações nem referências ao GSID 2 ou GSID 3.
-- [ ] **Preservação do Idioma Padrão:** Confirmo que o idioma padrão do projeto (**Português / PT-BR**) foi preservado (alterações de idioma restringem-se ao suporte multilíngue selecionável).
-- [ ] **Compilação Limpa e Testes (JDK 25):** `mvn clean package --file "Código Fonte - Emulador/pom.xml"` executado com sucesso e sem regressões nos testes.
-- [ ] **Evidências Oficiais Gameforge:** Comportamentos, fórmulas, dados estáticos e pacotes foram comparados contra a referência oficial do Aion Classic 5.0 EU (incluindo Ghidra/Wireshark e capturas/logs reais quando aplicável).
-- [ ] **Zero Dados Fictícios / Bypass:** Correções em dados estáticos foram aplicadas nos XMLs canônicos sem gambiarras em Java.
-- [ ] **Higienização e Portabilidade:** Nenhuma credencial real, IP privado, token secreto ou caminho fixo local (`C:\`, `D:\`) foi adicionado.
+### Aplicável apenas se você alterou código Java / C++ / Ferramentas *(contribuidores de `.md` podem ignorar)*
+- [ ] **Escopo GameForge GSID 1:** Alterações de código respeitam o servidor oficial EU (`game-server-gameforge`), sem modificar servidores auxiliares desabilitados (`game-server-remake` / `game-server-battleroyale`).
+- [ ] **Compilação / Validação:** Compilado com sucesso via `mvn clean package --file "Código Fonte - Emulador/pom.xml"` (se alterou Java) ou validado no Blender/ferramenta correspondente.
+- [ ] **Qualidade de Implementação:** Sem gambiarras em Java para mascarar falhas em XMLs canônicos; comportamentos PvE alinhados à referência oficial quando aplicável.
 
 ---
 
-## Evidências e Registros de Teste
+## Evidências e Registros de Teste *(opcional para PRs de documentação)*
 
-<!-- Inclua aqui os resultados da compilação/testes, comparações oficiais e imagens ou registros de execução. -->
+<!-- Para código: logs de build/testes ou prints. Para docs: um breve resumo já basta! -->

@@ -1,0 +1,46 @@
+name: PR Bot — Revisão, Labels e Auto-Aprovação
+
+on:
+  workflow_run:
+    workflows:
+      - "PR Automated Review & Checks"
+      - "Backend Java 25 CI"
+      - "Conventional Commits Lint"
+    types:
+      - completed
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+  actions: read
+  checks: read
+  models: read
+
+concurrency:
+  group: pr-bot-${{ github.event.workflow_run.head_sha }}
+  cancel-in-progress: false
+
+jobs:
+  bot-review:
+    name: Processar Labels, Revisão e Auto-Aprovação
+    if: github.event.workflow_run.event == 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout Seguro Apenas do Script do Bot (Branch Padrão)
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+          sparse-checkout: |
+            .github/scripts/pr_bot.js
+          sparse-checkout-cone-mode: false
+
+      - name: Executar Bot Revisor e Auto-Aprovação
+        uses: actions/github-script@v7
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          script: |
+            const bot = require('./.github/scripts/pr_bot.js');
+            await bot.run({ github, context, core });
